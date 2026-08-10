@@ -6,13 +6,13 @@ Este arquivo é a fonte de verdade para qualquer IA que continuar o projeto.
 
 Criar uma aplicação web responsiva para estudo pessoal de Python, inspirada apenas na mecânica de microlições interativas de apps educacionais.
 
-O projeto deve funcionar no mesmo endereço em:
+O projeto deve funcionar com a mesma base em:
 - navegador desktop;
 - notebook;
 - tablet;
 - celular.
 
-O projeto deve continuar publicável como site estático no GitHub Pages.
+O projeto deve continuar publicável como site estático no GitHub Pages, sem etapa de build.
 
 ## 2. O que NÃO deve existir
 
@@ -67,7 +67,9 @@ Arquivos:
 - `style.css`: layout responsivo desktop/celular;
 - `script.js`: motor do curso;
 - `data/course.js`: conteúdo;
-- `.github/workflows/pages.yml`: publicação no GitHub Pages.
+- `.nojekyll`: publicação estática simples no GitHub Pages.
+
+GitHub Pages deve ser configurado para publicar da branch `main`, pasta `/ (root)`.
 
 Evitar dependências externas no MVP.
 
@@ -267,7 +269,7 @@ Toda aula deve:
 Uma alteração só está pronta quando:
 - abre diretamente no navegador;
 - funciona em desktop e celular;
-- não quebra GitHub Pages;
+- continua sendo um site estático publicável no GitHub Pages;
 - preserva progresso existente sempre que possível;
 - não adiciona gamificação sem valor pedagógico;
 - novas perguntas podem ser adicionadas preferencialmente editando dados, não o motor;
