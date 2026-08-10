@@ -1,285 +1,152 @@
-# ROADMAP PARA IA — Python Game Education
+# ROADMAP PARA IA — NoirByte Python Quest
 
 Este arquivo é a fonte de verdade para qualquer IA que continuar o projeto.
 
-## 1. Objetivo do produto
+## Objetivo
 
-Criar uma aplicação web responsiva para estudo pessoal de Python, inspirada apenas na mecânica de microlições interativas de apps educacionais.
+Criar um jogo web responsivo de estudo de Python, com estética pixel-art retrô e microlições interativas. Deve funcionar no mesmo endereço em desktop e celular e continuar publicável como site estático no GitHub Pages.
 
-O projeto deve funcionar com a mesma base em:
-- navegador desktop;
-- notebook;
-- tablet;
-- celular.
+O personagem instrutor é **NoirByte**, um robô original preto/grafite com visor ciano. Não copiar sprites, nomes, logotipos, armaduras, poses ou elementos identificáveis de Mega Man ou de qualquer outra franquia.
 
-O projeto deve continuar publicável como site estático no GitHub Pages, sem etapa de build.
+## Regras obrigatórias
 
-## 2. O que NÃO deve existir
+Não adicionar XP, ranking, moedas, vidas, conquistas, login obrigatório ou backend sem necessidade real. O único progresso relevante é: lições concluídas, fase atual, assuntos estudados e revisão.
 
-Não adicionar:
-- XP;
-- ranking;
-- moedas;
-- conquistas;
-- vidas;
-- sistema social;
-- login obrigatório;
-- backend sem necessidade real;
-- frameworks apenas por estética.
+Aproximadamente 75% a 85% das atividades devem ser resolvidas por clique/toque. Digitação de código entra mais tarde e apenas quando for pedagogicamente útil.
 
-O foco é exclusivamente aprendizado.
+Fluxo padrão de uma microlição:
 
-## 3. Método de estudo obrigatório
-
-A maior parte das interações deve exigir apenas clique/toque.
-
-Fluxo padrão de uma lição:
 1. explicação curta;
 2. exemplo de código;
 3. pergunta clicável;
 4. feedback imediato;
 5. nova pergunta;
-6. conclusão;
-7. liberar a próxima lição.
+6. conclusão da fase;
+7. liberação da próxima fase.
 
-Aproximadamente 75% a 85% das atividades devem ser respondidas por clique.
+Tipos de exercício prioritários: `choice`, `output`, `fill_choice`, `find_error` e futuramente `order_code` e `write_code`.
 
-Tipos prioritários:
-- escolher a alternativa correta;
-- prever a saída do código;
-- escolher o trecho que completa o código;
-- identificar o erro;
-- ordenar trechos de código futuramente por clique/arrastar.
+## Arquitetura
 
-Digitação de código deve existir somente em etapas de prática mais avançada, não em todas as lições.
+Manter simples:
 
-## 4. Arquitetura atual
+- `index.html` — estrutura;
+- `style.css` — visual pixel e responsividade;
+- `script.js` — motor do jogo;
+- `data/course.js` — conteúdo;
+- `.nojekyll` — GitHub Pages.
 
-Tecnologias:
-- HTML sem framework;
-- CSS responsivo;
-- JavaScript vanilla;
-- dados do curso separados em `data/course.js`;
-- progresso em `localStorage`.
+Sem framework no MVP. Progresso em `localStorage`.
 
-Arquivos:
-- `index.html`: shell da aplicação;
-- `style.css`: layout responsivo desktop/celular;
-- `script.js`: motor do curso;
-- `data/course.js`: conteúdo;
-- `.nojekyll`: publicação estática simples no GitHub Pages.
+## Regras do motor de perguntas
 
-GitHub Pages deve ser configurado para publicar da branch `main`, pasta `/ (root)`.
+- Validar automaticamente cada questão antes de iniciar o jogo.
+- Toda questão precisa ter `options`, `answer` válido e `explanation`.
+- Ao clicar em uma alternativa, bloquear imediatamente todas as alternativas para impedir clique duplo.
+- Resposta errada não pode avançar a questão.
+- Ao errar numa missão, usar `TENTAR DE NOVO` e renderizar a etapa novamente em estado limpo.
+- Ao acertar, mostrar explicação e liberar apenas um avanço.
+- Na área de Treino, pode destacar a resposta correta após o erro.
+- Nunca permitir que um clique rápido avance duas etapas.
 
-Evitar dependências externas no MVP.
+## Trilha atual — 30 missões
 
-## 5. Regras de interface
+### Mundo 1 — Boot
+1. Seu primeiro comando
+2. Comentários e leitura
+3. Recebendo dados
 
-Desktop:
-- aproveitar largura disponível;
-- permitir duas colunas na tela inicial;
-- conteúdo de lição centralizado com largura confortável;
-- botões grandes, mas sem aparência de aplicativo mobile esticado.
+### Mundo 2 — Variáveis e tipos
+4. Variáveis
+5. Tipos básicos
+6. Conversão de tipos
 
-Celular:
-- reorganizar para uma coluna;
-- manter botões fáceis de tocar;
-- não criar versão separada;
-- não exigir zoom horizontal.
+### Mundo 3 — Strings
+7. Strings e concatenação
+8. f-strings
+9. Métodos de texto
 
-A mesma base deve atender ambas as telas.
+### Mundo 4 — Lógica
+10. Operadores matemáticos
+11. Comparações e bool
+12. if / elif / else
 
-## 6. Regras de progresso
-
-Persistir localmente:
-- lições concluídas;
-- última lição aberta;
-- futuramente domínio por assunto e erros de revisão.
-
-Não persistir pontos artificiais.
-
-A próxima lição só deve ser liberada quando a anterior for concluída.
-
-A área Prática deve usar somente assuntos já estudados.
-
-## 7. Trilha pedagógica planejada
-
-### Fase A — Fundamentos
-1. Primeiros passos
-2. print()
-3. comentários
-4. variáveis
-5. strings
-6. números
-7. input()
-8. operadores matemáticos
-9. comparações
-10. booleanos
-11. if
-12. else
-13. elif
-14. for
+### Mundo 5 — Loops
+13. for
+14. range()
 15. while
 
-### Fase B — Estruturas de dados
-16. listas
-17. operações com listas
-18. strings avançadas
-19. tuplas
-20. dicionários
-21. sets
-22. list comprehensions
+### Mundo 6 — Coleções
+16. Listas
+17. Dicionários
+18. Tuplas e sets
 
-### Fase C — Organização do código
-23. funções
-24. parâmetros
-25. retorno
-26. escopo
-27. módulos
-28. tratamento de erros
+### Mundo 7 — Funções
+19. Criando funções
+20. Parâmetros
+21. return e escopo
 
-### Fase D — Python prático
-29. arquivos TXT
-30. CSV
-31. JSON
-32. pathlib
-33. automação de arquivos
-34. requests / APIs
+### Mundo 8 — Código confiável
+22. Erros e exceções
+23. Módulos
+24. Arquivos
 
-### Fase E — Dados e trabalho
-35. pandas básico
-36. DataFrame
-37. filtros
-38. agrupamentos
-39. leitura de CSV
-40. leitura de Excel
-41. comparação de planilhas
-42. tratamento de dados
+### Mundo 9 — Dados
+25. CSV
+26. JSON
+27. pandas e DataFrame
 
-### Fase F — Projetos
-Projetos pequenos devem aparecer depois que os fundamentos necessários já tiverem sido ensinados.
+### Mundo 10 — Automação
+28. Automatizando arquivos com pathlib
+29. Consumindo APIs
+30. Projeto: conferência de planilhas
 
-Sugestões:
-- calculadora;
-- calculadora de impostos simples;
-- controle de despesas;
-- simulador de investimentos;
-- leitor de CSV;
-- comparação de duas planilhas;
-- analisador de extrato;
-- organizador de arquivos;
-- consulta de API;
-- automação com pandas.
+## Evolução pedagógica
 
-## 8. Próximas versões
+A versão atual prioriza reconhecimento e leitura de código. Depois de estabilizar as 30 missões, evoluir nesta ordem:
 
-### v0.2 — Melhorar motor de exercícios
-Adicionar tipos declarativos no `course.js`:
-- `choice`;
-- `output`;
-- `fill_choice`;
-- `find_error`;
-- `order_code`.
+### v0.3 — aprofundar fundamentos
+Adicionar mais microlições em pontos que exigem repetição, principalmente condicionais, loops, listas, funções e tratamento de erros.
 
-O motor deve renderizar o exercício a partir do tipo sem conteúdo HTML duplicado.
+### v0.4 — revisão inteligente
+Registrar erros por assunto e priorizar na área Treino os conceitos com mais erros. Mostrar apenas estados úteis como `precisa revisar`, `em aprendizado` e `bom domínio`.
 
-### v0.3 — Revisão por dificuldade
-Registrar por assunto:
-- acertos;
-- erros;
-- última revisão.
+### v0.5 — código real
+Adicionar exercícios curtos de digitação usando Pyodide, carregado sob demanda. Não transformar cada lição em editor de código.
 
-A área Prática deve priorizar assuntos com mais erros.
+### v0.6 — projetos guiados
+Projetos devem ser divididos em pequenas etapas. Prioridade:
 
-Não mostrar pontuação gamificada. Mostrar somente algo útil, como:
-- "precisa revisar";
-- "em aprendizado";
-- "bom domínio".
+1. calculadora;
+2. controle de despesas;
+3. leitor de CSV;
+4. organizador de arquivos;
+5. consulta de API;
+6. comparação de planilhas;
+7. analisador de extrato;
+8. automação contábil com pandas.
 
-### v0.4 — Código real no navegador
-Adicionar Pyodide apenas quando começarem exercícios de digitação.
+## Regras visuais
 
-Requisitos:
-- carregar Pyodide sob demanda;
-- não tornar cada tela pesada;
-- capturar stdout;
-- comparar resultado esperado;
-- permitir executar novamente;
-- manter compatibilidade com GitHub Pages.
+- estética pixel-art/8–16 bit moderna;
+- fundo tecnológico escuro;
+- preto/grafite + ciano como identidade do NoirByte;
+- verde apenas para sucesso/progresso;
+- vermelho apenas para erro;
+- botões com bordas quadradas e sombras em blocos;
+- desktop deve aproveitar largura disponível;
+- celular deve reorganizar para uma coluna sem versão separada;
+- evitar fontes, imagens e assets externos quando não forem necessários.
 
-### v0.5 — Conteúdo completo de fundamentos
-Expandir Fase A e B.
+## Definição de pronto
 
-Cada conceito deve ter várias microlições, não uma aula longa.
+Uma mudança só está pronta quando:
 
-### v0.6 — Projetos guiados
-Criar projetos em etapas pequenas.
-
-Exemplo:
-Projeto calculadora
-1. criar variáveis;
-2. receber valores;
-3. fazer cálculo;
-4. mostrar resultado;
-5. tratar opções.
-
-## 9. Formato recomendado para conteúdo
-
-Continuar mantendo conteúdo fora do motor.
-
-Exemplo:
-
-```js
-{
-  id: "comparacoes-01",
-  title: "Comparando valores",
-  steps: [
-    {
-      type: "info",
-      title: "Igualdade",
-      text: "Use == para comparar valores.",
-      code: "idade == 18"
-    },
-    {
-      type: "choice",
-      title: "Qual opção verifica igualdade?",
-      options: ["idade == 18", "idade = 18", "idade != 18"],
-      answer: 0,
-      explanation: "== compara; = atribui."
-    }
-  ]
-}
-```
-
-## 10. Regras de qualidade para novas aulas
-
-Toda aula deve:
-- ensinar uma ideia por vez;
-- evitar parágrafos longos;
-- usar exemplos concretos;
-- ter pelo menos duas interações;
-- explicar por que a resposta está correta;
-- evitar pegadinhas;
-- evitar perguntas baseadas em memorização inútil;
-- progredir em dificuldade;
-- reutilizar conhecimentos anteriores.
-
-## 11. Definição de pronto
-
-Uma alteração só está pronta quando:
 - abre diretamente no navegador;
 - funciona em desktop e celular;
-- continua sendo um site estático publicável no GitHub Pages;
-- preserva progresso existente sempre que possível;
-- não adiciona gamificação sem valor pedagógico;
-- novas perguntas podem ser adicionadas preferencialmente editando dados, não o motor;
-- console do navegador não apresenta erros em fluxo normal.
-
-## 12. Prioridade imediata
-
-Próxima IA deve, nesta ordem:
-1. testar todo o fluxo do protótipo atual;
-2. corrigir qualquer erro de navegação ou responsividade;
-3. expandir o motor de tipos de exercício;
-4. adicionar mais conteúdo de Fundamentos;
-5. somente depois avaliar Pyodide e digitação de código.
+- mantém compatibilidade com GitHub Pages;
+- não quebra o progresso salvo sem motivo;
+- o fluxo de respostas não permite clique duplo ou avanço indevido;
+- novas aulas podem ser adicionadas principalmente em `data/course.js`;
+- o console não apresenta erros no fluxo normal;
+- conteúdo novo ensina uma ideia por vez e explica a resposta correta.
