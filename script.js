@@ -1,13 +1,16 @@
 (() => {
+  "use strict";
+
   const course = window.PYTHON_COURSE;
   const app = document.querySelector("#app");
   const screenTitle = document.querySelector("#screenTitle");
-  const backButton = document.querySelector("#backButton");
+  const globalProgressBar = document.querySelector("#globalProgressBar");
+  const globalProgressText = document.querySelector("#globalProgressText");
   const resetButton = document.querySelector("#resetButton");
-  const bottomNav = document.querySelector(".bottom-nav");
-  const navButtons = [...document.querySelectorAll(".nav-item")];
-
-  const STORAGE_KEY = "python-study-progress-v1";
+  const gameNav = document.querySelector(".game-nav");
+  const navButtons = [...document.querySelectorAll(".nav-button")];
+  const mentorTemplate = document.querySelector("#mentorSpriteTemplate");
+  const STORAGE_KEY = "noirbyte-python-quest-v2";
 
   const flatLessons = course.modules.flatMap((module, moduleIndex) =>
     module.lessons.map((lesson, lessonIndex) => ({
@@ -20,386 +23,262 @@
   );
 
   let state = loadState();
-  let currentView = "home";
   let currentLessonId = null;
-  let currentStep = 0;
+  let currentStepIndex = 0;
+  let interactionLocked = false;
   let practiceSession = [];
   let practiceIndex = 0;
+  let practiceLocked = false;
 
   function loadState() {
     try {
       const saved = JSON.parse(localStorage.getItem(STORAGE_KEY));
       return {
-        completedLessons: Array.isArray(saved?.completedLessons) ? saved.completedLessons : [],
-        lastLessonId: saved?.lastLessonId || null
+        completedLessons: Array.isArray(saved?.completedLessons)
+          ? saved.completedLessons.filter((id) => flatLessons.some((lesson) => lesson.id === id))
+          : [],
+        lastLessonId: flatLessons.some((lesson) => lesson.id === saved?.lastLessonId) ? saved.lastLessonId : null
       };
     } catch {
       return { completedLessons: [], lastLessonId: null };
     }
   }
 
-  function saveState() {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-  }
-
-  function escapeHTML(value = "") {
-    return String(value)
-      .replaceAll("&", "&amp;")
-      .replaceAll("<", "&lt;")
-      .replaceAll(">", "&gt;")
-      .replaceAll('"', "&quot;")
-      .replaceAll("'", "&#039;");
-  }
-
-  function isCompleted(lessonId) {
-    return state.completedLessons.includes(lessonId);
-  }
-
-  function lessonPosition(lessonId) {
-    return flatLessons.findIndex((lesson) => lesson.id === lessonId);
-  }
-
-  function isUnlocked(lessonId) {
-    const index = lessonPosition(lessonId);
-    return index === 0 || isCompleted(flatLessons[index - 1].id) || isCompleted(lessonId);
-  }
-
+  function saveState() { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+  function escapeHTML(value = "") { return String(value).replaceAll("&", "&amp;").replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll('"', "&quot;").replaceAll("'", "&#039;"); }
+  function isCompleted(id) { return state.completedLessons.includes(id); }
+  function lessonIndex(id) { return flatLessons.findIndex((lesson) => lesson.id === id); }
+  function isUnlocked(id) { const index = lessonIndex(id); return index === 0 || isCompleted(id) || isCompleted(flatLessons[index - 1].id); }
+  function progressPercent() { return Math.round((state.completedLessons.length / flatLessons.length) * 100); }
+  function moduleProgress(module) { const done = module.lessons.filter((lesson) => isCompleted(lesson.id)).length; return { done, total: module.lessons.length }; }
   function nextLesson() {
+    if (state.lastLessonId && !isCompleted(state.lastLessonId) && isUnlocked(state.lastLessonId)) return flatLessons.find((lesson) => lesson.id === state.lastLessonId);
     return flatLessons.find((lesson) => !isCompleted(lesson.id) && isUnlocked(lesson.id)) || null;
   }
+  function updateHud() { const percent = progressPercent(); globalProgressBar.style.width = `${percent}%`; globalProgressText.textContent = `${percent}%`; }
+  function mentorHTML(extraClass = "") { return mentorTemplate.innerHTML.replace('class="mentor-wrap"', `class="mentor-wrap ${extraClass}"`); }
 
-  function progressPercent() {
-    return Math.round((state.completedLessons.length / flatLessons.length) * 100);
-  }
-
-  function moduleProgress(module) {
-    const done = module.lessons.filter((lesson) => isCompleted(lesson.id)).length;
-    return { done, total: module.lessons.length };
+  function validateCourse() {
+    const errors = [];
+    const ids = new Set();
+    flatLessons.forEach((lesson) => {
+      if (ids.has(lesson.id)) errors.push(`ID duplicado: ${lesson.id}`);
+      ids.add(lesson.id);
+      if (!Array.isArray(lesson.steps) || !lesson.steps.length) errors.push(`Lição sem etapas: ${lesson.id}`);
+      lesson.steps?.forEach((step, index) => {
+        if (!step.type || !step.title) errors.push(`${lesson.id} etapa ${index + 1}: inválida`);
+        if (step.type !== "info") {
+          if (!Array.isArray(step.options) || step.options.length < 2) errors.push(`${lesson.id} etapa ${index + 1}: opções inválidas`);
+          if (!Number.isInteger(step.answer) || step.answer < 0 || step.answer >= (step.options?.length || 0)) errors.push(`${lesson.id} etapa ${index + 1}: resposta inválida`);
+        }
+      });
+    });
+    if (!errors.length) return true;
+    console.error(errors);
+    app.innerHTML = `<section class="pixel-panel panel-pad"><span class="section-tag">ERRO DE CONTEÚDO</span><h2 class="panel-title">A trilha precisa de correção</h2><p class="panel-copy">${escapeHTML(errors[0])}</p></section>`;
+    return false;
   }
 
   function setView(view) {
-    currentView = view;
     currentLessonId = null;
-    backButton.hidden = view === "home";
-    bottomNav.hidden = false;
+    interactionLocked = false;
+    gameNav.hidden = false;
     navButtons.forEach((button) => button.classList.toggle("active", button.dataset.view === view));
-
+    updateHud();
     if (view === "home") renderHome();
     if (view === "track") renderTrack();
-    if (view === "practice") renderPractice();
+    if (view === "practice") renderPracticeHome();
   }
 
   function renderHome() {
-    screenTitle.textContent = "Aprender Python";
+    screenTitle.textContent = "Central de Treinamento";
     const target = nextLesson();
-    const completed = state.completedLessons.length;
-    const percent = progressPercent();
-
-    const preview = course.modules.map((module, index) => {
-      const progress = moduleProgress(module);
-      const firstLesson = module.lessons.find((lesson) => isUnlocked(lesson.id) && !isCompleted(lesson.id));
-      const complete = progress.done === progress.total;
-      const locked = !complete && !firstLesson;
-      return `
-        <article class="module-card ${locked ? "locked" : "clickable"}" data-module-action="${firstLesson?.id || ""}">
-          <div class="module-icon">${complete ? "✓" : String(index + 1).padStart(2, "0")}</div>
-          <div class="module-meta">
-            <h3>${escapeHTML(module.title)}</h3>
-            <p>${progress.done} de ${progress.total} lições</p>
-          </div>
-          <span class="module-state">${complete ? "Concluído" : locked ? "Bloqueado" : "Continuar →"}</span>
-        </article>`;
+    const targetIndex = target ? lessonIndex(target.id) : flatLessons.length - 1;
+    const targetModule = target ? course.modules[target.moduleIndex] : course.modules.at(-1);
+    const worldCards = course.modules.map((module, index) => {
+      const p = moduleProgress(module);
+      const finished = p.done === p.total;
+      const firstAvailable = module.lessons.find((lesson) => isUnlocked(lesson.id) && !isCompleted(lesson.id));
+      const locked = !finished && !firstAvailable;
+      return `<button class="stage-node ${finished ? "done" : firstAvailable ? "current" : "locked"}" ${locked ? "disabled" : ""} data-world-target="${firstAvailable?.id || ""}"><strong>W${String(index + 1).padStart(2, "0")} ${finished ? "✓" : ""}</strong><span>${escapeHTML(module.title)}</span><small>${p.done}/${p.total} lições</small></button>`;
     }).join("");
 
-    app.innerHTML = `
-      <div class="home-layout">
-        <div class="home-main">
-          <section class="hero-card">
-            <p class="section-label">${target ? "CONTINUAR" : "TRILHA CONCLUÍDA"}</p>
-            <h2>${target ? escapeHTML(target.title) : "Fundamentos concluídos"}</h2>
-            <p>${target ? `Módulo: ${escapeHTML(target.moduleTitle)}. Continue exatamente de onde você parou.` : "Você concluiu todas as lições disponíveis neste protótipo."}</p>
-            <div class="progress-track"><div class="progress-fill" style="width:${percent}%"></div></div>
-            <div class="progress-row"><strong>${completed} de ${flatLessons.length} lições</strong><span>${percent}%</span></div>
-            <button class="primary-button" id="continueButton">${target ? "Continuar estudando" : "Praticar conteúdo"}</button>
-          </section>
-          <section>
-            <div class="section-heading">
-              <div><p class="section-label">TRILHA</p><h2>Seu caminho</h2></div>
-              <button class="text-button" id="openTrack">Ver tudo</button>
-            </div>
-            <div class="module-preview">${preview}</div>
-          </section>
-        </div>
-        <aside class="home-side">
-          <section class="summary-grid">
-            <article class="summary-card"><span class="summary-number">${completed}</span><span>Lições concluídas</span></article>
-            <article class="summary-card"><span class="summary-number">${flatLessons.length}</span><span>Total atual</span></article>
-          </section>
-          <section class="practice-panel">
-            <p class="section-label">MÉTODO</p>
-            <h2>Aprender sem enrolação</h2>
-            <p class="lesson-copy">Explicação curta, resposta por clique, feedback imediato e avanço sequencial. Sem XP, ranking ou conquistas.</p>
-            <button class="secondary-button" id="practiceButton">Abrir prática</button>
-          </section>
-        </aside>
-      </div>`;
+    app.innerHTML = `<div class="base-grid"><div class="stack">
+      <section class="pixel-panel panel-pad mission-hero"><div><span class="section-tag">MISSÃO ATUAL</span><h2 class="panel-title">${target ? escapeHTML(target.title) : "Trilha concluída"}</h2><p class="panel-copy">${target ? `Mundo ${target.moduleIndex + 1}: ${escapeHTML(targetModule.title)}. NoirByte vai guiar a próxima microlição.` : "Você concluiu todo o conteúdo disponível. Use o Treino para revisar."}</p><div class="mission-meta"><span class="mini-chip">LIÇÃO <strong>${Math.min(targetIndex + 1, flatLessons.length)}/${flatLessons.length}</strong></span><span class="mini-chip">PROGRESSO <strong>${progressPercent()}%</strong></span><span class="mini-chip">MÉTODO <strong>CLIQUE + PRÁTICA</strong></span></div><button id="continueMission" class="pixel-button primary" type="button">${target ? "INICIAR MISSÃO" : "ABRIR TREINO"}</button></div><div class="mentor-stage">${mentorHTML("talking")}</div></section>
+      <section class="pixel-panel track-panel"><span class="section-tag">MAPA DA CAMPANHA</span><h2 class="panel-title">10 mundos de Python</h2><p class="panel-copy">Do primeiro comando até automação, APIs, pandas e conferência de planilhas.</p><div class="stage-path">${worldCards}</div></section>
+    </div><aside class="stack">
+      <section class="pixel-panel panel-pad"><span class="section-tag">NOIRBYTE</span><h2 class="panel-title">Seu instrutor</h2><p class="panel-copy">“Uma ideia por vez. Primeiro você reconhece o código; depois começa a escrever e automatizar.”</p><div class="mentor-stage" style="margin:18px -24px -24px">${mentorHTML()}</div></section>
+      <section class="pixel-panel panel-pad"><span class="section-tag">STATUS REAL</span><h2 class="panel-title">${state.completedLessons.length} / ${flatLessons.length}</h2><p class="panel-copy">Lições concluídas. Sem XP, ranking, moedas ou vidas.</p><button id="openTrackButton" class="pixel-button secondary" type="button">VER TRILHA COMPLETA</button></section>
+    </aside></div>`;
 
-    document.querySelector("#continueButton").onclick = () => target ? openLesson(target.id) : setView("practice");
-    document.querySelector("#openTrack").onclick = () => setView("track");
-    document.querySelector("#practiceButton").onclick = () => setView("practice");
-    document.querySelectorAll("[data-module-action]").forEach((card) => {
-      if (card.dataset.moduleAction) card.onclick = () => openLesson(card.dataset.moduleAction);
-    });
+    document.querySelector("#continueMission").onclick = () => target ? openLesson(target.id) : setView("practice");
+    document.querySelector("#openTrackButton").onclick = () => setView("track");
+    document.querySelectorAll("[data-world-target]").forEach((button) => { if (button.dataset.worldTarget) button.onclick = () => openLesson(button.dataset.worldTarget); });
   }
 
   function renderTrack() {
     screenTitle.textContent = "Trilha de Python";
-
-    const modulesHTML = course.modules.map((module, moduleIndex) => {
-      const progress = moduleProgress(module);
-      const lessonsHTML = module.lessons.map((lesson) => {
-        const complete = isCompleted(lesson.id);
+    const worlds = course.modules.map((module, moduleIndex) => {
+      const p = moduleProgress(module);
+      const lessons = module.lessons.map((lesson, lessonInModule) => {
+        const finished = isCompleted(lesson.id);
         const unlocked = isUnlocked(lesson.id);
-        return `
-          <button class="lesson-row" data-lesson-id="${lesson.id}" ${unlocked ? "" : "disabled"}>
-            <span class="lesson-status">${complete ? "✓" : unlocked ? "○" : "·"}</span>
-            <span><strong>${escapeHTML(lesson.title)}</strong></span>
-            <span class="lesson-kind">${complete ? "Concluída" : unlocked ? "Disponível" : "Bloqueada"}</span>
-          </button>`;
+        const current = !finished && unlocked;
+        return `<button class="stage-node ${finished ? "done" : current ? "current" : "locked"}" data-lesson-id="${lesson.id}" ${unlocked ? "" : "disabled"}><strong>FASE ${moduleIndex + 1}.${lessonInModule + 1}</strong><span>${escapeHTML(lesson.title.replace(/^\d+\.\s*/, ""))}</span><small>${finished ? "Concluída" : current ? "Disponível" : "Bloqueada"}</small></button>`;
       }).join("");
-
-      return `
-        <section class="module-detail">
-          <div class="module-detail-header">
-            <div class="module-icon">${String(moduleIndex + 1).padStart(2, "0")}</div>
-            <div><h3>${escapeHTML(module.title)}</h3><p>${escapeHTML(module.description)}</p></div>
-            <span class="module-state">${progress.done}/${progress.total}</span>
-          </div>
-          <div class="lesson-list">${lessonsHTML}</div>
-        </section>`;
+      return `<section class="world-block"><header class="world-head"><div class="world-number">W${String(moduleIndex + 1).padStart(2, "0")}</div><div><h3>${escapeHTML(module.title)}</h3><p>${escapeHTML(module.description)}</p></div><span class="world-state">${p.done}/${p.total}</span></header><div class="stage-path">${lessons}</div></section>`;
     }).join("");
-
-    app.innerHTML = `
-      <section class="track-panel">
-        <div class="track-header">
-          <p class="section-label">CURSO</p>
-          <h2>${escapeHTML(course.title)}</h2>
-          <p>${escapeHTML(course.description)}</p>
-        </div>
-        <div class="track-list">${modulesHTML}</div>
-      </section>`;
-
-    document.querySelectorAll("[data-lesson-id]:not(:disabled)").forEach((button) => {
-      button.onclick = () => openLesson(button.dataset.lessonId);
-    });
+    app.innerHTML = `<section class="pixel-panel track-panel"><span class="section-tag">TRILHA COMPLETA</span><h2 class="panel-title">${escapeHTML(course.title)}</h2><p class="panel-copy">${escapeHTML(course.description)}</p><div class="world-list">${worlds}</div></section>`;
+    document.querySelectorAll("[data-lesson-id]:not(:disabled)").forEach((button) => { button.onclick = () => openLesson(button.dataset.lessonId); });
   }
 
-  function openLesson(lessonId) {
-    if (!isUnlocked(lessonId)) return;
-    currentLessonId = lessonId;
-    currentStep = 0;
-    state.lastLessonId = lessonId;
+  function openLesson(id) {
+    if (!isUnlocked(id)) return;
+    currentLessonId = id;
+    currentStepIndex = 0;
+    interactionLocked = false;
+    state.lastLessonId = id;
     saveState();
-    bottomNav.hidden = true;
-    backButton.hidden = true;
+    gameNav.hidden = true;
     renderLessonStep();
   }
 
-  function renderLessonStep() {
-    const lesson = flatLessons.find((item) => item.id === currentLessonId);
-    const step = lesson.steps[currentStep];
-    const percent = Math.round(((currentStep + 1) / lesson.steps.length) * 100);
+  function currentLesson() { return flatLessons.find((lesson) => lesson.id === currentLessonId); }
+
+  function renderLessonStep(mentorClass = "") {
+    const lesson = currentLesson();
+    if (!lesson) return setView("track");
+    const step = lesson.steps[currentStepIndex];
+    interactionLocked = false;
     screenTitle.textContent = lesson.title;
+    const stepPercent = Math.round(((currentStepIndex + 1) / lesson.steps.length) * 100);
+    const promptLabel = { choice: "ESCOLHA A RESPOSTA", output: "PREVEJA A SAÍDA", fill_choice: "COMPLETE O CÓDIGO", find_error: "ANALISE O CÓDIGO" }[step.type] || "MISSÃO";
+    const interactive = step.type !== "info";
+    const answers = interactive ? `<div class="answer-grid">${step.options.map((option, index) => `<button class="answer-button" type="button" data-answer="${index}"><span class="answer-letter">${String.fromCharCode(65 + index)}</span><span>${escapeHTML(option)}</span></button>`).join("")}</div>` : "";
+    const mentorText = interactive ? "Leia o código com calma. Não tente decorar: acompanhe o que cada linha faz." : step.text;
 
-    const content = step.type === "info" ? `
-      <p class="lesson-topic">${escapeHTML(lesson.moduleTitle)}</p>
-      <h2>${escapeHTML(step.title)}</h2>
-      <p class="lesson-copy">${escapeHTML(step.text)}</p>
-      ${step.code ? `<pre class="code-block"><code>${escapeHTML(step.code)}</code></pre>` : ""}
-    ` : `
-      <p class="lesson-topic">ESCOLHA A RESPOSTA</p>
-      <h2>${escapeHTML(step.title)}</h2>
-      ${step.code ? `<pre class="code-block"><code>${escapeHTML(step.code)}</code></pre>` : ""}
-      <div class="answers">
-        ${step.options.map((option, index) => `<button class="answer-button" data-answer="${index}">${escapeHTML(option)}</button>`).join("")}
-      </div>
-    `;
+    app.innerHTML = `<div class="lesson-grid"><aside class="pixel-panel mentor-panel"><div class="mentor-speech"><strong>NOIRBYTE:</strong><br>${escapeHTML(mentorText)}</div><div class="mentor-stage">${mentorHTML(mentorClass || "talking")}</div><button id="exitLesson" class="pixel-button secondary" type="button">SAIR DA MISSÃO</button></aside>
+      <section class="pixel-panel lesson-panel"><div class="lesson-topline"><span class="section-tag">${escapeHTML(promptLabel)}</span><div class="pixel-meter"><div class="pixel-meter-fill" style="width:${stepPercent}%"></div></div><span class="world-state">${currentStepIndex + 1}/${lesson.steps.length}</span></div><h2 class="panel-title">${escapeHTML(step.title)}</h2>${step.type === "info" ? `<p class="panel-copy">${escapeHTML(step.text)}</p>` : ""}${step.code ? `<div class="code-window"><div class="code-title">PYTHON // LEITURA</div><pre><code>${escapeHTML(step.code)}</code></pre></div>` : ""}${answers}<div id="lessonFeedback">${step.type === "info" ? `<button id="continueInfo" class="pixel-button primary" type="button">CONTINUAR</button>` : ""}</div></section></div>`;
 
-    app.innerHTML = `
-      <section class="lesson-screen">
-        <div class="lesson-progress">
-          <button class="close-lesson" id="closeLesson" aria-label="Fechar lição">×</button>
-          <div class="progress-track compact"><div class="progress-fill" style="width:${percent}%"></div></div>
-          <span>${currentStep + 1}/${lesson.steps.length}</span>
-        </div>
-        <article class="lesson-card">${content}</article>
-        <div class="lesson-footer" id="lessonFooter">
-          ${step.type === "info" ? `<button class="primary-button" id="nextInfo">Continuar</button>` : ""}
-        </div>
-      </section>`;
-
-    document.querySelector("#closeLesson").onclick = () => setView("track");
-
-    if (step.type === "info") {
-      document.querySelector("#nextInfo").onclick = advanceLesson;
-    } else {
-      document.querySelectorAll("[data-answer]").forEach((button) => {
-        button.onclick = () => checkAnswer(Number(button.dataset.answer));
-      });
-    }
+    document.querySelector("#exitLesson").onclick = () => setView("track");
+    if (step.type === "info") document.querySelector("#continueInfo").onclick = guardedAdvance;
+    else document.querySelectorAll("[data-answer]").forEach((button) => { button.onclick = () => handleLessonAnswer(Number(button.dataset.answer)); });
   }
 
-  function checkAnswer(selectedIndex) {
-    const lesson = flatLessons.find((item) => item.id === currentLessonId);
-    const step = lesson.steps[currentStep];
+  function handleLessonAnswer(selectedIndex) {
+    if (interactionLocked) return;
+    interactionLocked = true;
+    const lesson = currentLesson();
+    const step = lesson.steps[currentStepIndex];
     const buttons = [...document.querySelectorAll("[data-answer]")];
-    const footer = document.querySelector("#lessonFooter");
+    const feedback = document.querySelector("#lessonFeedback");
+    const selected = buttons[selectedIndex];
+    const correct = selectedIndex === step.answer;
+    buttons.forEach((button) => { button.disabled = true; });
 
-    if (selectedIndex === step.answer) {
-      buttons.forEach((button, index) => {
-        button.disabled = true;
-        if (index === step.answer) button.classList.add("correct");
-      });
-      footer.innerHTML = `
-        <div class="feedback success">
-          <div><strong>Correto</strong><p>${escapeHTML(step.explanation)}</p></div>
-          <button class="primary-button" id="nextQuestion">Continuar</button>
-        </div>`;
-      document.querySelector("#nextQuestion").onclick = advanceLesson;
+    if (correct) {
+      selected.classList.add("correct");
+      feedback.innerHTML = `<div class="feedback-box success"><div><strong>ACERTOU.</strong><p>${escapeHTML(step.explanation)}</p></div><button id="continueQuestion" class="pixel-button primary" type="button">CONTINUAR</button></div>`;
+      animateMentor("correct");
+      document.querySelector("#continueQuestion").onclick = guardedAdvance;
     } else {
-      buttons[selectedIndex].classList.add("wrong");
-      buttons[selectedIndex].disabled = true;
-      footer.innerHTML = `
-        <div class="feedback error">
-          <div><strong>Não é essa.</strong><p>Analise novamente e escolha outra resposta.</p></div>
-          <button class="secondary-button" id="retryQuestion">Tentar novamente</button>
-        </div>`;
-      document.querySelector("#retryQuestion").onclick = () => {
-        buttons.forEach((button) => { button.classList.remove("wrong"); button.disabled = false; });
-        footer.innerHTML = "";
-      };
+      selected.classList.add("wrong");
+      feedback.innerHTML = `<div class="feedback-box error"><div><strong>AINDA NÃO.</strong><p>Releia o exemplo e tente de novo. A resposta não será avançada automaticamente.</p></div><button id="retryQuestion" class="pixel-button danger" type="button">TENTAR DE NOVO</button></div>`;
+      animateMentor("wrong");
+      document.querySelector("#retryQuestion").onclick = () => renderLessonStep();
     }
   }
 
-  function advanceLesson() {
-    const lesson = flatLessons.find((item) => item.id === currentLessonId);
-    if (currentStep < lesson.steps.length - 1) {
-      currentStep += 1;
-      renderLessonStep();
-      return;
-    }
+  function animateMentor(className) {
+    const mentor = document.querySelector(".mentor-wrap");
+    if (!mentor) return;
+    mentor.classList.remove("talking", "correct", "wrong");
+    mentor.classList.add(className);
+  }
+
+  function guardedAdvance(event) {
+    const button = event?.currentTarget;
+    if (button) button.disabled = true;
+    if (interactionLocked && button?.id !== "continueQuestion") return;
+    interactionLocked = true;
+    const lesson = currentLesson();
+    if (currentStepIndex < lesson.steps.length - 1) { currentStepIndex += 1; renderLessonStep(); return; }
     completeLesson(lesson);
   }
 
   function completeLesson(lesson) {
     if (!isCompleted(lesson.id)) state.completedLessons.push(lesson.id);
+    state.lastLessonId = null;
     saveState();
+    updateHud();
     const next = nextLesson();
-    screenTitle.textContent = "Lição concluída";
-    app.innerHTML = `
-      <section class="lesson-screen">
-        <article class="lesson-card" style="justify-content:center; text-align:center; align-items:center;">
-          <div class="module-icon" style="width:64px;height:64px;font-size:1.5rem;">✓</div>
-          <p class="lesson-topic" style="margin-top:20px;">CONCLUÍDA</p>
-          <h2>${escapeHTML(lesson.title)}</h2>
-          <p class="lesson-copy">A próxima lição foi liberada. O progresso já está salvo neste navegador.</p>
-          <div style="width:min(420px,100%);margin-top:18px;display:grid;gap:12px;">
-            <button class="primary-button" id="continueCourse">${next ? "Próxima lição" : "Voltar para a trilha"}</button>
-            <button class="secondary-button" id="returnTrack">Ver trilha</button>
-          </div>
-        </article>
-      </section>`;
-    document.querySelector("#continueCourse").onclick = () => next ? openLesson(next.id) : setView("track");
-    document.querySelector("#returnTrack").onclick = () => setView("track");
+    screenTitle.textContent = "Missão concluída";
+    app.innerHTML = `<section class="pixel-panel panel-pad" style="max-width:940px;margin:0 auto;text-align:center"><span class="section-tag">MISSÃO CONCLUÍDA</span><div class="mentor-stage" style="max-width:420px;margin:0 auto 20px">${mentorHTML("correct")}</div><h2 class="panel-title">${escapeHTML(lesson.title)}</h2><p class="panel-copy" style="margin-left:auto;margin-right:auto">A próxima fase foi liberada e seu progresso foi salvo neste navegador.</p><div style="display:grid;grid-template-columns:repeat(2,minmax(0,260px));justify-content:center;gap:12px;margin-top:20px"><button id="nextMission" class="pixel-button primary" type="button">${next ? "PRÓXIMA MISSÃO" : "ABRIR TREINO"}</button><button id="backToTrack" class="pixel-button secondary" type="button">VER TRILHA</button></div></section>`;
+    document.querySelector("#nextMission").onclick = () => next ? openLesson(next.id) : setView("practice");
+    document.querySelector("#backToTrack").onclick = () => setView("track");
   }
 
-  function renderPractice() {
-    screenTitle.textContent = "Prática";
-    const completedQuestions = flatLessons
-      .filter((lesson) => isCompleted(lesson.id))
-      .flatMap((lesson) => lesson.steps.filter((step) => step.type === "choice").map((step) => ({ ...step, lessonTitle: lesson.title })));
+  function getCompletedQuestions() {
+    return flatLessons.filter((lesson) => isCompleted(lesson.id)).flatMap((lesson) => lesson.steps.filter((step) => step.type !== "info").map((step) => ({ ...step, lessonTitle: lesson.title })));
+  }
 
-    if (!completedQuestions.length) {
-      app.innerHTML = `
-        <section class="practice-panel">
-          <div class="practice-empty">
-            <h2>Conclua uma lição primeiro</h2>
-            <p>A prática usa somente assuntos que você já estudou.</p>
-            <button class="primary-button" id="startFirst" style="max-width:360px;">Começar a trilha</button>
-          </div>
-        </section>`;
-      document.querySelector("#startFirst").onclick = () => openLesson(flatLessons[0].id);
+  function renderPracticeHome() {
+    screenTitle.textContent = "Treino";
+    const questions = getCompletedQuestions();
+    if (!questions.length) {
+      app.innerHTML = `<section class="pixel-panel practice-panel"><div class="practice-empty"><span class="section-tag">TREINO BLOQUEADO</span><h2 class="panel-title">Conclua sua primeira missão</h2><p>O treino só usa assuntos que você já estudou.</p><button id="startFirstMission" class="pixel-button primary" type="button">COMEÇAR</button></div></section>`;
+      document.querySelector("#startFirstMission").onclick = () => openLesson(flatLessons[0].id);
       return;
     }
+    app.innerHTML = `<section class="pixel-panel panel-pad mission-hero"><div><span class="section-tag">SALA DE TREINO</span><h2 class="panel-title">Revisão por clique</h2><p class="panel-copy">Uma sessão sorteia até 10 perguntas apenas das fases concluídas. Errar aqui mostra a resposta correta e a explicação.</p><div class="mission-meta"><span class="mini-chip">QUESTÕES DISPONÍVEIS <strong>${questions.length}</strong></span></div><button id="startPractice" class="pixel-button primary" type="button">INICIAR TREINO</button></div><div class="mentor-stage">${mentorHTML("talking")}</div></section>`;
+    document.querySelector("#startPractice").onclick = startPracticeSession;
+  }
 
-    practiceSession = [...completedQuestions].sort(() => Math.random() - 0.5).slice(0, Math.min(10, completedQuestions.length));
+  function startPracticeSession() {
+    practiceSession = shuffle(getCompletedQuestions()).slice(0, Math.min(10, getCompletedQuestions().length));
     practiceIndex = 0;
+    practiceLocked = false;
     renderPracticeQuestion();
   }
 
   function renderPracticeQuestion() {
     if (practiceIndex >= practiceSession.length) {
-      app.innerHTML = `
-        <section class="practice-panel">
-          <div class="practice-empty">
-            <h2>Revisão concluída</h2>
-            <p>Você revisou ${practiceSession.length} perguntas de conteúdos já estudados.</p>
-            <button class="primary-button" id="practiceAgain" style="max-width:360px;">Praticar novamente</button>
-          </div>
-        </section>`;
-      document.querySelector("#practiceAgain").onclick = renderPractice;
+      app.innerHTML = `<section class="pixel-panel practice-panel"><div class="practice-empty"><span class="section-tag">TREINO CONCLUÍDO</span><h2 class="panel-title">Revisão finalizada</h2><p>Você revisou ${practiceSession.length} questões do conteúdo já estudado.</p><button id="practiceAgain" class="pixel-button primary" type="button">TREINAR NOVAMENTE</button></div></section>`;
+      document.querySelector("#practiceAgain").onclick = startPracticeSession;
       return;
     }
-
+    practiceLocked = false;
     const step = practiceSession[practiceIndex];
-    app.innerHTML = `
-      <section class="practice-panel">
-        <p class="section-label">REVISÃO ${practiceIndex + 1}/${practiceSession.length}</p>
-        <h2>${escapeHTML(step.title)}</h2>
-        <p class="lesson-copy">Revisando: ${escapeHTML(step.lessonTitle)}</p>
-        ${step.code ? `<pre class="code-block"><code>${escapeHTML(step.code)}</code></pre>` : ""}
-        <div class="answers">
-          ${step.options.map((option, index) => `<button class="answer-button" data-practice-answer="${index}">${escapeHTML(option)}</button>`).join("")}
-        </div>
-        <div class="lesson-footer" id="practiceFooter"></div>
-      </section>`;
-
-    document.querySelectorAll("[data-practice-answer]").forEach((button) => {
-      button.onclick = () => checkPracticeAnswer(Number(button.dataset.practiceAnswer));
-    });
+    app.innerHTML = `<div class="lesson-grid"><aside class="pixel-panel mentor-panel"><div class="mentor-speech"><strong>NOIRBYTE:</strong><br>Treino não bloqueia seu avanço. Use o erro para revisar o conceito.</div><div class="mentor-stage">${mentorHTML("talking")}</div></aside><section class="pixel-panel lesson-panel"><div class="lesson-topline"><span class="section-tag">TREINO ${practiceIndex + 1}/${practiceSession.length}</span><div class="pixel-meter"><div class="pixel-meter-fill" style="width:${Math.round(((practiceIndex + 1) / practiceSession.length) * 100)}%"></div></div><span class="world-state">${escapeHTML(step.lessonTitle)}</span></div><h2 class="panel-title">${escapeHTML(step.title)}</h2>${step.code ? `<div class="code-window"><div class="code-title">PYTHON // REVISÃO</div><pre><code>${escapeHTML(step.code)}</code></pre></div>` : ""}<div class="answer-grid">${step.options.map((option, index) => `<button class="answer-button" data-practice-answer="${index}" type="button"><span class="answer-letter">${String.fromCharCode(65 + index)}</span><span>${escapeHTML(option)}</span></button>`).join("")}</div><div id="practiceFeedback"></div></section></div>`;
+    document.querySelectorAll("[data-practice-answer]").forEach((button) => { button.onclick = () => handlePracticeAnswer(Number(button.dataset.practiceAnswer)); });
   }
 
-  function checkPracticeAnswer(selectedIndex) {
+  function handlePracticeAnswer(selectedIndex) {
+    if (practiceLocked) return;
+    practiceLocked = true;
     const step = practiceSession[practiceIndex];
     const buttons = [...document.querySelectorAll("[data-practice-answer]")];
-    const footer = document.querySelector("#practiceFooter");
     const correct = selectedIndex === step.answer;
+    buttons.forEach((button, index) => { button.disabled = true; if (index === step.answer) button.classList.add("correct"); if (index === selectedIndex && !correct) button.classList.add("wrong"); });
+    document.querySelector("#practiceFeedback").innerHTML = `<div class="feedback-box ${correct ? "success" : "error"}"><div><strong>${correct ? "CERTO." : "RESPOSTA CORRETA DESTACADA."}</strong><p>${escapeHTML(step.explanation)}</p></div><button id="nextPractice" class="pixel-button primary" type="button">CONTINUAR</button></div>`;
+    animateMentor(correct ? "correct" : "wrong");
+    document.querySelector("#nextPractice").onclick = (event) => { event.currentTarget.disabled = true; practiceIndex += 1; renderPracticeQuestion(); };
+  }
 
-    buttons.forEach((button, index) => {
-      button.disabled = true;
-      if (index === step.answer) button.classList.add("correct");
-      if (index === selectedIndex && !correct) button.classList.add("wrong");
-    });
-
-    footer.innerHTML = `
-      <div class="feedback ${correct ? "success" : "error"}">
-        <div><strong>${correct ? "Correto" : "Resposta correta destacada"}</strong><p>${escapeHTML(step.explanation)}</p></div>
-        <button class="primary-button" id="nextPractice">Continuar</button>
-      </div>`;
-    document.querySelector("#nextPractice").onclick = () => {
-      practiceIndex += 1;
-      renderPracticeQuestion();
-    };
+  function shuffle(items) {
+    const copy = [...items];
+    for (let i = copy.length - 1; i > 0; i -= 1) { const j = Math.floor(Math.random() * (i + 1)); [copy[i], copy[j]] = [copy[j], copy[i]]; }
+    return copy;
   }
 
   navButtons.forEach((button) => button.addEventListener("click", () => setView(button.dataset.view)));
-  backButton.addEventListener("click", () => setView("home"));
-  resetButton.addEventListener("click", () => {
-    if (!confirm("Zerar todo o progresso salvo neste navegador?")) return;
-    state = { completedLessons: [], lastLessonId: null };
-    saveState();
-    setView("home");
+  resetButton.addEventListener("click", () => { if (!confirm("Zerar todo o progresso desta trilha?")) return; state = { completedLessons: [], lastLessonId: null }; saveState(); setView("home"); });
+  document.addEventListener("keydown", (event) => {
+    if (!currentLessonId || interactionLocked) return;
+    const index = ["a", "b", "c", "d"].indexOf(event.key.toLowerCase());
+    const button = document.querySelector(`[data-answer="${index}"]`);
+    if (index >= 0 && button && !button.disabled) button.click();
   });
 
-  setView("home");
+  if (validateCourse()) setView("home");
 })();
