@@ -25,21 +25,26 @@ Não há build nem dependências.
 
 ## GitHub Pages
 
-O workflow `.github/workflows/pages.yml` está preparado para publicar o site estático automaticamente quando houver push na branch `main`.
+O projeto está preparado para publicação direta como site estático a partir da branch `main`.
 
-No GitHub, configure uma única vez:
+Configure uma única vez no GitHub:
 
 1. `Settings`;
 2. `Pages`;
-3. em `Build and deployment`, escolha `GitHub Actions` como Source.
+3. em `Build and deployment`, escolha `Deploy from a branch`;
+4. selecione a branch `main`;
+5. selecione a pasta `/ (root)`;
+6. salve.
 
-Depois disso, novos commits em `main` devem disparar a publicação.
+Depois disso, alterações enviadas para `main` atualizam o site.
 
-Endereço esperado do projeto no GitHub Pages:
+Endereço esperado:
 
 `https://igoorhenrique15-dotcom.github.io/python-game-education/`
 
-> Observação: a disponibilidade do GitHub Pages para repositório privado depende do plano da conta. Se necessário, torne o repositório público ou use um plano que ofereça Pages para repositórios privados.
+O arquivo `.nojekyll` está incluído para servir os arquivos estáticos diretamente.
+
+> Observação: a disponibilidade do GitHub Pages para repositório privado depende do plano da conta. O repositório não foi tornado público automaticamente.
 
 ## Arquivos principais
 
@@ -48,7 +53,7 @@ Endereço esperado do projeto no GitHub Pages:
 - `data/course.js` — conteúdo da trilha;
 - `script.js` — motor de navegação, exercícios e progresso;
 - `ROADMAP_AI.md` — especificação para uma IA continuar o projeto;
-- `.github/workflows/pages.yml` — deploy do GitHub Pages.
+- `.nojekyll` — compatibilidade com publicação estática no Pages.
 
 ## Estado atual
 
