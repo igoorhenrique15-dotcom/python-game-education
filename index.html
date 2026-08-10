@@ -1,58 +1,22 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#050912" />
-  <meta name="description" content="Jogo web pixel-art para estudar Python em microlições interativas." />
-  <title>NoirByte Python Quest</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#050508" />
+  <meta name="description" content="Curso interativo de Python em estilo pixel art." />
+  <title>Python // Black Buster</title>
+  <style>
+    * { box-sizing: border-box; }
+    html, body, #root { margin: 0; min-height: 100%; }
+    html { background: #030306; }
+    body { min-height: 100vh; background: #030306; }
+    button, input, textarea, select { font: inherit; }
+    #root { width: min(760px, 100%); min-height: 100vh; margin: 0 auto; }
+  </style>
 </head>
 <body>
-  <div class="scanlines" aria-hidden="true"></div>
-  <div class="game-shell">
-    <header class="hud">
-      <div class="brand-lockup">
-        <div class="brand-chip">NB</div>
-        <div>
-          <p class="kicker">NOIRBYTE // PYTHON QUEST</p>
-          <h1 id="screenTitle">Central de Treinamento</h1>
-        </div>
-      </div>
-      <div class="hud-progress" aria-label="Progresso geral">
-        <span>PROGRESSO</span>
-        <div class="pixel-meter"><div id="globalProgressBar" class="pixel-meter-fill"></div></div>
-        <strong id="globalProgressText">0%</strong>
-      </div>
-      <button id="resetButton" class="pixel-icon-button" type="button" aria-label="Zerar progresso" title="Zerar progresso">↻</button>
-    </header>
-
-    <main id="app" class="game-main" aria-live="polite"></main>
-
-    <nav class="game-nav" aria-label="Navegação principal">
-      <button class="nav-button active" data-view="home" type="button"><span>▣</span><small>BASE</small></button>
-      <button class="nav-button" data-view="track" type="button"><span>◆</span><small>TRILHA</small></button>
-      <button class="nav-button" data-view="practice" type="button"><span>◎</span><small>TREINO</small></button>
-    </nav>
-  </div>
-
-  <template id="mentorSpriteTemplate">
-    <div class="mentor-wrap" aria-label="NoirByte, robô instrutor original">
-      <div class="mentor-shadow"></div>
-      <div class="mentor antenna"></div>
-      <div class="mentor head">
-        <div class="mentor visor"><i></i><i></i></div>
-        <div class="mentor ear left"></div><div class="mentor ear right"></div>
-      </div>
-      <div class="mentor neck"></div>
-      <div class="mentor torso"><div class="mentor core">&gt;_</div></div>
-      <div class="mentor arm left-arm"><div class="mentor fist"></div></div>
-      <div class="mentor arm right-arm"><div class="mentor fist"></div></div>
-      <div class="mentor leg left-leg"></div><div class="mentor leg right-leg"></div>
-    </div>
-  </template>
-
-  <script src="data/course.js"></script>
-  <script src="script.js"></script>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
 </body>
 </html>
