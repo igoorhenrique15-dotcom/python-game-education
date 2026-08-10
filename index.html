@@ -3,90 +3,53 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#0b1220" />
-  <title>Python Study</title>
+  <meta name="theme-color" content="#050912" />
+  <meta name="description" content="Jogo web pixel-art para estudar Python em microlições interativas." />
+  <title>NoirByte Python Quest</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="app-shell">
-    <header class="topbar">
-      <button class="icon-button" id="backButton" aria-label="Voltar" hidden>←</button>
-      <div>
-        <p class="eyebrow">PYTHON STUDY</p>
-        <h1 id="screenTitle">Aprender Python</h1>
+  <div class="scanlines" aria-hidden="true"></div>
+  <div class="game-shell">
+    <header class="hud">
+      <div class="brand-lockup">
+        <div class="brand-chip">NB</div>
+        <div>
+          <p class="kicker">NOIRBYTE // PYTHON QUEST</p>
+          <h1 id="screenTitle">Central de Treinamento</h1>
+        </div>
       </div>
-      <button class="icon-button" id="resetButton" aria-label="Zerar progresso">↺</button>
+      <div class="hud-progress" aria-label="Progresso geral">
+        <span>PROGRESSO</span>
+        <div class="pixel-meter"><div id="globalProgressBar" class="pixel-meter-fill"></div></div>
+        <strong id="globalProgressText">0%</strong>
+      </div>
+      <button id="resetButton" class="pixel-icon-button" type="button" aria-label="Zerar progresso" title="Zerar progresso">↻</button>
     </header>
 
-    <main id="app" class="app-content" aria-live="polite"></main>
+    <main id="app" class="game-main" aria-live="polite"></main>
 
-    <nav class="bottom-nav" aria-label="Navegação principal">
-      <button class="nav-item active" data-view="home">
-        <span>⌂</span>
-        <small>Início</small>
-      </button>
-      <button class="nav-item" data-view="track">
-        <span>◉</span>
-        <small>Trilha</small>
-      </button>
-      <button class="nav-item" data-view="practice">
-        <span>✓</span>
-        <small>Prática</small>
-      </button>
+    <nav class="game-nav" aria-label="Navegação principal">
+      <button class="nav-button active" data-view="home" type="button"><span>▣</span><small>BASE</small></button>
+      <button class="nav-button" data-view="track" type="button"><span>◆</span><small>TRILHA</small></button>
+      <button class="nav-button" data-view="practice" type="button"><span>◎</span><small>TREINO</small></button>
     </nav>
   </div>
 
-  <template id="homeTemplate">
-    <section class="hero-card">
-      <p class="section-label">CONTINUAR</p>
-      <h2 data-home-title></h2>
-      <p data-home-description></p>
-      <div class="progress-track" aria-label="Progresso do curso">
-        <div class="progress-fill" data-home-progress-bar></div>
+  <template id="mentorSpriteTemplate">
+    <div class="mentor-wrap" aria-label="NoirByte, robô instrutor original">
+      <div class="mentor-shadow"></div>
+      <div class="mentor antenna"></div>
+      <div class="mentor head">
+        <div class="mentor visor"><i></i><i></i></div>
+        <div class="mentor ear left"></div><div class="mentor ear right"></div>
       </div>
-      <div class="progress-row">
-        <strong data-home-progress-text></strong>
-        <span data-home-progress-percent></span>
-      </div>
-      <button class="primary-button" data-home-continue>Continuar estudando</button>
-    </section>
-
-    <section class="summary-grid">
-      <article class="summary-card">
-        <span class="summary-number" data-completed-lessons></span>
-        <span>Lições concluídas</span>
-      </article>
-      <article class="summary-card">
-        <span class="summary-number" data-total-lessons></span>
-        <span>Total da trilha</span>
-      </article>
-    </section>
-
-    <section>
-      <div class="section-heading">
-        <div>
-          <p class="section-label">TRILHA</p>
-          <h2>Seu caminho</h2>
-        </div>
-        <button class="text-button" data-open-track>Ver tudo</button>
-      </div>
-      <div class="module-preview" data-module-preview></div>
-    </section>
-  </template>
-
-  <template id="lessonTemplate">
-    <section class="lesson-screen">
-      <div class="lesson-progress">
-        <button class="close-lesson" data-close-lesson aria-label="Fechar lição">×</button>
-        <div class="progress-track compact">
-          <div class="progress-fill" data-lesson-progress></div>
-        </div>
-        <span data-step-counter></span>
-      </div>
-
-      <div class="lesson-body" data-lesson-body></div>
-      <div class="lesson-footer" data-lesson-footer></div>
-    </section>
+      <div class="mentor neck"></div>
+      <div class="mentor torso"><div class="mentor core">&gt;_</div></div>
+      <div class="mentor arm left-arm"><div class="mentor fist"></div></div>
+      <div class="mentor arm right-arm"><div class="mentor fist"></div></div>
+      <div class="mentor leg left-leg"></div><div class="mentor leg right-leg"></div>
+    </div>
   </template>
 
   <script src="data/course.js"></script>
