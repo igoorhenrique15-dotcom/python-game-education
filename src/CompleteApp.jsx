@@ -235,11 +235,13 @@ function CourseHero({ stages, progress, currentStage, currentIndex, onContinue, 
   const challengeCount = stages.reduce((total, stage) => total + stage.questions.length, 0);
 
   return (
-    <section className="course-hero">
+    <section className={`course-hero ${completed ? 'compact' : ''}`}>
       <div className="hero-content">
         <span className="hero-kicker">CURSO INTERATIVO · DO ZERO AO PROJETO</span>
-        <h1>SUA TRILHA<br /><strong>DE PYTHON</strong></h1>
-        <p>Aulas curtas, código real e desafios sem vidas. Errou, recebe uma dica e tenta novamente até entender.</p>
+        <h1>{completed ? <>CONTINUE SUA<br /><strong>TRILHA</strong></> : <>SUA TRILHA<br /><strong>DE PYTHON</strong></>}</h1>
+        <p>{completed
+          ? <>Próxima fase: <b className="hero-next-stage">{currentStage.name}</b>. Continue exatamente de onde parou.</>
+          : 'Aulas curtas, código real e desafios sem vidas. Errou, recebe uma dica e tenta novamente até entender.'}</p>
 
         <div className="hero-actions">
           <PixelButton onClick={onContinue} color="#58cc02">
@@ -259,7 +261,7 @@ function CourseHero({ stages, progress, currentStage, currentIndex, onContinue, 
           <span><b>{challengeCount}</b> QUESTÕES</span>
         </div>
       </div>
-      <CourseConsole currentStage={currentStage} />
+      {completed === 0 && <CourseConsole currentStage={currentStage} />}
     </section>
   );
 }
@@ -276,20 +278,27 @@ function UnitPath({ unit, progress, currentIndex, selectedId, onSelect }) {
     return `M ${from.x} ${from.y} C ${from.x} ${middle}, ${to.x} ${middle}, ${to.x} ${to.y}`;
   };
 
+  const completedInUnit = unit.stages.filter((stage) => progress.completed[stage.id]).length;
+  const unitPercent = Math.round((completedInUnit / unit.stages.length) * 100);
+
   return (
-    <section className="unit-section" style={{ '--unit-color': unit.color }}>
+    <section className={`unit-section unit-${unit.number} ${completedInUnit === unit.stages.length ? 'unit-complete' : ''}`} style={{ '--unit-color': unit.color }}>
       <header className="unit-banner">
         <div>
           <span>UNIDADE {unit.number}</span>
           <h2>{unit.title}</h2>
           <p>{unit.goal}</p>
+          <div className="unit-meter" aria-label={`${unitPercent}% da unidade concluída`}>
+            <span style={{ width: `${unitPercent}%` }} />
+          </div>
         </div>
         <span className="unit-progress">
-          {unit.stages.filter((stage) => progress.completed[stage.id]).length}/{unit.stages.length}
+          {completedInUnit}/{unit.stages.length}
         </span>
       </header>
 
       <div className="journey-canvas" style={{ height }}>
+        <div className="unit-pixel-scenery" aria-hidden="true"><i /><i /><i /><i /><i /><i /></div>
         <svg className="journey-lines" viewBox={`0 0 100 ${height}`} preserveAspectRatio="none" aria-hidden="true">
           {points.slice(0, -1).map((point, index) => {
             const traveled = Boolean(progress.completed[unit.stages[index].id]);
