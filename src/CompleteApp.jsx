@@ -152,19 +152,58 @@ function PixelButton({ children, onClick, color = '#58cc02', variant = 'solid', 
   );
 }
 
-function CodeBlock({ text }) {
+const PYTHON_KEYWORDS = new Set([
+  'False', 'None', 'True', 'and', 'as', 'assert', 'async', 'await', 'break', 'class',
+  'continue', 'def', 'del', 'elif', 'else', 'except', 'finally', 'for', 'from',
+  'global', 'if', 'import', 'in', 'is', 'lambda', 'nonlocal', 'not', 'or', 'pass',
+  'raise', 'return', 'try', 'while', 'with', 'yield',
+]);
+
+const PYTHON_BUILTINS = new Set([
+  'bool', 'dict', 'enumerate', 'float', 'input', 'int', 'len', 'list', 'max', 'min',
+  'open', 'print', 'range', 'set', 'str', 'sum', 'super', 'tuple', 'type', 'zip',
+]);
+
+const PYTHON_TOKEN_PATTERN = /(#.*$|'(?:\\.|[^'\\])*'|"(?:\\.|[^"\\])*"|\b(?:False|None|True|and|as|assert|async|await|break|class|continue|def|del|elif|else|except|finally|for|from|global|if|import|in|is|lambda|nonlocal|not|or|pass|raise|return|try|while|with|yield)\b|\b(?:bool|dict|enumerate|float|input|int|len|list|max|min|open|print|range|set|str|sum|super|tuple|type|zip)\b|\b\d+(?:\.\d+)?\b|==|!=|<=|>=|:=|\*\*|\/\/|[+\-*/%=<>])/g;
+
+function pythonTokenClass(token) {
+  if (token.startsWith('#')) return 'syntax-comment';
+  if (token.startsWith("'") || token.startsWith('"')) return 'syntax-string';
+  if (PYTHON_KEYWORDS.has(token)) return 'syntax-keyword';
+  if (PYTHON_BUILTINS.has(token)) return 'syntax-builtin';
+  if (/^\d/.test(token)) return 'syntax-number';
+  return 'syntax-operator';
+}
+
+function HighlightedPythonLine({ line }) {
+  const fragments = [];
+  let cursor = 0;
+
+  for (const match of line.matchAll(PYTHON_TOKEN_PATTERN)) {
+    const start = match.index ?? 0;
+    if (start > cursor) fragments.push(line.slice(cursor, start));
+    fragments.push(<span className={pythonTokenClass(match[0])} key={`${start}-${match[0]}`}>{match[0]}</span>);
+    cursor = start + match[0].length;
+  }
+
+  if (cursor < line.length) fragments.push(line.slice(cursor));
+  return fragments.length ? fragments : ' ';
+}
+
+function CodeBlock({ text, filename = 'python.py', label = 'EXEMPLO GUIADO', compact = false }) {
   const lines = String(text || '').split('\n');
   return (
-    <div className="code-window">
+    <div className={`code-window ${compact ? 'compact' : ''}`} aria-label={`${label}: ${filename}`}>
       <div className="code-titlebar">
         <span><i /><i /><i /></span>
-        <b>python.py</b>
+        <b>{filename}</b>
         <em>PY</em>
       </div>
+      <div className="code-modebar"><span>{label}</span><small>SOMENTE LEITURA</small></div>
       <pre><code>{lines.map((line, index) => (
         <span className="code-line" key={`${index}-${line}`}>
           <b>{String(index + 1).padStart(2, '0')}</b>
-          <span>{line || ' '}</span>
+          <span><HighlightedPythonLine line={line} /></span>
         </span>
       ))}</code></pre>
     </div>
@@ -507,22 +546,54 @@ function LessonScreen({ stage, stageIndex, onExit, onBattle, sfx }) {
         <div className="lesson-heading">
           <span className="lesson-stage-icon">{stage.icon}</span>
           <div><small>FASE {String(stageIndex + 1).padStart(2, '0')} · {stage.difficulty}</small><h1>{stage.name}</h1></div>
-          <em>{index + 1}/{stage.lesson.length}</em>
+          <em><small>CONCEITO</small><b>{String(index + 1).padStart(2, '0')} / {String(stage.lesson.length).padStart(2, '0')}</b></em>
         </div>
 
+        <nav className="lesson-concepts" aria-label="Conceitos desta fase">
+          {stage.lesson.map((lesson, lessonIndex) => {
+            const state = lessonIndex < index ? 'done' : lessonIndex === index ? 'current' : 'upcoming';
+            return (
+              <button
+                type="button"
+                className={state}
+                key={lesson.title}
+                disabled={lessonIndex === index}
+                aria-current={lessonIndex === index ? 'step' : undefined}
+                onClick={() => move(lessonIndex)}
+              >
+                <span>{lessonIndex < index ? '✓' : lessonIndex + 1}</span>
+                <b>{lesson.title}</b>
+              </button>
+            );
+          })}
+        </nav>
+
         <section className="learning-card">
-          <span className="card-kicker">CONCEITO {String(index + 1).padStart(2, '0')}</span>
-          <h2>{card.title}</h2>
-          <p>{card.body}</p>
-          <CodeBlock text={card.code} />
+          <div className="lesson-copy">
+            <div className="lesson-card-topline">
+              <span className="card-kicker">CONCEITO {String(index + 1).padStart(2, '0')}</span>
+              <span className="lesson-mode">AULA GUIADA</span>
+            </div>
+            <h2>{card.title}</h2>
+            <p>{card.body}</p>
+            <div className="lesson-read-tip">
+              <span>→</span>
+              <p><b>Agora observe o exemplo</b>Leia de cima para baixo e procure o conceito destacado. Você não precisa digitar código nesta etapa.</p>
+            </div>
+          </div>
+          <CodeBlock
+            text={card.code}
+            filename={`${stage.id}_conceito_${index + 1}.py`}
+            label="LEITURA DE CÓDIGO"
+          />
         </section>
 
         <div className="focus-actions">
           <PixelButton variant="ghost" color="#8190a5" disabled={index === 0} onClick={() => move(index - 1)}>VOLTAR</PixelButton>
           {last ? (
-            <PixelButton color={stage.color} onClick={() => { sfx('click'); onBattle(); }}>COMEÇAR DESAFIO</PixelButton>
+            <PixelButton color={stage.color} onClick={() => { sfx('click'); onBattle(); }}>IR PARA AS QUESTÕES</PixelButton>
           ) : (
-            <PixelButton color={stage.color} onClick={() => move(index + 1)}>CONTINUAR</PixelButton>
+            <PixelButton color={stage.color} onClick={() => move(index + 1)}>ENTENDI, CONTINUAR</PixelButton>
           )}
         </div>
       </div>
@@ -534,7 +605,7 @@ function QuestionCard({ question, stageColor, wrong, correct, onAnswer }) {
   return (
     <section className="question-card">
       <span className="card-kicker">ESCOLHA A RESPOSTA CORRETA</span>
-      {question.type === 'code' ? <CodeBlock text={question.q} /> : <h2>{question.q}</h2>}
+      {question.type === 'code' ? <CodeBlock text={question.q} filename="desafio.py" label="ANALISE O CÓDIGO" compact /> : <h2>{question.q}</h2>}
       <div className="answers">
         {question.opts.map((option, index) => {
           const state = correct && index === question.a ? 'correct' : wrong.includes(index) ? 'wrong' : '';
