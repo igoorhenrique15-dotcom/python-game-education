@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import course from './data/course.json';
 import '../style.css';
+import './rounded-theme.css';
 
 const STORAGE_KEY = 'black-buster-progress-v5';
 const SETTINGS_KEY = 'black-buster-settings-v2';
@@ -42,7 +43,7 @@ function useFonts() {
     const link = document.createElement('link');
     link.id = FONT_ID;
     link.rel = 'stylesheet';
-    link.href = 'https://fonts.googleapis.com/css2?family=Press+Start+2P&family=JetBrains+Mono:wght@400;600;700;800&display=swap';
+    link.href = 'https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800;900&family=Press+Start+2P&family=JetBrains+Mono:wght@400;600;700;800&display=swap';
     document.head.appendChild(link);
   }, []);
 }
