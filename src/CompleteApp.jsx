@@ -601,26 +601,38 @@ function LessonScreen({ stage, stageIndex, onExit, onBattle, sfx }) {
   );
 }
 
-function QuestionCard({ question, stageColor, wrong, correct, onAnswer }) {
+function QuestionCard({ question, stageColor, selected, wrong, correct, onSelect }) {
   return (
     <section className="question-card">
-      <span className="card-kicker">ESCOLHA A RESPOSTA CORRETA</span>
+      <div className="question-card-header">
+        <span className="card-kicker">ESCOLHA A RESPOSTA CORRETA</span>
+        <span className={`question-attempts ${wrong.length ? 'has-errors' : ''}`}>
+          {wrong.length ? `${wrong.length} ${wrong.length === 1 ? 'ERRO' : 'ERROS'}` : 'TENTATIVAS LIVRES'}
+        </span>
+      </div>
       {question.type === 'code' ? <CodeBlock text={question.q} filename="desafio.py" label="ANALISE O CÓDIGO" compact /> : <h2>{question.q}</h2>}
       <div className="answers">
         {question.opts.map((option, index) => {
-          const state = correct && index === question.a ? 'correct' : wrong.includes(index) ? 'wrong' : '';
+          const state = correct && index === question.a
+            ? 'correct'
+            : wrong.includes(index)
+              ? 'wrong'
+              : selected === index
+                ? 'selected'
+                : '';
           return (
             <button
               type="button"
               className={`answer ${state}`}
               key={`${option}-${index}`}
               disabled={correct || wrong.includes(index)}
-              onClick={() => onAnswer(index)}
+              aria-pressed={selected === index}
+              onClick={() => onSelect(index)}
               style={{ '--stage-color': stageColor }}
             >
-              <span>{String.fromCharCode(65 + index)}</span>
+              <span>{index + 1}</span>
               <b>{option}</b>
-              <em>{state === 'correct' ? '✓' : state === 'wrong' ? '×' : ''}</em>
+              <em>{state === 'correct' ? '✓' : state === 'wrong' ? '×' : state === 'selected' ? '●' : ''}</em>
             </button>
           );
         })}
@@ -629,25 +641,60 @@ function QuestionCard({ question, stageColor, wrong, correct, onAnswer }) {
   );
 }
 
+function QuestionFeedback({ question, selected, wrong, correct, color, nextLabel, onCheck, onNext }) {
+  const state = correct ? 'success' : wrong.length ? 'error' : 'neutral';
+  const title = correct ? 'MANDOU BEM!' : wrong.length ? 'QUASE LÁ' : 'CONFIRME SUA ESCOLHA';
+  const message = correct
+    ? question.ex
+    : wrong.length
+      ? question.hint
+      : 'Selecione uma das opções acima. Você pode tentar novamente quantas vezes precisar.';
+  const checkLabel = wrong.length
+    ? selected === null ? 'ESCOLHA OUTRA OPÇÃO' : 'VERIFICAR NOVAMENTE'
+    : 'VERIFICAR';
+
+  return (
+    <div className={`answer-feedback ${state}`} role="status" aria-live="polite">
+      <span>{correct ? '✓' : wrong.length ? '!' : '?'}</span>
+      <div><b>{title}</b><p>{message}</p></div>
+      <PixelButton
+        color={correct ? '#58cc02' : color}
+        disabled={!correct && selected === null}
+        onClick={correct ? onNext : onCheck}
+      >
+        {correct ? nextLabel : checkLabel}
+      </PixelButton>
+    </div>
+  );
+}
+
 function BattleScreen({ stage, onExit, onWin, onStat, sfx }) {
   const [index, setIndex] = useState(0);
+  const [selected, setSelected] = useState(null);
   const [wrong, setWrong] = useState([]);
   const [correct, setCorrect] = useState(false);
   const question = stage.questions[index];
   const last = index === stage.questions.length - 1;
 
-  const answer = useCallback((answerIndex) => {
+  const select = useCallback((answerIndex) => {
     if (correct || wrong.includes(answerIndex)) return;
-    if (answerIndex === question.a) {
+    setSelected(answerIndex);
+    sfx('click');
+  }, [correct, sfx, wrong]);
+
+  const check = useCallback(() => {
+    if (correct || selected === null) return;
+    if (selected === question.a) {
       setCorrect(true);
       onStat('correct');
       sfx('ok');
     } else {
-      setWrong((items) => [...items, answerIndex]);
+      setWrong((items) => [...items, selected]);
+      setSelected(null);
       onStat('wrong');
       sfx('bad');
     }
-  }, [correct, onStat, question.a, sfx, wrong]);
+  }, [correct, onStat, question.a, selected, sfx]);
 
   const next = useCallback(() => {
     if (last) {
@@ -656,6 +703,7 @@ function BattleScreen({ stage, onExit, onWin, onStat, sfx }) {
       return;
     }
     setIndex((value) => value + 1);
+    setSelected(null);
     setWrong([]);
     setCorrect(false);
     sfx('click');
@@ -664,12 +712,12 @@ function BattleScreen({ stage, onExit, onWin, onStat, sfx }) {
 
   useEffect(() => {
     const keyboard = (event) => {
-      if (['1', '2', '3', '4'].includes(event.key) && !correct) answer(Number(event.key) - 1);
-      if (event.key === 'Enter' && correct) next();
+      if (['1', '2', '3', '4'].includes(event.key) && !correct) select(Number(event.key) - 1);
+      if (event.key === 'Enter') correct ? next() : check();
     };
     window.addEventListener('keydown', keyboard);
     return () => window.removeEventListener('keydown', keyboard);
-  }, [answer, correct, next]);
+  }, [check, correct, next, select]);
 
   return (
     <main className="focus-screen battle-screen" style={{ '--stage-color': stage.color }}>
@@ -680,20 +728,25 @@ function BattleScreen({ stage, onExit, onWin, onStat, sfx }) {
           <span>{stage.icon}</span>
         </div>
 
-        <QuestionCard question={question} stageColor={stage.color} wrong={wrong} correct={correct} onAnswer={answer} />
-
-        {wrong.length > 0 && !correct && (
-          <div className="answer-feedback error" role="status">
-            <span>!</span><div><b>QUASE LÁ</b><p>{question.hint}</p></div>
-          </div>
-        )}
-        {correct && (
-          <div className="answer-feedback success" role="status">
-            <span>✓</span><div><b>RESPOSTA CORRETA</b><p>{question.ex}</p></div>
-            <PixelButton color="#58cc02" onClick={next}>{last ? 'CONCLUIR FASE' : 'CONTINUAR'}</PixelButton>
-          </div>
-        )}
-        <p className="keyboard-help">ATALHOS: 1–4 PARA RESPONDER · ENTER PARA CONTINUAR</p>
+        <QuestionCard
+          question={question}
+          stageColor={stage.color}
+          selected={selected}
+          wrong={wrong}
+          correct={correct}
+          onSelect={select}
+        />
+        <QuestionFeedback
+          question={question}
+          selected={selected}
+          wrong={wrong}
+          correct={correct}
+          color={stage.color}
+          nextLabel={last ? 'CONCLUIR FASE' : 'CONTINUAR'}
+          onCheck={check}
+          onNext={next}
+        />
+        <p className="keyboard-help">ATALHOS: 1–4 SELECIONA · ENTER VERIFICA OU CONTINUA</p>
       </div>
     </main>
   );
@@ -730,10 +783,50 @@ function ReviewScreen({ stages, onExit, onStat, sfx }) {
   );
   const [queue] = useState(() => [...pool].sort(() => Math.random() - 0.5).slice(0, 10));
   const [index, setIndex] = useState(0);
+  const [selected, setSelected] = useState(null);
   const [wrong, setWrong] = useState([]);
   const [correct, setCorrect] = useState(false);
   const [score, setScore] = useState(0);
   const question = queue[index];
+
+  const select = useCallback((answerIndex) => {
+    if (!question || correct || wrong.includes(answerIndex) || answerIndex >= question.opts.length) return;
+    setSelected(answerIndex);
+    sfx('click');
+  }, [correct, question, sfx, wrong]);
+
+  const check = useCallback(() => {
+    if (!question || correct || selected === null) return;
+    if (selected === question.a) {
+      if (wrong.length === 0) setScore((value) => value + 1);
+      setCorrect(true);
+      onStat('correct');
+      sfx('ok');
+    } else {
+      setWrong((items) => [...items, selected]);
+      setSelected(null);
+      onStat('wrong');
+      sfx('bad');
+    }
+  }, [correct, onStat, question, selected, sfx, wrong.length]);
+
+  const next = useCallback(() => {
+    setIndex((value) => value + 1);
+    setSelected(null);
+    setWrong([]);
+    setCorrect(false);
+    sfx('click');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [sfx]);
+
+  useEffect(() => {
+    const keyboard = (event) => {
+      if (['1', '2', '3', '4'].includes(event.key) && !correct) select(Number(event.key) - 1);
+      if (event.key === 'Enter') correct ? next() : check();
+    };
+    window.addEventListener('keydown', keyboard);
+    return () => window.removeEventListener('keydown', keyboard);
+  }, [check, correct, next, select]);
 
   if (!question) {
     return (
@@ -747,27 +840,6 @@ function ReviewScreen({ stages, onExit, onStat, sfx }) {
     );
   }
 
-  const answer = (answerIndex) => {
-    if (correct || wrong.includes(answerIndex)) return;
-    if (answerIndex === question.a) {
-      if (wrong.length === 0) setScore((value) => value + 1);
-      setCorrect(true);
-      onStat('correct');
-      sfx('ok');
-    } else {
-      setWrong((items) => [...items, answerIndex]);
-      onStat('wrong');
-      sfx('bad');
-    }
-  };
-
-  const next = () => {
-    setIndex((value) => value + 1);
-    setWrong([]);
-    setCorrect(false);
-    sfx('click');
-  };
-
   const reviewStage = { color: question.color, icon: '◎' };
   return (
     <main className="focus-screen review-screen" style={{ '--stage-color': question.color }}>
@@ -777,9 +849,25 @@ function ReviewScreen({ stages, onExit, onStat, sfx }) {
           <div><small>TREINO LIVRE · {question.stageName}</small><h1>Questão {index + 1} de 10</h1></div>
           <span>◎</span>
         </div>
-        <QuestionCard question={question} stageColor={question.color} wrong={wrong} correct={correct} onAnswer={answer} />
-        {wrong.length > 0 && !correct && <div className="answer-feedback error"><span>!</span><div><b>DICA</b><p>{question.hint}</p></div></div>}
-        {correct && <div className="answer-feedback success"><span>✓</span><div><b>CORRETO</b><p>{question.ex}</p></div><PixelButton color="#58cc02" onClick={next}>PRÓXIMA</PixelButton></div>}
+        <QuestionCard
+          question={question}
+          stageColor={question.color}
+          selected={selected}
+          wrong={wrong}
+          correct={correct}
+          onSelect={select}
+        />
+        <QuestionFeedback
+          question={question}
+          selected={selected}
+          wrong={wrong}
+          correct={correct}
+          color={question.color}
+          nextLabel="PRÓXIMA QUESTÃO"
+          onCheck={check}
+          onNext={next}
+        />
+        <p className="keyboard-help">ATALHOS: 1–4 SELECIONA · ENTER VERIFICA OU CONTINUA</p>
       </div>
     </main>
   );
