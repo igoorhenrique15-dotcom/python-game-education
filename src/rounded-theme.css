@@ -21,6 +21,8 @@
   --radius-md: 20px;
   --radius-lg: 28px;
   --radius-xl: 34px;
+  --python-blue: #4b8bbe;
+  --python-yellow: #ffd43b;
 }
 
 body {
@@ -57,15 +59,195 @@ button {
   gap: 13px;
 }
 
+.python-avatar {
+  display: inline-grid;
+  width: 64px;
+  aspect-ratio: 1;
+  place-items: center;
+  flex: 0 0 auto;
+  filter: drop-shadow(0 7px 12px rgba(0, 0, 0, 0.22));
+}
+
+.python-avatar svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.python-avatar.avatar-tiny {
+  width: 38px;
+}
+
+.python-avatar.avatar-small {
+  width: 48px;
+}
+
+.python-avatar.avatar-medium {
+  width: 58px;
+}
+
+.python-avatar.avatar-large {
+  width: 132px;
+}
+
+.avatar-halo {
+  fill: #101a27;
+  stroke: #33445a;
+  stroke-width: 2;
+}
+
+.avatar-pixel {
+  opacity: 0.95;
+}
+
+.avatar-pixel-blue {
+  fill: var(--python-blue);
+}
+
+.avatar-pixel-yellow {
+  fill: var(--python-yellow);
+}
+
+.avatar-pixel-soft {
+  fill: #34465c;
+}
+
+.avatar-shoulders,
+.avatar-hood {
+  fill: #121923;
+  stroke: #29394d;
+  stroke-width: 1.5;
+}
+
+.avatar-hood-blue {
+  fill: #274f72;
+}
+
+.avatar-hood-yellow {
+  fill: #b38c20;
+}
+
+.avatar-neck,
+.avatar-ear,
+.avatar-face {
+  fill: #c98257;
+}
+
+.avatar-face {
+  stroke: #6f422f;
+  stroke-width: 1.5;
+}
+
+.avatar-hair {
+  fill: #171a21;
+  stroke: #090c11;
+  stroke-width: 1.5;
+}
+
+.avatar-headset {
+  fill: none;
+  stroke: #1f5f8b;
+  stroke-linecap: round;
+  stroke-width: 5;
+}
+
+.avatar-headset-blue {
+  fill: var(--python-blue);
+  stroke: #193e59;
+  stroke-width: 1.5;
+}
+
+.avatar-headset-yellow {
+  fill: var(--python-yellow);
+  stroke: #846b17;
+  stroke-width: 1.5;
+}
+
+.avatar-eye {
+  fill: #171b24;
+}
+
+.avatar-eye-line,
+.avatar-mouth,
+.avatar-mouth-focus,
+.avatar-nose {
+  fill: none;
+  stroke: #4e2c24;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.2;
+}
+
+.avatar-eye-line {
+  stroke-width: 2.5;
+}
+
+.avatar-mouth-open {
+  fill: #7e342e;
+  stroke: #4e2c24;
+  stroke-width: 1.5;
+}
+
+.avatar-glasses {
+  fill: rgba(10, 25, 38, 0.25);
+  stroke: #69cef5;
+  stroke-linejoin: round;
+  stroke-width: 2;
+}
+
+.avatar-collar {
+  fill: none;
+  stroke: #65768b;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.6;
+}
+
+.avatar-code-mark {
+  fill: none;
+  stroke: #d8e6f0;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.9;
+}
+
+.python-avatar.mood-celebrate {
+  animation: avatarCelebrate 1.4s ease-in-out infinite;
+}
+
+@keyframes avatarCelebrate {
+  0%, 100% { transform: translateY(0) rotate(-1deg); }
+  50% { transform: translateY(-5px) rotate(1deg); }
+}
+
 .brand-cube {
+  position: relative;
   width: 48px;
   height: 48px;
-  border: 2px solid var(--cyan);
+  padding: 0;
+  overflow: hidden;
+  border: 2px solid var(--python-blue);
   border-radius: 15px;
-  background: linear-gradient(145deg, #172639, #101927);
-  box-shadow: 0 8px 22px rgba(28, 176, 246, 0.15), inset 0 1px 0 rgba(255, 255, 255, 0.12);
-  font-family: var(--pixel-font);
-  font-size: 9px;
+  background: #101927;
+  box-shadow: 3px 3px 0 #8c6f15, 0 8px 22px rgba(75, 139, 190, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+.brand-cube::after {
+  position: absolute;
+  right: 3px;
+  bottom: 3px;
+  width: 8px;
+  height: 8px;
+  border-radius: 3px;
+  background: var(--python-yellow);
+  box-shadow: 0 0 0 2px #101927;
+  content: "";
+}
+
+.brand-cube .python-avatar {
+  width: 48px;
+  transform: translateY(3px) scale(1.13);
 }
 
 .brand b {
@@ -170,7 +352,7 @@ button {
 }
 
 .course-hero h1 strong {
-  background: linear-gradient(90deg, #38c4ff, #78dcff);
+  background: linear-gradient(90deg, #58a9df, #6bc7f0 58%, var(--python-yellow));
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
@@ -185,6 +367,45 @@ button {
 
 .hero-next-stage {
   color: #e9f8ff;
+}
+
+.hero-guide {
+  display: flex;
+  width: min(100%, 590px);
+  min-height: 62px;
+  padding: 5px 12px 5px 5px;
+  border: 1px solid #304157;
+  border-radius: 21px;
+  align-items: center;
+  gap: 11px;
+  background:
+    linear-gradient(110deg, rgba(75, 139, 190, 0.1), transparent 45%),
+    #0e1621;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
+}
+
+.hero-guide .python-avatar {
+  margin: -2px 0;
+}
+
+.hero-guide > div {
+  min-width: 0;
+}
+
+.hero-guide small {
+  display: block;
+  color: var(--python-yellow);
+  font-family: var(--pixel-font);
+  font-size: 6px;
+  line-height: 1.5;
+  letter-spacing: 0.4px;
+}
+
+.hero-guide p {
+  margin: 4px 0 0;
+  color: #adbaca;
+  font-size: 12px;
+  line-height: 1.4;
 }
 
 .pixel-button {
@@ -238,7 +459,7 @@ button {
 }
 
 .route-hero .hero-progress {
-  margin-top: 22px;
+  margin-top: 17px;
 }
 
 .route-hero .course-totals {
@@ -644,6 +865,40 @@ button {
   line-height: 1.6;
 }
 
+.inspector-guide {
+  display: flex;
+  margin: 16px 0;
+  padding: 8px 10px 8px 7px;
+  border: 1px solid #2e3b4e;
+  border-radius: 17px;
+  align-items: center;
+  gap: 9px;
+  background: #0d141e;
+}
+
+.inspector-guide .python-avatar {
+  width: 42px;
+}
+
+.inspector-guide > div {
+  min-width: 0;
+}
+
+.inspector-guide small {
+  display: block;
+  color: var(--python-yellow);
+  font-family: var(--pixel-font);
+  font-size: 5px;
+  line-height: 1.5;
+}
+
+.inspector-guide p {
+  margin: 3px 0 0;
+  color: #93a0b1;
+  font-size: 9px;
+  line-height: 1.4;
+}
+
 .stage-facts span,
 .rail-stats span {
   border: 1px solid #2f3a4d;
@@ -706,6 +961,18 @@ button {
   border-radius: 15px;
   background: #151c27;
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
+}
+
+.focus-header > span.focus-avatar {
+  padding: 1px;
+  overflow: hidden;
+  border-color: color-mix(in srgb, var(--python-blue) 55%, #303b4e);
+  background: linear-gradient(145deg, #142233, #111923);
+}
+
+.focus-avatar .python-avatar {
+  width: 42px;
+  transform: translateY(2px) scale(1.12);
 }
 
 .focus-shell {
@@ -1260,11 +1527,61 @@ button {
   box-shadow: 0 32px 80px rgba(0, 0, 0, 0.36), inset 0 1px 0 rgba(255, 255, 255, 0.04);
 }
 
-.win-badge,
-.review-finish-card > span {
-  border-width: 3px;
+.win-avatar,
+.review-avatar {
+  position: relative;
+  display: grid;
+  width: 170px;
+  min-height: 172px;
+  place-items: center;
+  margin: -18px auto 20px;
+}
+
+.win-avatar::before,
+.review-avatar::before {
+  position: absolute;
+  width: 112px;
+  height: 112px;
+  border: 2px solid rgba(75, 139, 190, 0.25);
   border-radius: 50%;
-  box-shadow: 0 10px 0 var(--green-dark), 0 22px 38px rgba(0, 0, 0, 0.28);
+  background: radial-gradient(circle, rgba(75, 139, 190, 0.16), transparent 67%);
+  content: "";
+}
+
+.win-avatar > span,
+.review-avatar > span {
+  position: absolute;
+  right: 4px;
+  bottom: 7px;
+  display: grid;
+  width: 45px;
+  height: 45px;
+  border: 3px solid #17210f;
+  border-radius: 16px;
+  place-items: center;
+  color: #102700;
+  background: var(--green);
+  box-shadow: 0 5px 0 var(--green-dark), 0 10px 20px rgba(0, 0, 0, 0.3);
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.win-avatar .python-avatar,
+.review-avatar .python-avatar {
+  position: relative;
+  z-index: 1;
+}
+
+.win-avatar > span,
+.review-avatar > span {
+  z-index: 2;
+}
+
+.review-avatar > span {
+  border-color: #102131;
+  color: #04131c;
+  background: var(--cyan);
+  box-shadow: 0 5px 0 #087cae, 0 10px 20px rgba(0, 0, 0, 0.3);
 }
 
 .win-card h1,

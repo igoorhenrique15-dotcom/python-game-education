@@ -152,6 +152,55 @@ function PixelButton({ children, onClick, color = '#58cc02', variant = 'solid', 
   );
 }
 
+function PythonAvatar({ mood = 'ready', size = 'medium' }) {
+  const celebrating = mood === 'celebrate';
+  const focused = mood === 'focus';
+
+  return (
+    <span className={`python-avatar avatar-${size} mood-${mood}`} aria-hidden="true">
+      <svg viewBox="0 0 120 120" focusable="false">
+        <circle className="avatar-halo" cx="60" cy="60" r="56" />
+        <rect className="avatar-pixel avatar-pixel-blue" x="15" y="25" width="9" height="9" rx="2" />
+        <rect className="avatar-pixel avatar-pixel-yellow" x="94" y="18" width="11" height="11" rx="3" />
+        <rect className="avatar-pixel avatar-pixel-soft" x="99" y="77" width="7" height="7" rx="2" />
+
+        <path className="avatar-shoulders" d="M20 112c3-22 17-34 40-34s37 12 40 34H20Z" />
+        <path className="avatar-hood-blue" d="M20 112c2-17 11-28 26-32l14 32H20Z" />
+        <path className="avatar-hood-yellow" d="M100 112c-2-17-11-28-26-32l-14 32h40Z" />
+        <path className="avatar-hood" d="M39 83c6-4 13-6 21-6s15 2 21 6l-8 29H47l-8-29Z" />
+        <path className="avatar-neck" d="M51 70h18v18H51z" />
+
+        <circle className="avatar-ear" cx="34" cy="54" r="8" />
+        <circle className="avatar-ear" cx="86" cy="54" r="8" />
+        <path className="avatar-face" d="M35 43c0-19 10-29 25-29s25 10 25 29v15c0 17-11 28-25 28S35 75 35 58V43Z" />
+        <path className="avatar-hair" d="M35 45c-2-22 9-35 27-35 15 0 25 9 26 27-9-1-15-5-19-12-7 8-18 13-34 14v6Z" />
+        <path className="avatar-headset" d="M31 48v-8c0-17 12-30 29-30s29 13 29 30v8" />
+        <rect className="avatar-headset-blue" x="27" y="45" width="10" height="22" rx="5" />
+        <rect className="avatar-headset-yellow" x="83" y="45" width="10" height="22" rx="5" />
+
+        {celebrating ? (
+          <>
+            <path className="avatar-eye-line" d="M44 52l4 3 4-3" />
+            <path className="avatar-eye-line" d="M68 52l4 3 4-3" />
+            <path className="avatar-mouth-open" d="M51 66c5 6 13 6 18 0-2 9-16 9-18 0Z" />
+          </>
+        ) : (
+          <>
+            <circle className="avatar-eye" cx="48" cy="54" r="2.6" />
+            <circle className="avatar-eye" cx="72" cy="54" r="2.6" />
+            <path className={focused ? 'avatar-mouth-focus' : 'avatar-mouth'} d={focused ? 'M54 68h12' : 'M52 66c4 5 12 5 16 0'} />
+          </>
+        )}
+
+        {focused && <path className="avatar-glasses" d="M39 49h18v11H39zM63 49h18v11H63zM57 53h6" />}
+        <path className="avatar-nose" d="M59 56l-2 6h5" />
+        <path className="avatar-collar" d="M45 82l15 11 15-11M60 93v17" />
+        <path className="avatar-code-mark" d="M53 99l-4 4 4 4M67 99l4 4-4 4M63 97l-6 12" />
+      </svg>
+    </span>
+  );
+}
+
 const PYTHON_KEYWORDS = new Set([
   'False', 'None', 'True', 'and', 'as', 'assert', 'async', 'await', 'break', 'class',
   'continue', 'def', 'del', 'elif', 'else', 'except', 'finally', 'for', 'from',
@@ -222,7 +271,7 @@ function AppHeader({ stats, settings, onHome, onReview, onToggleSound, onToggleS
   return (
     <header className="app-header">
       <button type="button" className="brand" onClick={onHome} aria-label="Voltar para a trilha">
-        <span className="brand-cube">PY</span>
+        <span className="brand-cube"><PythonAvatar size="small" /></span>
         <span><b>BLACK BUSTER</b><small>TRILHA DE PYTHON</small></span>
       </button>
 
@@ -294,9 +343,15 @@ function CourseHero({ stages, progress, currentStage, currentIndex, onContinue, 
       <div className="hero-content">
         <span className="hero-kicker">TRILHA GUIADA · DO ZERO AO PROJETO</span>
         <h1>{completed ? <>CONTINUE SUA<br /><strong>TRILHA.</strong></> : <>PYTHON, PASSO<br /><strong>A PASSO.</strong></>}</h1>
-        <p>{completed
-          ? <>Próxima fase: <b className="hero-next-stage">{currentStage.name}</b>. Continue exatamente de onde parou.</>
-          : 'Siga uma fase por vez, aprenda com código real e tente novamente quantas vezes precisar.'}</p>
+        <div className="hero-guide">
+          <PythonAvatar size="medium" mood={completed ? 'focus' : 'ready'} />
+          <div>
+            <small>GUIA PY · SEU PARCEIRO DE CÓDIGO</small>
+            <p>{completed
+              ? <>Próxima fase: <b className="hero-next-stage">{currentStage.name}</b>. Continue exatamente de onde parou.</>
+              : 'Eu acompanho cada conceito, exemplo e tentativa até você entender.'}</p>
+          </div>
+        </div>
 
         <div className="hero-progress">
           <div><span>PROGRESSO GERAL</span><b>{percent}%</b></div>
@@ -413,6 +468,14 @@ function StageInspector({ stage, stageIndex, state, picked, onClose, onEnter }) 
       </div>
       <h2>{stage.name}</h2>
       <p>{stage.summary}</p>
+      <div className="inspector-guide">
+        <PythonAvatar size="tiny" mood="focus" />
+        <div><small>GUIA PY</small><p>{state === 'done'
+          ? 'Revise quando quiser. Repetir ajuda a fixar.'
+          : state === 'current'
+            ? 'Este é o próximo passo recomendado da sua trilha.'
+            : 'Pode estudar fora de ordem: esta fase está liberada.'}</p></div>
+      </div>
       <div className="stage-facts">
         <span><b>{stage.lesson.length}</b>AULAS</span>
         <span><b>{stage.questions.length}</b>QUESTÕES</span>
@@ -528,7 +591,7 @@ function FocusHeader({ stage, step, total, onExit }) {
     <div className="focus-header" style={{ '--stage-color': stage.color }}>
       <button type="button" onClick={onExit} aria-label="Sair e voltar para a trilha">×</button>
       <LinearProgress value={percent} color={stage.color} label={`${Math.round(percent)}% da fase`} />
-      <span>{stage.icon}</span>
+      <span className="focus-avatar"><PythonAvatar size="tiny" mood="focus" /></span>
     </div>
   );
 }
@@ -757,8 +820,8 @@ function WinScreen({ stage, nextStage, onMap, onReplay, onContinue }) {
     <main className="win-screen" style={{ '--stage-color': stage.color }}>
       <div className="pixel-confetti" aria-hidden="true"><i /><i /><i /><i /><i /><i /><i /><i /></div>
       <section className="win-card">
-        <div className="win-badge"><span>✓</span></div>
-        <small>FASE CONCLUÍDA</small>
+        <div className="win-avatar"><PythonAvatar size="large" mood="celebrate" /><span>✓</span></div>
+        <small>FASE CONCLUÍDA · GUIA PY</small>
         <h1>{stage.name}</h1>
         <p>Conteúdo estudado e desafio finalizado. A fase continua aberta para revisão quando quiser.</p>
         <div className="win-summary">
@@ -832,7 +895,8 @@ function ReviewScreen({ stages, onExit, onStat, sfx }) {
     return (
       <main className="review-finish-screen">
         <section className="review-finish-card">
-          <span>◎</span><small>TREINO FINALIZADO</small><h1>{score}/10</h1>
+          <div className="review-avatar"><PythonAvatar size="large" mood="celebrate" /><span>◎</span></div>
+          <small>TREINO FINALIZADO · GUIA PY</small><h1>{score}/10</h1>
           <p>Acertos de primeira. Você pode voltar e repetir um novo conjunto quando quiser.</p>
           <PixelButton color="#1cb0f6" onClick={onExit}>VOLTAR À TRILHA</PixelButton>
         </section>
