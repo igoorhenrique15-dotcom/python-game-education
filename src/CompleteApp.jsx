@@ -213,19 +213,34 @@ function MobileNav({ onHome, onReview }) {
   );
 }
 
-function CourseConsole({ currentStage }) {
+function NextLessonCard({ stage, stageIndex, started, onContinue, onReview }) {
   return (
-    <div className="course-console" aria-hidden="true">
-      <div className="console-top"><span><i /><i /><i /></span><b>PYTHON_PATH.EXE</b></div>
-      <div className="console-body">
-        <p><em>01</em><span className="cyan">def</span> aprender_python():</p>
-        <p><em>02</em>&nbsp;&nbsp;fase = <span className="yellow">'{currentStage.name}'</span></p>
-        <p><em>03</em>&nbsp;&nbsp;<span className="purple">return</span> pratica + constancia</p>
-        <p><em>04</em></p>
-        <p><em>05</em><span className="green"># pronto para continuar_</span></p>
+    <aside className="next-lesson-card" style={{ '--stage-color': stage.color }}>
+      <div className="next-card-titlebar">
+        <span><i /><i /><i /></span>
+        <b>next_lesson.py</b>
+        <em>PY</em>
       </div>
-      <div className="console-grid"><i /><i /><i /><i /><i /><i /><i /><i /></div>
-    </div>
+      <div className="next-card-body">
+        <div className="next-card-status">
+          <span className="next-stage-icon">{stage.icon}</span>
+          <div>
+            <small>{started ? 'CONTINUE DE ONDE PAROU' : 'SEU PRIMEIRO PASSO'}</small>
+            <b>FASE {String(stageIndex + 1).padStart(2, '0')}</b>
+          </div>
+        </div>
+        <h2>{stage.name}</h2>
+        <p>{stage.summary}</p>
+        <div className="next-card-facts">
+          <span><b>{stage.lesson.length}</b> aulas curtas</span>
+          <span><b>{stage.questions.length}</b> questões</span>
+        </div>
+        <PixelButton onClick={onContinue} color={stage.color}>
+          {started ? 'CONTINUAR AGORA' : 'COMEÇAR AGORA'}
+        </PixelButton>
+        <button type="button" className="hero-practice-link" onClick={onReview}>Treinar antes desta fase</button>
+      </div>
+    </aside>
   );
 }
 
@@ -236,20 +251,13 @@ function CourseHero({ stages, progress, currentStage, currentIndex, onContinue, 
   const challengeCount = stages.reduce((total, stage) => total + stage.questions.length, 0);
 
   return (
-    <section className={`course-hero ${completed ? 'compact' : ''}`}>
+    <section className="course-hero route-hero">
       <div className="hero-content">
-        <span className="hero-kicker">CURSO INTERATIVO · DO ZERO AO PROJETO</span>
-        <h1>{completed ? <>CONTINUE SUA<br /><strong>TRILHA</strong></> : <>SUA TRILHA<br /><strong>DE PYTHON</strong></>}</h1>
+        <span className="hero-kicker">TRILHA GUIADA · DO ZERO AO PROJETO</span>
+        <h1>{completed ? <>CONTINUE SUA<br /><strong>TRILHA.</strong></> : <>PYTHON, PASSO<br /><strong>A PASSO.</strong></>}</h1>
         <p>{completed
           ? <>Próxima fase: <b className="hero-next-stage">{currentStage.name}</b>. Continue exatamente de onde parou.</>
-          : 'Aulas curtas, código real e desafios sem vidas. Errou, recebe uma dica e tenta novamente até entender.'}</p>
-
-        <div className="hero-actions">
-          <PixelButton onClick={onContinue} color="#58cc02">
-            {completed ? `CONTINUAR FASE ${String(currentIndex + 1).padStart(2, '0')}` : 'COMEÇAR A TRILHA'}
-          </PixelButton>
-          <PixelButton onClick={onReview} color="#1cb0f6" variant="outline">TREINO LIVRE</PixelButton>
-        </div>
+          : 'Siga uma fase por vez, aprenda com código real e tente novamente quantas vezes precisar.'}</p>
 
         <div className="hero-progress">
           <div><span>PROGRESSO GERAL</span><b>{percent}%</b></div>
@@ -262,7 +270,13 @@ function CourseHero({ stages, progress, currentStage, currentIndex, onContinue, 
           <span><b>{challengeCount}</b> QUESTÕES</span>
         </div>
       </div>
-      {completed === 0 && <CourseConsole currentStage={currentStage} />}
+      <NextLessonCard
+        stage={currentStage}
+        stageIndex={currentIndex}
+        started={completed > 0}
+        onContinue={onContinue}
+        onReview={onReview}
+      />
     </section>
   );
 }
@@ -270,9 +284,9 @@ function CourseHero({ stages, progress, currentStage, currentIndex, onContinue, 
 function UnitPath({ unit, progress, currentIndex, selectedId, onSelect }) {
   const points = unit.stages.map((_, localIndex) => ({
     x: JOURNEY_X[(unit.startIndex + localIndex) % JOURNEY_X.length],
-    y: 82 + localIndex * 154,
+    y: 74 + localIndex * 136,
   }));
-  const height = Math.max(250, 164 + (unit.stages.length - 1) * 154);
+  const height = Math.max(240, 154 + (unit.stages.length - 1) * 136);
 
   const curve = (from, to) => {
     const middle = (from.y + to.y) / 2;
@@ -431,8 +445,8 @@ function CourseMap({ stages, progress, onEnter, onReview, onReset }) {
       <div className="course-layout">
         <div className="path-column">
           <div className="path-intro">
-            <div><span>CAMINHO RECOMENDADO</span><h2>Avance uma fase por vez</h2></div>
-            <p>Concluídas ficam verdes. A fase pulsando é a próxima sugerida.</p>
+            <div><span>SEU CAMINHO</span><h2>Uma fase de cada vez</h2></div>
+            <p>A fase pulsando é a próxima sugerida. As demais continuam livres para estudo.</p>
           </div>
           {units.map((unit) => (
             <UnitPath
