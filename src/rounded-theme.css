@@ -2550,3 +2550,562 @@ button {
     font-size: 4px;
   }
 }
+
+/* Duolingo-style game loop: streak, XP, gems and hearts */
+.header-stats {
+  gap: 6px;
+}
+
+.header-stats > div,
+.header-stats > button {
+  min-width: 58px;
+  height: 42px;
+  padding: 7px 10px;
+  border: 1px solid #303c4e;
+  border-radius: 14px;
+  background: #121a25;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
+}
+
+.header-stats > div span,
+.header-stats > button span {
+  font-size: 17px;
+  line-height: 1;
+}
+
+.header-stats > div b,
+.header-stats > button b {
+  color: #dce6ef;
+  font-family: var(--ui-font);
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.header-stats .stat-streak span {
+  color: #ff9600;
+}
+
+.flame-icon {
+  display: block;
+  width: 18px;
+  height: 21px;
+  fill: #ff9600;
+}
+
+.flame-icon .flame-core {
+  fill: #ffd43b;
+}
+
+.header-stats .stat-xp span {
+  color: #ffd43b;
+}
+
+.header-stats .stat-gems span {
+  color: #1cb0f6;
+}
+
+.header-stats > button.stat-hearts {
+  display: flex;
+  min-width: 62px;
+  padding-inline: 10px;
+  border-color: rgba(255, 75, 75, 0.36);
+  gap: 7px;
+}
+
+.header-stats > button.stat-hearts span,
+.header-stats > button.stat-hearts b {
+  color: #ff4b4b;
+}
+
+.header-stats > button.stat-hearts:hover {
+  border-color: #ff4b4b;
+  color: #ff4b4b;
+  background: #241418;
+}
+
+.header-stats > button.header-utility {
+  min-width: 38px;
+  width: 38px;
+  border-color: transparent;
+  color: #647388;
+  background: transparent;
+  box-shadow: none;
+}
+
+.focus-header {
+  grid-template-columns: 44px 1fr 62px;
+}
+
+.focus-header > span.focus-heart-count {
+  display: flex;
+  width: 60px;
+  padding: 0 9px;
+  border-color: rgba(255, 75, 75, 0.42);
+  border-radius: 15px;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  color: #ff4b4b;
+  background: #201317;
+}
+
+.focus-heart-count i {
+  color: #ff4b4b;
+  font-size: 18px;
+  font-style: normal;
+  line-height: 1;
+}
+
+.focus-heart-count b {
+  font-family: var(--ui-font);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.focus-header > span.focus-heart-count.safe {
+  border-color: rgba(88, 204, 2, 0.38);
+  color: #78dc35;
+  background: #14200f;
+}
+
+.focus-heart-count.safe i {
+  color: #78dc35;
+}
+
+.question-attempts {
+  border-color: rgba(255, 75, 75, 0.38);
+  color: #ff7777;
+  background: rgba(54, 19, 25, 0.68);
+}
+
+.question-attempts.safe,
+.question-attempts.safe.has-errors {
+  border-color: rgba(88, 204, 2, 0.38);
+  color: #8bdd54;
+  background: rgba(22, 48, 13, 0.68);
+}
+
+.daily-goal-card {
+  display: grid;
+  grid-template-columns: 58px minmax(0, 1fr);
+  gap: 13px;
+  align-items: center;
+  border-color: rgba(255, 150, 0, 0.34);
+  background:
+    radial-gradient(circle at 0 50%, rgba(255, 150, 0, 0.12), transparent 8rem),
+    linear-gradient(155deg, #191d23, #111821);
+}
+
+.daily-flame {
+  display: grid;
+  width: 55px;
+  height: 55px;
+  border: 1px solid rgba(255, 150, 0, 0.52);
+  border-radius: 18px;
+  place-items: center;
+  background: rgba(55, 30, 8, 0.78);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.24);
+}
+
+.daily-flame .flame-icon {
+  width: 28px;
+  height: 32px;
+}
+
+.daily-goal-copy {
+  min-width: 0;
+}
+
+.daily-goal-copy > small {
+  color: #ffad35;
+  font-family: var(--pixel-font);
+  font-size: 5px;
+  line-height: 1.4;
+}
+
+.daily-goal-copy h3 {
+  margin: 6px 0 8px;
+  color: #e5edf5;
+  font-family: var(--ui-font);
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.daily-goal-copy > div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 7px;
+  color: #758399;
+  font-size: 8px;
+  font-weight: 900;
+}
+
+.daily-goal-copy > div b {
+  color: #ffad35;
+}
+
+.daily-goal-card .linear-progress {
+  height: 11px;
+  padding: 2px;
+  border-width: 1px;
+}
+
+.practice-heart-banner {
+  display: grid;
+  grid-template-columns: 60px minmax(0, 1fr) minmax(190px, auto);
+  gap: 16px;
+  align-items: center;
+  margin-top: 20px;
+  padding: 19px 21px;
+  border: 1px solid rgba(255, 75, 75, 0.28);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 0 50%, rgba(255, 75, 75, 0.11), transparent 10rem),
+    linear-gradient(150deg, #1b1920, #111820);
+  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.035);
+}
+
+.practice-heart-banner.needs-heart {
+  border-color: rgba(255, 75, 75, 0.48);
+}
+
+.practice-heart-icon {
+  display: grid;
+  width: 56px;
+  height: 56px;
+  border: 1px solid rgba(255, 75, 75, 0.52);
+  border-radius: 18px;
+  place-items: center;
+  color: #ff4b4b;
+  background: rgba(57, 17, 24, 0.72);
+  font-size: 27px;
+}
+
+.practice-heart-banner small {
+  color: #ff7777;
+  font-family: var(--pixel-font);
+  font-size: 5px;
+}
+
+.practice-heart-banner h2 {
+  margin: 5px 0 3px;
+  color: #e8eff6;
+  font-family: var(--ui-font);
+  font-size: 17px;
+  font-weight: 900;
+}
+
+.practice-heart-banner p {
+  margin: 0;
+  color: #8794a6;
+  font-size: 10px;
+}
+
+.practice-heart-banner .pixel-button {
+  min-height: 50px;
+}
+
+.hearts-screen {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 42px 16px;
+}
+
+.hearts-card {
+  position: relative;
+  width: min(660px, 100%);
+  padding: 39px 38px;
+  overflow: hidden;
+  border: 1px solid #3c4352;
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 50% 0, rgba(255, 75, 75, 0.16), transparent 19rem),
+    linear-gradient(150deg, #1c1b24, #121924);
+  box-shadow: 0 32px 80px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.045);
+  text-align: center;
+}
+
+.hearts-card::before {
+  position: absolute;
+  content: "";
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 5px;
+  background: #ff4b4b;
+}
+
+.hearts-close {
+  position: absolute;
+  z-index: 4;
+  top: 17px;
+  right: 17px;
+  display: grid;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid #394457;
+  border-radius: 14px;
+  place-items: center;
+  color: #8b98aa;
+  background: #151c27;
+  cursor: pointer;
+  font-size: 19px;
+  font-weight: 900;
+}
+
+.hearts-avatar {
+  position: relative;
+  display: grid;
+  width: 170px;
+  min-height: 164px;
+  place-items: center;
+  margin: -10px auto 8px;
+}
+
+.hearts-avatar::before {
+  position: absolute;
+  width: 120px;
+  height: 120px;
+  border: 2px solid rgba(255, 75, 75, 0.24);
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 75, 75, 0.13), transparent 68%);
+  content: "";
+}
+
+.hearts-avatar .python-avatar {
+  position: relative;
+  z-index: 1;
+}
+
+.hearts-avatar > span {
+  position: absolute;
+  z-index: 2;
+  right: 2px;
+  bottom: 5px;
+  display: grid;
+  width: 50px;
+  height: 50px;
+  border: 3px solid #2b1015;
+  border-radius: 17px;
+  place-items: center;
+  color: #fff;
+  background: #ff4b4b;
+  box-shadow: 0 5px 0 #b62e39, 0 10px 24px rgba(0, 0, 0, 0.3);
+  font-size: 24px;
+}
+
+.hearts-card > small {
+  color: #ff7777;
+  font-family: var(--pixel-font);
+  font-size: 6px;
+  letter-spacing: 0.4px;
+}
+
+.hearts-card h1 {
+  margin: 13px 0 10px;
+  color: #f1f5f9;
+  font-family: var(--ui-font);
+  font-size: clamp(30px, 5vw, 42px);
+  font-weight: 900;
+  line-height: 1.08;
+  letter-spacing: -1px;
+}
+
+.hearts-card > p {
+  max-width: 520px;
+  margin: 0 auto;
+  color: #9da9b8;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.heart-meter {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin: 25px 0;
+}
+
+.heart-meter span {
+  display: grid;
+  width: 51px;
+  height: 48px;
+  border: 1px solid #3b4658;
+  border-radius: 16px;
+  place-items: center;
+  color: #455064;
+  background: #101720;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
+  font-size: 24px;
+}
+
+.heart-meter span.full {
+  border-color: rgba(255, 75, 75, 0.55);
+  color: #ff4b4b;
+  background: #2b1419;
+  box-shadow: 0 5px 0 #160b0e, inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.hearts-actions {
+  display: grid;
+  gap: 13px;
+  width: min(460px, 100%);
+  margin: 0 auto;
+}
+
+.not-enough-gems {
+  color: #718096;
+  font-size: 9px;
+}
+
+.hearts-actions .text-action {
+  margin-top: 2px;
+}
+
+.win-summary .reward-xp b {
+  color: #ffd43b;
+}
+
+.win-summary .reward-gems b {
+  color: #1cb0f6;
+}
+
+.win-summary .reward-streak b {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: #ff9f1c;
+}
+
+.win-summary .reward-streak .flame-icon {
+  width: 14px;
+  height: 17px;
+}
+
+.mobile-nav {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.mobile-nav .mobile-hearts span,
+.mobile-nav .mobile-hearts small {
+  color: #ff5d67;
+}
+
+@media (max-width: 1120px) {
+  .header-stats > button.header-utility {
+    display: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .practice-heart-banner {
+    grid-template-columns: 56px minmax(0, 1fr);
+  }
+
+  .practice-heart-banner .pixel-button {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+}
+
+@media (max-width: 650px) {
+  .header-stats {
+    gap: 5px;
+  }
+
+  .header-stats .stat-xp,
+  .header-stats > button.header-utility {
+    display: none;
+  }
+
+  .header-stats > div,
+  .header-stats > button.stat-hearts {
+    min-width: 52px;
+    height: 39px;
+    padding-inline: 8px;
+  }
+
+  .header-stats > div span,
+  .header-stats > button span {
+    font-size: 15px;
+  }
+
+  .header-stats > div b,
+  .header-stats > button b {
+    font-size: 11px;
+  }
+
+  .focus-header {
+    grid-template-columns: 40px 1fr 56px;
+    gap: 10px;
+  }
+
+  .focus-header > span.focus-heart-count {
+    width: 54px;
+    height: 40px;
+    padding-inline: 6px;
+  }
+
+  .focus-heart-count i {
+    font-size: 16px;
+  }
+
+  .focus-heart-count b {
+    font-size: 12px;
+  }
+
+  .hearts-card {
+    padding: 31px 19px 27px;
+    border-radius: 27px;
+  }
+
+  .hearts-avatar {
+    width: 150px;
+    min-height: 150px;
+  }
+
+  .hearts-card h1 {
+    padding-inline: 16px;
+    font-size: 31px;
+  }
+
+  .hearts-card > p {
+    font-size: 13px;
+  }
+
+  .heart-meter {
+    gap: 6px;
+  }
+
+  .heart-meter span {
+    width: 43px;
+    height: 42px;
+    border-radius: 14px;
+    font-size: 20px;
+  }
+
+  .practice-heart-banner {
+    padding: 17px;
+    border-radius: 22px;
+  }
+
+  .daily-goal-card {
+    display: none;
+  }
+}
+
+@media (max-width: 410px) {
+  .brand > span:last-child {
+    display: none;
+  }
+
+  .heart-meter span {
+    width: 40px;
+    height: 39px;
+  }
+}

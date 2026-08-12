@@ -6,6 +6,22 @@ import './rounded-theme.css';
 const STORAGE_KEY = 'black-buster-progress-v5';
 const SETTINGS_KEY = 'black-buster-settings-v2';
 const FONT_ID = 'black-buster-fonts';
+const MAX_HEARTS = 5;
+const HEART_REFILL_COST = 50;
+const DAILY_GOAL_XP = 20;
+
+function localDayKey(date = new Date()) {
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  return `${year}-${month}-${day}`;
+}
+
+function yesterdayKey() {
+  const date = new Date();
+  date.setDate(date.getDate() - 1);
+  return localDayKey(date);
+}
 
 function emptyProgress() {
   return {
@@ -16,6 +32,36 @@ function emptyProgress() {
     lastStage: null,
     questionStats: {},
     reviewSessions: 0,
+    hearts: MAX_HEARTS,
+    xp: 0,
+    gems: 100,
+    streak: 0,
+    lastStudyDate: null,
+    dailyXp: 0,
+    dailyXpDate: null,
+  };
+}
+
+function withStudyReward(progress, { xp = 0, gems = 0, hearts = 0 }) {
+  const today = localDayKey();
+  const alreadyStudiedToday = progress.lastStudyDate === today;
+  const continuedStreak = progress.lastStudyDate === yesterdayKey();
+  const streak = alreadyStudiedToday
+    ? progress.streak || 1
+    : continuedStreak
+      ? Math.max(1, progress.streak || 0) + 1
+      : 1;
+  const currentDailyXp = progress.dailyXpDate === today ? progress.dailyXp || 0 : 0;
+
+  return {
+    ...progress,
+    hearts: Math.min(MAX_HEARTS, Math.max(0, (progress.hearts ?? MAX_HEARTS) + hearts)),
+    xp: (progress.xp || 0) + xp,
+    gems: (progress.gems || 0) + gems,
+    streak,
+    lastStudyDate: today,
+    dailyXp: currentDailyXp + xp,
+    dailyXpDate: today,
   };
 }
 
@@ -63,6 +109,8 @@ function useFonts() {
 function readProgress() {
   try {
     const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    const lastStudyDate = saved.lastStudyDate || null;
+    const streakIsActive = lastStudyDate === localDayKey() || lastStudyDate === yesterdayKey();
     return {
       completed: saved.completed || {},
       attempts: saved.attempts || {},
@@ -71,6 +119,13 @@ function readProgress() {
       lastStage: saved.lastStage || null,
       questionStats: saved.questionStats || {},
       reviewSessions: saved.reviewSessions || 0,
+      hearts: Number.isFinite(saved.hearts) ? Math.min(MAX_HEARTS, Math.max(0, saved.hearts)) : MAX_HEARTS,
+      xp: Number.isFinite(saved.xp) ? Math.max(0, saved.xp) : 0,
+      gems: Number.isFinite(saved.gems) ? Math.max(0, saved.gems) : 100,
+      streak: streakIsActive && Number.isFinite(saved.streak) ? Math.max(0, saved.streak) : 0,
+      lastStudyDate,
+      dailyXp: Number.isFinite(saved.dailyXp) ? Math.max(0, saved.dailyXp) : 0,
+      dailyXpDate: saved.dailyXpDate || null,
     };
   } catch {
     return emptyProgress();
@@ -325,7 +380,16 @@ function LinearProgress({ value, color = '#58cc02', label }) {
   );
 }
 
-function AppHeader({ stats, settings, onHome, onReview, onToggleSound, onToggleScanlines }) {
+function FlameIcon() {
+  return (
+    <svg className="flame-icon" viewBox="0 0 24 28" aria-hidden="true" focusable="false">
+      <path d="M13.7 1.5c.9 4.5-2.8 5.9-2.8 9.1 0 1.2.7 2.2 1.8 2.7-.1-2.4 1.4-4.2 3.1-5.5 3.1 2.9 5.1 6 5.1 10.2 0 5.2-3.8 8.5-8.9 8.5S3.1 23.2 3.1 18c0-4 2.1-7.2 5.4-10.1.1 2.2.9 3.6 2 4.5-.9-4.7.2-8.3 3.2-10.9Z" />
+      <path className="flame-core" d="M12.1 15.3c2 1.8 3.2 3.4 3.2 5.4 0 2-1.4 3.3-3.3 3.3s-3.3-1.3-3.3-3.3c0-1.7.9-3.4 2.4-4.9 0 1 .4 1.8 1 2.3.3-.9.3-1.8 0-2.8Z" />
+    </svg>
+  );
+}
+
+function AppHeader({ stats, settings, onHome, onReview, onHearts, onToggleSound, onToggleScanlines }) {
   return (
     <header className="app-header">
       <button type="button" className="brand" onClick={onHome} aria-label="Voltar para a trilha">
@@ -339,22 +403,27 @@ function AppHeader({ stats, settings, onHome, onReview, onToggleSound, onToggleS
       </nav>
 
       <div className="header-stats">
-        <div title="Fases concluídas"><span>◆</span><b>{stats.completed}/{stats.total}</b></div>
-        <div title="Precisão nas respostas"><span>⌁</span><b>{stats.accuracy}%</b></div>
-        <button type="button" onClick={onToggleSound} title="Ativar ou desativar som" aria-label="Som">
+        <div className="stat-streak" title="Ofensiva diária"><span><FlameIcon /></span><b>{stats.streak}</b></div>
+        <div className="stat-xp" title="Experiência total"><span>⚡</span><b>{stats.xp}</b></div>
+        <div className="stat-gems" title="Gemas"><span>◆</span><b>{stats.gems}</b></div>
+        <button type="button" className="stat-hearts" onClick={onHearts} title="Vidas disponíveis" aria-label={`${stats.hearts} de ${MAX_HEARTS} vidas`}>
+          <span>♥</span><b>{stats.hearts}</b>
+        </button>
+        <button type="button" className="header-utility" onClick={onToggleSound} title="Ativar ou desativar som" aria-label="Som">
           {settings.sound ? '♪' : '×'}
         </button>
-        <button type="button" onClick={onToggleScanlines} title="Ativar ou desativar efeito retrô" aria-label="Efeito retrô">▤</button>
+        <button type="button" className="header-utility" onClick={onToggleScanlines} title="Ativar ou desativar efeito retrô" aria-label="Efeito retrô">▤</button>
       </div>
     </header>
   );
 }
 
-function MobileNav({ onHome, onReview }) {
+function MobileNav({ onHome, onReview, onHearts, hearts }) {
   return (
     <nav className="mobile-nav" aria-label="Navegação para celular">
       <button type="button" className="active" onClick={onHome}><span>⌁</span><small>TRILHA</small></button>
       <button type="button" onClick={onReview}><span>◎</span><small>PRATICAR</small></button>
+      <button type="button" className="mobile-hearts" onClick={onHearts}><span>♥</span><small>{hearts}/{MAX_HEARTS} VIDAS</small></button>
     </nav>
   );
 }
@@ -590,6 +659,22 @@ function ProgressCard({ stages, progress }) {
   );
 }
 
+function DailyGoalCard({ progress }) {
+  const todayXp = progress.dailyXpDate === localDayKey() ? progress.dailyXp || 0 : 0;
+  const percent = Math.min(100, (todayXp / DAILY_GOAL_XP) * 100);
+  return (
+    <section className="rail-card daily-goal-card">
+      <span className="daily-flame"><FlameIcon /></span>
+      <div className="daily-goal-copy">
+        <small>OFENSIVA DE {progress.streak || 0} {progress.streak === 1 ? 'DIA' : 'DIAS'}</small>
+        <h3>Meta diária</h3>
+        <div><span>{todayXp}/{DAILY_GOAL_XP} XP</span><b>{Math.round(percent)}%</b></div>
+        <LinearProgress value={percent} color="#ff9600" label={`${todayXp} de ${DAILY_GOAL_XP} XP na meta diária`} />
+      </div>
+    </section>
+  );
+}
+
 function CourseMap({ stages, progress, onEnter, onReview, onReset }) {
   const units = useMemo(() => courseUnits(stages), [stages]);
   const learning = courseLearningSummary(stages, progress);
@@ -657,6 +742,7 @@ function CourseMap({ stages, progress, onEnter, onReview, onReset }) {
             onClose={() => setPicked(false)}
             onEnter={onEnter}
           />
+          <DailyGoalCard progress={progress} />
           <ProgressCard stages={stages} progress={progress} />
           <section className="rail-card practice-card">
             <span className="practice-symbol">◎</span>
@@ -671,18 +757,20 @@ function CourseMap({ stages, progress, onEnter, onReview, onReset }) {
   );
 }
 
-function FocusHeader({ stage, step, total, onExit }) {
+function FocusHeader({ stage, step, total, onExit, hearts = MAX_HEARTS, safePractice = false, heartReward = false }) {
   const percent = total ? (step / total) * 100 : 0;
   return (
     <div className="focus-header" style={{ '--stage-color': stage.color }}>
       <button type="button" onClick={onExit} aria-label="Sair e voltar para a trilha">×</button>
       <LinearProgress value={percent} color={stage.color} label={`${Math.round(percent)}% da fase`} />
-      <span className="focus-avatar"><PythonAvatar size="tiny" mood="focus" /></span>
+      <span className={`focus-heart-count ${safePractice ? 'safe' : ''}`} title={safePractice ? 'Prática sem perda de vidas' : `${hearts} vidas restantes`}>
+        <i>♥</i><b>{heartReward ? '+1' : safePractice ? '∞' : hearts}</b>
+      </span>
     </div>
   );
 }
 
-function LessonScreen({ stage, stageIndex, onExit, onBattle, sfx }) {
+function LessonScreen({ stage, stageIndex, hearts, onExit, onBattle, sfx }) {
   const [index, setIndex] = useState(0);
   const card = stage.lesson[index];
   const last = index === stage.lesson.length - 1;
@@ -690,7 +778,7 @@ function LessonScreen({ stage, stageIndex, onExit, onBattle, sfx }) {
 
   return (
     <main className="focus-screen lesson-screen" style={{ '--stage-color': stage.color }}>
-      <FocusHeader stage={stage} step={index + 1} total={stage.lesson.length + 1} onExit={onExit} />
+      <FocusHeader stage={stage} step={index + 1} total={stage.lesson.length + 1} hearts={hearts} onExit={onExit} />
       <div className="focus-shell">
         <div className="lesson-heading">
           <span className="lesson-stage-icon">{stage.icon}</span>
@@ -750,13 +838,15 @@ function LessonScreen({ stage, stageIndex, onExit, onBattle, sfx }) {
   );
 }
 
-function QuestionCard({ question, stageColor, selected, wrong, correct, onSelect }) {
+function QuestionCard({ question, stageColor, selected, wrong, correct, onSelect, hearts, safePractice = false }) {
   return (
     <section className="question-card">
       <div className="question-card-header">
         <span className="card-kicker">ESCOLHA A RESPOSTA CORRETA</span>
-        <span className={`question-attempts ${wrong.length ? 'has-errors' : ''}`}>
-          {wrong.length ? `${wrong.length} ${wrong.length === 1 ? 'ERRO' : 'ERROS'}` : 'TENTATIVAS LIVRES'}
+        <span className={`question-attempts ${safePractice ? 'safe' : ''} ${wrong.length ? 'has-errors' : ''}`}>
+          {safePractice
+            ? 'PRÁTICA SEM CUSTO'
+            : `♥ ${hearts} ${hearts === 1 ? 'VIDA' : 'VIDAS'}`}
         </span>
       </div>
       {question.type === 'code' ? <CodeBlock text={question.q} filename="desafio.py" label="ANALISE O CÓDIGO" compact /> : <h2>{question.q}</h2>}
@@ -790,13 +880,13 @@ function QuestionCard({ question, stageColor, selected, wrong, correct, onSelect
   );
 }
 
-function QuestionFeedback({ question, selected, wrong, correct, color, nextLabel, onCheck, onNext }) {
+function QuestionFeedback({ question, selected, wrong, correct, color, nextLabel, onCheck, onNext, usesHearts = false, hearts = MAX_HEARTS }) {
   const state = correct ? 'success' : wrong.length ? 'error' : 'neutral';
-  const title = correct ? 'MANDOU BEM!' : wrong.length ? 'QUASE LÁ' : 'CONFIRME SUA ESCOLHA';
+  const title = correct ? 'MANDOU BEM!' : wrong.length ? usesHearts ? 'VOCÊ PERDEU UMA VIDA' : 'QUASE LÁ' : 'CONFIRME SUA ESCOLHA';
   const message = correct
     ? question.ex
     : wrong.length
-      ? question.hint
+      ? usesHearts ? `${question.hint} Restam ${hearts} ${hearts === 1 ? 'vida' : 'vidas'}.` : question.hint
       : 'Selecione uma das opções acima. Você pode tentar novamente quantas vezes precisar.';
   const checkLabel = wrong.length
     ? selected === null ? 'ESCOLHA OUTRA OPÇÃO' : 'VERIFICAR NOVAMENTE'
@@ -817,11 +907,12 @@ function QuestionFeedback({ question, selected, wrong, correct, color, nextLabel
   );
 }
 
-function BattleScreen({ stage, onExit, onWin, onStat, sfx }) {
+function BattleScreen({ stage, hearts, progress, onExit, onWin, onStat, onHeartPractice, onRefillHearts, sfx }) {
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState(null);
   const [wrong, setWrong] = useState([]);
   const [correct, setCorrect] = useState(false);
+  const [heartGate, setHeartGate] = useState(false);
   const question = stage.questions[index];
   const last = index === stage.questions.length - 1;
 
@@ -842,8 +933,9 @@ function BattleScreen({ stage, onExit, onWin, onStat, sfx }) {
       setSelected(null);
       onStat('wrong', { stageId: stage.id, questionIndex: index, mode: 'battle', firstTry: false });
       sfx('bad');
+      if (hearts <= 1) setHeartGate(true);
     }
-  }, [correct, index, onStat, question.a, selected, sfx, stage.id, wrong.length]);
+  }, [correct, hearts, index, onStat, question.a, selected, sfx, stage.id, wrong.length]);
 
   const next = useCallback(() => {
     if (last) {
@@ -868,9 +960,20 @@ function BattleScreen({ stage, onExit, onWin, onStat, sfx }) {
     return () => window.removeEventListener('keydown', keyboard);
   }, [check, correct, next, select]);
 
+  if (heartGate) {
+    return (
+      <HeartsScreen
+        progress={progress}
+        onExit={onExit}
+        onPractice={onHeartPractice}
+        onRefill={() => { onRefillHearts(); setHeartGate(false); }}
+      />
+    );
+  }
+
   return (
     <main className="focus-screen battle-screen" style={{ '--stage-color': stage.color }}>
-      <FocusHeader stage={stage} step={index + 1} total={stage.questions.length} onExit={onExit} />
+      <FocusHeader stage={stage} step={index + 1} total={stage.questions.length} hearts={hearts} onExit={onExit} />
       <div className="focus-shell challenge-shell">
         <div className="challenge-heading">
           <div><small>DESAFIO · {stage.name}</small><h1>Questão {index + 1} de {stage.questions.length}</h1></div>
@@ -884,6 +987,7 @@ function BattleScreen({ stage, onExit, onWin, onStat, sfx }) {
           wrong={wrong}
           correct={correct}
           onSelect={select}
+          hearts={hearts}
         />
         <QuestionFeedback
           question={question}
@@ -894,6 +998,8 @@ function BattleScreen({ stage, onExit, onWin, onStat, sfx }) {
           nextLabel={last ? 'CONCLUIR FASE' : 'CONTINUAR'}
           onCheck={check}
           onNext={next}
+          usesHearts
+          hearts={hearts}
         />
         <p className="keyboard-help">ATALHOS: 1–4 SELECIONA · ENTER VERIFICA OU CONTINUA</p>
       </div>
@@ -901,7 +1007,7 @@ function BattleScreen({ stage, onExit, onWin, onStat, sfx }) {
   );
 }
 
-function WinScreen({ stage, nextStage, onMap, onReplay, onContinue }) {
+function WinScreen({ stage, nextStage, reward, streak, onMap, onReplay, onContinue }) {
   return (
     <main className="win-screen" style={{ '--stage-color': stage.color }}>
       <div className="pixel-confetti" aria-hidden="true"><i /><i /><i /><i /><i /><i /><i /><i /></div>
@@ -911,14 +1017,43 @@ function WinScreen({ stage, nextStage, onMap, onReplay, onContinue }) {
         <h1>{stage.name}</h1>
         <p>Conteúdo estudado e desafio finalizado. A fase continua aberta para revisão quando quiser.</p>
         <div className="win-summary">
-          <span><b>{stage.lesson.length}</b>AULAS</span>
-          <span><b>{stage.questions.length}</b>QUESTÕES</span>
-          <span><b>✓</b>SALVO</span>
+          <span className="reward-xp"><b>+{reward.xp}</b>XP</span>
+          <span className="reward-gems"><b>+{reward.gems}</b>GEMAS</span>
+          <span className="reward-streak"><b><FlameIcon /> {streak}</b>OFENSIVA</span>
         </div>
         <div className="win-actions">
           {nextStage && <PixelButton color="#58cc02" onClick={onContinue}>PRÓXIMA FASE →</PixelButton>}
           <PixelButton color="#1cb0f6" variant="outline" onClick={onMap}>VER TRILHA</PixelButton>
           <button type="button" className="text-action" onClick={onReplay}>REPETIR ESTA FASE</button>
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function HeartsScreen({ progress, onExit, onPractice, onRefill }) {
+  const full = progress.hearts >= MAX_HEARTS;
+  const canBuy = !full && progress.gems >= HEART_REFILL_COST;
+  return (
+    <main className="hearts-screen">
+      <section className="hearts-card">
+        <button type="button" className="hearts-close" onClick={onExit} aria-label="Voltar para a trilha">×</button>
+        <div className="hearts-avatar"><PythonAvatar size="large" mood={full ? 'celebrate' : 'focus'} /><span>♥</span></div>
+        <small>CENTRAL DE VIDAS</small>
+        <h1>{full ? 'Suas vidas estão cheias!' : progress.hearts ? 'Recupere suas vidas' : 'Suas vidas acabaram'}</h1>
+        <p>Erros nas fases custam uma vida. Faça uma prática curta para recuperar uma ou use gemas para completar todas.</p>
+        <div className="heart-meter" aria-label={`${progress.hearts} de ${MAX_HEARTS} vidas`}>
+          {Array.from({ length: MAX_HEARTS }, (_, index) => <span className={index < progress.hearts ? 'full' : ''} key={index}>♥</span>)}
+        </div>
+        <div className="hearts-actions">
+          <PixelButton color="#58cc02" disabled={full} onClick={onPractice}>
+            {full ? 'VIDAS CHEIAS ✓' : 'PRATICAR PARA GANHAR 1 VIDA'}
+          </PixelButton>
+          <PixelButton color="#1cb0f6" variant="outline" disabled={!canBuy} onClick={onRefill}>
+            {full ? 'NÃO PRECISA RECARREGAR' : `COMPLETAR VIDAS · ◆ ${HEART_REFILL_COST}`}
+          </PixelButton>
+          {!full && !canBuy && <small className="not-enough-gems">Você tem ◆ {progress.gems}. São necessárias {HEART_REFILL_COST} gemas.</small>}
+          <button type="button" className="text-action" onClick={onExit}>VOLTAR À TRILHA</button>
         </div>
       </section>
     </main>
@@ -946,13 +1081,21 @@ function PracticeHub({ stages, progress, onExit, onStart }) {
           <div>
             <span className="practice-kicker">SEU PLANO DE ESTUDO</span>
             <h1>Fortaleça o que ainda precisa de atenção.</h1>
-            <p>O Guia Py separa seus erros para você revisar primeiro. Sem vidas, ranking ou pressão: pratique até o conceito ficar claro.</p>
+            <p>O Guia Py separa seus erros para você revisar primeiro. A prática é segura e não consome vidas.</p>
           </div>
           <div className="practice-overview" aria-label="Resumo do aprendizado">
             <span><b>{learning.mastered}</b><small>DE {learning.total}<br />DOMINADAS</small></span>
             <span className={learning.pending ? 'attention' : ''}><b>{learning.pending}</b><small>PARA<br />REVISAR</small></span>
             <span><b>{progress.reviewSessions || 0}</b><small>SESSÕES<br />FEITAS</small></span>
           </div>
+        </section>
+
+        <section className={`practice-heart-banner ${progress.hearts < MAX_HEARTS ? 'needs-heart' : ''}`}>
+          <span className="practice-heart-icon">♥</span>
+          <div><small>VIDAS</small><h2>{progress.hearts}/{MAX_HEARTS} disponíveis</h2><p>Complete uma prática de 5 questões para recuperar uma vida.</p></div>
+          <PixelButton color="#ff4b4b" variant="outline" disabled={progress.hearts >= MAX_HEARTS} onClick={() => onStart('hearts')}>
+            {progress.hearts >= MAX_HEARTS ? 'VIDAS CHEIAS ✓' : 'RECUPERAR 1 VIDA'}
+          </PixelButton>
         </section>
 
         <div className="practice-modes">
@@ -1008,7 +1151,7 @@ function ReviewScreen({ stages, progress, mode, onExit, onStat, onComplete, sfx 
     const source = mode === 'mistakes'
       ? pool.filter((question) => progress.questionStats?.[questionKey(question.stageId, question.questionIndex)]?.needsReview)
       : pool;
-    return [...source].sort(() => Math.random() - 0.5).slice(0, 10);
+    return [...source].sort(() => Math.random() - 0.5).slice(0, mode === 'hearts' ? 5 : 10);
   });
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState(null);
@@ -1050,14 +1193,14 @@ function ReviewScreen({ stages, progress, mode, onExit, onStat, onComplete, sfx 
   }, [correct, onStat, question, selected, sfx, wrong.length]);
 
   const next = useCallback(() => {
-    if (last) onComplete();
+    if (last) onComplete(mode);
     setIndex((value) => value + 1);
     setSelected(null);
     setWrong([]);
     setCorrect(false);
     sfx('click');
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [last, onComplete, sfx]);
+  }, [last, mode, onComplete, sfx]);
 
   useEffect(() => {
     const keyboard = (event) => {
@@ -1073,11 +1216,13 @@ function ReviewScreen({ stages, progress, mode, onExit, onStat, onComplete, sfx 
       <main className="review-finish-screen">
         <section className="review-finish-card">
           <div className="review-avatar"><PythonAvatar size="large" mood="celebrate" /><span>◎</span></div>
-          <small>{mode === 'mistakes' ? 'REVISÃO FINALIZADA' : 'TREINO FINALIZADO'} · GUIA PY</small><h1>{score}/{queue.length}</h1>
-          <p>{mode === 'mistakes'
-            ? 'Acertos de primeira neste bloco. Os pontos que ainda precisam de prática continuam na sua fila.'
-            : 'Acertos de primeira. Qualquer dificuldade encontrada já foi adicionada à sua revisão.'}</p>
-          <PixelButton color="#1cb0f6" onClick={onExit}>VOLTAR À CENTRAL</PixelButton>
+          <small>{mode === 'hearts' ? 'VIDA RECUPERADA' : mode === 'mistakes' ? 'REVISÃO FINALIZADA' : 'TREINO FINALIZADO'} · GUIA PY</small><h1>{mode === 'hearts' ? '+1 ♥' : `${score}/${queue.length}`}</h1>
+          <p>{mode === 'hearts'
+            ? `Prática concluída. Agora você tem ${progress.hearts}/${MAX_HEARTS} vidas para continuar a trilha.`
+            : mode === 'mistakes'
+              ? 'Acertos de primeira neste bloco. Os pontos que ainda precisam de prática continuam na sua fila.'
+              : 'Acertos de primeira. Qualquer dificuldade encontrada já foi adicionada à sua revisão.'}</p>
+          <PixelButton color={mode === 'hearts' ? '#ff4b4b' : '#1cb0f6'} onClick={onExit}>{mode === 'hearts' ? 'CONTINUAR NA TRILHA' : 'VOLTAR À CENTRAL'}</PixelButton>
         </section>
       </main>
     );
@@ -1086,10 +1231,10 @@ function ReviewScreen({ stages, progress, mode, onExit, onStat, onComplete, sfx 
   const reviewStage = { color: question.color, icon: '◎' };
   return (
     <main className="focus-screen review-screen" style={{ '--stage-color': question.color }}>
-      <FocusHeader stage={reviewStage} step={index + 1} total={queue.length} onExit={onExit} />
+      <FocusHeader stage={reviewStage} step={index + 1} total={queue.length} hearts={progress.hearts} safePractice heartReward={mode === 'hearts'} onExit={onExit} />
       <div className="focus-shell challenge-shell">
         <div className="challenge-heading">
-          <div><small>{mode === 'mistakes' ? 'REVISÃO DOS ERROS' : 'TREINO MISTO'} · {question.stageName}</small><h1>Questão {index + 1} de {queue.length}</h1></div>
+          <div><small>{mode === 'hearts' ? 'RECUPERAÇÃO DE VIDA' : mode === 'mistakes' ? 'REVISÃO DOS ERROS' : 'TREINO MISTO'} · {question.stageName}</small><h1>Questão {index + 1} de {queue.length}</h1></div>
           <span>◎</span>
         </div>
         <QuestionCard
@@ -1099,6 +1244,8 @@ function ReviewScreen({ stages, progress, mode, onExit, onStat, onComplete, sfx 
           wrong={wrong}
           correct={correct}
           onSelect={select}
+          hearts={progress.hearts}
+          safePractice
         />
         <QuestionFeedback
           question={question}
@@ -1126,14 +1273,28 @@ export default function CompleteApp() {
   const [battleKey, setBattleKey] = useState(0);
   const [reviewKey, setReviewKey] = useState(0);
   const [reviewMode, setReviewMode] = useState('mixed');
+  const [lastReward, setLastReward] = useState({ xp: 10, gems: 10 });
   const sfx = useSfx(settings.sound);
 
+  useEffect(() => {
+    if ('scrollRestoration' in window.history) window.history.scrollRestoration = 'manual';
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    const frame = requestAnimationFrame(() => window.scrollTo({ top: 0, left: 0, behavior: 'auto' }));
+    return () => cancelAnimationFrame(frame);
+  }, [screen]);
+
   const answered = progress.correct + progress.wrong;
+  const todayXp = progress.dailyXpDate === localDayKey() ? progress.dailyXp || 0 : 0;
   const stats = useMemo(() => ({
     total: stages.length,
     completed: Object.keys(progress.completed).length,
     accuracy: answered ? Math.round((progress.correct / answered) * 100) : 0,
-  }), [answered, progress.completed, progress.correct, stages.length]);
+    hearts: progress.hearts,
+    xp: progress.xp,
+    gems: progress.gems,
+    streak: progress.streak,
+    todayXp,
+  }), [answered, progress.completed, progress.correct, progress.gems, progress.hearts, progress.streak, progress.xp, stages.length, todayXp]);
 
   const updateProgress = useCallback((updater) => {
     setProgress((current) => {
@@ -1162,6 +1323,12 @@ export default function CompleteApp() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const openHearts = () => {
+    setScreen('hearts');
+    sfx('click');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const startReview = (mode) => {
     setReviewMode(mode);
     setReviewKey((key) => key + 1);
@@ -1171,6 +1338,10 @@ export default function CompleteApp() {
   };
 
   const enterStage = (stage) => {
+    if (progress.hearts <= 0) {
+      openHearts();
+      return;
+    }
     setActiveStage(stage);
     updateProgress((current) => ({ ...current, lastStage: stage.id }));
     setScreen('lesson');
@@ -1179,20 +1350,27 @@ export default function CompleteApp() {
   };
 
   const startBattle = () => {
+    if (progress.hearts <= 0) {
+      openHearts();
+      return;
+    }
     setBattleKey((key) => key + 1);
     setScreen('battle');
     window.scrollTo(0, 0);
   };
 
   const finishStage = () => {
-    updateProgress((current) => ({
+    const firstCompletion = !progress.completed[activeStage.id];
+    const reward = firstCompletion ? { xp: 10, gems: 10 } : { xp: 5, gems: 0 };
+    setLastReward(reward);
+    updateProgress((current) => withStudyReward({
       ...current,
       completed: { ...current.completed, [activeStage.id]: true },
       attempts: {
         ...current.attempts,
         [activeStage.id]: (current.attempts[activeStage.id] || 0) + 1,
       },
-    }));
+    }, reward));
     setScreen('win');
     window.scrollTo(0, 0);
   };
@@ -1217,17 +1395,31 @@ export default function CompleteApp() {
       return {
         ...current,
         [counter]: current[counter] + 1,
+        hearts: kind === 'wrong' && context.mode === 'battle'
+          ? Math.max(0, (current.hearts ?? MAX_HEARTS) - 1)
+          : current.hearts ?? MAX_HEARTS,
         questionStats: { ...(current.questionStats || {}), [key]: nextQuestion },
       };
     });
   }, [updateProgress]);
 
-  const finishReview = useCallback(() => {
-    updateProgress((current) => ({
+  const finishReview = useCallback((mode) => {
+    const reward = mode === 'hearts' ? { xp: 5, gems: 0, hearts: 1 } : { xp: 5, gems: 5, hearts: 0 };
+    updateProgress((current) => withStudyReward({
       ...current,
       reviewSessions: (current.reviewSessions || 0) + 1,
-    }));
+    }, reward));
   }, [updateProgress]);
+
+  const refillHearts = () => {
+    if (progress.hearts >= MAX_HEARTS || progress.gems < HEART_REFILL_COST) return;
+    updateProgress((current) => current.hearts >= MAX_HEARTS || current.gems < HEART_REFILL_COST ? current : ({
+      ...current,
+      hearts: MAX_HEARTS,
+      gems: current.gems - HEART_REFILL_COST,
+    }));
+    sfx('ok');
+  };
 
   const reset = () => {
     if (!window.confirm('Zerar apenas o progresso e as estatísticas do game?')) return;
@@ -1252,6 +1444,7 @@ export default function CompleteApp() {
           settings={settings}
           onHome={goMap}
           onReview={openPractice}
+          onHearts={openHearts}
           onToggleSound={() => updateSetting('sound')}
           onToggleScanlines={() => updateSetting('scanlines')}
         />
@@ -1269,16 +1462,32 @@ export default function CompleteApp() {
       {screen === 'practice' && (
         <PracticeHub stages={stages} progress={progress} onExit={goMap} onStart={startReview} />
       )}
+      {screen === 'hearts' && (
+        <HeartsScreen progress={progress} onExit={goMap} onPractice={() => startReview('hearts')} onRefill={refillHearts} />
+      )}
       {screen === 'lesson' && (
-        <LessonScreen stage={activeStage} stageIndex={activeIndex} onExit={goMap} onBattle={startBattle} sfx={sfx} />
+        <LessonScreen stage={activeStage} stageIndex={activeIndex} hearts={progress.hearts} onExit={goMap} onBattle={startBattle} sfx={sfx} />
       )}
       {screen === 'battle' && (
-        <BattleScreen key={battleKey} stage={activeStage} onExit={goMap} onWin={finishStage} onStat={recordAnswer} sfx={sfx} />
+        <BattleScreen
+          key={battleKey}
+          stage={activeStage}
+          hearts={progress.hearts}
+          progress={progress}
+          onExit={goMap}
+          onWin={finishStage}
+          onStat={recordAnswer}
+          onHeartPractice={() => startReview('hearts')}
+          onRefillHearts={refillHearts}
+          sfx={sfx}
+        />
       )}
       {screen === 'win' && (
         <WinScreen
           stage={activeStage}
           nextStage={nextStage}
+          reward={lastReward}
+          streak={progress.streak}
           onMap={goMap}
           onReplay={() => enterStage(activeStage)}
           onContinue={() => nextStage && enterStage(nextStage)}
@@ -1290,14 +1499,14 @@ export default function CompleteApp() {
           stages={stages}
           progress={progress}
           mode={reviewMode}
-          onExit={openPractice}
+          onExit={reviewMode === 'hearts' ? goMap : openPractice}
           onStat={recordAnswer}
           onComplete={finishReview}
           sfx={sfx}
         />
       )}
 
-      {screen === 'map' && <MobileNav onHome={goMap} onReview={openPractice} />}
+      {screen === 'map' && <MobileNav onHome={goMap} onReview={openPractice} onHearts={openHearts} hearts={progress.hearts} />}
     </div>
   );
 }
