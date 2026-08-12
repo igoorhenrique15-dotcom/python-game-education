@@ -7,6 +7,18 @@ const STORAGE_KEY = 'black-buster-progress-v5';
 const SETTINGS_KEY = 'black-buster-settings-v2';
 const FONT_ID = 'black-buster-fonts';
 
+function emptyProgress() {
+  return {
+    completed: {},
+    attempts: {},
+    correct: 0,
+    wrong: 0,
+    lastStage: null,
+    questionStats: {},
+    reviewSessions: 0,
+  };
+}
+
 const UNIT_META = [
   {
     title: 'Primeiros comandos',
@@ -49,7 +61,6 @@ function useFonts() {
 }
 
 function readProgress() {
-  const empty = { completed: {}, attempts: {}, correct: 0, wrong: 0, lastStage: null };
   try {
     const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
     return {
@@ -58,9 +69,11 @@ function readProgress() {
       correct: saved.correct || 0,
       wrong: saved.wrong || 0,
       lastStage: saved.lastStage || null,
+      questionStats: saved.questionStats || {},
+      reviewSessions: saved.reviewSessions || 0,
     };
   } catch {
-    return empty;
+    return emptyProgress();
   }
 }
 
@@ -130,6 +143,51 @@ function courseUnits(stages) {
     });
   }
   return units;
+}
+
+function questionKey(stageId, questionIndex) {
+  return `${stageId}:${questionIndex}`;
+}
+
+function stageLearningSummary(progress, stage) {
+  const stats = progress.questionStats || {};
+  const total = stage.questions.length;
+  let mastered = progress.completed[stage.id] ? total : 0;
+  let pending = 0;
+
+  stage.questions.forEach((_, questionIndex) => {
+    const question = stats[questionKey(stage.id, questionIndex)];
+    if (!progress.completed[stage.id] && question?.correct > 0) mastered += 1;
+    if (question?.needsReview) pending += 1;
+  });
+
+  return {
+    mastered,
+    pending,
+    total,
+    percent: total ? Math.round((mastered / total) * 100) : 0,
+  };
+}
+
+function courseLearningSummary(stages, progress) {
+  return stages.reduce((summary, stage) => {
+    const stageSummary = stageLearningSummary(progress, stage);
+    return {
+      mastered: summary.mastered + stageSummary.mastered,
+      pending: summary.pending + stageSummary.pending,
+      total: summary.total + stageSummary.total,
+    };
+  }, { mastered: 0, pending: 0, total: 0 });
+}
+
+function questionPool(stages) {
+  return stages.flatMap((stage) => stage.questions.map((question, questionIndex) => ({
+    ...question,
+    stageId: stage.id,
+    questionIndex,
+    stageName: stage.name,
+    color: stage.color,
+  })));
 }
 
 function stageState(stage, stageIndex, currentIndex, progress) {
@@ -426,6 +484,7 @@ function UnitPath({ unit, progress, currentIndex, selectedId, onSelect }) {
           const selected = selectedId === stage.id;
           const point = points[localIndex];
           const attemptCount = progress.attempts[stage.id] || 0;
+          const learning = stageLearningSummary(progress, stage);
 
           return (
             <div
@@ -443,7 +502,11 @@ function UnitPath({ unit, progress, currentIndex, selectedId, onSelect }) {
                 aria-pressed={selected}
               >
                 <span className="node-face">{state === 'done' ? '✓' : stage.icon}</span>
-                {state === 'done' && <span className="node-stars">★★★</span>}
+                {(state === 'done' || learning.mastered > 0) && (
+                  <span className={`node-mastery ${learning.pending ? 'needs-review' : ''}`}>
+                    {learning.pending ? `${learning.pending} REV` : `${learning.percent}%`}
+                  </span>
+                )}
               </button>
               <span className="level-number">FASE {String(stageIndex + 1).padStart(2, '0')}</span>
               <strong>{stage.name}</strong>
@@ -456,9 +519,15 @@ function UnitPath({ unit, progress, currentIndex, selectedId, onSelect }) {
   );
 }
 
-function StageInspector({ stage, stageIndex, state, picked, onClose, onEnter }) {
+function StageInspector({ stage, stageIndex, state, picked, progress, onClose, onEnter }) {
   if (!stage) return null;
   const statusLabel = state === 'done' ? 'FASE CONCLUÍDA' : state === 'current' ? 'PRÓXIMA FASE' : 'FASE DISPONÍVEL';
+  const learning = stageLearningSummary(progress, stage);
+  const learningNote = learning.pending
+    ? `${learning.pending} ${learning.pending === 1 ? 'questão precisa' : 'questões precisam'} de uma revisão focada.`
+    : learning.mastered === learning.total
+      ? 'Todas as questões desta fase já foram dominadas.'
+      : `${learning.mastered} de ${learning.total} questões dominadas até agora.`;
   return (
     <section className={`stage-inspector ${picked ? 'picked' : 'suggested'}`} style={{ '--stage-color': stage.color }}>
       <button className="inspector-close" type="button" onClick={onClose} aria-label="Fechar detalhes">×</button>
@@ -471,10 +540,15 @@ function StageInspector({ stage, stageIndex, state, picked, onClose, onEnter }) 
       <div className="inspector-guide">
         <PythonAvatar size="tiny" mood="focus" />
         <div><small>GUIA PY</small><p>{state === 'done'
-          ? 'Revise quando quiser. Repetir ajuda a fixar.'
+          ? learning.pending ? 'Há pontos desta fase na sua revisão personalizada.' : 'Fase dominada. Treine novamente quando quiser.'
           : state === 'current'
             ? 'Este é o próximo passo recomendado da sua trilha.'
             : 'Pode estudar fora de ordem: esta fase está liberada.'}</p></div>
+      </div>
+      <div className="stage-mastery">
+        <div><span>DOMÍNIO DA FASE</span><b>{learning.percent}%</b></div>
+        <LinearProgress value={learning.percent} color={learning.pending ? '#ff9600' : stage.color} label={`${learning.percent}% de domínio em ${stage.name}`} />
+        <small className={learning.pending ? 'needs-review' : ''}>{learningNote}</small>
       </div>
       <div className="stage-facts">
         <span><b>{stage.lesson.length}</b>AULAS</span>
@@ -494,11 +568,19 @@ function ProgressCard({ stages, progress }) {
   const percent = Math.round((completed / stages.length) * 100);
   const answered = progress.correct + progress.wrong;
   const accuracy = answered ? Math.round((progress.correct / answered) * 100) : 0;
+  const learning = courseLearningSummary(stages, progress);
   return (
     <section className="rail-card progress-card">
       <div className="rail-title"><span>SEU PROGRESSO</span><b>{percent}%</b></div>
       <div className="progress-orbit" style={{ '--course-progress': `${percent * 3.6}deg` }}>
         <div><b>{completed}</b><small>DE {stages.length}</small></div>
+      </div>
+      <div className="rail-learning">
+        <div><span>QUESTÕES DOMINADAS</span><b>{learning.mastered}/{learning.total}</b></div>
+        <LinearProgress value={learning.total ? (learning.mastered / learning.total) * 100 : 0} color="#58cc02" label={`${learning.mastered} de ${learning.total} questões dominadas`} />
+        <span className={`review-pending ${learning.pending ? 'has-pending' : ''}`}>
+          <b>{learning.pending}</b> {learning.pending === 1 ? 'QUESTÃO PARA REVISAR' : 'QUESTÕES PARA REVISAR'}
+        </span>
       </div>
       <div className="rail-stats">
         <span><b>{progress.correct}</b> ACERTOS</span>
@@ -510,6 +592,7 @@ function ProgressCard({ stages, progress }) {
 
 function CourseMap({ stages, progress, onEnter, onReview, onReset }) {
   const units = useMemo(() => courseUnits(stages), [stages]);
+  const learning = courseLearningSummary(stages, progress);
   const currentIndex = Math.max(0, stages.findIndex((stage) => !progress.completed[stage.id]));
   const fallbackIndex = currentIndex === -1 ? stages.length - 1 : currentIndex;
   const recommendedIndex = stages.every((stage) => progress.completed[stage.id]) ? stages.length - 1 : fallbackIndex;
@@ -570,14 +653,17 @@ function CourseMap({ stages, progress, onEnter, onReview, onReset }) {
             stageIndex={selectedIndex}
             state={selectedState}
             picked={picked}
+            progress={progress}
             onClose={() => setPicked(false)}
             onEnter={onEnter}
           />
           <ProgressCard stages={stages} progress={progress} />
           <section className="rail-card practice-card">
             <span className="practice-symbol">◎</span>
-            <div><small>TREINO LIVRE</small><h3>Pratique sem alterar a trilha</h3><p>Dez questões aleatórias de todas as fases.</p></div>
-            <PixelButton color="#1cb0f6" variant="outline" onClick={onReview}>PRATICAR AGORA</PixelButton>
+            <div><small>REVISÃO INTELIGENTE</small><h3>{learning.pending ? `${learning.pending} ${learning.pending === 1 ? 'ponto pede' : 'pontos pedem'} atenção` : 'Pratique sem alterar a trilha'}</h3><p>{learning.pending ? 'Treine primeiro as questões em que você errou.' : 'Misture questões de todas as fases quando quiser.'}</p></div>
+            <PixelButton color={learning.pending ? '#ff9600' : '#1cb0f6'} variant="outline" onClick={onReview}>
+              {learning.pending ? `REVISAR ${learning.pending} ${learning.pending === 1 ? 'ERRO' : 'ERROS'}` : 'ABRIR PRÁTICA'}
+            </PixelButton>
           </section>
         </aside>
       </div>
@@ -749,15 +835,15 @@ function BattleScreen({ stage, onExit, onWin, onStat, sfx }) {
     if (correct || selected === null) return;
     if (selected === question.a) {
       setCorrect(true);
-      onStat('correct');
+      onStat('correct', { stageId: stage.id, questionIndex: index, mode: 'battle', firstTry: wrong.length === 0 });
       sfx('ok');
     } else {
       setWrong((items) => [...items, selected]);
       setSelected(null);
-      onStat('wrong');
+      onStat('wrong', { stageId: stage.id, questionIndex: index, mode: 'battle', firstTry: false });
       sfx('bad');
     }
-  }, [correct, onStat, question.a, selected, sfx]);
+  }, [correct, index, onStat, question.a, selected, sfx, stage.id, wrong.length]);
 
   const next = useCallback(() => {
     if (last) {
@@ -839,18 +925,98 @@ function WinScreen({ stage, nextStage, onMap, onReplay, onContinue }) {
   );
 }
 
-function ReviewScreen({ stages, onExit, onStat, sfx }) {
-  const pool = useMemo(
-    () => stages.flatMap((stage) => stage.questions.map((question) => ({ ...question, stageName: stage.name, color: stage.color }))),
-    [stages],
+function PracticeHub({ stages, progress, onExit, onStart }) {
+  const learning = courseLearningSummary(stages, progress);
+  const completed = Object.keys(progress.completed).length;
+  const weakStages = stages
+    .map((stage, stageIndex) => ({ stage, stageIndex, ...stageLearningSummary(progress, stage) }))
+    .filter((item) => item.pending > 0)
+    .sort((a, b) => b.pending - a.pending);
+
+  return (
+    <main className="practice-hub">
+      <header className="practice-hub-header">
+        <button type="button" onClick={onExit} aria-label="Fechar a central de revisão">×</button>
+        <div><small>CENTRAL DE REVISÃO</small><b>Pratique com propósito</b></div>
+        <span><PythonAvatar size="tiny" mood="focus" /></span>
+      </header>
+
+      <div className="practice-hub-shell">
+        <section className="practice-intro">
+          <div>
+            <span className="practice-kicker">SEU PLANO DE ESTUDO</span>
+            <h1>Fortaleça o que ainda precisa de atenção.</h1>
+            <p>O Guia Py separa seus erros para você revisar primeiro. Sem vidas, ranking ou pressão: pratique até o conceito ficar claro.</p>
+          </div>
+          <div className="practice-overview" aria-label="Resumo do aprendizado">
+            <span><b>{learning.mastered}</b><small>DE {learning.total}<br />DOMINADAS</small></span>
+            <span className={learning.pending ? 'attention' : ''}><b>{learning.pending}</b><small>PARA<br />REVISAR</small></span>
+            <span><b>{progress.reviewSessions || 0}</b><small>SESSÕES<br />FEITAS</small></span>
+          </div>
+        </section>
+
+        <div className="practice-modes">
+          <article className={`practice-mode focused ${learning.pending ? '' : 'is-clear'}`}>
+            <div className="practice-mode-top"><span>↺</span><small>RECOMENDADO</small></div>
+            <div className="practice-mode-count"><b>{learning.pending}</b><span>{learning.pending === 1 ? 'QUESTÃO' : 'QUESTÕES'}</span></div>
+            <h2>{learning.pending ? 'Revisar meus erros' : 'Nenhum erro pendente'}</h2>
+            <p>{learning.pending
+              ? 'Um treino curto só com os pontos que você errou. A pendência some quando você acertar de primeira.'
+              : 'Ótimo trabalho. Quando surgir um novo erro, ele aparecerá automaticamente aqui.'}</p>
+            <PixelButton color={learning.pending ? '#ff9600' : '#58cc02'} disabled={!learning.pending} onClick={() => onStart('mistakes')}>
+              {learning.pending ? 'COMEÇAR REVISÃO' : 'TUDO EM DIA ✓'}
+            </PixelButton>
+          </article>
+
+          <article className="practice-mode mixed">
+            <div className="practice-mode-top"><span>⌘</span><small>TREINO LIVRE</small></div>
+            <div className="practice-mode-count"><b>10</b><span>QUESTÕES</span></div>
+            <h2>Treino misto</h2>
+            <p>Dez questões aleatórias de toda a trilha para manter os conceitos frescos, sem mudar a conclusão das fases.</p>
+            <PixelButton color="#1cb0f6" onClick={() => onStart('mixed')}>MISTURAR QUESTÕES</PixelButton>
+          </article>
+        </div>
+
+        <section className="review-map">
+          <div className="review-map-title">
+            <div><small>MAPA DE REVISÃO</small><h2>{weakStages.length ? 'Fases que pedem atenção' : 'Seu mapa está limpo'}</h2></div>
+            <span>{completed}/{stages.length} FASES CONCLUÍDAS</span>
+          </div>
+          {weakStages.length ? (
+            <div className="review-stage-list">
+              {weakStages.slice(0, 5).map(({ stage, stageIndex, pending, mastered, total }) => (
+                <div className="review-stage-row" key={stage.id} style={{ '--review-color': stage.color }}>
+                  <span className="review-stage-icon">{stage.icon}</span>
+                  <div><small>FASE {String(stageIndex + 1).padStart(2, '0')}</small><b>{stage.name}</b></div>
+                  <div className="review-stage-progress"><span style={{ width: `${(mastered / total) * 100}%` }} /></div>
+                  <strong>{pending} {pending === 1 ? 'REVISÃO' : 'REVISÕES'}</strong>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="review-clear-state"><span>✓</span><p><b>Nada pendente por enquanto.</b>Faça um treino misto ou continue avançando na trilha.</p></div>
+          )}
+        </section>
+      </div>
+    </main>
   );
-  const [queue] = useState(() => [...pool].sort(() => Math.random() - 0.5).slice(0, 10));
+}
+
+function ReviewScreen({ stages, progress, mode, onExit, onStat, onComplete, sfx }) {
+  const pool = useMemo(() => questionPool(stages), [stages]);
+  const [queue] = useState(() => {
+    const source = mode === 'mistakes'
+      ? pool.filter((question) => progress.questionStats?.[questionKey(question.stageId, question.questionIndex)]?.needsReview)
+      : pool;
+    return [...source].sort(() => Math.random() - 0.5).slice(0, 10);
+  });
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState(null);
   const [wrong, setWrong] = useState([]);
   const [correct, setCorrect] = useState(false);
   const [score, setScore] = useState(0);
   const question = queue[index];
+  const last = index === queue.length - 1;
 
   const select = useCallback((answerIndex) => {
     if (!question || correct || wrong.includes(answerIndex) || answerIndex >= question.opts.length) return;
@@ -863,24 +1029,35 @@ function ReviewScreen({ stages, onExit, onStat, sfx }) {
     if (selected === question.a) {
       if (wrong.length === 0) setScore((value) => value + 1);
       setCorrect(true);
-      onStat('correct');
+      onStat('correct', {
+        stageId: question.stageId,
+        questionIndex: question.questionIndex,
+        mode: 'review',
+        firstTry: wrong.length === 0,
+      });
       sfx('ok');
     } else {
       setWrong((items) => [...items, selected]);
       setSelected(null);
-      onStat('wrong');
+      onStat('wrong', {
+        stageId: question.stageId,
+        questionIndex: question.questionIndex,
+        mode: 'review',
+        firstTry: false,
+      });
       sfx('bad');
     }
   }, [correct, onStat, question, selected, sfx, wrong.length]);
 
   const next = useCallback(() => {
+    if (last) onComplete();
     setIndex((value) => value + 1);
     setSelected(null);
     setWrong([]);
     setCorrect(false);
     sfx('click');
     window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [sfx]);
+  }, [last, onComplete, sfx]);
 
   useEffect(() => {
     const keyboard = (event) => {
@@ -896,9 +1073,11 @@ function ReviewScreen({ stages, onExit, onStat, sfx }) {
       <main className="review-finish-screen">
         <section className="review-finish-card">
           <div className="review-avatar"><PythonAvatar size="large" mood="celebrate" /><span>◎</span></div>
-          <small>TREINO FINALIZADO · GUIA PY</small><h1>{score}/10</h1>
-          <p>Acertos de primeira. Você pode voltar e repetir um novo conjunto quando quiser.</p>
-          <PixelButton color="#1cb0f6" onClick={onExit}>VOLTAR À TRILHA</PixelButton>
+          <small>{mode === 'mistakes' ? 'REVISÃO FINALIZADA' : 'TREINO FINALIZADO'} · GUIA PY</small><h1>{score}/{queue.length}</h1>
+          <p>{mode === 'mistakes'
+            ? 'Acertos de primeira neste bloco. Os pontos que ainda precisam de prática continuam na sua fila.'
+            : 'Acertos de primeira. Qualquer dificuldade encontrada já foi adicionada à sua revisão.'}</p>
+          <PixelButton color="#1cb0f6" onClick={onExit}>VOLTAR À CENTRAL</PixelButton>
         </section>
       </main>
     );
@@ -910,7 +1089,7 @@ function ReviewScreen({ stages, onExit, onStat, sfx }) {
       <FocusHeader stage={reviewStage} step={index + 1} total={queue.length} onExit={onExit} />
       <div className="focus-shell challenge-shell">
         <div className="challenge-heading">
-          <div><small>TREINO LIVRE · {question.stageName}</small><h1>Questão {index + 1} de 10</h1></div>
+          <div><small>{mode === 'mistakes' ? 'REVISÃO DOS ERROS' : 'TREINO MISTO'} · {question.stageName}</small><h1>Questão {index + 1} de {queue.length}</h1></div>
           <span>◎</span>
         </div>
         <QuestionCard
@@ -927,7 +1106,7 @@ function ReviewScreen({ stages, onExit, onStat, sfx }) {
           wrong={wrong}
           correct={correct}
           color={question.color}
-          nextLabel="PRÓXIMA QUESTÃO"
+          nextLabel={last ? 'FINALIZAR REVISÃO' : 'PRÓXIMA QUESTÃO'}
           onCheck={check}
           onNext={next}
         />
@@ -945,6 +1124,8 @@ export default function CompleteApp() {
   const [screen, setScreen] = useState('map');
   const [activeStage, setActiveStage] = useState(stages[0]);
   const [battleKey, setBattleKey] = useState(0);
+  const [reviewKey, setReviewKey] = useState(0);
+  const [reviewMode, setReviewMode] = useState('mixed');
   const sfx = useSfx(settings.sound);
 
   const answered = progress.correct + progress.wrong;
@@ -975,6 +1156,20 @@ export default function CompleteApp() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const openPractice = () => {
+    setScreen('practice');
+    sfx('click');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const startReview = (mode) => {
+    setReviewMode(mode);
+    setReviewKey((key) => key + 1);
+    setScreen('review');
+    sfx('click');
+    window.scrollTo(0, 0);
+  };
+
   const enterStage = (stage) => {
     setActiveStage(stage);
     updateProgress((current) => ({ ...current, lastStage: stage.id }));
@@ -1002,17 +1197,41 @@ export default function CompleteApp() {
     window.scrollTo(0, 0);
   };
 
-  const recordAnswer = useCallback((kind) => {
+  const recordAnswer = useCallback((kind, context = {}) => {
+    updateProgress((current) => {
+      const counter = kind === 'correct' ? 'correct' : 'wrong';
+      if (!context.stageId || !Number.isInteger(context.questionIndex)) {
+        return { ...current, [counter]: current[counter] + 1 };
+      }
+
+      const key = questionKey(context.stageId, context.questionIndex);
+      const previous = current.questionStats?.[key] || { correct: 0, wrong: 0, needsReview: false };
+      const clearedByReview = kind === 'correct' && context.mode === 'review' && context.firstTry;
+      const nextQuestion = {
+        ...previous,
+        [counter]: (previous[counter] || 0) + 1,
+        lastResult: kind,
+        needsReview: kind === 'wrong' ? true : clearedByReview ? false : Boolean(previous.needsReview),
+      };
+
+      return {
+        ...current,
+        [counter]: current[counter] + 1,
+        questionStats: { ...(current.questionStats || {}), [key]: nextQuestion },
+      };
+    });
+  }, [updateProgress]);
+
+  const finishReview = useCallback(() => {
     updateProgress((current) => ({
       ...current,
-      [kind === 'correct' ? 'correct' : 'wrong']:
-        current[kind === 'correct' ? 'correct' : 'wrong'] + 1,
+      reviewSessions: (current.reviewSessions || 0) + 1,
     }));
   }, [updateProgress]);
 
   const reset = () => {
     if (!window.confirm('Zerar apenas o progresso e as estatísticas do game?')) return;
-    const clean = { completed: {}, attempts: {}, correct: 0, wrong: 0, lastStage: null };
+    const clean = emptyProgress();
     persistProgress(clean);
     setProgress(clean);
     sfx('bad');
@@ -1032,7 +1251,7 @@ export default function CompleteApp() {
           stats={stats}
           settings={settings}
           onHome={goMap}
-          onReview={() => setScreen('review')}
+          onReview={openPractice}
           onToggleSound={() => updateSetting('sound')}
           onToggleScanlines={() => updateSetting('scanlines')}
         />
@@ -1043,9 +1262,12 @@ export default function CompleteApp() {
           stages={stages}
           progress={progress}
           onEnter={enterStage}
-          onReview={() => setScreen('review')}
+          onReview={openPractice}
           onReset={reset}
         />
+      )}
+      {screen === 'practice' && (
+        <PracticeHub stages={stages} progress={progress} onExit={goMap} onStart={startReview} />
       )}
       {screen === 'lesson' && (
         <LessonScreen stage={activeStage} stageIndex={activeIndex} onExit={goMap} onBattle={startBattle} sfx={sfx} />
@@ -1063,10 +1285,19 @@ export default function CompleteApp() {
         />
       )}
       {screen === 'review' && (
-        <ReviewScreen stages={stages} onExit={goMap} onStat={recordAnswer} sfx={sfx} />
+        <ReviewScreen
+          key={reviewKey}
+          stages={stages}
+          progress={progress}
+          mode={reviewMode}
+          onExit={openPractice}
+          onStat={recordAnswer}
+          onComplete={finishReview}
+          sfx={sfx}
+        />
       )}
 
-      {screen === 'map' && <MobileNav onHome={goMap} onReview={() => setScreen('review')} />}
+      {screen === 'map' && <MobileNav onHome={goMap} onReview={openPractice} />}
     </div>
   );
 }
