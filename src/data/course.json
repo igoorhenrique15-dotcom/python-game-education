@@ -1,6 +1,6 @@
 {
   "title": "PYTHON // BLACK BUSTER",
-  "version": 16,
+  "version": 17,
   "stages": [
     {
       "id": "s1",
@@ -9445,6 +9445,570 @@
           "a": 3,
           "hint": "Revise algoritmos e complexidade.",
           "ex": "A resposta correta é: A mais simples que atende os limites reais de entrada.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "s69",
+      "name": "COLLECTIONS",
+      "group": "BIBLIOTECA PADRÃO",
+      "difficulty": "AVANÇADO",
+      "boss": "COLLECTION-VAULT",
+      "color": "#06b6d4",
+      "icon": "C",
+      "summary": "Use contêineres especializados para contagem, filas e valores padrão.",
+      "lesson": [
+        {
+          "title": "Counter conta ocorrências",
+          "body": "Counter recebe um iterável e produz um mapeamento de elemento para quantidade.",
+          "code": "from collections import Counter\ncontagem = Counter('banana')\nprint(contagem['a'])  # 3"
+        },
+        {
+          "title": "defaultdict cria padrões",
+          "body": "defaultdict chama uma fábrica quando uma chave ausente é acessada.",
+          "code": "from collections import defaultdict\ngrupos = defaultdict(list)\ngrupos['A'].append('Ana')"
+        },
+        {
+          "title": "deque trabalha nas pontas",
+          "body": "deque possui appendleft e popleft eficientes, sendo adequada para filas.",
+          "code": "from collections import deque\nfila = deque(['Ana'])\nfila.append('Bia')\nprimeira = fila.popleft()"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual classe conta elementos hashable?",
+          "opts": [
+            "Counter",
+            "deque",
+            "Path",
+            "ChainMap apenas"
+          ],
+          "a": 0,
+          "hint": "Revise collections.",
+          "ex": "A resposta correta é: Counter.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual estrutura remove eficientemente nas duas pontas?",
+          "opts": [
+            "list com pop(0)",
+            "deque",
+            "tuple",
+            "str"
+          ],
+          "a": 1,
+          "hint": "Revise collections.",
+          "ex": "A resposta correta é: deque.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual saída?\nfrom collections import Counter\nc = Counter('arara')\nprint(c['a'])",
+          "opts": [
+            "2",
+            "5",
+            "3",
+            "0"
+          ],
+          "a": 2,
+          "hint": "Revise collections.",
+          "ex": "A resposta correta é: 3.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que defaultdict(list)['novo'] produz inicialmente?",
+          "opts": [
+            "KeyError",
+            "None",
+            "Uma string",
+            "Uma lista vazia"
+          ],
+          "a": 3,
+          "hint": "Revise collections.",
+          "ex": "A resposta correta é: Uma lista vazia.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual problema há em usar list.pop(0) repetidamente numa fila grande?",
+          "opts": [
+            "Os elementos restantes precisam ser deslocados",
+            "Lista não possui pop",
+            "Remove o último",
+            "Transforma em deque"
+          ],
+          "a": 0,
+          "hint": "Revise collections.",
+          "ex": "A resposta correta é: Os elementos restantes precisam ser deslocados.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Como corrigir uma fila com remoção frontal frequente?",
+          "opts": [
+            "Usar set",
+            "Usar deque e popleft",
+            "Usar tuple",
+            "Usar dict sem ordem"
+          ],
+          "a": 1,
+          "hint": "Revise collections.",
+          "ex": "A resposta correta é: Usar deque e popleft.",
+          "format": "CORRIJA O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Quando Counter é melhor que um dict manual?",
+          "opts": [
+            "Para todo banco de dados",
+            "Para guardar ordem de tarefas",
+            "Ao contar ocorrências com clareza",
+            "Para criar arquivos"
+          ],
+          "a": 2,
+          "hint": "Revise collections.",
+          "ex": "A resposta correta é: Ao contar ocorrências com clareza.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Como obter os itens mais frequentes?",
+          "opts": [
+            "counter.sort(n)",
+            "max(counter.values) apenas",
+            "counter.first(n)",
+            "counter.most_common(n)"
+          ],
+          "a": 3,
+          "hint": "Revise collections.",
+          "ex": "A resposta correta é: counter.most_common(n).",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "s70",
+      "name": "ITERTOOLS",
+      "group": "BIBLIOTECA PADRÃO",
+      "difficulty": "AVANÇADO",
+      "boss": "ITER-FACTORY",
+      "color": "#0891b2",
+      "icon": "∞",
+      "summary": "Combine iteradores de forma eficiente sem materializar coleções desnecessárias.",
+      "lesson": [
+        {
+          "title": "chain concatena iteráveis",
+          "body": "chain percorre várias fontes como uma única sequência sem criar uma lista combinada.",
+          "code": "from itertools import chain\nfor item in chain([1, 2], [3, 4]):\n    print(item)"
+        },
+        {
+          "title": "islice recorta iteradores",
+          "body": "islice aplica limites semelhantes a fatiamento mesmo em iteradores preguiçosos.",
+          "code": "from itertools import islice\nprimeiros = list(islice(range(100), 5))"
+        },
+        {
+          "title": "groupby agrupa consecutivos",
+          "body": "groupby depende da ordem. Para agrupar valores iguais espalhados, ordene pela mesma chave antes.",
+          "code": "from itertools import groupby\ndados = sorted(dados, key=lambda x: x['tipo'])\nfor tipo, grupo in groupby(dados, key=lambda x: x['tipo']):\n    print(tipo, list(grupo))"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que itertools oferece?",
+          "opts": [
+            "Ferramentas para combinar e transformar iteradores",
+            "Interface gráfica",
+            "Banco SQL",
+            "Servidor HTTP"
+          ],
+          "a": 0,
+          "hint": "Revise itertools.",
+          "ex": "A resposta correta é: Ferramentas para combinar e transformar iteradores.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que chain faz?",
+          "opts": [
+            "Ordena automaticamente",
+            "Percorre iteráveis em sequência",
+            "Duplica cada item",
+            "Cria threads"
+          ],
+          "a": 1,
+          "hint": "Revise itertools.",
+          "ex": "A resposta correta é: Percorre iteráveis em sequência.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual resultado?\nfrom itertools import islice\nprint(list(islice(range(10), 3)))",
+          "opts": [
+            "[1, 2, 3]",
+            "range(3)",
+            "[0, 1, 2]",
+            "[0, 1, 2, 3]"
+          ],
+          "a": 2,
+          "hint": "Revise itertools.",
+          "ex": "A resposta correta é: [0, 1, 2].",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que repeat('x', 3) produz?",
+          "opts": [
+            "Uma string xxx imediatamente",
+            "Um erro",
+            "Um dicionário",
+            "x três vezes"
+          ],
+          "a": 3,
+          "hint": "Revise itertools.",
+          "ex": "A resposta correta é: x três vezes.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que groupby pode separar a mesma chave em grupos diferentes?",
+          "opts": [
+            "Ele agrupa apenas elementos consecutivos",
+            "Não aceita chaves",
+            "Só funciona com números",
+            "Exige Counter"
+          ],
+          "a": 0,
+          "hint": "Revise itertools.",
+          "ex": "A resposta correta é: Ele agrupa apenas elementos consecutivos.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Como preparar dados para groupby por tipo?",
+          "opts": [
+            "Converter em set",
+            "Ordenar pela mesma chave antes",
+            "Embaralhar",
+            "Usar deepcopy"
+          ],
+          "a": 1,
+          "hint": "Revise itertools.",
+          "ex": "A resposta correta é: Ordenar pela mesma chave antes.",
+          "format": "CORRIJA O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Quando islice é útil?",
+          "opts": [
+            "Para editar arquivos binários",
+            "Para iniciar processo",
+            "Ao limitar um iterador sem criar tudo na memória",
+            "Para definir classe"
+          ],
+          "a": 2,
+          "hint": "Revise itertools.",
+          "ex": "A resposta correta é: Ao limitar um iterador sem criar tudo na memória.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual escolha preserva avaliação preguiçosa?",
+          "opts": [
+            "list(a) + list(b)",
+            "a.extend(b)",
+            "sorted(a + b)",
+            "chain(a, b)"
+          ],
+          "a": 3,
+          "hint": "Revise itertools.",
+          "ex": "A resposta correta é: chain(a, b).",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "s71",
+      "name": "FUNCTOOLS E CACHE",
+      "group": "BIBLIOTECA PADRÃO",
+      "difficulty": "AVANÇADO",
+      "boss": "CACHE-CORE",
+      "color": "#0e7490",
+      "icon": "ƒ",
+      "summary": "Reutilize funções, ordenações e resultados calculados com ferramentas funcionais.",
+      "lesson": [
+        {
+          "title": "partial fixa argumentos",
+          "body": "partial cria uma nova função com parte dos argumentos já preenchida.",
+          "code": "from functools import partial\nbase10 = partial(int, base=10)\nprint(base10('42'))"
+        },
+        {
+          "title": "lru_cache memoriza resultados",
+          "body": "O decorador reutiliza resultados anteriores para os mesmos argumentos hashable.",
+          "code": "from functools import lru_cache\n@lru_cache(maxsize=128)\ndef fibonacci(n):\n    if n < 2: return n\n    return fibonacci(n-1) + fibonacci(n-2)"
+        },
+        {
+          "title": "reduce acumula valores",
+          "body": "reduce combina itens sucessivamente, embora sum, min e outras funções específicas sejam preferíveis quando existem.",
+          "code": "from functools import reduce\nproduto = reduce(lambda a, b: a * b, [2, 3, 4], 1)"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que partial cria?",
+          "opts": [
+            "Uma função com argumentos pré-configurados",
+            "Uma cópia profunda",
+            "Um iterador infinito",
+            "Uma thread"
+          ],
+          "a": 0,
+          "hint": "Revise functools e cache.",
+          "ex": "A resposta correta é: Uma função com argumentos pré-configurados.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que lru_cache faz?",
+          "opts": [
+            "Criptografa retorno",
+            "Memoriza resultados por argumentos",
+            "Limpa memória sempre",
+            "Cria logs"
+          ],
+          "a": 1,
+          "hint": "Revise functools e cache.",
+          "ex": "A resposta correta é: Memoriza resultados por argumentos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual saída?\nfrom functools import partial\ndobro = partial(lambda fator, x: fator*x, 2)\nprint(dobro(5))",
+          "opts": [
+            "7",
+            "25",
+            "10",
+            "Erro"
+          ],
+          "a": 2,
+          "hint": "Revise functools e cache.",
+          "ex": "A resposta correta é: 10.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Quantas vezes uma função cacheada calcula novamente o mesmo argumento?",
+          "opts": [
+            "Sempre",
+            "Duas",
+            "Depende do print",
+            "Nenhuma após o primeiro resultado válido"
+          ],
+          "a": 3,
+          "hint": "Revise functools e cache.",
+          "ex": "A resposta correta é: Nenhuma após o primeiro resultado válido.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual risco de cache sem limite em muitos argumentos diferentes?",
+          "opts": [
+            "Crescimento de memória",
+            "RecursionError imediato",
+            "Perda do código",
+            "Conversão para JSON"
+          ],
+          "a": 0,
+          "hint": "Revise functools e cache.",
+          "ex": "A resposta correta é: Crescimento de memória.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Como limitar a quantidade de resultados guardados?",
+          "opts": [
+            "Usar print",
+            "Definir maxsize no lru_cache",
+            "Remover return",
+            "Usar global"
+          ],
+          "a": 1,
+          "hint": "Revise functools e cache.",
+          "ex": "A resposta correta é: Definir maxsize no lru_cache.",
+          "format": "CORRIJA O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Quando preferir sum a reduce?",
+          "opts": [
+            "Nunca",
+            "Somente com strings",
+            "Ao somar números com intenção direta",
+            "Quando precisa de recursão"
+          ],
+          "a": 2,
+          "hint": "Revise functools e cache.",
+          "ex": "A resposta correta é: Ao somar números com intenção direta.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Que tipo de argumento funciona diretamente como chave de cache?",
+          "opts": [
+            "Listas mutáveis",
+            "Dicionários",
+            "Sets mutáveis",
+            "Valores hashable como inteiros e strings"
+          ],
+          "a": 3,
+          "hint": "Revise functools e cache.",
+          "ex": "A resposta correta é: Valores hashable como inteiros e strings.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "s72",
+      "name": "CONTEXT MANAGERS",
+      "group": "BIBLIOTECA PADRÃO",
+      "difficulty": "AVANÇADO",
+      "boss": "CONTEXT-GUARD",
+      "color": "#155e75",
+      "icon": "with",
+      "summary": "Garanta aquisição e liberação de recursos com context managers próprios.",
+      "lesson": [
+        {
+          "title": "with garante encerramento",
+          "body": "O protocolo executa __enter__ ao entrar e __exit__ ao sair, inclusive quando ocorre exceção.",
+          "code": "class Recurso:\n    def __enter__(self):\n        return self\n    def __exit__(self, tipo, valor, traceback):\n        self.fechar()"
+        },
+        {
+          "title": "contextmanager reduz estrutura",
+          "body": "O decorador transforma um gerador de uma única entrega em context manager.",
+          "code": "from contextlib import contextmanager\n@contextmanager\ndef conexao():\n    recurso = abrir()\n    try:\n        yield recurso\n    finally:\n        recurso.fechar()"
+        },
+        {
+          "title": "finally protege a limpeza",
+          "body": "A liberação deve ocorrer no finally para funcionar em sucesso e falha.",
+          "code": "with conexao() as banco:\n    banco.executar()"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual método roda ao entrar no with?",
+          "opts": [
+            "__enter__",
+            "__init__ apenas",
+            "__next__",
+            "__len__"
+          ],
+          "a": 0,
+          "hint": "Revise context managers.",
+          "ex": "A resposta correta é: __enter__.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual método roda ao sair?",
+          "opts": [
+            "__close__ obrigatório",
+            "__exit__",
+            "__del__ sempre",
+            "__stop__"
+          ],
+          "a": 1,
+          "hint": "Revise context managers.",
+          "ex": "A resposta correta é: __exit__.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que deve ser retornado por __enter__ para usar em as recurso?",
+          "opts": [
+            "Sempre None",
+            "Uma exceção",
+            "O objeto disponibilizado ao bloco",
+            "Um módulo"
+          ],
+          "a": 2,
+          "hint": "Revise context managers.",
+          "ex": "A resposta correta é: O objeto disponibilizado ao bloco.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Quando __exit__ é chamado?",
+          "opts": [
+            "Somente no sucesso",
+            "Somente em erro",
+            "Antes de __enter__",
+            "Ao sair do bloco, com ou sem exceção"
+          ],
+          "a": 3,
+          "hint": "Revise context managers.",
+          "ex": "A resposta correta é: Ao sair do bloco, com ou sem exceção.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual erro há em liberar recurso apenas após yield sem finally?",
+          "opts": [
+            "Uma exceção pode impedir a limpeza",
+            "yield não funciona",
+            "with vira loop",
+            "O recurso fecha antes"
+          ],
+          "a": 0,
+          "hint": "Revise context managers.",
+          "ex": "A resposta correta é: Uma exceção pode impedir a limpeza.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Como garantir limpeza no contextmanager?",
+          "opts": [
+            "Usar global",
+            "Colocar liberação em finally",
+            "Ignorar exceções",
+            "Chamar eval"
+          ],
+          "a": 1,
+          "hint": "Revise context managers.",
+          "ex": "A resposta correta é: Colocar liberação em finally.",
+          "format": "CORRIJA O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Quando criar context manager?",
+          "opts": [
+            "Para toda variável",
+            "Para simples soma",
+            "Quando um recurso precisa de preparação e limpeza pareadas",
+            "Para nomear classes"
+          ],
+          "a": 2,
+          "hint": "Revise context managers.",
+          "ex": "A resposta correta é: Quando um recurso precisa de preparação e limpeza pareadas.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual recurso se beneficia desse padrão?",
+          "opts": [
+            "Inteiro local",
+            "String constante",
+            "Tupla vazia",
+            "Arquivo, conexão ou bloqueio"
+          ],
+          "a": 3,
+          "hint": "Revise context managers.",
+          "ex": "A resposta correta é: Arquivo, conexão ou bloqueio.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
