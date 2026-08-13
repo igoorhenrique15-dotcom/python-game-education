@@ -156,6 +156,11 @@ const UNIT_META = [
     title: 'Entrega final',
     goal: 'Automatize, empacote e conclua um produto completo.',
     color: '#dc2626'
+  },
+  {
+    title: 'Fundamentos aprofundados',
+    goal: 'Execute scripts, entenda referências e compare algoritmos.',
+    color: '#22c55e'
   }
 ];
 
