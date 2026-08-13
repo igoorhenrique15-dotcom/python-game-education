@@ -1,6 +1,6 @@
 {
   "title": "PYTHON // BLACK BUSTER",
-  "version": 17,
+  "version": 18,
   "stages": [
     {
       "id": "s1",
@@ -10009,6 +10009,570 @@
           "a": 3,
           "hint": "Revise context managers.",
           "ex": "A resposta correta é: Arquivo, conexão ou bloqueio.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "s73",
+      "name": "THREADS E FUTURES",
+      "group": "CONCORRÊNCIA E DESEMPENHO",
+      "difficulty": "AVANÇADO",
+      "boss": "THREAD-SWARM",
+      "color": "#8b5cf6",
+      "icon": "⇆",
+      "summary": "Coordene tarefas de I/O com threads e a interface de alto nível de futures.",
+      "lesson": [
+        {
+          "title": "Threads ajudam em espera de I/O",
+          "body": "Enquanto uma tarefa aguarda rede ou disco, outra thread pode avançar. Para cálculo pesado em Python puro, processos costumam ser mais adequados.",
+          "code": "from concurrent.futures import ThreadPoolExecutor\nwith ThreadPoolExecutor(max_workers=4) as pool:\n    resultados = list(pool.map(baixar, urls))"
+        },
+        {
+          "title": "Future representa um resultado futuro",
+          "body": "submit agenda uma chamada e devolve um Future. result obtém o valor ou propaga a exceção da tarefa.",
+          "code": "future = pool.submit(carregar, 'dados.json')\ntry:\n    dados = future.result(timeout=5)\nexcept TimeoutError:\n    print('demorou demais')"
+        },
+        {
+          "title": "Estado compartilhado exige cuidado",
+          "body": "Operações compostas em dados compartilhados podem sofrer condições de corrida. Prefira evitar compartilhamento ou proteja a seção crítica com Lock.",
+          "code": "from threading import Lock\nlock = Lock()\nwith lock:\n    contador += 1"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Quando threads são especialmente úteis?",
+          "opts": [
+            "Em tarefas com muita espera de I/O",
+            "Para acelerar qualquer CPU sem limite",
+            "Para substituir testes",
+            "Para criar pacotes"
+          ],
+          "a": 0,
+          "hint": "Revise threads e futures.",
+          "ex": "A resposta correta é: Em tarefas com muita espera de I/O.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que um Future representa?",
+          "opts": [
+            "Uma classe abstrata",
+            "O resultado pendente de uma tarefa",
+            "Um arquivo temporário",
+            "Uma variável global"
+          ],
+          "a": 1,
+          "hint": "Revise threads e futures.",
+          "ex": "A resposta correta é: O resultado pendente de uma tarefa.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que list(pool.map(f, [1, 2])) devolve?",
+          "opts": [
+            "Uma thread",
+            "None",
+            "Os resultados de f na ordem de entrada",
+            "Somente o último"
+          ],
+          "a": 2,
+          "hint": "Revise threads e futures.",
+          "ex": "A resposta correta é: Os resultados de f na ordem de entrada.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que future.result() faz?",
+          "opts": [
+            "Cancela sempre",
+            "Ignora exceções",
+            "Cria um processo",
+            "Obtém o resultado ou propaga a exceção"
+          ],
+          "a": 3,
+          "hint": "Revise threads e futures.",
+          "ex": "A resposta correta é: Obtém o resultado ou propaga a exceção.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual risco existe ao alterar estado compartilhado sem coordenação?",
+          "opts": [
+            "Condição de corrida",
+            "SyntaxError automático",
+            "Import circular",
+            "Cache infinito"
+          ],
+          "a": 0,
+          "hint": "Revise threads e futures.",
+          "ex": "A resposta correta é: Condição de corrida.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Como proteger uma seção crítica curta?",
+          "opts": [
+            "Usar eval",
+            "Usar Lock com with",
+            "Duplicar globals",
+            "Adicionar sleep"
+          ],
+          "a": 1,
+          "hint": "Revise threads e futures.",
+          "ex": "A resposta correta é: Usar Lock com with.",
+          "format": "CORRIJA O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Para cálculo pesado em Python puro, qual alternativa costuma escalar melhor?",
+          "opts": [
+            "Mais prints",
+            "Uma lista maior",
+            "Processos separados",
+            "Strings imutáveis"
+          ],
+          "a": 2,
+          "hint": "Revise threads e futures.",
+          "ex": "A resposta correta é: Processos separados.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Como garantir encerramento do executor?",
+          "opts": [
+            "Del manual",
+            "Variável global",
+            "Loop infinito",
+            "Usar ThreadPoolExecutor em um with"
+          ],
+          "a": 3,
+          "hint": "Revise threads e futures.",
+          "ex": "A resposta correta é: Usar ThreadPoolExecutor em um with.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "s74",
+      "name": "MULTIPROCESSING",
+      "group": "CONCORRÊNCIA E DESEMPENHO",
+      "difficulty": "AVANÇADO",
+      "boss": "PROCESS-FORGE",
+      "color": "#7c3aed",
+      "icon": "⚙",
+      "summary": "Distribua trabalho de CPU entre processos e controle comunicação e inicialização.",
+      "lesson": [
+        {
+          "title": "Processos usam núcleos separados",
+          "body": "ProcessPoolExecutor executa funções em outros processos, útil para tarefas de CPU que podem ser divididas.",
+          "code": "from concurrent.futures import ProcessPoolExecutor\nwith ProcessPoolExecutor() as pool:\n    resultados = list(pool.map(calcular, entradas))"
+        },
+        {
+          "title": "Proteja o ponto de entrada",
+          "body": "Em scripts que criam processos, o bloco __main__ evita que os filhos executem novamente a criação do pool.",
+          "code": "def main():\n    executar_trabalhos()\n\nif __name__ == '__main__':\n    main()"
+        },
+        {
+          "title": "Dados são serializados",
+          "body": "Argumentos e retornos precisam atravessar a fronteira entre processos. Funções no topo do módulo e dados simples facilitam a serialização.",
+          "code": "def quadrado(n):\n    return n * n\n\n# Evite depender de estado global mutável."
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual carga se beneficia de múltiplos processos?",
+          "opts": [
+            "Cálculo pesado divisível",
+            "Somente espera de teclado",
+            "CSS responsivo",
+            "Leitura de comentário"
+          ],
+          "a": 0,
+          "hint": "Revise multiprocessing.",
+          "ex": "A resposta correta é: Cálculo pesado divisível.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que processos podem usar vários núcleos em Python?",
+          "opts": [
+            "Compartilham toda memória",
+            "Possuem intérpretes separados",
+            "Eliminam serialização",
+            "Nunca criam overhead"
+          ],
+          "a": 1,
+          "hint": "Revise multiprocessing.",
+          "ex": "A resposta correta é: Possuem intérpretes separados.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual bloco protege a criação de processos?",
+          "opts": [
+            "if process:",
+            "if main():",
+            "if __name__ == '__main__':",
+            "with process:"
+          ],
+          "a": 2,
+          "hint": "Revise multiprocessing.",
+          "ex": "A resposta correta é: if __name__ == '__main__':.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que ocorre com argumentos enviados ao worker?",
+          "opts": [
+            "Viraram threads",
+            "São ignorados",
+            "Ficam sempre por referência",
+            "Precisam ser serializados"
+          ],
+          "a": 3,
+          "hint": "Revise multiprocessing.",
+          "ex": "A resposta correta é: Precisam ser serializados.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual item tende a falhar ao ser enviado ao pool?",
+          "opts": [
+            "Uma função local não serializável",
+            "Um inteiro",
+            "Uma string",
+            "Uma tupla simples"
+          ],
+          "a": 0,
+          "hint": "Revise multiprocessing.",
+          "ex": "A resposta correta é: Uma função local não serializável.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Como tornar a tarefa mais fácil de serializar?",
+          "opts": [
+            "Usar lambda aninhada",
+            "Definir função no topo do módulo",
+            "Usar closure complexa",
+            "Capturar arquivo aberto"
+          ],
+          "a": 1,
+          "hint": "Revise multiprocessing.",
+          "ex": "A resposta correta é: Definir função no topo do módulo.",
+          "format": "CORRIJA O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Quando evitar um pool de processos?",
+          "opts": [
+            "Quando há muitas CPUs",
+            "Quando o trabalho é pesado",
+            "Quando tarefas minúsculas não compensam o overhead",
+            "Quando existe uma lista"
+          ],
+          "a": 2,
+          "hint": "Revise multiprocessing.",
+          "ex": "A resposta correta é: Quando tarefas minúsculas não compensam o overhead.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual estrutura oferece API semelhante à de threads?",
+          "opts": [
+            "Path",
+            "Counter",
+            "dataclass",
+            "ProcessPoolExecutor"
+          ],
+          "a": 3,
+          "hint": "Revise multiprocessing.",
+          "ex": "A resposta correta é: ProcessPoolExecutor.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "s75",
+      "name": "SUBPROCESS",
+      "group": "CONCORRÊNCIA E DESEMPENHO",
+      "difficulty": "AVANÇADO",
+      "boss": "SHELL-GATE",
+      "color": "#6d28d9",
+      "icon": ">_",
+      "summary": "Execute programas externos com argumentos seguros, saídas capturadas e falhas explícitas.",
+      "lesson": [
+        {
+          "title": "run executa e aguarda",
+          "body": "subprocess.run recebe uma lista de argumentos. check=True transforma código de saída diferente de zero em exceção.",
+          "code": "import subprocess\nsubprocess.run(\n    ['python', '--version'],\n    check=True\n)"
+        },
+        {
+          "title": "Capture texto de saída",
+          "body": "capture_output=True coleta stdout e stderr; text=True converte bytes em texto.",
+          "code": "res = subprocess.run(\n    ['git', '--version'],\n    capture_output=True,\n    text=True,\n    check=True\n)\nprint(res.stdout)"
+        },
+        {
+          "title": "Evite shell=True com entrada externa",
+          "body": "Passar argumentos como lista reduz riscos de injeção. Nunca monte comandos de shell concatenando texto recebido do usuário.",
+          "code": "arquivo = 'relatorio.txt'\nsubprocess.run(['wc', '-l', arquivo], check=True)"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual função é indicada para executar e aguardar um comando simples?",
+          "opts": [
+            "subprocess.run",
+            "os.eval",
+            "sys.shell",
+            "process.call_now"
+          ],
+          "a": 0,
+          "hint": "Revise subprocess.",
+          "ex": "A resposta correta é: subprocess.run.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que check=True faz?",
+          "opts": [
+            "Captura imagens",
+            "Lança exceção se o comando falhar",
+            "Oculta stderr",
+            "Ativa shell"
+          ],
+          "a": 1,
+          "hint": "Revise subprocess.",
+          "ex": "A resposta correta é: Lança exceção se o comando falhar.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Como passar programa e argumentos com segurança?",
+          "opts": [
+            "'git --version' sempre",
+            "eval('git --version')",
+            "['git', '--version']",
+            "{'git': '--version'}"
+          ],
+          "a": 2,
+          "hint": "Revise subprocess.",
+          "ex": "A resposta correta é: ['git', '--version'].",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que text=True muda na saída capturada?",
+          "opts": [
+            "Compacta o processo",
+            "Cria thread",
+            "Retorna JSON",
+            "Decodifica bytes para texto"
+          ],
+          "a": 3,
+          "hint": "Revise subprocess.",
+          "ex": "A resposta correta é: Decodifica bytes para texto.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual construção pode permitir injeção de comandos?",
+          "opts": [
+            "shell=True com texto externo concatenado",
+            "Lista fixa de argumentos",
+            "check=True",
+            "capture_output=True"
+          ],
+          "a": 0,
+          "hint": "Revise subprocess.",
+          "ex": "A resposta correta é: shell=True com texto externo concatenado.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Como capturar stdout e stderr?",
+          "opts": [
+            "Usar input",
+            "Definir capture_output=True",
+            "Chamar print antes",
+            "Remover check"
+          ],
+          "a": 1,
+          "hint": "Revise subprocess.",
+          "ex": "A resposta correta é: Definir capture_output=True.",
+          "format": "CORRIJA O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Quando usar timeout?",
+          "opts": [
+            "Para mudar diretório",
+            "Para serializar funções",
+            "Quando o comando não pode ficar preso indefinidamente",
+            "Para instalar Python"
+          ],
+          "a": 2,
+          "hint": "Revise subprocess.",
+          "ex": "A resposta correta é: Quando o comando não pode ficar preso indefinidamente.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual exceção sinaliza saída não zero com check=True?",
+          "opts": [
+            "TimeoutError apenas",
+            "ImportError",
+            "KeyError",
+            "CalledProcessError"
+          ],
+          "a": 3,
+          "hint": "Revise subprocess.",
+          "ex": "A resposta correta é: CalledProcessError.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "s76",
+      "name": "PROFILING E OTIMIZAÇÃO",
+      "group": "CONCORRÊNCIA E DESEMPENHO",
+      "difficulty": "AVANÇADO",
+      "boss": "PERF-SCOPE",
+      "color": "#5b21b6",
+      "icon": "⏱",
+      "summary": "Meça gargalos, compare alternativas e otimize apenas o que realmente importa.",
+      "lesson": [
+        {
+          "title": "Meça antes de otimizar",
+          "body": "timeit compara trechos pequenos de forma repetível. Para aplicações inteiras, cProfile mostra onde o tempo é gasto.",
+          "code": "from timeit import timeit\ntempo = timeit('sum(range(100))', number=10_000)\nprint(tempo)"
+        },
+        {
+          "title": "cProfile localiza gargalos",
+          "body": "As estatísticas exibem número de chamadas e tempo acumulado por função, ajudando a priorizar o trecho dominante.",
+          "code": "import cProfile\ncProfile.run('processar()', sort='cumulative')"
+        },
+        {
+          "title": "Complexidade e memória importam",
+          "body": "Trocar uma busca repetida em lista por set pode alterar o custo assintótico. A melhor solução preserva clareza e é confirmada por medição.",
+          "code": "permitidos = set(ids)\nfiltrados = [x for x in dados if x.id in permitidos]"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é o primeiro passo de uma otimização responsável?",
+          "opts": [
+            "Medir o comportamento atual",
+            "Reescrever tudo",
+            "Adicionar cache global",
+            "Remover testes"
+          ],
+          "a": 0,
+          "hint": "Revise profiling e otimização.",
+          "ex": "A resposta correta é: Medir o comportamento atual.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual ferramenta mede pequenos trechos repetidamente?",
+          "opts": [
+            "logging",
+            "timeit",
+            "pickle",
+            "venv"
+          ],
+          "a": 1,
+          "hint": "Revise profiling e otimização.",
+          "ex": "A resposta correta é: timeit.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que cProfile ajuda a descobrir?",
+          "opts": [
+            "Erros de sintaxe apenas",
+            "Versão do Python",
+            "Funções que consomem mais tempo",
+            "Cores do terminal"
+          ],
+          "a": 2,
+          "hint": "Revise profiling e otimização.",
+          "ex": "A resposta correta é: Funções que consomem mais tempo.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que tempo acumulado inclui?",
+          "opts": [
+            "Só imports",
+            "Só a primeira chamada",
+            "Memória livre",
+            "Tempo da função e das chamadas feitas por ela"
+          ],
+          "a": 3,
+          "hint": "Revise profiling e otimização.",
+          "ex": "A resposta correta é: Tempo da função e das chamadas feitas por ela.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual erro é comum ao otimizar sem perfil?",
+          "opts": [
+            "Investir no trecho que não é o gargalo",
+            "Executar testes",
+            "Medir antes e depois",
+            "Usar dados reais"
+          ],
+          "a": 0,
+          "hint": "Revise profiling e otimização.",
+          "ex": "A resposta correta é: Investir no trecho que não é o gargalo.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Como confirmar uma melhoria?",
+          "opts": [
+            "Pelo tamanho do nome",
+            "Comparar medições equivalentes antes e depois",
+            "Remover documentação",
+            "Usar mais threads sempre"
+          ],
+          "a": 1,
+          "hint": "Revise profiling e otimização.",
+          "ex": "A resposta correta é: Comparar medições equivalentes antes e depois.",
+          "format": "CORRIJA O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Para muitos testes de pertencimento, qual coleção costuma ser adequada?",
+          "opts": [
+            "Uma string longa",
+            "Uma lista duplicada",
+            "Um set",
+            "Um gerador já esgotado"
+          ],
+          "a": 2,
+          "hint": "Revise profiling e otimização.",
+          "ex": "A resposta correta é: Um set.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Quando parar de otimizar?",
+          "opts": [
+            "Nunca",
+            "Quando há qualquer loop",
+            "Após remover nomes claros",
+            "Quando a meta é atingida e o ganho não compensa complexidade"
+          ],
+          "a": 3,
+          "hint": "Revise profiling e otimização.",
+          "ex": "A resposta correta é: Quando a meta é atingida e o ganho não compensa complexidade.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
