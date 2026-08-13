@@ -1,6 +1,6 @@
 {
   "title": "PYTHON // BLACK BUSTER",
-  "version": 19,
+  "version": 20,
   "stages": [
     {
       "id": "s1",
@@ -11328,7 +11328,32 @@
           "a": 0,
           "explanation": "O fator restante é 1 menos a parcela do desconto."
         }
-      ]
+      ],
+      "deliverable": "Um programa de terminal que calcula subtotal, desconto e total com validação básica.",
+      "phases": [
+        {
+          "label": "PLANEJAR",
+          "text": "Definir entradas e regras do desconto"
+        },
+        {
+          "label": "MONTAR",
+          "text": "Converter valores e validar limites"
+        },
+        {
+          "label": "TESTAR",
+          "text": "Calcular subtotal, desconto e total"
+        },
+        {
+          "label": "ENTREGAR",
+          "text": "Testar cenários e apresentar o resumo"
+        }
+      ],
+      "checklist": [
+        "Aceita preço, quantidade e desconto",
+        "Rejeita valores negativos",
+        "Exibe valores com duas casas decimais"
+      ],
+      "finalCode": "def ler_float(rotulo, minimo=0):\n    valor = float(input(rotulo))\n    if valor < minimo:\n        raise ValueError(f'valor mínimo: {minimo}')\n    return valor\n\npreco = ler_float('Preço: R$ ')\nquantidade = int(ler_float('Quantidade: ', 1))\ndesconto = ler_float('Desconto (%): ')\nif desconto > 100:\n    raise ValueError('desconto máximo: 100%')\n\nsubtotal = preco * quantidade\neconomia = subtotal * desconto / 100\ntotal = subtotal - economia\nprint(f'Subtotal: R$ {subtotal:.2f}')\nprint(f'Desconto: R$ {economia:.2f}')\nprint(f'Total: R$ {total:.2f}')\n"
     },
     {
       "id": "p2",
@@ -11374,7 +11399,32 @@
           "a": 0,
           "explanation": "enumerate entrega índice e item, e start=1 ajusta a numeração."
         }
-      ]
+      ],
+      "deliverable": "Uma lista de tarefas no terminal com inclusão, conclusão e visualização.",
+      "phases": [
+        {
+          "label": "PLANEJAR",
+          "text": "Modelar cada tarefa como dicionário"
+        },
+        {
+          "label": "MONTAR",
+          "text": "Criar funções de adicionar e concluir"
+        },
+        {
+          "label": "TESTAR",
+          "text": "Montar a listagem com estado visual"
+        },
+        {
+          "label": "ENTREGAR",
+          "text": "Conectar tudo em um menu de terminal"
+        }
+      ],
+      "checklist": [
+        "Adiciona tarefas não vazias",
+        "Marca tarefa pelo índice",
+        "Mostra pendentes e concluídas"
+      ],
+      "finalCode": "tarefas = []\n\ndef adicionar(titulo):\n    titulo = titulo.strip()\n    if not titulo:\n        raise ValueError('título obrigatório')\n    tarefas.append({'titulo': titulo, 'concluida': False})\n\ndef concluir(indice):\n    tarefas[indice]['concluida'] = True\n\ndef listar():\n    for i, tarefa in enumerate(tarefas, start=1):\n        estado = 'x' if tarefa['concluida'] else ' '\n        print(f'{i}. [{estado}] {tarefa[\"titulo\"]}')\n\nadicionar('Estudar funções')\nadicionar('Criar projeto')\nconcluir(0)\nlistar()\n"
     },
     {
       "id": "p3",
@@ -11420,7 +11470,32 @@
           "a": 0,
           "explanation": "O operador >= inclui o valor 7 e qualquer valor superior."
         }
-      ]
+      ],
+      "deliverable": "Um analisador que resume notas e classifica o resultado da turma.",
+      "phases": [
+        {
+          "label": "PLANEJAR",
+          "text": "Validar e organizar as notas"
+        },
+        {
+          "label": "MONTAR",
+          "text": "Calcular média, menor e maior"
+        },
+        {
+          "label": "TESTAR",
+          "text": "Definir a classificação da média"
+        },
+        {
+          "label": "ENTREGAR",
+          "text": "Imprimir um relatório legível"
+        }
+      ],
+      "checklist": [
+        "Funciona com lista não vazia",
+        "Calcula média corretamente",
+        "Exibe classificação e extremos"
+      ],
+      "finalCode": "def resumo(notas):\n    if not notas:\n        raise ValueError('informe ao menos uma nota')\n    if any(n < 0 or n > 10 for n in notas):\n        raise ValueError('notas devem ficar entre 0 e 10')\n    media = sum(notas) / len(notas)\n    situacao = 'aprovada' if media >= 7 else 'recuperação' if media >= 5 else 'reprovada'\n    return {'media': media, 'menor': min(notas), 'maior': max(notas), 'situacao': situacao}\n\nresultado = resumo([7.5, 9.0, 6.0, 8.5])\nprint(f\"Média: {resultado['media']:.1f}\")\nprint(f\"Intervalo: {resultado['menor']:.1f} a {resultado['maior']:.1f}\")\nprint(f\"Turma: {resultado['situacao']}\")\n"
     },
     {
       "id": "p4",
@@ -11466,7 +11541,32 @@
           "a": 0,
           "explanation": "FileNotFoundError permite iniciar com uma coleção vazia de forma explícita."
         }
-      ]
+      ],
+      "deliverable": "Um catálogo em JSON capaz de salvar, carregar e procurar itens.",
+      "phases": [
+        {
+          "label": "PLANEJAR",
+          "text": "Definir o formato dos itens"
+        },
+        {
+          "label": "MONTAR",
+          "text": "Criar funções de salvar e carregar"
+        },
+        {
+          "label": "TESTAR",
+          "text": "Adicionar uma busca por título"
+        },
+        {
+          "label": "ENTREGAR",
+          "text": "Validar o ciclo completo no arquivo JSON"
+        }
+      ],
+      "checklist": [
+        "Usa UTF-8 e indentação no JSON",
+        "Lida com arquivo ainda inexistente",
+        "Busca sem diferenciar maiúsculas"
+      ],
+      "finalCode": "import json\nfrom pathlib import Path\n\nARQUIVO = Path('catalogo.json')\n\ndef salvar(itens):\n    ARQUIVO.write_text(json.dumps(itens, ensure_ascii=False, indent=2), encoding='utf-8')\n\ndef carregar():\n    if not ARQUIVO.exists():\n        return []\n    return json.loads(ARQUIVO.read_text(encoding='utf-8'))\n\ndef buscar(itens, termo):\n    termo = termo.casefold()\n    return [item for item in itens if termo in item['titulo'].casefold()]\n\ncatalogo = carregar()\ncatalogo.append({'titulo': 'Celeste', 'nota': 9})\nsalvar(catalogo)\nprint(buscar(catalogo, 'cele'))\n"
     },
     {
       "id": "p5",
@@ -11512,7 +11612,32 @@
           "a": 0,
           "explanation": "suffix devolve a extensão e lower normaliza letras maiúsculas."
         }
-      ]
+      ],
+      "deliverable": "Um organizador que classifica arquivos por extensão sem sobrescrever destinos.",
+      "phases": [
+        {
+          "label": "PLANEJAR",
+          "text": "Mapear extensões para pastas"
+        },
+        {
+          "label": "MONTAR",
+          "text": "Percorrer apenas arquivos da origem"
+        },
+        {
+          "label": "TESTAR",
+          "text": "Criar destinos quando necessário"
+        },
+        {
+          "label": "ENTREGAR",
+          "text": "Mover com proteção contra sobrescrita"
+        }
+      ],
+      "checklist": [
+        "Ignora subpastas",
+        "Cria as pastas de destino",
+        "Não substitui arquivo existente"
+      ],
+      "finalCode": "from pathlib import Path\nimport shutil\n\norigem = Path('Downloads')\nregras = {'.pdf': 'Documentos', '.jpg': 'Imagens', '.png': 'Imagens', '.zip': 'Compactados'}\n\nfor arquivo in origem.iterdir():\n    if not arquivo.is_file():\n        continue\n    pasta = origem / regras.get(arquivo.suffix.lower(), 'Outros')\n    pasta.mkdir(exist_ok=True)\n    destino = pasta / arquivo.name\n    if destino.exists():\n        print(f'Ignorado: {arquivo.name} já existe')\n        continue\n    shutil.move(str(arquivo), str(destino))\n    print(f'Movido: {arquivo.name} -> {pasta.name}')\n"
     },
     {
       "id": "p6",
@@ -11558,7 +11683,32 @@
           "a": 0,
           "explanation": "get fornece zero como ponto inicial quando a chave não existe."
         }
-      ]
+      ],
+      "deliverable": "Um relatório CSV que agrega vendas por produto e exporta totais.",
+      "phases": [
+        {
+          "label": "PLANEJAR",
+          "text": "Ler linhas com DictReader"
+        },
+        {
+          "label": "MONTAR",
+          "text": "Converter valores de forma explícita"
+        },
+        {
+          "label": "TESTAR",
+          "text": "Acumular totais por produto"
+        },
+        {
+          "label": "ENTREGAR",
+          "text": "Exportar o relatório ordenado"
+        }
+      ],
+      "checklist": [
+        "Abre CSV com newline vazio",
+        "Converte quantidade e preço",
+        "Gera totais.csv com cabeçalho"
+      ],
+      "finalCode": "import csv\nfrom collections import defaultdict\n\ntotais = defaultdict(float)\nwith open('vendas.csv', newline='', encoding='utf-8') as arquivo:\n    for linha in csv.DictReader(arquivo):\n        produto = linha['produto'].strip()\n        quantidade = int(linha['quantidade'])\n        preco = float(linha['preco'])\n        totais[produto] += quantidade * preco\n\nwith open('totais.csv', 'w', newline='', encoding='utf-8') as arquivo:\n    campos = ['produto', 'total']\n    writer = csv.DictWriter(arquivo, fieldnames=campos)\n    writer.writeheader()\n    for produto, total in sorted(totais.items()):\n        writer.writerow({'produto': produto, 'total': f'{total:.2f}'})\n"
     },
     {
       "id": "p7",
@@ -11604,7 +11754,32 @@
           "a": 0,
           "explanation": "Um set mantém apenas valores únicos."
         }
-      ]
+      ],
+      "deliverable": "Um extrator que encontra, normaliza e deduplica contatos de um texto.",
+      "phases": [
+        {
+          "label": "PLANEJAR",
+          "text": "Definir padrões de e-mail e telefone"
+        },
+        {
+          "label": "MONTAR",
+          "text": "Extrair ocorrências do texto"
+        },
+        {
+          "label": "TESTAR",
+          "text": "Normalizar e remover duplicatas"
+        },
+        {
+          "label": "ENTREGAR",
+          "text": "Apresentar o resultado ordenado"
+        }
+      ],
+      "checklist": [
+        "Encontra e-mails comuns",
+        "Normaliza e-mails para minúsculas",
+        "Remove contatos repetidos"
+      ],
+      "finalCode": "import re\n\nEMAIL = re.compile(r'\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}\\b')\nTELEFONE = re.compile(r'\\(?\\d{2}\\)?\\s?9?\\d{4}-?\\d{4}')\n\ndef extrair(texto):\n    emails = sorted({item.casefold() for item in EMAIL.findall(texto)})\n    telefones = sorted({re.sub(r'\\D', '', item) for item in TELEFONE.findall(texto)})\n    return {'emails': emails, 'telefones': telefones}\n\ntexto = 'Ana@exemplo.com, ana@exemplo.com e (11) 99999-0000'\ncontatos = extrair(texto)\nprint('E-mails:', *contatos['emails'], sep='\\n- ')\nprint('Telefones:', *contatos['telefones'], sep='\\n- ')\n"
     },
     {
       "id": "p8",
@@ -11650,7 +11825,32 @@
           "a": 0,
           "explanation": "Testes verificam comportamentos esperados após mudanças."
         }
-      ]
+      ],
+      "deliverable": "Um assistente CLI modular com comandos, persistência e testes básicos.",
+      "phases": [
+        {
+          "label": "PLANEJAR",
+          "text": "Separar comandos, armazenamento e interface"
+        },
+        {
+          "label": "MONTAR",
+          "text": "Implementar cadastro e listagem"
+        },
+        {
+          "label": "TESTAR",
+          "text": "Persistir dados em JSON com segurança"
+        },
+        {
+          "label": "ENTREGAR",
+          "text": "Adicionar testes e mensagens de erro"
+        }
+      ],
+      "checklist": [
+        "Módulos possuem uma responsabilidade",
+        "Arquivo inexistente inicia vazio",
+        "Comandos inválidos recebem orientação"
+      ],
+      "finalCode": "import argparse\nimport json\nfrom pathlib import Path\n\nARQUIVO = Path('dados.json')\n\ndef carregar():\n    return json.loads(ARQUIVO.read_text()) if ARQUIVO.exists() else []\n\ndef salvar(itens):\n    ARQUIVO.write_text(json.dumps(itens, ensure_ascii=False, indent=2), encoding='utf-8')\n\ndef main():\n    parser = argparse.ArgumentParser(description='Assistente de notas')\n    sub = parser.add_subparsers(dest='comando', required=True)\n    novo = sub.add_parser('adicionar')\n    novo.add_argument('texto')\n    sub.add_parser('listar')\n    args = parser.parse_args()\n    itens = carregar()\n    if args.comando == 'adicionar':\n        itens.append(args.texto.strip())\n        salvar(itens)\n        print('Item salvo.')\n    else:\n        for i, item in enumerate(itens, 1): print(f'{i}. {item}')\n\nif __name__ == '__main__':\n    main()\n"
     }
   ],
   "tracks": [
