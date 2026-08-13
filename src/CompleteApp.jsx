@@ -420,17 +420,16 @@ function MobileNav({ active = 'map', onHome, onReview, onCourses, onHearts, hear
   );
 }
 
-function PremiumFloatingButton({ onPurchase }) {
+function PremiumOfferBar({ onPurchase }) {
   return (
-    <button type="button" className="premium-floating-cta" onClick={onPurchase} aria-label="Comprar pacote completo por 25 reais">
-      <span className="premium-floating-badge">OFERTA</span>
-      <span className="premium-floating-icon">★</span>
-      <span className="premium-floating-copy">
-        <small>LIBERE TUDO</small>
-        <b>PROJETOS + ∞ VIDAS</b>
-      </span>
-      <strong>R$ 25<small>ÚNICO</small></strong>
-    </button>
+    <section className="premium-offer-shell" aria-label="Oferta do pacote completo">
+      <div className="premium-offer-copy">
+        <span className="premium-offer-icon">★</span>
+        <div><small>PACOTE COMPLETO</small><b>Todos os projetos + vidas infinitas</b></div>
+      </div>
+      <div className="premium-offer-price"><strong>R$ 25</strong><small>PAGAMENTO ÚNICO</small></div>
+      <button type="button" className="premium-offer-button" onClick={onPurchase}>VER OFERTA</button>
+    </section>
   );
 }
 
@@ -1869,6 +1868,10 @@ export default function CompleteApp() {
         />
       )}
 
+      {showMainNavigation && !(progress.entitlements?.allProjects && progress.entitlements?.infiniteHearts) && (
+        <PremiumOfferBar onPurchase={purchasePremiumBundle} />
+      )}
+
       {screen === 'map' && (
         <CourseMap
           stages={stages}
@@ -1944,10 +1947,6 @@ export default function CompleteApp() {
           onComplete={finishReview}
           sfx={sfx}
         />
-      )}
-
-      {showMainNavigation && !(progress.entitlements?.allProjects && progress.entitlements?.infiniteHearts) && (
-        <PremiumFloatingButton onPurchase={purchasePremiumBundle} />
       )}
 
       {(screen === 'map' || screen === 'courses') && (
