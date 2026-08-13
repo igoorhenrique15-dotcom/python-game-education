@@ -373,18 +373,18 @@ function FlameIcon() {
   );
 }
 
-function AppHeader({ stats, settings, active = 'map', onHome, onReview, onProjects, onHearts, onToggleSound, onToggleScanlines }) {
+function AppHeader({ stats, settings, active = 'map', onHome, onReview, onCourses, onHearts, onToggleSound, onToggleScanlines }) {
   return (
     <header className="app-header">
       <button type="button" className="brand" onClick={onHome} aria-label="Voltar para a trilha">
         <span className="brand-cube"><PinscherMascot size="small" /></span>
-        <span><b>BLACK BUSTER</b><small>TRILHA DE PYTHON</small></span>
+        <span><b>BLACK BUSTER</b><small>CURSOS DE TECNOLOGIA</small></span>
       </button>
 
       <nav className="desktop-nav" aria-label="Navegação principal">
         <button type="button" className={active === 'map' ? 'active' : ''} onClick={onHome}><span>⌁</span> TRILHA</button>
         <button type="button" className={active === 'practice' ? 'active' : ''} onClick={onReview}><span>◎</span> PRATICAR</button>
-        <button type="button" className={active === 'projects' ? 'active' : ''} onClick={onProjects}><span>▣</span> PROJETOS</button>
+        <button type="button" className={active === 'courses' ? 'active' : ''} onClick={onCourses}><span>▦</span> CURSOS</button>
       </nav>
 
       <div className="header-stats">
@@ -409,12 +409,12 @@ function AppHeader({ stats, settings, active = 'map', onHome, onReview, onProjec
   );
 }
 
-function MobileNav({ active = 'map', onHome, onReview, onProjects, onHearts, hearts, infiniteHearts = false }) {
+function MobileNav({ active = 'map', onHome, onReview, onCourses, onHearts, hearts, infiniteHearts = false }) {
   return (
     <nav className="mobile-nav" aria-label="Navegação para celular">
       <button type="button" className={active === 'map' ? 'active' : ''} onClick={onHome}><span>⌁</span><small>TRILHA</small></button>
       <button type="button" className={active === 'practice' ? 'active' : ''} onClick={onReview}><span>◎</span><small>PRATICAR</small></button>
-      <button type="button" className={active === 'projects' ? 'active' : ''} onClick={onProjects}><span>▣</span><small>PROJETOS</small></button>
+      <button type="button" className={active === 'courses' ? 'active' : ''} onClick={onCourses}><span>▦</span><small>CURSOS</small></button>
       <button type="button" className={`mobile-hearts ${infiniteHearts ? 'infinite' : ''}`} onClick={onHearts}><span>♥</span><small>{infiniteHearts ? '∞ VIDAS' : `${hearts}/${MAX_HEARTS} VIDAS`}</small></button>
     </nav>
   );
@@ -698,7 +698,7 @@ function DailyGoalCard({ progress }) {
   );
 }
 
-function CourseMap({ stages, progress, onEnter, onReview, onUnitReview, onReset }) {
+function CourseMap({ stages, projects = [], tracks = [], progress, onEnter, onReview, onUnitReview, onOpenProject, onPurchase, onReset }) {
   const units = useMemo(() => courseUnits(stages), [stages]);
   const learning = courseLearningSummary(stages, progress);
   const currentIndex = Math.max(0, stages.findIndex((stage) => !progress.completed[stage.id]));
@@ -738,21 +738,53 @@ function CourseMap({ stages, progress, onEnter, onReview, onUnitReview, onReset 
       <div className="course-layout">
         <div className="path-column">
           <div className="path-intro">
-            <div><span>SEU CAMINHO</span><h2>Uma fase de cada vez</h2></div>
-            <p>A fase pulsando é a próxima sugerida. As demais continuam livres para estudo.</p>
+            <div><span>TRILHA DE PYTHON</span><h2>Aprenda e aplique no mesmo caminho</h2></div>
+            <p>Fases, revisões, projetos práticos e especializações agora fazem parte de uma única trilha.</p>
           </div>
-          {units.map((unit) => (
-            <UnitPath
-              key={unit.number}
-              unit={unit}
-              progress={progress}
-              currentIndex={recommendedIndex}
-              selectedId={selected.id}
-              onSelect={(stage) => { setSelected(stage); setPicked(true); }}
-              onUnitReview={onUnitReview}
-            />
-          ))}
-          <div className="finish-marker"><span>Ω</span><div><b>FIM DA TRILHA</b><small>Seu projeto final espera por você.</small></div></div>
+
+          {units.map((unit) => {
+            const stageIds = new Set(unit.stages.map((stage) => stage.id));
+            const unitProjects = projects.filter((project) => stageIds.has(project.unlockStage));
+            return (
+              <React.Fragment key={unit.number}>
+                <UnitPath
+                  unit={unit}
+                  progress={progress}
+                  currentIndex={recommendedIndex}
+                  selectedId={selected.id}
+                  onSelect={(stage) => { setSelected(stage); setPicked(true); }}
+                  onUnitReview={onUnitReview}
+                />
+                <TrailProjectMilestones
+                  projects={unitProjects}
+                  stages={stages}
+                  progress={progress}
+                  onOpen={onOpenProject}
+                />
+              </React.Fragment>
+            );
+          })}
+
+          <section className="premium-store trail-premium-store">
+            <div className="premium-store-title">
+              <div><span className="project-kicker">PACOTE COMPLETO · COMPRA ILUSTRATIVA</span><h2>Projetos livres + vidas infinitas</h2></div>
+              <small>Pagamento único de R$ 25,00 · nenhuma cobrança real nesta versão.</small>
+            </div>
+            <div className="premium-products">
+              <article className={progress.entitlements?.allProjects && progress.entitlements?.infiniteHearts ? 'active premium-bundle' : 'premium-bundle'}>
+                <span className="premium-product-icon">★</span>
+                <div><small>ACESSO TOTAL À TRILHA</small><h3>Libere toda a prática Python</h3><p>Abre projetos e missões sem pré-requisitos e remove a perda de vidas.</p></div>
+                <strong>R$ 25,00<small>PAGAMENTO ÚNICO</small></strong>
+                <PixelButton className="premium-buy-button" color="#8b5cf6" disabled={progress.entitlements?.allProjects && progress.entitlements?.infiniteHearts} onClick={onPurchase}>
+                  {progress.entitlements?.allProjects && progress.entitlements?.infiniteHearts ? 'PACOTE ATIVO ✓' : 'COMPRAR PACOTE · ILUSTRATIVO'}
+                </PixelButton>
+              </article>
+            </div>
+          </section>
+
+          <TrailSpecializations tracks={tracks} progress={progress} onOpen={onOpenProject} />
+
+          <div className="finish-marker"><span>Ω</span><div><b>TRILHA PYTHON COMPLETA</b><small>32 fases, projetos e especializações no mesmo caminho.</small></div></div>
           <button className="reset-progress" type="button" onClick={onReset}>ZERAR PROGRESSO SALVO</button>
         </div>
 
@@ -1095,130 +1127,195 @@ function HeartsScreen({ progress, onExit, onPractice, onRefill, onPurchasePremiu
 }
 
 
-function ProjectHub({ projects, tracks = [], stages, progress, onExit, onOpen, onPurchase }) {
-  const completed = projects.filter((project) => progress.projects?.[project.id]).length;
-  const allProjects = Boolean(progress.entitlements?.allProjects);
-  const infiniteHearts = Boolean(progress.entitlements?.infiniteHearts);
+function projectUnlocked(project, progress) {
+  return Boolean(progress.entitlements?.allProjects)
+    || (Boolean(progress.completed?.[project.unlockStage])
+      && (!project.prerequisite || Boolean(progress.projects?.[project.prerequisite])));
+}
+
+function TrailProjectMilestones({ projects, stages, progress, onOpen }) {
+  if (!projects.length) return null;
   const stageNumber = (stageId) => stages.findIndex((stage) => stage.id === stageId) + 1;
-  const unlocked = (project) => allProjects || (Boolean(progress.completed?.[project.unlockStage])
-    && (!project.prerequisite || Boolean(progress.projects?.[project.prerequisite])));
-  const lockLabel = (project) => {
-    if (!progress.completed?.[project.unlockStage]) return `LIBERA NA FASE ${String(stageNumber(project.unlockStage)).padStart(2, '0')}`;
-    if (project.prerequisite && !progress.projects?.[project.prerequisite]) return 'CONCLUA A MISSÃO ANTERIOR';
-    return `${project.steps.length} DECISÕES`;
-  };
 
   return (
-    <main className="project-hub">
-      <section className="project-hero">
-        <div>
-          <span className="project-kicker">LABORATÓRIO DE PROJETOS</span>
-          <h1>Transforme conceitos em <strong>soluções.</strong></h1>
-          <p>Escolha decisões de implementação, leia o código-base e conclua pequenas simulações. Sem editor e sem perder vidas.</p>
-          <div className="project-hero-stats">
-            <span><b>{completed}</b><small>CONCLUÍDOS</small></span>
-            <span><b>{projects.length}</b><small>PROJETOS</small></span>
-            <span><b>{projects.reduce((total, project) => total + project.steps.length, 0)}</b><small>DECISÕES</small></span>
-          </div>
-        </div>
-        <div className="project-hero-mascot"><PinscherMascot size="large" mood="focus" /><span>▣</span></div>
-      </section>
-
-      <section className="premium-store">
-        <div className="premium-store-title">
-          <div><span className="project-kicker">LOJA · COMPRA ILUSTRATIVA</span><h2>Pacote acesso total</h2></div>
-          <small>Nenhuma cobrança real será feita nesta versão.</small>
-        </div>
-        <div className="premium-products">
-          <article className={allProjects && infiniteHearts ? 'active premium-bundle' : 'premium-bundle'}>
-            <span className="premium-product-icon">★</span>
-            <div>
-              <small>PACOTE COMPLETO</small>
-              <h3>Todos os projetos + vidas infinitas</h3>
-              <p>Libera os 8 projetos, as 8 missões das especializações e remove a perda de vidas em todas as fases.</p>
-            </div>
-            <strong>R$ 25,00<small>PAGAMENTO ÚNICO</small></strong>
-            <PixelButton className="premium-buy-button" color="#8b5cf6" disabled={allProjects && infiniteHearts} onClick={onPurchase}>
-              {allProjects && infiniteHearts ? 'PACOTE ATIVO ✓' : 'COMPRAR PACOTE · ILUSTRATIVO'}
-            </PixelButton>
-          </article>
-        </div>
-      </section>
-
-      <section className="project-grid-shell">
-        <div className="project-grid-title">
-          <div><small>PORTFÓLIO GUIADO</small><h2>Oito desafios práticos</h2></div>
-          <button type="button" onClick={onExit}>VOLTAR À TRILHA</button>
-        </div>
-        <div className="project-grid">
-          {projects.map((project, index) => {
-            const isUnlocked = unlocked(project);
-            const isCompleted = Boolean(progress.projects?.[project.id]);
-            return (
-              <article className={`project-card ${isUnlocked ? 'unlocked' : 'locked'} ${isCompleted ? 'completed' : ''}`} key={project.id} style={{ '--project-color': project.color }}>
-                <div className="project-card-top"><span>{project.icon}</span><small>PROJETO {String(index + 1).padStart(2, '0')}</small></div>
-                <em>{project.category}</em>
-                <h3>{project.title}</h3>
+    <section className="trail-project-milestones">
+      <div className="trail-project-title">
+        <div><small>PRÁTICA DA TRILHA</small><h3>{projects.length === 1 ? 'Projeto liberado nesta etapa' : 'Projetos liberados nesta etapa'}</h3></div>
+        <span>▣</span>
+      </div>
+      <div className="trail-project-list">
+        {projects.map((project) => {
+          const unlocked = projectUnlocked(project, progress);
+          const completed = Boolean(progress.projects?.[project.id]);
+          return (
+            <article className={`trail-project-card ${unlocked ? 'unlocked' : 'locked'} ${completed ? 'completed' : ''}`} key={project.id} style={{ '--project-color': project.color }}>
+              <span className="trail-project-icon">{project.icon}</span>
+              <div>
+                <small>PROJETO · APÓS A FASE {String(stageNumber(project.unlockStage)).padStart(2, '0')}</small>
+                <h4>{project.title}</h4>
                 <p>{project.brief}</p>
-                <div className="project-outcome"><b>VOCÊ PRATICA</b><span>{project.outcome}</span></div>
-                <div className="project-card-footer">
-                  <small>{isCompleted ? 'CONCLUÍDO ✓' : lockLabel(project)}</small>
-                  <PixelButton
-                    color={project.color}
-                    variant={isCompleted ? 'outline' : 'solid'}
-                    disabled={!isUnlocked}
-                    onClick={() => onOpen(project)}
-                  >
-                    {isCompleted ? 'REFAZER' : isUnlocked ? 'ABRIR PROJETO' : 'BLOQUEADO'}
-                  </PixelButton>
+                <em>{project.outcome}</em>
+              </div>
+              <PixelButton
+                color={project.color}
+                variant={completed ? 'outline' : 'solid'}
+                disabled={!unlocked}
+                onClick={() => onOpen(project)}
+              >
+                {completed ? 'REFAZER' : unlocked ? 'COMEÇAR PROJETO' : 'BLOQUEADO'}
+              </PixelButton>
+            </article>
+          );
+        })}
+      </div>
+    </section>
+  );
+}
+
+function TrailSpecializations({ tracks, progress, onOpen }) {
+  if (!tracks.length) return null;
+  const allProjects = Boolean(progress.entitlements?.allProjects);
+
+  return (
+    <section className="trail-specializations">
+      <div className="trail-specializations-title">
+        <span className="project-kicker">DEPOIS DAS 32 FASES</span>
+        <h2>Especializações da trilha Python</h2>
+        <p>Escolha Automação ou Aplicações. Cada missão abre a próxima e continua usando desafios guiados.</p>
+      </div>
+
+      {tracks.map((track) => {
+        const completed = track.missions.filter((mission) => progress.projects?.[mission.id]).length;
+        const unlocked = allProjects || Boolean(progress.completed?.[track.unlockStage]);
+        return (
+          <article className={`track-panel ${unlocked ? 'unlocked' : 'locked'}`} key={track.id} style={{ '--track-color': track.color }}>
+            <header>
+              <span className="track-icon">{track.icon}</span>
+              <div><small>ESPECIALIZAÇÃO</small><h3>{track.title}</h3><p>{track.subtitle}</p></div>
+              <strong>{completed}/{track.missions.length}<small>MISSÕES</small></strong>
+            </header>
+            <div className="track-progress"><span style={{ width: `${(completed / track.missions.length) * 100}%` }} /></div>
+            <div className="track-missions">
+              {track.missions.map((mission, index) => {
+                const missionUnlocked = projectUnlocked(mission, progress);
+                const missionCompleted = Boolean(progress.projects?.[mission.id]);
+                return (
+                  <div className={`track-mission ${missionUnlocked ? 'unlocked' : 'locked'} ${missionCompleted ? 'completed' : ''}`} key={mission.id}>
+                    <span>{mission.icon}</span>
+                    <div><small>MISSÃO {index + 1}</small><b>{mission.title}</b><p>{mission.brief}</p></div>
+                    <PixelButton
+                      color={mission.color}
+                      variant={missionCompleted ? 'outline' : 'solid'}
+                      disabled={!missionUnlocked}
+                      onClick={() => onOpen(mission)}
+                    >
+                      {missionCompleted ? 'REFAZER' : missionUnlocked ? 'INICIAR' : mission.prerequisite ? 'EM SEQUÊNCIA' : 'FASE 32'}
+                    </PixelButton>
+                  </div>
+                );
+              })}
+            </div>
+          </article>
+        );
+      })}
+    </section>
+  );
+}
+
+const TECHNOLOGY_COURSES = [
+  {
+    id: 'python',
+    icon: 'PY',
+    title: 'Python',
+    status: 'available',
+    color: '#4b8bbe',
+    description: 'Do primeiro comando a automações, testes, APIs e projetos completos.',
+    topics: ['32 fases', '8 projetos', '2 especializações'],
+  },
+  {
+    id: 'html-css',
+    icon: '</>',
+    title: 'HTML & CSS',
+    status: 'soon',
+    color: '#ff7a45',
+    description: 'Estrutura, estilos, responsividade e publicação de páginas modernas.',
+    topics: ['Sites responsivos', 'Layouts', 'Projeto final'],
+  },
+  {
+    id: 'javascript',
+    icon: 'JS',
+    title: 'JavaScript',
+    status: 'planned',
+    color: '#ffd23f',
+    description: 'Interatividade, lógica no navegador e aplicações web.',
+    topics: ['DOM', 'Eventos', 'Aplicações'],
+  },
+  {
+    id: 'sql',
+    icon: 'DB',
+    title: 'SQL e Dados',
+    status: 'planned',
+    color: '#14b8a6',
+    description: 'Consultas, organização de dados e fundamentos de bancos relacionais.',
+    topics: ['Consultas', 'Relacionamentos', 'Relatórios'],
+  },
+];
+
+function CourseCatalog({ stages, projects, progress, onOpenPython }) {
+  const completed = Object.keys(progress.completed || {}).length;
+  const percent = Math.round((completed / stages.length) * 100);
+
+  return (
+    <main className="course-catalog">
+      <section className="catalog-hero">
+        <div>
+          <span className="catalog-kicker">BLACK BUSTER ACADEMY</span>
+          <h1>Escolha sua próxima <strong>trilha.</strong></h1>
+          <p>Um só aplicativo para aprender diferentes tecnologias no mesmo formato: aulas curtas, desafios de clique e projetos guiados.</p>
+        </div>
+        <div className="catalog-hero-mascot"><PinscherMascot size="large" mood="ready" /><span>+</span></div>
+      </section>
+
+      <section className="catalog-shell">
+        <div className="catalog-title">
+          <div><small>CURSOS DE TECNOLOGIA</small><h2>Qual caminho você quer seguir?</h2></div>
+          <span>1 DISPONÍVEL · 3 EM PREPARAÇÃO</span>
+        </div>
+
+        <div className="course-cards">
+          {TECHNOLOGY_COURSES.map((item) => {
+            const available = item.status === 'available';
+            return (
+              <article className={`technology-course-card ${item.status}`} key={item.id} style={{ '--course-color': item.color }}>
+                <div className="technology-card-top">
+                  <span>{item.icon}</span>
+                  <small>{available ? 'DISPONÍVEL AGORA' : item.status === 'soon' ? 'PRÓXIMO CURSO' : 'PLANEJADO'}</small>
                 </div>
+                <h3>{item.title}</h3>
+                <p>{item.description}</p>
+                <div className="technology-topics">
+                  {item.topics.map((topic) => <span key={topic}>✓ {topic}</span>)}
+                </div>
+                {available && (
+                  <div className="python-course-progress">
+                    <div><span>SEU PROGRESSO</span><b>{percent}%</b></div>
+                    <LinearProgress value={percent} color={item.color} label={`${percent}% da trilha Python concluída`} />
+                    <small>{completed}/{stages.length} fases · {projects.length} projetos</small>
+                  </div>
+                )}
+                <PixelButton color={item.color} disabled={!available} onClick={available ? onOpenPython : undefined}>
+                  {available ? completed ? 'CONTINUAR TRILHA' : 'COMEÇAR PYTHON' : 'EM BREVE'}
+                </PixelButton>
               </article>
             );
           })}
         </div>
-      </section>
 
-      <section className="track-specializations">
-        <div className="track-specializations-title">
-          <span className="project-kicker">ESPECIALIZAÇÕES PÓS-TRILHA</span>
-          <h2>Escolha onde aplicar seu Python.</h2>
-          <p>As duas trilhas são liberadas após a fase 32. Cada missão abre a próxima e usa o mesmo formato guiado e seguro.</p>
-        </div>
-
-        {tracks.map((track) => {
-          const trackCompleted = track.missions.filter((mission) => progress.projects?.[mission.id]).length;
-          const trackUnlocked = allProjects || Boolean(progress.completed?.[track.unlockStage]);
-          return (
-            <article className={`track-panel ${trackUnlocked ? 'unlocked' : 'locked'}`} key={track.id} style={{ '--track-color': track.color }}>
-              <header>
-                <span className="track-icon">{track.icon}</span>
-                <div><small>ESPECIALIZAÇÃO</small><h3>{track.title}</h3><p>{track.subtitle}</p></div>
-                <strong>{trackCompleted}/{track.missions.length}<small>MISSÕES</small></strong>
-              </header>
-              <div className="track-progress"><span style={{ width: `${(trackCompleted / track.missions.length) * 100}%` }} /></div>
-              <div className="track-missions">
-                {track.missions.map((mission, index) => {
-                  const isUnlocked = unlocked(mission);
-                  const isCompleted = Boolean(progress.projects?.[mission.id]);
-                  return (
-                    <div className={`track-mission ${isUnlocked ? 'unlocked' : 'locked'} ${isCompleted ? 'completed' : ''}`} key={mission.id}>
-                      <span>{mission.icon}</span>
-                      <div><small>MISSÃO {index + 1}</small><b>{mission.title}</b><p>{mission.brief}</p></div>
-                      <PixelButton
-                        color={mission.color}
-                        variant={isCompleted ? 'outline' : 'solid'}
-                        disabled={!isUnlocked}
-                        onClick={() => onOpen(mission)}
-                      >
-                        {isCompleted ? 'REFAZER' : isUnlocked ? 'INICIAR' : mission.prerequisite ? 'EM SEQUÊNCIA' : 'FASE 32'}
-                      </PixelButton>
-                    </div>
-                  );
-                })}
-              </div>
-            </article>
-          );
-        })}
+        <section className="catalog-next-course">
+          <span>&lt;/&gt;</span>
+          <div><small>PRÓXIMA EXPANSÃO</small><h3>HTML & CSS</h3><p>A estrutura já fica preparada para receber uma trilha completa de criação de sites.</p></div>
+          <strong>EM BREVE</strong>
+        </section>
       </section>
     </main>
   );
@@ -1595,8 +1692,8 @@ export default function CompleteApp() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const openProjects = () => {
-    setScreen('projects');
+  const openCourses = () => {
+    setScreen('courses');
     sfx('click');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -1751,7 +1848,7 @@ export default function CompleteApp() {
 
   const activeIndex = stages.findIndex((stage) => stage.id === activeStage.id);
   const nextStage = activeIndex < stages.length - 1 ? stages[activeIndex + 1] : null;
-  const showMainNavigation = screen === 'map' || screen === 'projects';
+  const showMainNavigation = screen === 'map' || screen === 'courses';
 
   return (
     <div className={`app ${settings.scanlines ? 'scanlines-on' : ''}`}>
@@ -1765,7 +1862,7 @@ export default function CompleteApp() {
           active={screen}
           onHome={goMap}
           onReview={openPractice}
-          onProjects={openProjects}
+          onCourses={openCourses}
           onHearts={openHearts}
           onToggleSound={() => updateSetting('sound')}
           onToggleScanlines={() => updateSetting('scanlines')}
@@ -1775,22 +1872,26 @@ export default function CompleteApp() {
       {screen === 'map' && (
         <CourseMap
           stages={stages}
+          projects={projects}
+          tracks={tracks}
           progress={progress}
           onEnter={enterStage}
           onReview={openPractice}
           onUnitReview={(unit) => startReview('unit', unit)}
+          onOpenProject={openProject}
+          onPurchase={purchasePremiumBundle}
           onReset={reset}
         />
       )}
-      {screen === 'projects' && (
-        <ProjectHub projects={projects} tracks={tracks} stages={stages} progress={progress} onExit={goMap} onOpen={openProject} onPurchase={purchasePremiumBundle} />
+      {screen === 'courses' && (
+        <CourseCatalog stages={stages} projects={projects} progress={progress} onOpenPython={goMap} />
       )}
       {screen === 'project' && activeProject && (
         <ProjectScreen
           key={activeProject.id}
           project={activeProject}
           alreadyCompleted={Boolean(progress.projects?.[activeProject.id])}
-          onExit={openProjects}
+          onExit={goMap}
           onComplete={finishProject}
           sfx={sfx}
         />
@@ -1849,8 +1950,8 @@ export default function CompleteApp() {
         <PremiumFloatingButton onPurchase={purchasePremiumBundle} />
       )}
 
-      {(screen === 'map' || screen === 'projects') && (
-        <MobileNav active={screen} onHome={goMap} onReview={openPractice} onProjects={openProjects} onHearts={openHearts} hearts={progress.hearts} infiniteHearts={Boolean(progress.entitlements?.infiniteHearts)} />
+      {(screen === 'map' || screen === 'courses') && (
+        <MobileNav active={screen} onHome={goMap} onReview={openPractice} onCourses={openCourses} onHearts={openHearts} hearts={progress.hearts} infiniteHearts={Boolean(progress.entitlements?.infiniteHearts)} />
       )}
     </div>
   );

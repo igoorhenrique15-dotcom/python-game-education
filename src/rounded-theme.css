@@ -1971,6 +1971,531 @@ button {
 }
 
 
+
+.course-catalog {
+  position: relative;
+  z-index: 2;
+  width: min(1220px, calc(100% - 36px));
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 24px 0 120px;
+}
+
+.catalog-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 260px;
+  align-items: center;
+  gap: 30px;
+  min-height: 300px;
+  padding: 38px 42px;
+  overflow: hidden;
+  border: 1px solid rgba(28, 176, 246, 0.5);
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 84% 20%, rgba(28, 176, 246, 0.18), transparent 20rem),
+    radial-gradient(circle at 18% 100%, rgba(206, 130, 255, 0.1), transparent 25rem),
+    linear-gradient(145deg, #172131, #0d141e 74%);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+
+.catalog-kicker {
+  color: #1cb0f6;
+  font-family: var(--pixel-font);
+  font-size: 7px;
+  letter-spacing: 0.75px;
+}
+
+.catalog-hero h1 {
+  max-width: 720px;
+  margin: 13px 0 15px;
+  font-family: var(--display-font);
+  font-size: clamp(42px, 5vw, 68px);
+  font-weight: 900;
+  line-height: 0.98;
+  letter-spacing: -2.6px;
+}
+
+.catalog-hero h1 strong {
+  color: #1cb0f6;
+}
+
+.catalog-hero p {
+  max-width: 720px;
+  color: #a5b2c2;
+  font-size: 15px;
+  line-height: 1.65;
+}
+
+.catalog-hero-mascot {
+  position: relative;
+  display: grid;
+  min-height: 220px;
+  place-items: center;
+}
+
+.catalog-hero-mascot .python-avatar {
+  width: 220px;
+}
+
+.catalog-hero-mascot > span {
+  position: absolute;
+  right: 18px;
+  bottom: 12px;
+  display: grid;
+  width: 58px;
+  height: 58px;
+  place-items: center;
+  border: 2px solid #ffd43b;
+  border-radius: 19px;
+  color: white;
+  background: #1d6d9c;
+  box-shadow: 0 8px 0 #0c3d5d;
+  font-size: 28px;
+  font-weight: 900;
+}
+
+.catalog-shell {
+  margin-top: 24px;
+  padding: 30px;
+  border: 1px solid #303c50;
+  border-radius: 30px;
+  background: rgba(15, 21, 31, 0.86);
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.24);
+}
+
+.catalog-title {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 18px;
+  margin-bottom: 23px;
+}
+
+.catalog-title small {
+  color: #1cb0f6;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.65px;
+}
+
+.catalog-title h2 {
+  margin-top: 6px;
+  font-family: var(--ui-font);
+  font-size: 28px;
+  font-weight: 900;
+}
+
+.catalog-title > span {
+  color: #7f8da1;
+  font-size: 9px;
+  font-weight: 900;
+}
+
+.course-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 17px;
+}
+
+.technology-course-card {
+  position: relative;
+  display: flex;
+  min-height: 390px;
+  padding: 24px;
+  overflow: hidden;
+  border: 1px solid color-mix(in srgb, var(--course-color) 42%, #303c50);
+  border-radius: 25px;
+  flex-direction: column;
+  background:
+    radial-gradient(circle at 100% 0, color-mix(in srgb, var(--course-color) 13%, transparent), transparent 15rem),
+    linear-gradient(150deg, #182230, #111821);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.technology-course-card::before {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 5px;
+  content: "";
+  background: var(--course-color);
+}
+
+.technology-course-card:not(.available) {
+  opacity: 0.66;
+  filter: saturate(0.62);
+}
+
+.technology-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.technology-card-top > span {
+  display: grid;
+  min-width: 64px;
+  height: 58px;
+  padding: 0 10px;
+  place-items: center;
+  border: 2px solid var(--course-color);
+  border-radius: 18px;
+  color: white;
+  background: color-mix(in srgb, var(--course-color) 62%, #111821);
+  box-shadow: 0 7px 0 color-mix(in srgb, var(--course-color) 42%, #05070b);
+  font-family: var(--code-font);
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.technology-card-top small {
+  color: var(--course-color);
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0.6px;
+}
+
+.technology-course-card h3 {
+  margin: 25px 0 8px;
+  font-family: var(--ui-font);
+  font-size: 29px;
+  font-weight: 900;
+}
+
+.technology-course-card > p {
+  color: #9ba8ba;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.technology-topics {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin: 18px 0;
+}
+
+.technology-topics span {
+  padding: 7px 9px;
+  border: 1px solid color-mix(in srgb, var(--course-color) 28%, #303c50);
+  border-radius: 999px;
+  color: #b5c0ce;
+  background: #0e151f;
+  font-size: 9px;
+  font-weight: 900;
+}
+
+.python-course-progress {
+  display: grid;
+  gap: 8px;
+  margin-top: auto;
+  padding: 14px;
+  border: 1px solid #2e3a4d;
+  border-radius: 16px;
+  background: #0d141e;
+}
+
+.python-course-progress > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  color: #7f8da1;
+  font-size: 9px;
+  font-weight: 900;
+}
+
+.python-course-progress > div:first-child b {
+  color: #dce9f4;
+  font-size: 12px;
+}
+
+.python-course-progress > small {
+  color: #8593a6;
+  font-size: 9px;
+}
+
+.technology-course-card > .pixel-button {
+  width: 100%;
+  margin-top: 16px;
+}
+
+.catalog-next-course {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 17px;
+  margin-top: 20px;
+  padding: 20px;
+  border: 1px dashed rgba(255, 122, 69, 0.5);
+  border-radius: 20px;
+  background: rgba(255, 122, 69, 0.06);
+}
+
+.catalog-next-course > span {
+  display: grid;
+  min-width: 58px;
+  height: 52px;
+  place-items: center;
+  border-radius: 15px;
+  color: white;
+  background: #b84e25;
+  font-family: var(--code-font);
+  font-weight: 900;
+}
+
+.catalog-next-course small {
+  color: #ff9a70;
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0.55px;
+}
+
+.catalog-next-course h3 {
+  margin: 3px 0;
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.catalog-next-course p {
+  color: #8d9aac;
+  font-size: 11px;
+}
+
+.catalog-next-course > strong {
+  color: #ff9a70;
+  font-size: 10px;
+  font-weight: 900;
+}
+
+.trail-project-milestones {
+  margin: -2px 20px 22px;
+  padding: 20px;
+  border: 1px solid rgba(139, 92, 246, 0.4);
+  border-radius: 22px;
+  background:
+    radial-gradient(circle at 100% 0, rgba(139, 92, 246, 0.1), transparent 14rem),
+    linear-gradient(145deg, #171d2a, #101721);
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.2);
+}
+
+.trail-project-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.trail-project-title small {
+  color: #a78bfa;
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0.6px;
+}
+
+.trail-project-title h3 {
+  margin-top: 4px;
+  font-family: var(--ui-font);
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.trail-project-title > span {
+  display: grid;
+  width: 40px;
+  height: 40px;
+  place-items: center;
+  border: 1px solid #8b5cf6;
+  border-radius: 13px;
+  color: #d8c4ff;
+  background: rgba(139, 92, 246, 0.18);
+  font-size: 18px;
+}
+
+.trail-project-list {
+  display: grid;
+  gap: 10px;
+}
+
+.trail-project-card {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) 150px;
+  align-items: center;
+  gap: 14px;
+  min-height: 110px;
+  padding: 15px;
+  border: 1px solid color-mix(in srgb, var(--project-color) 35%, #303c50);
+  border-radius: 18px;
+  background: #0e151f;
+}
+
+.trail-project-card.locked {
+  opacity: 0.52;
+  filter: saturate(0.5);
+}
+
+.trail-project-card.completed {
+  border-color: color-mix(in srgb, #58cc02 55%, #303c50);
+}
+
+.trail-project-icon {
+  display: grid;
+  width: 49px;
+  height: 49px;
+  place-items: center;
+  border: 2px solid var(--project-color);
+  border-radius: 15px;
+  color: white;
+  background: color-mix(in srgb, var(--project-color) 58%, #111821);
+  box-shadow: 0 6px 0 color-mix(in srgb, var(--project-color) 40%, #05070b);
+  font-size: 17px;
+  font-weight: 900;
+}
+
+.trail-project-card div > small {
+  color: var(--project-color);
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0.45px;
+}
+
+.trail-project-card h4 {
+  margin: 3px 0;
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.trail-project-card p {
+  color: #8795a8;
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.trail-project-card em {
+  display: block;
+  margin-top: 5px;
+  color: #b1bdca;
+  font-size: 9px;
+  font-style: normal;
+}
+
+.trail-project-card .pixel-button {
+  width: 150px;
+  min-width: 0;
+  min-height: 48px;
+  padding: 8px;
+  font-size: 9px;
+}
+
+.trail-specializations {
+  margin-top: 22px;
+  padding: 28px 20px 20px;
+  border: 1px solid #313d52;
+  border-radius: 25px;
+  background: rgba(15, 21, 31, 0.86);
+}
+
+.trail-specializations-title {
+  max-width: 720px;
+  margin-bottom: 22px;
+}
+
+.trail-specializations-title h2 {
+  margin: 8px 0 6px;
+  font-size: 26px;
+  font-weight: 900;
+}
+
+.trail-specializations-title p {
+  color: #8d9bad;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.trail-premium-store {
+  margin: 22px 0 0;
+}
+
+@media (max-width: 850px) {
+  .catalog-hero {
+    grid-template-columns: 1fr;
+  }
+
+  .catalog-hero-mascot {
+    display: none;
+  }
+
+  .trail-project-card {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .trail-project-card .pixel-button {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+}
+
+@media (max-width: 650px) {
+  .course-catalog {
+    width: min(100% - 22px, 1220px);
+    padding-top: 14px;
+  }
+
+  .catalog-hero {
+    padding: 27px 20px;
+    border-radius: 24px;
+  }
+
+  .catalog-hero h1 {
+    font-size: 40px;
+    letter-spacing: -1.7px;
+  }
+
+  .catalog-shell {
+    padding: 20px 12px;
+    border-radius: 24px;
+  }
+
+  .catalog-title {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .course-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .technology-course-card {
+    min-height: 350px;
+    padding: 20px;
+  }
+
+  .catalog-next-course {
+    grid-template-columns: auto 1fr;
+  }
+
+  .catalog-next-course > strong {
+    grid-column: 1 / -1;
+  }
+
+  .trail-project-milestones {
+    margin: -2px 10px 16px;
+    padding: 16px 12px;
+  }
+
+  .trail-project-card {
+    grid-template-columns: 42px minmax(0, 1fr);
+    padding: 13px;
+  }
+
+  .trail-project-card .pixel-button {
+    grid-column: 1 / -1;
+  }
+
+  .trail-specializations {
+    padding: 23px 12px 14px;
+  }
+}
+
 .project-hub {
   position: relative;
   z-index: 2;
