@@ -1,6 +1,6 @@
 {
   "title": "PYTHON // BLACK BUSTER",
-  "version": 10,
+  "version": 11,
   "stages": [
     {
       "id": "s1",
@@ -4255,6 +4255,1070 @@
           "a": 0,
           "hint": "Ele coopera com a cadeia de herança.",
           "ex": "super permite chamar métodos definidos na classe pai."
+        }
+      ]
+    },
+    {
+      "id": "s41",
+      "name": "ENCAPSULAMENTO",
+      "group": "ORIENTAÇÃO A OBJETOS II",
+      "difficulty": "AVANÇADO",
+      "boss": "PRIVATE-GATE",
+      "color": "#6366f1",
+      "icon": "◈",
+      "summary": "Proteja o estado dos objetos e exponha operações com regras claras.",
+      "lesson": [
+        {
+          "title": "Estado e regras",
+          "body": "Métodos públicos validam mudanças antes de atualizar atributos internos.",
+          "code": "class Conta:\n    def depositar(self, valor):\n        if valor <= 0:\n            raise ValueError('Valor inválido')\n        self._saldo += valor"
+        },
+        {
+          "title": "Atributos internos",
+          "body": "O underscore inicial comunica que um atributo é interno e não deve ser alterado diretamente.",
+          "code": "self._saldo = 0\n# prefira depositar() e sacar()"
+        },
+        {
+          "title": "Propriedades",
+          "body": "@property oferece leitura controlada mantendo a sintaxe simples de atributo.",
+          "code": "@property\ndef saldo(self):\n    return self._saldo"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual objetivo do encapsulamento?",
+          "opts": [
+            "Controlar o acesso ao estado",
+            "Eliminar métodos",
+            "Esconder todo código",
+            "Criar arquivos"
+          ],
+          "a": 0,
+          "hint": "Revise a fase ENCAPSULAMENTO.",
+          "ex": "A resposta correta é: Controlar o acesso ao estado."
+        },
+        {
+          "type": "mcq",
+          "q": "O que _saldo comunica?",
+          "opts": [
+            "Acesso impossível",
+            "Uso interno por convenção",
+            "Variável global",
+            "Método abstrato"
+          ],
+          "a": 1,
+          "hint": "Revise a fase ENCAPSULAMENTO.",
+          "ex": "A resposta correta é: Uso interno por convenção."
+        },
+        {
+          "type": "mcq",
+          "q": "Para que serve @property?",
+          "opts": [
+            "Criar subclasse",
+            "Abrir arquivo",
+            "Expor acesso controlado como atributo",
+            "Executar SQL"
+          ],
+          "a": 2,
+          "hint": "Revise a fase ENCAPSULAMENTO.",
+          "ex": "A resposta correta é: Expor acesso controlado como atributo."
+        },
+        {
+          "type": "mcq",
+          "q": "Onde validar um depósito?",
+          "opts": [
+            "Em qualquer print",
+            "No CSS",
+            "Somente na tela",
+            "No método que altera o saldo"
+          ],
+          "a": 3,
+          "hint": "Revise a fase ENCAPSULAMENTO.",
+          "ex": "A resposta correta é: No método que altera o saldo."
+        },
+        {
+          "type": "mcq",
+          "q": "O que é uma invariante?",
+          "opts": [
+            "Regra que o objeto deve preservar",
+            "Nome de arquivo",
+            "Tipo de loop",
+            "Biblioteca"
+          ],
+          "a": 0,
+          "hint": "Revise a fase ENCAPSULAMENTO.",
+          "ex": "A resposta correta é: Regra que o objeto deve preservar."
+        },
+        {
+          "type": "mcq",
+          "q": "Por que evitar alterar _saldo diretamente?",
+          "opts": [
+            "É erro de sintaxe",
+            "Pode contornar validações",
+            "Fecha o programa",
+            "Remove a classe"
+          ],
+          "a": 1,
+          "hint": "Revise a fase ENCAPSULAMENTO.",
+          "ex": "A resposta correta é: Pode contornar validações."
+        },
+        {
+          "type": "mcq",
+          "q": "Quando usar setter de property?",
+          "opts": [
+            "Para toda variável local",
+            "Para imports",
+            "Quando a atribuição precisa de validação",
+            "Para listas"
+          ],
+          "a": 2,
+          "hint": "Revise a fase ENCAPSULAMENTO.",
+          "ex": "A resposta correta é: Quando a atribuição precisa de validação."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual interface é mais segura?",
+          "opts": [
+            "Atributos livres",
+            "Estado global",
+            "eval em textos",
+            "Métodos como depositar e sacar"
+          ],
+          "a": 3,
+          "hint": "Revise a fase ENCAPSULAMENTO.",
+          "ex": "A resposta correta é: Métodos como depositar e sacar."
+        }
+      ]
+    },
+    {
+      "id": "s42",
+      "name": "MÉTODOS DE CLASSE",
+      "group": "ORIENTAÇÃO A OBJETOS II",
+      "difficulty": "AVANÇADO",
+      "boss": "CLASS-CALLER",
+      "color": "#5b5ee8",
+      "icon": "C",
+      "summary": "Escolha corretamente entre métodos de instância, classe e estáticos.",
+      "lesson": [
+        {
+          "title": "Métodos de instância",
+          "body": "Métodos comuns recebem self e trabalham com o estado de um objeto específico.",
+          "code": "def total(self):\n    return self.preco * self.quantidade"
+        },
+        {
+          "title": "Métodos de classe",
+          "body": "@classmethod recebe cls e funciona bem como construtor alternativo.",
+          "code": "@classmethod\ndef de_texto(cls, texto):\n    nome, preco = texto.split(';')\n    return cls(nome, float(preco))"
+        },
+        {
+          "title": "Métodos estáticos",
+          "body": "@staticmethod agrupa uma função relacionada à classe sem usar self ou cls.",
+          "code": "@staticmethod\ndef preco_valido(valor):\n    return valor >= 0"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual parâmetro identifica a instância atual?",
+          "opts": [
+            "self",
+            "cls",
+            "args",
+            "this obrigatório"
+          ],
+          "a": 0,
+          "hint": "Revise a fase MÉTODOS DE CLASSE.",
+          "ex": "A resposta correta é: self."
+        },
+        {
+          "type": "mcq",
+          "q": "O que @classmethod recebe primeiro?",
+          "opts": [
+            "self",
+            "cls",
+            "Nenhum parâmetro",
+            "Um arquivo"
+          ],
+          "a": 1,
+          "hint": "Revise a fase MÉTODOS DE CLASSE.",
+          "ex": "A resposta correta é: cls."
+        },
+        {
+          "type": "mcq",
+          "q": "Uso comum de classmethod?",
+          "opts": [
+            "Laço infinito",
+            "Leitura de CSS",
+            "Construtor alternativo",
+            "Excluir atributos"
+          ],
+          "a": 2,
+          "hint": "Revise a fase MÉTODOS DE CLASSE.",
+          "ex": "A resposta correta é: Construtor alternativo."
+        },
+        {
+          "type": "mcq",
+          "q": "O que staticmethod recebe automaticamente?",
+          "opts": [
+            "Somente self",
+            "Somente cls",
+            "Todos os objetos",
+            "Nem self nem cls"
+          ],
+          "a": 3,
+          "hint": "Revise a fase MÉTODOS DE CLASSE.",
+          "ex": "A resposta correta é: Nem self nem cls."
+        },
+        {
+          "type": "mcq",
+          "q": "Quando usar método de instância?",
+          "opts": [
+            "Quando depende do estado do objeto",
+            "Quando cria CSS",
+            "Para qualquer utilitário",
+            "Quando não há classe"
+          ],
+          "a": 0,
+          "hint": "Revise a fase MÉTODOS DE CLASSE.",
+          "ex": "A resposta correta é: Quando depende do estado do objeto."
+        },
+        {
+          "type": "mcq",
+          "q": "Por que retornar cls(...)?",
+          "opts": [
+            "Impede herança",
+            "Respeita subclasses",
+            "Retorna texto",
+            "Cria global"
+          ],
+          "a": 1,
+          "hint": "Revise a fase MÉTODOS DE CLASSE.",
+          "ex": "A resposta correta é: Respeita subclasses."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual decorador marca método estático?",
+          "opts": [
+            "@property",
+            "@abstractmethod",
+            "@staticmethod",
+            "@return"
+          ],
+          "a": 2,
+          "hint": "Revise a fase MÉTODOS DE CLASSE.",
+          "ex": "A resposta correta é: @staticmethod."
+        },
+        {
+          "type": "mcq",
+          "q": "Onde colocar validação sem estado ligada ao domínio?",
+          "opts": [
+            "Em global mutável",
+            "No HTML",
+            "No JSON",
+            "Em staticmethod ou função do módulo"
+          ],
+          "a": 3,
+          "hint": "Revise a fase MÉTODOS DE CLASSE.",
+          "ex": "A resposta correta é: Em staticmethod ou função do módulo."
+        }
+      ]
+    },
+    {
+      "id": "s43",
+      "name": "COMPOSIÇÃO",
+      "group": "ORIENTAÇÃO A OBJETOS II",
+      "difficulty": "AVANÇADO",
+      "boss": "COMPOSE-CORE",
+      "color": "#5558df",
+      "icon": "＋",
+      "summary": "Construa objetos complexos combinando componentes menores.",
+      "lesson": [
+        {
+          "title": "Relação tem-um",
+          "body": "Composição modela um objeto que possui ou utiliza outro: um Pedido tem itens.",
+          "code": "class Pedido:\n    def __init__(self, itens):\n        self.itens = list(itens)"
+        },
+        {
+          "title": "Delegação",
+          "body": "Cada componente executa sua responsabilidade e o objeto principal coordena.",
+          "code": "def total(self):\n    return sum(item.subtotal() for item in self.itens)"
+        },
+        {
+          "title": "Dependências explícitas",
+          "body": "Receber colaboradores no construtor facilita testes e substituições.",
+          "code": "class Servico:\n    def __init__(self, repositorio):\n        self.repositorio = repositorio"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Composição representa qual relação?",
+          "opts": [
+            "Tem-um",
+            "É-um",
+            "É-igual",
+            "Não-usa"
+          ],
+          "a": 0,
+          "hint": "Revise a fase COMPOSIÇÃO.",
+          "ex": "A resposta correta é: Tem-um."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual relação favorece herança?",
+          "opts": [
+            "Tem-um",
+            "É-um",
+            "Usa arquivo",
+            "Possui lista"
+          ],
+          "a": 1,
+          "hint": "Revise a fase COMPOSIÇÃO.",
+          "ex": "A resposta correta é: É-um."
+        },
+        {
+          "type": "mcq",
+          "q": "Por que delegar item.subtotal()?",
+          "opts": [
+            "Remove objetos",
+            "Impede testes",
+            "Evita duplicar a regra",
+            "Cria herança"
+          ],
+          "a": 2,
+          "hint": "Revise a fase COMPOSIÇÃO.",
+          "ex": "A resposta correta é: Evita duplicar a regra."
+        },
+        {
+          "type": "mcq",
+          "q": "O que é injeção de dependência?",
+          "opts": [
+            "Importar tudo",
+            "Criar globais",
+            "Copiar classe",
+            "Receber colaborador externamente"
+          ],
+          "a": 3,
+          "hint": "Revise a fase COMPOSIÇÃO.",
+          "ex": "A resposta correta é: Receber colaborador externamente."
+        },
+        {
+          "type": "mcq",
+          "q": "Benefício da composição em testes?",
+          "opts": [
+            "Trocar colaboradores por versões controladas",
+            "Eliminar asserções",
+            "Dispensar entradas",
+            "Tornar tudo estático"
+          ],
+          "a": 0,
+          "hint": "Revise a fase COMPOSIÇÃO.",
+          "ex": "A resposta correta é: Trocar colaboradores por versões controladas."
+        },
+        {
+          "type": "mcq",
+          "q": "Quando composição vence herança?",
+          "opts": [
+            "Sempre",
+            "Ao combinar capacidades sem relação é-um",
+            "Somente para números",
+            "Nunca"
+          ],
+          "a": 1,
+          "hint": "Revise a fase COMPOSIÇÃO.",
+          "ex": "A resposta correta é: Ao combinar capacidades sem relação é-um."
+        },
+        {
+          "type": "mcq",
+          "q": "Quem calcula o subtotal do item?",
+          "opts": [
+            "A tela",
+            "Uma global",
+            "O próprio Item",
+            "Path"
+          ],
+          "a": 2,
+          "hint": "Revise a fase COMPOSIÇÃO.",
+          "ex": "A resposta correta é: O próprio Item."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual desenho é mais flexível?",
+          "opts": [
+            "Serviço fixa tudo internamente",
+            "Estado global",
+            "Herança universal",
+            "Serviço recebe repositório"
+          ],
+          "a": 3,
+          "hint": "Revise a fase COMPOSIÇÃO.",
+          "ex": "A resposta correta é: Serviço recebe repositório."
+        }
+      ]
+    },
+    {
+      "id": "s44",
+      "name": "DATACLASSES",
+      "group": "ORIENTAÇÃO A OBJETOS II",
+      "difficulty": "AVANÇADO",
+      "boss": "DATA-FORGE",
+      "color": "#4f52d5",
+      "icon": "@",
+      "summary": "Crie classes de dados concisas com padrões e comparação automática.",
+      "lesson": [
+        {
+          "title": "Estrutura automática",
+          "body": "@dataclass pode gerar inicialização, representação e igualdade a partir dos campos.",
+          "code": "from dataclasses import dataclass\n@dataclass\nclass Produto:\n    nome: str\n    preco: float"
+        },
+        {
+          "title": "Padrões mutáveis",
+          "body": "field(default_factory=list) cria uma coleção separada para cada instância.",
+          "code": "from dataclasses import field\nitens: list[str] = field(default_factory=list)"
+        },
+        {
+          "title": "Validação posterior",
+          "body": "__post_init__ executa após o inicializador gerado e pode validar regras.",
+          "code": "def __post_init__(self):\n    if self.preco < 0:\n        raise ValueError('Preço inválido')"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que @dataclass pode gerar?",
+          "opts": [
+            "__init__, __repr__ e __eq__",
+            "Banco de dados",
+            "API",
+            "Ambiente virtual"
+          ],
+          "a": 0,
+          "hint": "Revise a fase DATACLASSES.",
+          "ex": "A resposta correta é: __init__, __repr__ e __eq__."
+        },
+        {
+          "type": "mcq",
+          "q": "Por que anotar os campos?",
+          "opts": [
+            "Executam testes",
+            "Definem estrutura e documentam tipos",
+            "Criam arquivos",
+            "Criptografam"
+          ],
+          "a": 1,
+          "hint": "Revise a fase DATACLASSES.",
+          "ex": "A resposta correta é: Definem estrutura e documentam tipos."
+        },
+        {
+          "type": "mcq",
+          "q": "Como criar lista padrão segura?",
+          "opts": [
+            "itens=[] compartilhado",
+            "Lista global",
+            "field(default_factory=list)",
+            "Texto vazio"
+          ],
+          "a": 2,
+          "hint": "Revise a fase DATACLASSES.",
+          "ex": "A resposta correta é: field(default_factory=list)."
+        },
+        {
+          "type": "mcq",
+          "q": "Quando __post_init__ roda?",
+          "opts": [
+            "Antes do import",
+            "Ao fechar",
+            "Somente em herança",
+            "Após o __init__ gerado"
+          ],
+          "a": 3,
+          "hint": "Revise a fase DATACLASSES.",
+          "ex": "A resposta correta é: Após o __init__ gerado."
+        },
+        {
+          "type": "mcq",
+          "q": "Risco de padrão mutável compartilhado?",
+          "opts": [
+            "Instâncias alteram a mesma coleção",
+            "Classe perde nome",
+            "Vira JSON",
+            "Nenhum"
+          ],
+          "a": 0,
+          "hint": "Revise a fase DATACLASSES.",
+          "ex": "A resposta correta é: Instâncias alteram a mesma coleção."
+        },
+        {
+          "type": "mcq",
+          "q": "O que frozen=True busca fazer?",
+          "opts": [
+            "Excluir classe",
+            "Impedir alterações normais após criação",
+            "Ocultar métodos",
+            "Congelar arquivo"
+          ],
+          "a": 1,
+          "hint": "Revise a fase DATACLASSES.",
+          "ex": "A resposta correta é: Impedir alterações normais após criação."
+        },
+        {
+          "type": "mcq",
+          "q": "Quando dataclass é adequada?",
+          "opts": [
+            "Sem atributos",
+            "Só para GUI",
+            "Quando a classe representa principalmente dados",
+            "Para substituir funções"
+          ],
+          "a": 2,
+          "hint": "Revise a fase DATACLASSES.",
+          "ex": "A resposta correta é: Quando a classe representa principalmente dados."
+        },
+        {
+          "type": "mcq",
+          "q": "Dataclass elimina validação?",
+          "opts": [
+            "Sim",
+            "Somente frozen",
+            "Apenas em listas",
+            "Não"
+          ],
+          "a": 3,
+          "hint": "Revise a fase DATACLASSES.",
+          "ex": "A resposta correta é: Não."
+        }
+      ]
+    },
+    {
+      "id": "s45",
+      "name": "MÉTODOS ESPECIAIS",
+      "group": "ORIENTAÇÃO A OBJETOS II",
+      "difficulty": "AVANÇADO",
+      "boss": "DUNDER-BLADE",
+      "color": "#494cc9",
+      "icon": "__",
+      "summary": "Integre objetos às operações naturais do Python.",
+      "lesson": [
+        {
+          "title": "Representação",
+          "body": "__repr__ produz uma descrição útil do objeto para diagnóstico.",
+          "code": "def __repr__(self):\n    return f'Produto({self.nome!r}, {self.preco!r})'"
+        },
+        {
+          "title": "Tamanho",
+          "body": "__len__ permite que len(objeto) tenha significado no domínio.",
+          "code": "def __len__(self):\n    return len(self.itens)"
+        },
+        {
+          "title": "Igualdade",
+          "body": "__eq__ define quando dois objetos representam o mesmo valor ou identidade.",
+          "code": "def __eq__(self, outro):\n    if not isinstance(outro, Produto):\n        return NotImplemented\n    return self.codigo == outro.codigo"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual método alimenta repr(objeto)?",
+          "opts": [
+            "__repr__",
+            "__len__",
+            "__iter__",
+            "__call__"
+          ],
+          "a": 0,
+          "hint": "Revise a fase MÉTODOS ESPECIAIS.",
+          "ex": "A resposta correta é: __repr__."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual método permite len(objeto)?",
+          "opts": [
+            "__size__",
+            "__len__",
+            "__count__",
+            "__repr__"
+          ],
+          "a": 1,
+          "hint": "Revise a fase MÉTODOS ESPECIAIS.",
+          "ex": "A resposta correta é: __len__."
+        },
+        {
+          "type": "mcq",
+          "q": "O que __eq__ define?",
+          "opts": [
+            "Soma",
+            "Iteração",
+            "Igualdade",
+            "Construção"
+          ],
+          "a": 2,
+          "hint": "Revise a fase MÉTODOS ESPECIAIS.",
+          "ex": "A resposta correta é: Igualdade."
+        },
+        {
+          "type": "mcq",
+          "q": "Por que retornar NotImplemented?",
+          "opts": [
+            "Encerra programa",
+            "Retorna falso sempre",
+            "Remove objeto",
+            "Permite comparação complementar"
+          ],
+          "a": 3,
+          "hint": "Revise a fase MÉTODOS ESPECIAIS.",
+          "ex": "A resposta correta é: Permite comparação complementar."
+        },
+        {
+          "type": "mcq",
+          "q": "O que !r faz em f-string?",
+          "opts": [
+            "Usa repr do valor",
+            "Arredonda",
+            "Remove aspas",
+            "Repete texto"
+          ],
+          "a": 0,
+          "hint": "Revise a fase MÉTODOS ESPECIAIS.",
+          "ex": "A resposta correta é: Usa repr do valor."
+        },
+        {
+          "type": "mcq",
+          "q": "Quando implementar __str__?",
+          "opts": [
+            "Para método privado",
+            "Para representação amigável",
+            "Para criar lista",
+            "Para conexão"
+          ],
+          "a": 1,
+          "hint": "Revise a fase MÉTODOS ESPECIAIS.",
+          "ex": "A resposta correta é: Para representação amigável."
+        },
+        {
+          "type": "mcq",
+          "q": "Cuidado ao definir igualdade?",
+          "opts": [
+            "Tudo é igual",
+            "Usar aleatório",
+            "Usar atributos coerentes com a identidade",
+            "Alterar durante comparação"
+          ],
+          "a": 2,
+          "hint": "Revise a fase MÉTODOS ESPECIAIS.",
+          "ex": "A resposta correta é: Usar atributos coerentes com a identidade."
+        },
+        {
+          "type": "mcq",
+          "q": "O que são métodos dunder?",
+          "opts": [
+            "Métodos sem nome",
+            "Funções SQL",
+            "Arquivos ocultos",
+            "Métodos com underscores duplos"
+          ],
+          "a": 3,
+          "hint": "Revise a fase MÉTODOS ESPECIAIS.",
+          "ex": "A resposta correta é: Métodos com underscores duplos."
+        }
+      ]
+    },
+    {
+      "id": "s46",
+      "name": "CLASSES ABSTRATAS",
+      "group": "ORIENTAÇÃO A OBJETOS II",
+      "difficulty": "AVANÇADO",
+      "boss": "ABSTRACT-WARDEN",
+      "color": "#4346bd",
+      "icon": "A",
+      "summary": "Defina contratos explícitos para famílias de implementações.",
+      "lesson": [
+        {
+          "title": "ABC",
+          "body": "Uma classe ABC pode declarar métodos que subclasses concretas precisam implementar.",
+          "code": "from abc import ABC, abstractmethod\nclass Exportador(ABC):\n    @abstractmethod\n    def exportar(self, dados):\n        pass"
+        },
+        {
+          "title": "Implementações",
+          "body": "Cada classe concreta cumpre o contrato usando sua própria estratégia.",
+          "code": "class ExportadorCSV(Exportador):\n    def exportar(self, dados):\n        return 'csv criado'"
+        },
+        {
+          "title": "Polimorfismo",
+          "body": "O código cliente usa o contrato sem verificar o tipo concreto.",
+          "code": "def gerar(exportador, dados):\n    return exportador.exportar(dados)"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual módulo fornece ABC?",
+          "opts": [
+            "abc",
+            "json",
+            "pathlib",
+            "csv"
+          ],
+          "a": 0,
+          "hint": "Revise a fase CLASSES ABSTRATAS.",
+          "ex": "A resposta correta é: abc."
+        },
+        {
+          "type": "mcq",
+          "q": "O que @abstractmethod exige?",
+          "opts": [
+            "Variável global",
+            "Implementação concreta",
+            "Arquivo externo",
+            "Herança múltipla"
+          ],
+          "a": 1,
+          "hint": "Revise a fase CLASSES ABSTRATAS.",
+          "ex": "A resposta correta é: Implementação concreta."
+        },
+        {
+          "type": "mcq",
+          "q": "Instancia classe abstrata incompleta?",
+          "opts": [
+            "Sim sempre",
+            "Só com JSON",
+            "Não normalmente",
+            "Só no terminal"
+          ],
+          "a": 2,
+          "hint": "Revise a fase CLASSES ABSTRATAS.",
+          "ex": "A resposta correta é: Não normalmente."
+        },
+        {
+          "type": "mcq",
+          "q": "Benefício do contrato comum?",
+          "opts": [
+            "Remover métodos",
+            "Dispensar testes",
+            "Evitar classes",
+            "Usar implementações da mesma forma"
+          ],
+          "a": 3,
+          "hint": "Revise a fase CLASSES ABSTRATAS.",
+          "ex": "A resposta correta é: Usar implementações da mesma forma."
+        },
+        {
+          "type": "mcq",
+          "q": "O que a subclasse concreta faz?",
+          "opts": [
+            "Implementa métodos abstratos",
+            "Remove a base",
+            "Altera Python",
+            "Usa eval"
+          ],
+          "a": 0,
+          "hint": "Revise a fase CLASSES ABSTRATAS.",
+          "ex": "A resposta correta é: Implementa métodos abstratos."
+        },
+        {
+          "type": "mcq",
+          "q": "Quando ABC é útil?",
+          "opts": [
+            "Lista curta",
+            "Várias implementações com interface obrigatória",
+            "Script de uma linha",
+            "Função simples"
+          ],
+          "a": 1,
+          "hint": "Revise a fase CLASSES ABSTRATAS.",
+          "ex": "A resposta correta é: Várias implementações com interface obrigatória."
+        },
+        {
+          "type": "mcq",
+          "q": "Como reduzir if por tipo?",
+          "opts": [
+            "Duplicar condições",
+            "Usar globais",
+            "Usar método polimórfico",
+            "Converter em texto"
+          ],
+          "a": 2,
+          "hint": "Revise a fase CLASSES ABSTRATAS.",
+          "ex": "A resposta correta é: Usar método polimórfico."
+        },
+        {
+          "type": "mcq",
+          "q": "ABC precisa conter toda a lógica?",
+          "opts": [
+            "Sim",
+            "Somente SQL",
+            "Apenas properties",
+            "Não"
+          ],
+          "a": 3,
+          "hint": "Revise a fase CLASSES ABSTRATAS.",
+          "ex": "A resposta correta é: Não."
+        }
+      ]
+    },
+    {
+      "id": "s47",
+      "name": "ITERADORES",
+      "group": "ORIENTAÇÃO A OBJETOS II",
+      "difficulty": "AVANÇADO",
+      "boss": "ITER-SENTINEL",
+      "color": "#3d40b2",
+      "icon": "↻",
+      "summary": "Crie objetos percorríveis seguindo o protocolo de iteração.",
+      "lesson": [
+        {
+          "title": "Iterable e iterador",
+          "body": "iter(objeto) chama __iter__; next(iterador) chama __next__.",
+          "code": "iterador = iter([10, 20])\nprint(next(iterador))"
+        },
+        {
+          "title": "Final da sequência",
+          "body": "__next__ lança StopIteration quando não existem outros valores.",
+          "code": "def __next__(self):\n    if self.indice >= len(self.dados):\n        raise StopIteration"
+        },
+        {
+          "title": "Geradores",
+          "body": "Uma função com yield cria um iterador sem controle manual de índice.",
+          "code": "def pares(limite):\n    for numero in range(0, limite, 2):\n        yield numero"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que iter(objeto) procura?",
+          "opts": [
+            "__iter__",
+            "__len__",
+            "__repr__",
+            "__eq__"
+          ],
+          "a": 0,
+          "hint": "Revise a fase ITERADORES.",
+          "ex": "A resposta correta é: __iter__."
+        },
+        {
+          "type": "mcq",
+          "q": "O que next(iterador) chama?",
+          "opts": [
+            "__iter__",
+            "__next__",
+            "__init__",
+            "__str__"
+          ],
+          "a": 1,
+          "hint": "Revise a fase ITERADORES.",
+          "ex": "A resposta correta é: __next__."
+        },
+        {
+          "type": "mcq",
+          "q": "Como sinalizar o fim?",
+          "opts": [
+            "ValueError",
+            "False obrigatório",
+            "StopIteration",
+            "SystemExit"
+          ],
+          "a": 2,
+          "hint": "Revise a fase ITERADORES.",
+          "ex": "A resposta correta é: StopIteration."
+        },
+        {
+          "type": "mcq",
+          "q": "Quem trata StopIteration no for?",
+          "opts": [
+            "input",
+            "JSON",
+            "SQLite",
+            "O próprio loop"
+          ],
+          "a": 3,
+          "hint": "Revise a fase ITERADORES.",
+          "ex": "A resposta correta é: O próprio loop."
+        },
+        {
+          "type": "mcq",
+          "q": "O que yield produz?",
+          "opts": [
+            "Um valor por vez preservando estado",
+            "Lista completa",
+            "Classe abstrata",
+            "Erro"
+          ],
+          "a": 0,
+          "hint": "Revise a fase ITERADORES.",
+          "ex": "A resposta correta é: Um valor por vez preservando estado."
+        },
+        {
+          "type": "mcq",
+          "q": "Vantagem da produção sob demanda?",
+          "opts": [
+            "Sempre mais velocidade",
+            "Menor memória em sequências grandes",
+            "Remove dados",
+            "Cria arquivo"
+          ],
+          "a": 1,
+          "hint": "Revise a fase ITERADORES.",
+          "ex": "A resposta correta é: Menor memória em sequências grandes."
+        },
+        {
+          "type": "mcq",
+          "q": "Iterable precisa ser seu próprio iterador?",
+          "opts": [
+            "Sim sempre",
+            "Somente listas",
+            "Não",
+            "Só geradores"
+          ],
+          "a": 2,
+          "hint": "Revise a fase ITERADORES.",
+          "ex": "A resposta correta é: Não."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual construção consome iterável?",
+          "opts": [
+            "class",
+            "import",
+            "try sem loop",
+            "for"
+          ],
+          "a": 3,
+          "hint": "Revise a fase ITERADORES.",
+          "ex": "A resposta correta é: for."
+        }
+      ]
+    },
+    {
+      "id": "s48",
+      "name": "PROJETO ORIENTADO A OBJETOS",
+      "group": "ORIENTAÇÃO A OBJETOS II",
+      "difficulty": "AVANÇADO",
+      "boss": "MODEL-OMEGA",
+      "color": "#373aa6",
+      "icon": "Ω",
+      "summary": "Modele uma aplicação com entidades, serviços, persistência e testes.",
+      "lesson": [
+        {
+          "title": "Entidades",
+          "body": "Entidades protegem estado e oferecem operações de domínio.",
+          "code": "class Tarefa:\n    def concluir(self):\n        if self.concluida:\n            raise ValueError('Já concluída')\n        self.concluida = True"
+        },
+        {
+          "title": "Serviços",
+          "body": "Serviços coordenam entidades e repositórios em um caso de uso.",
+          "code": "class ConcluirTarefa:\n    def __init__(self, repositorio):\n        self.repositorio = repositorio"
+        },
+        {
+          "title": "Testes",
+          "body": "Teste resultados e mudanças de estado observáveis.",
+          "code": "tarefa.concluir()\nassert tarefa.concluida is True"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Onde fica a regra 'não concluir duas vezes'?",
+          "opts": [
+            "Na entidade Tarefa",
+            "Na cor do botão",
+            "Só no banco",
+            "Em global"
+          ],
+          "a": 0,
+          "hint": "Revise a fase PROJETO ORIENTADO A OBJETOS.",
+          "ex": "A resposta correta é: Na entidade Tarefa."
+        },
+        {
+          "type": "mcq",
+          "q": "Papel do serviço?",
+          "opts": [
+            "Guardar HTML",
+            "Coordenar caso de uso",
+            "Substituir entidades",
+            "Criar cores"
+          ],
+          "a": 1,
+          "hint": "Revise a fase PROJETO ORIENTADO A OBJETOS.",
+          "ex": "A resposta correta é: Coordenar caso de uso."
+        },
+        {
+          "type": "mcq",
+          "q": "Papel do repositório?",
+          "opts": [
+            "Formatar botões",
+            "Validar CSS",
+            "Carregar e salvar entidades",
+            "Tocar áudio"
+          ],
+          "a": 2,
+          "hint": "Revise a fase PROJETO ORIENTADO A OBJETOS.",
+          "ex": "A resposta correta é: Carregar e salvar entidades."
+        },
+        {
+          "type": "mcq",
+          "q": "O que a interface faz?",
+          "opts": [
+            "Contém todas as regras",
+            "Acessa internos livremente",
+            "Concatena SQL",
+            "Recebe entrada, chama caso e exibe saída"
+          ],
+          "a": 3,
+          "hint": "Revise a fase PROJETO ORIENTADO A OBJETOS.",
+          "ex": "A resposta correta é: Recebe entrada, chama caso e exibe saída."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual teste é mais valioso?",
+          "opts": [
+            "Comportamento e estado resultante",
+            "Espaços do arquivo",
+            "Detalhe privado sem motivo",
+            "Sem asserção"
+          ],
+          "a": 0,
+          "hint": "Revise a fase PROJETO ORIENTADO A OBJETOS.",
+          "ex": "A resposta correta é: Comportamento e estado resultante."
+        },
+        {
+          "type": "mcq",
+          "q": "Como trocar SQLite por memória no teste?",
+          "opts": [
+            "Editar entidade",
+            "Injetar outro repositório",
+            "Usar global",
+            "Remover serviço"
+          ],
+          "a": 1,
+          "hint": "Revise a fase PROJETO ORIENTADO A OBJETOS.",
+          "ex": "A resposta correta é: Injetar outro repositório."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual estrutura reduz acoplamento?",
+          "opts": [
+            "Um arquivo com tudo",
+            "Funções globais",
+            "Entidade, serviço e repositório separados",
+            "Tela com SQL"
+          ],
+          "a": 2,
+          "hint": "Revise a fase PROJETO ORIENTADO A OBJETOS.",
+          "ex": "A resposta correta é: Entidade, serviço e repositório separados."
+        },
+        {
+          "type": "mcq",
+          "q": "Quando o projeto está concluído?",
+          "opts": [
+            "Quando tem muitas classes",
+            "Sem documentação",
+            "Atributos públicos",
+            "Fluxo principal funciona e está testado"
+          ],
+          "a": 3,
+          "hint": "Revise a fase PROJETO ORIENTADO A OBJETOS.",
+          "ex": "A resposta correta é: Fluxo principal funciona e está testado."
         }
       ]
     },
