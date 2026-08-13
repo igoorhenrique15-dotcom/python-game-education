@@ -1,6 +1,6 @@
 {
   "title": "PYTHON // BLACK BUSTER",
-  "version": 18,
+  "version": 19,
   "stages": [
     {
       "id": "s1",
@@ -10578,142 +10578,706 @@
       ]
     },
     {
-      "id": "s20",
-      "name": "PROJETO FINAL",
-      "group": "APLICAÇÕES REAIS",
-      "difficulty": "FINAL",
-      "boss": "BLACK-CORE OMEGA",
-      "color": "#ffffff",
-      "icon": "Ω",
-      "summary": "Integre as 64 fases em uma aplicação testada, documentada e pronta para entrega.",
+      "id": "s77",
+      "name": "TIPAGEM AVANÇADA",
+      "group": "ENGENHARIA PROFISSIONAL",
+      "difficulty": "ESPECIALISTA",
+      "boss": "TYPE-ARCHITECT",
+      "color": "#f97316",
+      "icon": "T",
+      "summary": "Modele contratos flexíveis com Protocol, genéricos e tipos parametrizados.",
       "lesson": [
         {
-          "title": "Arquitetura simples",
-          "body": "Um projeto completo não precisa começar grande. Separe responsabilidade: entrada de dados, regras de negócio, persistência e interface.",
-          "code": "projeto/\n  main.py\n  models.py\n  services.py\n  storage.py\n  data/"
+          "title": "Protocol descreve comportamento",
+          "body": "Protocol permite tipagem estrutural: um objeto atende ao contrato quando oferece os métodos exigidos, sem precisar herdar explicitamente.",
+          "code": "from typing import Protocol\nclass Salvavel(Protocol):\n    def salvar(self) -> None: ...\n\ndef persistir(item: Salvavel) -> None:\n    item.salvar()"
         },
         {
-          "title": "Fluxo de execução",
-          "body": "main.py deve coordenar o programa, enquanto regras específicas ficam em funções e classes menores e testáveis.",
-          "code": "def main():\n    dados = carregar()\n    app = Aplicacao(dados)\n    app.executar()\n\nif __name__ == '__main__':\n    main()"
+          "title": "TypeVar preserva relações",
+          "body": "Uma variável de tipo conecta entrada e saída, expressando que o retorno terá o mesmo tipo recebido.",
+          "code": "from typing import TypeVar\nT = TypeVar('T')\ndef primeiro(itens: list[T]) -> T:\n    return itens[0]"
         },
         {
-          "title": "Checklist final de produto",
-          "body": "Valide regras, persistência, logs, testes, configuração, empacotamento e documentação. A entrega deve poder ser instalada, usada e recuperada.",
-          "code": "# checklist final\n# [x] entradas validadas\n# [x] persistência segura\n# [x] logs e testes\n# [x] configuração documentada\n# [x] artefato testado\n# [x] rollback preparado"
+          "title": "Generic cria estruturas reutilizáveis",
+          "body": "Classes genéricas mantêm informação de tipo para diferentes conteúdos e ajudam verificadores estáticos.",
+          "code": "from typing import Generic, TypeVar\nT = TypeVar('T')\nclass Caixa(Generic[T]):\n    def __init__(self, valor: T):\n        self.valor = valor"
         }
       ],
       "questions": [
         {
           "type": "mcq",
-          "q": "Qual arquivo costuma ser o ponto de entrada?",
+          "q": "O que Protocol expressa?",
           "opts": [
-            "main.py",
-            "README apenas",
-            "data.json",
-            "style.css"
+            "Um contrato baseado em comportamento",
+            "Um processo do sistema",
+            "Um formato JSON",
+            "Um banco de dados"
           ],
           "a": 0,
-          "hint": "É uma convenção comum em projetos Python.",
-          "ex": "main.py costuma coordenar o início do programa.",
+          "hint": "Revise tipagem avançada.",
+          "ex": "A resposta correta é: Um contrato baseado em comportamento.",
           "format": "CONCEITO"
         },
         {
           "type": "mcq",
-          "q": "Qual vantagem de separar regras de negócio da interface?",
+          "q": "Para que serve TypeVar?",
           "opts": [
-            "Facilita manutenção e testes",
-            "Aumenta duplicação",
-            "Impede reutilização",
-            "Remove necessidade de funções"
+            "Executar testes",
+            "Relacionar tipos em uma assinatura",
+            "Criar ambiente virtual",
+            "Abrir arquivos"
           ],
-          "a": 0,
-          "hint": "Menor acoplamento.",
-          "ex": "Separação de responsabilidades melhora manutenção.",
+          "a": 1,
+          "hint": "Revise tipagem avançada.",
+          "ex": "A resposta correta é: Relacionar tipos em uma assinatura.",
           "format": "CONCEITO"
         },
         {
-          "type": "mcq",
-          "q": "if __name__ == '__main__' serve para:",
+          "type": "code",
+          "q": "Qual anotação indica lista de qualquer T preservado?",
           "opts": [
-            "Executar um bloco quando o arquivo é rodado diretamente",
-            "Instalar Python",
-            "Criar JSON",
-            "Declarar classe"
+            "list[Any] apenas",
+            "Generic[list]",
+            "list[T]",
+            "Protocol[T]()"
           ],
-          "a": 0,
-          "hint": "Distingue execução direta de importação.",
-          "ex": "O bloco roda quando o módulo é executado como programa principal.",
+          "a": 2,
+          "hint": "Revise tipagem avançada.",
+          "ex": "A resposta correta é: list[T].",
           "format": "LEITURA DE CÓDIGO"
         },
         {
           "type": "mcq",
-          "q": "Qual prática reduz bugs em automações?",
+          "q": "Uma classe precisa herdar Protocol para atender a um protocolo?",
           "opts": [
-            "Validar entradas e tratar exceções esperadas",
-            "Ignorar erros",
-            "Duplicar código",
-            "Usar variáveis sem nome claro"
+            "Sempre",
+            "Somente em runtime",
+            "Apenas se tiver dataclass",
+            "Não, basta possuir o comportamento exigido"
           ],
-          "a": 0,
-          "hint": "Previsibilidade importa.",
-          "ex": "Validação e tratamento de erros aumentam robustez.",
+          "a": 3,
+          "hint": "Revise tipagem avançada.",
+          "ex": "A resposta correta é: Não, basta possuir o comportamento exigido.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
           "type": "mcq",
-          "q": "Objetivo final desta trilha:",
+          "q": "Qual erro de projeto reduz o valor da tipagem?",
           "opts": [
-            "Construir programas Python organizados e compreender o código",
-            "Decorar sintaxe sem prática",
-            "Evitar funções",
-            "Usar apenas print"
+            "Usar Any em todos os limites",
+            "Anotar retornos",
+            "Criar Protocol pequeno",
+            "Executar verificador"
           ],
           "a": 0,
-          "hint": "O curso evolui do básico para projetos.",
-          "ex": "A meta é compreender e construir programas reais.",
+          "hint": "Revise tipagem avançada.",
+          "ex": "A resposta correta é: Usar Any em todos os limites.",
           "format": "ENCONTRE O ERRO"
         },
         {
           "type": "mcq",
-          "q": "Qual é o primeiro passo adequado antes de programar um projeto?",
+          "q": "Como tipar uma caixa que guarda int?",
           "opts": [
-            "Definir problema, entradas e resultado esperado",
-            "Escolher nomes aleatórios",
-            "Instalar todas as bibliotecas",
-            "Escrever código sem regras"
+            "Caixa(any)",
+            "Caixa[int]",
+            "int[Caixa]",
+            "Generic.int"
           ],
-          "a": 0,
-          "hint": "O código deve responder a uma necessidade definida.",
-          "ex": "Entender o problema orienta as decisões seguintes.",
+          "a": 1,
+          "hint": "Revise tipagem avançada.",
+          "ex": "A resposta correta é: Caixa[int].",
           "format": "CORRIJA O ERRO"
         },
         {
           "type": "mcq",
-          "q": "Por que dividir um programa em funções pequenas?",
+          "q": "Quando um Protocol é melhor que uma classe base rígida?",
           "opts": [
-            "Facilita teste, leitura e manutenção",
-            "Aumenta obrigatoriamente a velocidade",
-            "Elimina qualquer erro",
-            "Impede uso de variáveis"
+            "Quando exige estado compartilhado",
+            "Quando quer executar subprocess",
+            "Quando diferentes objetos só precisam cumprir uma interface",
+            "Quando não há métodos"
           ],
-          "a": 0,
-          "hint": "Cada função pode ter uma responsabilidade clara.",
-          "ex": "Blocos menores são mais fáceis de compreender e testar.",
+          "a": 2,
+          "hint": "Revise tipagem avançada.",
+          "ex": "A resposta correta é: Quando diferentes objetos só precisam cumprir uma interface.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
           "type": "mcq",
-          "q": "O que deve acontecer quando uma entrada do projeto é inválida?",
+          "q": "Qual benefício principal da tipagem estática?",
           "opts": [
-            "Ser validada e tratada com mensagem clara",
-            "Ser aceita silenciosamente",
-            "Apagar todos os dados",
-            "Encerrar o computador"
+            "Eliminar todos os bugs",
+            "Acelerar CPU sempre",
+            "Substituir testes",
+            "Detectar incompatibilidades antes da execução"
+          ],
+          "a": 3,
+          "hint": "Revise tipagem avançada.",
+          "ex": "A resposta correta é: Detectar incompatibilidades antes da execução.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "s78",
+      "name": "EMPACOTAMENTO MODERNO",
+      "group": "ENGENHARIA PROFISSIONAL",
+      "difficulty": "ESPECIALISTA",
+      "boss": "PACKAGE-SMITH",
+      "color": "#ea580c",
+      "icon": "📦",
+      "summary": "Estruture um projeto instalável com pyproject.toml, ambientes e distribuições reproduzíveis.",
+      "lesson": [
+        {
+          "title": "pyproject.toml centraliza configuração",
+          "body": "A seção [build-system] declara como construir o pacote e [project] descreve nome, versão e dependências.",
+          "code": "[build-system]\nrequires = ['setuptools>=68']\nbuild-backend = 'setuptools.build_meta'\n\n[project]\nname = 'meu-app'\nversion = '1.0.0'"
+        },
+        {
+          "title": "Layout src evita imports acidentais",
+          "body": "Colocar o pacote em src/meu_app separa código importável de arquivos do repositório e incentiva testar a versão instalada.",
+          "code": "meu-app/\n├── pyproject.toml\n├── src/meu_app/__init__.py\n└── tests/"
+        },
+        {
+          "title": "Wheel é uma distribuição construída",
+          "body": "python -m build gera sdist e wheel em dist. O artefato pode ser instalado e validado em um ambiente limpo antes da publicação.",
+          "code": "python -m build\npython -m pip install dist/meu_app-1.0.0-py3-none-any.whl"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual arquivo centraliza metadados modernos do projeto?",
+          "opts": [
+            "pyproject.toml",
+            "requirements.exe",
+            "package.py.ini",
+            "setup.lock apenas"
           ],
           "a": 0,
-          "hint": "Um programa confiável controla entradas inesperadas.",
-          "ex": "Validação e tratamento evitam resultados incorretos ou falhas confusas.",
+          "hint": "Revise empacotamento moderno.",
+          "ex": "A resposta correta é: pyproject.toml.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que [build-system] declara?",
+          "opts": [
+            "A rota HTTP",
+            "Ferramentas necessárias para construir o pacote",
+            "A senha do repositório",
+            "Os dados do usuário"
+          ],
+          "a": 1,
+          "hint": "Revise empacotamento moderno.",
+          "ex": "A resposta correta é: Ferramentas necessárias para construir o pacote.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Onde o pacote fica no layout src?",
+          "opts": [
+            "tests/pacote",
+            "dist/pacote",
+            "src/pacote",
+            "root/.venv"
+          ],
+          "a": 2,
+          "hint": "Revise empacotamento moderno.",
+          "ex": "A resposta correta é: src/pacote.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que é um wheel?",
+          "opts": [
+            "Um editor",
+            "Um ambiente virtual",
+            "Um servidor",
+            "Uma distribuição construída instalável"
+          ],
+          "a": 3,
+          "hint": "Revise empacotamento moderno.",
+          "ex": "A resposta correta é: Uma distribuição construída instalável.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual problema ocorre ao testar apenas a pasta local?",
+          "opts": [
+            "Imports podem funcionar sem validar o pacote instalado",
+            "Python para de compilar",
+            "Wheel vira sdist",
+            "O Git é removido"
+          ],
+          "a": 0,
+          "hint": "Revise empacotamento moderno.",
+          "ex": "A resposta correta é: Imports podem funcionar sem validar o pacote instalado.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Como testar a entrega com mais confiança?",
+          "opts": [
+            "Instalar globalmente sem versão",
+            "Instalar o wheel em ambiente limpo",
+            "Apagar pyproject",
+            "Usar shell=True"
+          ],
+          "a": 1,
+          "hint": "Revise empacotamento moderno.",
+          "ex": "A resposta correta é: Instalar o wheel em ambiente limpo.",
+          "format": "CORRIJA O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Onde declarar dependências de runtime no padrão atual?",
+          "opts": [
+            "No README apenas",
+            "Em comentários",
+            "Na seção project.dependencies",
+            "Dentro dos testes"
+          ],
+          "a": 2,
+          "hint": "Revise empacotamento moderno.",
+          "ex": "A resposta correta é: Na seção project.dependencies.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual comando padrão constrói sdist e wheel?",
+          "opts": [
+            "python run setup",
+            "pip freeze build",
+            "venv --wheel",
+            "python -m build"
+          ],
+          "a": 3,
+          "hint": "Revise empacotamento moderno.",
+          "ex": "A resposta correta é: python -m build.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "s79",
+      "name": "SEGURANÇA E VALIDAÇÃO",
+      "group": "ENGENHARIA PROFISSIONAL",
+      "difficulty": "ESPECIALISTA",
+      "boss": "TRUST-BARRIER",
+      "color": "#dc2626",
+      "icon": "🛡",
+      "summary": "Trate toda entrada como não confiável, proteja segredos e reduza superfícies de ataque.",
+      "lesson": [
+        {
+          "title": "Valide na fronteira",
+          "body": "Converta, limite e rejeite dados inválidos assim que entram no sistema. A regra deve ser explícita e testável.",
+          "code": "def validar_idade(valor: str) -> int:\n    idade = int(valor)\n    if not 0 <= idade <= 130:\n        raise ValueError('idade inválida')\n    return idade"
+        },
+        {
+          "title": "Use parâmetros em SQL",
+          "body": "Nunca concatene entrada do usuário em comandos SQL. Placeholders permitem que o driver trate valores como dados.",
+          "code": "cursor.execute(\n    'SELECT * FROM usuarios WHERE email = ?',\n    (email,)\n)"
+        },
+        {
+          "title": "Segredos não pertencem ao código",
+          "body": "Leia chaves do ambiente ou de um gerenciador de segredos, limite permissões e evite registrar valores sensíveis.",
+          "code": "import os\ntoken = os.environ['API_TOKEN']\n# Nunca faça print(token)."
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Onde a entrada externa deve ser validada?",
+          "opts": [
+            "Na fronteira do sistema",
+            "Só após salvar",
+            "Apenas na interface",
+            "Nunca"
+          ],
+          "a": 0,
+          "hint": "Revise segurança e validação.",
+          "ex": "A resposta correta é: Na fronteira do sistema.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Como evitar injeção SQL?",
+          "opts": [
+            "Escapar manualmente sempre",
+            "Usar consultas parametrizadas",
+            "Concatenar strings",
+            "Usar eval"
+          ],
+          "a": 1,
+          "hint": "Revise segurança e validação.",
+          "ex": "A resposta correta é: Usar consultas parametrizadas.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual fonte é adequada para um segredo em produção?",
+          "opts": [
+            "Constante no Git",
+            "Comentário no código",
+            "Variável de ambiente ou cofre de segredos",
+            "Nome do arquivo"
+          ],
+          "a": 2,
+          "hint": "Revise segurança e validação.",
+          "ex": "A resposta correta é: Variável de ambiente ou cofre de segredos.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que significa menor privilégio?",
+          "opts": [
+            "Dar acesso total",
+            "Remover autenticação",
+            "Confiar em toda entrada",
+            "Conceder apenas permissões necessárias"
+          ],
+          "a": 3,
+          "hint": "Revise segurança e validação.",
+          "ex": "A resposta correta é: Conceder apenas permissões necessárias.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual falha existe em eval(texto_do_usuario)?",
+          "opts": [
+            "Executa código arbitrário",
+            "Só aceita números",
+            "Sempre retorna None",
+            "Protege comandos"
+          ],
+          "a": 0,
+          "hint": "Revise segurança e validação.",
+          "ex": "A resposta correta é: Executa código arbitrário.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Como aceitar somente idades plausíveis?",
+          "opts": [
+            "Converter sem checar",
+            "Converter e validar um intervalo",
+            "Usar bool",
+            "Salvar texto cru"
+          ],
+          "a": 1,
+          "hint": "Revise segurança e validação.",
+          "ex": "A resposta correta é: Converter e validar um intervalo.",
+          "format": "CORRIJA O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que deve ser omitido dos logs?",
+          "opts": [
+            "Horário",
+            "Código de status",
+            "Tokens, senhas e dados sensíveis",
+            "Mensagem de erro segura"
+          ],
+          "a": 2,
+          "hint": "Revise segurança e validação.",
+          "ex": "A resposta correta é: Tokens, senhas e dados sensíveis.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual prática ajuda dependências?",
+          "opts": [
+            "Nunca atualizar",
+            "Instalar qualquer pacote",
+            "Ignorar versões",
+            "Revisar e atualizar vulnerabilidades conhecidas"
+          ],
+          "a": 3,
+          "hint": "Revise segurança e validação.",
+          "ex": "A resposta correta é: Revisar e atualizar vulnerabilidades conhecidas.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "s20",
+      "name": "ARQUITETURA E ENTREGA",
+      "group": "ENGENHARIA PROFISSIONAL",
+      "difficulty": "ESPECIALISTA",
+      "boss": "DELIVERY-GRID",
+      "color": "#c2410c",
+      "icon": "CI",
+      "summary": "Organize limites, configuração e uma esteira curta de qualidade para entregar mudanças confiáveis.",
+      "lesson": [
+        {
+          "title": "Separe regras de infraestrutura",
+          "body": "Mantenha regras do domínio independentes de banco, interface ou APIs externas. Passe dependências pelas fronteiras para facilitar testes.",
+          "code": "class ServicoPedido:\n    def __init__(self, repositorio):\n        self.repositorio = repositorio\n\n    def criar(self, pedido):\n        validar(pedido)\n        return self.repositorio.salvar(pedido)"
+        },
+        {
+          "title": "Configuração varia por ambiente",
+          "body": "Código permanece igual; endpoints, chaves e modos mudam por configuração externa validada no início da aplicação.",
+          "code": "import os\nMODO = os.getenv('MODO', 'desenvolvimento')\nif MODO not in {'desenvolvimento', 'producao'}:\n    raise ValueError('MODO inválido')"
+        },
+        {
+          "title": "Automatize o caminho mínimo",
+          "body": "Uma esteira útil instala o pacote, verifica estilo e tipos, executa testes e só gera o artefato quando tudo passa.",
+          "code": "python -m pip install -e .[dev]\npython -m ruff check .\npython -m mypy src\npython -m pytest\npython -m build"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual separação facilita testar regras?",
+          "opts": [
+            "Domínio separado de infraestrutura",
+            "Tudo dentro da interface",
+            "SQL espalhado",
+            "Globals compartilhados"
+          ],
+          "a": 0,
+          "hint": "Revise arquitetura e entrega contínua.",
+          "ex": "A resposta correta é: Domínio separado de infraestrutura.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Como fornecer um repositório ao serviço?",
+          "opts": [
+            "Importar segredo",
+            "Injetar a dependência",
+            "Usar eval",
+            "Criar thread"
+          ],
+          "a": 1,
+          "hint": "Revise arquitetura e entrega contínua.",
+          "ex": "A resposta correta é: Injetar a dependência.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Onde deve ficar uma URL que muda por ambiente?",
+          "opts": [
+            "Em cada função",
+            "No nome do pacote",
+            "Em configuração externa validada",
+            "Dentro do teste apenas"
+          ],
+          "a": 2,
+          "hint": "Revise arquitetura e entrega contínua.",
+          "ex": "A resposta correta é: Em configuração externa validada.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que uma esteira deve fazer ao falhar um teste?",
+          "opts": [
+            "Publicar mesmo assim",
+            "Apagar histórico",
+            "Ignorar saída",
+            "Interromper a entrega"
+          ],
+          "a": 3,
+          "hint": "Revise arquitetura e entrega contínua.",
+          "ex": "A resposta correta é: Interromper a entrega.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual problema existe em misturar regra e banco na mesma função?",
+          "opts": [
+            "Acoplamento dificulta teste e mudança",
+            "A função fica genérica",
+            "O wheel melhora",
+            "O tipo vira Protocol"
+          ],
+          "a": 0,
+          "hint": "Revise arquitetura e entrega contínua.",
+          "ex": "A resposta correta é: Acoplamento dificulta teste e mudança.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Como reduzir acoplamento externo?",
+          "opts": [
+            "Usar variáveis globais",
+            "Definir uma interface pequena e injetar implementação",
+            "Duplicar cliente",
+            "Importar tudo"
+          ],
+          "a": 1,
+          "hint": "Revise arquitetura e entrega contínua.",
+          "ex": "A resposta correta é: Definir uma interface pequena e injetar implementação.",
+          "format": "CORRIJA O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual ordem faz sentido na automação?",
+          "opts": [
+            "Publicar, depois testar",
+            "Gerar senha, depois logar",
+            "Verificar qualidade e testes antes de construir artefato",
+            "Construir em toda pergunta"
+          ],
+          "a": 2,
+          "hint": "Revise arquitetura e entrega contínua.",
+          "ex": "A resposta correta é: Verificar qualidade e testes antes de construir artefato.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é uma entrega reproduzível?",
+          "opts": [
+            "Depende da máquina do autor",
+            "Exige ajustes secretos manuais",
+            "Não fixa metadados",
+            "Pode ser construída e testada com passos documentados"
+          ],
+          "a": 3,
+          "hint": "Revise arquitetura e entrega contínua.",
+          "ex": "A resposta correta é: Pode ser construída e testada com passos documentados.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "s80",
+      "name": "PROJETO FINAL PROFISSIONAL",
+      "group": "ENGENHARIA PROFISSIONAL",
+      "difficulty": "BOSS FINAL",
+      "boss": "PYTHON-MASTER",
+      "color": "#b91c1c",
+      "icon": "🏆",
+      "summary": "Integre as 80 fases em uma aplicação Python segura, testada, empacotada e mensurável.",
+      "lesson": [
+        {
+          "title": "Defina uma entrega verificável",
+          "body": "Escolha um problema real, descreva usuário, entradas, saídas e critérios de aceite. Divida a solução em módulos pequenos.",
+          "code": "# README\n## Problema\n## Como executar\n## Critérios de aceite\n## Decisões técnicas"
+        },
+        {
+          "title": "Construa com qualidade",
+          "body": "Implemente validação nas fronteiras, erros claros, testes automatizados e logs sem dados sensíveis.",
+          "code": "src/meu_app/\ntests/\npyproject.toml\nREADME.md\n\npython -m pytest"
+        },
+        {
+          "title": "Empacote, meça e apresente",
+          "body": "Gere um wheel, instale em ambiente limpo, execute os testes e documente limitações, desempenho e próximos passos.",
+          "code": "python -m build\npython -m pip install dist/*.whl\npython -m pytest\npython -m meu_app"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que deve orientar o projeto final?",
+          "opts": [
+            "Um problema e critérios de aceite claros",
+            "A maior quantidade de arquivos",
+            "Somente efeitos visuais",
+            "Um único script sem objetivo"
+          ],
+          "a": 0,
+          "hint": "Revise projeto final profissional.",
+          "ex": "A resposta correta é: Um problema e critérios de aceite claros.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual estrutura facilita manutenção?",
+          "opts": [
+            "Tudo em global",
+            "Módulos com responsabilidades definidas",
+            "Código duplicado",
+            "Imports circulares"
+          ],
+          "a": 1,
+          "hint": "Revise projeto final profissional.",
+          "ex": "A resposta correta é: Módulos com responsabilidades definidas.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual comando valida o pacote em testes automatizados?",
+          "opts": [
+            "python README.md",
+            "git test",
+            "python -m pytest",
+            "wheel --open"
+          ],
+          "a": 2,
+          "hint": "Revise projeto final profissional.",
+          "ex": "A resposta correta é: python -m pytest.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que deve acontecer com entradas externas?",
+          "opts": [
+            "Ser aceitas sem limite",
+            "Ser enviadas ao eval",
+            "Ser registradas com segredo",
+            "Ser convertidas e validadas na fronteira"
+          ],
+          "a": 3,
+          "hint": "Revise projeto final profissional.",
+          "ex": "A resposta correta é: Ser convertidas e validadas na fronteira.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual entrega está incompleta?",
+          "opts": [
+            "Código sem instruções de execução e sem testes",
+            "Wheel testado em ambiente limpo",
+            "README com decisões",
+            "Tratamento de erro explícito"
+          ],
+          "a": 0,
+          "hint": "Revise projeto final profissional.",
+          "ex": "A resposta correta é: Código sem instruções de execução e sem testes.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Como comprovar qualidade antes da entrega?",
+          "opts": [
+            "Pelo número de linhas",
+            "Executar testes e critérios de aceite",
+            "Ocultar falhas",
+            "Desabilitar validação"
+          ],
+          "a": 1,
+          "hint": "Revise projeto final profissional.",
+          "ex": "A resposta correta é: Executar testes e critérios de aceite.",
+          "format": "CORRIJA O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que apresentar sobre desempenho?",
+          "opts": [
+            "Uma opinião apenas",
+            "Todas as micro-otimizações",
+            "Medições do gargalo relevante e decisão tomada",
+            "Somente tempo total estimado"
+          ],
+          "a": 2,
+          "hint": "Revise projeto final profissional.",
+          "ex": "A resposta correta é: Medições do gargalo relevante e decisão tomada.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Quando o projeto pode ser considerado concluído?",
+          "opts": [
+            "Quando roda uma vez",
+            "Quando não tem README",
+            "Quando usa toda biblioteca",
+            "Quando é reproduzível, testado, documentado e atende aos critérios"
+          ],
+          "a": 3,
+          "hint": "Revise projeto final profissional.",
+          "ex": "A resposta correta é: Quando é reproduzível, testado, documentado e atende aos critérios.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -11096,7 +11660,7 @@
       "subtitle": "Transforme rotinas repetitivas em fluxos confiáveis.",
       "color": "#22c55e",
       "icon": "⚙",
-      "unlockStage": "s20",
+      "unlockStage": "s80",
       "missions": [
         {
           "id": "auto-1",
@@ -11104,7 +11668,7 @@
           "category": "AUTOMAÇÃO · MISSÃO 1",
           "color": "#22c55e",
           "icon": "⌁",
-          "unlockStage": "s20",
+          "unlockStage": "s80",
           "brief": "Planeje uma automação que classifica centenas de arquivos com prévia antes de qualquer alteração.",
           "outcome": "pathlib, regras por extensão, dry-run e logs de operação.",
           "starter": "from pathlib import Path\nimport logging\n\norigem = Path('entrada')\ndry_run = True\n\nfor arquivo in origem.iterdir():\n    # planeje o destino e registre a ação\n    pass",
@@ -11150,7 +11714,7 @@
           "category": "AUTOMAÇÃO · MISSÃO 2",
           "color": "#16a34a",
           "icon": "▦",
-          "unlockStage": "s20",
+          "unlockStage": "s80",
           "prerequisite": "auto-1",
           "brief": "Consolide vários CSVs de uma pasta em um resumo único e verificável.",
           "outcome": "glob, DictReader, agregação, validação e saída CSV.",
@@ -11197,7 +11761,7 @@
           "category": "AUTOMAÇÃO · MISSÃO 3",
           "color": "#15803d",
           "icon": "⬡",
-          "unlockStage": "s20",
+          "unlockStage": "s80",
           "prerequisite": "auto-2",
           "brief": "Crie um backup com data no nome, seleção explícita de pastas e verificação do arquivo final.",
           "outcome": "shutil, zipfile, datas, caminhos e tratamento de falhas.",
@@ -11244,7 +11808,7 @@
           "category": "AUTOMAÇÃO · MISSÃO FINAL",
           "color": "#166534",
           "icon": "◎",
-          "unlockStage": "s20",
+          "unlockStage": "s80",
           "prerequisite": "auto-3",
           "brief": "Projete um monitor que executa checagens periódicas, registra mudanças e evita alertas repetidos.",
           "outcome": "Funções de checagem, estado anterior, intervalos, logs e tolerância a falhas.",
@@ -11293,7 +11857,7 @@
       "subtitle": "Organize programas completos com interfaces, dados e integrações.",
       "color": "#3b82f6",
       "icon": "▣",
-      "unlockStage": "s20",
+      "unlockStage": "s80",
       "missions": [
         {
           "id": "app-1",
@@ -11301,7 +11865,7 @@
           "category": "APLICAÇÕES · MISSÃO 1",
           "color": "#3b82f6",
           "icon": ">_",
-          "unlockStage": "s20",
+          "unlockStage": "s80",
           "brief": "Modele uma aplicação de terminal com comandos, ajuda automática e códigos de saída.",
           "outcome": "argparse, funções de comando, validação e experiência de terminal.",
           "starter": "import argparse\n\nparser = argparse.ArgumentParser(description='Gerenciador de tarefas')\nsub = parser.add_subparsers(dest='comando', required=True)\nsub.add_parser('listar')\nadicionar = sub.add_parser('adicionar')\nadicionar.add_argument('titulo')\n\nargs = parser.parse_args()",
@@ -11347,7 +11911,7 @@
           "category": "APLICAÇÕES · MISSÃO 2",
           "color": "#2563eb",
           "icon": "↗",
-          "unlockStage": "s20",
+          "unlockStage": "s80",
           "prerequisite": "app-1",
           "brief": "Crie a camada cliente de uma API com timeout, validação e mensagens de falha úteis.",
           "outcome": "HTTP, JSON, configuração, erros e funções testáveis.",
@@ -11394,7 +11958,7 @@
           "category": "APLICAÇÕES · MISSÃO 3",
           "color": "#1d4ed8",
           "icon": "▤",
-          "unlockStage": "s20",
+          "unlockStage": "s80",
           "prerequisite": "app-2",
           "brief": "Desenhe um serviço separando interface HTTP, regras de negócio e armazenamento.",
           "outcome": "Rotas, serviços, repositórios, erros de domínio e testes.",
@@ -11441,7 +12005,7 @@
           "category": "APLICAÇÕES · MISSÃO FINAL",
           "color": "#1e40af",
           "icon": "Ω",
-          "unlockStage": "s20",
+          "unlockStage": "s80",
           "prerequisite": "app-3",
           "brief": "Finalize a arquitetura de uma aplicação com configuração, logs, testes e documentação de execução.",
           "outcome": "Integração dos 64 fases em um produto pequeno, reproduzível e observável.",
