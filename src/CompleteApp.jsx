@@ -420,6 +420,20 @@ function MobileNav({ active = 'map', onHome, onReview, onProjects, onHearts, hea
   );
 }
 
+function PremiumFloatingButton({ onPurchase }) {
+  return (
+    <button type="button" className="premium-floating-cta" onClick={onPurchase} aria-label="Comprar pacote completo por 25 reais">
+      <span className="premium-floating-badge">OFERTA</span>
+      <span className="premium-floating-icon">★</span>
+      <span className="premium-floating-copy">
+        <small>LIBERE TUDO</small>
+        <b>PROJETOS + ∞ VIDAS</b>
+      </span>
+      <strong>R$ 25<small>ÚNICO</small></strong>
+    </button>
+  );
+}
+
 function NextLessonCard({ stage, stageIndex, started, onContinue, onReview }) {
   return (
     <aside className="next-lesson-card" style={{ '--stage-color': stage.color }}>
@@ -1124,7 +1138,7 @@ function ProjectHub({ projects, tracks = [], stages, progress, onExit, onOpen, o
               <p>Libera os 8 projetos, as 8 missões das especializações e remove a perda de vidas em todas as fases.</p>
             </div>
             <strong>R$ 25,00<small>PAGAMENTO ÚNICO</small></strong>
-            <PixelButton color="#8b5cf6" disabled={allProjects && infiniteHearts} onClick={onPurchase}>
+            <PixelButton className="premium-buy-button" color="#8b5cf6" disabled={allProjects && infiniteHearts} onClick={onPurchase}>
               {allProjects && infiniteHearts ? 'PACOTE ATIVO ✓' : 'COMPRAR PACOTE · ILUSTRATIVO'}
             </PixelButton>
           </article>
@@ -1829,6 +1843,10 @@ export default function CompleteApp() {
           onComplete={finishReview}
           sfx={sfx}
         />
+      )}
+
+      {showMainNavigation && !(progress.entitlements?.allProjects && progress.entitlements?.infiniteHearts) && (
+        <PremiumFloatingButton onPurchase={purchasePremiumBundle} />
       )}
 
       {(screen === 'map' || screen === 'projects') && (
