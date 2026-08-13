@@ -166,6 +166,11 @@ const UNIT_META = [
     title: 'Biblioteca padrão',
     goal: 'Use contêineres, iteradores, cache e recursos com segurança.',
     color: '#06b6d4'
+  },
+  {
+    title: 'Concorrência e desempenho',
+    goal: 'Coordene tarefas externas, processos e otimizações mensuráveis.',
+    color: '#8b5cf6'
   }
 ];
 
