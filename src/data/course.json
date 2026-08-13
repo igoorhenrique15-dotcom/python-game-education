@@ -1,6 +1,6 @@
 {
   "title": "PYTHON // BLACK BUSTER",
-  "version": 9,
+  "version": 10,
   "stages": [
     {
       "id": "s1",
@@ -2925,6 +2925,1070 @@
           "a": 0,
           "hint": "O texto tem duas letras maiúsculas seguidas de dois dígitos.",
           "ex": "AB12 corresponde integralmente ao padrão."
+        }
+      ]
+    },
+    {
+      "id": "s33",
+      "name": "ENCODING E TEXTO",
+      "group": "DADOS APROFUNDADOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "boss": "ENCODE-SHIFT",
+      "color": "#20b486",
+      "icon": "Aa",
+      "summary": "Leia textos corretamente e normalize conteúdo antes de processá-lo.",
+      "lesson": [
+        {
+          "title": "Encoding representa caracteres",
+          "body": "Arquivos armazenam bytes. O encoding define como esses bytes viram caracteres. UTF-8 é a escolha mais comum para novos arquivos.",
+          "code": "texto = caminho.read_text(encoding='utf-8')"
+        },
+        {
+          "title": "Normalização de texto",
+          "body": "strip remove espaços externos, casefold ajuda em comparações e replace corrige separadores conhecidos sem destruir o conteúdo original.",
+          "code": "limpo = texto.strip()\ncomparavel = limpo.casefold()"
+        },
+        {
+          "title": "Erros precisam ser explícitos",
+          "body": "Decodificar com o encoding errado pode falhar ou produzir texto incorreto. Prefira descobrir a origem dos dados a ignorar erros silenciosamente.",
+          "code": "try:\n    texto = caminho.read_text(encoding='utf-8')\nexcept UnicodeDecodeError:\n    print('Encoding incompatível')"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que o encoding define?",
+          "opts": [
+            "Como bytes representam caracteres",
+            "A extensão obrigatória",
+            "A ordem das pastas",
+            "O tamanho da tela"
+          ],
+          "a": 0,
+          "hint": "Pense na conversão entre bytes e texto.",
+          "ex": "Encoding mapeia sequências de bytes para caracteres."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual encoding é uma boa escolha padrão para arquivos novos?",
+          "opts": [
+            "UTF-8",
+            "ASCII sempre",
+            "UTF-16 obrigatoriamente",
+            "Nenhum"
+          ],
+          "a": 0,
+          "hint": "É compatível com muitos idiomas.",
+          "ex": "UTF-8 é amplamente usado e suporta Unicode."
+        },
+        {
+          "type": "mcq",
+          "q": "O que ' texto '.strip() retorna?",
+          "opts": [
+            "texto",
+            " texto ",
+            "TEXTO",
+            "Uma lista"
+          ],
+          "a": 0,
+          "hint": "strip atua nas extremidades.",
+          "ex": "strip remove espaços no começo e no fim."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual método é adequado para comparação de texto sem diferenciar maiúsculas?",
+          "opts": [
+            "casefold()",
+            "append()",
+            "pop()",
+            "isdigit()"
+          ],
+          "a": 0,
+          "hint": "É mais abrangente que lower para comparação Unicode.",
+          "ex": "casefold normaliza diferenças de caixa."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual exceção indica falha ao transformar bytes em texto?",
+          "opts": [
+            "UnicodeDecodeError",
+            "KeyError",
+            "ZeroDivisionError",
+            "StopIteration"
+          ],
+          "a": 0,
+          "hint": "A falha acontece durante a decodificação.",
+          "ex": "UnicodeDecodeError sinaliza bytes incompatíveis com o encoding."
+        },
+        {
+          "type": "mcq",
+          "q": "Por que evitar errors='ignore' por padrão?",
+          "opts": [
+            "Pode apagar caracteres sem aviso",
+            "Sempre fecha o arquivo",
+            "Converte texto em número",
+            "Duplica linhas"
+          ],
+          "a": 0,
+          "hint": "O problema pode ficar invisível.",
+          "ex": "Ignorar erros pode causar perda silenciosa de dados."
+        },
+        {
+          "type": "mcq",
+          "q": "Como ler texto UTF-8 com pathlib?",
+          "opts": [
+            "caminho.read_text(encoding='utf-8')",
+            "caminho.open_json()",
+            "read(caminho, utf8=True)",
+            "Path.decode()"
+          ],
+          "a": 0,
+          "hint": "Path possui read_text.",
+          "ex": "read_text aceita o argumento encoding."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual ordem é mais segura para processar dados textuais?",
+          "opts": [
+            "Ler, validar, normalizar e transformar",
+            "Transformar antes de ler",
+            "Ignorar falhas e salvar",
+            "Apagar e tentar novamente"
+          ],
+          "a": 0,
+          "hint": "Cada etapa deve preservar evidências.",
+          "ex": "Validar antes de transformar reduz corrupção silenciosa."
+        }
+      ]
+    },
+    {
+      "id": "s34",
+      "name": "OPERAÇÕES E BACKUPS",
+      "group": "DADOS APROFUNDADOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "boss": "BACKUP-GUARD",
+      "color": "#16a085",
+      "icon": "▣",
+      "summary": "Copie, mova e compacte arquivos com verificações que evitem perda de dados.",
+      "lesson": [
+        {
+          "title": "Copiar não é mover",
+          "body": "shutil.copy2 copia conteúdo e metadados básicos. shutil.move altera a localização. Escolha a operação conforme o risco.",
+          "code": "from shutil import copy2\ncopy2(origem, destino)"
+        },
+        {
+          "title": "Crie destinos antes",
+          "body": "Pastas de destino podem ser criadas com parents=True. exist_ok=True permite repetir a preparação sem falhar.",
+          "code": "destino.mkdir(parents=True, exist_ok=True)"
+        },
+        {
+          "title": "Backup precisa ser verificável",
+          "body": "Depois de copiar ou compactar, confirme que o destino existe e possui tamanho plausível antes de considerar a operação concluída.",
+          "code": "if arquivo_backup.exists() and arquivo_backup.stat().st_size > 0:\n    print('Backup criado')"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual função copia um arquivo preservando metadados básicos?",
+          "opts": [
+            "shutil.copy2",
+            "shutil.move",
+            "Path.unlink",
+            "os.chdir"
+          ],
+          "a": 0,
+          "hint": "O nome termina com o número 2.",
+          "ex": "copy2 preserva mais metadados que copy."
+        },
+        {
+          "type": "mcq",
+          "q": "O que shutil.move faz?",
+          "opts": [
+            "Move arquivo ou pasta",
+            "Somente lê texto",
+            "Cria um JSON",
+            "Compara datas"
+          ],
+          "a": 0,
+          "hint": "A origem muda de localização.",
+          "ex": "move transfere a entrada para outro caminho."
+        },
+        {
+          "type": "mcq",
+          "q": "Para que serve parents=True em mkdir?",
+          "opts": [
+            "Criar pastas-pai ausentes",
+            "Excluir pais",
+            "Bloquear subpastas",
+            "Renomear arquivos"
+          ],
+          "a": 0,
+          "hint": "Pense em uma árvore de diretórios.",
+          "ex": "parents=True cria toda a cadeia necessária."
+        },
+        {
+          "type": "mcq",
+          "q": "Por que usar exist_ok=True?",
+          "opts": [
+            "Permitir que a pasta já exista",
+            "Sobrescrever qualquer arquivo",
+            "Ignorar permissões",
+            "Compactar automaticamente"
+          ],
+          "a": 0,
+          "hint": "Torna a preparação repetível.",
+          "ex": "A criação não falha apenas porque o diretório existe."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual verificação mínima é útil após um backup?",
+          "opts": [
+            "Existência e tamanho do destino",
+            "Cor do ícone",
+            "Nome do usuário",
+            "Quantidade de janelas"
+          ],
+          "a": 0,
+          "hint": "Confirme que algo foi realmente gerado.",
+          "ex": "Existência e tamanho detectam falhas óbvias."
+        },
+        {
+          "type": "mcq",
+          "q": "O que deve acontecer antes de sobrescrever um arquivo?",
+          "opts": [
+            "Confirmar regra e preservar cópia quando necessário",
+            "Apagar sem conferir",
+            "Ocultar o log",
+            "Mudar o encoding"
+          ],
+          "a": 0,
+          "hint": "Sobrescrita pode ser irreversível.",
+          "ex": "Uma política explícita evita perda acidental."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual módulo padrão cria arquivos ZIP diretamente?",
+          "opts": [
+            "zipfile",
+            "decimal",
+            "statistics",
+            "calendar"
+          ],
+          "a": 0,
+          "hint": "O nome descreve o formato.",
+          "ex": "zipfile lê e cria arquivos ZIP."
+        },
+        {
+          "type": "mcq",
+          "q": "O que é um dry-run?",
+          "opts": [
+            "Simulação das ações sem alterar arquivos",
+            "Uma exclusão acelerada",
+            "Um backup sem destino",
+            "Um teste de internet"
+          ],
+          "a": 0,
+          "hint": "É uma prévia segura.",
+          "ex": "Dry-run mostra o que seria feito antes da execução real."
+        }
+      ]
+    },
+    {
+      "id": "s35",
+      "name": "CSV CONFIÁVEL",
+      "group": "DADOS APROFUNDADOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "boss": "CSV-INSPECTOR",
+      "color": "#0f9f8f",
+      "icon": "▦",
+      "summary": "Valide cabeçalhos, tipos e linhas antes de usar dados tabulares.",
+      "lesson": [
+        {
+          "title": "Cabeçalhos nomeiam os campos",
+          "body": "csv.DictReader transforma cada linha em dicionário usando o cabeçalho. Isso evita depender da posição visual das colunas.",
+          "code": "with arquivo.open(encoding='utf-8', newline='') as f:\n    leitor = csv.DictReader(f)"
+        },
+        {
+          "title": "Valide o esquema",
+          "body": "Compare fieldnames com o conjunto de colunas obrigatórias. Arquivos incompletos devem ser rejeitados com mensagem clara.",
+          "code": "obrigatorias = {'data', 'valor'}\nif not obrigatorias <= set(leitor.fieldnames or []):\n    raise ValueError('Colunas ausentes')"
+        },
+        {
+          "title": "Converta com contexto",
+          "body": "Valores de CSV chegam como texto. Ao converter, informe a linha e o campo que falhou para facilitar a correção.",
+          "code": "for numero, linha in enumerate(leitor, start=2):\n    valor = float(linha['valor'])"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que csv.DictReader produz para cada linha?",
+          "opts": [
+            "Um dicionário",
+            "Uma imagem",
+            "Um inteiro",
+            "Um módulo"
+          ],
+          "a": 0,
+          "hint": "Os nomes vêm do cabeçalho.",
+          "ex": "Cada registro associa colunas a valores."
+        },
+        {
+          "type": "mcq",
+          "q": "Onde ficam os nomes das colunas no DictReader?",
+          "opts": [
+            "fieldnames",
+            "keys_only",
+            "headers()",
+            "columns.json"
+          ],
+          "a": 0,
+          "hint": "É um atributo do leitor.",
+          "ex": "fieldnames contém o cabeçalho identificado."
+        },
+        {
+          "type": "mcq",
+          "q": "Como verificar se obrigatórias estão presentes?",
+          "opts": [
+            "obrigatorias <= set(fieldnames)",
+            "fieldnames + obrigatorias",
+            "len(fieldnames) == 0",
+            "fieldnames.pop()"
+          ],
+          "a": 0,
+          "hint": "Use relação de subconjunto.",
+          "ex": "O operador <= entre conjuntos testa subconjunto."
+        },
+        {
+          "type": "mcq",
+          "q": "Por que usar newline='' ao abrir CSV?",
+          "opts": [
+            "Permitir tratamento correto de linhas pelo módulo csv",
+            "Remover o cabeçalho",
+            "Converter números",
+            "Ordenar registros"
+          ],
+          "a": 0,
+          "hint": "O módulo gerencia terminadores de linha.",
+          "ex": "Essa forma evita linhas extras em alguns sistemas."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual tipo chega normalmente de uma célula CSV?",
+          "opts": [
+            "str",
+            "float sempre",
+            "dict",
+            "bytes sempre"
+          ],
+          "a": 0,
+          "hint": "CSV é um formato textual.",
+          "ex": "Os valores precisam de conversão explícita."
+        },
+        {
+          "type": "mcq",
+          "q": "Por que enumerar começando em 2?",
+          "opts": [
+            "A linha 1 costuma ser o cabeçalho",
+            "Python começa em 2",
+            "Ignora dois arquivos",
+            "Duplica a primeira linha"
+          ],
+          "a": 0,
+          "hint": "Pense na numeração do arquivo original.",
+          "ex": "O primeiro registro de dados costuma aparecer na linha 2."
+        },
+        {
+          "type": "mcq",
+          "q": "O que fazer com uma linha inválida?",
+          "opts": [
+            "Registrar contexto e aplicar uma regra definida",
+            "Inventar um valor silenciosamente",
+            "Apagar todo o arquivo",
+            "Considerar sempre zero"
+          ],
+          "a": 0,
+          "hint": "A falha deve ser rastreável.",
+          "ex": "Uma política explícita preserva confiabilidade."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual vantagem de DictWriter?",
+          "opts": [
+            "Gravar por nomes de campos",
+            "Executar SQL",
+            "Ler imagens",
+            "Criar pastas"
+          ],
+          "a": 0,
+          "hint": "É o par de escrita do DictReader.",
+          "ex": "DictWriter escreve dicionários conforme fieldnames."
+        }
+      ]
+    },
+    {
+      "id": "s36",
+      "name": "JSON VALIDADO",
+      "group": "DADOS APROFUNDADOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "boss": "JSON-SCHEMA",
+      "color": "#0d9488",
+      "icon": "{}",
+      "summary": "Valide estruturas JSON antes de confiar em campos e tipos recebidos.",
+      "lesson": [
+        {
+          "title": "JSON válido pode estar incompleto",
+          "body": "json.loads confirma a sintaxe, mas não garante que existam campos obrigatórios ou que seus tipos sejam os esperados.",
+          "code": "dados = json.loads(texto)\nif not isinstance(dados, dict):\n    raise ValueError('Objeto esperado')"
+        },
+        {
+          "title": "Validação por etapas",
+          "body": "Primeiro confirme o tipo raiz, depois as chaves e por fim os tipos dos valores. Mensagens específicas aceleram a correção.",
+          "code": "if 'itens' not in dados:\n    raise ValueError('Campo itens ausente')"
+        },
+        {
+          "title": "Separe entrada e domínio",
+          "body": "Converta o JSON externo para uma estrutura interna validada. O restante do programa não deve depender de dados brutos.",
+          "code": "def carregar_cliente(dados):\n    return {'nome': str(dados['nome']).strip()}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "json.loads garante que todos os campos esperados existam?",
+          "opts": [
+            "Não",
+            "Sim, sempre",
+            "Apenas em listas",
+            "Somente no Windows"
+          ],
+          "a": 0,
+          "hint": "Sintaxe e regra de negócio são coisas diferentes.",
+          "ex": "loads valida a sintaxe JSON, não o esquema da aplicação."
+        },
+        {
+          "type": "mcq",
+          "q": "Como confirmar que a raiz é um objeto JSON?",
+          "opts": [
+            "isinstance(dados, dict)",
+            "dados == json",
+            "type(dados) == file",
+            "dados.loads()"
+          ],
+          "a": 0,
+          "hint": "Objetos JSON viram dicionários.",
+          "ex": "isinstance testa o tipo recebido."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual ordem de validação é adequada?",
+          "opts": [
+            "Tipo raiz, chaves e tipos dos valores",
+            "Salvar e depois validar",
+            "Ordenar e apagar",
+            "Converter tudo para texto"
+          ],
+          "a": 0,
+          "hint": "Comece pela estrutura externa.",
+          "ex": "A validação progressiva evita acessos inválidos."
+        },
+        {
+          "type": "mcq",
+          "q": "O que um array JSON vira em Python?",
+          "opts": [
+            "list",
+            "set",
+            "tuple obrigatoriamente",
+            "Path"
+          ],
+          "a": 0,
+          "hint": "Arrays são sequências ordenadas.",
+          "ex": "json converte arrays para listas."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual exceção json.loads pode lançar em texto malformado?",
+          "opts": [
+            "json.JSONDecodeError",
+            "FileExistsError",
+            "IndexError sempre",
+            "StopAsyncIteration"
+          ],
+          "a": 0,
+          "hint": "É uma falha de decodificação JSON.",
+          "ex": "JSONDecodeError informa sintaxe inválida."
+        },
+        {
+          "type": "mcq",
+          "q": "Por que não usar dados externos diretamente?",
+          "opts": [
+            "Podem faltar campos ou conter tipos inesperados",
+            "São sempre lentos",
+            "Não podem ter texto",
+            "Python os apaga"
+          ],
+          "a": 0,
+          "hint": "Entrada externa não é confiável por padrão.",
+          "ex": "Validar protege as regras internas."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual abordagem cria mensagens de erro melhores?",
+          "opts": [
+            "Validar cada requisito com contexto",
+            "Usar um except vazio",
+            "Retornar None para tudo",
+            "Ignorar o campo"
+          ],
+          "a": 0,
+          "hint": "Diga exatamente o que falhou.",
+          "ex": "Mensagens específicas tornam o problema corrigível."
+        },
+        {
+          "type": "mcq",
+          "q": "O que significa normalizar um campo?",
+          "opts": [
+            "Converter para uma forma interna consistente",
+            "Compactar o arquivo",
+            "Criptografar automaticamente",
+            "Excluir valores repetidos sempre"
+          ],
+          "a": 0,
+          "hint": "A aplicação escolhe uma representação padrão.",
+          "ex": "Normalização reduz variações antes do uso."
+        }
+      ]
+    },
+    {
+      "id": "s37",
+      "name": "DATAS E FUSOS",
+      "group": "DADOS APROFUNDADOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "boss": "TIME-ZONE",
+      "color": "#14a38b",
+      "icon": "◷",
+      "summary": "Calcule prazos e instantes sem confundir datas locais e fusos horários.",
+      "lesson": [
+        {
+          "title": "Data não é instante",
+          "body": "date representa um dia do calendário. datetime representa data e horário. Escolha o tipo que corresponde à regra.",
+          "code": "from datetime import date, datetime\nhoje = date.today()\nagora = datetime.now()"
+        },
+        {
+          "title": "Use objetos conscientes do fuso",
+          "body": "zoneinfo fornece fusos IANA na biblioteca padrão. Um datetime com tzinfo evita ambiguidades em integrações.",
+          "code": "from zoneinfo import ZoneInfo\nagora_sp = datetime.now(ZoneInfo('America/Sao_Paulo'))"
+        },
+        {
+          "title": "Durações usam timedelta",
+          "body": "Some ou subtraia timedelta para calcular prazos. Evite alterar manualmente dia ou mês, pois calendários têm limites diferentes.",
+          "code": "from datetime import timedelta\nvencimento = hoje + timedelta(days=10)"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual tipo representa apenas um dia do calendário?",
+          "opts": [
+            "date",
+            "datetime sempre",
+            "timedelta",
+            "ZoneInfo"
+          ],
+          "a": 0,
+          "hint": "Não inclui horário.",
+          "ex": "date guarda ano, mês e dia."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual tipo representa uma duração?",
+          "opts": [
+            "timedelta",
+            "date",
+            "str",
+            "Path"
+          ],
+          "a": 0,
+          "hint": "É usado em soma e subtração.",
+          "ex": "timedelta representa intervalos de tempo."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual módulo padrão fornece fusos IANA?",
+          "opts": [
+            "zoneinfo",
+            "csv",
+            "decimal",
+            "re"
+          ],
+          "a": 0,
+          "hint": "Foi criado para informações de zona.",
+          "ex": "zoneinfo oferece ZoneInfo."
+        },
+        {
+          "type": "mcq",
+          "q": "Como criar o fuso de São Paulo?",
+          "opts": [
+            "ZoneInfo('America/Sao_Paulo')",
+            "ZoneInfo('-03')",
+            "date('SP')",
+            "timezone('Brasil')"
+          ],
+          "a": 0,
+          "hint": "Use o identificador IANA.",
+          "ex": "America/Sao_Paulo identifica a zona com suas regras."
+        },
+        {
+          "type": "mcq",
+          "q": "Por que evitar somar diretamente ao número do dia?",
+          "opts": [
+            "Meses têm durações diferentes",
+            "Python não aceita inteiros",
+            "Datas não possuem ano",
+            "Sempre gera texto"
+          ],
+          "a": 0,
+          "hint": "O calendário não é uniforme.",
+          "ex": "timedelta respeita transições de mês e ano."
+        },
+        {
+          "type": "mcq",
+          "q": "O que diferencia datetime consciente de ingênuo?",
+          "opts": [
+            "A presença de informação de fuso",
+            "O tamanho do arquivo",
+            "O formato JSON",
+            "A quantidade de segundos"
+          ],
+          "a": 0,
+          "hint": "Veja tzinfo.",
+          "ex": "Um datetime aware possui contexto de fuso."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual método converte um datetime consciente para outro fuso?",
+          "opts": [
+            "astimezone()",
+            "strip()",
+            "to_csv()",
+            "casefold()"
+          ],
+          "a": 0,
+          "hint": "O nome menciona zona.",
+          "ex": "astimezone converte preservando o instante."
+        },
+        {
+          "type": "mcq",
+          "q": "Para uma data de vencimento sem horário, qual tipo costuma ser melhor?",
+          "opts": [
+            "date",
+            "float",
+            "bytes",
+            "set"
+          ],
+          "a": 0,
+          "hint": "A regra trata do dia, não do instante.",
+          "ex": "date evita inventar horário e fuso desnecessários."
+        }
+      ]
+    },
+    {
+      "id": "s38",
+      "name": "SQLITE FUNDAMENTOS",
+      "group": "DADOS APROFUNDADOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "boss": "DB-CORE",
+      "color": "#0f766e",
+      "icon": "DB",
+      "summary": "Armazene dados localmente usando tabelas, conexões e consultas parametrizadas.",
+      "lesson": [
+        {
+          "title": "SQLite já acompanha Python",
+          "body": "O módulo sqlite3 permite criar bancos locais em arquivo sem instalar um servidor separado.",
+          "code": "import sqlite3\nconexao = sqlite3.connect('app.db')"
+        },
+        {
+          "title": "Tabelas definem estrutura",
+          "body": "CREATE TABLE define colunas e restrições. Uma chave primária identifica cada registro.",
+          "code": "conexao.execute('CREATE TABLE IF NOT EXISTS tarefas (id INTEGER PRIMARY KEY, titulo TEXT NOT NULL)')"
+        },
+        {
+          "title": "Parâmetros evitam SQL inseguro",
+          "body": "Nunca monte SQL com entrada do usuário por concatenação. Use placeholders ? e passe valores separadamente.",
+          "code": "conexao.execute('INSERT INTO tarefas (titulo) VALUES (?)', (titulo,))\nconexao.commit()"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual módulo padrão acessa SQLite?",
+          "opts": [
+            "sqlite3",
+            "sqlserver",
+            "jsondb",
+            "pathsql"
+          ],
+          "a": 0,
+          "hint": "O nome inclui a versão do SQLite.",
+          "ex": "sqlite3 faz parte da biblioteca padrão."
+        },
+        {
+          "type": "mcq",
+          "q": "O que sqlite3.connect('app.db') faz?",
+          "opts": [
+            "Abre ou cria o banco em arquivo",
+            "Cria uma API HTTP",
+            "Lê um CSV",
+            "Ativa um venv"
+          ],
+          "a": 0,
+          "hint": "connect inicia a conexão.",
+          "ex": "A conexão aponta para o arquivo do banco."
+        },
+        {
+          "type": "mcq",
+          "q": "Para que serve PRIMARY KEY?",
+          "opts": [
+            "Identificar registros",
+            "Ordenar texto sempre",
+            "Compactar tabelas",
+            "Ocultar colunas"
+          ],
+          "a": 0,
+          "hint": "Cada linha precisa de identidade.",
+          "ex": "A chave primária identifica unicamente o registro."
+        },
+        {
+          "type": "mcq",
+          "q": "O que NOT NULL impede?",
+          "opts": [
+            "Valor nulo na coluna",
+            "Valores repetidos",
+            "Textos longos",
+            "Consultas SELECT"
+          ],
+          "a": 0,
+          "hint": "A restrição fala de nulidade.",
+          "ex": "NOT NULL exige um valor."
+        },
+        {
+          "type": "mcq",
+          "q": "Como enviar um valor com segurança em uma consulta?",
+          "opts": [
+            "Usar placeholder ? e parâmetros",
+            "Concatenar texto do usuário",
+            "Usar f-string no SQL",
+            "Executar eval"
+          ],
+          "a": 0,
+          "hint": "Separe comando e dados.",
+          "ex": "Consultas parametrizadas evitam interpretação do valor como SQL."
+        },
+        {
+          "type": "mcq",
+          "q": "Por que (titulo,) possui vírgula?",
+          "opts": [
+            "Forma uma tupla de um item",
+            "Termina o SQL",
+            "Cria uma lista",
+            "Remove espaços"
+          ],
+          "a": 0,
+          "hint": "Parênteses sozinhos não criam tupla.",
+          "ex": "A vírgula define a tupla unitária."
+        },
+        {
+          "type": "mcq",
+          "q": "Quando chamar commit()?",
+          "opts": [
+            "Após alterações que devem persistir",
+            "Antes de todo SELECT obrigatoriamente",
+            "Para fechar o Python",
+            "Para criar uma variável"
+          ],
+          "a": 0,
+          "hint": "INSERT, UPDATE e DELETE alteram dados.",
+          "ex": "commit confirma a transação."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual comando consulta registros?",
+          "opts": [
+            "SELECT",
+            "INSERT",
+            "CREATE",
+            "DROP"
+          ],
+          "a": 0,
+          "hint": "É a operação de leitura.",
+          "ex": "SELECT recupera linhas."
+        }
+      ]
+    },
+    {
+      "id": "s39",
+      "name": "CRUD COM SQLITE",
+      "group": "DADOS APROFUNDADOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "boss": "CRUD-MACHINE",
+      "color": "#0f8177",
+      "icon": "⇄",
+      "summary": "Crie, consulte, atualize e remova registros com transações controladas.",
+      "lesson": [
+        {
+          "title": "CRUD resume quatro operações",
+          "body": "Create, Read, Update e Delete formam o ciclo básico de persistência. Em SQL correspondem normalmente a INSERT, SELECT, UPDATE e DELETE.",
+          "code": "INSERT INTO tarefas (titulo) VALUES (?)\nSELECT id, titulo FROM tarefas"
+        },
+        {
+          "title": "Cursores entregam resultados",
+          "body": "execute retorna um cursor. fetchone lê uma linha e fetchall lê todas as linhas restantes.",
+          "code": "cursor = conexao.execute('SELECT id, titulo FROM tarefas')\nlinhas = cursor.fetchall()"
+        },
+        {
+          "title": "Transações protegem conjuntos",
+          "body": "Use with conexao para confirmar o bloco quando tudo funciona e desfazer quando ocorre uma exceção.",
+          "code": "with conexao:\n    conexao.execute('UPDATE tarefas SET titulo = ? WHERE id = ?', (titulo, codigo))"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual operação CRUD corresponde a INSERT?",
+          "opts": [
+            "Create",
+            "Read",
+            "Update",
+            "Delete"
+          ],
+          "a": 0,
+          "hint": "INSERT cria registros.",
+          "ex": "Create é a criação."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual método retorna todas as linhas restantes?",
+          "opts": [
+            "fetchall()",
+            "commit()",
+            "close_table()",
+            "read_text()"
+          ],
+          "a": 0,
+          "hint": "O nome significa buscar tudo.",
+          "ex": "fetchall reúne os resultados restantes."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual cláusula limita UPDATE a determinados registros?",
+          "opts": [
+            "WHERE",
+            "FROM",
+            "ORDER apenas",
+            "VALUES"
+          ],
+          "a": 0,
+          "hint": "Sem ela, todas as linhas podem mudar.",
+          "ex": "WHERE define a condição dos registros afetados."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual SQL remove um registro?",
+          "opts": [
+            "DELETE",
+            "SELECT",
+            "CREATE",
+            "FETCH"
+          ],
+          "a": 0,
+          "hint": "É a operação Delete do CRUD.",
+          "ex": "DELETE remove linhas."
+        },
+        {
+          "type": "mcq",
+          "q": "Por que UPDATE sem WHERE é perigoso?",
+          "opts": [
+            "Pode alterar todas as linhas",
+            "Fecha a conexão",
+            "Apaga o arquivo Python",
+            "Transforma dados em JSON"
+          ],
+          "a": 0,
+          "hint": "Nenhum filtro será aplicado.",
+          "ex": "Sem condição, o comando alcança toda a tabela."
+        },
+        {
+          "type": "mcq",
+          "q": "O que with conexao oferece?",
+          "opts": [
+            "Controle de commit e rollback do bloco",
+            "Criação de interface gráfica",
+            "Conversão para CSV",
+            "Um servidor web"
+          ],
+          "a": 0,
+          "hint": "Pense em transação.",
+          "ex": "O contexto confirma sucesso e desfaz falha."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual método lê apenas uma linha?",
+          "opts": [
+            "fetchone()",
+            "fetchall()",
+            "execute_many_tables()",
+            "one()"
+          ],
+          "a": 0,
+          "hint": "O nome termina com one.",
+          "ex": "fetchone retorna o próximo resultado."
+        },
+        {
+          "type": "mcq",
+          "q": "O que deve ser testado após DELETE ou UPDATE?",
+          "opts": [
+            "Quantidade de linhas afetadas",
+            "Cor do banco",
+            "Nome do arquivo CSS",
+            "Velocidade do teclado"
+          ],
+          "a": 0,
+          "hint": "Confirme o efeito real.",
+          "ex": "rowcount ajuda a saber se algum registro foi alterado."
+        }
+      ]
+    },
+    {
+      "id": "s40",
+      "name": "PIPELINE DE DADOS",
+      "group": "DADOS APROFUNDADOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "boss": "PIPELINE-OMEGA",
+      "color": "#0b6f68",
+      "icon": "⇢",
+      "summary": "Monte um fluxo verificável de entrada, validação, transformação e saída.",
+      "lesson": [
+        {
+          "title": "Pipeline possui etapas claras",
+          "body": "Separe leitura, validação, transformação e gravação. Cada função deve receber e devolver estruturas previsíveis.",
+          "code": "dados = ler_arquivo(caminho)\nvalidos = validar(dados)\nresumo = transformar(validos)\nsalvar(resumo)"
+        },
+        {
+          "title": "Falhas precisam de destino",
+          "body": "Registros inválidos podem ir para um relatório de rejeições com linha, motivo e valor original.",
+          "code": "rejeitados.append({'linha': numero, 'motivo': str(erro)})"
+        },
+        {
+          "title": "Execução precisa ser auditável",
+          "body": "Conte entradas, aceitos, rejeitados e saídas. Esses totais permitem conferir se dados desapareceram no caminho.",
+          "code": "assert total_entrada == total_aceito + total_rejeitado"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual sequência descreve um pipeline simples?",
+          "opts": [
+            "Ler, validar, transformar e salvar",
+            "Salvar, apagar e ler",
+            "Transformar sem entrada",
+            "Executar tudo em print"
+          ],
+          "a": 0,
+          "hint": "A saída depende de etapas anteriores.",
+          "ex": "A sequência separa responsabilidades."
+        },
+        {
+          "type": "mcq",
+          "q": "Por que separar cada etapa em função?",
+          "opts": [
+            "Facilita testar e localizar falhas",
+            "Aumenta o tamanho do arquivo",
+            "Impede reutilização",
+            "Remove validação"
+          ],
+          "a": 0,
+          "hint": "Etapas isoladas são verificáveis.",
+          "ex": "Funções pequenas permitem testes direcionados."
+        },
+        {
+          "type": "mcq",
+          "q": "O que registrar sobre uma linha rejeitada?",
+          "opts": [
+            "Linha, motivo e valor original",
+            "Somente a cor",
+            "A senha do usuário",
+            "Nada"
+          ],
+          "a": 0,
+          "hint": "A correção exige contexto.",
+          "ex": "Essas informações permitem reproduzir a falha."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual igualdade ajuda a conferir o fluxo?",
+          "opts": [
+            "entrada = aceitos + rejeitados",
+            "entrada = aceitos - rejeitados",
+            "saída = zero",
+            "rejeitados = entrada + saída"
+          ],
+          "a": 0,
+          "hint": "Todo registro deve ter um destino.",
+          "ex": "A soma garante que nenhuma entrada desapareceu."
+        },
+        {
+          "type": "mcq",
+          "q": "Onde deve ocorrer a conversão de tipos?",
+          "opts": [
+            "Em uma etapa explícita de validação ou transformação",
+            "Dentro de qualquer print",
+            "Somente após salvar",
+            "Nunca"
+          ],
+          "a": 0,
+          "hint": "A conversão pode falhar.",
+          "ex": "Uma etapa definida produz erros rastreáveis."
+        },
+        {
+          "type": "mcq",
+          "q": "O que torna uma execução reproduzível?",
+          "opts": [
+            "Mesmas entradas, regras e configuração registradas",
+            "Horário aleatório",
+            "Arquivos ocultos",
+            "Erros ignorados"
+          ],
+          "a": 0,
+          "hint": "Guarde o contexto da execução.",
+          "ex": "Reproduzir exige conhecer dados e regras usados."
+        },
+        {
+          "type": "mcq",
+          "q": "Como evitar saída parcial em caso de falha?",
+          "opts": [
+            "Gravar temporário e substituir após sucesso",
+            "Sobrescrever desde o início",
+            "Ignorar exceções",
+            "Apagar a entrada"
+          ],
+          "a": 0,
+          "hint": "Finalize antes de trocar o arquivo oficial.",
+          "ex": "A escrita atômica reduz arquivos incompletos."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é o objetivo do relatório final?",
+          "opts": [
+            "Mostrar totais, rejeições e resultado produzido",
+            "Exibir apenas sucesso",
+            "Ocultar problemas",
+            "Duplicar todas as linhas"
+          ],
+          "a": 0,
+          "hint": "A conferência depende de evidências.",
+          "ex": "O relatório permite auditar o processamento."
         }
       ]
     },
