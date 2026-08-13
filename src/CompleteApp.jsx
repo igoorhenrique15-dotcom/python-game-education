@@ -35,6 +35,7 @@ function emptyProgress() {
     lastStage: null,
     questionStats: {},
     reviewSessions: 0,
+    unitReviews: {},
     hearts: MAX_HEARTS,
     xp: 0,
     gems: 100,
@@ -122,6 +123,7 @@ function readProgress() {
       lastStage: saved.lastStage || null,
       questionStats: saved.questionStats || {},
       reviewSessions: saved.reviewSessions || 0,
+      unitReviews: saved.unitReviews || {},
       hearts: Number.isFinite(saved.hearts) ? Math.min(MAX_HEARTS, Math.max(0, saved.hearts)) : MAX_HEARTS,
       xp: Number.isFinite(saved.xp) ? Math.max(0, saved.xp) : 0,
       gems: Number.isFinite(saved.gems) ? Math.max(0, saved.gems) : 100,
@@ -472,7 +474,7 @@ function CourseHero({ stages, progress, currentStage, currentIndex, onContinue, 
   );
 }
 
-function UnitPath({ unit, progress, currentIndex, selectedId, onSelect }) {
+function UnitPath({ unit, progress, currentIndex, selectedId, onSelect, onUnitReview }) {
   const points = unit.stages.map((_, localIndex) => ({
     x: JOURNEY_X[(unit.startIndex + localIndex) % JOURNEY_X.length],
     y: 74 + localIndex * 136,
@@ -553,6 +555,23 @@ function UnitPath({ unit, progress, currentIndex, selectedId, onSelect }) {
             </div>
           );
         })}
+      </div>
+
+      <div className={`unit-review-gate ${completedInUnit === unit.stages.length ? 'unlocked' : 'locked'} ${progress.unitReviews?.[unit.number] ? 'completed' : ''}`}>
+        <span className="unit-review-icon">{progress.unitReviews?.[unit.number] ? '✓' : '◎'}</span>
+        <div>
+          <small>REVISÃO DA UNIDADE {unit.number}</small>
+          <h3>{progress.unitReviews?.[unit.number] ? 'Revisão concluída' : completedInUnit === unit.stages.length ? 'Misture o que aprendeu' : 'Conclua as quatro fases'}</h3>
+          <p>8 questões das fases desta unidade · prática segura, sem perder vidas.</p>
+        </div>
+        <PixelButton
+          color={unit.color}
+          variant={progress.unitReviews?.[unit.number] ? 'outline' : 'solid'}
+          disabled={completedInUnit !== unit.stages.length}
+          onClick={() => onUnitReview(unit)}
+        >
+          {progress.unitReviews?.[unit.number] ? 'REVISAR NOVAMENTE' : completedInUnit === unit.stages.length ? 'COMEÇAR REVISÃO' : `${completedInUnit}/${unit.stages.length} FASES`}
+        </PixelButton>
       </div>
     </section>
   );
@@ -645,7 +664,7 @@ function DailyGoalCard({ progress }) {
   );
 }
 
-function CourseMap({ stages, progress, onEnter, onReview, onReset }) {
+function CourseMap({ stages, progress, onEnter, onReview, onUnitReview, onReset }) {
   const units = useMemo(() => courseUnits(stages), [stages]);
   const learning = courseLearningSummary(stages, progress);
   const currentIndex = Math.max(0, stages.findIndex((stage) => !progress.completed[stage.id]));
@@ -696,6 +715,7 @@ function CourseMap({ stages, progress, onEnter, onReview, onReset }) {
               currentIndex={recommendedIndex}
               selectedId={selected.id}
               onSelect={(stage) => { setSelected(stage); setPicked(true); }}
+              onUnitReview={onUnitReview}
             />
           ))}
           <div className="finish-marker"><span>Ω</span><div><b>FIM DA TRILHA</b><small>Seu projeto final espera por você.</small></div></div>
@@ -1115,13 +1135,16 @@ function PracticeHub({ stages, progress, onExit, onStart }) {
   );
 }
 
-function ReviewScreen({ stages, progress, mode, onExit, onStat, onComplete, sfx }) {
+function ReviewScreen({ stages, progress, mode, unitStageIds = [], onExit, onStat, onComplete, sfx }) {
   const pool = useMemo(() => questionPool(stages), [stages]);
   const [queue] = useState(() => {
     const source = mode === 'mistakes'
       ? pool.filter((question) => progress.questionStats?.[questionKey(question.stageId, question.questionIndex)]?.needsReview)
-      : pool;
-    return [...source].sort(() => Math.random() - 0.5).slice(0, mode === 'hearts' ? 5 : 10);
+      : mode === 'unit' && unitStageIds.length
+        ? pool.filter((question) => unitStageIds.includes(question.stageId))
+        : pool;
+    const limit = mode === 'hearts' ? 5 : mode === 'unit' ? 8 : 10;
+    return [...source].sort(() => Math.random() - 0.5).slice(0, limit);
   });
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState(null);
@@ -1186,12 +1209,14 @@ function ReviewScreen({ stages, progress, mode, onExit, onStat, onComplete, sfx 
       <main className="review-finish-screen">
         <section className="review-finish-card">
           <div className="review-avatar"><PinscherMascot size="large" mood="celebrate" /><span>◎</span></div>
-          <small>{mode === 'hearts' ? 'VIDA RECUPERADA' : mode === 'mistakes' ? 'REVISÃO FINALIZADA' : 'TREINO FINALIZADO'} · GUIA PY</small><h1>{mode === 'hearts' ? '+1 ♥' : `${score}/${queue.length}`}</h1>
+          <small>{mode === 'hearts' ? 'VIDA RECUPERADA' : mode === 'unit' ? 'UNIDADE REVISADA' : mode === 'mistakes' ? 'REVISÃO FINALIZADA' : 'TREINO FINALIZADO'} · GUIA PY</small><h1>{mode === 'hearts' ? '+1 ♥' : `${score}/${queue.length}`}</h1>
           <p>{mode === 'hearts'
             ? `Prática concluída. Agora você tem ${progress.hearts}/${MAX_HEARTS} vidas para continuar a trilha.`
-            : mode === 'mistakes'
-              ? 'Acertos de primeira neste bloco. Os pontos que ainda precisam de prática continuam na sua fila.'
-              : 'Acertos de primeira. Qualquer dificuldade encontrada já foi adicionada à sua revisão.'}</p>
+            : mode === 'unit'
+              ? 'Você misturou os conceitos desta unidade. Qualquer dificuldade encontrada entrou na revisão personalizada.'
+              : mode === 'mistakes'
+                ? 'Acertos de primeira neste bloco. Os pontos que ainda precisam de prática continuam na sua fila.'
+                : 'Acertos de primeira. Qualquer dificuldade encontrada já foi adicionada à sua revisão.'}</p>
           <PixelButton color={mode === 'hearts' ? '#ff4b4b' : '#1cb0f6'} onClick={onExit}>{mode === 'hearts' ? 'CONTINUAR NA TRILHA' : 'VOLTAR À CENTRAL'}</PixelButton>
         </section>
       </main>
@@ -1204,7 +1229,7 @@ function ReviewScreen({ stages, progress, mode, onExit, onStat, onComplete, sfx 
       <FocusHeader stage={reviewStage} step={index + 1} total={queue.length} hearts={progress.hearts} safePractice heartReward={mode === 'hearts'} onExit={onExit} />
       <div className="focus-shell challenge-shell">
         <div className="challenge-heading">
-          <div><small>{mode === 'hearts' ? 'RECUPERAÇÃO DE VIDA' : mode === 'mistakes' ? 'REVISÃO DOS ERROS' : 'TREINO MISTO'} · {question.stageName}</small><h1>Questão {index + 1} de {queue.length}</h1></div>
+          <div><small>{mode === 'hearts' ? 'RECUPERAÇÃO DE VIDA' : mode === 'unit' ? 'REVISÃO DA UNIDADE' : mode === 'mistakes' ? 'REVISÃO DOS ERROS' : 'TREINO MISTO'} · {question.stageName}</small><h1>Questão {index + 1} de {queue.length}</h1></div>
           <span>◎</span>
         </div>
         <QuestionCard
@@ -1243,6 +1268,7 @@ export default function CompleteApp() {
   const [battleKey, setBattleKey] = useState(0);
   const [reviewKey, setReviewKey] = useState(0);
   const [reviewMode, setReviewMode] = useState('mixed');
+  const [reviewUnit, setReviewUnit] = useState(null);
   const [lastReward, setLastReward] = useState({ xp: 10, gems: 10 });
   const sfx = useSfx(settings.sound);
 
@@ -1299,8 +1325,9 @@ export default function CompleteApp() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const startReview = (mode) => {
+  const startReview = (mode, unit = null) => {
     setReviewMode(mode);
+    setReviewUnit(unit);
     setReviewKey((key) => key + 1);
     setScreen('review');
     sfx('click');
@@ -1374,12 +1401,19 @@ export default function CompleteApp() {
   }, [updateProgress]);
 
   const finishReview = useCallback((mode) => {
-    const reward = mode === 'hearts' ? { xp: 5, gems: 0, hearts: 1 } : { xp: 5, gems: 5, hearts: 0 };
+    const reward = mode === 'hearts'
+      ? { xp: 5, gems: 0, hearts: 1 }
+      : mode === 'unit'
+        ? { xp: 10, gems: 10, hearts: 0 }
+        : { xp: 5, gems: 5, hearts: 0 };
     updateProgress((current) => withStudyReward({
       ...current,
       reviewSessions: (current.reviewSessions || 0) + 1,
+      unitReviews: mode === 'unit' && reviewUnit
+        ? { ...(current.unitReviews || {}), [reviewUnit.number]: true }
+        : current.unitReviews || {},
     }, reward));
-  }, [updateProgress]);
+  }, [reviewUnit, updateProgress]);
 
   const refillHearts = () => {
     if (progress.hearts >= MAX_HEARTS || progress.gems < HEART_REFILL_COST) return;
@@ -1426,6 +1460,7 @@ export default function CompleteApp() {
           progress={progress}
           onEnter={enterStage}
           onReview={openPractice}
+          onUnitReview={(unit) => startReview('unit', unit)}
           onReset={reset}
         />
       )}
@@ -1469,7 +1504,8 @@ export default function CompleteApp() {
           stages={stages}
           progress={progress}
           mode={reviewMode}
-          onExit={reviewMode === 'hearts' ? goMap : openPractice}
+          unitStageIds={reviewUnit?.stages.map((stage) => stage.id) || []}
+          onExit={reviewMode === 'hearts' || reviewMode === 'unit' ? goMap : openPractice}
           onStat={recordAnswer}
           onComplete={finishReview}
           sfx={sfx}
