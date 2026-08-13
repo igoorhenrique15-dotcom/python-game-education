@@ -1055,10 +1055,16 @@ function HeartsScreen({ progress, onExit, onPractice, onRefill }) {
 }
 
 
-function ProjectHub({ projects, stages, progress, onExit, onOpen }) {
-  const completed = Object.keys(progress.projects || {}).length;
+function ProjectHub({ projects, tracks = [], stages, progress, onExit, onOpen }) {
+  const completed = projects.filter((project) => progress.projects?.[project.id]).length;
   const stageNumber = (stageId) => stages.findIndex((stage) => stage.id === stageId) + 1;
-  const unlocked = (project) => Boolean(progress.completed?.[project.unlockStage]);
+  const unlocked = (project) => Boolean(progress.completed?.[project.unlockStage])
+    && (!project.prerequisite || Boolean(progress.projects?.[project.prerequisite]));
+  const lockLabel = (project) => {
+    if (!progress.completed?.[project.unlockStage]) return `LIBERA NA FASE ${String(stageNumber(project.unlockStage)).padStart(2, '0')}`;
+    if (project.prerequisite && !progress.projects?.[project.prerequisite]) return 'CONCLUA A MISSÃO ANTERIOR';
+    return `${project.steps.length} DECISÕES`;
+  };
 
   return (
     <main className="project-hub">
@@ -1093,7 +1099,7 @@ function ProjectHub({ projects, stages, progress, onExit, onOpen }) {
                 <p>{project.brief}</p>
                 <div className="project-outcome"><b>VOCÊ PRATICA</b><span>{project.outcome}</span></div>
                 <div className="project-card-footer">
-                  <small>{isCompleted ? 'CONCLUÍDO ✓' : isUnlocked ? `${project.steps.length} DECISÕES` : `LIBERA NA FASE ${String(stageNumber(project.unlockStage)).padStart(2, '0')}`}</small>
+                  <small>{isCompleted ? 'CONCLUÍDO ✓' : lockLabel(project)}</small>
                   <PixelButton
                     color={project.color}
                     variant={isCompleted ? 'outline' : 'solid'}
@@ -1107,6 +1113,49 @@ function ProjectHub({ projects, stages, progress, onExit, onOpen }) {
             );
           })}
         </div>
+      </section>
+
+      <section className="track-specializations">
+        <div className="track-specializations-title">
+          <span className="project-kicker">ESPECIALIZAÇÕES PÓS-TRILHA</span>
+          <h2>Escolha onde aplicar seu Python.</h2>
+          <p>As duas trilhas são liberadas após a fase 32. Cada missão abre a próxima e usa o mesmo formato guiado e seguro.</p>
+        </div>
+
+        {tracks.map((track) => {
+          const trackCompleted = track.missions.filter((mission) => progress.projects?.[mission.id]).length;
+          const trackUnlocked = Boolean(progress.completed?.[track.unlockStage]);
+          return (
+            <article className={`track-panel ${trackUnlocked ? 'unlocked' : 'locked'}`} key={track.id} style={{ '--track-color': track.color }}>
+              <header>
+                <span className="track-icon">{track.icon}</span>
+                <div><small>ESPECIALIZAÇÃO</small><h3>{track.title}</h3><p>{track.subtitle}</p></div>
+                <strong>{trackCompleted}/{track.missions.length}<small>MISSÕES</small></strong>
+              </header>
+              <div className="track-progress"><span style={{ width: `${(trackCompleted / track.missions.length) * 100}%` }} /></div>
+              <div className="track-missions">
+                {track.missions.map((mission, index) => {
+                  const isUnlocked = unlocked(mission);
+                  const isCompleted = Boolean(progress.projects?.[mission.id]);
+                  return (
+                    <div className={`track-mission ${isUnlocked ? 'unlocked' : 'locked'} ${isCompleted ? 'completed' : ''}`} key={mission.id}>
+                      <span>{mission.icon}</span>
+                      <div><small>MISSÃO {index + 1}</small><b>{mission.title}</b><p>{mission.brief}</p></div>
+                      <PixelButton
+                        color={mission.color}
+                        variant={isCompleted ? 'outline' : 'solid'}
+                        disabled={!isUnlocked}
+                        onClick={() => onOpen(mission)}
+                      >
+                        {isCompleted ? 'REFAZER' : isUnlocked ? 'INICIAR' : mission.prerequisite ? 'EM SEQUÊNCIA' : 'FASE 32'}
+                      </PixelButton>
+                    </div>
+                  );
+                })}
+              </div>
+            </article>
+          );
+        })}
       </section>
     </main>
   );
@@ -1143,14 +1192,14 @@ function ProjectScreen({ project, alreadyCompleted, onExit, onComplete, sfx }) {
       <main className="project-finish" style={{ '--project-color': project.color }}>
         <section>
           <div className="project-finish-mascot"><PinscherMascot size="large" mood="celebrate" /><span>✓</span></div>
-          <small>MINIPROJETO CONCLUÍDO</small>
+          <small>DESAFIO CONCLUÍDO</small>
           <h1>{project.title}</h1>
           <p>Você fechou as decisões centrais do projeto e já tem uma arquitetura pronta para implementar.</p>
           <div className="project-reward">
             <span><b>+{firstCompletion ? 15 : 5}</b> XP</span>
             <span><b>+{firstCompletion ? 15 : 0}</b> GEMAS</span>
           </div>
-          <PixelButton color={project.color} onClick={onExit}>VER TODOS OS PROJETOS</PixelButton>
+          <PixelButton color={project.color} onClick={onExit}>VOLTAR AO LABORATÓRIO</PixelButton>
         </section>
       </main>
     );
@@ -1417,6 +1466,7 @@ export default function CompleteApp() {
   useFonts();
   const stages = course.stages;
   const projects = course.projects || [];
+  const tracks = course.tracks || [];
   const [progress, setProgress] = useState(readProgress);
   const [settings, setSettings] = useState(readSettings);
   const [screen, setScreen] = useState('map');
@@ -1647,7 +1697,7 @@ export default function CompleteApp() {
         />
       )}
       {screen === 'projects' && (
-        <ProjectHub projects={projects} stages={stages} progress={progress} onExit={goMap} onOpen={openProject} />
+        <ProjectHub projects={projects} tracks={tracks} stages={stages} progress={progress} onExit={goMap} onOpen={openProject} />
       )}
       {screen === 'project' && activeProject && (
         <ProjectScreen

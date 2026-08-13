@@ -2248,6 +2248,238 @@ button {
   width: 100%;
 }
 
+
+.track-specializations {
+  margin-top: 24px;
+  padding: 34px 28px 28px;
+  border: 1px solid #313d52;
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 50% 0, rgba(59, 130, 246, 0.08), transparent 26rem),
+    rgba(15, 21, 31, 0.86);
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.24);
+}
+
+.track-specializations-title {
+  max-width: 760px;
+  margin-bottom: 24px;
+}
+
+.track-specializations-title h2 {
+  margin: 9px 0 8px;
+  font-family: var(--ui-font);
+  font-size: 30px;
+  font-weight: 900;
+}
+
+.track-specializations-title > p {
+  color: #96a4b7;
+  font-size: 13px;
+  line-height: 1.55;
+}
+
+.track-panel {
+  --project-color: var(--track-color);
+  margin-top: 18px;
+  padding: 23px;
+  border: 1px solid color-mix(in srgb, var(--track-color) 42%, #303c50);
+  border-radius: 25px;
+  background:
+    radial-gradient(circle at 100% 0, color-mix(in srgb, var(--track-color) 12%, transparent), transparent 20rem),
+    linear-gradient(150deg, #182230, #111821);
+}
+
+.track-panel.locked {
+  opacity: 0.52;
+  filter: saturate(0.5);
+}
+
+.track-panel > header {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 16px;
+}
+
+.track-icon {
+  display: grid;
+  width: 62px;
+  height: 62px;
+  place-items: center;
+  border: 2px solid var(--track-color);
+  border-radius: 19px;
+  color: white;
+  background: color-mix(in srgb, var(--track-color) 68%, #101721);
+  box-shadow: 0 8px 0 color-mix(in srgb, var(--track-color) 42%, #05070b);
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.track-panel > header div small {
+  color: var(--track-color);
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0.6px;
+}
+
+.track-panel > header h3 {
+  margin: 4px 0;
+  font-family: var(--ui-font);
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.track-panel > header p {
+  color: #96a4b5;
+  font-size: 12px;
+}
+
+.track-panel > header > strong {
+  display: grid;
+  min-width: 74px;
+  color: white;
+  font-size: 24px;
+  font-weight: 900;
+  text-align: right;
+}
+
+.track-panel > header > strong small {
+  color: #7f8da1;
+  font-size: 8px;
+  letter-spacing: 0.45px;
+}
+
+.track-progress {
+  height: 7px;
+  margin: 19px 0;
+  overflow: hidden;
+  border-radius: 99px;
+  background: #0b1119;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.55);
+}
+
+.track-progress span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: var(--track-color);
+  box-shadow: 0 0 16px color-mix(in srgb, var(--track-color) 48%, transparent);
+  transition: width 0.25s ease;
+}
+
+.track-missions {
+  display: grid;
+  gap: 10px;
+}
+
+.track-mission {
+  display: grid;
+  grid-template-columns: 46px minmax(0, 1fr) 132px;
+  align-items: center;
+  gap: 14px;
+  min-height: 92px;
+  padding: 13px 15px;
+  border: 1px solid #303c50;
+  border-radius: 18px;
+  background: #101721;
+}
+
+.track-mission.locked {
+  opacity: 0.48;
+}
+
+.track-mission.completed {
+  border-color: color-mix(in srgb, #58cc02 48%, #303c50);
+}
+
+.track-mission > span {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid var(--track-color);
+  border-radius: 14px;
+  color: white;
+  background: color-mix(in srgb, var(--track-color) 45%, #111821);
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.track-mission > div small,
+.track-mission > div b {
+  display: block;
+}
+
+.track-mission > div small {
+  color: var(--track-color);
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0.45px;
+}
+
+.track-mission > div b {
+  margin: 3px 0;
+  color: #e7edf5;
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.track-mission > div p {
+  color: #8795a8;
+  font-size: 10px;
+  line-height: 1.4;
+}
+
+.track-mission .pixel-button {
+  width: 132px;
+  min-width: 0;
+  min-height: 46px;
+  padding: 8px 10px;
+  font-size: 9px;
+}
+
+@media (max-width: 650px) {
+  .track-specializations {
+    padding: 25px 12px 15px;
+    border-radius: 24px;
+  }
+
+  .track-specializations-title {
+    padding: 0 6px;
+  }
+
+  .track-specializations-title h2 {
+    font-size: 25px;
+  }
+
+  .track-panel {
+    padding: 17px 12px;
+    border-radius: 21px;
+  }
+
+  .track-panel > header {
+    grid-template-columns: auto 1fr;
+  }
+
+  .track-panel > header > strong {
+    grid-column: 1 / -1;
+    grid-template-columns: auto auto;
+    justify-content: start;
+    gap: 7px;
+    text-align: left;
+  }
+
+  .track-mission {
+    grid-template-columns: 42px 1fr;
+    padding: 13px;
+  }
+
+  .track-mission .pixel-button {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+}
+
 .project-player,
 .project-finish {
   position: relative;
