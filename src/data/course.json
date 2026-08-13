@@ -1,6 +1,6 @@
 {
   "title": "PYTHON // BLACK BUSTER",
-  "version": 12,
+  "version": 13,
   "stages": [
     {
       "id": "s1",
@@ -7318,6 +7318,1070 @@
       ]
     },
     {
+      "id": "s57",
+      "name": "CLI COM ARGPARSE",
+      "group": "APLICAÇÕES REAIS",
+      "difficulty": "AVANÇADO",
+      "boss": "ARG-PARSER",
+      "color": "#ef4444",
+      "icon": ">_",
+      "summary": "Crie comandos de terminal com argumentos, ajuda e validação.",
+      "lesson": [
+        {
+          "title": "Parser principal",
+          "body": "argparse interpreta argumentos e gera ajuda de uso automaticamente.",
+          "code": "import argparse\nparser = argparse.ArgumentParser(description='Gerenciador')\nparser.add_argument('--arquivo', required=True)\nargs = parser.parse_args()"
+        },
+        {
+          "title": "Subcomandos",
+          "body": "Subparsers organizam ações como listar, adicionar e remover.",
+          "code": "sub = parser.add_subparsers(dest='comando', required=True)\nsub.add_parser('listar')\nadicionar = sub.add_parser('adicionar')"
+        },
+        {
+          "title": "Códigos de saída",
+          "body": "Uma CLI comunica sucesso com zero e falhas com código diferente de zero.",
+          "code": "def main():\n    return 0\n\nraise SystemExit(main())"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual módulo padrão cria CLIs?",
+          "opts": [
+            "argparse",
+            "tkinter",
+            "sqlite3",
+            "json"
+          ],
+          "a": 0,
+          "hint": "Revise a fase CLI COM ARGPARSE.",
+          "ex": "A resposta correta é: argparse."
+        },
+        {
+          "type": "mcq",
+          "q": "O que required=True faz?",
+          "opts": [
+            "Define valor zero",
+            "Exige o argumento",
+            "Oculta ajuda",
+            "Cria arquivo"
+          ],
+          "a": 1,
+          "hint": "Revise a fase CLI COM ARGPARSE.",
+          "ex": "A resposta correta é: Exige o argumento."
+        },
+        {
+          "type": "mcq",
+          "q": "Como separar listar e adicionar?",
+          "opts": [
+            "Variável global",
+            "Arquivos duplicados",
+            "Subcomandos",
+            "Classes abstratas"
+          ],
+          "a": 2,
+          "hint": "Revise a fase CLI COM ARGPARSE.",
+          "ex": "A resposta correta é: Subcomandos."
+        },
+        {
+          "type": "mcq",
+          "q": "O que parse_args retorna?",
+          "opts": [
+            "Lista de arquivos sempre",
+            "Código HTML",
+            "Conexão SQL",
+            "Namespace com valores"
+          ],
+          "a": 3,
+          "hint": "Revise a fase CLI COM ARGPARSE.",
+          "ex": "A resposta correta é: Namespace com valores."
+        },
+        {
+          "type": "mcq",
+          "q": "Código de saída de sucesso?",
+          "opts": [
+            "0",
+            "1",
+            "404",
+            "500"
+          ],
+          "a": 0,
+          "hint": "Revise a fase CLI COM ARGPARSE.",
+          "ex": "A resposta correta é: 0."
+        },
+        {
+          "type": "mcq",
+          "q": "Para que serve help?",
+          "opts": [
+            "Executar teste",
+            "Explicar o argumento ao usuário",
+            "Criar banco",
+            "Guardar segredo"
+          ],
+          "a": 1,
+          "hint": "Revise a fase CLI COM ARGPARSE.",
+          "ex": "A resposta correta é: Explicar o argumento ao usuário."
+        },
+        {
+          "type": "mcq",
+          "q": "Como iniciar main com código de saída?",
+          "opts": [
+            "print(main) apenas",
+            "eval(main)",
+            "raise SystemExit(main())",
+            "import main"
+          ],
+          "a": 2,
+          "hint": "Revise a fase CLI COM ARGPARSE.",
+          "ex": "A resposta correta é: raise SystemExit(main())."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual erro de CLI é melhor?",
+          "opts": [
+            "Apenas 'falhou'",
+            "Silêncio",
+            "Stack trace para todo usuário",
+            "Mensagem acionável com uso correto"
+          ],
+          "a": 3,
+          "hint": "Revise a fase CLI COM ARGPARSE.",
+          "ex": "A resposta correta é: Mensagem acionável com uso correto."
+        }
+      ]
+    },
+    {
+      "id": "s58",
+      "name": "HTTP NA PRÁTICA",
+      "group": "APLICAÇÕES REAIS",
+      "difficulty": "AVANÇADO",
+      "boss": "HTTP-GATE",
+      "color": "#e94242",
+      "icon": "↗",
+      "summary": "Entenda métodos, status, cabeçalhos e corpo das requisições.",
+      "lesson": [
+        {
+          "title": "Métodos expressam intenção",
+          "body": "GET consulta, POST cria, PUT substitui e DELETE remove, conforme o contrato da API.",
+          "code": "GET /tarefas\nPOST /tarefas\nDELETE /tarefas/10"
+        },
+        {
+          "title": "Status descreve resultado",
+          "body": "Códigos 2xx indicam sucesso, 4xx problema na solicitação e 5xx falha no servidor.",
+          "code": "200 OK\n201 Created\n400 Bad Request\n404 Not Found\n500 Internal Server Error"
+        },
+        {
+          "title": "Cabeçalhos carregam metadados",
+          "body": "Content-Type informa formato e Authorization costuma transportar credenciais.",
+          "code": "Content-Type: application/json\nAuthorization: Bearer TOKEN"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual método normalmente consulta dados?",
+          "opts": [
+            "GET",
+            "POST",
+            "DELETE",
+            "PATCH obrigatório"
+          ],
+          "a": 0,
+          "hint": "Revise a fase HTTP NA PRÁTICA.",
+          "ex": "A resposta correta é: GET."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual método normalmente cria recurso?",
+          "opts": [
+            "GET",
+            "POST",
+            "HEAD",
+            "TRACE"
+          ],
+          "a": 1,
+          "hint": "Revise a fase HTTP NA PRÁTICA.",
+          "ex": "A resposta correta é: POST."
+        },
+        {
+          "type": "mcq",
+          "q": "O que status 404 indica?",
+          "opts": [
+            "Sucesso",
+            "Servidor sempre offline",
+            "Recurso não encontrado",
+            "Token válido"
+          ],
+          "a": 2,
+          "hint": "Revise a fase HTTP NA PRÁTICA.",
+          "ex": "A resposta correta é: Recurso não encontrado."
+        },
+        {
+          "type": "mcq",
+          "q": "O que status 201 indica?",
+          "opts": [
+            "Entrada inválida",
+            "Acesso negado",
+            "Timeout",
+            "Recurso criado"
+          ],
+          "a": 3,
+          "hint": "Revise a fase HTTP NA PRÁTICA.",
+          "ex": "A resposta correta é: Recurso criado."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual faixa indica erro do cliente?",
+          "opts": [
+            "4xx",
+            "2xx",
+            "3xx",
+            "1xx"
+          ],
+          "a": 0,
+          "hint": "Revise a fase HTTP NA PRÁTICA.",
+          "ex": "A resposta correta é: 4xx."
+        },
+        {
+          "type": "mcq",
+          "q": "Para que serve Content-Type?",
+          "opts": [
+            "Definir senha",
+            "Informar formato do corpo",
+            "Escolher banco",
+            "Criar rota"
+          ],
+          "a": 1,
+          "hint": "Revise a fase HTTP NA PRÁTICA.",
+          "ex": "A resposta correta é: Informar formato do corpo."
+        },
+        {
+          "type": "mcq",
+          "q": "Onde token costuma ser enviado?",
+          "opts": [
+            "User-Agent apenas",
+            "Content-Length",
+            "Authorization",
+            "Date"
+          ],
+          "a": 2,
+          "hint": "Revise a fase HTTP NA PRÁTICA.",
+          "ex": "A resposta correta é: Authorization."
+        },
+        {
+          "type": "mcq",
+          "q": "O que contrato da API define?",
+          "opts": [
+            "Cor da tela",
+            "Editor obrigatório",
+            "Sistema operacional",
+            "Entradas, saídas e comportamentos"
+          ],
+          "a": 3,
+          "hint": "Revise a fase HTTP NA PRÁTICA.",
+          "ex": "A resposta correta é: Entradas, saídas e comportamentos."
+        }
+      ]
+    },
+    {
+      "id": "s59",
+      "name": "CLIENTE DE API RESILIENTE",
+      "group": "APLICAÇÕES REAIS",
+      "difficulty": "AVANÇADO",
+      "boss": "RETRY-SHIELD",
+      "color": "#e33d3d",
+      "icon": "⟳",
+      "summary": "Consuma APIs com timeout, validação, tentativas e mensagens úteis.",
+      "lesson": [
+        {
+          "title": "Timeout é obrigatório",
+          "body": "Toda chamada externa deve possuir limite de espera para não bloquear indefinidamente.",
+          "code": "from urllib.request import urlopen\nwith urlopen(url, timeout=10) as resposta:\n    dados = resposta.read()"
+        },
+        {
+          "title": "Valide a resposta",
+          "body": "Status de sucesso não garante que o JSON possua os campos esperados.",
+          "code": "dados = json.loads(corpo)\nif 'resultado' not in dados:\n    raise ValueError('Resposta incompleta')"
+        },
+        {
+          "title": "Retry precisa de limite",
+          "body": "Repita apenas falhas temporárias, com atraso crescente e número máximo de tentativas.",
+          "code": "for tentativa in range(3):\n    try:\n        return buscar()\n    except ErroTemporario:\n        time.sleep(2 ** tentativa)"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Por que definir timeout?",
+          "opts": [
+            "Evitar espera indefinida",
+            "Acelerar todo servidor",
+            "Criar JSON",
+            "Validar token"
+          ],
+          "a": 0,
+          "hint": "Revise a fase CLIENTE DE API RESILIENTE.",
+          "ex": "A resposta correta é: Evitar espera indefinida."
+        },
+        {
+          "type": "mcq",
+          "q": "Deve repetir erro 400 automaticamente?",
+          "opts": [
+            "Sim sem limite",
+            "Não normalmente",
+            "Sempre dez vezes",
+            "Somente em localhost"
+          ],
+          "a": 1,
+          "hint": "Revise a fase CLIENTE DE API RESILIENTE.",
+          "ex": "A resposta correta é: Não normalmente."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual falha pode aceitar retry?",
+          "opts": [
+            "Senha inválida",
+            "Campo obrigatório ausente",
+            "Timeout temporário",
+            "URL escrita errada"
+          ],
+          "a": 2,
+          "hint": "Revise a fase CLIENTE DE API RESILIENTE.",
+          "ex": "A resposta correta é: Timeout temporário."
+        },
+        {
+          "type": "mcq",
+          "q": "O que é backoff?",
+          "opts": [
+            "Redução do JSON",
+            "Novo método HTTP",
+            "Tipo de banco",
+            "Aumento do intervalo entre tentativas"
+          ],
+          "a": 3,
+          "hint": "Revise a fase CLIENTE DE API RESILIENTE.",
+          "ex": "A resposta correta é: Aumento do intervalo entre tentativas."
+        },
+        {
+          "type": "mcq",
+          "q": "Por que limitar tentativas?",
+          "opts": [
+            "Evitar loop e sobrecarga",
+            "Remover logs",
+            "Ocultar erro",
+            "Impedir timeout"
+          ],
+          "a": 0,
+          "hint": "Revise a fase CLIENTE DE API RESILIENTE.",
+          "ex": "A resposta correta é: Evitar loop e sobrecarga."
+        },
+        {
+          "type": "mcq",
+          "q": "O que validar após json.loads?",
+          "opts": [
+            "Somente tamanho",
+            "Campos e tipos esperados",
+            "Cor do texto",
+            "Nome da biblioteca"
+          ],
+          "a": 1,
+          "hint": "Revise a fase CLIENTE DE API RESILIENTE.",
+          "ex": "A resposta correta é: Campos e tipos esperados."
+        },
+        {
+          "type": "mcq",
+          "q": "Uma mensagem útil deve incluir?",
+          "opts": [
+            "Token completo",
+            "Somente 'erro'",
+            "Operação e causa relevante",
+            "Dados secretos"
+          ],
+          "a": 2,
+          "hint": "Revise a fase CLIENTE DE API RESILIENTE.",
+          "ex": "A resposta correta é: Operação e causa relevante."
+        },
+        {
+          "type": "mcq",
+          "q": "Onde centralizar URL base?",
+          "opts": [
+            "Em toda função duplicada",
+            "No print",
+            "No nome da classe",
+            "Configuração"
+          ],
+          "a": 3,
+          "hint": "Revise a fase CLIENTE DE API RESILIENTE.",
+          "ex": "A resposta correta é: Configuração."
+        }
+      ]
+    },
+    {
+      "id": "s60",
+      "name": "ASYNCIO E CONCORRÊNCIA",
+      "group": "APLICAÇÕES REAIS",
+      "difficulty": "AVANÇADO",
+      "boss": "ASYNC-CORE",
+      "color": "#dd3838",
+      "icon": "∞",
+      "summary": "Coordene tarefas de espera sem confundir concorrência com paralelismo.",
+      "lesson": [
+        {
+          "title": "async define corrotina",
+          "body": "Uma função async precisa ser aguardada com await para produzir seu resultado.",
+          "code": "async def buscar():\n    await asyncio.sleep(1)\n    return 'ok'"
+        },
+        {
+          "title": "gather coordena tarefas",
+          "body": "asyncio.gather aguarda várias corrotinas concorrentes e reúne resultados.",
+          "code": "resultados = await asyncio.gather(\n    buscar(1), buscar(2), buscar(3)\n)"
+        },
+        {
+          "title": "Use para operações de espera",
+          "body": "Asyncio é útil em rede e I/O. Cálculo pesado pode bloquear o loop de eventos.",
+          "code": "async def main():\n    resultados = await coletar()\n\nasyncio.run(main())"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que async def cria?",
+          "opts": [
+            "Função de corrotina",
+            "Thread automática",
+            "Processo",
+            "Classe abstrata"
+          ],
+          "a": 0,
+          "hint": "Revise a fase ASYNCIO E CONCORRÊNCIA.",
+          "ex": "A resposta correta é: Função de corrotina."
+        },
+        {
+          "type": "mcq",
+          "q": "Para que serve await?",
+          "opts": [
+            "Bloquear para sempre",
+            "Aguardar operação assíncrona",
+            "Criar lista",
+            "Executar SQL"
+          ],
+          "a": 1,
+          "hint": "Revise a fase ASYNCIO E CONCORRÊNCIA.",
+          "ex": "A resposta correta é: Aguardar operação assíncrona."
+        },
+        {
+          "type": "mcq",
+          "q": "O que asyncio.gather faz?",
+          "opts": [
+            "Formata código",
+            "Instala pacote",
+            "Coordena várias corrotinas",
+            "Cria banco"
+          ],
+          "a": 2,
+          "hint": "Revise a fase ASYNCIO E CONCORRÊNCIA.",
+          "ex": "A resposta correta é: Coordena várias corrotinas."
+        },
+        {
+          "type": "mcq",
+          "q": "Asyncio é indicado principalmente para?",
+          "opts": [
+            "Todo cálculo pesado",
+            "CSS",
+            "Arquivos estáticos apenas",
+            "Operações com espera de I/O"
+          ],
+          "a": 3,
+          "hint": "Revise a fase ASYNCIO E CONCORRÊNCIA.",
+          "ex": "A resposta correta é: Operações com espera de I/O."
+        },
+        {
+          "type": "mcq",
+          "q": "Como iniciar a corrotina principal?",
+          "opts": [
+            "asyncio.run(main())",
+            "main.async()",
+            "await no nível de qualquer script sempre",
+            "thread(main)"
+          ],
+          "a": 0,
+          "hint": "Revise a fase ASYNCIO E CONCORRÊNCIA.",
+          "ex": "A resposta correta é: asyncio.run(main())."
+        },
+        {
+          "type": "mcq",
+          "q": "O que ocorre ao esquecer await?",
+          "opts": [
+            "Python converte em lista",
+            "A corrotina pode não ser executada como esperado",
+            "Cria arquivo",
+            "Executa duas vezes"
+          ],
+          "a": 1,
+          "hint": "Revise a fase ASYNCIO E CONCORRÊNCIA.",
+          "ex": "A resposta correta é: A corrotina pode não ser executada como esperado."
+        },
+        {
+          "type": "mcq",
+          "q": "Concorrência significa o quê?",
+          "opts": [
+            "Execução física paralela obrigatória",
+            "Ausência de espera",
+            "Progresso intercalado de tarefas",
+            "Um único valor"
+          ],
+          "a": 2,
+          "hint": "Revise a fase ASYNCIO E CONCORRÊNCIA.",
+          "ex": "A resposta correta é: Progresso intercalado de tarefas."
+        },
+        {
+          "type": "mcq",
+          "q": "O que evitar dentro do loop assíncrono?",
+          "opts": [
+            "await",
+            "Corrotinas",
+            "gather",
+            "Operação bloqueante longa"
+          ],
+          "a": 3,
+          "hint": "Revise a fase ASYNCIO E CONCORRÊNCIA.",
+          "ex": "A resposta correta é: Operação bloqueante longa."
+        }
+      ]
+    },
+    {
+      "id": "s61",
+      "name": "AUTOMAÇÃO DE PLANILHAS",
+      "group": "APLICAÇÕES REAIS",
+      "difficulty": "AVANÇADO",
+      "boss": "SHEET-MECH",
+      "color": "#d83333",
+      "icon": "▦",
+      "summary": "Leia e gere planilhas preservando dados, tipos e fórmulas.",
+      "lesson": [
+        {
+          "title": "openpyxl trabalha com XLSX",
+          "body": "A biblioteca externa abre pastas de trabalho e permite selecionar planilhas e células.",
+          "code": "from openpyxl import load_workbook\nwb = load_workbook('entrada.xlsx', data_only=False)\nws = wb['Dados']"
+        },
+        {
+          "title": "Leia por cabeçalho",
+          "body": "Mapear colunas pelos nomes é mais robusto que fixar letras sem conferir a estrutura.",
+          "code": "cabecalhos = {celula.value: celula.column for celula in ws[1]}\ncoluna_valor = cabecalhos['VALOR']"
+        },
+        {
+          "title": "Salve em novo arquivo",
+          "body": "Automação segura preserva a origem e valida totais antes de entregar a saída.",
+          "code": "wb.save('saida_validada.xlsx')\nassert total_lido == total_gravado"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual biblioteca manipula XLSX?",
+          "opts": [
+            "openpyxl",
+            "argparse",
+            "asyncio",
+            "sqlite3"
+          ],
+          "a": 0,
+          "hint": "Revise a fase AUTOMAÇÃO DE PLANILHAS.",
+          "ex": "A resposta correta é: openpyxl."
+        },
+        {
+          "type": "mcq",
+          "q": "O que load_workbook retorna?",
+          "opts": [
+            "DataFrame obrigatório",
+            "Pasta de trabalho",
+            "Texto CSV",
+            "Conexão HTTP"
+          ],
+          "a": 1,
+          "hint": "Revise a fase AUTOMAÇÃO DE PLANILHAS.",
+          "ex": "A resposta correta é: Pasta de trabalho."
+        },
+        {
+          "type": "mcq",
+          "q": "Por que mapear cabeçalhos?",
+          "opts": [
+            "Ocultar colunas",
+            "Remover fórmulas",
+            "Resistir a mudanças de posição das colunas",
+            "Criar gráficos sempre"
+          ],
+          "a": 2,
+          "hint": "Revise a fase AUTOMAÇÃO DE PLANILHAS.",
+          "ex": "A resposta correta é: Resistir a mudanças de posição das colunas."
+        },
+        {
+          "type": "mcq",
+          "q": "O que data_only=False preserva na leitura?",
+          "opts": [
+            "Somente valores calculados",
+            "Senhas",
+            "Macros automaticamente",
+            "Fórmulas como fórmulas"
+          ],
+          "a": 3,
+          "hint": "Revise a fase AUTOMAÇÃO DE PLANILHAS.",
+          "ex": "A resposta correta é: Fórmulas como fórmulas."
+        },
+        {
+          "type": "mcq",
+          "q": "Por que salvar em novo arquivo?",
+          "opts": [
+            "Preservar a origem",
+            "Duplicar erros",
+            "Acelerar Python",
+            "Remover estilos"
+          ],
+          "a": 0,
+          "hint": "Revise a fase AUTOMAÇÃO DE PLANILHAS.",
+          "ex": "A resposta correta é: Preservar a origem."
+        },
+        {
+          "type": "mcq",
+          "q": "O que conferir antes de entregar?",
+          "opts": [
+            "Somente nome",
+            "Totais, linhas e campos críticos",
+            "Cor da aba",
+            "Tamanho da janela"
+          ],
+          "a": 1,
+          "hint": "Revise a fase AUTOMAÇÃO DE PLANILHAS.",
+          "ex": "A resposta correta é: Totais, linhas e campos críticos."
+        },
+        {
+          "type": "mcq",
+          "q": "Como selecionar aba chamada Dados?",
+          "opts": [
+            "wb.open('Dados')",
+            "ws = Dados",
+            "wb['Dados']",
+            "load_sheet(1)"
+          ],
+          "a": 2,
+          "hint": "Revise a fase AUTOMAÇÃO DE PLANILHAS.",
+          "ex": "A resposta correta é: wb['Dados']."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual risco de usar letras fixas sem validação?",
+          "opts": [
+            "Python fecha",
+            "Arquivo vira CSV",
+            "Não existe risco",
+            "Mudança de layout processa coluna errada"
+          ],
+          "a": 3,
+          "hint": "Revise a fase AUTOMAÇÃO DE PLANILHAS.",
+          "ex": "A resposta correta é: Mudança de layout processa coluna errada."
+        }
+      ]
+    },
+    {
+      "id": "s62",
+      "name": "INTERFACE COM TKINTER",
+      "group": "APLICAÇÕES REAIS",
+      "difficulty": "AVANÇADO",
+      "boss": "GUI-FRAME",
+      "color": "#d22e2e",
+      "icon": "▣",
+      "summary": "Crie interfaces simples separando eventos visuais das regras do programa.",
+      "lesson": [
+        {
+          "title": "Janela e widgets",
+          "body": "Tkinter acompanha muitas instalações do Python e oferece janelas, rótulos, entradas e botões.",
+          "code": "import tkinter as tk\njanela = tk.Tk()\nentrada = tk.Entry(janela)\nentrada.pack()"
+        },
+        {
+          "title": "Callbacks respondem a eventos",
+          "body": "O comando do botão recebe uma função, sem parênteses, para executá-la no clique.",
+          "code": "def salvar():\n    valor = entrada.get()\n\nbotao = tk.Button(janela, text='Salvar', command=salvar)"
+        },
+        {
+          "title": "Regra fica fora da tela",
+          "body": "A interface coleta dados e chama serviços. Validações e persistência não devem depender dos widgets.",
+          "code": "def ao_salvar():\n    try:\n        servico.salvar(entrada.get())\n    except ValueError as erro:\n        mensagem.config(text=str(erro))"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual módulo padrão cria GUI simples?",
+          "opts": [
+            "tkinter",
+            "argparse",
+            "csv",
+            "logging"
+          ],
+          "a": 0,
+          "hint": "Revise a fase INTERFACE COM TKINTER.",
+          "ex": "A resposta correta é: tkinter."
+        },
+        {
+          "type": "mcq",
+          "q": "O que tk.Tk() cria?",
+          "opts": [
+            "Banco",
+            "Janela principal",
+            "Arquivo JSON",
+            "Corrotina"
+          ],
+          "a": 1,
+          "hint": "Revise a fase INTERFACE COM TKINTER.",
+          "ex": "A resposta correta é: Janela principal."
+        },
+        {
+          "type": "mcq",
+          "q": "Como ler texto de Entry?",
+          "opts": [
+            "entrada.read_text()",
+            "input(entrada)",
+            "entrada.get()",
+            "entrada.value sempre"
+          ],
+          "a": 2,
+          "hint": "Revise a fase INTERFACE COM TKINTER.",
+          "ex": "A resposta correta é: entrada.get()."
+        },
+        {
+          "type": "mcq",
+          "q": "Por que command=salvar sem parênteses?",
+          "opts": [
+            "Executa duas vezes",
+            "Cria classe",
+            "Define texto",
+            "Passa a função para executar depois"
+          ],
+          "a": 3,
+          "hint": "Revise a fase INTERFACE COM TKINTER.",
+          "ex": "A resposta correta é: Passa a função para executar depois."
+        },
+        {
+          "type": "mcq",
+          "q": "Onde ficam regras de negócio?",
+          "opts": [
+            "Em serviços independentes da interface",
+            "Dentro de cada botão",
+            "No CSS",
+            "Em variável global"
+          ],
+          "a": 0,
+          "hint": "Revise a fase INTERFACE COM TKINTER.",
+          "ex": "A resposta correta é: Em serviços independentes da interface."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual método inicia o loop visual?",
+          "opts": [
+            "gather()",
+            "mainloop()",
+            "commit()",
+            "parse_args()"
+          ],
+          "a": 1,
+          "hint": "Revise a fase INTERFACE COM TKINTER.",
+          "ex": "A resposta correta é: mainloop()."
+        },
+        {
+          "type": "mcq",
+          "q": "Como mostrar erro ao usuário?",
+          "opts": [
+            "Exibir segredo",
+            "Ignorar exceção",
+            "Capturar falha esperada e atualizar mensagem",
+            "Fechar sem aviso"
+          ],
+          "a": 2,
+          "hint": "Revise a fase INTERFACE COM TKINTER.",
+          "ex": "A resposta correta é: Capturar falha esperada e atualizar mensagem."
+        },
+        {
+          "type": "mcq",
+          "q": "Por que separar GUI e regras?",
+          "opts": [
+            "Impede eventos",
+            "Remove widgets",
+            "Evita funções",
+            "Facilita testes e troca de interface"
+          ],
+          "a": 3,
+          "hint": "Revise a fase INTERFACE COM TKINTER.",
+          "ex": "A resposta correta é: Facilita testes e troca de interface."
+        }
+      ]
+    },
+    {
+      "id": "s63",
+      "name": "EXECUTÁVEL COM PYINSTALLER",
+      "group": "APLICAÇÕES REAIS",
+      "difficulty": "AVANÇADO",
+      "boss": "BUILD-PACK",
+      "color": "#cc2929",
+      "icon": "⬡",
+      "summary": "Empacote uma aplicação e teste o resultado em ambiente limpo.",
+      "lesson": [
+        {
+          "title": "PyInstaller reúne aplicação",
+          "body": "A ferramenta externa analisa imports e cria uma distribuição executável.",
+          "code": "pyinstaller --name MeuApp --onefile src/meu_app/__main__.py"
+        },
+        {
+          "title": "Dados extras precisam ser declarados",
+          "body": "Ícones, modelos e arquivos de configuração podem exigir inclusão explícita no build.",
+          "code": "pyinstaller --add-data 'assets;assets' app.py"
+        },
+        {
+          "title": "Build precisa ser testado",
+          "body": "Teste o artefato fora do ambiente de desenvolvimento e registre versão e sistema alvo.",
+          "code": "dist/\n  MeuApp.exe\n# testar abertura, entrada, saída e erros"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que PyInstaller produz?",
+          "opts": [
+            "Distribuição executável",
+            "Código convertido em Java",
+            "Banco remoto",
+            "API"
+          ],
+          "a": 0,
+          "hint": "Revise a fase EXECUTÁVEL COM PYINSTALLER.",
+          "ex": "A resposta correta é: Distribuição executável."
+        },
+        {
+          "type": "mcq",
+          "q": "PyInstaller faz parte da biblioteca padrão?",
+          "opts": [
+            "Sim",
+            "Não",
+            "Somente no Windows",
+            "Apenas no Linux"
+          ],
+          "a": 1,
+          "hint": "Revise a fase EXECUTÁVEL COM PYINSTALLER.",
+          "ex": "A resposta correta é: Não."
+        },
+        {
+          "type": "mcq",
+          "q": "O que --onefile solicita?",
+          "opts": [
+            "Um arquivo de teste",
+            "Uma planilha",
+            "Um executável principal único",
+            "Uma classe"
+          ],
+          "a": 2,
+          "hint": "Revise a fase EXECUTÁVEL COM PYINSTALLER.",
+          "ex": "A resposta correta é: Um executável principal único."
+        },
+        {
+          "type": "mcq",
+          "q": "Onde o resultado costuma aparecer?",
+          "opts": [
+            "tests",
+            "src apenas",
+            "venv",
+            "dist"
+          ],
+          "a": 3,
+          "hint": "Revise a fase EXECUTÁVEL COM PYINSTALLER.",
+          "ex": "A resposta correta é: dist."
+        },
+        {
+          "type": "mcq",
+          "q": "Por que declarar arquivos de dados?",
+          "opts": [
+            "Podem não ser detectados como imports",
+            "Para remover dependências",
+            "Para criar testes",
+            "Para ativar HTTP"
+          ],
+          "a": 0,
+          "hint": "Revise a fase EXECUTÁVEL COM PYINSTALLER.",
+          "ex": "A resposta correta é: Podem não ser detectados como imports."
+        },
+        {
+          "type": "mcq",
+          "q": "Onde testar o executável?",
+          "opts": [
+            "Somente no editor",
+            "Em ambiente limpo semelhante ao usuário",
+            "Apenas no CI sem abrir",
+            "Dentro do JSON"
+          ],
+          "a": 1,
+          "hint": "Revise a fase EXECUTÁVEL COM PYINSTALLER.",
+          "ex": "A resposta correta é: Em ambiente limpo semelhante ao usuário."
+        },
+        {
+          "type": "mcq",
+          "q": "O executável elimina todo antivírus falso positivo?",
+          "opts": [
+            "Sim",
+            "Somente com onefile",
+            "Não",
+            "Apenas com ícone"
+          ],
+          "a": 2,
+          "hint": "Revise a fase EXECUTÁVEL COM PYINSTALLER.",
+          "ex": "A resposta correta é: Não."
+        },
+        {
+          "type": "mcq",
+          "q": "O que registrar na entrega?",
+          "opts": [
+            "Token real",
+            "Senha do banco",
+            "Somente tamanho",
+            "Versão, sistema alvo e instruções"
+          ],
+          "a": 3,
+          "hint": "Revise a fase EXECUTÁVEL COM PYINSTALLER.",
+          "ex": "A resposta correta é: Versão, sistema alvo e instruções."
+        }
+      ]
+    },
+    {
+      "id": "s64",
+      "name": "ENTREGA DE UMA APLICAÇÃO",
+      "group": "APLICAÇÕES REAIS",
+      "difficulty": "AVANÇADO",
+      "boss": "RELEASE-GATE",
+      "color": "#c42424",
+      "icon": "★",
+      "summary": "Prepare versão, documentação, artefatos e plano de recuperação.",
+      "lesson": [
+        {
+          "title": "Versão identifica a entrega",
+          "body": "Use uma versão clara para relacionar código, artefato e notas de mudança.",
+          "code": "__version__ = '1.0.0'\n# release: v1.0.0"
+        },
+        {
+          "title": "Documentação reduz suporte",
+          "body": "Explique instalação, execução, entradas, saídas, limitações e solução de erros comuns.",
+          "code": "README.md\nCHANGELOG.md\n.env.example"
+        },
+        {
+          "title": "Entrega precisa de retorno",
+          "body": "Mantenha o artefato anterior e saiba restaurá-lo se a nova versão falhar.",
+          "code": "releases/\n  v0.9.0/\n  v1.0.0/\n# validar antes de substituir"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Para que serve a versão?",
+          "opts": [
+            "Identificar precisamente a entrega",
+            "Guardar senha",
+            "Escolher cor",
+            "Criar banco"
+          ],
+          "a": 0,
+          "hint": "Revise a fase ENTREGA DE UMA APLICAÇÃO.",
+          "ex": "A resposta correta é: Identificar precisamente a entrega."
+        },
+        {
+          "type": "mcq",
+          "q": "O que CHANGELOG registra?",
+          "opts": [
+            "Tokens",
+            "Mudanças entre versões",
+            "Dados pessoais",
+            "Dependências ocultas"
+          ],
+          "a": 1,
+          "hint": "Revise a fase ENTREGA DE UMA APLICAÇÃO.",
+          "ex": "A resposta correta é: Mudanças entre versões."
+        },
+        {
+          "type": "mcq",
+          "q": "O que README deve explicar?",
+          "opts": [
+            "Segredos reais",
+            "Somente autor",
+            "Instalação, uso e limitações",
+            "Logs privados"
+          ],
+          "a": 2,
+          "hint": "Revise a fase ENTREGA DE UMA APLICAÇÃO.",
+          "ex": "A resposta correta é: Instalação, uso e limitações."
+        },
+        {
+          "type": "mcq",
+          "q": "O que é rollback?",
+          "opts": [
+            "Excluir todo histórico",
+            "Repetir teste",
+            "Compactar arquivo",
+            "Retornar à versão anterior"
+          ],
+          "a": 3,
+          "hint": "Revise a fase ENTREGA DE UMA APLICAÇÃO.",
+          "ex": "A resposta correta é: Retornar à versão anterior."
+        },
+        {
+          "type": "mcq",
+          "q": "Por que manter artefato anterior?",
+          "opts": [
+            "Permitir recuperação rápida",
+            "Aumentar confusão",
+            "Duplicar bugs",
+            "Evitar versão"
+          ],
+          "a": 0,
+          "hint": "Revise a fase ENTREGA DE UMA APLICAÇÃO.",
+          "ex": "A resposta correta é: Permitir recuperação rápida."
+        },
+        {
+          "type": "mcq",
+          "q": "O que validar antes de publicar?",
+          "opts": [
+            "Somente tela inicial",
+            "Fluxo principal, erros e instalação limpa",
+            "Apenas nome",
+            "Nada"
+          ],
+          "a": 1,
+          "hint": "Revise a fase ENTREGA DE UMA APLICAÇÃO.",
+          "ex": "A resposta correta é: Fluxo principal, erros e instalação limpa."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual arquivo documenta configuração sem segredo?",
+          "opts": [
+            ".env real",
+            "token.txt",
+            "`.env.example`",
+            "senha.json"
+          ],
+          "a": 2,
+          "hint": "Revise a fase ENTREGA DE UMA APLICAÇÃO.",
+          "ex": "A resposta correta é: `.env.example`."
+        },
+        {
+          "type": "mcq",
+          "q": "Quando uma release está pronta?",
+          "opts": [
+            "Quando compila no computador do autor",
+            "Sem testes",
+            "Com alerta ignorado",
+            "Artefato testado, documentado e rastreável"
+          ],
+          "a": 3,
+          "hint": "Revise a fase ENTREGA DE UMA APLICAÇÃO.",
+          "ex": "A resposta correta é: Artefato testado, documentado e rastreável."
+        }
+      ]
+    },
+    {
       "id": "s20",
       "name": "PROJETO FINAL",
       "group": "APLICAÇÕES REAIS",
@@ -7325,7 +8389,7 @@
       "boss": "BLACK-CORE OMEGA",
       "color": "#ffffff",
       "icon": "Ω",
-      "summary": "Integre fundamentos, dados, arquivos, funções, exceções e orientação a objetos.",
+      "summary": "Integre as 64 fases em uma aplicação testada, documentada e pronta para entrega.",
       "lesson": [
         {
           "title": "Arquitetura simples",
@@ -7338,9 +8402,9 @@
           "code": "def main():\n    dados = carregar()\n    app = Aplicacao(dados)\n    app.executar()\n\nif __name__ == '__main__':\n    main()"
         },
         {
-          "title": "Checklist de qualidade",
-          "body": "Valide entradas, trate exceções esperadas, não duplique lógica, use nomes claros e mantenha o formato dos dados documentado.",
-          "code": "# checklist\n# [x] entradas validadas\n# [x] erros tratados\n# [x] funções pequenas\n# [x] dados persistidos\n# [x] fluxo testado"
+          "title": "Checklist final de produto",
+          "body": "Valide regras, persistência, logs, testes, configuração, empacotamento e documentação. A entrega deve poder ser instalada, usada e recuperada.",
+          "code": "# checklist final\n# [x] entradas validadas\n# [x] persistência segura\n# [x] logs e testes\n# [x] configuração documentada\n# [x] artefato testado\n# [x] rollback preparado"
         }
       ],
       "questions": [
