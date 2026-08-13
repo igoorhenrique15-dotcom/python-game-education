@@ -1,6 +1,6 @@
 {
   "title": "PYTHON // BLACK BUSTER",
-  "version": 8,
+  "version": 9,
   "stages": [
     {
       "id": "s1",
@@ -132,6 +132,139 @@
           "a": 1,
           "hint": "Uma operação com float normalmente produz float.",
           "ex": "12.5 é float, então total também é float."
+        }
+      ]
+    },
+    {
+      "id": "s9",
+      "name": "INPUT E CONVERSÃO",
+      "group": "FUNDAMENTOS",
+      "difficulty": "INICIANTE",
+      "boss": "INPUT-CORE",
+      "color": "#36e7ff",
+      "icon": "⌨",
+      "summary": "Leia dados do usuário e converta textos para números com segurança.",
+      "lesson": [
+        {
+          "title": "input sempre retorna texto",
+          "body": "input() recebe texto digitado pelo usuário. Mesmo quando a pessoa digita 30, o valor recebido inicialmente é uma string.",
+          "code": "idade = input('Idade: ')\nprint(type(idade))  # str"
+        },
+        {
+          "title": "int e float",
+          "body": "Use int() para inteiros e float() para números decimais. A conversão falha se o texto não representar um número válido.",
+          "code": "idade = int(input('Idade: '))\naltura = float(input('Altura: '))"
+        },
+        {
+          "title": "Conversões comuns",
+          "body": "str converte para texto, bool para booleano e int pode converter floats truncando a parte decimal.",
+          "code": "str(10)\nint(3.9)   # 3\nfloat('2.5')\nbool(1)    # True"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual tipo input() retorna?",
+          "opts": [
+            "int",
+            "float",
+            "str",
+            "depende do valor"
+          ],
+          "a": 2,
+          "hint": "Sem conversão explícita, sempre é texto.",
+          "ex": "input retorna str."
+        },
+        {
+          "type": "code",
+          "q": "idade = int('30')\nprint(type(idade))",
+          "opts": [
+            "str",
+            "int",
+            "float",
+            "bool"
+          ],
+          "a": 1,
+          "hint": "int converte o texto numérico.",
+          "ex": "O resultado é um inteiro."
+        },
+        {
+          "type": "code",
+          "q": "print(int(3.9))",
+          "opts": [
+            "3",
+            "4",
+            "3.9",
+            "Erro"
+          ],
+          "a": 0,
+          "hint": "int trunca a parte decimal.",
+          "ex": "int(3.9) resulta em 3."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual conversão transforma '12.5' em decimal?",
+          "opts": [
+            "int",
+            "float",
+            "decimal",
+            "number"
+          ],
+          "a": 1,
+          "hint": "É o tipo de ponto flutuante.",
+          "ex": "float('12.5') resulta em 12.5."
+        },
+        {
+          "type": "code",
+          "q": "print(bool(''))",
+          "opts": [
+            "True",
+            "False",
+            "Erro",
+            "None"
+          ],
+          "a": 1,
+          "hint": "String vazia é falsy.",
+          "ex": "bool('') é False."
+        },
+        {
+          "type": "code",
+          "q": "entrada = '12'\nvalor = int(entrada)\nprint(valor + 3)",
+          "opts": [
+            "123",
+            "15",
+            "12",
+            "Erro"
+          ],
+          "a": 1,
+          "hint": "int converte o texto numérico em inteiro.",
+          "ex": "12 + 3 resulta em 15."
+        },
+        {
+          "type": "mcq",
+          "q": "Por que float(input()) pode gerar ValueError?",
+          "opts": [
+            "O usuário pode digitar texto não numérico",
+            "input retorna sempre float",
+            "float não aceita números",
+            "input encerra o programa"
+          ],
+          "a": 0,
+          "hint": "A conversão depende do conteúdo digitado.",
+          "ex": "Texto como abc não pode ser convertido diretamente em float."
+        },
+        {
+          "type": "code",
+          "q": "idade = 30\nmensagem = 'Idade: ' + str(idade)\nprint(mensagem)",
+          "opts": [
+            "Idade: idade",
+            "Idade: 30",
+            "30",
+            "Erro"
+          ],
+          "a": 1,
+          "hint": "str transforma o inteiro em texto.",
+          "ex": "A concatenação produz Idade: 30."
         }
       ]
     },
@@ -269,9 +402,142 @@
       ]
     },
     {
+      "id": "s8",
+      "name": "STRINGS",
+      "group": "FUNDAMENTOS",
+      "difficulty": "INICIANTE",
+      "boss": "STR-WARDEN",
+      "color": "#b14aff",
+      "icon": "★",
+      "summary": "Manipule textos, formate mensagens e extraia trechos.",
+      "lesson": [
+        {
+          "title": "Índices e slicing",
+          "body": "Strings são sequências de caracteres. Você pode acessar posições e usar slicing.",
+          "code": "nome = 'Python'\nprint(nome[0])\nprint(nome[0:3])"
+        },
+        {
+          "title": "Métodos úteis",
+          "body": "strip remove espaços externos, upper e lower alteram caixa, replace troca trechos e split separa texto.",
+          "code": "texto = '  Python,JS  '\nprint(texto.strip())\nprint(texto.lower())\nprint(texto.replace('JS','SQL'))"
+        },
+        {
+          "title": "f-strings",
+          "body": "f-strings inserem valores diretamente em textos e permitem expressões entre chaves.",
+          "code": "nome='Igor'\nidade=30\nprint(f'{nome} tem {idade} anos')\nprint(f'{2+3=}')"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "print('Python'[0:3])",
+          "opts": [
+            "Pyt",
+            "yth",
+            "Python",
+            "Erro"
+          ],
+          "a": 0,
+          "hint": "Vai do índice 0 até antes do 3.",
+          "ex": "O resultado é Pyt."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual método deixa tudo maiúsculo?",
+          "opts": [
+            "upper",
+            "uppercase",
+            "caps",
+            "toUpper"
+          ],
+          "a": 0,
+          "hint": "O nome significa superior.",
+          "ex": "upper() converte para maiúsculas."
+        },
+        {
+          "type": "code",
+          "q": "print(len('Python'))",
+          "opts": [
+            "5",
+            "6",
+            "7",
+            "Erro"
+          ],
+          "a": 1,
+          "hint": "Conte os caracteres.",
+          "ex": "Python tem 6 letras."
+        },
+        {
+          "type": "code",
+          "q": "nome='Igor'\nprint(f'Olá, {nome}!')",
+          "opts": [
+            "Olá, nome!",
+            "Olá, Igor!",
+            "Erro",
+            "Igor"
+          ],
+          "a": 1,
+          "hint": "A variável é inserida nas chaves.",
+          "ex": "A f-string injeta o valor Igor."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual método divide uma string em uma lista?",
+          "opts": [
+            "split",
+            "cut",
+            "divide",
+            "slice"
+          ],
+          "a": 0,
+          "hint": "Muito usado em textos separados por vírgula.",
+          "ex": "split() separa a string."
+        },
+        {
+          "type": "code",
+          "q": "texto = '  Python  '\nprint(texto.strip().lower())",
+          "opts": [
+            "  Python  ",
+            "PYTHON",
+            "python",
+            "Python"
+          ],
+          "a": 2,
+          "hint": "strip remove espaços externos e lower converte para minúsculas.",
+          "ex": "O resultado final é python."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual método substitui partes de uma string?",
+          "opts": [
+            "replace",
+            "append",
+            "change",
+            "swap"
+          ],
+          "a": 0,
+          "hint": "Strings são imutáveis; o método retorna outra string.",
+          "ex": "replace cria uma nova string com as substituições."
+        },
+        {
+          "type": "code",
+          "q": "nome = 'Igor'\nprint(f'{nome} tem {len(nome)} letras')",
+          "opts": [
+            "Igor tem 3 letras",
+            "Igor tem 4 letras",
+            "nome tem 4 letras",
+            "Erro"
+          ],
+          "a": 1,
+          "hint": "A f-string avalia nome e len(nome).",
+          "ex": "Igor possui quatro caracteres."
+        }
+      ]
+    },
+    {
       "id": "s3",
       "name": "CONDICIONAIS",
-      "group": "FUNDAMENTOS",
+      "group": "DECISÕES E REPETIÇÕES",
       "difficulty": "INICIANTE",
       "boss": "IF-GUARDIAN",
       "color": "#ff1f4c",
@@ -402,9 +668,142 @@
       ]
     },
     {
+      "id": "s21",
+      "name": "MATCH / CASE",
+      "group": "DECISÕES E REPETIÇÕES",
+      "difficulty": "INICIANTE",
+      "boss": "PATTERN-WARDEN",
+      "color": "#8b5cf6",
+      "icon": "◇",
+      "summary": "Use correspondência de padrões para organizar decisões claras com valores e estruturas.",
+      "lesson": [
+        {
+          "title": "Correspondência de padrões",
+          "body": "match compara um valor com casos na ordem escrita. O primeiro padrão compatível é executado; o caractere _ funciona como caso padrão.",
+          "code": "comando = 'salvar'\n\nmatch comando:\n    case 'abrir':\n        print('Abrindo')\n    case 'salvar':\n        print('Salvando')\n    case _:\n        print('Comando desconhecido')"
+        },
+        {
+          "title": "Padrões com estruturas",
+          "body": "Os casos podem decompor listas, tuplas e outros valores estruturados. Os nomes dentro do padrão capturam partes do valor.",
+          "code": "ponto = (4, 0)\n\nmatch ponto:\n    case (0, 0):\n        print('Origem')\n    case (x, 0):\n        print(f'Eixo X: {x}')\n    case (x, y):\n        print(x, y)"
+        },
+        {
+          "title": "Guardas com if",
+          "body": "Uma guarda adiciona uma condição ao caso. O padrão precisa combinar e a guarda precisa ser verdadeira para o bloco executar.",
+          "code": "status = ('pedido', 120)\n\nmatch status:\n    case ('pedido', valor) if valor >= 100:\n        print('Frete grátis')\n    case ('pedido', valor):\n        print('Frete normal')"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual padrão funciona como caso padrão em match?",
+          "opts": [
+            "_",
+            "*",
+            "else",
+            "default"
+          ],
+          "a": 0,
+          "hint": "É um único caractere usado quando nenhum caso anterior combina.",
+          "ex": "case _: captura qualquer valor que não tenha correspondido antes."
+        },
+        {
+          "type": "code",
+          "q": "Qual texto é exibido?\ncor = 'azul'\nmatch cor:\n    case 'vermelho': print('R')\n    case 'azul': print('A')\n    case _: print('?')",
+          "opts": [
+            "R",
+            "A",
+            "?",
+            "Nada"
+          ],
+          "a": 1,
+          "hint": "Os casos são testados na ordem.",
+          "ex": "O valor 'azul' combina com o segundo caso."
+        },
+        {
+          "type": "mcq",
+          "q": "Em que ordem os casos de match são avaliados?",
+          "opts": [
+            "Do primeiro para o último",
+            "Do último para o primeiro",
+            "Em ordem aleatória",
+            "Todos ao mesmo tempo"
+          ],
+          "a": 0,
+          "hint": "A primeira correspondência encerra a seleção.",
+          "ex": "Python testa os casos de cima para baixo e usa o primeiro compatível."
+        },
+        {
+          "type": "code",
+          "q": "Qual valor é capturado em x?\nponto = (7, 0)\nmatch ponto:\n    case (x, 0): print(x)\n    case _: print('outro')",
+          "opts": [
+            "0",
+            "7",
+            "(7, 0)",
+            "outro"
+          ],
+          "a": 1,
+          "hint": "O segundo item precisa ser 0; o primeiro é capturado.",
+          "ex": "O padrão (x, 0) captura 7 no nome x."
+        },
+        {
+          "type": "mcq",
+          "q": "Para que serve uma guarda `if` em um `case`?",
+          "opts": [
+            "Adicionar uma condição ao padrão",
+            "Repetir o caso",
+            "Importar um módulo",
+            "Encerrar o programa"
+          ],
+          "a": 0,
+          "hint": "Ela refina quando um caso pode executar.",
+          "ex": "A guarda só permite o caso quando o padrão combina e a condição é verdadeira."
+        },
+        {
+          "type": "code",
+          "q": "Qual saída ocorre?\nitem = ('maçã', 3)\nmatch item:\n    case (nome, qtd) if qtd > 5: print('muito')\n    case (nome, qtd): print(nome)",
+          "opts": [
+            "muito",
+            "maçã",
+            "3",
+            "Erro"
+          ],
+          "a": 1,
+          "hint": "A primeira guarda é falsa, mas o segundo padrão ainda combina.",
+          "ex": "Como 3 não é maior que 5, o segundo caso imprime maçã."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual versão expressa melhor muitos casos baseados na forma de um valor?",
+          "opts": [
+            "match/case",
+            "while infinito",
+            "try sem exceção",
+            "import"
+          ],
+          "a": 0,
+          "hint": "Procure o recurso criado para correspondência de padrões.",
+          "ex": "match/case deixa decisões estruturais explícitas e ordenadas."
+        },
+        {
+          "type": "code",
+          "q": "Qual saída ocorre?\ncomando = ['mover', 2, 5]\nmatch comando:\n    case ['mover', x, y]: print(x + y)\n    case _: print(0)",
+          "opts": [
+            "0",
+            "2",
+            "5",
+            "7"
+          ],
+          "a": 3,
+          "hint": "O padrão captura os dois números.",
+          "ex": "x recebe 2, y recebe 5 e a soma é 7."
+        }
+      ]
+    },
+    {
       "id": "s4",
       "name": "LOOPS",
-      "group": "FUNDAMENTOS",
+      "group": "DECISÕES E REPETIÇÕES",
       "difficulty": "INICIANTE",
       "boss": "LOOP-DRONE",
       "color": "#00e5ff",
@@ -537,7 +936,7 @@
     {
       "id": "s5",
       "name": "LISTAS",
-      "group": "COLEÇÕES",
+      "group": "DECISÕES E REPETIÇÕES",
       "difficulty": "INICIANTE",
       "boss": "LIST-MECH",
       "color": "#b14aff",
@@ -664,538 +1063,6 @@
           "a": 1,
           "hint": "O limite final do slicing não é incluído.",
           "ex": "Os índices 1 e 2 contêm 20 e 30."
-        }
-      ]
-    },
-    {
-      "id": "s6",
-      "name": "FUNÇÕES",
-      "group": "NÚCLEO PYTHON",
-      "difficulty": "BÁSICO",
-      "boss": "FUNC-TURRET",
-      "color": "#ffd23f",
-      "icon": "◐",
-      "summary": "Organize lógica reutilizável com parâmetros e retornos.",
-      "lesson": [
-        {
-          "title": "def e chamada",
-          "body": "Funções agrupam instruções reutilizáveis. def define a função e os parênteses recebem parâmetros.",
-          "code": "def dobro(x):\n    return x * 2\n\nprint(dobro(5))"
-        },
-        {
-          "title": "return",
-          "body": "return devolve um valor e encerra a execução da função naquele ponto.",
-          "code": "def maior(a, b):\n    if a > b:\n        return a\n    return b"
-        },
-        {
-          "title": "Parâmetros padrão",
-          "body": "Um parâmetro pode ter um valor padrão, usado quando nenhum argumento é informado.",
-          "code": "def soma(a, b=10):\n    return a + b\n\nprint(soma(5))"
-        }
-      ],
-      "questions": [
-        {
-          "type": "mcq",
-          "q": "Qual palavra define uma função?",
-          "opts": [
-            "function",
-            "def",
-            "func",
-            "define"
-          ],
-          "a": 1,
-          "hint": "É uma abreviação de define.",
-          "ex": "Python usa def."
-        },
-        {
-          "type": "code",
-          "q": "def dobro(x):\n    return x * 2\nprint(dobro(5))",
-          "opts": [
-            "5",
-            "10",
-            "25",
-            "Erro"
-          ],
-          "a": 1,
-          "hint": "Multiplique 5 por 2.",
-          "ex": "A função retorna 10."
-        },
-        {
-          "type": "mcq",
-          "q": "O que return faz?",
-          "opts": [
-            "Só imprime",
-            "Devolve um valor e encerra a função",
-            "Reinicia a função",
-            "Encerra o Python"
-          ],
-          "a": 1,
-          "hint": "Ele entrega um resultado ao chamador.",
-          "ex": "return devolve um valor e termina a função."
-        },
-        {
-          "type": "code",
-          "q": "def soma(a,b=10): return a+b\nprint(soma(5))",
-          "opts": [
-            "5",
-            "10",
-            "15",
-            "Erro"
-          ],
-          "a": 2,
-          "hint": "b usa o valor padrão 10.",
-          "ex": "5 + 10 = 15."
-        },
-        {
-          "type": "mcq",
-          "q": "Sem return explícito, uma função retorna:",
-          "opts": [
-            "0",
-            "False",
-            "None",
-            "Erro"
-          ],
-          "a": 2,
-          "hint": "Python usa um valor de ausência.",
-          "ex": "O retorno implícito é None."
-        },
-        {
-          "type": "code",
-          "q": "def dobro(n):\n    return n * 2\nresultado = dobro(4)\nprint(resultado)",
-          "opts": [
-            "4",
-            "6",
-            "8",
-            "None"
-          ],
-          "a": 2,
-          "hint": "return devolve o cálculo para quem chamou a função.",
-          "ex": "dobro(4) retorna 8."
-        },
-        {
-          "type": "mcq",
-          "q": "O que acontece quando uma função termina sem executar return com valor?",
-          "opts": [
-            "Retorna None",
-            "Retorna zero",
-            "Gera sempre um erro",
-            "Repete a função"
-          ],
-          "a": 0,
-          "hint": "Toda função devolve algum objeto.",
-          "ex": "Sem valor explícito, Python retorna None."
-        },
-        {
-          "type": "code",
-          "q": "def saudacao(nome='Py'):\n    return f'Olá, {nome}'\nprint(saudacao())",
-          "opts": [
-            "Olá",
-            "Olá, nome",
-            "Olá, Py",
-            "Erro"
-          ],
-          "a": 2,
-          "hint": "O argumento padrão é usado quando nenhum valor é enviado.",
-          "ex": "Sem argumento, nome recebe Py."
-        }
-      ]
-    },
-    {
-      "id": "s7",
-      "name": "DICIONÁRIOS",
-      "group": "COLEÇÕES",
-      "difficulty": "BÁSICO",
-      "boss": "DICT-SENTRY",
-      "color": "#ff1f4c",
-      "icon": "◫",
-      "summary": "Modele informações usando pares de chave e valor.",
-      "lesson": [
-        {
-          "title": "Chave e valor",
-          "body": "Dicionários associam chaves a valores. Você acessa um valor pela sua chave.",
-          "code": "pessoa = {'nome':'Ana','idade':30}\nprint(pessoa['nome'])"
-        },
-        {
-          "title": "Atualizando dados",
-          "body": "Atribuir a uma chave cria ou substitui um valor. del remove uma chave existente.",
-          "code": "pessoa['cidade'] = 'Rio Preto'\npessoa['idade'] = 31\ndel pessoa['cidade']"
-        },
-        {
-          "title": "get, keys e items",
-          "body": "get evita KeyError ao buscar uma chave inexistente. keys retorna chaves e items retorna pares.",
-          "code": "print(pessoa.get('email'))\nfor chave, valor in pessoa.items():\n    print(chave, valor)"
-        }
-      ],
-      "questions": [
-        {
-          "type": "code",
-          "q": "d={'nome':'Ana','idade':30}\nprint(d['nome'])",
-          "opts": [
-            "nome",
-            "Ana",
-            "idade",
-            "Erro"
-          ],
-          "a": 1,
-          "hint": "A chave nome aponta para Ana.",
-          "ex": "O valor associado é Ana."
-        },
-        {
-          "type": "mcq",
-          "q": "Como criar/atualizar uma chave?",
-          "opts": [
-            "d.append('x',1)",
-            "d['x']=1",
-            "d.add('x':1)",
-            "d.push(1)"
-          ],
-          "a": 1,
-          "hint": "Use colchetes com a chave.",
-          "ex": "d['x'] = 1 cria ou atualiza."
-        },
-        {
-          "type": "mcq",
-          "q": "Qual método retorna pares chave-valor?",
-          "opts": [
-            "keys",
-            "values",
-            "items",
-            "pairs"
-          ],
-          "a": 2,
-          "hint": "É usado frequentemente em for chave, valor.",
-          "ex": "items() retorna pares."
-        },
-        {
-          "type": "code",
-          "q": "d={'a':1,'b':2}\nprint(len(d))",
-          "opts": [
-            "1",
-            "2",
-            "4",
-            "Erro"
-          ],
-          "a": 1,
-          "hint": "Conte os pares.",
-          "ex": "Existem 2 chaves."
-        },
-        {
-          "type": "mcq",
-          "q": "d.get('x') sem a chave x retorna por padrão:",
-          "opts": [
-            "0",
-            "None",
-            "KeyError",
-            "False"
-          ],
-          "a": 1,
-          "hint": "get é uma busca segura.",
-          "ex": "O retorno padrão é None."
-        },
-        {
-          "type": "code",
-          "q": "pessoa = {'nome': 'Ana', 'idade': 20}\npessoa['idade'] += 1\nprint(pessoa['idade'])",
-          "opts": [
-            "20",
-            "21",
-            "idade",
-            "Erro"
-          ],
-          "a": 1,
-          "hint": "O valor associado à chave idade é incrementado.",
-          "ex": "20 + 1 resulta em 21."
-        },
-        {
-          "type": "mcq",
-          "q": "Qual método busca uma chave sem gerar KeyError quando ela não existe?",
-          "opts": [
-            "get",
-            "append",
-            "index",
-            "sort"
-          ],
-          "a": 0,
-          "hint": "Ele também pode receber um valor padrão.",
-          "ex": "dict.get retorna None ou o padrão informado."
-        },
-        {
-          "type": "code",
-          "q": "dados = {'a': 1, 'b': 2}\nprint(list(dados.keys()))",
-          "opts": [
-            "[1, 2]",
-            "['a', 'b']",
-            "[('a', 1), ('b', 2)]",
-            "2"
-          ],
-          "a": 1,
-          "hint": "keys retorna as chaves do dicionário.",
-          "ex": "As chaves inseridas são a e b."
-        }
-      ]
-    },
-    {
-      "id": "s8",
-      "name": "STRINGS",
-      "group": "NÚCLEO PYTHON",
-      "difficulty": "BÁSICO",
-      "boss": "STR-WARDEN",
-      "color": "#b14aff",
-      "icon": "★",
-      "summary": "Manipule textos, formate mensagens e extraia trechos.",
-      "lesson": [
-        {
-          "title": "Índices e slicing",
-          "body": "Strings são sequências de caracteres. Você pode acessar posições e usar slicing.",
-          "code": "nome = 'Python'\nprint(nome[0])\nprint(nome[0:3])"
-        },
-        {
-          "title": "Métodos úteis",
-          "body": "strip remove espaços externos, upper e lower alteram caixa, replace troca trechos e split separa texto.",
-          "code": "texto = '  Python,JS  '\nprint(texto.strip())\nprint(texto.lower())\nprint(texto.replace('JS','SQL'))"
-        },
-        {
-          "title": "f-strings",
-          "body": "f-strings inserem valores diretamente em textos e permitem expressões entre chaves.",
-          "code": "nome='Igor'\nidade=30\nprint(f'{nome} tem {idade} anos')\nprint(f'{2+3=}')"
-        }
-      ],
-      "questions": [
-        {
-          "type": "code",
-          "q": "print('Python'[0:3])",
-          "opts": [
-            "Pyt",
-            "yth",
-            "Python",
-            "Erro"
-          ],
-          "a": 0,
-          "hint": "Vai do índice 0 até antes do 3.",
-          "ex": "O resultado é Pyt."
-        },
-        {
-          "type": "mcq",
-          "q": "Qual método deixa tudo maiúsculo?",
-          "opts": [
-            "upper",
-            "uppercase",
-            "caps",
-            "toUpper"
-          ],
-          "a": 0,
-          "hint": "O nome significa superior.",
-          "ex": "upper() converte para maiúsculas."
-        },
-        {
-          "type": "code",
-          "q": "print(len('Python'))",
-          "opts": [
-            "5",
-            "6",
-            "7",
-            "Erro"
-          ],
-          "a": 1,
-          "hint": "Conte os caracteres.",
-          "ex": "Python tem 6 letras."
-        },
-        {
-          "type": "code",
-          "q": "nome='Igor'\nprint(f'Olá, {nome}!')",
-          "opts": [
-            "Olá, nome!",
-            "Olá, Igor!",
-            "Erro",
-            "Igor"
-          ],
-          "a": 1,
-          "hint": "A variável é inserida nas chaves.",
-          "ex": "A f-string injeta o valor Igor."
-        },
-        {
-          "type": "mcq",
-          "q": "Qual método divide uma string em uma lista?",
-          "opts": [
-            "split",
-            "cut",
-            "divide",
-            "slice"
-          ],
-          "a": 0,
-          "hint": "Muito usado em textos separados por vírgula.",
-          "ex": "split() separa a string."
-        },
-        {
-          "type": "code",
-          "q": "texto = '  Python  '\nprint(texto.strip().lower())",
-          "opts": [
-            "  Python  ",
-            "PYTHON",
-            "python",
-            "Python"
-          ],
-          "a": 2,
-          "hint": "strip remove espaços externos e lower converte para minúsculas.",
-          "ex": "O resultado final é python."
-        },
-        {
-          "type": "mcq",
-          "q": "Qual método substitui partes de uma string?",
-          "opts": [
-            "replace",
-            "append",
-            "change",
-            "swap"
-          ],
-          "a": 0,
-          "hint": "Strings são imutáveis; o método retorna outra string.",
-          "ex": "replace cria uma nova string com as substituições."
-        },
-        {
-          "type": "code",
-          "q": "nome = 'Igor'\nprint(f'{nome} tem {len(nome)} letras')",
-          "opts": [
-            "Igor tem 3 letras",
-            "Igor tem 4 letras",
-            "nome tem 4 letras",
-            "Erro"
-          ],
-          "a": 1,
-          "hint": "A f-string avalia nome e len(nome).",
-          "ex": "Igor possui quatro caracteres."
-        }
-      ]
-    },
-    {
-      "id": "s9",
-      "name": "INPUT E CONVERSÃO",
-      "group": "NÚCLEO PYTHON",
-      "difficulty": "BÁSICO",
-      "boss": "INPUT-CORE",
-      "color": "#36e7ff",
-      "icon": "⌨",
-      "summary": "Leia dados do usuário e converta textos para números com segurança.",
-      "lesson": [
-        {
-          "title": "input sempre retorna texto",
-          "body": "input() recebe texto digitado pelo usuário. Mesmo quando a pessoa digita 30, o valor recebido inicialmente é uma string.",
-          "code": "idade = input('Idade: ')\nprint(type(idade))  # str"
-        },
-        {
-          "title": "int e float",
-          "body": "Use int() para inteiros e float() para números decimais. A conversão falha se o texto não representar um número válido.",
-          "code": "idade = int(input('Idade: '))\naltura = float(input('Altura: '))"
-        },
-        {
-          "title": "Conversões comuns",
-          "body": "str converte para texto, bool para booleano e int pode converter floats truncando a parte decimal.",
-          "code": "str(10)\nint(3.9)   # 3\nfloat('2.5')\nbool(1)    # True"
-        }
-      ],
-      "questions": [
-        {
-          "type": "mcq",
-          "q": "Qual tipo input() retorna?",
-          "opts": [
-            "int",
-            "float",
-            "str",
-            "depende do valor"
-          ],
-          "a": 2,
-          "hint": "Sem conversão explícita, sempre é texto.",
-          "ex": "input retorna str."
-        },
-        {
-          "type": "code",
-          "q": "idade = int('30')\nprint(type(idade))",
-          "opts": [
-            "str",
-            "int",
-            "float",
-            "bool"
-          ],
-          "a": 1,
-          "hint": "int converte o texto numérico.",
-          "ex": "O resultado é um inteiro."
-        },
-        {
-          "type": "code",
-          "q": "print(int(3.9))",
-          "opts": [
-            "3",
-            "4",
-            "3.9",
-            "Erro"
-          ],
-          "a": 0,
-          "hint": "int trunca a parte decimal.",
-          "ex": "int(3.9) resulta em 3."
-        },
-        {
-          "type": "mcq",
-          "q": "Qual conversão transforma '12.5' em decimal?",
-          "opts": [
-            "int",
-            "float",
-            "decimal",
-            "number"
-          ],
-          "a": 1,
-          "hint": "É o tipo de ponto flutuante.",
-          "ex": "float('12.5') resulta em 12.5."
-        },
-        {
-          "type": "code",
-          "q": "print(bool(''))",
-          "opts": [
-            "True",
-            "False",
-            "Erro",
-            "None"
-          ],
-          "a": 1,
-          "hint": "String vazia é falsy.",
-          "ex": "bool('') é False."
-        },
-        {
-          "type": "code",
-          "q": "entrada = '12'\nvalor = int(entrada)\nprint(valor + 3)",
-          "opts": [
-            "123",
-            "15",
-            "12",
-            "Erro"
-          ],
-          "a": 1,
-          "hint": "int converte o texto numérico em inteiro.",
-          "ex": "12 + 3 resulta em 15."
-        },
-        {
-          "type": "mcq",
-          "q": "Por que float(input()) pode gerar ValueError?",
-          "opts": [
-            "O usuário pode digitar texto não numérico",
-            "input retorna sempre float",
-            "float não aceita números",
-            "input encerra o programa"
-          ],
-          "a": 0,
-          "hint": "A conversão depende do conteúdo digitado.",
-          "ex": "Texto como abc não pode ser convertido diretamente em float."
-        },
-        {
-          "type": "code",
-          "q": "idade = 30\nmensagem = 'Idade: ' + str(idade)\nprint(mensagem)",
-          "opts": [
-            "Idade: idade",
-            "Idade: 30",
-            "30",
-            "Erro"
-          ],
-          "a": 1,
-          "hint": "str transforma o inteiro em texto.",
-          "ex": "A concatenação produz Idade: 30."
         }
       ]
     },
@@ -1333,10 +1200,143 @@
       ]
     },
     {
+      "id": "s7",
+      "name": "DICIONÁRIOS",
+      "group": "COLEÇÕES",
+      "difficulty": "BÁSICO",
+      "boss": "DICT-SENTRY",
+      "color": "#ff1f4c",
+      "icon": "◫",
+      "summary": "Modele informações usando pares de chave e valor.",
+      "lesson": [
+        {
+          "title": "Chave e valor",
+          "body": "Dicionários associam chaves a valores. Você acessa um valor pela sua chave.",
+          "code": "pessoa = {'nome':'Ana','idade':30}\nprint(pessoa['nome'])"
+        },
+        {
+          "title": "Atualizando dados",
+          "body": "Atribuir a uma chave cria ou substitui um valor. del remove uma chave existente.",
+          "code": "pessoa['cidade'] = 'Rio Preto'\npessoa['idade'] = 31\ndel pessoa['cidade']"
+        },
+        {
+          "title": "get, keys e items",
+          "body": "get evita KeyError ao buscar uma chave inexistente. keys retorna chaves e items retorna pares.",
+          "code": "print(pessoa.get('email'))\nfor chave, valor in pessoa.items():\n    print(chave, valor)"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "d={'nome':'Ana','idade':30}\nprint(d['nome'])",
+          "opts": [
+            "nome",
+            "Ana",
+            "idade",
+            "Erro"
+          ],
+          "a": 1,
+          "hint": "A chave nome aponta para Ana.",
+          "ex": "O valor associado é Ana."
+        },
+        {
+          "type": "mcq",
+          "q": "Como criar/atualizar uma chave?",
+          "opts": [
+            "d.append('x',1)",
+            "d['x']=1",
+            "d.add('x':1)",
+            "d.push(1)"
+          ],
+          "a": 1,
+          "hint": "Use colchetes com a chave.",
+          "ex": "d['x'] = 1 cria ou atualiza."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual método retorna pares chave-valor?",
+          "opts": [
+            "keys",
+            "values",
+            "items",
+            "pairs"
+          ],
+          "a": 2,
+          "hint": "É usado frequentemente em for chave, valor.",
+          "ex": "items() retorna pares."
+        },
+        {
+          "type": "code",
+          "q": "d={'a':1,'b':2}\nprint(len(d))",
+          "opts": [
+            "1",
+            "2",
+            "4",
+            "Erro"
+          ],
+          "a": 1,
+          "hint": "Conte os pares.",
+          "ex": "Existem 2 chaves."
+        },
+        {
+          "type": "mcq",
+          "q": "d.get('x') sem a chave x retorna por padrão:",
+          "opts": [
+            "0",
+            "None",
+            "KeyError",
+            "False"
+          ],
+          "a": 1,
+          "hint": "get é uma busca segura.",
+          "ex": "O retorno padrão é None."
+        },
+        {
+          "type": "code",
+          "q": "pessoa = {'nome': 'Ana', 'idade': 20}\npessoa['idade'] += 1\nprint(pessoa['idade'])",
+          "opts": [
+            "20",
+            "21",
+            "idade",
+            "Erro"
+          ],
+          "a": 1,
+          "hint": "O valor associado à chave idade é incrementado.",
+          "ex": "20 + 1 resulta em 21."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual método busca uma chave sem gerar KeyError quando ela não existe?",
+          "opts": [
+            "get",
+            "append",
+            "index",
+            "sort"
+          ],
+          "a": 0,
+          "hint": "Ele também pode receber um valor padrão.",
+          "ex": "dict.get retorna None ou o padrão informado."
+        },
+        {
+          "type": "code",
+          "q": "dados = {'a': 1, 'b': 2}\nprint(list(dados.keys()))",
+          "opts": [
+            "[1, 2]",
+            "['a', 'b']",
+            "[('a', 1), ('b', 2)]",
+            "2"
+          ],
+          "a": 1,
+          "hint": "keys retorna as chaves do dicionário.",
+          "ex": "As chaves inseridas são a e b."
+        }
+      ]
+    },
+    {
       "id": "s11",
       "name": "COMPREENSÕES",
-      "group": "INTERMEDIÁRIO",
-      "difficulty": "INTERMEDIÁRIO",
+      "group": "COLEÇÕES",
+      "difficulty": "BÁSICO",
       "boss": "COMPILER-SHARD",
       "color": "#ffd23f",
       "icon": "≋",
@@ -1466,9 +1466,408 @@
       ]
     },
     {
+      "id": "s6",
+      "name": "FUNÇÕES",
+      "group": "COLEÇÕES",
+      "difficulty": "BÁSICO",
+      "boss": "FUNC-TURRET",
+      "color": "#ffd23f",
+      "icon": "◐",
+      "summary": "Organize lógica reutilizável com parâmetros e retornos.",
+      "lesson": [
+        {
+          "title": "def e chamada",
+          "body": "Funções agrupam instruções reutilizáveis. def define a função e os parênteses recebem parâmetros.",
+          "code": "def dobro(x):\n    return x * 2\n\nprint(dobro(5))"
+        },
+        {
+          "title": "return",
+          "body": "return devolve um valor e encerra a execução da função naquele ponto.",
+          "code": "def maior(a, b):\n    if a > b:\n        return a\n    return b"
+        },
+        {
+          "title": "Parâmetros padrão",
+          "body": "Um parâmetro pode ter um valor padrão, usado quando nenhum argumento é informado.",
+          "code": "def soma(a, b=10):\n    return a + b\n\nprint(soma(5))"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual palavra define uma função?",
+          "opts": [
+            "function",
+            "def",
+            "func",
+            "define"
+          ],
+          "a": 1,
+          "hint": "É uma abreviação de define.",
+          "ex": "Python usa def."
+        },
+        {
+          "type": "code",
+          "q": "def dobro(x):\n    return x * 2\nprint(dobro(5))",
+          "opts": [
+            "5",
+            "10",
+            "25",
+            "Erro"
+          ],
+          "a": 1,
+          "hint": "Multiplique 5 por 2.",
+          "ex": "A função retorna 10."
+        },
+        {
+          "type": "mcq",
+          "q": "O que return faz?",
+          "opts": [
+            "Só imprime",
+            "Devolve um valor e encerra a função",
+            "Reinicia a função",
+            "Encerra o Python"
+          ],
+          "a": 1,
+          "hint": "Ele entrega um resultado ao chamador.",
+          "ex": "return devolve um valor e termina a função."
+        },
+        {
+          "type": "code",
+          "q": "def soma(a,b=10): return a+b\nprint(soma(5))",
+          "opts": [
+            "5",
+            "10",
+            "15",
+            "Erro"
+          ],
+          "a": 2,
+          "hint": "b usa o valor padrão 10.",
+          "ex": "5 + 10 = 15."
+        },
+        {
+          "type": "mcq",
+          "q": "Sem return explícito, uma função retorna:",
+          "opts": [
+            "0",
+            "False",
+            "None",
+            "Erro"
+          ],
+          "a": 2,
+          "hint": "Python usa um valor de ausência.",
+          "ex": "O retorno implícito é None."
+        },
+        {
+          "type": "code",
+          "q": "def dobro(n):\n    return n * 2\nresultado = dobro(4)\nprint(resultado)",
+          "opts": [
+            "4",
+            "6",
+            "8",
+            "None"
+          ],
+          "a": 2,
+          "hint": "return devolve o cálculo para quem chamou a função.",
+          "ex": "dobro(4) retorna 8."
+        },
+        {
+          "type": "mcq",
+          "q": "O que acontece quando uma função termina sem executar return com valor?",
+          "opts": [
+            "Retorna None",
+            "Retorna zero",
+            "Gera sempre um erro",
+            "Repete a função"
+          ],
+          "a": 0,
+          "hint": "Toda função devolve algum objeto.",
+          "ex": "Sem valor explícito, Python retorna None."
+        },
+        {
+          "type": "code",
+          "q": "def saudacao(nome='Py'):\n    return f'Olá, {nome}'\nprint(saudacao())",
+          "opts": [
+            "Olá",
+            "Olá, nome",
+            "Olá, Py",
+            "Erro"
+          ],
+          "a": 2,
+          "hint": "O argumento padrão é usado quando nenhum valor é enviado.",
+          "ex": "Sem argumento, nome recebe Py."
+        }
+      ]
+    },
+    {
+      "id": "s22",
+      "name": "FUNÇÕES AVANÇADAS",
+      "group": "FUNÇÕES E ORGANIZAÇÃO",
+      "difficulty": "INTERMEDIÁRIO",
+      "boss": "CALL-STACK",
+      "color": "#ff7a45",
+      "icon": "ƒ",
+      "summary": "Aprofunde parâmetros, escopo, funções de alta ordem, closures e decoradores.",
+      "lesson": [
+        {
+          "title": "Parâmetros flexíveis",
+          "body": "*args reúne argumentos posicionais extras em uma tupla; **kwargs reúne argumentos nomeados extras em um dicionário.",
+          "code": "def resumo(*itens, **opcoes):\n    print(itens)\n    print(opcoes)\n\nresumo('Python', 'JS', nivel='iniciante')"
+        },
+        {
+          "title": "Funções como valores",
+          "body": "Funções podem ser guardadas em variáveis, recebidas por outras funções e devolvidas como resultado. Isso permite compor comportamentos.",
+          "code": "def aplicar(funcao, valor):\n    return funcao(valor)\n\ndef dobro(n):\n    return n * 2\n\nprint(aplicar(dobro, 6))"
+        },
+        {
+          "title": "Closures e decoradores",
+          "body": "Uma closure mantém acesso ao escopo externo mesmo após a função externa terminar. Decoradores usam essa ideia para envolver funções sem alterar seu corpo.",
+          "code": "def multiplicador(fator):\n    def calcular(valor):\n        return valor * fator\n    return calcular\n\ndobro = multiplicador(2)\nprint(dobro(5))"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Em qual estrutura `*args` reúne argumentos posicionais extras?",
+          "opts": [
+            "Tupla",
+            "Dicionário",
+            "Set",
+            "String"
+          ],
+          "a": 0,
+          "hint": "É uma sequência imutável.",
+          "ex": "*args recebe os argumentos posicionais extras como uma tupla."
+        },
+        {
+          "type": "mcq",
+          "q": "Em qual estrutura `**kwargs` reúne argumentos nomeados extras?",
+          "opts": [
+            "Lista",
+            "Tupla",
+            "Dicionário",
+            "Número"
+          ],
+          "a": 2,
+          "hint": "Cada nome de argumento vira uma chave.",
+          "ex": "**kwargs recebe pares nome-valor em um dicionário."
+        },
+        {
+          "type": "code",
+          "q": "Qual saída ocorre?\ndef soma(*nums):\n    return sum(nums)\nprint(soma(2, 3, 4))",
+          "opts": [
+            "5",
+            "7",
+            "9",
+            "(2, 3, 4)"
+          ],
+          "a": 2,
+          "hint": "sum soma todos os itens reunidos em nums.",
+          "ex": "2 + 3 + 4 resulta em 9."
+        },
+        {
+          "type": "code",
+          "q": "Qual saída ocorre?\ndef aplicar(fn, x):\n    return fn(x)\ndef triplo(n):\n    return n * 3\nprint(aplicar(triplo, 4))",
+          "opts": [
+            "4",
+            "7",
+            "12",
+            "Erro"
+          ],
+          "a": 2,
+          "hint": "A função triplo é passada sem parênteses.",
+          "ex": "aplicar chama triplo(4), que retorna 12."
+        },
+        {
+          "type": "mcq",
+          "q": "O que uma closure preserva?",
+          "opts": [
+            "Acesso ao escopo externo",
+            "Somente variáveis globais",
+            "O terminal aberto",
+            "Um arquivo obrigatório"
+          ],
+          "a": 0,
+          "hint": "Pense nos nomes definidos pela função que criou a função interna.",
+          "ex": "A função interna continua acessando valores do escopo em que foi criada."
+        },
+        {
+          "type": "code",
+          "q": "Qual saída ocorre?\ndef criar(prefixo):\n    def mensagem(texto):\n        return prefixo + texto\n    return mensagem\nola = criar('Olá, ')\nprint(ola('Ana'))",
+          "opts": [
+            "Ana",
+            "Olá, ",
+            "Olá, Ana",
+            "Erro"
+          ],
+          "a": 2,
+          "hint": "A função mensagem mantém o valor de prefixo.",
+          "ex": "A closure preserva 'Olá, ' e concatena com Ana."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é a finalidade principal de um decorador?",
+          "opts": [
+            "Envolver ou ampliar uma função",
+            "Apagar o código da função",
+            "Criar apenas classes",
+            "Substituir todo import"
+          ],
+          "a": 0,
+          "hint": "Ele recebe uma função e normalmente devolve outra.",
+          "ex": "Decoradores adicionam comportamento ao redor de uma função ou classe."
+        },
+        {
+          "type": "code",
+          "q": "Qual valor é impresso?\ndef executar(fn, valor=5):\n    return fn(valor)\nquadrado = lambda n: n ** 2\nprint(executar(quadrado))",
+          "opts": [
+            "5",
+            "10",
+            "25",
+            "lambda"
+          ],
+          "a": 2,
+          "hint": "O argumento padrão é 5 e a função calcula o quadrado.",
+          "ex": "quadrado(5) retorna 25."
+        }
+      ]
+    },
+    {
+      "id": "s23",
+      "name": "DESEMPACOTAMENTO",
+      "group": "FUNÇÕES E ORGANIZAÇÃO",
+      "difficulty": "INTERMEDIÁRIO",
+      "boss": "UNPACK-MIMIC",
+      "color": "#22c55e",
+      "icon": "✦",
+      "summary": "Distribua coleções em variáveis e combine argumentos e estruturas com * e **.",
+      "lesson": [
+        {
+          "title": "Atribuição por desempacotamento",
+          "body": "Uma sequência pode preencher várias variáveis de uma vez. A quantidade de destinos precisa combinar, salvo quando um destino usa estrela.",
+          "code": "nome, idade = ('Ana', 28)\nprimeiro, *meio, ultimo = [1, 2, 3, 4, 5]\nprint(nome, idade)\nprint(primeiro, meio, ultimo)"
+        },
+        {
+          "title": "Estrela em chamadas",
+          "body": "Em uma chamada, * expande um iterável em argumentos posicionais e ** expande um mapeamento em argumentos nomeados.",
+          "code": "def apresentar(nome, cidade):\n    print(nome, cidade)\n\ndados = ['Igor', 'Curitiba']\nopcoes = {'nome': 'Ana', 'cidade': 'Recife'}\napresentar(*dados)\napresentar(**opcoes)"
+        },
+        {
+          "title": "Combinando coleções",
+          "body": "A mesma sintaxe cria novas listas e dicionários. Em dicionários, chaves posteriores substituem valores de chaves repetidas.",
+          "code": "base = [1, 2]\nnova = [0, *base, 3]\n\npadrao = {'tema': 'escuro', 'som': True}\nusuario = {'som': False}\nconfig = {**padrao, **usuario}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "Qual saída ocorre?\na, b = (10, 20)\nprint(b)",
+          "opts": [
+            "10",
+            "20",
+            "(10, 20)",
+            "Erro"
+          ],
+          "a": 1,
+          "hint": "Cada item é atribuído à variável na mesma posição.",
+          "ex": "b recebe o segundo item, 20."
+        },
+        {
+          "type": "mcq",
+          "q": "O que `*resto` faz em uma atribuição?",
+          "opts": [
+            "Reúne os itens restantes em uma lista",
+            "Multiplica todos os itens",
+            "Cria um dicionário",
+            "Ignora sempre os itens"
+          ],
+          "a": 0,
+          "hint": "A estrela aceita uma quantidade variável de valores.",
+          "ex": "O destino com estrela reúne os itens restantes em uma lista."
+        },
+        {
+          "type": "code",
+          "q": "Qual é o valor de meio?\nprimeiro, *meio, ultimo = [1, 2, 3, 4]",
+          "opts": [
+            "[1]",
+            "[2, 3]",
+            "[4]",
+            "(2, 3)"
+          ],
+          "a": 1,
+          "hint": "Primeiro e último ficam nas pontas.",
+          "ex": "meio recebe os itens entre as pontas: [2, 3]."
+        },
+        {
+          "type": "mcq",
+          "q": "Em uma chamada de função, o que `**dados` expande?",
+          "opts": [
+            "Argumentos nomeados",
+            "Somente comentários",
+            "Linhas de arquivo",
+            "Uma classe"
+          ],
+          "a": 0,
+          "hint": "As chaves do dicionário viram nomes de parâmetros.",
+          "ex": "** expande um mapeamento em argumentos nomeados."
+        },
+        {
+          "type": "code",
+          "q": "Qual saída ocorre?\ndef soma(a, b):\n    return a + b\nvalores = [3, 7]\nprint(soma(*valores))",
+          "opts": [
+            "[3, 7]",
+            "10",
+            "37",
+            "Erro"
+          ],
+          "a": 1,
+          "hint": "*valores fornece dois argumentos posicionais.",
+          "ex": "A lista é expandida como soma(3, 7), resultando em 10."
+        },
+        {
+          "type": "code",
+          "q": "Qual é o valor de nova?\nbase = [2, 3]\nnova = [1, *base, 4]",
+          "opts": [
+            "[1, 2, 3, 4]",
+            "[1, [2, 3], 4]",
+            "[2, 3]",
+            "Erro"
+          ],
+          "a": 0,
+          "hint": "A estrela insere cada item da lista.",
+          "ex": "*base espalha 2 e 3 dentro da nova lista."
+        },
+        {
+          "type": "code",
+          "q": "Qual valor fica em config['som']?\npadrao = {'som': True, 'tema': 'claro'}\nusuario = {'som': False}\nconfig = {**padrao, **usuario}",
+          "opts": [
+            "True",
+            "False",
+            "None",
+            "Erro"
+          ],
+          "a": 1,
+          "hint": "Em chaves repetidas, o valor inserido por último prevalece.",
+          "ex": "usuario é expandido depois e substitui som por False."
+        },
+        {
+          "type": "mcq",
+          "q": "O que acontece em `a, b = [1, 2, 3]`?",
+          "opts": [
+            "ValueError por excesso de valores",
+            "a recebe 1 e b recebe [2, 3]",
+            "b recebe 3 automaticamente",
+            "A lista é ignorada"
+          ],
+          "a": 0,
+          "hint": "Não existe destino com estrela para absorver o item extra.",
+          "ex": "Sem um destino estrelado, a quantidade de variáveis precisa corresponder à quantidade de itens."
+        }
+      ]
+    },
+    {
       "id": "s12",
       "name": "MÓDULOS E IMPORTS",
-      "group": "INTERMEDIÁRIO",
+      "group": "FUNÇÕES E ORGANIZAÇÃO",
       "difficulty": "INTERMEDIÁRIO",
       "boss": "IMPORT-GATE",
       "color": "#36e7ff",
@@ -1601,7 +2000,7 @@
     {
       "id": "s13",
       "name": "ERROS E EXCEÇÕES",
-      "group": "INTERMEDIÁRIO",
+      "group": "FUNÇÕES E ORGANIZAÇÃO",
       "difficulty": "INTERMEDIÁRIO",
       "boss": "EXCEPTION-X",
       "color": "#ff5f69",
@@ -1734,7 +2133,7 @@
     {
       "id": "s14",
       "name": "ARQUIVOS",
-      "group": "INTERMEDIÁRIO",
+      "group": "ARQUIVOS E DADOS",
       "difficulty": "INTERMEDIÁRIO",
       "boss": "FILE-KEEPER",
       "color": "#76f56f",
@@ -1865,1339 +2264,9 @@
       ]
     },
     {
-      "id": "s15",
-      "name": "JSON",
-      "group": "INTERMEDIÁRIO",
-      "difficulty": "INTERMEDIÁRIO",
-      "boss": "JSON-PARSER",
-      "color": "#ffd23f",
-      "icon": "{}",
-      "summary": "Converta estruturas Python para JSON e trabalhe com dados persistidos.",
-      "lesson": [
-        {
-          "title": "json.loads e dumps",
-          "body": "loads converte texto JSON para objetos Python. dumps faz o caminho inverso e produz uma string JSON.",
-          "code": "import json\ntexto='{\"nome\":\"Ana\"}'\ndados=json.loads(texto)\nsaida=json.dumps(dados, ensure_ascii=False)"
-        },
-        {
-          "title": "json.load e dump",
-          "body": "load e dump trabalham diretamente com arquivos já abertos.",
-          "code": "import json\nwith open('dados.json',encoding='utf-8') as f:\n    dados=json.load(f)"
-        },
-        {
-          "title": "Tipos compatíveis",
-          "body": "dict vira objeto JSON, list vira array, str vira string, números permanecem números, True/False viram true/false e None vira null.",
-          "code": "dados={'ativo':True,'itens':[1,2],'obs':None}\nprint(json.dumps(dados))"
-        }
-      ],
-      "questions": [
-        {
-          "type": "mcq",
-          "q": "Qual função converte string JSON em Python?",
-          "opts": [
-            "json.loads",
-            "json.dumps",
-            "json.read",
-            "json.parsefile"
-          ],
-          "a": 0,
-          "hint": "loads carrega de uma string.",
-          "ex": "json.loads faz o parse da string."
-        },
-        {
-          "type": "mcq",
-          "q": "Qual função transforma objeto Python em string JSON?",
-          "opts": [
-            "json.loads",
-            "json.dumps",
-            "json.load",
-            "json.open"
-          ],
-          "a": 1,
-          "hint": "dumps despeja para string.",
-          "ex": "json.dumps serializa para texto JSON."
-        },
-        {
-          "type": "mcq",
-          "q": "None vira qual valor em JSON?",
-          "opts": [
-            "undefined",
-            "none",
-            "null",
-            "false"
-          ],
-          "a": 2,
-          "hint": "JSON tem um valor nulo próprio.",
-          "ex": "None é serializado como null."
-        },
-        {
-          "type": "mcq",
-          "q": "Qual função lê JSON diretamente de arquivo aberto?",
-          "opts": [
-            "json.load",
-            "json.loads",
-            "json.file",
-            "json.read"
-          ],
-          "a": 0,
-          "hint": "Sem o s no final.",
-          "ex": "json.load recebe um arquivo."
-        },
-        {
-          "type": "mcq",
-          "q": "ensure_ascii=False é útil principalmente para:",
-          "opts": [
-            "Preservar caracteres como ç e á",
-            "Criptografar",
-            "Compactar",
-            "Validar schema"
-          ],
-          "a": 0,
-          "hint": "Pense em acentos.",
-          "ex": "Isso evita escapar caracteres Unicode comuns."
-        },
-        {
-          "type": "code",
-          "q": "import json\ntexto = '{\"ativo\": true}'\ndados = json.loads(texto)\nprint(dados['ativo'])",
-          "opts": [
-            "true",
-            "True",
-            "1",
-            "Erro"
-          ],
-          "a": 1,
-          "hint": "O booleano JSON true vira o booleano Python correspondente.",
-          "ex": "json.loads converte true em True."
-        },
-        {
-          "type": "mcq",
-          "q": "Qual parâmetro ajuda a preservar acentos visíveis ao gerar JSON?",
-          "opts": [
-            "ensure_ascii=False",
-            "encoding=None",
-            "accent=True",
-            "unicode='keep'"
-          ],
-          "a": 0,
-          "hint": "Sem ele, caracteres podem aparecer como sequências \\u.",
-          "ex": "ensure_ascii=False mantém os caracteres Unicode visíveis."
-        },
-        {
-          "type": "code",
-          "q": "import json\ndados = {'itens': [1, 2]}\ntexto = json.dumps(dados)\nprint(type(texto).__name__)",
-          "opts": [
-            "dict",
-            "list",
-            "str",
-            "bytes"
-          ],
-          "a": 2,
-          "hint": "dumps significa serializar para string.",
-          "ex": "json.dumps retorna texto do tipo str."
-        }
-      ]
-    },
-    {
-      "id": "s16",
-      "name": "CLASSES E OBJETOS",
-      "group": "AVANÇADO",
-      "difficulty": "AVANÇADO",
-      "boss": "CLASS-KNIGHT",
-      "color": "#b14aff",
-      "icon": "C",
-      "summary": "Modele entidades usando atributos, métodos e construtores.",
-      "lesson": [
-        {
-          "title": "class e instância",
-          "body": "Uma classe define um modelo. Cada objeto criado a partir dela é uma instância independente.",
-          "code": "class Robo:\n    pass\n\na = Robo()\nb = Robo()"
-        },
-        {
-          "title": "__init__ e self",
-          "body": "__init__ inicializa a instância. self referencia o próprio objeto que está executando o método.",
-          "code": "class Robo:\n    def __init__(self, nome):\n        self.nome = nome\n\nr = Robo('Byte')"
-        },
-        {
-          "title": "Métodos",
-          "body": "Métodos são funções definidas dentro da classe e normalmente recebem self como primeiro parâmetro.",
-          "code": "class Robo:\n    def __init__(self,nome):\n        self.nome=nome\n    def falar(self):\n        return f'Eu sou {self.nome}'"
-        }
-      ],
-      "questions": [
-        {
-          "type": "mcq",
-          "q": "Qual palavra cria uma classe?",
-          "opts": [
-            "class",
-            "object",
-            "type",
-            "struct"
-          ],
-          "a": 0,
-          "hint": "É uma palavra reservada do Python.",
-          "ex": "class define uma classe."
-        },
-        {
-          "type": "mcq",
-          "q": "O que self representa?",
-          "opts": [
-            "A própria instância",
-            "A classe global",
-            "O módulo",
-            "O construtor"
-          ],
-          "a": 0,
-          "hint": "É o objeto atual.",
-          "ex": "self referencia a instância."
-        },
-        {
-          "type": "mcq",
-          "q": "Qual método inicializa uma nova instância?",
-          "opts": [
-            "__start__",
-            "__init__",
-            "__newclass__",
-            "init"
-          ],
-          "a": 1,
-          "hint": "É um método especial com dois underlines.",
-          "ex": "__init__ inicializa a instância."
-        },
-        {
-          "type": "code",
-          "q": "class A:\n    def __init__(self,x): self.x=x\na=A(7)\nprint(a.x)",
-          "opts": [
-            "A",
-            "x",
-            "7",
-            "Erro"
-          ],
-          "a": 2,
-          "hint": "x é salvo na instância.",
-          "ex": "a.x vale 7."
-        },
-        {
-          "type": "mcq",
-          "q": "Cada objeto criado de uma classe é chamado de:",
-          "opts": [
-            "instância",
-            "módulo",
-            "pacote",
-            "decorador"
-          ],
-          "a": 0,
-          "hint": "Termo central de orientação a objetos.",
-          "ex": "O objeto é uma instância da classe."
-        },
-        {
-          "type": "code",
-          "q": "class Produto:\n    def __init__(self, nome):\n        self.nome = nome\np = Produto('Livro')\nprint(p.nome)",
-          "opts": [
-            "Produto",
-            "nome",
-            "Livro",
-            "self"
-          ],
-          "a": 2,
-          "hint": "O construtor atribui o argumento ao atributo da instância.",
-          "ex": "p.nome guarda Livro."
-        },
-        {
-          "type": "mcq",
-          "q": "O que self representa em um método de instância?",
-          "opts": [
-            "A própria instância",
-            "A classe base",
-            "O módulo atual",
-            "Uma variável global obrigatória"
-          ],
-          "a": 0,
-          "hint": "Ele permite acessar os dados do objeto atual.",
-          "ex": "self referencia a instância que recebeu a chamada."
-        },
-        {
-          "type": "mcq",
-          "q": "Como se chama uma função definida dentro de uma classe?",
-          "opts": [
-            "Método",
-            "Pacote",
-            "Índice",
-            "Compreensão"
-          ],
-          "a": 0,
-          "hint": "Ela descreve um comportamento dos objetos.",
-          "ex": "Funções pertencentes a classes são chamadas de métodos."
-        }
-      ]
-    },
-    {
-      "id": "s17",
-      "name": "HERANÇA E POLIMORFISMO",
-      "group": "AVANÇADO",
-      "difficulty": "AVANÇADO",
-      "boss": "INHERIT-OMEGA",
-      "color": "#ff5f69",
-      "icon": "⇡",
-      "summary": "Reutilize comportamentos entre classes e especialize métodos.",
-      "lesson": [
-        {
-          "title": "Herança",
-          "body": "Uma classe filha pode herdar atributos e métodos da classe pai.",
-          "code": "class Animal:\n    def falar(self):\n        return 'som'\n\nclass Gato(Animal):\n    pass"
-        },
-        {
-          "title": "Sobrescrita",
-          "body": "A classe filha pode redefinir um método herdado para fornecer comportamento específico.",
-          "code": "class Gato(Animal):\n    def falar(self):\n        return 'miau'"
-        },
-        {
-          "title": "super()",
-          "body": "super permite chamar implementação da classe pai, muito usado dentro de __init__.",
-          "code": "class Pessoa:\n    def __init__(self,nome): self.nome=nome\n\nclass Aluno(Pessoa):\n    def __init__(self,nome,curso):\n        super().__init__(nome)\n        self.curso=curso"
-        }
-      ],
-      "questions": [
-        {
-          "type": "mcq",
-          "q": "Como Gato herda de Animal?",
-          "opts": [
-            "class Gato(Animal):",
-            "class Gato -> Animal:",
-            "class Gato inherits Animal:",
-            "class Gato: Animal"
-          ],
-          "a": 0,
-          "hint": "A classe pai fica entre parênteses.",
-          "ex": "class Gato(Animal): define a herança."
-        },
-        {
-          "type": "mcq",
-          "q": "Redefinir método na classe filha é:",
-          "opts": [
-            "sobrescrita",
-            "serialização",
-            "encapsulamento",
-            "importação"
-          ],
-          "a": 0,
-          "hint": "Override.",
-          "ex": "É sobrescrita de método."
-        },
-        {
-          "type": "mcq",
-          "q": "super() é usado para acessar:",
-          "opts": [
-            "implementação da classe pai",
-            "variável global",
-            "outro módulo",
-            "arquivo atual"
-          ],
-          "a": 0,
-          "hint": "Pense na hierarquia.",
-          "ex": "super acessa comportamento herdado."
-        },
-        {
-          "type": "code",
-          "q": "class A:\n    def f(self): return 'A'\nclass B(A):\n    def f(self): return 'B'\nprint(B().f())",
-          "opts": [
-            "A",
-            "B",
-            "AB",
-            "Erro"
-          ],
-          "a": 1,
-          "hint": "B sobrescreve f.",
-          "ex": "O método de B é executado."
-        },
-        {
-          "type": "mcq",
-          "q": "Polimorfismo permite principalmente:",
-          "opts": [
-            "objetos diferentes responderem ao mesmo método de formas diferentes",
-            "duplicar arquivos",
-            "converter strings",
-            "criar imports"
-          ],
-          "a": 0,
-          "hint": "Mesmo contrato, comportamentos diferentes.",
-          "ex": "Essa é a ideia prática do polimorfismo."
-        },
-        {
-          "type": "code",
-          "q": "class Animal:\n    def som(self):\n        return 'som'\nclass Cao(Animal):\n    pass\nprint(Cao().som())",
-          "opts": [
-            "Cao",
-            "Animal",
-            "som",
-            "Erro"
-          ],
-          "a": 2,
-          "hint": "Cao herda os métodos de Animal.",
-          "ex": "Sem sobrescrita, som retorna a string som."
-        },
-        {
-          "type": "mcq",
-          "q": "O que significa sobrescrever um método?",
-          "opts": [
-            "Definir na subclasse um método com o mesmo nome",
-            "Apagar a classe base",
-            "Chamar super em qualquer linha",
-            "Duplicar o arquivo"
-          ],
-          "a": 0,
-          "hint": "A subclasse fornece sua própria implementação.",
-          "ex": "O método da subclasse substitui o comportamento herdado."
-        },
-        {
-          "type": "mcq",
-          "q": "Para que super() é normalmente usado?",
-          "opts": [
-            "Acessar implementação da classe base",
-            "Criar variável global",
-            "Transformar método em função",
-            "Impedir herança"
-          ],
-          "a": 0,
-          "hint": "Ele coopera com a cadeia de herança.",
-          "ex": "super permite chamar métodos definidos na classe pai."
-        }
-      ]
-    },
-    {
-      "id": "s18",
-      "name": "DATAS E BIBLIOTECA PADRÃO",
-      "group": "AVANÇADO",
-      "difficulty": "AVANÇADO",
-      "boss": "TIME-ENGINE",
-      "color": "#36e7ff",
-      "icon": "◷",
-      "summary": "Use módulos úteis da biblioteca padrão para tarefas reais.",
-      "lesson": [
-        {
-          "title": "datetime",
-          "body": "datetime fornece classes para datas, horários, diferenças de tempo e formatação.",
-          "code": "from datetime import date, timedelta\nhoje = date.today()\namenha = hoje + timedelta(days=1)"
-        },
-        {
-          "title": "random",
-          "body": "random permite sorteios e escolhas pseudoaleatórias, úteis em testes, jogos e simulações.",
-          "code": "import random\nprint(random.randint(1,6))\nprint(random.choice(['A','B','C']))"
-        },
-        {
-          "title": "pathlib",
-          "body": "pathlib representa caminhos de arquivos como objetos e simplifica operações no sistema de arquivos.",
-          "code": "from pathlib import Path\np = Path('dados') / 'arquivo.txt'\nprint(p.exists())"
-        }
-      ],
-      "questions": [
-        {
-          "type": "mcq",
-          "q": "Qual módulo trabalha com datas?",
-          "opts": [
-            "datetime",
-            "calendarx",
-            "timefile",
-            "dateutil padrão"
-          ],
-          "a": 0,
-          "hint": "Também contém date e timedelta.",
-          "ex": "datetime faz parte da biblioteca padrão."
-        },
-        {
-          "type": "mcq",
-          "q": "random.choice recebe normalmente:",
-          "opts": [
-            "uma sequência",
-            "um arquivo",
-            "uma função obrigatória",
-            "uma classe"
-          ],
-          "a": 0,
-          "hint": "Escolhe um item.",
-          "ex": "choice seleciona um elemento de uma sequência."
-        },
-        {
-          "type": "mcq",
-          "q": "Qual classe moderna representa caminhos?",
-          "opts": [
-            "Path",
-            "FilePathX",
-            "Route",
-            "Directory"
-          ],
-          "a": 0,
-          "hint": "Vem de pathlib.",
-          "ex": "Path é a classe principal do pathlib."
-        },
-        {
-          "type": "code",
-          "q": "from datetime import timedelta\nd = timedelta(days=7)\nQuantos dias representa?",
-          "opts": [
-            "1",
-            "7",
-            "30",
-            "Depende"
-          ],
-          "a": 1,
-          "hint": "O argumento já informa o número de dias.",
-          "ex": "Representa 7 dias."
-        },
-        {
-          "type": "mcq",
-          "q": "random.randint(1,6) pode retornar 6?",
-          "opts": [
-            "Sim",
-            "Não",
-            "Só com seed",
-            "Gera erro"
-          ],
-          "a": 0,
-          "hint": "Os dois limites são inclusivos.",
-          "ex": "randint inclui 1 e 6."
-        },
-        {
-          "type": "code",
-          "q": "from datetime import date\ninicio = date(2026, 1, 1)\nfim = date(2026, 1, 11)\nprint((fim - inicio).days)",
-          "opts": [
-            "10",
-            "11",
-            "9",
-            "Erro"
-          ],
-          "a": 0,
-          "hint": "A diferença mede o intervalo entre as datas.",
-          "ex": "Do dia 1 ao dia 11 decorrem 10 dias."
-        },
-        {
-          "type": "mcq",
-          "q": "Qual módulo da biblioteca padrão gera números pseudoaleatórios?",
-          "opts": [
-            "random",
-            "chance",
-            "number",
-            "shufflelib"
-          ],
-          "a": 0,
-          "hint": "Ele fornece funções como randint e choice.",
-          "ex": "random faz parte da biblioteca padrão."
-        },
-        {
-          "type": "code",
-          "q": "from pathlib import Path\ncaminho = Path('relatorio.csv')\nprint(caminho.suffix)",
-          "opts": [
-            "relatorio",
-            ".csv",
-            "csv",
-            "Path"
-          ],
-          "a": 1,
-          "hint": "suffix inclui o ponto da extensão.",
-          "ex": "A extensão identificada é .csv."
-        }
-      ]
-    },
-    {
-      "id": "s19",
-      "name": "AUTOMAÇÃO COM PYTHON",
-      "group": "PROJETOS",
-      "difficulty": "AVANÇADO",
-      "boss": "AUTO-FACTORY",
-      "color": "#76f56f",
-      "icon": "⚙",
-      "summary": "Combine arquivos, loops e funções para automatizar tarefas repetitivas.",
-      "lesson": [
-        {
-          "title": "Pensamento de automação",
-          "body": "Uma automação boa começa decompondo o trabalho manual em entrada, transformação, validação e saída.",
-          "code": "def processar(entrada):\n    dados = ler(entrada)\n    validar(dados)\n    resultado = transformar(dados)\n    salvar(resultado)"
-        },
-        {
-          "title": "Processando vários arquivos",
-          "body": "pathlib e loops permitem percorrer pastas e trabalhar com muitos arquivos de forma previsível.",
-          "code": "from pathlib import Path\nfor arquivo in Path('entrada').glob('*.txt'):\n    print(arquivo.name)"
-        },
-        {
-          "title": "Logs e segurança",
-          "body": "Automação profissional precisa registrar o que aconteceu e evitar sobrescrever dados sem controle.",
-          "code": "import logging\nlogging.basicConfig(level=logging.INFO)\nlogging.info('Processo iniciado')"
-        }
-      ],
-      "questions": [
-        {
-          "type": "mcq",
-          "q": "Qual ordem é mais saudável para uma automação?",
-          "opts": [
-            "Entrada → validação → transformação → saída",
-            "Saída → entrada → apagar",
-            "Transformar → adivinhar → salvar",
-            "Loop infinito → arquivo"
-          ],
-          "a": 0,
-          "hint": "Valide antes de gerar o resultado.",
-          "ex": "Separar etapas torna a automação auditável."
-        },
-        {
-          "type": "mcq",
-          "q": "Qual recurso do pathlib encontra arquivos por padrão?",
-          "opts": [
-            "glob",
-            "scan",
-            "findall",
-            "searchdir"
-          ],
-          "a": 0,
-          "hint": "Aceita padrões como *.txt.",
-          "ex": "Path.glob procura por padrões."
-        },
-        {
-          "type": "mcq",
-          "q": "Por que registrar logs?",
-          "opts": [
-            "Rastrear execução e falhas",
-            "Deixar o código mais lento",
-            "Substituir testes",
-            "Ocultar erros"
-          ],
-          "a": 0,
-          "hint": "Ajuda a saber o que aconteceu.",
-          "ex": "Logs apoiam diagnóstico e auditoria."
-        },
-        {
-          "type": "mcq",
-          "q": "Antes de sobrescrever um arquivo importante, é melhor:",
-          "opts": [
-            "validar destino e considerar backup",
-            "apagar sem conferir",
-            "usar while True",
-            "ignorar exceções"
-          ],
-          "a": 0,
-          "hint": "Automação deve reduzir risco.",
-          "ex": "Validação e backup evitam perda de dados."
-        },
-        {
-          "type": "code",
-          "q": "for arquivo in Path('x').glob('*.csv'):\n    print(arquivo.name)\nO loop percorre:",
-          "opts": [
-            "arquivos CSV encontrados",
-            "todos os processos",
-            "linhas de um CSV",
-            "módulos instalados"
-          ],
-          "a": 0,
-          "hint": "glob usa o padrão *.csv.",
-          "ex": "Ele percorre arquivos CSV na pasta indicada."
-        },
-        {
-          "type": "mcq",
-          "q": "Qual prática torna uma automação mais segura antes de alterar muitos arquivos?",
-          "opts": [
-            "Testar em uma cópia pequena",
-            "Executar diretamente na pasta principal",
-            "Ignorar exceções",
-            "Usar caminhos aleatórios"
-          ],
-          "a": 0,
-          "hint": "Automação multiplica rapidamente acertos e erros.",
-          "ex": "Uma amostra ou cópia reduz o impacto de falhas."
-        },
-        {
-          "type": "code",
-          "q": "arquivos = ['a.csv', 'b.pdf', 'c.csv']\nselecionados = [a for a in arquivos if a.endswith('.csv')]\nprint(len(selecionados))",
-          "opts": [
-            "1",
-            "2",
-            "3",
-            "0"
-          ],
-          "a": 1,
-          "hint": "Dois nomes terminam com .csv.",
-          "ex": "a.csv e c.csv são selecionados."
-        },
-        {
-          "type": "mcq",
-          "q": "O que um log deve registrar em uma automação?",
-          "opts": [
-            "Ações executadas, resultados e erros",
-            "Somente a cor da interface",
-            "A senha do usuário",
-            "Apenas o nome do Python"
-          ],
-          "a": 0,
-          "hint": "Logs ajudam a conferir e diagnosticar a execução.",
-          "ex": "Registrar entradas relevantes, ações e falhas cria rastreabilidade."
-        }
-      ]
-    },
-    {
-      "id": "s20",
-      "name": "PROJETO FINAL",
-      "group": "PROJETOS",
-      "difficulty": "FINAL",
-      "boss": "BLACK-CORE OMEGA",
-      "color": "#ffffff",
-      "icon": "Ω",
-      "summary": "Integre fundamentos, dados, arquivos, funções, exceções e orientação a objetos.",
-      "lesson": [
-        {
-          "title": "Arquitetura simples",
-          "body": "Um projeto completo não precisa começar grande. Separe responsabilidade: entrada de dados, regras de negócio, persistência e interface.",
-          "code": "projeto/\n  main.py\n  models.py\n  services.py\n  storage.py\n  data/"
-        },
-        {
-          "title": "Fluxo de execução",
-          "body": "main.py deve coordenar o programa, enquanto regras específicas ficam em funções e classes menores e testáveis.",
-          "code": "def main():\n    dados = carregar()\n    app = Aplicacao(dados)\n    app.executar()\n\nif __name__ == '__main__':\n    main()"
-        },
-        {
-          "title": "Checklist de qualidade",
-          "body": "Valide entradas, trate exceções esperadas, não duplique lógica, use nomes claros e mantenha o formato dos dados documentado.",
-          "code": "# checklist\n# [x] entradas validadas\n# [x] erros tratados\n# [x] funções pequenas\n# [x] dados persistidos\n# [x] fluxo testado"
-        }
-      ],
-      "questions": [
-        {
-          "type": "mcq",
-          "q": "Qual arquivo costuma ser o ponto de entrada?",
-          "opts": [
-            "main.py",
-            "README apenas",
-            "data.json",
-            "style.css"
-          ],
-          "a": 0,
-          "hint": "É uma convenção comum em projetos Python.",
-          "ex": "main.py costuma coordenar o início do programa."
-        },
-        {
-          "type": "mcq",
-          "q": "Qual vantagem de separar regras de negócio da interface?",
-          "opts": [
-            "Facilita manutenção e testes",
-            "Aumenta duplicação",
-            "Impede reutilização",
-            "Remove necessidade de funções"
-          ],
-          "a": 0,
-          "hint": "Menor acoplamento.",
-          "ex": "Separação de responsabilidades melhora manutenção."
-        },
-        {
-          "type": "mcq",
-          "q": "if __name__ == '__main__' serve para:",
-          "opts": [
-            "Executar um bloco quando o arquivo é rodado diretamente",
-            "Instalar Python",
-            "Criar JSON",
-            "Declarar classe"
-          ],
-          "a": 0,
-          "hint": "Distingue execução direta de importação.",
-          "ex": "O bloco roda quando o módulo é executado como programa principal."
-        },
-        {
-          "type": "mcq",
-          "q": "Qual prática reduz bugs em automações?",
-          "opts": [
-            "Validar entradas e tratar exceções esperadas",
-            "Ignorar erros",
-            "Duplicar código",
-            "Usar variáveis sem nome claro"
-          ],
-          "a": 0,
-          "hint": "Previsibilidade importa.",
-          "ex": "Validação e tratamento de erros aumentam robustez."
-        },
-        {
-          "type": "mcq",
-          "q": "Objetivo final desta trilha:",
-          "opts": [
-            "Construir programas Python organizados e compreender o código",
-            "Decorar sintaxe sem prática",
-            "Evitar funções",
-            "Usar apenas print"
-          ],
-          "a": 0,
-          "hint": "O curso evolui do básico para projetos.",
-          "ex": "A meta é compreender e construir programas reais."
-        },
-        {
-          "type": "mcq",
-          "q": "Qual é o primeiro passo adequado antes de programar um projeto?",
-          "opts": [
-            "Definir problema, entradas e resultado esperado",
-            "Escolher nomes aleatórios",
-            "Instalar todas as bibliotecas",
-            "Escrever código sem regras"
-          ],
-          "a": 0,
-          "hint": "O código deve responder a uma necessidade definida.",
-          "ex": "Entender o problema orienta as decisões seguintes."
-        },
-        {
-          "type": "mcq",
-          "q": "Por que dividir um programa em funções pequenas?",
-          "opts": [
-            "Facilita teste, leitura e manutenção",
-            "Aumenta obrigatoriamente a velocidade",
-            "Elimina qualquer erro",
-            "Impede uso de variáveis"
-          ],
-          "a": 0,
-          "hint": "Cada função pode ter uma responsabilidade clara.",
-          "ex": "Blocos menores são mais fáceis de compreender e testar."
-        },
-        {
-          "type": "mcq",
-          "q": "O que deve acontecer quando uma entrada do projeto é inválida?",
-          "opts": [
-            "Ser validada e tratada com mensagem clara",
-            "Ser aceita silenciosamente",
-            "Apagar todos os dados",
-            "Encerrar o computador"
-          ],
-          "a": 0,
-          "hint": "Um programa confiável controla entradas inesperadas.",
-          "ex": "Validação e tratamento evitam resultados incorretos ou falhas confusas."
-        }
-      ]
-    },
-    {
-      "id": "s21",
-      "name": "MATCH / CASE",
-      "group": "PYTHON MODERNO",
-      "difficulty": "INTERMEDIÁRIO",
-      "boss": "PATTERN-WARDEN",
-      "color": "#8b5cf6",
-      "icon": "◇",
-      "summary": "Use correspondência de padrões para organizar decisões claras com valores e estruturas.",
-      "lesson": [
-        {
-          "title": "Correspondência de padrões",
-          "body": "match compara um valor com casos na ordem escrita. O primeiro padrão compatível é executado; o caractere _ funciona como caso padrão.",
-          "code": "comando = 'salvar'\n\nmatch comando:\n    case 'abrir':\n        print('Abrindo')\n    case 'salvar':\n        print('Salvando')\n    case _:\n        print('Comando desconhecido')"
-        },
-        {
-          "title": "Padrões com estruturas",
-          "body": "Os casos podem decompor listas, tuplas e outros valores estruturados. Os nomes dentro do padrão capturam partes do valor.",
-          "code": "ponto = (4, 0)\n\nmatch ponto:\n    case (0, 0):\n        print('Origem')\n    case (x, 0):\n        print(f'Eixo X: {x}')\n    case (x, y):\n        print(x, y)"
-        },
-        {
-          "title": "Guardas com if",
-          "body": "Uma guarda adiciona uma condição ao caso. O padrão precisa combinar e a guarda precisa ser verdadeira para o bloco executar.",
-          "code": "status = ('pedido', 120)\n\nmatch status:\n    case ('pedido', valor) if valor >= 100:\n        print('Frete grátis')\n    case ('pedido', valor):\n        print('Frete normal')"
-        }
-      ],
-      "questions": [
-        {
-          "type": "mcq",
-          "q": "Qual padrão funciona como caso padrão em match?",
-          "opts": [
-            "_",
-            "*",
-            "else",
-            "default"
-          ],
-          "a": 0,
-          "hint": "É um único caractere usado quando nenhum caso anterior combina.",
-          "ex": "case _: captura qualquer valor que não tenha correspondido antes."
-        },
-        {
-          "type": "code",
-          "q": "Qual texto é exibido?\ncor = 'azul'\nmatch cor:\n    case 'vermelho': print('R')\n    case 'azul': print('A')\n    case _: print('?')",
-          "opts": [
-            "R",
-            "A",
-            "?",
-            "Nada"
-          ],
-          "a": 1,
-          "hint": "Os casos são testados na ordem.",
-          "ex": "O valor 'azul' combina com o segundo caso."
-        },
-        {
-          "type": "mcq",
-          "q": "Em que ordem os casos de match são avaliados?",
-          "opts": [
-            "Do primeiro para o último",
-            "Do último para o primeiro",
-            "Em ordem aleatória",
-            "Todos ao mesmo tempo"
-          ],
-          "a": 0,
-          "hint": "A primeira correspondência encerra a seleção.",
-          "ex": "Python testa os casos de cima para baixo e usa o primeiro compatível."
-        },
-        {
-          "type": "code",
-          "q": "Qual valor é capturado em x?\nponto = (7, 0)\nmatch ponto:\n    case (x, 0): print(x)\n    case _: print('outro')",
-          "opts": [
-            "0",
-            "7",
-            "(7, 0)",
-            "outro"
-          ],
-          "a": 1,
-          "hint": "O segundo item precisa ser 0; o primeiro é capturado.",
-          "ex": "O padrão (x, 0) captura 7 no nome x."
-        },
-        {
-          "type": "mcq",
-          "q": "Para que serve uma guarda `if` em um `case`?",
-          "opts": [
-            "Adicionar uma condição ao padrão",
-            "Repetir o caso",
-            "Importar um módulo",
-            "Encerrar o programa"
-          ],
-          "a": 0,
-          "hint": "Ela refina quando um caso pode executar.",
-          "ex": "A guarda só permite o caso quando o padrão combina e a condição é verdadeira."
-        },
-        {
-          "type": "code",
-          "q": "Qual saída ocorre?\nitem = ('maçã', 3)\nmatch item:\n    case (nome, qtd) if qtd > 5: print('muito')\n    case (nome, qtd): print(nome)",
-          "opts": [
-            "muito",
-            "maçã",
-            "3",
-            "Erro"
-          ],
-          "a": 1,
-          "hint": "A primeira guarda é falsa, mas o segundo padrão ainda combina.",
-          "ex": "Como 3 não é maior que 5, o segundo caso imprime maçã."
-        },
-        {
-          "type": "mcq",
-          "q": "Qual versão expressa melhor muitos casos baseados na forma de um valor?",
-          "opts": [
-            "match/case",
-            "while infinito",
-            "try sem exceção",
-            "import"
-          ],
-          "a": 0,
-          "hint": "Procure o recurso criado para correspondência de padrões.",
-          "ex": "match/case deixa decisões estruturais explícitas e ordenadas."
-        },
-        {
-          "type": "code",
-          "q": "Qual saída ocorre?\ncomando = ['mover', 2, 5]\nmatch comando:\n    case ['mover', x, y]: print(x + y)\n    case _: print(0)",
-          "opts": [
-            "0",
-            "2",
-            "5",
-            "7"
-          ],
-          "a": 3,
-          "hint": "O padrão captura os dois números.",
-          "ex": "x recebe 2, y recebe 5 e a soma é 7."
-        }
-      ]
-    },
-    {
-      "id": "s22",
-      "name": "FUNÇÕES AVANÇADAS",
-      "group": "PYTHON MODERNO",
-      "difficulty": "AVANÇADO",
-      "boss": "CALL-STACK",
-      "color": "#ff7a45",
-      "icon": "ƒ",
-      "summary": "Aprofunde parâmetros, escopo, funções de alta ordem, closures e decoradores.",
-      "lesson": [
-        {
-          "title": "Parâmetros flexíveis",
-          "body": "*args reúne argumentos posicionais extras em uma tupla; **kwargs reúne argumentos nomeados extras em um dicionário.",
-          "code": "def resumo(*itens, **opcoes):\n    print(itens)\n    print(opcoes)\n\nresumo('Python', 'JS', nivel='iniciante')"
-        },
-        {
-          "title": "Funções como valores",
-          "body": "Funções podem ser guardadas em variáveis, recebidas por outras funções e devolvidas como resultado. Isso permite compor comportamentos.",
-          "code": "def aplicar(funcao, valor):\n    return funcao(valor)\n\ndef dobro(n):\n    return n * 2\n\nprint(aplicar(dobro, 6))"
-        },
-        {
-          "title": "Closures e decoradores",
-          "body": "Uma closure mantém acesso ao escopo externo mesmo após a função externa terminar. Decoradores usam essa ideia para envolver funções sem alterar seu corpo.",
-          "code": "def multiplicador(fator):\n    def calcular(valor):\n        return valor * fator\n    return calcular\n\ndobro = multiplicador(2)\nprint(dobro(5))"
-        }
-      ],
-      "questions": [
-        {
-          "type": "mcq",
-          "q": "Em qual estrutura `*args` reúne argumentos posicionais extras?",
-          "opts": [
-            "Tupla",
-            "Dicionário",
-            "Set",
-            "String"
-          ],
-          "a": 0,
-          "hint": "É uma sequência imutável.",
-          "ex": "*args recebe os argumentos posicionais extras como uma tupla."
-        },
-        {
-          "type": "mcq",
-          "q": "Em qual estrutura `**kwargs` reúne argumentos nomeados extras?",
-          "opts": [
-            "Lista",
-            "Tupla",
-            "Dicionário",
-            "Número"
-          ],
-          "a": 2,
-          "hint": "Cada nome de argumento vira uma chave.",
-          "ex": "**kwargs recebe pares nome-valor em um dicionário."
-        },
-        {
-          "type": "code",
-          "q": "Qual saída ocorre?\ndef soma(*nums):\n    return sum(nums)\nprint(soma(2, 3, 4))",
-          "opts": [
-            "5",
-            "7",
-            "9",
-            "(2, 3, 4)"
-          ],
-          "a": 2,
-          "hint": "sum soma todos os itens reunidos em nums.",
-          "ex": "2 + 3 + 4 resulta em 9."
-        },
-        {
-          "type": "code",
-          "q": "Qual saída ocorre?\ndef aplicar(fn, x):\n    return fn(x)\ndef triplo(n):\n    return n * 3\nprint(aplicar(triplo, 4))",
-          "opts": [
-            "4",
-            "7",
-            "12",
-            "Erro"
-          ],
-          "a": 2,
-          "hint": "A função triplo é passada sem parênteses.",
-          "ex": "aplicar chama triplo(4), que retorna 12."
-        },
-        {
-          "type": "mcq",
-          "q": "O que uma closure preserva?",
-          "opts": [
-            "Acesso ao escopo externo",
-            "Somente variáveis globais",
-            "O terminal aberto",
-            "Um arquivo obrigatório"
-          ],
-          "a": 0,
-          "hint": "Pense nos nomes definidos pela função que criou a função interna.",
-          "ex": "A função interna continua acessando valores do escopo em que foi criada."
-        },
-        {
-          "type": "code",
-          "q": "Qual saída ocorre?\ndef criar(prefixo):\n    def mensagem(texto):\n        return prefixo + texto\n    return mensagem\nola = criar('Olá, ')\nprint(ola('Ana'))",
-          "opts": [
-            "Ana",
-            "Olá, ",
-            "Olá, Ana",
-            "Erro"
-          ],
-          "a": 2,
-          "hint": "A função mensagem mantém o valor de prefixo.",
-          "ex": "A closure preserva 'Olá, ' e concatena com Ana."
-        },
-        {
-          "type": "mcq",
-          "q": "Qual é a finalidade principal de um decorador?",
-          "opts": [
-            "Envolver ou ampliar uma função",
-            "Apagar o código da função",
-            "Criar apenas classes",
-            "Substituir todo import"
-          ],
-          "a": 0,
-          "hint": "Ele recebe uma função e normalmente devolve outra.",
-          "ex": "Decoradores adicionam comportamento ao redor de uma função ou classe."
-        },
-        {
-          "type": "code",
-          "q": "Qual valor é impresso?\ndef executar(fn, valor=5):\n    return fn(valor)\nquadrado = lambda n: n ** 2\nprint(executar(quadrado))",
-          "opts": [
-            "5",
-            "10",
-            "25",
-            "lambda"
-          ],
-          "a": 2,
-          "hint": "O argumento padrão é 5 e a função calcula o quadrado.",
-          "ex": "quadrado(5) retorna 25."
-        }
-      ]
-    },
-    {
-      "id": "s23",
-      "name": "DESEMPACOTAMENTO",
-      "group": "PYTHON MODERNO",
-      "difficulty": "INTERMEDIÁRIO",
-      "boss": "UNPACK-MIMIC",
-      "color": "#22c55e",
-      "icon": "✦",
-      "summary": "Distribua coleções em variáveis e combine argumentos e estruturas com * e **.",
-      "lesson": [
-        {
-          "title": "Atribuição por desempacotamento",
-          "body": "Uma sequência pode preencher várias variáveis de uma vez. A quantidade de destinos precisa combinar, salvo quando um destino usa estrela.",
-          "code": "nome, idade = ('Ana', 28)\nprimeiro, *meio, ultimo = [1, 2, 3, 4, 5]\nprint(nome, idade)\nprint(primeiro, meio, ultimo)"
-        },
-        {
-          "title": "Estrela em chamadas",
-          "body": "Em uma chamada, * expande um iterável em argumentos posicionais e ** expande um mapeamento em argumentos nomeados.",
-          "code": "def apresentar(nome, cidade):\n    print(nome, cidade)\n\ndados = ['Igor', 'Curitiba']\nopcoes = {'nome': 'Ana', 'cidade': 'Recife'}\napresentar(*dados)\napresentar(**opcoes)"
-        },
-        {
-          "title": "Combinando coleções",
-          "body": "A mesma sintaxe cria novas listas e dicionários. Em dicionários, chaves posteriores substituem valores de chaves repetidas.",
-          "code": "base = [1, 2]\nnova = [0, *base, 3]\n\npadrao = {'tema': 'escuro', 'som': True}\nusuario = {'som': False}\nconfig = {**padrao, **usuario}"
-        }
-      ],
-      "questions": [
-        {
-          "type": "code",
-          "q": "Qual saída ocorre?\na, b = (10, 20)\nprint(b)",
-          "opts": [
-            "10",
-            "20",
-            "(10, 20)",
-            "Erro"
-          ],
-          "a": 1,
-          "hint": "Cada item é atribuído à variável na mesma posição.",
-          "ex": "b recebe o segundo item, 20."
-        },
-        {
-          "type": "mcq",
-          "q": "O que `*resto` faz em uma atribuição?",
-          "opts": [
-            "Reúne os itens restantes em uma lista",
-            "Multiplica todos os itens",
-            "Cria um dicionário",
-            "Ignora sempre os itens"
-          ],
-          "a": 0,
-          "hint": "A estrela aceita uma quantidade variável de valores.",
-          "ex": "O destino com estrela reúne os itens restantes em uma lista."
-        },
-        {
-          "type": "code",
-          "q": "Qual é o valor de meio?\nprimeiro, *meio, ultimo = [1, 2, 3, 4]",
-          "opts": [
-            "[1]",
-            "[2, 3]",
-            "[4]",
-            "(2, 3)"
-          ],
-          "a": 1,
-          "hint": "Primeiro e último ficam nas pontas.",
-          "ex": "meio recebe os itens entre as pontas: [2, 3]."
-        },
-        {
-          "type": "mcq",
-          "q": "Em uma chamada de função, o que `**dados` expande?",
-          "opts": [
-            "Argumentos nomeados",
-            "Somente comentários",
-            "Linhas de arquivo",
-            "Uma classe"
-          ],
-          "a": 0,
-          "hint": "As chaves do dicionário viram nomes de parâmetros.",
-          "ex": "** expande um mapeamento em argumentos nomeados."
-        },
-        {
-          "type": "code",
-          "q": "Qual saída ocorre?\ndef soma(a, b):\n    return a + b\nvalores = [3, 7]\nprint(soma(*valores))",
-          "opts": [
-            "[3, 7]",
-            "10",
-            "37",
-            "Erro"
-          ],
-          "a": 1,
-          "hint": "*valores fornece dois argumentos posicionais.",
-          "ex": "A lista é expandida como soma(3, 7), resultando em 10."
-        },
-        {
-          "type": "code",
-          "q": "Qual é o valor de nova?\nbase = [2, 3]\nnova = [1, *base, 4]",
-          "opts": [
-            "[1, 2, 3, 4]",
-            "[1, [2, 3], 4]",
-            "[2, 3]",
-            "Erro"
-          ],
-          "a": 0,
-          "hint": "A estrela insere cada item da lista.",
-          "ex": "*base espalha 2 e 3 dentro da nova lista."
-        },
-        {
-          "type": "code",
-          "q": "Qual valor fica em config['som']?\npadrao = {'som': True, 'tema': 'claro'}\nusuario = {'som': False}\nconfig = {**padrao, **usuario}",
-          "opts": [
-            "True",
-            "False",
-            "None",
-            "Erro"
-          ],
-          "a": 1,
-          "hint": "Em chaves repetidas, o valor inserido por último prevalece.",
-          "ex": "usuario é expandido depois e substitui som por False."
-        },
-        {
-          "type": "mcq",
-          "q": "O que acontece em `a, b = [1, 2, 3]`?",
-          "opts": [
-            "ValueError por excesso de valores",
-            "a recebe 1 e b recebe [2, 3]",
-            "b recebe 3 automaticamente",
-            "A lista é ignorada"
-          ],
-          "a": 0,
-          "hint": "Não existe destino com estrela para absorver o item extra.",
-          "ex": "Sem um destino estrelado, a quantidade de variáveis precisa corresponder à quantidade de itens."
-        }
-      ]
-    },
-    {
-      "id": "s24",
-      "name": "GERADORES",
-      "group": "DADOS E ARQUIVOS",
-      "difficulty": "AVANÇADO",
-      "boss": "LAZY-CORE",
-      "color": "#14b8a6",
-      "icon": "∞",
-      "summary": "Produza valores sob demanda com yield, expressões geradoras e iteração eficiente.",
-      "lesson": [
-        {
-          "title": "Valores sob demanda",
-          "body": "Uma função com yield cria um gerador. Cada avanço produz um valor e pausa a execução, preservando seu estado para a próxima iteração.",
-          "code": "def contagem(limite):\n    atual = 1\n    while atual <= limite:\n        yield atual\n        atual += 1\n\nfor numero in contagem(3):\n    print(numero)"
-        },
-        {
-          "title": "next e esgotamento",
-          "body": "next() pede o próximo item de um iterador. Quando não há mais valores, o iterador sinaliza StopIteration; um for trata isso automaticamente.",
-          "code": "gerador = (n * 2 for n in range(3))\nprint(next(gerador))\nprint(next(gerador))\nprint(next(gerador))"
-        },
-        {
-          "title": "Expressões geradoras",
-          "body": "A sintaxe entre parênteses cria uma expressão geradora. Ela evita montar toda a coleção na memória antes do consumo.",
-          "code": "quadrados = (n ** 2 for n in range(1, 5))\nprint(sum(quadrados))\n\n# O gerador é consumido durante a soma."
-        }
-      ],
-      "questions": [
-        {
-          "type": "mcq",
-          "q": "Qual palavra transforma uma função em função geradora?",
-          "opts": [
-            "yield",
-            "return",
-            "asyncio",
-            "lambda"
-          ],
-          "a": 0,
-          "hint": "Ela produz um valor e pausa a execução.",
-          "ex": "A presença de yield faz a chamada devolver um gerador."
-        },
-        {
-          "type": "code",
-          "q": "Qual é a primeira saída?\ndef nums():\n    yield 2\n    yield 4\ng = nums()\nprint(next(g))",
-          "opts": [
-            "2",
-            "4",
-            "[2, 4]",
-            "StopIteration"
-          ],
-          "a": 0,
-          "hint": "next pede apenas o próximo valor.",
-          "ex": "O primeiro yield produz 2."
-        },
-        {
-          "type": "mcq",
-          "q": "Qual vantagem comum de um gerador?",
-          "opts": [
-            "Produzir itens sem guardar todos de uma vez",
-            "Executar sempre em paralelo",
-            "Nunca poder terminar",
-            "Transformar qualquer valor em string"
-          ],
-          "a": 0,
-          "hint": "Pense em processamento sob demanda.",
-          "ex": "Geradores podem reduzir o uso de memória ao produzir itens conforme são pedidos."
-        },
-        {
-          "type": "code",
-          "q": "Qual saída ocorre?\ng = (n * n for n in range(3))\nprint(list(g))",
-          "opts": [
-            "[0, 1, 4]",
-            "[1, 4, 9]",
-            "(0, 1, 4)",
-            "0"
-          ],
-          "a": 0,
-          "hint": "range(3) produz 0, 1 e 2.",
-          "ex": "Os quadrados de 0, 1 e 2 são 0, 1 e 4."
-        },
-        {
-          "type": "mcq",
-          "q": "O que ocorre ao chamar next() depois que um gerador termina?",
-          "opts": [
-            "StopIteration",
-            "Retorna None para sempre",
-            "Reinicia sozinho",
-            "Apaga a função"
-          ],
-          "a": 0,
-          "hint": "É o sinal padrão de fim de uma iteração.",
-          "ex": "Iteradores esgotados levantam StopIteration quando next() é chamado."
-        },
-        {
-          "type": "code",
-          "q": "Qual saída ocorre?\ndef pares():\n    for n in range(5):\n        if n % 2 == 0:\n            yield n\nprint(sum(pares()))",
-          "opts": [
-            "3",
-            "6",
-            "10",
-            "Erro"
-          ],
-          "a": 1,
-          "hint": "Os valores produzidos são 0, 2 e 4.",
-          "ex": "0 + 2 + 4 resulta em 6."
-        },
-        {
-          "type": "mcq",
-          "q": "Qual expressão cria um gerador, não uma lista?",
-          "opts": [
-            "(n * 2 for n in dados)",
-            "[n * 2 for n in dados]",
-            "{n * 2 for n in dados}",
-            "list(dados)"
-          ],
-          "a": 0,
-          "hint": "Observe os parênteses ao redor da compreensão.",
-          "ex": "Uma expressão geradora usa parênteses."
-        },
-        {
-          "type": "code",
-          "q": "Qual saída ocorre?\ng = (n for n in [5, 8])\nprint(next(g), next(g))",
-          "opts": [
-            "5 8",
-            "8 5",
-            "[5, 8]",
-            "StopIteration"
-          ],
-          "a": 0,
-          "hint": "Cada chamada avança uma posição.",
-          "ex": "As duas chamadas retornam 5 e depois 8."
-        }
-      ]
-    },
-    {
       "id": "s25",
       "name": "PATHLIB",
-      "group": "DADOS E ARQUIVOS",
+      "group": "ARQUIVOS E DADOS",
       "difficulty": "INTERMEDIÁRIO",
       "boss": "PATH-KEEPER",
       "color": "#60a5fa",
@@ -3330,7 +2399,7 @@
     {
       "id": "s26",
       "name": "ARQUIVOS CSV",
-      "group": "DADOS E ARQUIVOS",
+      "group": "ARQUIVOS E DADOS",
       "difficulty": "INTERMEDIÁRIO",
       "boss": "DELIMITER-X",
       "color": "#f59e0b",
@@ -3461,9 +2530,275 @@
       ]
     },
     {
+      "id": "s15",
+      "name": "JSON",
+      "group": "ARQUIVOS E DADOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "boss": "JSON-PARSER",
+      "color": "#ffd23f",
+      "icon": "{}",
+      "summary": "Converta estruturas Python para JSON e trabalhe com dados persistidos.",
+      "lesson": [
+        {
+          "title": "json.loads e dumps",
+          "body": "loads converte texto JSON para objetos Python. dumps faz o caminho inverso e produz uma string JSON.",
+          "code": "import json\ntexto='{\"nome\":\"Ana\"}'\ndados=json.loads(texto)\nsaida=json.dumps(dados, ensure_ascii=False)"
+        },
+        {
+          "title": "json.load e dump",
+          "body": "load e dump trabalham diretamente com arquivos já abertos.",
+          "code": "import json\nwith open('dados.json',encoding='utf-8') as f:\n    dados=json.load(f)"
+        },
+        {
+          "title": "Tipos compatíveis",
+          "body": "dict vira objeto JSON, list vira array, str vira string, números permanecem números, True/False viram true/false e None vira null.",
+          "code": "dados={'ativo':True,'itens':[1,2],'obs':None}\nprint(json.dumps(dados))"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual função converte string JSON em Python?",
+          "opts": [
+            "json.loads",
+            "json.dumps",
+            "json.read",
+            "json.parsefile"
+          ],
+          "a": 0,
+          "hint": "loads carrega de uma string.",
+          "ex": "json.loads faz o parse da string."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual função transforma objeto Python em string JSON?",
+          "opts": [
+            "json.loads",
+            "json.dumps",
+            "json.load",
+            "json.open"
+          ],
+          "a": 1,
+          "hint": "dumps despeja para string.",
+          "ex": "json.dumps serializa para texto JSON."
+        },
+        {
+          "type": "mcq",
+          "q": "None vira qual valor em JSON?",
+          "opts": [
+            "undefined",
+            "none",
+            "null",
+            "false"
+          ],
+          "a": 2,
+          "hint": "JSON tem um valor nulo próprio.",
+          "ex": "None é serializado como null."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual função lê JSON diretamente de arquivo aberto?",
+          "opts": [
+            "json.load",
+            "json.loads",
+            "json.file",
+            "json.read"
+          ],
+          "a": 0,
+          "hint": "Sem o s no final.",
+          "ex": "json.load recebe um arquivo."
+        },
+        {
+          "type": "mcq",
+          "q": "ensure_ascii=False é útil principalmente para:",
+          "opts": [
+            "Preservar caracteres como ç e á",
+            "Criptografar",
+            "Compactar",
+            "Validar schema"
+          ],
+          "a": 0,
+          "hint": "Pense em acentos.",
+          "ex": "Isso evita escapar caracteres Unicode comuns."
+        },
+        {
+          "type": "code",
+          "q": "import json\ntexto = '{\"ativo\": true}'\ndados = json.loads(texto)\nprint(dados['ativo'])",
+          "opts": [
+            "true",
+            "True",
+            "1",
+            "Erro"
+          ],
+          "a": 1,
+          "hint": "O booleano JSON true vira o booleano Python correspondente.",
+          "ex": "json.loads converte true em True."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual parâmetro ajuda a preservar acentos visíveis ao gerar JSON?",
+          "opts": [
+            "ensure_ascii=False",
+            "encoding=None",
+            "accent=True",
+            "unicode='keep'"
+          ],
+          "a": 0,
+          "hint": "Sem ele, caracteres podem aparecer como sequências \\u.",
+          "ex": "ensure_ascii=False mantém os caracteres Unicode visíveis."
+        },
+        {
+          "type": "code",
+          "q": "import json\ndados = {'itens': [1, 2]}\ntexto = json.dumps(dados)\nprint(type(texto).__name__)",
+          "opts": [
+            "dict",
+            "list",
+            "str",
+            "bytes"
+          ],
+          "a": 2,
+          "hint": "dumps significa serializar para string.",
+          "ex": "json.dumps retorna texto do tipo str."
+        }
+      ]
+    },
+    {
+      "id": "s18",
+      "name": "DATAS E BIBLIOTECA PADRÃO",
+      "group": "OBJETOS E MODELAGEM",
+      "difficulty": "AVANÇADO",
+      "boss": "TIME-ENGINE",
+      "color": "#36e7ff",
+      "icon": "◷",
+      "summary": "Use módulos úteis da biblioteca padrão para tarefas reais.",
+      "lesson": [
+        {
+          "title": "datetime",
+          "body": "datetime fornece classes para datas, horários, diferenças de tempo e formatação.",
+          "code": "from datetime import date, timedelta\nhoje = date.today()\namenha = hoje + timedelta(days=1)"
+        },
+        {
+          "title": "random",
+          "body": "random permite sorteios e escolhas pseudoaleatórias, úteis em testes, jogos e simulações.",
+          "code": "import random\nprint(random.randint(1,6))\nprint(random.choice(['A','B','C']))"
+        },
+        {
+          "title": "pathlib",
+          "body": "pathlib representa caminhos de arquivos como objetos e simplifica operações no sistema de arquivos.",
+          "code": "from pathlib import Path\np = Path('dados') / 'arquivo.txt'\nprint(p.exists())"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual módulo trabalha com datas?",
+          "opts": [
+            "datetime",
+            "calendarx",
+            "timefile",
+            "dateutil padrão"
+          ],
+          "a": 0,
+          "hint": "Também contém date e timedelta.",
+          "ex": "datetime faz parte da biblioteca padrão."
+        },
+        {
+          "type": "mcq",
+          "q": "random.choice recebe normalmente:",
+          "opts": [
+            "uma sequência",
+            "um arquivo",
+            "uma função obrigatória",
+            "uma classe"
+          ],
+          "a": 0,
+          "hint": "Escolhe um item.",
+          "ex": "choice seleciona um elemento de uma sequência."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual classe moderna representa caminhos?",
+          "opts": [
+            "Path",
+            "FilePathX",
+            "Route",
+            "Directory"
+          ],
+          "a": 0,
+          "hint": "Vem de pathlib.",
+          "ex": "Path é a classe principal do pathlib."
+        },
+        {
+          "type": "code",
+          "q": "from datetime import timedelta\nd = timedelta(days=7)\nQuantos dias representa?",
+          "opts": [
+            "1",
+            "7",
+            "30",
+            "Depende"
+          ],
+          "a": 1,
+          "hint": "O argumento já informa o número de dias.",
+          "ex": "Representa 7 dias."
+        },
+        {
+          "type": "mcq",
+          "q": "random.randint(1,6) pode retornar 6?",
+          "opts": [
+            "Sim",
+            "Não",
+            "Só com seed",
+            "Gera erro"
+          ],
+          "a": 0,
+          "hint": "Os dois limites são inclusivos.",
+          "ex": "randint inclui 1 e 6."
+        },
+        {
+          "type": "code",
+          "q": "from datetime import date\ninicio = date(2026, 1, 1)\nfim = date(2026, 1, 11)\nprint((fim - inicio).days)",
+          "opts": [
+            "10",
+            "11",
+            "9",
+            "Erro"
+          ],
+          "a": 0,
+          "hint": "A diferença mede o intervalo entre as datas.",
+          "ex": "Do dia 1 ao dia 11 decorrem 10 dias."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual módulo da biblioteca padrão gera números pseudoaleatórios?",
+          "opts": [
+            "random",
+            "chance",
+            "number",
+            "shufflelib"
+          ],
+          "a": 0,
+          "hint": "Ele fornece funções como randint e choice.",
+          "ex": "random faz parte da biblioteca padrão."
+        },
+        {
+          "type": "code",
+          "q": "from pathlib import Path\ncaminho = Path('relatorio.csv')\nprint(caminho.suffix)",
+          "opts": [
+            "relatorio",
+            ".csv",
+            "csv",
+            "Path"
+          ],
+          "a": 1,
+          "hint": "suffix inclui o ponto da extensão.",
+          "ex": "A extensão identificada é .csv."
+        }
+      ]
+    },
+    {
       "id": "s27",
       "name": "EXPRESSÕES REGULARES",
-      "group": "DADOS E ARQUIVOS",
+      "group": "OBJETOS E MODELAGEM",
       "difficulty": "AVANÇADO",
       "boss": "REGEX-HYDRA",
       "color": "#ec4899",
@@ -3594,10 +2929,409 @@
       ]
     },
     {
+      "id": "s16",
+      "name": "CLASSES E OBJETOS",
+      "group": "OBJETOS E MODELAGEM",
+      "difficulty": "AVANÇADO",
+      "boss": "CLASS-KNIGHT",
+      "color": "#b14aff",
+      "icon": "C",
+      "summary": "Modele entidades usando atributos, métodos e construtores.",
+      "lesson": [
+        {
+          "title": "class e instância",
+          "body": "Uma classe define um modelo. Cada objeto criado a partir dela é uma instância independente.",
+          "code": "class Robo:\n    pass\n\na = Robo()\nb = Robo()"
+        },
+        {
+          "title": "__init__ e self",
+          "body": "__init__ inicializa a instância. self referencia o próprio objeto que está executando o método.",
+          "code": "class Robo:\n    def __init__(self, nome):\n        self.nome = nome\n\nr = Robo('Byte')"
+        },
+        {
+          "title": "Métodos",
+          "body": "Métodos são funções definidas dentro da classe e normalmente recebem self como primeiro parâmetro.",
+          "code": "class Robo:\n    def __init__(self,nome):\n        self.nome=nome\n    def falar(self):\n        return f'Eu sou {self.nome}'"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual palavra cria uma classe?",
+          "opts": [
+            "class",
+            "object",
+            "type",
+            "struct"
+          ],
+          "a": 0,
+          "hint": "É uma palavra reservada do Python.",
+          "ex": "class define uma classe."
+        },
+        {
+          "type": "mcq",
+          "q": "O que self representa?",
+          "opts": [
+            "A própria instância",
+            "A classe global",
+            "O módulo",
+            "O construtor"
+          ],
+          "a": 0,
+          "hint": "É o objeto atual.",
+          "ex": "self referencia a instância."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual método inicializa uma nova instância?",
+          "opts": [
+            "__start__",
+            "__init__",
+            "__newclass__",
+            "init"
+          ],
+          "a": 1,
+          "hint": "É um método especial com dois underlines.",
+          "ex": "__init__ inicializa a instância."
+        },
+        {
+          "type": "code",
+          "q": "class A:\n    def __init__(self,x): self.x=x\na=A(7)\nprint(a.x)",
+          "opts": [
+            "A",
+            "x",
+            "7",
+            "Erro"
+          ],
+          "a": 2,
+          "hint": "x é salvo na instância.",
+          "ex": "a.x vale 7."
+        },
+        {
+          "type": "mcq",
+          "q": "Cada objeto criado de uma classe é chamado de:",
+          "opts": [
+            "instância",
+            "módulo",
+            "pacote",
+            "decorador"
+          ],
+          "a": 0,
+          "hint": "Termo central de orientação a objetos.",
+          "ex": "O objeto é uma instância da classe."
+        },
+        {
+          "type": "code",
+          "q": "class Produto:\n    def __init__(self, nome):\n        self.nome = nome\np = Produto('Livro')\nprint(p.nome)",
+          "opts": [
+            "Produto",
+            "nome",
+            "Livro",
+            "self"
+          ],
+          "a": 2,
+          "hint": "O construtor atribui o argumento ao atributo da instância.",
+          "ex": "p.nome guarda Livro."
+        },
+        {
+          "type": "mcq",
+          "q": "O que self representa em um método de instância?",
+          "opts": [
+            "A própria instância",
+            "A classe base",
+            "O módulo atual",
+            "Uma variável global obrigatória"
+          ],
+          "a": 0,
+          "hint": "Ele permite acessar os dados do objeto atual.",
+          "ex": "self referencia a instância que recebeu a chamada."
+        },
+        {
+          "type": "mcq",
+          "q": "Como se chama uma função definida dentro de uma classe?",
+          "opts": [
+            "Método",
+            "Pacote",
+            "Índice",
+            "Compreensão"
+          ],
+          "a": 0,
+          "hint": "Ela descreve um comportamento dos objetos.",
+          "ex": "Funções pertencentes a classes são chamadas de métodos."
+        }
+      ]
+    },
+    {
+      "id": "s17",
+      "name": "HERANÇA E POLIMORFISMO",
+      "group": "OBJETOS E MODELAGEM",
+      "difficulty": "AVANÇADO",
+      "boss": "INHERIT-OMEGA",
+      "color": "#ff5f69",
+      "icon": "⇡",
+      "summary": "Reutilize comportamentos entre classes e especialize métodos.",
+      "lesson": [
+        {
+          "title": "Herança",
+          "body": "Uma classe filha pode herdar atributos e métodos da classe pai.",
+          "code": "class Animal:\n    def falar(self):\n        return 'som'\n\nclass Gato(Animal):\n    pass"
+        },
+        {
+          "title": "Sobrescrita",
+          "body": "A classe filha pode redefinir um método herdado para fornecer comportamento específico.",
+          "code": "class Gato(Animal):\n    def falar(self):\n        return 'miau'"
+        },
+        {
+          "title": "super()",
+          "body": "super permite chamar implementação da classe pai, muito usado dentro de __init__.",
+          "code": "class Pessoa:\n    def __init__(self,nome): self.nome=nome\n\nclass Aluno(Pessoa):\n    def __init__(self,nome,curso):\n        super().__init__(nome)\n        self.curso=curso"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Como Gato herda de Animal?",
+          "opts": [
+            "class Gato(Animal):",
+            "class Gato -> Animal:",
+            "class Gato inherits Animal:",
+            "class Gato: Animal"
+          ],
+          "a": 0,
+          "hint": "A classe pai fica entre parênteses.",
+          "ex": "class Gato(Animal): define a herança."
+        },
+        {
+          "type": "mcq",
+          "q": "Redefinir método na classe filha é:",
+          "opts": [
+            "sobrescrita",
+            "serialização",
+            "encapsulamento",
+            "importação"
+          ],
+          "a": 0,
+          "hint": "Override.",
+          "ex": "É sobrescrita de método."
+        },
+        {
+          "type": "mcq",
+          "q": "super() é usado para acessar:",
+          "opts": [
+            "implementação da classe pai",
+            "variável global",
+            "outro módulo",
+            "arquivo atual"
+          ],
+          "a": 0,
+          "hint": "Pense na hierarquia.",
+          "ex": "super acessa comportamento herdado."
+        },
+        {
+          "type": "code",
+          "q": "class A:\n    def f(self): return 'A'\nclass B(A):\n    def f(self): return 'B'\nprint(B().f())",
+          "opts": [
+            "A",
+            "B",
+            "AB",
+            "Erro"
+          ],
+          "a": 1,
+          "hint": "B sobrescreve f.",
+          "ex": "O método de B é executado."
+        },
+        {
+          "type": "mcq",
+          "q": "Polimorfismo permite principalmente:",
+          "opts": [
+            "objetos diferentes responderem ao mesmo método de formas diferentes",
+            "duplicar arquivos",
+            "converter strings",
+            "criar imports"
+          ],
+          "a": 0,
+          "hint": "Mesmo contrato, comportamentos diferentes.",
+          "ex": "Essa é a ideia prática do polimorfismo."
+        },
+        {
+          "type": "code",
+          "q": "class Animal:\n    def som(self):\n        return 'som'\nclass Cao(Animal):\n    pass\nprint(Cao().som())",
+          "opts": [
+            "Cao",
+            "Animal",
+            "som",
+            "Erro"
+          ],
+          "a": 2,
+          "hint": "Cao herda os métodos de Animal.",
+          "ex": "Sem sobrescrita, som retorna a string som."
+        },
+        {
+          "type": "mcq",
+          "q": "O que significa sobrescrever um método?",
+          "opts": [
+            "Definir na subclasse um método com o mesmo nome",
+            "Apagar a classe base",
+            "Chamar super em qualquer linha",
+            "Duplicar o arquivo"
+          ],
+          "a": 0,
+          "hint": "A subclasse fornece sua própria implementação.",
+          "ex": "O método da subclasse substitui o comportamento herdado."
+        },
+        {
+          "type": "mcq",
+          "q": "Para que super() é normalmente usado?",
+          "opts": [
+            "Acessar implementação da classe base",
+            "Criar variável global",
+            "Transformar método em função",
+            "Impedir herança"
+          ],
+          "a": 0,
+          "hint": "Ele coopera com a cadeia de herança.",
+          "ex": "super permite chamar métodos definidos na classe pai."
+        }
+      ]
+    },
+    {
+      "id": "s24",
+      "name": "GERADORES",
+      "group": "QUALIDADE PROFISSIONAL",
+      "difficulty": "AVANÇADO",
+      "boss": "LAZY-CORE",
+      "color": "#14b8a6",
+      "icon": "∞",
+      "summary": "Produza valores sob demanda com yield, expressões geradoras e iteração eficiente.",
+      "lesson": [
+        {
+          "title": "Valores sob demanda",
+          "body": "Uma função com yield cria um gerador. Cada avanço produz um valor e pausa a execução, preservando seu estado para a próxima iteração.",
+          "code": "def contagem(limite):\n    atual = 1\n    while atual <= limite:\n        yield atual\n        atual += 1\n\nfor numero in contagem(3):\n    print(numero)"
+        },
+        {
+          "title": "next e esgotamento",
+          "body": "next() pede o próximo item de um iterador. Quando não há mais valores, o iterador sinaliza StopIteration; um for trata isso automaticamente.",
+          "code": "gerador = (n * 2 for n in range(3))\nprint(next(gerador))\nprint(next(gerador))\nprint(next(gerador))"
+        },
+        {
+          "title": "Expressões geradoras",
+          "body": "A sintaxe entre parênteses cria uma expressão geradora. Ela evita montar toda a coleção na memória antes do consumo.",
+          "code": "quadrados = (n ** 2 for n in range(1, 5))\nprint(sum(quadrados))\n\n# O gerador é consumido durante a soma."
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual palavra transforma uma função em função geradora?",
+          "opts": [
+            "yield",
+            "return",
+            "asyncio",
+            "lambda"
+          ],
+          "a": 0,
+          "hint": "Ela produz um valor e pausa a execução.",
+          "ex": "A presença de yield faz a chamada devolver um gerador."
+        },
+        {
+          "type": "code",
+          "q": "Qual é a primeira saída?\ndef nums():\n    yield 2\n    yield 4\ng = nums()\nprint(next(g))",
+          "opts": [
+            "2",
+            "4",
+            "[2, 4]",
+            "StopIteration"
+          ],
+          "a": 0,
+          "hint": "next pede apenas o próximo valor.",
+          "ex": "O primeiro yield produz 2."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual vantagem comum de um gerador?",
+          "opts": [
+            "Produzir itens sem guardar todos de uma vez",
+            "Executar sempre em paralelo",
+            "Nunca poder terminar",
+            "Transformar qualquer valor em string"
+          ],
+          "a": 0,
+          "hint": "Pense em processamento sob demanda.",
+          "ex": "Geradores podem reduzir o uso de memória ao produzir itens conforme são pedidos."
+        },
+        {
+          "type": "code",
+          "q": "Qual saída ocorre?\ng = (n * n for n in range(3))\nprint(list(g))",
+          "opts": [
+            "[0, 1, 4]",
+            "[1, 4, 9]",
+            "(0, 1, 4)",
+            "0"
+          ],
+          "a": 0,
+          "hint": "range(3) produz 0, 1 e 2.",
+          "ex": "Os quadrados de 0, 1 e 2 são 0, 1 e 4."
+        },
+        {
+          "type": "mcq",
+          "q": "O que ocorre ao chamar next() depois que um gerador termina?",
+          "opts": [
+            "StopIteration",
+            "Retorna None para sempre",
+            "Reinicia sozinho",
+            "Apaga a função"
+          ],
+          "a": 0,
+          "hint": "É o sinal padrão de fim de uma iteração.",
+          "ex": "Iteradores esgotados levantam StopIteration quando next() é chamado."
+        },
+        {
+          "type": "code",
+          "q": "Qual saída ocorre?\ndef pares():\n    for n in range(5):\n        if n % 2 == 0:\n            yield n\nprint(sum(pares()))",
+          "opts": [
+            "3",
+            "6",
+            "10",
+            "Erro"
+          ],
+          "a": 1,
+          "hint": "Os valores produzidos são 0, 2 e 4.",
+          "ex": "0 + 2 + 4 resulta em 6."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual expressão cria um gerador, não uma lista?",
+          "opts": [
+            "(n * 2 for n in dados)",
+            "[n * 2 for n in dados]",
+            "{n * 2 for n in dados}",
+            "list(dados)"
+          ],
+          "a": 0,
+          "hint": "Observe os parênteses ao redor da compreensão.",
+          "ex": "Uma expressão geradora usa parênteses."
+        },
+        {
+          "type": "code",
+          "q": "Qual saída ocorre?\ng = (n for n in [5, 8])\nprint(next(g), next(g))",
+          "opts": [
+            "5 8",
+            "8 5",
+            "[5, 8]",
+            "StopIteration"
+          ],
+          "a": 0,
+          "hint": "Cada chamada avança uma posição.",
+          "ex": "As duas chamadas retornam 5 e depois 8."
+        }
+      ]
+    },
+    {
       "id": "s28",
       "name": "LOGS",
-      "group": "QUALIDADE E INTEGRAÇÃO",
-      "difficulty": "INTERMEDIÁRIO",
+      "group": "QUALIDADE PROFISSIONAL",
+      "difficulty": "AVANÇADO",
       "boss": "LOG-SENTINEL",
       "color": "#fb7185",
       "icon": "≡",
@@ -3729,7 +3463,7 @@
     {
       "id": "s29",
       "name": "TESTES AUTOMATIZADOS",
-      "group": "QUALIDADE E INTEGRAÇÃO",
+      "group": "QUALIDADE PROFISSIONAL",
       "difficulty": "AVANÇADO",
       "boss": "ASSERT-PRIME",
       "color": "#34d399",
@@ -3862,8 +3596,8 @@
     {
       "id": "s30",
       "name": "TYPE HINTS",
-      "group": "QUALIDADE E INTEGRAÇÃO",
-      "difficulty": "INTERMEDIÁRIO",
+      "group": "QUALIDADE PROFISSIONAL",
+      "difficulty": "AVANÇADO",
       "boss": "TYPE-ORACLE",
       "color": "#38bdf8",
       "icon": ":=",
@@ -3995,8 +3729,8 @@
     {
       "id": "s31",
       "name": "AMBIENTES E PACOTES",
-      "group": "QUALIDADE E INTEGRAÇÃO",
-      "difficulty": "INTERMEDIÁRIO",
+      "group": "APLICAÇÕES REAIS",
+      "difficulty": "AVANÇADO",
       "boss": "DEPENDENCY-GHOST",
       "color": "#a78bfa",
       "icon": "⬡",
@@ -4128,7 +3862,7 @@
     {
       "id": "s32",
       "name": "APIS HTTP",
-      "group": "QUALIDADE E INTEGRAÇÃO",
+      "group": "APLICAÇÕES REAIS",
       "difficulty": "AVANÇADO",
       "boss": "HTTP-TITAN",
       "color": "#f97316",
@@ -4257,6 +3991,272 @@
           "ex": "Tratamento de falhas e validação protegem o programa contra respostas inesperadas."
         }
       ]
+    },
+    {
+      "id": "s19",
+      "name": "AUTOMAÇÃO COM PYTHON",
+      "group": "APLICAÇÕES REAIS",
+      "difficulty": "AVANÇADO",
+      "boss": "AUTO-FACTORY",
+      "color": "#76f56f",
+      "icon": "⚙",
+      "summary": "Combine arquivos, loops e funções para automatizar tarefas repetitivas.",
+      "lesson": [
+        {
+          "title": "Pensamento de automação",
+          "body": "Uma automação boa começa decompondo o trabalho manual em entrada, transformação, validação e saída.",
+          "code": "def processar(entrada):\n    dados = ler(entrada)\n    validar(dados)\n    resultado = transformar(dados)\n    salvar(resultado)"
+        },
+        {
+          "title": "Processando vários arquivos",
+          "body": "pathlib e loops permitem percorrer pastas e trabalhar com muitos arquivos de forma previsível.",
+          "code": "from pathlib import Path\nfor arquivo in Path('entrada').glob('*.txt'):\n    print(arquivo.name)"
+        },
+        {
+          "title": "Logs e segurança",
+          "body": "Automação profissional precisa registrar o que aconteceu e evitar sobrescrever dados sem controle.",
+          "code": "import logging\nlogging.basicConfig(level=logging.INFO)\nlogging.info('Processo iniciado')"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual ordem é mais saudável para uma automação?",
+          "opts": [
+            "Entrada → validação → transformação → saída",
+            "Saída → entrada → apagar",
+            "Transformar → adivinhar → salvar",
+            "Loop infinito → arquivo"
+          ],
+          "a": 0,
+          "hint": "Valide antes de gerar o resultado.",
+          "ex": "Separar etapas torna a automação auditável."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual recurso do pathlib encontra arquivos por padrão?",
+          "opts": [
+            "glob",
+            "scan",
+            "findall",
+            "searchdir"
+          ],
+          "a": 0,
+          "hint": "Aceita padrões como *.txt.",
+          "ex": "Path.glob procura por padrões."
+        },
+        {
+          "type": "mcq",
+          "q": "Por que registrar logs?",
+          "opts": [
+            "Rastrear execução e falhas",
+            "Deixar o código mais lento",
+            "Substituir testes",
+            "Ocultar erros"
+          ],
+          "a": 0,
+          "hint": "Ajuda a saber o que aconteceu.",
+          "ex": "Logs apoiam diagnóstico e auditoria."
+        },
+        {
+          "type": "mcq",
+          "q": "Antes de sobrescrever um arquivo importante, é melhor:",
+          "opts": [
+            "validar destino e considerar backup",
+            "apagar sem conferir",
+            "usar while True",
+            "ignorar exceções"
+          ],
+          "a": 0,
+          "hint": "Automação deve reduzir risco.",
+          "ex": "Validação e backup evitam perda de dados."
+        },
+        {
+          "type": "code",
+          "q": "for arquivo in Path('x').glob('*.csv'):\n    print(arquivo.name)\nO loop percorre:",
+          "opts": [
+            "arquivos CSV encontrados",
+            "todos os processos",
+            "linhas de um CSV",
+            "módulos instalados"
+          ],
+          "a": 0,
+          "hint": "glob usa o padrão *.csv.",
+          "ex": "Ele percorre arquivos CSV na pasta indicada."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual prática torna uma automação mais segura antes de alterar muitos arquivos?",
+          "opts": [
+            "Testar em uma cópia pequena",
+            "Executar diretamente na pasta principal",
+            "Ignorar exceções",
+            "Usar caminhos aleatórios"
+          ],
+          "a": 0,
+          "hint": "Automação multiplica rapidamente acertos e erros.",
+          "ex": "Uma amostra ou cópia reduz o impacto de falhas."
+        },
+        {
+          "type": "code",
+          "q": "arquivos = ['a.csv', 'b.pdf', 'c.csv']\nselecionados = [a for a in arquivos if a.endswith('.csv')]\nprint(len(selecionados))",
+          "opts": [
+            "1",
+            "2",
+            "3",
+            "0"
+          ],
+          "a": 1,
+          "hint": "Dois nomes terminam com .csv.",
+          "ex": "a.csv e c.csv são selecionados."
+        },
+        {
+          "type": "mcq",
+          "q": "O que um log deve registrar em uma automação?",
+          "opts": [
+            "Ações executadas, resultados e erros",
+            "Somente a cor da interface",
+            "A senha do usuário",
+            "Apenas o nome do Python"
+          ],
+          "a": 0,
+          "hint": "Logs ajudam a conferir e diagnosticar a execução.",
+          "ex": "Registrar entradas relevantes, ações e falhas cria rastreabilidade."
+        }
+      ]
+    },
+    {
+      "id": "s20",
+      "name": "PROJETO FINAL",
+      "group": "APLICAÇÕES REAIS",
+      "difficulty": "FINAL",
+      "boss": "BLACK-CORE OMEGA",
+      "color": "#ffffff",
+      "icon": "Ω",
+      "summary": "Integre fundamentos, dados, arquivos, funções, exceções e orientação a objetos.",
+      "lesson": [
+        {
+          "title": "Arquitetura simples",
+          "body": "Um projeto completo não precisa começar grande. Separe responsabilidade: entrada de dados, regras de negócio, persistência e interface.",
+          "code": "projeto/\n  main.py\n  models.py\n  services.py\n  storage.py\n  data/"
+        },
+        {
+          "title": "Fluxo de execução",
+          "body": "main.py deve coordenar o programa, enquanto regras específicas ficam em funções e classes menores e testáveis.",
+          "code": "def main():\n    dados = carregar()\n    app = Aplicacao(dados)\n    app.executar()\n\nif __name__ == '__main__':\n    main()"
+        },
+        {
+          "title": "Checklist de qualidade",
+          "body": "Valide entradas, trate exceções esperadas, não duplique lógica, use nomes claros e mantenha o formato dos dados documentado.",
+          "code": "# checklist\n# [x] entradas validadas\n# [x] erros tratados\n# [x] funções pequenas\n# [x] dados persistidos\n# [x] fluxo testado"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual arquivo costuma ser o ponto de entrada?",
+          "opts": [
+            "main.py",
+            "README apenas",
+            "data.json",
+            "style.css"
+          ],
+          "a": 0,
+          "hint": "É uma convenção comum em projetos Python.",
+          "ex": "main.py costuma coordenar o início do programa."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual vantagem de separar regras de negócio da interface?",
+          "opts": [
+            "Facilita manutenção e testes",
+            "Aumenta duplicação",
+            "Impede reutilização",
+            "Remove necessidade de funções"
+          ],
+          "a": 0,
+          "hint": "Menor acoplamento.",
+          "ex": "Separação de responsabilidades melhora manutenção."
+        },
+        {
+          "type": "mcq",
+          "q": "if __name__ == '__main__' serve para:",
+          "opts": [
+            "Executar um bloco quando o arquivo é rodado diretamente",
+            "Instalar Python",
+            "Criar JSON",
+            "Declarar classe"
+          ],
+          "a": 0,
+          "hint": "Distingue execução direta de importação.",
+          "ex": "O bloco roda quando o módulo é executado como programa principal."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual prática reduz bugs em automações?",
+          "opts": [
+            "Validar entradas e tratar exceções esperadas",
+            "Ignorar erros",
+            "Duplicar código",
+            "Usar variáveis sem nome claro"
+          ],
+          "a": 0,
+          "hint": "Previsibilidade importa.",
+          "ex": "Validação e tratamento de erros aumentam robustez."
+        },
+        {
+          "type": "mcq",
+          "q": "Objetivo final desta trilha:",
+          "opts": [
+            "Construir programas Python organizados e compreender o código",
+            "Decorar sintaxe sem prática",
+            "Evitar funções",
+            "Usar apenas print"
+          ],
+          "a": 0,
+          "hint": "O curso evolui do básico para projetos.",
+          "ex": "A meta é compreender e construir programas reais."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é o primeiro passo adequado antes de programar um projeto?",
+          "opts": [
+            "Definir problema, entradas e resultado esperado",
+            "Escolher nomes aleatórios",
+            "Instalar todas as bibliotecas",
+            "Escrever código sem regras"
+          ],
+          "a": 0,
+          "hint": "O código deve responder a uma necessidade definida.",
+          "ex": "Entender o problema orienta as decisões seguintes."
+        },
+        {
+          "type": "mcq",
+          "q": "Por que dividir um programa em funções pequenas?",
+          "opts": [
+            "Facilita teste, leitura e manutenção",
+            "Aumenta obrigatoriamente a velocidade",
+            "Elimina qualquer erro",
+            "Impede uso de variáveis"
+          ],
+          "a": 0,
+          "hint": "Cada função pode ter uma responsabilidade clara.",
+          "ex": "Blocos menores são mais fáceis de compreender e testar."
+        },
+        {
+          "type": "mcq",
+          "q": "O que deve acontecer quando uma entrada do projeto é inválida?",
+          "opts": [
+            "Ser validada e tratada com mensagem clara",
+            "Ser aceita silenciosamente",
+            "Apagar todos os dados",
+            "Encerrar o computador"
+          ],
+          "a": 0,
+          "hint": "Um programa confiável controla entradas inesperadas.",
+          "ex": "Validação e tratamento evitam resultados incorretos ou falhas confusas."
+        }
+      ]
     }
   ],
   "projects": [
@@ -4266,7 +4266,7 @@
       "category": "FUNDAMENTOS",
       "color": "#00e5ff",
       "icon": "Σ",
-      "unlockStage": "s4",
+      "unlockStage": "s2",
       "brief": "Monte a lógica de um orçamento que recebe preço, quantidade e desconto e apresenta o total final.",
       "outcome": "Variáveis, conversão, operadores e condicionais trabalhando juntas.",
       "starter": "preco = float(input('Preço: '))\nquantidade = int(input('Quantidade: '))\ndesconto = float(input('Desconto (%): '))\n\n# complete a lógica do total",
@@ -4312,7 +4312,7 @@
       "category": "COLEÇÕES",
       "color": "#58cc02",
       "icon": "✓",
-      "unlockStage": "s8",
+      "unlockStage": "s6",
       "brief": "Projete um menu que adiciona, lista e conclui tarefas mantidas em uma coleção.",
       "outcome": "Listas, dicionários, laços e funções em um fluxo de terminal.",
       "starter": "tarefas = []\n\ndef adicionar(titulo):\n    # guarde título e estado\n    pass\n\ndef listar():\n    # percorra com numeração\n    pass",
@@ -4358,7 +4358,7 @@
       "category": "FUNÇÕES",
       "color": "#ffd23f",
       "icon": "▥",
-      "unlockStage": "s12",
+      "unlockStage": "s6",
       "brief": "Crie um relatório que calcula média, maior nota, menor nota e situação de uma turma.",
       "outcome": "Funções pequenas, agregações e testes de regras.",
       "starter": "notas = [7.5, 9.0, 6.0, 8.5]\n\ndef resumo(notas):\n    # retorne média, menor e maior\n    pass",
@@ -4450,7 +4450,7 @@
       "category": "AUTOMAÇÃO",
       "color": "#8b5cf6",
       "icon": "⌁",
-      "unlockStage": "s20",
+      "unlockStage": "s25",
       "brief": "Planeje um script que classifica arquivos por extensão e cria pastas de destino.",
       "outcome": "pathlib, funções e regras de organização com execução segura.",
       "starter": "from pathlib import Path\n\norigem = Path('Downloads')\nregras = {\n    '.pdf': 'Documentos',\n    '.jpg': 'Imagens',\n}\n\n# percorra sem mover pastas",
@@ -4496,7 +4496,7 @@
       "category": "DADOS",
       "color": "#f59e0b",
       "icon": "▦",
-      "unlockStage": "s23",
+      "unlockStage": "s26",
       "brief": "Leia vendas tabulares, converta valores e gere um resumo por produto.",
       "outcome": "CSV, dicionários, conversão numérica e agregação.",
       "starter": "import csv\n\ntotais = {}\nwith open('vendas.csv', newline='', encoding='utf-8') as arquivo:\n    for linha in csv.DictReader(arquivo):\n        # acumule produto e valor\n        pass",
@@ -4542,7 +4542,7 @@
       "category": "TEXTO",
       "color": "#ec4899",
       "icon": ".*",
-      "unlockStage": "s25",
+      "unlockStage": "s27",
       "brief": "Extraia e normalize e-mails encontrados em um bloco de texto usando padrões.",
       "outcome": "Regex, conjuntos, normalização e saída organizada.",
       "starter": "import re\n\ntexto = '''\nFale com Ana@exemplo.com ou suporte@site.dev.\n'''\n\n# encontre, normalize e remova duplicatas",
@@ -4588,7 +4588,7 @@
       "category": "PROJETO FINAL",
       "color": "#ff4b4b",
       "icon": "Ω",
-      "unlockStage": "s27",
+      "unlockStage": "s19",
       "brief": "Organize um assistente de terminal com comandos, persistência, logs e testes planejados.",
       "outcome": "Arquitetura modular e decisões de qualidade para evoluir o projeto.",
       "starter": "projeto/\n  main.py\n  commands.py\n  storage.py\n  tests/\n\n# escolha responsabilidades e fluxo",
@@ -4636,7 +4636,7 @@
       "subtitle": "Transforme rotinas repetitivas em fluxos confiáveis.",
       "color": "#22c55e",
       "icon": "⚙",
-      "unlockStage": "s32",
+      "unlockStage": "s20",
       "missions": [
         {
           "id": "auto-1",
@@ -4644,7 +4644,7 @@
           "category": "AUTOMAÇÃO · MISSÃO 1",
           "color": "#22c55e",
           "icon": "⌁",
-          "unlockStage": "s32",
+          "unlockStage": "s20",
           "brief": "Planeje uma automação que classifica centenas de arquivos com prévia antes de qualquer alteração.",
           "outcome": "pathlib, regras por extensão, dry-run e logs de operação.",
           "starter": "from pathlib import Path\nimport logging\n\norigem = Path('entrada')\ndry_run = True\n\nfor arquivo in origem.iterdir():\n    # planeje o destino e registre a ação\n    pass",
@@ -4690,7 +4690,7 @@
           "category": "AUTOMAÇÃO · MISSÃO 2",
           "color": "#16a34a",
           "icon": "▦",
-          "unlockStage": "s32",
+          "unlockStage": "s20",
           "prerequisite": "auto-1",
           "brief": "Consolide vários CSVs de uma pasta em um resumo único e verificável.",
           "outcome": "glob, DictReader, agregação, validação e saída CSV.",
@@ -4737,7 +4737,7 @@
           "category": "AUTOMAÇÃO · MISSÃO 3",
           "color": "#15803d",
           "icon": "⬡",
-          "unlockStage": "s32",
+          "unlockStage": "s20",
           "prerequisite": "auto-2",
           "brief": "Crie um backup com data no nome, seleção explícita de pastas e verificação do arquivo final.",
           "outcome": "shutil, zipfile, datas, caminhos e tratamento de falhas.",
@@ -4784,7 +4784,7 @@
           "category": "AUTOMAÇÃO · MISSÃO FINAL",
           "color": "#166534",
           "icon": "◎",
-          "unlockStage": "s32",
+          "unlockStage": "s20",
           "prerequisite": "auto-3",
           "brief": "Projete um monitor que executa checagens periódicas, registra mudanças e evita alertas repetidos.",
           "outcome": "Funções de checagem, estado anterior, intervalos, logs e tolerância a falhas.",
@@ -4833,7 +4833,7 @@
       "subtitle": "Organize programas completos com interfaces, dados e integrações.",
       "color": "#3b82f6",
       "icon": "▣",
-      "unlockStage": "s32",
+      "unlockStage": "s20",
       "missions": [
         {
           "id": "app-1",
@@ -4841,7 +4841,7 @@
           "category": "APLICAÇÕES · MISSÃO 1",
           "color": "#3b82f6",
           "icon": ">_",
-          "unlockStage": "s32",
+          "unlockStage": "s20",
           "brief": "Modele uma aplicação de terminal com comandos, ajuda automática e códigos de saída.",
           "outcome": "argparse, funções de comando, validação e experiência de terminal.",
           "starter": "import argparse\n\nparser = argparse.ArgumentParser(description='Gerenciador de tarefas')\nsub = parser.add_subparsers(dest='comando', required=True)\nsub.add_parser('listar')\nadicionar = sub.add_parser('adicionar')\nadicionar.add_argument('titulo')\n\nargs = parser.parse_args()",
@@ -4887,7 +4887,7 @@
           "category": "APLICAÇÕES · MISSÃO 2",
           "color": "#2563eb",
           "icon": "↗",
-          "unlockStage": "s32",
+          "unlockStage": "s20",
           "prerequisite": "app-1",
           "brief": "Crie a camada cliente de uma API com timeout, validação e mensagens de falha úteis.",
           "outcome": "HTTP, JSON, configuração, erros e funções testáveis.",
@@ -4934,7 +4934,7 @@
           "category": "APLICAÇÕES · MISSÃO 3",
           "color": "#1d4ed8",
           "icon": "▤",
-          "unlockStage": "s32",
+          "unlockStage": "s20",
           "prerequisite": "app-2",
           "brief": "Desenhe um serviço separando interface HTTP, regras de negócio e armazenamento.",
           "outcome": "Rotas, serviços, repositórios, erros de domínio e testes.",
@@ -4981,7 +4981,7 @@
           "category": "APLICAÇÕES · MISSÃO FINAL",
           "color": "#1e40af",
           "icon": "Ω",
-          "unlockStage": "s32",
+          "unlockStage": "s20",
           "prerequisite": "app-3",
           "brief": "Finalize a arquitetura de uma aplicação com configuração, logs, testes e documentação de execução.",
           "outcome": "Integração dos 32 níveis em um produto pequeno, reproduzível e observável.",
