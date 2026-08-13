@@ -1,6 +1,6 @@
 {
   "title": "PYTHON // BLACK BUSTER",
-  "version": 11,
+  "version": 12,
   "stages": [
     {
       "id": "s1",
@@ -5851,6 +5851,1070 @@
           "a": 0,
           "hint": "O retorno esperado é uma lista cujos elementos são strings.",
           "ex": "['Ana', 'Bia'] é uma list[str]."
+        }
+      ]
+    },
+    {
+      "id": "s49",
+      "name": "DEPURAÇÃO",
+      "group": "PYTHON PROFISSIONAL II",
+      "difficulty": "AVANÇADO",
+      "boss": "BUG-HUNTER",
+      "color": "#f59e0b",
+      "icon": "⌕",
+      "summary": "Localize falhas usando reprodução, inspeção e hipóteses verificáveis.",
+      "lesson": [
+        {
+          "title": "Reproduza primeiro",
+          "body": "Registre entrada, resultado esperado e resultado obtido antes de alterar o código.",
+          "code": "def calcular(valor):\n    return valor * 2\n\nassert calcular(3) == 6"
+        },
+        {
+          "title": "Inspecione o estado",
+          "body": "Use breakpoint e o depurador para observar variáveis no ponto exato da falha.",
+          "code": "def dividir(a, b):\n    breakpoint()\n    return a / b"
+        },
+        {
+          "title": "Corrija a causa",
+          "body": "Uma boa correção explica por que o erro ocorreu e inclui um teste que impediria seu retorno.",
+          "code": "def test_divisao_por_zero():\n    with pytest.raises(ValueError):\n        dividir(10, 0)"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Primeiro passo diante de um bug?",
+          "opts": [
+            "Reproduzir o problema",
+            "Reescrever tudo",
+            "Ocultar o erro",
+            "Atualizar CSS"
+          ],
+          "a": 0,
+          "hint": "Revise a fase DEPURAÇÃO.",
+          "ex": "A resposta correta é: Reproduzir o problema."
+        },
+        {
+          "type": "mcq",
+          "q": "O que uma reprodução deve registrar?",
+          "opts": [
+            "Somente horário",
+            "Entrada, esperado e obtido",
+            "Cor do terminal",
+            "Senha"
+          ],
+          "a": 1,
+          "hint": "Revise a fase DEPURAÇÃO.",
+          "ex": "A resposta correta é: Entrada, esperado e obtido."
+        },
+        {
+          "type": "mcq",
+          "q": "Para que serve breakpoint()?",
+          "opts": [
+            "Finalizar Python",
+            "Criar arquivo",
+            "Pausar e inspecionar estado",
+            "Instalar pacote"
+          ],
+          "a": 2,
+          "hint": "Revise a fase DEPURAÇÃO.",
+          "ex": "A resposta correta é: Pausar e inspecionar estado."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual alteração é mais segura?",
+          "opts": [
+            "Muitas mudanças juntas",
+            "Sem teste",
+            "Aleatória",
+            "Pequena e ligada a uma hipótese"
+          ],
+          "a": 3,
+          "hint": "Revise a fase DEPURAÇÃO.",
+          "ex": "A resposta correta é: Pequena e ligada a uma hipótese."
+        },
+        {
+          "type": "mcq",
+          "q": "Por que criar teste de regressão?",
+          "opts": [
+            "Impedir retorno do bug",
+            "Aumentar arquivo",
+            "Substituir depurador",
+            "Remover logs"
+          ],
+          "a": 0,
+          "hint": "Revise a fase DEPURAÇÃO.",
+          "ex": "A resposta correta é: Impedir retorno do bug."
+        },
+        {
+          "type": "mcq",
+          "q": "O que é causa raiz?",
+          "opts": [
+            "Mensagem visual",
+            "Condição que realmente produz a falha",
+            "Última linha sempre",
+            "Nome do usuário"
+          ],
+          "a": 1,
+          "hint": "Revise a fase DEPURAÇÃO.",
+          "ex": "A resposta correta é: Condição que realmente produz a falha."
+        },
+        {
+          "type": "mcq",
+          "q": "Quando usar print temporário?",
+          "opts": [
+            "Como solução permanente para tudo",
+            "Para esconder exceções",
+            "Para observar valores com objetivo definido",
+            "Para editar banco"
+          ],
+          "a": 2,
+          "hint": "Revise a fase DEPURAÇÃO.",
+          "ex": "A resposta correta é: Para observar valores com objetivo definido."
+        },
+        {
+          "type": "mcq",
+          "q": "Como confirmar uma correção?",
+          "opts": [
+            "Ler só o código",
+            "Apagar evidências",
+            "Mudar o nome",
+            "Reproduzir cenário e executar testes"
+          ],
+          "a": 3,
+          "hint": "Revise a fase DEPURAÇÃO.",
+          "ex": "A resposta correta é: Reproduzir cenário e executar testes."
+        }
+      ]
+    },
+    {
+      "id": "s50",
+      "name": "PYTEST NA PRÁTICA",
+      "group": "PYTHON PROFISSIONAL II",
+      "difficulty": "AVANÇADO",
+      "boss": "TEST-RUNNER",
+      "color": "#ed950a",
+      "icon": "✓",
+      "summary": "Organize testes claros com preparação, execução e verificação.",
+      "lesson": [
+        {
+          "title": "Teste pequeno",
+          "body": "Cada teste deve descrever um comportamento e possuir uma razão clara para falhar.",
+          "code": "def test_soma_dois_valores():\n    assert somar(2, 3) == 5"
+        },
+        {
+          "title": "Arrange, Act, Assert",
+          "body": "Prepare os dados, execute a ação e verifique o resultado em etapas legíveis.",
+          "code": "pedido = Pedido()\npedido.adicionar(item)\nassert pedido.total == 10"
+        },
+        {
+          "title": "Exceções esperadas",
+          "body": "pytest.raises confirma que uma entrada inválida produz a falha planejada.",
+          "code": "with pytest.raises(ValueError):\n    criar_produto('', -1)"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Como pytest reconhece funções de teste por padrão?",
+          "opts": [
+            "Nome iniciado por test_",
+            "Decorador obrigatório sempre",
+            "Arquivo JSON",
+            "Classe abstrata"
+          ],
+          "a": 0,
+          "hint": "Revise a fase PYTEST NA PRÁTICA.",
+          "ex": "A resposta correta é: Nome iniciado por test_."
+        },
+        {
+          "type": "mcq",
+          "q": "O que assert verifica?",
+          "opts": [
+            "Instalação do pacote",
+            "Uma condição esperada",
+            "Criação de banco",
+            "Encoding"
+          ],
+          "a": 1,
+          "hint": "Revise a fase PYTEST NA PRÁTICA.",
+          "ex": "A resposta correta é: Uma condição esperada."
+        },
+        {
+          "type": "mcq",
+          "q": "O que significa Arrange?",
+          "opts": [
+            "Executar ação",
+            "Verificar resultado",
+            "Preparar cenário",
+            "Apagar dados"
+          ],
+          "a": 2,
+          "hint": "Revise a fase PYTEST NA PRÁTICA.",
+          "ex": "A resposta correta é: Preparar cenário."
+        },
+        {
+          "type": "mcq",
+          "q": "O que significa Act?",
+          "opts": [
+            "Preparar entrada",
+            "Comparar saída",
+            "Criar fixture",
+            "Executar comportamento"
+          ],
+          "a": 3,
+          "hint": "Revise a fase PYTEST NA PRÁTICA.",
+          "ex": "A resposta correta é: Executar comportamento."
+        },
+        {
+          "type": "mcq",
+          "q": "O que significa Assert?",
+          "opts": [
+            "Verificar resultado",
+            "Abrir arquivo",
+            "Importar módulo",
+            "Configurar venv"
+          ],
+          "a": 0,
+          "hint": "Revise a fase PYTEST NA PRÁTICA.",
+          "ex": "A resposta correta é: Verificar resultado."
+        },
+        {
+          "type": "mcq",
+          "q": "Como testar exceção esperada?",
+          "opts": [
+            "try vazio",
+            "pytest.raises",
+            "print do erro",
+            "return False"
+          ],
+          "a": 1,
+          "hint": "Revise a fase PYTEST NA PRÁTICA.",
+          "ex": "A resposta correta é: pytest.raises."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual teste é mais fácil de manter?",
+          "opts": [
+            "Muitos fluxos sem nome",
+            "Sem asserção",
+            "Um comportamento por teste",
+            "Dependente da internet"
+          ],
+          "a": 2,
+          "hint": "Revise a fase PYTEST NA PRÁTICA.",
+          "ex": "A resposta correta é: Um comportamento por teste."
+        },
+        {
+          "type": "mcq",
+          "q": "O nome do teste deve informar o quê?",
+          "opts": [
+            "Nome do autor",
+            "Tamanho do arquivo",
+            "Versão do navegador",
+            "Comportamento esperado"
+          ],
+          "a": 3,
+          "hint": "Revise a fase PYTEST NA PRÁTICA.",
+          "ex": "A resposta correta é: Comportamento esperado."
+        }
+      ]
+    },
+    {
+      "id": "s51",
+      "name": "FIXTURES E PARAMETRIZAÇÃO",
+      "group": "PYTHON PROFISSIONAL II",
+      "difficulty": "AVANÇADO",
+      "boss": "FIXTURE-LAB",
+      "color": "#e88d08",
+      "icon": "≋",
+      "summary": "Reutilize preparação e teste várias entradas sem duplicação.",
+      "lesson": [
+        {
+          "title": "Fixtures preparam contexto",
+          "body": "@pytest.fixture cria dados ou recursos reutilizáveis recebidos como parâmetros nos testes.",
+          "code": "@pytest.fixture\ndef cliente():\n    return Cliente(nome='Ana')"
+        },
+        {
+          "title": "Parametrize combina casos",
+          "body": "@pytest.mark.parametrize executa o mesmo teste com diferentes entradas e saídas esperadas.",
+          "code": "@pytest.mark.parametrize('valor,esperado', [(2, 4), (3, 6)])\ndef test_dobro(valor, esperado):\n    assert dobro(valor) == esperado"
+        },
+        {
+          "title": "Escopo controla duração",
+          "body": "Fixtures de função isolam testes; escopos maiores servem apenas quando o recurso é caro e seguro para compartilhar.",
+          "code": "@pytest.fixture(scope='function')\ndef repositorio():\n    return RepositorioMemoria()"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Para que serve fixture?",
+          "opts": [
+            "Preparar contexto reutilizável",
+            "Substituir todos os testes",
+            "Criar CSS",
+            "Executar SQL inseguro"
+          ],
+          "a": 0,
+          "hint": "Revise a fase FIXTURES E PARAMETRIZAÇÃO.",
+          "ex": "A resposta correta é: Preparar contexto reutilizável."
+        },
+        {
+          "type": "mcq",
+          "q": "Como teste recebe fixture?",
+          "opts": [
+            "Por variável global obrigatória",
+            "Como parâmetro com o mesmo nome",
+            "Por input",
+            "Por JSON"
+          ],
+          "a": 1,
+          "hint": "Revise a fase FIXTURES E PARAMETRIZAÇÃO.",
+          "ex": "A resposta correta é: Como parâmetro com o mesmo nome."
+        },
+        {
+          "type": "mcq",
+          "q": "O que parametrize faz?",
+          "opts": [
+            "Cria classe",
+            "Fecha arquivo",
+            "Executa o teste com vários casos",
+            "Instala pytest"
+          ],
+          "a": 2,
+          "hint": "Revise a fase FIXTURES E PARAMETRIZAÇÃO.",
+          "ex": "A resposta correta é: Executa o teste com vários casos."
+        },
+        {
+          "type": "mcq",
+          "q": "Vantagem da parametrização?",
+          "opts": [
+            "Esconde entradas",
+            "Remove asserts",
+            "Mistura todos os testes",
+            "Reduz duplicação mantendo casos explícitos"
+          ],
+          "a": 3,
+          "hint": "Revise a fase FIXTURES E PARAMETRIZAÇÃO.",
+          "ex": "A resposta correta é: Reduz duplicação mantendo casos explícitos."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual escopo oferece maior isolamento?",
+          "opts": [
+            "function",
+            "session",
+            "module",
+            "package"
+          ],
+          "a": 0,
+          "hint": "Revise a fase FIXTURES E PARAMETRIZAÇÃO.",
+          "ex": "A resposta correta é: function."
+        },
+        {
+          "type": "mcq",
+          "q": "Quando usar escopo session?",
+          "opts": [
+            "Em todo valor local",
+            "Recurso caro e seguro para compartilhar",
+            "Para evitar testes",
+            "Para listas pequenas"
+          ],
+          "a": 1,
+          "hint": "Revise a fase FIXTURES E PARAMETRIZAÇÃO.",
+          "ex": "A resposta correta é: Recurso caro e seguro para compartilhar."
+        },
+        {
+          "type": "mcq",
+          "q": "O que uma fixture deve evitar?",
+          "opts": [
+            "Retornar objeto",
+            "Ter nome claro",
+            "Estado compartilhado inesperado",
+            "Fazer limpeza"
+          ],
+          "a": 2,
+          "hint": "Revise a fase FIXTURES E PARAMETRIZAÇÃO.",
+          "ex": "A resposta correta é: Estado compartilhado inesperado."
+        },
+        {
+          "type": "mcq",
+          "q": "Como identificar cada caso parametrizado?",
+          "opts": [
+            "Apagar os valores",
+            "Mudar nome do Python",
+            "Criar um arquivo por assert",
+            "Usar ids claros quando necessário"
+          ],
+          "a": 3,
+          "hint": "Revise a fase FIXTURES E PARAMETRIZAÇÃO.",
+          "ex": "A resposta correta é: Usar ids claros quando necessário."
+        }
+      ]
+    },
+    {
+      "id": "s52",
+      "name": "DUBLÊS E MOCKS",
+      "group": "PYTHON PROFISSIONAL II",
+      "difficulty": "AVANÇADO",
+      "boss": "MOCK-MIRROR",
+      "color": "#df8507",
+      "icon": "◇",
+      "summary": "Isole dependências externas sem testar implementações irrelevantes.",
+      "lesson": [
+        {
+          "title": "Fakes possuem comportamento simples",
+          "body": "Um repositório em memória pode substituir o banco em testes mantendo o mesmo contrato.",
+          "code": "class RepositorioMemoria:\n    def __init__(self):\n        self.itens = {}"
+        },
+        {
+          "title": "Mocks verificam interação",
+          "body": "Mock é útil quando importa confirmar que uma dependência recebeu determinada chamada.",
+          "code": "enviador.enviar.assert_called_once_with('Olá')"
+        },
+        {
+          "title": "Patch deve atingir o nome usado",
+          "body": "Substitua a referência no módulo que executa a chamada, não apenas onde a função foi originalmente definida.",
+          "code": "@patch('app.servico.buscar_api')\ndef test_servico(mock_buscar):\n    mock_buscar.return_value = {'ok': True}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que é um fake?",
+          "opts": [
+            "Implementação simples funcional para teste",
+            "Erro de sintaxe",
+            "Arquivo temporário sempre",
+            "Classe abstrata"
+          ],
+          "a": 0,
+          "hint": "Revise a fase DUBLÊS E MOCKS.",
+          "ex": "A resposta correta é: Implementação simples funcional para teste."
+        },
+        {
+          "type": "mcq",
+          "q": "Quando mock é útil?",
+          "opts": [
+            "Para todo cálculo puro",
+            "Ao verificar interação com dependência",
+            "Para substituir asserts",
+            "Para formatar código"
+          ],
+          "a": 1,
+          "hint": "Revise a fase DUBLÊS E MOCKS.",
+          "ex": "A resposta correta é: Ao verificar interação com dependência."
+        },
+        {
+          "type": "mcq",
+          "q": "Por que evitar API real em teste unitário?",
+          "opts": [
+            "Python não usa rede",
+            "Sempre retorna igual",
+            "Pode ser lenta e instável",
+            "Não aceita JSON"
+          ],
+          "a": 2,
+          "hint": "Revise a fase DUBLÊS E MOCKS.",
+          "ex": "A resposta correta é: Pode ser lenta e instável."
+        },
+        {
+          "type": "mcq",
+          "q": "Onde aplicar patch?",
+          "opts": [
+            "Sempre na biblioteca original",
+            "No CSS",
+            "No banco",
+            "No nome usado pelo código testado"
+          ],
+          "a": 3,
+          "hint": "Revise a fase DUBLÊS E MOCKS.",
+          "ex": "A resposta correta é: No nome usado pelo código testado."
+        },
+        {
+          "type": "mcq",
+          "q": "O que return_value configura?",
+          "opts": [
+            "Valor devolvido pelo mock",
+            "Nome da função",
+            "Número de testes",
+            "Encoding"
+          ],
+          "a": 0,
+          "hint": "Revise a fase DUBLÊS E MOCKS.",
+          "ex": "A resposta correta é: Valor devolvido pelo mock."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual risco de mock excessivo?",
+          "opts": [
+            "Aumentar cobertura real",
+            "Testar detalhes e tornar refatoração frágil",
+            "Eliminar acoplamento",
+            "Melhorar integração"
+          ],
+          "a": 1,
+          "hint": "Revise a fase DUBLÊS E MOCKS.",
+          "ex": "A resposta correta é: Testar detalhes e tornar refatoração frágil."
+        },
+        {
+          "type": "mcq",
+          "q": "O que assert_called_once_with verifica?",
+          "opts": [
+            "Resultado de cálculo",
+            "Conteúdo de arquivo",
+            "Uma chamada com argumentos específicos",
+            "Tipo da classe"
+          ],
+          "a": 2,
+          "hint": "Revise a fase DUBLÊS E MOCKS.",
+          "ex": "A resposta correta é: Uma chamada com argumentos específicos."
+        },
+        {
+          "type": "mcq",
+          "q": "Quando preferir fake a mock?",
+          "opts": [
+            "Nunca",
+            "Somente para strings",
+            "Para CSS",
+            "Quando um comportamento em memória deixa o teste mais realista"
+          ],
+          "a": 3,
+          "hint": "Revise a fase DUBLÊS E MOCKS.",
+          "ex": "A resposta correta é: Quando um comportamento em memória deixa o teste mais realista."
+        }
+      ]
+    },
+    {
+      "id": "s53",
+      "name": "ESTILO E FORMATAÇÃO",
+      "group": "PYTHON PROFISSIONAL II",
+      "difficulty": "AVANÇADO",
+      "boss": "STYLE-GUARD",
+      "color": "#d97d06",
+      "icon": "≡",
+      "summary": "Mantenha o código consistente com formatação e análise automatizadas.",
+      "lesson": [
+        {
+          "title": "PEP 8 orienta estilo",
+          "body": "Convenções consistentes tornam o código mais previsível para leitura e colaboração.",
+          "code": "def calcular_total(preco, quantidade):\n    return preco * quantidade"
+        },
+        {
+          "title": "Formatadores eliminam debates",
+          "body": "Ferramentas como Black aplicam uma forma consistente automaticamente.",
+          "code": "black src tests"
+        },
+        {
+          "title": "Linters encontram problemas",
+          "body": "Ruff e outras ferramentas detectam imports não usados, nomes problemáticos e erros comuns.",
+          "code": "ruff check src tests\nruff format --check src tests"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que PEP 8 oferece?",
+          "opts": [
+            "Convenções de estilo Python",
+            "Banco embutido",
+            "Protocolo HTTP",
+            "Formato JSON"
+          ],
+          "a": 0,
+          "hint": "Revise a fase ESTILO E FORMATAÇÃO.",
+          "ex": "A resposta correta é: Convenções de estilo Python."
+        },
+        {
+          "type": "mcq",
+          "q": "Benefício de formatador automático?",
+          "opts": [
+            "Cria testes",
+            "Consistência com pouco esforço",
+            "Corrige toda regra de negócio",
+            "Instala banco"
+          ],
+          "a": 1,
+          "hint": "Revise a fase ESTILO E FORMATAÇÃO.",
+          "ex": "A resposta correta é: Consistência com pouco esforço."
+        },
+        {
+          "type": "mcq",
+          "q": "O que um linter procura?",
+          "opts": [
+            "Somente velocidade",
+            "Imagens quebradas",
+            "Problemas estáticos e padrões suspeitos",
+            "Senhas no navegador"
+          ],
+          "a": 2,
+          "hint": "Revise a fase ESTILO E FORMATAÇÃO.",
+          "ex": "A resposta correta é: Problemas estáticos e padrões suspeitos."
+        },
+        {
+          "type": "mcq",
+          "q": "Por que executar ferramentas no CI?",
+          "opts": [
+            "Substituir revisão humana",
+            "Evitar commits",
+            "Criar classes",
+            "Aplicar a mesma regra a todas as mudanças"
+          ],
+          "a": 3,
+          "hint": "Revise a fase ESTILO E FORMATAÇÃO.",
+          "ex": "A resposta correta é: Aplicar a mesma regra a todas as mudanças."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual nome segue snake_case?",
+          "opts": [
+            "calcular_total",
+            "CalcularTotal",
+            "calcular-Total",
+            "CALCULAR.total"
+          ],
+          "a": 0,
+          "hint": "Revise a fase ESTILO E FORMATAÇÃO.",
+          "ex": "A resposta correta é: calcular_total."
+        },
+        {
+          "type": "mcq",
+          "q": "Import não usado deve fazer o quê?",
+          "opts": [
+            "Ser duplicado",
+            "Ser removido",
+            "Virar comentário",
+            "Ir para JSON"
+          ],
+          "a": 1,
+          "hint": "Revise a fase ESTILO E FORMATAÇÃO.",
+          "ex": "A resposta correta é: Ser removido."
+        },
+        {
+          "type": "mcq",
+          "q": "Formatação garante código correto?",
+          "opts": [
+            "Sim sempre",
+            "Somente com pytest",
+            "Não",
+            "Apenas em funções"
+          ],
+          "a": 2,
+          "hint": "Revise a fase ESTILO E FORMATAÇÃO.",
+          "ex": "A resposta correta é: Não."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual ordem é prática antes de commit?",
+          "opts": [
+            "Publicar e depois testar",
+            "Apagar logs",
+            "Ignorar alertas",
+            "Formatar, analisar e testar"
+          ],
+          "a": 3,
+          "hint": "Revise a fase ESTILO E FORMATAÇÃO.",
+          "ex": "A resposta correta é: Formatar, analisar e testar."
+        }
+      ]
+    },
+    {
+      "id": "s54",
+      "name": "CONFIGURAÇÃO E SEGREDOS",
+      "group": "PYTHON PROFISSIONAL II",
+      "difficulty": "AVANÇADO",
+      "boss": "SECRET-VAULT",
+      "color": "#d17605",
+      "icon": "⚿",
+      "summary": "Separe configurações do código e mantenha credenciais fora do repositório.",
+      "lesson": [
+        {
+          "title": "Configuração muda por ambiente",
+          "body": "URLs, modos e limites devem ser lidos de configuração, não repetidos pelo código.",
+          "code": "import os\nMODO = os.getenv('APP_MODE', 'development')"
+        },
+        {
+          "title": "Segredos não entram no Git",
+          "body": "Tokens e senhas devem vir de ambiente ou serviço seguro. Um .env real deve permanecer ignorado.",
+          "code": "API_TOKEN = os.environ['API_TOKEN']"
+        },
+        {
+          "title": "Exemplo documenta nomes",
+          "body": "Um .env.example lista variáveis necessárias usando valores fictícios.",
+          "code": "API_TOKEN=coloque_seu_token_aqui\nAPP_MODE=development"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Onde guardar token de API?",
+          "opts": [
+            "Em variável de ambiente ou cofre",
+            "Direto no código",
+            "No README público",
+            "No nome do arquivo"
+          ],
+          "a": 0,
+          "hint": "Revise a fase CONFIGURAÇÃO E SEGREDOS.",
+          "ex": "A resposta correta é: Em variável de ambiente ou cofre."
+        },
+        {
+          "type": "mcq",
+          "q": "Diferença de os.environ['X']?",
+          "opts": [
+            "Sempre retorna None",
+            "Falha se X não existir",
+            "Cria X",
+            "Lê JSON"
+          ],
+          "a": 1,
+          "hint": "Revise a fase CONFIGURAÇÃO E SEGREDOS.",
+          "ex": "A resposta correta é: Falha se X não existir."
+        },
+        {
+          "type": "mcq",
+          "q": "O que os.getenv permite?",
+          "opts": [
+            "SQL automático",
+            "Teste parametrizado",
+            "Valor padrão",
+            "Herança"
+          ],
+          "a": 2,
+          "hint": "Revise a fase CONFIGURAÇÃO E SEGREDOS.",
+          "ex": "A resposta correta é: Valor padrão."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual arquivo pode ser versionado?",
+          "opts": [
+            ".env com token real",
+            "backup de senhas",
+            "chave privada",
+            "`.env.example` sem segredos reais"
+          ],
+          "a": 3,
+          "hint": "Revise a fase CONFIGURAÇÃO E SEGREDOS.",
+          "ex": "A resposta correta é: `.env.example` sem segredos reais."
+        },
+        {
+          "type": "mcq",
+          "q": "O que colocar no .gitignore?",
+          "opts": [
+            "Arquivos locais com segredos",
+            ".env.example",
+            "Código-fonte",
+            "Testes"
+          ],
+          "a": 0,
+          "hint": "Revise a fase CONFIGURAÇÃO E SEGREDOS.",
+          "ex": "A resposta correta é: Arquivos locais com segredos."
+        },
+        {
+          "type": "mcq",
+          "q": "Por que centralizar configuração?",
+          "opts": [
+            "Aumenta duplicação",
+            "Facilita validar e mudar ambientes",
+            "Oculta erros",
+            "Impede testes"
+          ],
+          "a": 1,
+          "hint": "Revise a fase CONFIGURAÇÃO E SEGREDOS.",
+          "ex": "A resposta correta é: Facilita validar e mudar ambientes."
+        },
+        {
+          "type": "mcq",
+          "q": "O que fazer se um segredo foi commitado?",
+          "opts": [
+            "Só apagar o commit novo",
+            "Renomear variável",
+            "Revogar e substituir imediatamente",
+            "Ignorar"
+          ],
+          "a": 2,
+          "hint": "Revise a fase CONFIGURAÇÃO E SEGREDOS.",
+          "ex": "A resposta correta é: Revogar e substituir imediatamente."
+        },
+        {
+          "type": "mcq",
+          "q": "Configuração obrigatória deve ser o quê?",
+          "opts": [
+            "Descoberta após falha distante",
+            "Espalhada em funções",
+            "Sempre vazia",
+            "Validada ao iniciar"
+          ],
+          "a": 3,
+          "hint": "Revise a fase CONFIGURAÇÃO E SEGREDOS.",
+          "ex": "A resposta correta é: Validada ao iniciar."
+        }
+      ]
+    },
+    {
+      "id": "s55",
+      "name": "ESTRUTURA DE PROJETO",
+      "group": "PYTHON PROFISSIONAL II",
+      "difficulty": "AVANÇADO",
+      "boss": "PROJECT-FRAME",
+      "color": "#c96e05",
+      "icon": "▤",
+      "summary": "Organize código, testes e configuração em uma estrutura fácil de executar.",
+      "lesson": [
+        {
+          "title": "Pacote concentra código",
+          "body": "Uma pasta src separa código importável de testes, documentação e arquivos de projeto.",
+          "code": "projeto/\n  pyproject.toml\n  src/meu_app/\n  tests/"
+        },
+        {
+          "title": "pyproject centraliza ferramentas",
+          "body": "pyproject.toml pode declarar metadados, dependências e configurações de ferramentas.",
+          "code": "[project]\nname = 'meu-app'\nversion = '0.1.0'"
+        },
+        {
+          "title": "Entrada explícita",
+          "body": "Um módulo __main__ ou script configurado deixa claro como iniciar a aplicação.",
+          "code": "def main():\n    print('Aplicação iniciada')\n\nif __name__ == '__main__':\n    main()"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Onde fica o código importável no layout src?",
+          "opts": [
+            "Dentro de src/nome_do_pacote",
+            "Na pasta tests",
+            "No README",
+            "No .env"
+          ],
+          "a": 0,
+          "hint": "Revise a fase ESTRUTURA DE PROJETO.",
+          "ex": "A resposta correta é: Dentro de src/nome_do_pacote."
+        },
+        {
+          "type": "mcq",
+          "q": "O que pyproject.toml centraliza?",
+          "opts": [
+            "Dados do usuário",
+            "Metadados e configuração de ferramentas",
+            "Imagens",
+            "Logs de produção"
+          ],
+          "a": 1,
+          "hint": "Revise a fase ESTRUTURA DE PROJETO.",
+          "ex": "A resposta correta é: Metadados e configuração de ferramentas."
+        },
+        {
+          "type": "mcq",
+          "q": "Onde ficam os testes?",
+          "opts": [
+            "Dentro do .gitignore",
+            "No arquivo de banco",
+            "Em tests",
+            "Em variáveis de ambiente"
+          ],
+          "a": 2,
+          "hint": "Revise a fase ESTRUTURA DE PROJETO.",
+          "ex": "A resposta correta é: Em tests."
+        },
+        {
+          "type": "mcq",
+          "q": "Para que serve if __name__ == '__main__'?",
+          "opts": [
+            "Criar classe",
+            "Instalar pacote",
+            "Executar ao importar sempre",
+            "Executar entrada apenas quando o módulo é iniciado diretamente"
+          ],
+          "a": 3,
+          "hint": "Revise a fase ESTRUTURA DE PROJETO.",
+          "ex": "A resposta correta é: Executar entrada apenas quando o módulo é iniciado diretamente."
+        },
+        {
+          "type": "mcq",
+          "q": "O que __init__.py indica tradicionalmente?",
+          "opts": [
+            "Um pacote Python",
+            "Um banco SQLite",
+            "Um teste",
+            "Um segredo"
+          ],
+          "a": 0,
+          "hint": "Revise a fase ESTRUTURA DE PROJETO.",
+          "ex": "A resposta correta é: Um pacote Python."
+        },
+        {
+          "type": "mcq",
+          "q": "Por que separar código e testes?",
+          "opts": [
+            "Impedir imports",
+            "Clareza de responsabilidade",
+            "Ocultar cobertura",
+            "Evitar automação"
+          ],
+          "a": 1,
+          "hint": "Revise a fase ESTRUTURA DE PROJETO.",
+          "ex": "A resposta correta é: Clareza de responsabilidade."
+        },
+        {
+          "type": "mcq",
+          "q": "O que README deve explicar?",
+          "opts": [
+            "Tokens reais",
+            "Somente o nome",
+            "Como instalar, executar e testar",
+            "Dados privados"
+          ],
+          "a": 2,
+          "hint": "Revise a fase ESTRUTURA DE PROJETO.",
+          "ex": "A resposta correta é: Como instalar, executar e testar."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual estrutura favorece crescimento?",
+          "opts": [
+            "Um único arquivo gigante",
+            "Código duplicado",
+            "Imports circulares",
+            "Módulos pequenos por responsabilidade"
+          ],
+          "a": 3,
+          "hint": "Revise a fase ESTRUTURA DE PROJETO.",
+          "ex": "A resposta correta é: Módulos pequenos por responsabilidade."
+        }
+      ]
+    },
+    {
+      "id": "s56",
+      "name": "QUALIDADE CONTÍNUA",
+      "group": "PYTHON PROFISSIONAL II",
+      "difficulty": "AVANÇADO",
+      "boss": "QUALITY-OMEGA",
+      "color": "#c16604",
+      "icon": "★",
+      "summary": "Crie um fluxo repetível de verificação antes de publicar mudanças.",
+      "lesson": [
+        {
+          "title": "Checklist automatizado",
+          "body": "Formatação, lint, type check e testes devem rodar por comandos reproduzíveis.",
+          "code": "ruff check .\npytest\nmypy src"
+        },
+        {
+          "title": "CI verifica cada mudança",
+          "body": "Uma integração contínua executa o mesmo conjunto de checks em commits e pull requests.",
+          "code": "steps:\n  - run: python -m pip install -r requirements.txt\n  - run: pytest"
+        },
+        {
+          "title": "Falha deve bloquear entrega",
+          "body": "Se um teste essencial falha, corrija a causa antes do merge e preserve o log para diagnóstico.",
+          "code": "pytest -q\n# saída diferente de zero bloqueia a etapa"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que CI significa?",
+          "opts": [
+            "Integração contínua",
+            "Classe interna",
+            "Código isolado",
+            "Configuração inicial"
+          ],
+          "a": 0,
+          "hint": "Revise a fase QUALIDADE CONTÍNUA.",
+          "ex": "A resposta correta é: Integração contínua."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual conjunto é um bom gate?",
+          "opts": [
+            "Somente formatação",
+            "Lint, tipos e testes",
+            "Apenas README",
+            "Só execução manual"
+          ],
+          "a": 1,
+          "hint": "Revise a fase QUALIDADE CONTÍNUA.",
+          "ex": "A resposta correta é: Lint, tipos e testes."
+        },
+        {
+          "type": "mcq",
+          "q": "Por que usar comandos reproduzíveis?",
+          "opts": [
+            "Para aumentar arquivos",
+            "Para esconder dependências",
+            "Todos verificam da mesma forma",
+            "Para evitar CI"
+          ],
+          "a": 2,
+          "hint": "Revise a fase QUALIDADE CONTÍNUA.",
+          "ex": "A resposta correta é: Todos verificam da mesma forma."
+        },
+        {
+          "type": "mcq",
+          "q": "O que deve acontecer se teste essencial falhar?",
+          "opts": [
+            "Ignorar",
+            "Apagar teste",
+            "Mudar expectativa sem análise",
+            "Bloquear merge até correção"
+          ],
+          "a": 3,
+          "hint": "Revise a fase QUALIDADE CONTÍNUA.",
+          "ex": "A resposta correta é: Bloquear merge até correção."
+        },
+        {
+          "type": "mcq",
+          "q": "Onde CI normalmente roda?",
+          "opts": [
+            "Em ambiente automatizado do repositório",
+            "Somente no navegador local",
+            "Dentro do JSON",
+            "No CSS"
+          ],
+          "a": 0,
+          "hint": "Revise a fase QUALIDADE CONTÍNUA.",
+          "ex": "A resposta correta é: Em ambiente automatizado do repositório."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual benefício do feedback rápido?",
+          "opts": [
+            "Eliminar revisão",
+            "Corrigir problema perto da mudança",
+            "Evitar testes",
+            "Criar mais bugs"
+          ],
+          "a": 1,
+          "hint": "Revise a fase QUALIDADE CONTÍNUA.",
+          "ex": "A resposta correta é: Corrigir problema perto da mudança."
+        },
+        {
+          "type": "mcq",
+          "q": "O que preservar ao falhar?",
+          "opts": [
+            "Somente tela verde",
+            "Segredos",
+            "Logs e contexto do comando",
+            "Arquivos aleatórios"
+          ],
+          "a": 2,
+          "hint": "Revise a fase QUALIDADE CONTÍNUA.",
+          "ex": "A resposta correta é: Logs e contexto do comando."
+        },
+        {
+          "type": "mcq",
+          "q": "Quando a entrega está pronta?",
+          "opts": [
+            "Código compilou uma vez",
+            "Sem testes",
+            "Com alertas ignorados",
+            "Checks passam e mudança foi revisada"
+          ],
+          "a": 3,
+          "hint": "Revise a fase QUALIDADE CONTÍNUA.",
+          "ex": "A resposta correta é: Checks passam e mudança foi revisada."
         }
       ]
     },
