@@ -2083,6 +2083,200 @@ button {
   font-weight: 900;
 }
 
+
+.stat-hearts.infinite,
+.mobile-hearts.infinite {
+  border-color: rgba(206, 130, 255, 0.7);
+  color: #e4bdff;
+  background: linear-gradient(145deg, rgba(109, 53, 166, 0.55), rgba(42, 25, 67, 0.9));
+  box-shadow: 0 0 20px rgba(206, 130, 255, 0.18), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.premium-store {
+  margin-top: 24px;
+  padding: 28px;
+  border: 1px solid rgba(206, 130, 255, 0.42);
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 100% 0, rgba(206, 130, 255, 0.13), transparent 22rem),
+    linear-gradient(145deg, #191b2b, #10151f 70%);
+  box-shadow: 0 22px 55px rgba(0, 0, 0, 0.26), inset 0 1px 0 rgba(255, 255, 255, 0.045);
+}
+
+.premium-store-title {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.premium-store-title h2 {
+  margin-top: 7px;
+  font-family: var(--ui-font);
+  font-size: 26px;
+  font-weight: 900;
+}
+
+.premium-store-title > small {
+  color: #8795a8;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.premium-products {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 15px;
+}
+
+.premium-products .premium-bundle {
+  grid-template-columns: auto minmax(0, 1fr) auto;
+}
+
+.premium-products .premium-bundle > strong {
+  grid-column: auto;
+  min-width: 130px;
+  text-align: right;
+}
+
+.premium-products .premium-bundle > .pixel-button {
+  grid-column: 1 / -1;
+}
+
+.premium-products article {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 15px;
+  padding: 19px;
+  border: 1px solid #354158;
+  border-radius: 22px;
+  background: rgba(12, 18, 28, 0.82);
+  transition: border-color 0.18s ease, transform 0.18s ease;
+}
+
+.premium-products article:not(.active):hover {
+  border-color: rgba(206, 130, 255, 0.65);
+  transform: translateY(-2px);
+}
+
+.premium-products article.active {
+  border-color: rgba(88, 204, 2, 0.62);
+  background: linear-gradient(145deg, rgba(88, 204, 2, 0.09), rgba(12, 18, 28, 0.9));
+}
+
+.premium-product-icon {
+  display: grid;
+  width: 56px;
+  height: 56px;
+  place-items: center;
+  border: 2px solid #a66ee5;
+  border-radius: 18px;
+  color: white;
+  background: linear-gradient(145deg, #7745b4, #4c2876);
+  box-shadow: 0 7px 0 #2e1946;
+  font-size: 22px;
+  font-weight: 900;
+}
+
+.premium-product-icon.hearts {
+  border-color: #ff6b6b;
+  background: linear-gradient(145deg, #e83f4f, #8f2130);
+  box-shadow: 0 7px 0 #54131d;
+}
+
+.premium-products article > div small {
+  color: #ce82ff;
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0.6px;
+}
+
+.premium-products article > div h3 {
+  margin: 4px 0;
+  font-family: var(--ui-font);
+  font-size: 18px;
+  font-weight: 900;
+}
+
+.premium-products article > div p {
+  color: #96a4b7;
+  font-size: 11px;
+  line-height: 1.45;
+}
+
+.premium-products article > strong {
+  display: grid;
+  grid-column: 1 / -1;
+  color: white;
+  font-size: 24px;
+  font-weight: 900;
+}
+
+.premium-products article > strong small {
+  color: #7f8da1;
+  font-size: 8px;
+  letter-spacing: 0.5px;
+}
+
+.premium-products .pixel-button {
+  grid-column: 1 / -1;
+  width: 100%;
+}
+
+.heart-meter.infinite {
+  display: grid;
+  min-height: 92px;
+  place-items: center;
+}
+
+.heart-meter.infinite strong {
+  color: #ce82ff;
+  font-size: 72px;
+  font-weight: 900;
+  line-height: 1;
+  text-shadow: 0 0 28px rgba(206, 130, 255, 0.45);
+}
+
+.practice-heart-banner.infinite {
+  border-color: rgba(206, 130, 255, 0.55);
+  background: linear-gradient(135deg, rgba(96, 48, 143, 0.22), rgba(20, 27, 39, 0.95));
+}
+
+.practice-heart-banner.infinite .practice-heart-icon {
+  color: #ce82ff;
+}
+
+@media (max-width: 760px) {
+  .premium-products {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 650px) {
+  .premium-store {
+    padding: 20px 14px;
+    border-radius: 24px;
+  }
+
+  .premium-store-title {
+    align-items: start;
+    flex-direction: column;
+  }
+
+  .premium-products article,
+  .premium-products .premium-bundle {
+    grid-template-columns: auto minmax(0, 1fr);
+    padding: 16px;
+  }
+
+  .premium-products .premium-bundle > strong {
+    grid-column: 1 / -1;
+    text-align: left;
+  }
+}
+
 .project-grid-shell {
   margin-top: 24px;
   padding: 28px;
