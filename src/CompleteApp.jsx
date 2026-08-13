@@ -37,6 +37,10 @@ function emptyProgress() {
     reviewSessions: 0,
     unitReviews: {},
     projects: {},
+    entitlements: {
+      allProjects: false,
+      infiniteHearts: false,
+    },
     hearts: MAX_HEARTS,
     xp: 0,
     gems: 100,
@@ -60,7 +64,9 @@ function withStudyReward(progress, { xp = 0, gems = 0, hearts = 0 }) {
 
   return {
     ...progress,
-    hearts: Math.min(MAX_HEARTS, Math.max(0, (progress.hearts ?? MAX_HEARTS) + hearts)),
+    hearts: progress.entitlements?.infiniteHearts
+      ? MAX_HEARTS
+      : Math.min(MAX_HEARTS, Math.max(0, (progress.hearts ?? MAX_HEARTS) + hearts)),
     xp: (progress.xp || 0) + xp,
     gems: (progress.gems || 0) + gems,
     streak,
@@ -126,6 +132,10 @@ function readProgress() {
       reviewSessions: saved.reviewSessions || 0,
       unitReviews: saved.unitReviews || {},
       projects: saved.projects || {},
+      entitlements: {
+        allProjects: Boolean(saved.entitlements?.allProjects),
+        infiniteHearts: Boolean(saved.entitlements?.infiniteHearts),
+      },
       hearts: Number.isFinite(saved.hearts) ? Math.min(MAX_HEARTS, Math.max(0, saved.hearts)) : MAX_HEARTS,
       xp: Number.isFinite(saved.xp) ? Math.max(0, saved.xp) : 0,
       gems: Number.isFinite(saved.gems) ? Math.max(0, saved.gems) : 100,
@@ -381,8 +391,14 @@ function AppHeader({ stats, settings, active = 'map', onHome, onReview, onProjec
         <div className="stat-streak" title="Ofensiva diária"><span><FlameIcon /></span><b>{stats.streak}</b></div>
         <div className="stat-xp" title="Experiência total"><span>⚡</span><b>{stats.xp}</b></div>
         <div className="stat-gems" title="Gemas"><span>◆</span><b>{stats.gems}</b></div>
-        <button type="button" className="stat-hearts" onClick={onHearts} title="Vidas disponíveis" aria-label={`${stats.hearts} de ${MAX_HEARTS} vidas`}>
-          <span>♥</span><b>{stats.hearts}</b>
+        <button
+          type="button"
+          className={`stat-hearts ${stats.infiniteHearts ? 'infinite' : ''}`}
+          onClick={onHearts}
+          title={stats.infiniteHearts ? 'Vidas infinitas ativas' : 'Vidas disponíveis'}
+          aria-label={stats.infiniteHearts ? 'Vidas infinitas ativas' : `${stats.hearts} de ${MAX_HEARTS} vidas`}
+        >
+          <span>♥</span><b>{stats.infiniteHearts ? '∞' : stats.hearts}</b>
         </button>
         <button type="button" className="header-utility" onClick={onToggleSound} title="Ativar ou desativar som" aria-label="Som">
           {settings.sound ? '♪' : '×'}
@@ -393,13 +409,13 @@ function AppHeader({ stats, settings, active = 'map', onHome, onReview, onProjec
   );
 }
 
-function MobileNav({ active = 'map', onHome, onReview, onProjects, onHearts, hearts }) {
+function MobileNav({ active = 'map', onHome, onReview, onProjects, onHearts, hearts, infiniteHearts = false }) {
   return (
     <nav className="mobile-nav" aria-label="Navegação para celular">
       <button type="button" className={active === 'map' ? 'active' : ''} onClick={onHome}><span>⌁</span><small>TRILHA</small></button>
       <button type="button" className={active === 'practice' ? 'active' : ''} onClick={onReview}><span>◎</span><small>PRATICAR</small></button>
       <button type="button" className={active === 'projects' ? 'active' : ''} onClick={onProjects}><span>▣</span><small>PROJETOS</small></button>
-      <button type="button" className="mobile-hearts" onClick={onHearts}><span>♥</span><small>{hearts}/{MAX_HEARTS} VIDAS</small></button>
+      <button type="button" className={`mobile-hearts ${infiniteHearts ? 'infinite' : ''}`} onClick={onHearts}><span>♥</span><small>{infiniteHearts ? '∞ VIDAS' : `${hearts}/${MAX_HEARTS} VIDAS`}</small></button>
     </nav>
   );
 }
@@ -751,20 +767,20 @@ function CourseMap({ stages, progress, onEnter, onReview, onUnitReview, onReset 
   );
 }
 
-function FocusHeader({ stage, step, total, onExit, hearts = MAX_HEARTS, safePractice = false, heartReward = false }) {
+function FocusHeader({ stage, step, total, onExit, hearts = MAX_HEARTS, safePractice = false, heartReward = false, infiniteHearts = false }) {
   const percent = total ? (step / total) * 100 : 0;
   return (
     <div className="focus-header" style={{ '--stage-color': stage.color }}>
       <button type="button" onClick={onExit} aria-label="Sair e voltar para a trilha">×</button>
       <LinearProgress value={percent} color={stage.color} label={`${Math.round(percent)}% da fase`} />
-      <span className={`focus-heart-count ${safePractice ? 'safe' : ''}`} title={safePractice ? 'Prática sem perda de vidas' : `${hearts} vidas restantes`}>
-        <i>♥</i><b>{heartReward ? '+1' : safePractice ? '∞' : hearts}</b>
+      <span className={`focus-heart-count ${safePractice || infiniteHearts ? 'safe' : ''}`} title={safePractice ? 'Prática sem perda de vidas' : infiniteHearts ? 'Vidas infinitas ativas' : `${hearts} vidas restantes`}>
+        <i>♥</i><b>{heartReward ? '+1' : safePractice || infiniteHearts ? '∞' : hearts}</b>
       </span>
     </div>
   );
 }
 
-function LessonScreen({ stage, stageIndex, hearts, onExit, onBattle, sfx }) {
+function LessonScreen({ stage, stageIndex, hearts, infiniteHearts = false, onExit, onBattle, sfx }) {
   const [index, setIndex] = useState(0);
   const card = stage.lesson[index];
   const last = index === stage.lesson.length - 1;
@@ -772,7 +788,7 @@ function LessonScreen({ stage, stageIndex, hearts, onExit, onBattle, sfx }) {
 
   return (
     <main className="focus-screen lesson-screen" style={{ '--stage-color': stage.color }}>
-      <FocusHeader stage={stage} step={index + 1} total={stage.lesson.length + 1} hearts={hearts} onExit={onExit} />
+      <FocusHeader stage={stage} step={index + 1} total={stage.lesson.length + 1} hearts={hearts} infiniteHearts={infiniteHearts} onExit={onExit} />
       <div className="focus-shell">
         <div className="lesson-heading">
           <span className="lesson-stage-icon">{stage.icon}</span>
@@ -901,7 +917,7 @@ function QuestionFeedback({ question, selected, wrong, correct, color, nextLabel
   );
 }
 
-function BattleScreen({ stage, hearts, progress, onExit, onWin, onStat, onHeartPractice, onRefillHearts, sfx }) {
+function BattleScreen({ stage, hearts, infiniteHearts = false, progress, onExit, onWin, onStat, onHeartPractice, onRefillHearts, onPurchasePremium, sfx }) {
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState(null);
   const [wrong, setWrong] = useState([]);
@@ -927,9 +943,9 @@ function BattleScreen({ stage, hearts, progress, onExit, onWin, onStat, onHeartP
       setSelected(null);
       onStat('wrong', { stageId: stage.id, questionIndex: index, mode: 'battle', firstTry: false });
       sfx('bad');
-      if (hearts <= 1) setHeartGate(true);
+      if (!infiniteHearts && hearts <= 1) setHeartGate(true);
     }
-  }, [correct, hearts, index, onStat, question.a, selected, sfx, stage.id, wrong.length]);
+  }, [correct, hearts, index, infiniteHearts, onStat, question.a, selected, sfx, stage.id, wrong.length]);
 
   const next = useCallback(() => {
     if (last) {
@@ -961,13 +977,16 @@ function BattleScreen({ stage, hearts, progress, onExit, onWin, onStat, onHeartP
         onExit={onExit}
         onPractice={onHeartPractice}
         onRefill={() => { onRefillHearts(); setHeartGate(false); }}
+        onPurchasePremium={() => {
+          if (onPurchasePremium?.()) setHeartGate(false);
+        }}
       />
     );
   }
 
   return (
     <main className="focus-screen battle-screen" style={{ '--stage-color': stage.color }}>
-      <FocusHeader stage={stage} step={index + 1} total={stage.questions.length} hearts={hearts} onExit={onExit} />
+      <FocusHeader stage={stage} step={index + 1} total={stage.questions.length} hearts={hearts} infiniteHearts={infiniteHearts} onExit={onExit} />
       <div className="focus-shell challenge-shell">
         <div className="challenge-heading">
           <div><small>DESAFIO · {stage.name}</small><h1>Questão {index + 1} de {stage.questions.length}</h1></div>
@@ -982,6 +1001,7 @@ function BattleScreen({ stage, hearts, progress, onExit, onWin, onStat, onHeartP
           correct={correct}
           onSelect={select}
           hearts={hearts}
+          safePractice={infiniteHearts}
         />
         <QuestionFeedback
           question={question}
@@ -992,7 +1012,7 @@ function BattleScreen({ stage, hearts, progress, onExit, onWin, onStat, onHeartP
           nextLabel={last ? 'CONCLUIR FASE' : 'CONTINUAR'}
           onCheck={check}
           onNext={next}
-          usesHearts
+          usesHearts={!infiniteHearts}
           hearts={hearts}
         />
         <p className="keyboard-help">ATALHOS: 1–4 SELECIONA · ENTER VERIFICA OU CONTINUA</p>
@@ -1025,28 +1045,34 @@ function WinScreen({ stage, nextStage, reward, streak, onMap, onReplay, onContin
   );
 }
 
-function HeartsScreen({ progress, onExit, onPractice, onRefill }) {
-  const full = progress.hearts >= MAX_HEARTS;
-  const canBuy = !full && progress.gems >= HEART_REFILL_COST;
+function HeartsScreen({ progress, onExit, onPractice, onRefill, onPurchasePremium }) {
+  const infinite = Boolean(progress.entitlements?.infiniteHearts);
+  const full = infinite || progress.hearts >= MAX_HEARTS;
+  const canBuy = !infinite && !full && progress.gems >= HEART_REFILL_COST;
   return (
     <main className="hearts-screen">
       <section className="hearts-card">
         <button type="button" className="hearts-close" onClick={onExit} aria-label="Voltar para a trilha">×</button>
-        <div className="hearts-avatar"><PinscherMascot size="large" mood={full ? 'celebrate' : 'focus'} /><span>♥</span></div>
+        <div className="hearts-avatar"><PinscherMascot size="large" mood={full ? 'celebrate' : 'focus'} /><span>{infinite ? '∞' : '♥'}</span></div>
         <small>CENTRAL DE VIDAS</small>
-        <h1>{full ? 'Suas vidas estão cheias!' : progress.hearts ? 'Recupere suas vidas' : 'Suas vidas acabaram'}</h1>
-        <p>Erros nas fases custam uma vida. Faça uma prática curta para recuperar uma ou use gemas para completar todas.</p>
-        <div className="heart-meter" aria-label={`${progress.hearts} de ${MAX_HEARTS} vidas`}>
-          {Array.from({ length: MAX_HEARTS }, (_, index) => <span className={index < progress.hearts ? 'full' : ''} key={index}>♥</span>)}
+        <h1>{infinite ? 'Vidas infinitas ativas!' : full ? 'Suas vidas estão cheias!' : progress.hearts ? 'Recupere suas vidas' : 'Suas vidas acabaram'}</h1>
+        <p>{infinite ? 'Você pode errar e continuar estudando sem perder vidas.' : 'Erros nas fases custam uma vida. Faça uma prática curta para recuperar uma ou use gemas para completar todas.'}</p>
+        <div className={`heart-meter ${infinite ? 'infinite' : ''}`} aria-label={infinite ? 'Vidas infinitas ativas' : `${progress.hearts} de ${MAX_HEARTS} vidas`}>
+          {infinite ? <strong>∞</strong> : Array.from({ length: MAX_HEARTS }, (_, index) => <span className={index < progress.hearts ? 'full' : ''} key={index}>♥</span>)}
         </div>
         <div className="hearts-actions">
           <PixelButton color="#58cc02" disabled={full} onClick={onPractice}>
-            {full ? 'VIDAS CHEIAS ✓' : 'PRATICAR PARA GANHAR 1 VIDA'}
+            {infinite ? 'VIDAS INFINITAS ✓' : full ? 'VIDAS CHEIAS ✓' : 'PRATICAR PARA GANHAR 1 VIDA'}
           </PixelButton>
           <PixelButton color="#1cb0f6" variant="outline" disabled={!canBuy} onClick={onRefill}>
-            {full ? 'NÃO PRECISA RECARREGAR' : `COMPLETAR VIDAS · ◆ ${HEART_REFILL_COST}`}
+            {infinite ? 'RECURSO PREMIUM ATIVO' : full ? 'NÃO PRECISA RECARREGAR' : `COMPLETAR VIDAS · ◆ ${HEART_REFILL_COST}`}
           </PixelButton>
-          {!full && !canBuy && <small className="not-enough-gems">Você tem ◆ {progress.gems}. São necessárias {HEART_REFILL_COST} gemas.</small>}
+          {!infinite && (
+            <PixelButton color="#ce82ff" variant="outline" onClick={onPurchasePremium}>
+              PROJETOS + VIDAS INFINITAS · R$ 25,00
+            </PixelButton>
+          )}
+          {!infinite && !full && !canBuy && <small className="not-enough-gems">Você tem ◆ {progress.gems}. São necessárias {HEART_REFILL_COST} gemas.</small>}
           <button type="button" className="text-action" onClick={onExit}>VOLTAR À TRILHA</button>
         </div>
       </section>
@@ -1055,11 +1081,13 @@ function HeartsScreen({ progress, onExit, onPractice, onRefill }) {
 }
 
 
-function ProjectHub({ projects, tracks = [], stages, progress, onExit, onOpen }) {
+function ProjectHub({ projects, tracks = [], stages, progress, onExit, onOpen, onPurchase }) {
   const completed = projects.filter((project) => progress.projects?.[project.id]).length;
+  const allProjects = Boolean(progress.entitlements?.allProjects);
+  const infiniteHearts = Boolean(progress.entitlements?.infiniteHearts);
   const stageNumber = (stageId) => stages.findIndex((stage) => stage.id === stageId) + 1;
-  const unlocked = (project) => Boolean(progress.completed?.[project.unlockStage])
-    && (!project.prerequisite || Boolean(progress.projects?.[project.prerequisite]));
+  const unlocked = (project) => allProjects || (Boolean(progress.completed?.[project.unlockStage])
+    && (!project.prerequisite || Boolean(progress.projects?.[project.prerequisite])));
   const lockLabel = (project) => {
     if (!progress.completed?.[project.unlockStage]) return `LIBERA NA FASE ${String(stageNumber(project.unlockStage)).padStart(2, '0')}`;
     if (project.prerequisite && !progress.projects?.[project.prerequisite]) return 'CONCLUA A MISSÃO ANTERIOR';
@@ -1080,6 +1108,27 @@ function ProjectHub({ projects, tracks = [], stages, progress, onExit, onOpen })
           </div>
         </div>
         <div className="project-hero-mascot"><PinscherMascot size="large" mood="focus" /><span>▣</span></div>
+      </section>
+
+      <section className="premium-store">
+        <div className="premium-store-title">
+          <div><span className="project-kicker">LOJA · COMPRA ILUSTRATIVA</span><h2>Pacote acesso total</h2></div>
+          <small>Nenhuma cobrança real será feita nesta versão.</small>
+        </div>
+        <div className="premium-products">
+          <article className={allProjects && infiniteHearts ? 'active premium-bundle' : 'premium-bundle'}>
+            <span className="premium-product-icon">★</span>
+            <div>
+              <small>PACOTE COMPLETO</small>
+              <h3>Todos os projetos + vidas infinitas</h3>
+              <p>Libera os 8 projetos, as 8 missões das especializações e remove a perda de vidas em todas as fases.</p>
+            </div>
+            <strong>R$ 25,00<small>PAGAMENTO ÚNICO</small></strong>
+            <PixelButton color="#8b5cf6" disabled={allProjects && infiniteHearts} onClick={onPurchase}>
+              {allProjects && infiniteHearts ? 'PACOTE ATIVO ✓' : 'COMPRAR PACOTE · ILUSTRATIVO'}
+            </PixelButton>
+          </article>
+        </div>
       </section>
 
       <section className="project-grid-shell">
@@ -1124,7 +1173,7 @@ function ProjectHub({ projects, tracks = [], stages, progress, onExit, onOpen })
 
         {tracks.map((track) => {
           const trackCompleted = track.missions.filter((mission) => progress.projects?.[mission.id]).length;
-          const trackUnlocked = Boolean(progress.completed?.[track.unlockStage]);
+          const trackUnlocked = allProjects || Boolean(progress.completed?.[track.unlockStage]);
           return (
             <article className={`track-panel ${trackUnlocked ? 'unlocked' : 'locked'}`} key={track.id} style={{ '--track-color': track.color }}>
               <header>
@@ -1255,6 +1304,7 @@ function ProjectScreen({ project, alreadyCompleted, onExit, onComplete, sfx }) {
 }
 
 function PracticeHub({ stages, progress, onExit, onStart }) {
+  const infiniteHearts = Boolean(progress.entitlements?.infiniteHearts);
   const learning = courseLearningSummary(stages, progress);
   const completed = Object.keys(progress.completed).length;
   const weakStages = stages
@@ -1284,11 +1334,15 @@ function PracticeHub({ stages, progress, onExit, onStart }) {
           </div>
         </section>
 
-        <section className={`practice-heart-banner ${progress.hearts < MAX_HEARTS ? 'needs-heart' : ''}`}>
-          <span className="practice-heart-icon">♥</span>
-          <div><small>VIDAS</small><h2>{progress.hearts}/{MAX_HEARTS} disponíveis</h2><p>Complete uma prática de 5 questões para recuperar uma vida.</p></div>
-          <PixelButton color="#ff4b4b" variant="outline" disabled={progress.hearts >= MAX_HEARTS} onClick={() => onStart('hearts')}>
-            {progress.hearts >= MAX_HEARTS ? 'VIDAS CHEIAS ✓' : 'RECUPERAR 1 VIDA'}
+        <section className={`practice-heart-banner ${!infiniteHearts && progress.hearts < MAX_HEARTS ? 'needs-heart' : ''} ${infiniteHearts ? 'infinite' : ''}`}>
+          <span className="practice-heart-icon">{infiniteHearts ? '∞' : '♥'}</span>
+          <div>
+            <small>VIDAS</small>
+            <h2>{infiniteHearts ? '∞ disponíveis' : `${progress.hearts}/${MAX_HEARTS} disponíveis`}</h2>
+            <p>{infiniteHearts ? 'Vidas infinitas ativas: erros não interrompem seu estudo.' : 'Complete uma prática de 5 questões para recuperar uma vida.'}</p>
+          </div>
+          <PixelButton color="#ff4b4b" variant="outline" disabled={infiniteHearts || progress.hearts >= MAX_HEARTS} onClick={() => onStart('hearts')}>
+            {infiniteHearts ? 'VIDAS INFINITAS ✓' : progress.hearts >= MAX_HEARTS ? 'VIDAS CHEIAS ✓' : 'RECUPERAR 1 VIDA'}
           </PixelButton>
         </section>
 
@@ -1493,11 +1547,12 @@ export default function CompleteApp() {
     completed: Object.keys(progress.completed).length,
     accuracy: answered ? Math.round((progress.correct / answered) * 100) : 0,
     hearts: progress.hearts,
+    infiniteHearts: Boolean(progress.entitlements?.infiniteHearts),
     xp: progress.xp,
     gems: progress.gems,
     streak: progress.streak,
     todayXp,
-  }), [answered, progress.completed, progress.correct, progress.gems, progress.hearts, progress.streak, progress.xp, stages.length, todayXp]);
+  }), [answered, progress.completed, progress.correct, progress.entitlements?.infiniteHearts, progress.gems, progress.hearts, progress.streak, progress.xp, stages.length, todayXp]);
 
   const updateProgress = useCallback((updater) => {
     setProgress((current) => {
@@ -1555,7 +1610,7 @@ export default function CompleteApp() {
   };
 
   const enterStage = (stage) => {
-    if (progress.hearts <= 0) {
+    if (!progress.entitlements?.infiniteHearts && progress.hearts <= 0) {
       openHearts();
       return;
     }
@@ -1567,7 +1622,7 @@ export default function CompleteApp() {
   };
 
   const startBattle = () => {
-    if (progress.hearts <= 0) {
+    if (!progress.entitlements?.infiniteHearts && progress.hearts <= 0) {
       openHearts();
       return;
     }
@@ -1612,9 +1667,9 @@ export default function CompleteApp() {
       return {
         ...current,
         [counter]: current[counter] + 1,
-        hearts: kind === 'wrong' && context.mode === 'battle'
+        hearts: kind === 'wrong' && context.mode === 'battle' && !current.entitlements?.infiniteHearts
           ? Math.max(0, (current.hearts ?? MAX_HEARTS) - 1)
-          : current.hearts ?? MAX_HEARTS,
+          : current.entitlements?.infiniteHearts ? MAX_HEARTS : current.hearts ?? MAX_HEARTS,
         questionStats: { ...(current.questionStats || {}), [key]: nextQuestion },
       };
     });
@@ -1645,8 +1700,25 @@ export default function CompleteApp() {
     });
   }, [updateProgress]);
 
+  const purchasePremiumBundle = () => {
+    if (progress.entitlements?.allProjects && progress.entitlements?.infiniteHearts) return false;
+    const confirmed = window.confirm('Liberar todos os projetos e ativar vidas infinitas por R$ 25,00?\n\nCompra ilustrativa: nenhuma cobrança real será feita.');
+    if (!confirmed) return false;
+    updateProgress((current) => ({
+      ...current,
+      entitlements: {
+        ...(current.entitlements || {}),
+        allProjects: true,
+        infiniteHearts: true,
+      },
+      hearts: MAX_HEARTS,
+    }));
+    sfx('win');
+    return true;
+  };
+
   const refillHearts = () => {
-    if (progress.hearts >= MAX_HEARTS || progress.gems < HEART_REFILL_COST) return;
+    if (progress.entitlements?.infiniteHearts || progress.hearts >= MAX_HEARTS || progress.gems < HEART_REFILL_COST) return;
     updateProgress((current) => current.hearts >= MAX_HEARTS || current.gems < HEART_REFILL_COST ? current : ({
       ...current,
       hearts: MAX_HEARTS,
@@ -1697,7 +1769,7 @@ export default function CompleteApp() {
         />
       )}
       {screen === 'projects' && (
-        <ProjectHub projects={projects} tracks={tracks} stages={stages} progress={progress} onExit={goMap} onOpen={openProject} />
+        <ProjectHub projects={projects} tracks={tracks} stages={stages} progress={progress} onExit={goMap} onOpen={openProject} onPurchase={purchasePremiumBundle} />
       )}
       {screen === 'project' && activeProject && (
         <ProjectScreen
@@ -1713,22 +1785,24 @@ export default function CompleteApp() {
         <PracticeHub stages={stages} progress={progress} onExit={goMap} onStart={startReview} />
       )}
       {screen === 'hearts' && (
-        <HeartsScreen progress={progress} onExit={goMap} onPractice={() => startReview('hearts')} onRefill={refillHearts} />
+        <HeartsScreen progress={progress} onExit={goMap} onPractice={() => startReview('hearts')} onRefill={refillHearts} onPurchasePremium={purchasePremiumBundle} />
       )}
       {screen === 'lesson' && (
-        <LessonScreen stage={activeStage} stageIndex={activeIndex} hearts={progress.hearts} onExit={goMap} onBattle={startBattle} sfx={sfx} />
+        <LessonScreen stage={activeStage} stageIndex={activeIndex} hearts={progress.hearts} infiniteHearts={Boolean(progress.entitlements?.infiniteHearts)} onExit={goMap} onBattle={startBattle} sfx={sfx} />
       )}
       {screen === 'battle' && (
         <BattleScreen
           key={battleKey}
           stage={activeStage}
           hearts={progress.hearts}
+          infiniteHearts={Boolean(progress.entitlements?.infiniteHearts)}
           progress={progress}
           onExit={goMap}
           onWin={finishStage}
           onStat={recordAnswer}
           onHeartPractice={() => startReview('hearts')}
           onRefillHearts={refillHearts}
+          onPurchasePremium={purchasePremiumBundle}
           sfx={sfx}
         />
       )}
@@ -1758,7 +1832,7 @@ export default function CompleteApp() {
       )}
 
       {(screen === 'map' || screen === 'projects') && (
-        <MobileNav active={screen} onHome={goMap} onReview={openPractice} onProjects={openProjects} onHearts={openHearts} hearts={progress.hearts} />
+        <MobileNav active={screen} onHome={goMap} onReview={openPractice} onProjects={openProjects} onHearts={openHearts} hearts={progress.hearts} infiniteHearts={Boolean(progress.entitlements?.infiniteHearts)} />
       )}
     </div>
   );
