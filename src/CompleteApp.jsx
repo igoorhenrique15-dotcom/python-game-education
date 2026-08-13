@@ -1,5 +1,8 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import course from './data/course.json';
+import mascotReady from './assets/mascot/guia-py-ready.webp';
+import mascotFocus from './assets/mascot/guia-py-focus.webp';
+import mascotCelebrate from './assets/mascot/guia-py-celebrate.webp';
 import '../style.css';
 import './rounded-theme.css';
 
@@ -265,71 +268,18 @@ function PixelButton({ children, onClick, color = '#58cc02', variant = 'solid', 
   );
 }
 
+const MASCOT_IMAGES = {
+  ready: mascotReady,
+  focus: mascotFocus,
+  celebrate: mascotCelebrate,
+};
+
 function PinscherMascot({ mood = 'ready', size = 'medium' }) {
-  const celebrating = mood === 'celebrate';
-  const focused = mood === 'focus';
+  const image = MASCOT_IMAGES[mood] || mascotReady;
 
   return (
     <span className={`python-avatar avatar-${size} mood-${mood}`} aria-hidden="true">
-      <svg viewBox="0 0 120 120" focusable="false">
-        <circle className="dog-halo" cx="60" cy="60" r="56" />
-        <rect className="avatar-pixel avatar-pixel-blue" x="15" y="25" width="9" height="9" rx="2" />
-        <rect className="avatar-pixel avatar-pixel-yellow" x="94" y="18" width="11" height="11" rx="3" />
-        <rect className="avatar-pixel avatar-pixel-soft" x="99" y="78" width="7" height="7" rx="2" />
-
-        <g className="dog-tail-group">
-          <path className="dog-tail-shadow" d="M88 80c14-2 21-11 18-22" />
-          <path className="dog-tail" d="M87 77c15-1 23-10 19-23" />
-        </g>
-
-        <g className="dog-body">
-          <path className="dog-body-white" d="M34 73c7-12 17-17 29-16 17 1 28 12 28 30 0 13-8 23-23 24H46c-13-1-20-10-19-22 0-7 2-12 7-16Z" />
-          <path className="dog-back-patch" d="M59 58c13 0 24 7 29 18-7 3-16 2-24-2-7-4-10-10-5-16Z" />
-          <path className="dog-chest-speckles" d="M47 78l3 2-2 4-4-1 1-4 2-1Zm9 7 3 1-1 4h-4l-1-3 3-2Zm-11 7 2 1-1 3-3-1v-2l2-1Z" />
-          <path className="dog-leg dog-leg-left" d="M37 88c1 10 1 18-2 25-1 3 1 5 4 5h5c2 0 3-2 2-4-2-7 0-17 3-24Z" />
-          <path className="dog-leg dog-leg-right" d="M71 89c3 9 4 17 2 25-1 2 0 4 3 4h5c3 0 5-2 4-5-3-7-4-15-3-24Z" />
-          <path className="dog-paw-lines" d="M37 114h8m29 0h9" />
-        </g>
-
-        <g className="dog-head">
-          <path className="dog-ear dog-ear-left" d="M38 34c-10-7-18-3-17 6 1 9 8 17 18 18l6-11-7-13Z" />
-          <path className="dog-ear-inner dog-ear-inner-left" d="M34 40c-5-3-8-1-7 4 1 4 4 8 9 9l3-6-5-7Z" />
-          <path className="dog-ear dog-ear-right" d="M82 34c10-7 18-3 17 6-1 9-8 17-18 18l-6-11 7-13Z" />
-          <path className="dog-ear-inner dog-ear-inner-right" d="M86 40c5-3 8-1 7 4-1 4-4 8-9 9l-3-6 5-7Z" />
-          <path className="dog-head-black" d="M35 47c0-17 10-28 25-28s25 11 25 28v14c0 17-10 27-25 27S35 78 35 61V47Z" />
-          <path className="dog-brow-shine" d="M44 36c4-7 11-10 18-10" />
-          <path className="dog-muzzle" d="M43 63c2-8 8-11 17-9 9-2 15 1 17 9 3 12-5 20-17 20s-20-8-17-20Z" />
-          <path className="dog-muzzle-gray" d="M47 65c5 2 8 1 13-2 5 3 8 4 13 2-1 10-6 15-13 15s-12-5-13-15Z" />
-          <ellipse className="dog-eye-white" cx="48" cy="51" rx="8.5" ry="9.5" />
-          <ellipse className="dog-eye-white" cx="72" cy="51" rx="8.5" ry="9.5" />
-
-          {celebrating ? (
-            <>
-              <path className="dog-eye-happy" d="M42 51c4-5 8-5 12 0M66 51c4-5 8-5 12 0" />
-              <path className="dog-mouth-open" d="M49 72c6 7 16 7 22 0-1 12-21 12-22 0Z" />
-              <path className="dog-tongue" d="M56 77c2 5 6 5 8 0" />
-            </>
-          ) : (
-            <>
-              <circle className="dog-eye" cx="48" cy="52" r="4.8" />
-              <circle className="dog-eye-glint" cx="46.5" cy="50.5" r="1.5" />
-              <circle className="dog-eye" cx="72" cy="52" r="4.8" />
-              <circle className="dog-eye-glint" cx="70.5" cy="50.5" r="1.5" />
-              <path className={focused ? 'dog-mouth-focus' : 'dog-mouth'} d={focused ? 'M55 75h10' : 'M53 74c4 4 10 4 14 0'} />
-            </>
-          )}
-
-          {focused && <path className="dog-focus-brows" d="M41 43l12 2m14 0 12-2" />}
-          <path className="dog-nose" d="M53 62c1-5 13-5 14 0 0 5-4 8-7 8s-7-3-7-8Z" />
-          <circle className="dog-whisker-dot" cx="49" cy="69" r="1" />
-          <circle className="dog-whisker-dot" cx="45" cy="72" r="1" />
-          <circle className="dog-whisker-dot" cx="71" cy="69" r="1" />
-          <circle className="dog-whisker-dot" cx="75" cy="72" r="1" />
-          <path className="dog-collar" d="M42 82c11 7 25 7 36 0" />
-          <path className="dog-tag" d="M55 84h10l2 8-7 5-7-5 2-8Z" />
-          <path className="dog-code-mark" d="M58 88l-2 2 2 2m4-4 2 2-2 2" />
-        </g>
-      </svg>
+      <img className="mascot-sprite" src={image} alt="" draggable="false" />
     </span>
   );
 }
