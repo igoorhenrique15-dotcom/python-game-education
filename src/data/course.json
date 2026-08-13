@@ -1,6 +1,6 @@
 {
   "title": "PYTHON // BLACK BUSTER",
-  "version": 6,
+  "version": 7,
   "stages": [
     {
       "id": "s1",
@@ -3590,6 +3590,671 @@
           "a": 0,
           "hint": "O texto tem duas letras maiúsculas seguidas de dois dígitos.",
           "ex": "AB12 corresponde integralmente ao padrão."
+        }
+      ]
+    },
+    {
+      "id": "s28",
+      "name": "LOGS",
+      "group": "QUALIDADE E INTEGRAÇÃO",
+      "difficulty": "INTERMEDIÁRIO",
+      "boss": "LOG-SENTINEL",
+      "color": "#fb7185",
+      "icon": "≡",
+      "summary": "Registre eventos com níveis, contexto e formatação para entender o comportamento do programa.",
+      "lesson": [
+        {
+          "title": "Logging em vez de prints",
+          "body": "O módulo logging registra eventos com nível e contexto. basicConfig define o nível mínimo e um formato comum para as mensagens.",
+          "code": "import logging\n\nlogging.basicConfig(\n    level=logging.INFO,\n    format='%(levelname)s:%(message)s'\n)\nlogging.info('Aplicação iniciada')"
+        },
+        {
+          "title": "Níveis de severidade",
+          "body": "DEBUG detalha diagnóstico, INFO registra o fluxo normal, WARNING aponta risco, ERROR registra falha e CRITICAL indica situação grave.",
+          "code": "logging.debug('Valor intermediário')\nlogging.info('Pedido salvo')\nlogging.warning('Espaço baixo')\nlogging.error('Falha ao gravar')"
+        },
+        {
+          "title": "Contexto e exceções",
+          "body": "Use placeholders do logging para adiar a formatação. Dentro de except, logging.exception inclui automaticamente o traceback.",
+          "code": "try:\n    total = 10 / 0\nexcept ZeroDivisionError:\n    logging.exception('Falha no cálculo do pedido %s', 42)"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual módulo da biblioteca padrão registra eventos da aplicação?",
+          "opts": [
+            "logging",
+            "events",
+            "console",
+            "traceonly"
+          ],
+          "a": 0,
+          "hint": "O nome é o mesmo da prática de registrar logs.",
+          "ex": "O módulo logging faz parte da biblioteca padrão."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual nível é mais detalhado para diagnóstico durante desenvolvimento?",
+          "opts": [
+            "DEBUG",
+            "INFO",
+            "WARNING",
+            "CRITICAL"
+          ],
+          "a": 0,
+          "hint": "É o nível usado para investigar valores e caminhos internos.",
+          "ex": "DEBUG representa informações detalhadas de diagnóstico."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual nível combina com uma situação inesperada que não interrompe necessariamente o programa?",
+          "opts": [
+            "WARNING",
+            "DEBUG",
+            "INFO",
+            "NOTSET apenas"
+          ],
+          "a": 0,
+          "hint": "Ele sinaliza um risco ou comportamento incomum.",
+          "ex": "WARNING chama atenção sem afirmar que a operação falhou."
+        },
+        {
+          "type": "code",
+          "q": "Com level=logging.WARNING, qual chamada aparece?\nlogging.info('início')\nlogging.warning('atenção')",
+          "opts": [
+            "Apenas atenção",
+            "Apenas início",
+            "As duas",
+            "Nenhuma"
+          ],
+          "a": 0,
+          "hint": "Mensagens abaixo do nível configurado são filtradas.",
+          "ex": "INFO é inferior a WARNING e não aparece; WARNING aparece."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual chamada inclui o traceback quando usada dentro de except?",
+          "opts": [
+            "logging.exception()",
+            "logging.info()",
+            "print()",
+            "logging.disable()"
+          ],
+          "a": 0,
+          "hint": "O nome faz referência à exceção capturada.",
+          "ex": "logging.exception registra a mensagem e os detalhes da exceção atual."
+        },
+        {
+          "type": "code",
+          "q": "Qual nível corresponde à chamada?\nlogging.error('Arquivo não salvo')",
+          "opts": [
+            "ERROR",
+            "INFO",
+            "DEBUG",
+            "WARNING"
+          ],
+          "a": 0,
+          "hint": "O nome do método informa o nível.",
+          "ex": "logging.error cria um registro no nível ERROR."
+        },
+        {
+          "type": "mcq",
+          "q": "Por que usar `logging.info('Pedido %s', codigo)`?",
+          "opts": [
+            "A formatação pode ser adiada pelo logging",
+            "Para transformar codigo em lista",
+            "Para apagar o registro",
+            "Para elevar sempre a CRITICAL"
+          ],
+          "a": 0,
+          "hint": "O valor é fornecido separadamente da mensagem.",
+          "ex": "Placeholders evitam formatar a string antes de o sistema decidir se registrará a mensagem."
+        },
+        {
+          "type": "mcq",
+          "q": "O que basicConfig pode definir?",
+          "opts": [
+            "Nível e formato dos registros",
+            "A versão do Python",
+            "A senha do usuário",
+            "A estrutura de uma classe"
+          ],
+          "a": 0,
+          "hint": "É a configuração básica do sistema de logs.",
+          "ex": "basicConfig configura opções como level, format e destino."
+        }
+      ]
+    },
+    {
+      "id": "s29",
+      "name": "TESTES AUTOMATIZADOS",
+      "group": "QUALIDADE E INTEGRAÇÃO",
+      "difficulty": "AVANÇADO",
+      "boss": "ASSERT-PRIME",
+      "color": "#34d399",
+      "icon": "✓✓",
+      "summary": "Proteja comportamentos com casos pequenos, asserções, preparação e testes de erros.",
+      "lesson": [
+        {
+          "title": "Um comportamento por teste",
+          "body": "Um teste prepara dados, executa uma ação e verifica o resultado. Casos pequenos tornam falhas mais fáceis de localizar.",
+          "code": "import unittest\n\ndef dobro(n):\n    return n * 2\n\nclass TestDobro(unittest.TestCase):\n    def test_dobra_inteiro(self):\n        self.assertEqual(dobro(4), 8)"
+        },
+        {
+          "title": "Preparação repetível",
+          "body": "setUp roda antes de cada método de teste e cria um estado limpo. Isso reduz repetição sem compartilhar mutações entre casos.",
+          "code": "class TestCarrinho(unittest.TestCase):\n    def setUp(self):\n        self.itens = []\n\n    def test_comeca_vazio(self):\n        self.assertEqual(self.itens, [])"
+        },
+        {
+          "title": "Testar exceções",
+          "body": "assertRaises confirma que uma operação inválida levanta a exceção esperada. O teste documenta também o contrato de erro.",
+          "code": "def dividir(a, b):\n    if b == 0:\n        raise ValueError('divisor zero')\n    return a / b\n\nwith self.assertRaises(ValueError):\n    dividir(10, 0)"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual módulo de testes vem com a biblioteca padrão?",
+          "opts": [
+            "unittest",
+            "pytest",
+            "jest",
+            "mocha"
+          ],
+          "a": 0,
+          "hint": "É importado diretamente sem instalar pacote.",
+          "ex": "unittest faz parte da biblioteca padrão do Python."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual método verifica igualdade no unittest?",
+          "opts": [
+            "assertEqual",
+            "assertSameTextOnly",
+            "expect",
+            "checkEquals"
+          ],
+          "a": 0,
+          "hint": "O nome começa com assert.",
+          "ex": "assertEqual(valor, esperado) compara os dois valores."
+        },
+        {
+          "type": "code",
+          "q": "Este teste passa?\nself.assertEqual(2 + 3, 5)",
+          "opts": [
+            "Sim",
+            "Não",
+            "Só no terminal",
+            "Levanta TypeError"
+          ],
+          "a": 0,
+          "hint": "Compare o resultado da soma com o valor esperado.",
+          "ex": "2 + 3 é igual a 5, então a asserção passa."
+        },
+        {
+          "type": "mcq",
+          "q": "Quando setUp é executado?",
+          "opts": [
+            "Antes de cada método de teste",
+            "Uma vez após todos os testes",
+            "Somente quando há erro",
+            "Durante a instalação do Python"
+          ],
+          "a": 0,
+          "hint": "Ele prepara um estado limpo para cada caso.",
+          "ex": "unittest chama setUp antes de cada teste da classe."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual recurso confirma que uma exceção é levantada?",
+          "opts": [
+            "assertRaises",
+            "assertEqual",
+            "setUp",
+            "logging.error"
+          ],
+          "a": 0,
+          "hint": "O nome inclui a ação de levantar uma exceção.",
+          "ex": "assertRaises verifica o tipo de exceção esperado."
+        },
+        {
+          "type": "code",
+          "q": "Qual caso de borda é importante para uma função de média?",
+          "opts": [
+            "Lista vazia",
+            "Apenas uma lista comum",
+            "Nome do arquivo CSS",
+            "Cor do terminal"
+          ],
+          "a": 0,
+          "hint": "A quantidade de itens participa de uma divisão.",
+          "ex": "Uma lista vazia pode causar divisão por zero e precisa de comportamento definido."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual característica torna um teste mais fácil de diagnosticar?",
+          "opts": [
+            "Verificar um comportamento claro",
+            "Testar tudo em um único método enorme",
+            "Depender da ordem dos testes",
+            "Alterar dados externos sem controle"
+          ],
+          "a": 0,
+          "hint": "Falhas pequenas apontam diretamente para a regra quebrada.",
+          "ex": "Testes focados reduzem causas possíveis para uma falha."
+        },
+        {
+          "type": "mcq",
+          "q": "O que um bom nome como `test_rejeita_divisor_zero` comunica?",
+          "opts": [
+            "O comportamento esperado",
+            "A versão do sistema",
+            "A senha do banco",
+            "A ordem obrigatória de execução"
+          ],
+          "a": 0,
+          "hint": "O nome descreve a situação e a resposta.",
+          "ex": "Nomes descritivos documentam o contrato testado."
+        }
+      ]
+    },
+    {
+      "id": "s30",
+      "name": "TYPE HINTS",
+      "group": "QUALIDADE E INTEGRAÇÃO",
+      "difficulty": "INTERMEDIÁRIO",
+      "boss": "TYPE-ORACLE",
+      "color": "#38bdf8",
+      "icon": ":=",
+      "summary": "Documente entradas, retornos e estruturas com anotações que melhoram leitura e ferramentas.",
+      "lesson": [
+        {
+          "title": "Anotar parâmetros e retorno",
+          "body": "Type hints descrevem tipos esperados, mas o Python normalmente não os impõe em tempo de execução. Eles ajudam pessoas, editores e verificadores estáticos.",
+          "code": "def saudacao(nome: str) -> str:\n    return f'Olá, {nome}'\n\ndef area(largura: float, altura: float) -> float:\n    return largura * altura"
+        },
+        {
+          "title": "Coleções e opcionais",
+          "body": "Anotações podem descrever elementos de coleções. O operador | expressa união de tipos; `str | None` indica texto ou ausência.",
+          "code": "def total(valores: list[float]) -> float:\n    return sum(valores)\n\ndef buscar(codigo: int) -> str | None:\n    return None"
+        },
+        {
+          "title": "Aliases e dados estruturados",
+          "body": "Aliases dão nome a tipos complexos. TypedDict descreve chaves esperadas em dicionários usados como registros.",
+          "code": "from typing import TypedDict\n\nclass Usuario(TypedDict):\n    nome: str\n    ativo: bool\n\ndef exibir(usuario: Usuario) -> str:\n    return usuario['nome']"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que `-> str` indica em uma função?",
+          "opts": [
+            "Tipo de retorno esperado",
+            "Nome obrigatório da função",
+            "Uma conversão automática",
+            "Um comentário ignorado pelo editor"
+          ],
+          "a": 0,
+          "hint": "A seta aparece depois dos parâmetros.",
+          "ex": "A anotação após -> descreve o retorno."
+        },
+        {
+          "type": "mcq",
+          "q": "Type hints normalmente impedem em runtime uma chamada com tipo diferente?",
+          "opts": [
+            "Não, são principalmente metadados",
+            "Sim, sempre",
+            "Só quando há print",
+            "Apenas em listas vazias"
+          ],
+          "a": 0,
+          "hint": "Verificadores estáticos usam as anotações antes da execução.",
+          "ex": "O interpretador geralmente não aplica as anotações como validação automática."
+        },
+        {
+          "type": "code",
+          "q": "Qual anotação descreve uma lista de inteiros?",
+          "opts": [
+            "list[int]",
+            "int[list]",
+            "list = int",
+            "array(integer)"
+          ],
+          "a": 0,
+          "hint": "O contêiner vem antes do tipo dos elementos.",
+          "ex": "list[int] representa uma lista cujos elementos esperados são inteiros."
+        },
+        {
+          "type": "mcq",
+          "q": "O que `str | None` representa?",
+          "opts": [
+            "Texto ou ausência de valor",
+            "Somente string vazia",
+            "Uma lista de textos",
+            "Uma exceção"
+          ],
+          "a": 0,
+          "hint": "O símbolo | expressa uma união.",
+          "ex": "O valor pode ser str ou None."
+        },
+        {
+          "type": "code",
+          "q": "Qual assinatura está anotada corretamente?\ndef dobro(n: int) -> int:",
+          "opts": [
+            "Recebe int e retorna int",
+            "Recebe str e retorna bool",
+            "Não recebe valor",
+            "Retorna sempre None"
+          ],
+          "a": 0,
+          "hint": "Leia a anotação do parâmetro e a da seta.",
+          "ex": "n: int anota a entrada; -> int anota o retorno."
+        },
+        {
+          "type": "mcq",
+          "q": "Para que serve TypedDict?",
+          "opts": [
+            "Descrever chaves e valores esperados de um dicionário",
+            "Transformar dicionário em banco",
+            "Ordenar qualquer lista",
+            "Criar logs"
+          ],
+          "a": 0,
+          "hint": "Ele modela registros baseados em dicionários.",
+          "ex": "TypedDict permite declarar o formato esperado de um dicionário."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual benefício direto das anotações?",
+          "opts": [
+            "Melhorar documentação e análise de ferramentas",
+            "Aumentar automaticamente a velocidade",
+            "Eliminar todos os testes",
+            "Instalar dependências"
+          ],
+          "a": 0,
+          "hint": "Pense em leitura e detecção antecipada de inconsistências.",
+          "ex": "Type hints esclarecem contratos e ajudam verificadores e editores."
+        },
+        {
+          "type": "code",
+          "q": "Qual retorno combina com a anotação?\ndef nomes() -> list[str]:",
+          "opts": [
+            "['Ana', 'Bia']",
+            "[1, 2]",
+            "'Ana'",
+            "None"
+          ],
+          "a": 0,
+          "hint": "O retorno esperado é uma lista cujos elementos são strings.",
+          "ex": "['Ana', 'Bia'] é uma list[str]."
+        }
+      ]
+    },
+    {
+      "id": "s31",
+      "name": "AMBIENTES E PACOTES",
+      "group": "QUALIDADE E INTEGRAÇÃO",
+      "difficulty": "INTERMEDIÁRIO",
+      "boss": "DEPENDENCY-GHOST",
+      "color": "#a78bfa",
+      "icon": "⬡",
+      "summary": "Isole dependências, instale pacotes e registre versões reproduzíveis para cada projeto.",
+      "lesson": [
+        {
+          "title": "Ambiente virtual",
+          "body": "Um ambiente virtual mantém o interpretador e os pacotes de um projeto separados do sistema e de outros projetos.",
+          "code": "# criar\npython -m venv .venv\n\n# ativar no Linux/macOS\nsource .venv/bin/activate\n\n# ativar no Windows PowerShell\n.venv\\Scripts\\Activate.ps1"
+        },
+        {
+          "title": "Instalar com pip",
+          "body": "Execute pip pelo próprio Python ativo para reduzir ambiguidades. Depois de ativar o ambiente, instalações ficam isoladas nele.",
+          "code": "python -m pip install pacote\npython -m pip list\npython -m pip show pacote"
+        },
+        {
+          "title": "Dependências reproduzíveis",
+          "body": "Um arquivo de requisitos registra pacotes necessários. Fixar versões aumenta a previsibilidade, mas atualizações devem ser revisadas regularmente.",
+          "code": "python -m pip freeze > requirements.txt\npython -m pip install -r requirements.txt\n\n# exemplo\npacote-exemplo==1.4.0"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual comando cria um ambiente virtual chamado .venv?",
+          "opts": [
+            "python -m venv .venv",
+            "python install .venv",
+            "pip start env",
+            "venv --global"
+          ],
+          "a": 0,
+          "hint": "venv é executado como módulo do Python.",
+          "ex": "python -m venv .venv cria o ambiente na pasta indicada."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é o objetivo principal do ambiente virtual?",
+          "opts": [
+            "Isolar dependências do projeto",
+            "Aumentar a memória física",
+            "Substituir o Git",
+            "Publicar o site automaticamente"
+          ],
+          "a": 0,
+          "hint": "Projetos diferentes podem precisar de versões diferentes.",
+          "ex": "O isolamento evita conflitos de pacotes entre projetos."
+        },
+        {
+          "type": "mcq",
+          "q": "Por que usar `python -m pip`?",
+          "opts": [
+            "Associar o pip ao Python ativo",
+            "Compilar para JavaScript",
+            "Excluir o ambiente",
+            "Criar um banco"
+          ],
+          "a": 0,
+          "hint": "Mais de uma instalação de Python pode existir.",
+          "ex": "Executar pip como módulo deixa explícito qual interpretador está sendo usado."
+        },
+        {
+          "type": "code",
+          "q": "Qual comando instala dependências de requirements.txt?",
+          "opts": [
+            "python -m pip install -r requirements.txt",
+            "python requirements.txt",
+            "pip -m create requirements.txt",
+            "venv install --all"
+          ],
+          "a": 0,
+          "hint": "-r indica um arquivo de requisitos.",
+          "ex": "pip install -r lê e instala os requisitos listados."
+        },
+        {
+          "type": "mcq",
+          "q": "O que `pip freeze` produz?",
+          "opts": [
+            "Lista de pacotes e versões instaladas",
+            "Um executável congelado",
+            "A remoção de todos os pacotes",
+            "Um log de erros apenas"
+          ],
+          "a": 0,
+          "hint": "É usado com frequência para gerar requirements.txt.",
+          "ex": "freeze lista dependências em formato adequado a requisitos."
+        },
+        {
+          "type": "mcq",
+          "q": "O ambiente virtual costuma ser versionado no Git?",
+          "opts": [
+            "Não; registre as dependências",
+            "Sim, sempre inteiro",
+            "Somente a pasta bin",
+            "Somente pacotes grandes"
+          ],
+          "a": 0,
+          "hint": "Ele pode ser recriado a partir da configuração.",
+          "ex": "A pasta do ambiente é normalmente ignorada; arquivos de dependências são versionados."
+        },
+        {
+          "type": "code",
+          "q": "O que significa `pacote==1.4.0` em requisitos?",
+          "opts": [
+            "Exigir exatamente a versão 1.4.0",
+            "Aceitar qualquer versão",
+            "Remover a versão 1.4.0",
+            "Usar Python 1.4"
+          ],
+          "a": 0,
+          "hint": "Dois sinais de igual fixam uma versão.",
+          "ex": "== declara uma correspondência exata de versão."
+        },
+        {
+          "type": "mcq",
+          "q": "Quando instalar um pacote após ativar .venv, onde ele fica?",
+          "opts": [
+            "No ambiente virtual ativo",
+            "Obrigatoriamente no sistema inteiro",
+            "Dentro do arquivo main.py",
+            "No histórico do navegador"
+          ],
+          "a": 0,
+          "hint": "O isolamento é a função do ambiente.",
+          "ex": "O pip ligado ao ambiente instala os pacotes nesse ambiente."
+        }
+      ]
+    },
+    {
+      "id": "s32",
+      "name": "APIS HTTP",
+      "group": "QUALIDADE E INTEGRAÇÃO",
+      "difficulty": "AVANÇADO",
+      "boss": "HTTP-TITAN",
+      "color": "#f97316",
+      "icon": "↗",
+      "summary": "Consuma serviços HTTP, interprete JSON e trate status, tempo limite e falhas de rede.",
+      "lesson": [
+        {
+          "title": "Requisição e resposta",
+          "body": "Uma API HTTP recebe uma requisição e devolve uma resposta com status, cabeçalhos e corpo. GET costuma consultar recursos.",
+          "code": "from urllib.request import urlopen\n\nwith urlopen('https://api.exemplo.dev/itens', timeout=5) as resposta:\n    status = resposta.status\n    corpo = resposta.read()"
+        },
+        {
+          "title": "JSON da resposta",
+          "body": "O corpo chega como bytes. Depois de decodificar o texto, json.loads converte o JSON em objetos Python.",
+          "code": "import json\n\ntexto = corpo.decode('utf-8')\ndados = json.loads(texto)\nfor item in dados['itens']:\n    print(item['nome'])"
+        },
+        {
+          "title": "Falhas e limites",
+          "body": "Rede pode falhar ou demorar. Defina timeout, trate erros HTTP e valide campos antes de usá-los. Não exponha chaves de API no código público.",
+          "code": "from urllib.error import HTTPError, URLError\n\ntry:\n    with urlopen(url, timeout=5) as resposta:\n        dados = json.load(resposta)\nexcept HTTPError as erro:\n    print('HTTP', erro.code)\nexcept URLError:\n    print('Falha de rede')"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual método HTTP costuma consultar um recurso sem alterá-lo?",
+          "opts": [
+            "GET",
+            "DELETE",
+            "PATCH",
+            "CONNECT sempre"
+          ],
+          "a": 0,
+          "hint": "É o método mais comum de leitura.",
+          "ex": "GET é usado normalmente para recuperar representações de recursos."
+        },
+        {
+          "type": "mcq",
+          "q": "O que o status 200 geralmente indica?",
+          "opts": [
+            "Requisição bem-sucedida",
+            "Recurso não encontrado",
+            "Erro interno",
+            "Redirecionamento obrigatório"
+          ],
+          "a": 0,
+          "hint": "Está na família 2xx.",
+          "ex": "200 OK indica que a requisição foi atendida com sucesso."
+        },
+        {
+          "type": "mcq",
+          "q": "O que o status 404 geralmente indica?",
+          "opts": [
+            "Recurso não encontrado",
+            "Sucesso",
+            "Conteúdo criado",
+            "Sem conexão local"
+          ],
+          "a": 0,
+          "hint": "É um erro do cliente muito conhecido.",
+          "ex": "404 Not Found informa que o recurso solicitado não foi localizado."
+        },
+        {
+          "type": "code",
+          "q": "Qual função converte um texto JSON em objetos Python?",
+          "opts": [
+            "json.loads(texto)",
+            "json.dumps(texto)",
+            "str.json(texto)",
+            "dict.http(texto)"
+          ],
+          "a": 0,
+          "hint": "loads lê JSON de uma string.",
+          "ex": "json.loads desserializa uma string JSON."
+        },
+        {
+          "type": "mcq",
+          "q": "Por que definir timeout em uma requisição?",
+          "opts": [
+            "Evitar esperar indefinidamente",
+            "Converter JSON em CSV",
+            "Mudar o método para POST",
+            "Garantir status 200"
+          ],
+          "a": 0,
+          "hint": "A rede pode não responder.",
+          "ex": "O timeout limita quanto tempo a operação pode aguardar."
+        },
+        {
+          "type": "mcq",
+          "q": "Onde uma chave secreta de API deve ficar?",
+          "opts": [
+            "Em configuração segura, fora do código público",
+            "No README público",
+            "Dentro de cada print",
+            "No nome do repositório"
+          ],
+          "a": 0,
+          "hint": "Segredos não devem ser versionados publicamente.",
+          "ex": "Variáveis de ambiente ou gerenciadores de segredos evitam expor credenciais."
+        },
+        {
+          "type": "code",
+          "q": "Após `corpo = resposta.read()`, qual tipo é comum?",
+          "opts": [
+            "bytes",
+            "list[str]",
+            "float",
+            "bool"
+          ],
+          "a": 0,
+          "hint": "Respostas de rede são lidas inicialmente como dados binários.",
+          "ex": "read() retorna bytes, que podem ser decodificados para texto."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual prática deixa o consumo de API mais robusto?",
+          "opts": [
+            "Tratar erros e validar campos da resposta",
+            "Assumir que toda resposta é perfeita",
+            "Ignorar o status HTTP",
+            "Salvar chaves no código"
+          ],
+          "a": 0,
+          "hint": "Serviços e redes podem falhar ou mudar.",
+          "ex": "Tratamento de falhas e validação protegem o programa contra respostas inesperadas."
         }
       ]
     }
