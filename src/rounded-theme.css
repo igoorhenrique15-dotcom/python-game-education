@@ -2084,6 +2084,204 @@ button {
 }
 
 
+
+.premium-floating-cta {
+  position: fixed;
+  z-index: 140;
+  right: 24px;
+  bottom: 24px;
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 12px;
+  min-width: 410px;
+  padding: 13px 16px;
+  overflow: visible;
+  border: 2px solid #f7cf4a;
+  border-radius: 20px;
+  color: white;
+  background:
+    radial-gradient(circle at 12% 20%, rgba(255, 255, 255, 0.19), transparent 8rem),
+    linear-gradient(135deg, #8b5cf6, #6331bd 58%, #3f1d77);
+  box-shadow:
+    0 8px 0 #32145e,
+    0 18px 45px rgba(91, 39, 155, 0.55),
+    0 0 0 5px rgba(247, 207, 74, 0.12);
+  cursor: pointer;
+  text-align: left;
+  animation: premiumCtaPulse 2s ease-in-out infinite;
+  transition: transform 0.16s ease, filter 0.16s ease;
+}
+
+.premium-floating-cta:hover {
+  filter: brightness(1.12);
+  transform: translateY(-3px) scale(1.02);
+}
+
+.premium-floating-cta:active {
+  box-shadow:
+    0 4px 0 #32145e,
+    0 12px 30px rgba(91, 39, 155, 0.48),
+    0 0 0 5px rgba(247, 207, 74, 0.12);
+  transform: translateY(4px);
+}
+
+.premium-floating-badge {
+  position: absolute;
+  top: -12px;
+  right: 18px;
+  padding: 5px 10px;
+  border: 2px solid #7c5a00;
+  border-radius: 999px;
+  color: #271b00;
+  background: #ffd84d;
+  box-shadow: 0 4px 0 #987000;
+  font-size: 9px;
+  font-weight: 1000;
+  letter-spacing: 0.65px;
+}
+
+.premium-floating-icon {
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  border-radius: 15px;
+  color: #ffe66d;
+  background: rgba(31, 12, 61, 0.38);
+  font-size: 23px;
+  font-weight: 900;
+}
+
+.premium-floating-copy {
+  display: grid;
+  gap: 2px;
+}
+
+.premium-floating-copy small {
+  color: #ffe66d;
+  font-size: 9px;
+  font-weight: 1000;
+  letter-spacing: 0.9px;
+}
+
+.premium-floating-copy b {
+  font-size: 14px;
+  font-weight: 1000;
+  letter-spacing: 0.15px;
+}
+
+.premium-floating-cta > strong {
+  display: grid;
+  padding-left: 14px;
+  border-left: 1px solid rgba(255, 255, 255, 0.28);
+  color: #ffe66d;
+  font-size: 23px;
+  font-weight: 1000;
+  line-height: 1;
+  text-align: right;
+}
+
+.premium-floating-cta > strong small {
+  margin-top: 4px;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 7px;
+  letter-spacing: 0.7px;
+}
+
+.premium-buy-button {
+  min-height: 62px;
+  border: 2px solid #f6d04d !important;
+  color: white !important;
+  background: linear-gradient(135deg, #9b66f4, #6c36c4) !important;
+  box-shadow:
+    0 7px 0 #3b176d,
+    0 14px 30px rgba(139, 92, 246, 0.4),
+    0 0 0 4px rgba(246, 208, 77, 0.1) !important;
+  font-size: 13px !important;
+  letter-spacing: 0.45px;
+  animation: premiumButtonGlow 1.8s ease-in-out infinite;
+}
+
+.premium-buy-button:not(:disabled):hover {
+  filter: brightness(1.16);
+  transform: translateY(-2px);
+}
+
+.premium-buy-button:disabled {
+  border-color: rgba(88, 204, 2, 0.6) !important;
+  background: linear-gradient(135deg, #408f12, #2d680d) !important;
+  box-shadow: 0 6px 0 #1d4806 !important;
+  animation: none;
+}
+
+@keyframes premiumCtaPulse {
+  0%, 100% {
+    box-shadow:
+      0 8px 0 #32145e,
+      0 18px 45px rgba(91, 39, 155, 0.5),
+      0 0 0 5px rgba(247, 207, 74, 0.1);
+  }
+
+  50% {
+    box-shadow:
+      0 8px 0 #32145e,
+      0 22px 58px rgba(139, 92, 246, 0.7),
+      0 0 0 9px rgba(247, 207, 74, 0.2);
+  }
+}
+
+@keyframes premiumButtonGlow {
+  0%, 100% {
+    filter: brightness(1);
+  }
+
+  50% {
+    filter: brightness(1.15);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .premium-floating-cta,
+  .premium-buy-button {
+    animation: none;
+  }
+}
+
+@media (max-width: 650px) {
+  .premium-floating-cta {
+    right: 11px;
+    bottom: 86px;
+    left: 11px;
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    min-width: 0;
+    padding: 11px 13px;
+    border-radius: 17px;
+  }
+
+  .premium-floating-icon {
+    width: 42px;
+    height: 42px;
+  }
+
+  .premium-floating-copy b {
+    font-size: 12px;
+  }
+
+  .premium-floating-cta > strong {
+    padding-left: 10px;
+    font-size: 19px;
+  }
+
+  .premium-floating-badge {
+    top: -10px;
+    right: 12px;
+    padding: 4px 8px;
+    font-size: 7px;
+  }
+}
+
 .stat-hearts.infinite,
 .mobile-hearts.infinite {
   border-color: rgba(206, 130, 255, 0.7);
