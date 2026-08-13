@@ -1,6 +1,6 @@
 {
   "title": "PYTHON // BLACK BUSTER",
-  "version": 15,
+  "version": 16,
   "stages": [
     {
       "id": "s1",
@@ -8881,6 +8881,570 @@
           "a": 3,
           "hint": "Revise a fase ENTREGA DE UMA APLICAÇÃO.",
           "ex": "A resposta correta é: Artefato testado, documentado e rastreável.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "s65",
+      "name": "TERMINAL E SCRIPTS",
+      "group": "FUNDAMENTOS APROFUNDADOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "boss": "SHELL-RUNNER",
+      "color": "#22c55e",
+      "icon": ">_",
+      "summary": "Execute Python no terminal, use o modo interativo e crie scripts reproduzíveis.",
+      "lesson": [
+        {
+          "title": "Interpretador interativo",
+          "body": "O REPL executa comandos imediatamente e é útil para experimentos pequenos. Scripts .py guardam programas reproduzíveis.",
+          "code": "python\n>>> 2 + 3\n5"
+        },
+        {
+          "title": "Executando scripts",
+          "body": "Passe o caminho do arquivo ao interpretador. Argumentos adicionais ficam disponíveis em sys.argv.",
+          "code": "python relatorio.py entrada.csv\n# sys.argv -> ['relatorio.py', 'entrada.csv']"
+        },
+        {
+          "title": "Módulo ou programa",
+          "body": "O bloco __main__ permite executar uma entrada apenas quando o arquivo é iniciado diretamente.",
+          "code": "def main():\n    print('Executando')\n\nif __name__ == '__main__':\n    main()"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que é o REPL do Python?",
+          "opts": [
+            "Ambiente interativo que lê e executa comandos",
+            "Editor gráfico obrigatório",
+            "Banco de dados",
+            "Gerenciador de pacotes"
+          ],
+          "a": 0,
+          "hint": "Revise terminal e scripts.",
+          "ex": "A resposta correta é: Ambiente interativo que lê e executa comandos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Como executar app.py no terminal?",
+          "opts": [
+            "open python app",
+            "python app.py",
+            "run.css app.py",
+            "git app.py"
+          ],
+          "a": 1,
+          "hint": "Revise terminal e scripts.",
+          "ex": "A resposta correta é: python app.py.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que sys.argv contém?",
+          "opts": [
+            "Todas as variáveis locais",
+            "Pacotes instalados",
+            "Nome do script e argumentos de linha de comando",
+            "Histórico do navegador"
+          ],
+          "a": 2,
+          "hint": "Revise terminal e scripts.",
+          "ex": "A resposta correta é: Nome do script e argumentos de linha de comando.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Ao importar um módulo, qual valor __name__ normalmente recebe?",
+          "opts": [
+            "Sempre __main__",
+            "Uma lista",
+            "O caminho absoluto",
+            "O nome do módulo"
+          ],
+          "a": 3,
+          "hint": "Revise terminal e scripts.",
+          "ex": "A resposta correta é: O nome do módulo.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual problema existe em executar lógica pesada no topo do módulo?",
+          "opts": [
+            "Ela roda também durante importações",
+            "O arquivo vira JSON",
+            "Remove funções",
+            "Impede strings"
+          ],
+          "a": 0,
+          "hint": "Revise terminal e scripts.",
+          "ex": "A resposta correta é: Ela roda também durante importações.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Como proteger a entrada principal?",
+          "opts": [
+            "Usar eval",
+            "Usar if __name__ == '__main__'",
+            "Colocar tudo em global",
+            "Remover main"
+          ],
+          "a": 1,
+          "hint": "Revise terminal e scripts.",
+          "ex": "A resposta correta é: Usar if __name__ == '__main__'.",
+          "format": "CORRIJA O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Quando usar REPL em vez de script?",
+          "opts": [
+            "Para entregar aplicação completa",
+            "Para versionar centenas de linhas",
+            "Para testar rapidamente uma expressão pequena",
+            "Para criar executável final"
+          ],
+          "a": 2,
+          "hint": "Revise terminal e scripts.",
+          "ex": "A resposta correta é: Para testar rapidamente uma expressão pequena.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual prática torna uma execução reproduzível?",
+          "opts": [
+            "Usar apenas histórico do REPL",
+            "Alterar variáveis manualmente",
+            "Não guardar entrada",
+            "Salvar código em script e registrar os argumentos"
+          ],
+          "a": 3,
+          "hint": "Revise terminal e scripts.",
+          "ex": "A resposta correta é: Salvar código em script e registrar os argumentos.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "s66",
+      "name": "MUTABILIDADE E CÓPIAS",
+      "group": "FUNDAMENTOS APROFUNDADOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "boss": "REFERENCE-MIRROR",
+      "color": "#16a34a",
+      "icon": "↔",
+      "summary": "Entenda referências, objetos mutáveis e diferenças entre cópia rasa e profunda.",
+      "lesson": [
+        {
+          "title": "Variáveis apontam para objetos",
+          "body": "Atribuir uma lista a outro nome não cria outra lista. Os dois nomes passam a referenciar o mesmo objeto.",
+          "code": "a = [1, 2]\nb = a\nb.append(3)\nprint(a)  # [1, 2, 3]"
+        },
+        {
+          "title": "Cópia rasa",
+          "body": "list.copy cria outro contêiner, mas elementos internos mutáveis ainda podem ser compartilhados.",
+          "code": "a = [[1], [2]]\nb = a.copy()\nb[0].append(9)\nprint(a)  # [[1, 9], [2]]"
+        },
+        {
+          "title": "Cópia profunda",
+          "body": "copy.deepcopy percorre estruturas aninhadas e cria cópias independentes quando necessário.",
+          "code": "from copy import deepcopy\nb = deepcopy(a)"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Quais objetos são mutáveis?",
+          "opts": [
+            "Listas e dicionários",
+            "Inteiros e strings",
+            "Tuplas e frozensets",
+            "None e bool"
+          ],
+          "a": 0,
+          "hint": "Revise mutabilidade e cópias.",
+          "ex": "A resposta correta é: Listas e dicionários.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que b = a faz quando a é uma lista?",
+          "opts": [
+            "Copia profundamente",
+            "Cria outra referência para a mesma lista",
+            "Converte em tupla",
+            "Limpa a lista"
+          ],
+          "a": 1,
+          "hint": "Revise mutabilidade e cópias.",
+          "ex": "A resposta correta é: Cria outra referência para a mesma lista.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual será a saída?\na = [1]\nb = a\nb.append(2)\nprint(a)",
+          "opts": [
+            "[1]",
+            "[2]",
+            "[1, 2]",
+            "Erro"
+          ],
+          "a": 2,
+          "hint": "Revise mutabilidade e cópias.",
+          "ex": "A resposta correta é: [1, 2].",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual resultado de a is b após b = a?",
+          "opts": [
+            "False",
+            "None",
+            "Erro",
+            "True"
+          ],
+          "a": 3,
+          "hint": "Revise mutabilidade e cópias.",
+          "ex": "A resposta correta é: True.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que usar matriz = [[0] * 3] * 3 pode causar surpresa?",
+          "opts": [
+            "As linhas internas são referências compartilhadas",
+            "Multiplicação não funciona",
+            "Cria tuplas",
+            "Remove zeros"
+          ],
+          "a": 0,
+          "hint": "Revise mutabilidade e cópias.",
+          "ex": "A resposta correta é: As linhas internas são referências compartilhadas.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Como criar linhas independentes?",
+          "opts": [
+            "[[0] * 3] * 3",
+            "[[0 for _ in range(3)] for _ in range(3)]",
+            "list(0, 3)",
+            "copy = matriz"
+          ],
+          "a": 1,
+          "hint": "Revise mutabilidade e cópias.",
+          "ex": "A resposta correta é: [[0 for _ in range(3)] for _ in range(3)].",
+          "format": "CORRIJA O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Quando uma cópia rasa é suficiente?",
+          "opts": [
+            "Sempre",
+            "Nunca",
+            "Quando os elementos internos são imutáveis ou não serão alterados",
+            "Somente com arquivos"
+          ],
+          "a": 2,
+          "hint": "Revise mutabilidade e cópias.",
+          "ex": "A resposta correta é: Quando os elementos internos são imutáveis ou não serão alterados.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Quando usar deepcopy?",
+          "opts": [
+            "Para todo inteiro",
+            "Para importar módulo",
+            "Para abrir CSV",
+            "Quando a estrutura aninhada precisa ser totalmente independente"
+          ],
+          "a": 3,
+          "hint": "Revise mutabilidade e cópias.",
+          "ex": "A resposta correta é: Quando a estrutura aninhada precisa ser totalmente independente.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "s67",
+      "name": "RECURSÃO",
+      "group": "FUNDAMENTOS APROFUNDADOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "boss": "RECURSIVE-CORE",
+      "color": "#15803d",
+      "icon": "↺",
+      "summary": "Resolva problemas que podem ser definidos em termos de versões menores de si mesmos.",
+      "lesson": [
+        {
+          "title": "Caso base encerra",
+          "body": "Toda função recursiva precisa de uma condição que devolva o resultado sem nova chamada.",
+          "code": "def fatorial(n):\n    if n <= 1:\n        return 1\n    return n * fatorial(n - 1)"
+        },
+        {
+          "title": "A chamada reduz o problema",
+          "body": "Cada passo deve aproximar a entrada do caso base. Caso contrário ocorre recursão infinita.",
+          "code": "def soma(lista):\n    if not lista:\n        return 0\n    return lista[0] + soma(lista[1:])"
+        },
+        {
+          "title": "Nem todo loop precisa de recursão",
+          "body": "Python possui limite de recursão. Iteração costuma ser melhor para repetições lineares grandes.",
+          "code": "def contagem(n):\n    while n:\n        n -= 1"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que é caso base?",
+          "opts": [
+            "Condição que encerra as chamadas recursivas",
+            "Primeira variável global",
+            "Tipo de lista",
+            "Biblioteca externa"
+          ],
+          "a": 0,
+          "hint": "Revise recursão.",
+          "ex": "A resposta correta é: Condição que encerra as chamadas recursivas.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "O passo recursivo deve fazer o quê?",
+          "opts": [
+            "Repetir a mesma entrada",
+            "Reduzir o problema em direção ao caso base",
+            "Aumentar indefinidamente",
+            "Apagar o retorno"
+          ],
+          "a": 1,
+          "hint": "Revise recursão.",
+          "ex": "A resposta correta é: Reduzir o problema em direção ao caso base.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual retorno de fatorial(4)?\ndef fatorial(n):\n    if n <= 1: return 1\n    return n * fatorial(n-1)",
+          "opts": [
+            "4",
+            "10",
+            "24",
+            "Erro"
+          ],
+          "a": 2,
+          "hint": "Revise recursão.",
+          "ex": "A resposta correta é: 24.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Quantas chamadas úteis ocorrem em contagem(3) incluindo o caso zero?",
+          "opts": [
+            "3",
+            "2",
+            "Infinita",
+            "4"
+          ],
+          "a": 3,
+          "hint": "Revise recursão.",
+          "ex": "A resposta correta é: 4.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual erro aparece quando a recursão excede o limite?",
+          "opts": [
+            "RecursionError",
+            "KeyError",
+            "ImportError",
+            "UnicodeError"
+          ],
+          "a": 0,
+          "hint": "Revise recursão.",
+          "ex": "A resposta correta é: RecursionError.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Como corrigir uma função recursiva sem progresso?",
+          "opts": [
+            "Aumentar a entrada",
+            "Alterar a entrada para aproximá-la do caso base",
+            "Remover o caso base",
+            "Usar variável global"
+          ],
+          "a": 1,
+          "hint": "Revise recursão.",
+          "ex": "A resposta correta é: Alterar a entrada para aproximá-la do caso base.",
+          "format": "CORRIJA O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Quando recursão é natural?",
+          "opts": [
+            "Para toda soma simples",
+            "Para ler um único valor",
+            "Ao percorrer árvores e estruturas aninhadas",
+            "Para formatar CSS"
+          ],
+          "a": 2,
+          "hint": "Revise recursão.",
+          "ex": "A resposta correta é: Ao percorrer árvores e estruturas aninhadas.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Para repetir milhões de vezes linearmente, o que é geralmente melhor?",
+          "opts": [
+            "Recursão sem limite",
+            "eval",
+            "Import circular",
+            "Um loop iterativo"
+          ],
+          "a": 3,
+          "hint": "Revise recursão.",
+          "ex": "A resposta correta é: Um loop iterativo.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "s68",
+      "name": "ALGORITMOS E COMPLEXIDADE",
+      "group": "FUNDAMENTOS APROFUNDADOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "boss": "BIG-O-OMEGA",
+      "color": "#166534",
+      "icon": "O",
+      "summary": "Compare soluções por crescimento de tempo e memória sem depender apenas de cronômetros.",
+      "lesson": [
+        {
+          "title": "Complexidade descreve crescimento",
+          "body": "Notação Big O resume como o custo aumenta conforme a entrada cresce, ignorando constantes menos relevantes.",
+          "code": "# acesso por índice em lista: O(1)\nvalor = itens[10]"
+        },
+        {
+          "title": "Estruturas mudam o custo",
+          "body": "Buscar em uma lista é O(n) em média; verificar associação em set ou dict costuma ser O(1) médio.",
+          "code": "if codigo in lista: ...  # O(n)\nif codigo in conjunto: ...  # O(1) médio"
+        },
+        {
+          "title": "Medição confirma hipóteses",
+          "body": "Complexidade orienta a escolha e timeit compara implementações em cenários controlados.",
+          "code": "from timeit import timeit\nprint(timeit('sum(range(100))', number=1000))"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que Big O descreve?",
+          "opts": [
+            "Crescimento do custo conforme a entrada aumenta",
+            "Tempo exato em segundos",
+            "Quantidade de linhas",
+            "Versão do Python"
+          ],
+          "a": 0,
+          "hint": "Revise algoritmos e complexidade.",
+          "ex": "A resposta correta é: Crescimento do custo conforme a entrada aumenta.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual custo médio de acesso lista[indice]?",
+          "opts": [
+            "O(n)",
+            "O(1)",
+            "O(n²)",
+            "O(log n) sempre"
+          ],
+          "a": 1,
+          "hint": "Revise algoritmos e complexidade.",
+          "ex": "A resposta correta é: O(1).",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual saída conceitual é mais eficiente para testar duplicados em muitos itens?",
+          "opts": [
+            "Comparar cada par em dois loops",
+            "Ordenar manualmente sempre",
+            "Usar um set",
+            "Converter tudo em texto"
+          ],
+          "a": 2,
+          "hint": "Revise algoritmos e complexidade.",
+          "ex": "A resposta correta é: Usar um set.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Dois loops aninhados sobre n itens tendem a qual custo?",
+          "opts": [
+            "O(1)",
+            "O(log n)",
+            "O(n!) sempre",
+            "O(n²)"
+          ],
+          "a": 3,
+          "hint": "Revise algoritmos e complexidade.",
+          "ex": "A resposta correta é: O(n²).",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual erro existe em medir apenas uma execução muito rápida?",
+          "opts": [
+            "Ruído do sistema pode distorcer o resultado",
+            "Python não mede tempo",
+            "Big O deixa de existir",
+            "O código vira assíncrono"
+          ],
+          "a": 0,
+          "hint": "Revise algoritmos e complexidade.",
+          "ex": "A resposta correta é: Ruído do sistema pode distorcer o resultado.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Como comparar pequenos trechos repetidamente?",
+          "opts": [
+            "Usar print de horário uma vez",
+            "Usar timeit em cenário controlado",
+            "Adivinhar",
+            "Contar caracteres"
+          ],
+          "a": 1,
+          "hint": "Revise algoritmos e complexidade.",
+          "ex": "A resposta correta é: Usar timeit em cenário controlado.",
+          "format": "CORRIJA O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Quando uma lista é melhor que um set?",
+          "opts": [
+            "Quando busca deve ser sempre O(1)",
+            "Quando não há elementos",
+            "Quando ordem e duplicatas fazem parte do problema",
+            "Para armazenar somente chaves únicas"
+          ],
+          "a": 2,
+          "hint": "Revise algoritmos e complexidade.",
+          "ex": "A resposta correta é: Quando ordem e duplicatas fazem parte do problema.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual solução escolher entre duas corretas?",
+          "opts": [
+            "Sempre a de menor Big O ignorando clareza",
+            "A mais longa",
+            "A que usa mais bibliotecas",
+            "A mais simples que atende os limites reais de entrada"
+          ],
+          "a": 3,
+          "hint": "Revise algoritmos e complexidade.",
+          "ex": "A resposta correta é: A mais simples que atende os limites reais de entrada.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
