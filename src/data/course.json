@@ -1,6 +1,6 @@
 {
   "title": "PYTHON // BLACK BUSTER",
-  "version": 3,
+  "version": 4,
   "stages": [
     {
       "id": "s1",
@@ -2659,6 +2659,405 @@
           "a": 0,
           "hint": "Um programa confiável controla entradas inesperadas.",
           "ex": "Validação e tratamento evitam resultados incorretos ou falhas confusas."
+        }
+      ]
+    },
+    {
+      "id": "s21",
+      "name": "MATCH / CASE",
+      "group": "PYTHON MODERNO",
+      "difficulty": "INTERMEDIÁRIO",
+      "boss": "PATTERN-WARDEN",
+      "color": "#8b5cf6",
+      "icon": "◇",
+      "summary": "Use correspondência de padrões para organizar decisões claras com valores e estruturas.",
+      "lesson": [
+        {
+          "title": "Correspondência de padrões",
+          "body": "match compara um valor com casos na ordem escrita. O primeiro padrão compatível é executado; o caractere _ funciona como caso padrão.",
+          "code": "comando = 'salvar'\n\nmatch comando:\n    case 'abrir':\n        print('Abrindo')\n    case 'salvar':\n        print('Salvando')\n    case _:\n        print('Comando desconhecido')"
+        },
+        {
+          "title": "Padrões com estruturas",
+          "body": "Os casos podem decompor listas, tuplas e outros valores estruturados. Os nomes dentro do padrão capturam partes do valor.",
+          "code": "ponto = (4, 0)\n\nmatch ponto:\n    case (0, 0):\n        print('Origem')\n    case (x, 0):\n        print(f'Eixo X: {x}')\n    case (x, y):\n        print(x, y)"
+        },
+        {
+          "title": "Guardas com if",
+          "body": "Uma guarda adiciona uma condição ao caso. O padrão precisa combinar e a guarda precisa ser verdadeira para o bloco executar.",
+          "code": "status = ('pedido', 120)\n\nmatch status:\n    case ('pedido', valor) if valor >= 100:\n        print('Frete grátis')\n    case ('pedido', valor):\n        print('Frete normal')"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual padrão funciona como caso padrão em match?",
+          "opts": [
+            "_",
+            "*",
+            "else",
+            "default"
+          ],
+          "a": 0,
+          "hint": "É um único caractere usado quando nenhum caso anterior combina.",
+          "ex": "case _: captura qualquer valor que não tenha correspondido antes."
+        },
+        {
+          "type": "code",
+          "q": "Qual texto é exibido?\ncor = 'azul'\nmatch cor:\n    case 'vermelho': print('R')\n    case 'azul': print('A')\n    case _: print('?')",
+          "opts": [
+            "R",
+            "A",
+            "?",
+            "Nada"
+          ],
+          "a": 1,
+          "hint": "Os casos são testados na ordem.",
+          "ex": "O valor 'azul' combina com o segundo caso."
+        },
+        {
+          "type": "mcq",
+          "q": "Em que ordem os casos de match são avaliados?",
+          "opts": [
+            "Do primeiro para o último",
+            "Do último para o primeiro",
+            "Em ordem aleatória",
+            "Todos ao mesmo tempo"
+          ],
+          "a": 0,
+          "hint": "A primeira correspondência encerra a seleção.",
+          "ex": "Python testa os casos de cima para baixo e usa o primeiro compatível."
+        },
+        {
+          "type": "code",
+          "q": "Qual valor é capturado em x?\nponto = (7, 0)\nmatch ponto:\n    case (x, 0): print(x)\n    case _: print('outro')",
+          "opts": [
+            "0",
+            "7",
+            "(7, 0)",
+            "outro"
+          ],
+          "a": 1,
+          "hint": "O segundo item precisa ser 0; o primeiro é capturado.",
+          "ex": "O padrão (x, 0) captura 7 no nome x."
+        },
+        {
+          "type": "mcq",
+          "q": "Para que serve uma guarda `if` em um `case`?",
+          "opts": [
+            "Adicionar uma condição ao padrão",
+            "Repetir o caso",
+            "Importar um módulo",
+            "Encerrar o programa"
+          ],
+          "a": 0,
+          "hint": "Ela refina quando um caso pode executar.",
+          "ex": "A guarda só permite o caso quando o padrão combina e a condição é verdadeira."
+        },
+        {
+          "type": "code",
+          "q": "Qual saída ocorre?\nitem = ('maçã', 3)\nmatch item:\n    case (nome, qtd) if qtd > 5: print('muito')\n    case (nome, qtd): print(nome)",
+          "opts": [
+            "muito",
+            "maçã",
+            "3",
+            "Erro"
+          ],
+          "a": 1,
+          "hint": "A primeira guarda é falsa, mas o segundo padrão ainda combina.",
+          "ex": "Como 3 não é maior que 5, o segundo caso imprime maçã."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual versão expressa melhor muitos casos baseados na forma de um valor?",
+          "opts": [
+            "match/case",
+            "while infinito",
+            "try sem exceção",
+            "import"
+          ],
+          "a": 0,
+          "hint": "Procure o recurso criado para correspondência de padrões.",
+          "ex": "match/case deixa decisões estruturais explícitas e ordenadas."
+        },
+        {
+          "type": "code",
+          "q": "Qual saída ocorre?\ncomando = ['mover', 2, 5]\nmatch comando:\n    case ['mover', x, y]: print(x + y)\n    case _: print(0)",
+          "opts": [
+            "0",
+            "2",
+            "5",
+            "7"
+          ],
+          "a": 3,
+          "hint": "O padrão captura os dois números.",
+          "ex": "x recebe 2, y recebe 5 e a soma é 7."
+        }
+      ]
+    },
+    {
+      "id": "s22",
+      "name": "FUNÇÕES AVANÇADAS",
+      "group": "PYTHON MODERNO",
+      "difficulty": "AVANÇADO",
+      "boss": "CALL-STACK",
+      "color": "#ff7a45",
+      "icon": "ƒ",
+      "summary": "Aprofunde parâmetros, escopo, funções de alta ordem, closures e decoradores.",
+      "lesson": [
+        {
+          "title": "Parâmetros flexíveis",
+          "body": "*args reúne argumentos posicionais extras em uma tupla; **kwargs reúne argumentos nomeados extras em um dicionário.",
+          "code": "def resumo(*itens, **opcoes):\n    print(itens)\n    print(opcoes)\n\nresumo('Python', 'JS', nivel='iniciante')"
+        },
+        {
+          "title": "Funções como valores",
+          "body": "Funções podem ser guardadas em variáveis, recebidas por outras funções e devolvidas como resultado. Isso permite compor comportamentos.",
+          "code": "def aplicar(funcao, valor):\n    return funcao(valor)\n\ndef dobro(n):\n    return n * 2\n\nprint(aplicar(dobro, 6))"
+        },
+        {
+          "title": "Closures e decoradores",
+          "body": "Uma closure mantém acesso ao escopo externo mesmo após a função externa terminar. Decoradores usam essa ideia para envolver funções sem alterar seu corpo.",
+          "code": "def multiplicador(fator):\n    def calcular(valor):\n        return valor * fator\n    return calcular\n\ndobro = multiplicador(2)\nprint(dobro(5))"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Em qual estrutura `*args` reúne argumentos posicionais extras?",
+          "opts": [
+            "Tupla",
+            "Dicionário",
+            "Set",
+            "String"
+          ],
+          "a": 0,
+          "hint": "É uma sequência imutável.",
+          "ex": "*args recebe os argumentos posicionais extras como uma tupla."
+        },
+        {
+          "type": "mcq",
+          "q": "Em qual estrutura `**kwargs` reúne argumentos nomeados extras?",
+          "opts": [
+            "Lista",
+            "Tupla",
+            "Dicionário",
+            "Número"
+          ],
+          "a": 2,
+          "hint": "Cada nome de argumento vira uma chave.",
+          "ex": "**kwargs recebe pares nome-valor em um dicionário."
+        },
+        {
+          "type": "code",
+          "q": "Qual saída ocorre?\ndef soma(*nums):\n    return sum(nums)\nprint(soma(2, 3, 4))",
+          "opts": [
+            "5",
+            "7",
+            "9",
+            "(2, 3, 4)"
+          ],
+          "a": 2,
+          "hint": "sum soma todos os itens reunidos em nums.",
+          "ex": "2 + 3 + 4 resulta em 9."
+        },
+        {
+          "type": "code",
+          "q": "Qual saída ocorre?\ndef aplicar(fn, x):\n    return fn(x)\ndef triplo(n):\n    return n * 3\nprint(aplicar(triplo, 4))",
+          "opts": [
+            "4",
+            "7",
+            "12",
+            "Erro"
+          ],
+          "a": 2,
+          "hint": "A função triplo é passada sem parênteses.",
+          "ex": "aplicar chama triplo(4), que retorna 12."
+        },
+        {
+          "type": "mcq",
+          "q": "O que uma closure preserva?",
+          "opts": [
+            "Acesso ao escopo externo",
+            "Somente variáveis globais",
+            "O terminal aberto",
+            "Um arquivo obrigatório"
+          ],
+          "a": 0,
+          "hint": "Pense nos nomes definidos pela função que criou a função interna.",
+          "ex": "A função interna continua acessando valores do escopo em que foi criada."
+        },
+        {
+          "type": "code",
+          "q": "Qual saída ocorre?\ndef criar(prefixo):\n    def mensagem(texto):\n        return prefixo + texto\n    return mensagem\nola = criar('Olá, ')\nprint(ola('Ana'))",
+          "opts": [
+            "Ana",
+            "Olá, ",
+            "Olá, Ana",
+            "Erro"
+          ],
+          "a": 2,
+          "hint": "A função mensagem mantém o valor de prefixo.",
+          "ex": "A closure preserva 'Olá, ' e concatena com Ana."
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é a finalidade principal de um decorador?",
+          "opts": [
+            "Envolver ou ampliar uma função",
+            "Apagar o código da função",
+            "Criar apenas classes",
+            "Substituir todo import"
+          ],
+          "a": 0,
+          "hint": "Ele recebe uma função e normalmente devolve outra.",
+          "ex": "Decoradores adicionam comportamento ao redor de uma função ou classe."
+        },
+        {
+          "type": "code",
+          "q": "Qual valor é impresso?\ndef executar(fn, valor=5):\n    return fn(valor)\nquadrado = lambda n: n ** 2\nprint(executar(quadrado))",
+          "opts": [
+            "5",
+            "10",
+            "25",
+            "lambda"
+          ],
+          "a": 2,
+          "hint": "O argumento padrão é 5 e a função calcula o quadrado.",
+          "ex": "quadrado(5) retorna 25."
+        }
+      ]
+    },
+    {
+      "id": "s23",
+      "name": "DESEMPACOTAMENTO",
+      "group": "PYTHON MODERNO",
+      "difficulty": "INTERMEDIÁRIO",
+      "boss": "UNPACK-MIMIC",
+      "color": "#22c55e",
+      "icon": "✦",
+      "summary": "Distribua coleções em variáveis e combine argumentos e estruturas com * e **.",
+      "lesson": [
+        {
+          "title": "Atribuição por desempacotamento",
+          "body": "Uma sequência pode preencher várias variáveis de uma vez. A quantidade de destinos precisa combinar, salvo quando um destino usa estrela.",
+          "code": "nome, idade = ('Ana', 28)\nprimeiro, *meio, ultimo = [1, 2, 3, 4, 5]\nprint(nome, idade)\nprint(primeiro, meio, ultimo)"
+        },
+        {
+          "title": "Estrela em chamadas",
+          "body": "Em uma chamada, * expande um iterável em argumentos posicionais e ** expande um mapeamento em argumentos nomeados.",
+          "code": "def apresentar(nome, cidade):\n    print(nome, cidade)\n\ndados = ['Igor', 'Curitiba']\nopcoes = {'nome': 'Ana', 'cidade': 'Recife'}\napresentar(*dados)\napresentar(**opcoes)"
+        },
+        {
+          "title": "Combinando coleções",
+          "body": "A mesma sintaxe cria novas listas e dicionários. Em dicionários, chaves posteriores substituem valores de chaves repetidas.",
+          "code": "base = [1, 2]\nnova = [0, *base, 3]\n\npadrao = {'tema': 'escuro', 'som': True}\nusuario = {'som': False}\nconfig = {**padrao, **usuario}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "Qual saída ocorre?\na, b = (10, 20)\nprint(b)",
+          "opts": [
+            "10",
+            "20",
+            "(10, 20)",
+            "Erro"
+          ],
+          "a": 1,
+          "hint": "Cada item é atribuído à variável na mesma posição.",
+          "ex": "b recebe o segundo item, 20."
+        },
+        {
+          "type": "mcq",
+          "q": "O que `*resto` faz em uma atribuição?",
+          "opts": [
+            "Reúne os itens restantes em uma lista",
+            "Multiplica todos os itens",
+            "Cria um dicionário",
+            "Ignora sempre os itens"
+          ],
+          "a": 0,
+          "hint": "A estrela aceita uma quantidade variável de valores.",
+          "ex": "O destino com estrela reúne os itens restantes em uma lista."
+        },
+        {
+          "type": "code",
+          "q": "Qual é o valor de meio?\nprimeiro, *meio, ultimo = [1, 2, 3, 4]",
+          "opts": [
+            "[1]",
+            "[2, 3]",
+            "[4]",
+            "(2, 3)"
+          ],
+          "a": 1,
+          "hint": "Primeiro e último ficam nas pontas.",
+          "ex": "meio recebe os itens entre as pontas: [2, 3]."
+        },
+        {
+          "type": "mcq",
+          "q": "Em uma chamada de função, o que `**dados` expande?",
+          "opts": [
+            "Argumentos nomeados",
+            "Somente comentários",
+            "Linhas de arquivo",
+            "Uma classe"
+          ],
+          "a": 0,
+          "hint": "As chaves do dicionário viram nomes de parâmetros.",
+          "ex": "** expande um mapeamento em argumentos nomeados."
+        },
+        {
+          "type": "code",
+          "q": "Qual saída ocorre?\ndef soma(a, b):\n    return a + b\nvalores = [3, 7]\nprint(soma(*valores))",
+          "opts": [
+            "[3, 7]",
+            "10",
+            "37",
+            "Erro"
+          ],
+          "a": 1,
+          "hint": "*valores fornece dois argumentos posicionais.",
+          "ex": "A lista é expandida como soma(3, 7), resultando em 10."
+        },
+        {
+          "type": "code",
+          "q": "Qual é o valor de nova?\nbase = [2, 3]\nnova = [1, *base, 4]",
+          "opts": [
+            "[1, 2, 3, 4]",
+            "[1, [2, 3], 4]",
+            "[2, 3]",
+            "Erro"
+          ],
+          "a": 0,
+          "hint": "A estrela insere cada item da lista.",
+          "ex": "*base espalha 2 e 3 dentro da nova lista."
+        },
+        {
+          "type": "code",
+          "q": "Qual valor fica em config['som']?\npadrao = {'som': True, 'tema': 'claro'}\nusuario = {'som': False}\nconfig = {**padrao, **usuario}",
+          "opts": [
+            "True",
+            "False",
+            "None",
+            "Erro"
+          ],
+          "a": 1,
+          "hint": "Em chaves repetidas, o valor inserido por último prevalece.",
+          "ex": "usuario é expandido depois e substitui som por False."
+        },
+        {
+          "type": "mcq",
+          "q": "O que acontece em `a, b = [1, 2, 3]`?",
+          "opts": [
+            "ValueError por excesso de valores",
+            "a recebe 1 e b recebe [2, 3]",
+            "b recebe 3 automaticamente",
+            "A lista é ignorada"
+          ],
+          "a": 0,
+          "hint": "Não existe destino com estrela para absorver o item extra.",
+          "ex": "Sem um destino estrelado, a quantidade de variáveis precisa corresponder à quantidade de itens."
         }
       ]
     }
