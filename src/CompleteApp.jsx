@@ -428,18 +428,17 @@ function FlameIcon() {
   );
 }
 
-function AppHeader({ stats, settings, active = 'map', onHome, onReview, onCourses, onHearts, onToggleSound, onToggleScanlines }) {
+function AppHeader({ stats, settings, active = 'map', onHome, onReview, onHearts, onToggleSound, onToggleScanlines }) {
   return (
     <header className="app-header">
       <button type="button" className="brand" onClick={onHome} aria-label="Voltar para a trilha">
         <span className="brand-cube"><PinscherMascot size="small" /></span>
-        <span><b>BLACK BUSTER</b><small>CURSOS DE TECNOLOGIA</small></span>
+        <span><b>BLACK BUSTER</b><small>TRILHA COMPLETA DE PYTHON</small></span>
       </button>
 
       <nav className="desktop-nav" aria-label="Navegação principal">
         <button type="button" className={active === 'map' ? 'active' : ''} onClick={onHome}><span>⌁</span> TRILHA</button>
         <button type="button" className={active === 'practice' ? 'active' : ''} onClick={onReview}><span>◎</span> PRATICAR</button>
-        <button type="button" className={active === 'courses' ? 'active' : ''} onClick={onCourses}><span>▦</span> CURSOS</button>
       </nav>
 
       <div className="header-stats">
@@ -464,12 +463,11 @@ function AppHeader({ stats, settings, active = 'map', onHome, onReview, onCourse
   );
 }
 
-function MobileNav({ active = 'map', onHome, onReview, onCourses, onHearts, hearts, infiniteHearts = false }) {
+function MobileNav({ active = 'map', onHome, onReview, onHearts, hearts, infiniteHearts = false }) {
   return (
     <nav className="mobile-nav" aria-label="Navegação para celular">
       <button type="button" className={active === 'map' ? 'active' : ''} onClick={onHome}><span>⌁</span><small>TRILHA</small></button>
       <button type="button" className={active === 'practice' ? 'active' : ''} onClick={onReview}><span>◎</span><small>PRATICAR</small></button>
-      <button type="button" className={active === 'courses' ? 'active' : ''} onClick={onCourses}><span>▦</span><small>CURSOS</small></button>
       <button type="button" className={`mobile-hearts ${infiniteHearts ? 'infinite' : ''}`} onClick={onHearts}><span>♥</span><small>{infiniteHearts ? '∞ VIDAS' : `${hearts}/${MAX_HEARTS} VIDAS`}</small></button>
     </nav>
   );
@@ -1276,105 +1274,6 @@ function TrailSpecializations({ tracks, progress, onOpen }) {
   );
 }
 
-const TECHNOLOGY_COURSES = [
-  {
-    id: 'python',
-    icon: 'PY',
-    title: 'Python',
-    status: 'available',
-    color: '#4b8bbe',
-    description: 'Do primeiro comando a automações, testes, APIs e projetos completos.',
-    topics: ['64 fases', '8 projetos', '2 especializações'],
-  },
-  {
-    id: 'html-css',
-    icon: '</>',
-    title: 'HTML & CSS',
-    status: 'soon',
-    color: '#ff7a45',
-    description: 'Estrutura, estilos, responsividade e publicação de páginas modernas.',
-    topics: ['Sites responsivos', 'Layouts', 'Projeto final'],
-  },
-  {
-    id: 'javascript',
-    icon: 'JS',
-    title: 'JavaScript',
-    status: 'planned',
-    color: '#ffd23f',
-    description: 'Interatividade, lógica no navegador e aplicações web.',
-    topics: ['DOM', 'Eventos', 'Aplicações'],
-  },
-  {
-    id: 'sql',
-    icon: 'DB',
-    title: 'SQL e Dados',
-    status: 'planned',
-    color: '#14b8a6',
-    description: 'Consultas, organização de dados e fundamentos de bancos relacionais.',
-    topics: ['Consultas', 'Relacionamentos', 'Relatórios'],
-  },
-];
-
-function CourseCatalog({ stages, projects, progress, onOpenPython }) {
-  const completed = Object.keys(progress.completed || {}).length;
-  const percent = Math.round((completed / stages.length) * 100);
-
-  return (
-    <main className="course-catalog">
-      <section className="catalog-hero">
-        <div>
-          <span className="catalog-kicker">BLACK BUSTER ACADEMY</span>
-          <h1>Escolha sua próxima <strong>trilha.</strong></h1>
-          <p>Um só aplicativo para aprender diferentes tecnologias no mesmo formato: aulas curtas, desafios de clique e projetos guiados.</p>
-        </div>
-        <div className="catalog-hero-mascot"><PinscherMascot size="large" mood="ready" /><span>+</span></div>
-      </section>
-
-      <section className="catalog-shell">
-        <div className="catalog-title">
-          <div><small>CURSOS DE TECNOLOGIA</small><h2>Qual caminho você quer seguir?</h2></div>
-          <span>1 DISPONÍVEL · 3 EM PREPARAÇÃO</span>
-        </div>
-
-        <div className="course-cards">
-          {TECHNOLOGY_COURSES.map((item) => {
-            const available = item.status === 'available';
-            return (
-              <article className={`technology-course-card ${item.status}`} key={item.id} style={{ '--course-color': item.color }}>
-                <div className="technology-card-top">
-                  <span>{item.icon}</span>
-                  <small>{available ? 'DISPONÍVEL AGORA' : item.status === 'soon' ? 'PRÓXIMO CURSO' : 'PLANEJADO'}</small>
-                </div>
-                <h3>{item.title}</h3>
-                <p>{item.description}</p>
-                <div className="technology-topics">
-                  {item.topics.map((topic) => <span key={topic}>✓ {topic}</span>)}
-                </div>
-                {available && (
-                  <div className="python-course-progress">
-                    <div><span>SEU PROGRESSO</span><b>{percent}%</b></div>
-                    <LinearProgress value={percent} color={item.color} label={`${percent}% da trilha Python concluída`} />
-                    <small>{completed}/{stages.length} fases · {projects.length} projetos</small>
-                  </div>
-                )}
-                <PixelButton color={item.color} disabled={!available} onClick={available ? onOpenPython : undefined}>
-                  {available ? completed ? 'CONTINUAR TRILHA' : 'COMEÇAR PYTHON' : 'EM BREVE'}
-                </PixelButton>
-              </article>
-            );
-          })}
-        </div>
-
-        <section className="catalog-next-course">
-          <span>&lt;/&gt;</span>
-          <div><small>PRÓXIMA EXPANSÃO</small><h3>HTML & CSS</h3><p>A estrutura já fica preparada para receber uma trilha completa de criação de sites.</p></div>
-          <strong>EM BREVE</strong>
-        </section>
-      </section>
-    </main>
-  );
-}
-
 function ProjectScreen({ project, alreadyCompleted, onExit, onComplete, sfx }) {
   const [firstCompletion] = useState(() => !alreadyCompleted);
   const [step, setStep] = useState(0);
@@ -1746,12 +1645,6 @@ export default function CompleteApp() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const openCourses = () => {
-    setScreen('courses');
-    sfx('click');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   const openProject = (project) => {
     setActiveProject(project);
     setScreen('project');
@@ -1902,7 +1795,7 @@ export default function CompleteApp() {
 
   const activeIndex = stages.findIndex((stage) => stage.id === activeStage.id);
   const nextStage = activeIndex < stages.length - 1 ? stages[activeIndex + 1] : null;
-  const showMainNavigation = screen === 'map' || screen === 'courses';
+  const showMainNavigation = screen === 'map';
 
   return (
     <div className={`app ${settings.scanlines ? 'scanlines-on' : ''}`}>
@@ -1916,7 +1809,6 @@ export default function CompleteApp() {
           active={screen}
           onHome={goMap}
           onReview={openPractice}
-          onCourses={openCourses}
           onHearts={openHearts}
           onToggleSound={() => updateSetting('sound')}
           onToggleScanlines={() => updateSetting('scanlines')}
@@ -1940,9 +1832,6 @@ export default function CompleteApp() {
           onPurchase={purchasePremiumBundle}
           onReset={reset}
         />
-      )}
-      {screen === 'courses' && (
-        <CourseCatalog stages={stages} projects={projects} progress={progress} onOpenPython={goMap} />
       )}
       {screen === 'project' && activeProject && (
         <ProjectScreen
@@ -2004,8 +1893,8 @@ export default function CompleteApp() {
         />
       )}
 
-      {(screen === 'map' || screen === 'courses') && (
-        <MobileNav active={screen} onHome={goMap} onReview={openPractice} onCourses={openCourses} onHearts={openHearts} hearts={progress.hearts} infiniteHearts={Boolean(progress.entitlements?.infiniteHearts)} />
+      {screen === 'map' && (
+        <MobileNav active={screen} onHome={goMap} onReview={openPractice} onHearts={openHearts} hearts={progress.hearts} infiniteHearts={Boolean(progress.entitlements?.infiniteHearts)} />
       )}
     </div>
   );
