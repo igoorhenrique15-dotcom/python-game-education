@@ -946,11 +946,21 @@ function LessonScreen({ stage, stageIndex, hearts, infiniteHearts = false, onExi
   );
 }
 
+const QUESTION_FORMAT_LABELS = {
+  'CONCEITO': 'ENTENDA O CONCEITO',
+  'LEITURA DE CÓDIGO': 'LEIA O CÓDIGO',
+  'PREVISÃO DE RESULTADO': 'PREVEJA O RESULTADO',
+  'ENCONTRE O ERRO': 'ENCONTRE O PROBLEMA',
+  'CORRIJA O ERRO': 'ESCOLHA A CORREÇÃO',
+  'DECISÃO DE CÓDIGO': 'ESCOLHA A MELHOR SOLUÇÃO',
+  'APLICAÇÃO PRÁTICA': 'APLIQUE O QUE APRENDEU',
+};
+
 function QuestionCard({ question, stageColor, selected, wrong, correct, onSelect, hearts, safePractice = false }) {
   return (
     <section className="question-card">
       <div className="question-card-header">
-        <span className="card-kicker">ESCOLHA A RESPOSTA CORRETA</span>
+        <span className="card-kicker">{QUESTION_FORMAT_LABELS[question.format] || 'ESCOLHA A RESPOSTA CORRETA'}</span>
         <span className={`question-attempts ${safePractice ? 'safe' : ''} ${wrong.length ? 'has-errors' : ''}`}>
           {safePractice
             ? 'PRÁTICA SEM CUSTO'
