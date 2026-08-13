@@ -91,7 +91,7 @@ button {
   width: 132px;
 }
 
-.avatar-halo {
+.dog-halo {
   fill: #101a27;
   stroke: #33445a;
   stroke-width: 2;
@@ -113,112 +113,259 @@ button {
   fill: #34465c;
 }
 
-.avatar-shoulders,
-.avatar-hood {
-  fill: #121923;
-  stroke: #29394d;
-  stroke-width: 1.5;
+.dog-body,
+.dog-head {
+  transform-box: fill-box;
+  transform-origin: center;
 }
 
-.avatar-hood-blue {
-  fill: #274f72;
+.dog-body {
+  animation: dogBreath 2.8s ease-in-out infinite;
 }
 
-.avatar-hood-yellow {
-  fill: #b38c20;
+.dog-body-white,
+.dog-leg {
+  fill: #f4f5f2;
+  stroke: #aeb8c1;
+  stroke-linejoin: round;
+  stroke-width: 1.4;
 }
 
-.avatar-neck,
-.avatar-ear,
-.avatar-face {
-  fill: #c98257;
+.dog-back-patch {
+  fill: #111820;
+  stroke: #05080c;
+  stroke-width: 1.4;
 }
 
-.avatar-face {
-  stroke: #6f422f;
-  stroke-width: 1.5;
+.dog-chest-speckles {
+  fill: #4e5965;
+  opacity: 0.82;
 }
 
-.avatar-hair {
-  fill: #171a21;
-  stroke: #090c11;
-  stroke-width: 1.5;
-}
-
-.avatar-headset {
+.dog-paw-lines {
   fill: none;
-  stroke: #1f5f8b;
+  stroke: #2d3742;
   stroke-linecap: round;
+  stroke-width: 1.4;
+}
+
+.dog-tail-group {
+  transform-box: fill-box;
+  transform-origin: left bottom;
+  animation: dogTailWag 1.15s ease-in-out infinite;
+}
+
+.dog-tail-shadow,
+.dog-tail {
+  fill: none;
+  stroke-linecap: round;
+}
+
+.dog-tail-shadow {
+  stroke: rgba(0, 0, 0, 0.42);
+  stroke-width: 7;
+}
+
+.dog-tail {
+  stroke: #151b22;
   stroke-width: 5;
 }
 
-.avatar-headset-blue {
-  fill: var(--python-blue);
-  stroke: #193e59;
+.dog-head {
+  animation: dogReady 4.8s ease-in-out infinite;
+}
+
+.dog-ear {
+  fill: #11161d;
+  stroke: #05070a;
+  stroke-linejoin: round;
   stroke-width: 1.5;
 }
 
-.avatar-headset-yellow {
-  fill: var(--python-yellow);
-  stroke: #846b17;
-  stroke-width: 1.5;
+.dog-ear-inner {
+  fill: #8f6462;
+  opacity: 0.86;
 }
 
-.avatar-eye {
-  fill: #171b24;
+.dog-head-black {
+  fill: #10161d;
+  stroke: #05080c;
+  stroke-width: 1.6;
 }
 
-.avatar-eye-line,
-.avatar-mouth,
-.avatar-mouth-focus,
-.avatar-nose {
+.dog-brow-shine {
   fill: none;
-  stroke: #4e2c24;
+  stroke: rgba(255, 255, 255, 0.18);
+  stroke-linecap: round;
+  stroke-width: 2.5;
+}
+
+.dog-eye-white {
+  fill: #dbe3ea;
+  stroke: #080b10;
+  stroke-width: 1.2;
+}
+
+.dog-eye {
+  fill: #10141a;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: dogBlink 5.4s infinite;
+}
+
+.dog-eye-glint {
+  fill: #fff;
+  pointer-events: none;
+}
+
+.dog-eye-happy,
+.dog-mouth,
+.dog-mouth-focus,
+.dog-focus-brows {
+  fill: none;
+  stroke: #192027;
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-width: 2.2;
 }
 
-.avatar-eye-line {
-  stroke-width: 2.5;
+.dog-eye-happy {
+  stroke: #dbe3ea;
+  stroke-width: 2.8;
 }
 
-.avatar-mouth-open {
-  fill: #7e342e;
-  stroke: #4e2c24;
-  stroke-width: 1.5;
+.dog-muzzle {
+  fill: #d6d7d0;
+  stroke: #252c33;
+  stroke-width: 1.3;
 }
 
-.avatar-glasses {
-  fill: rgba(10, 25, 38, 0.25);
-  stroke: #69cef5;
-  stroke-linejoin: round;
-  stroke-width: 2;
+.dog-muzzle-gray {
+  fill: #a8aaa4;
+  opacity: 0.88;
 }
 
-.avatar-collar {
+.dog-nose {
+  fill: #080b0f;
+  stroke: #303842;
+  stroke-width: 1;
+}
+
+.dog-whisker-dot {
+  fill: #414951;
+}
+
+.dog-mouth-open {
+  fill: #6d3034;
+  stroke: #1d171b;
+  stroke-width: 1.4;
+}
+
+.dog-tongue {
   fill: none;
-  stroke: #65768b;
+  stroke: #f08b98;
+  stroke-linecap: round;
+  stroke-width: 3;
+}
+
+.dog-collar {
+  fill: none;
+  stroke: var(--python-blue);
+  stroke-linecap: round;
+  stroke-width: 4;
+}
+
+.dog-tag {
+  fill: var(--python-yellow);
+  stroke: #7f6819;
+  stroke-linejoin: round;
+  stroke-width: 1.2;
+}
+
+.dog-code-mark {
+  fill: none;
+  stroke: #1c2430;
   stroke-linecap: round;
   stroke-linejoin: round;
-  stroke-width: 1.6;
+  stroke-width: 1.3;
 }
 
-.avatar-code-mark {
-  fill: none;
-  stroke: #d8e6f0;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  stroke-width: 1.9;
+.python-avatar.mood-focus .dog-head {
+  animation: dogFocus 2.6s ease-in-out infinite;
+}
+
+.python-avatar.mood-focus .dog-tail-group {
+  animation-duration: 1.8s;
 }
 
 .python-avatar.mood-celebrate {
-  animation: avatarCelebrate 1.4s ease-in-out infinite;
+  animation: dogCelebrate 1.05s ease-in-out infinite;
 }
 
-@keyframes avatarCelebrate {
+.python-avatar.mood-celebrate .dog-tail-group {
+  animation-duration: 0.32s;
+}
+
+.python-avatar.mood-celebrate .dog-ear-left {
+  animation: dogEarLeft 0.7s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: right bottom;
+}
+
+.python-avatar.mood-celebrate .dog-ear-right {
+  animation: dogEarRight 0.7s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: left bottom;
+}
+
+@keyframes dogBreath {
+  0%, 100% { transform: scaleY(1); }
+  50% { transform: scaleY(1.025); }
+}
+
+@keyframes dogReady {
+  0%, 84%, 100% { transform: rotate(0); }
+  89%, 96% { transform: rotate(-3deg); }
+}
+
+@keyframes dogFocus {
+  0%, 100% { transform: rotate(-4deg); }
+  50% { transform: rotate(3deg); }
+}
+
+@keyframes dogBlink {
+  0%, 44%, 48%, 100% { transform: scaleY(1); }
+  46% { transform: scaleY(0.12); }
+}
+
+@keyframes dogTailWag {
+  0%, 100% { transform: rotate(-8deg); }
+  50% { transform: rotate(17deg); }
+}
+
+@keyframes dogCelebrate {
   0%, 100% { transform: translateY(0) rotate(-1deg); }
-  50% { transform: translateY(-5px) rotate(1deg); }
+  50% { transform: translateY(-6px) rotate(1deg); }
+}
+
+@keyframes dogEarLeft {
+  0%, 100% { transform: rotate(0); }
+  50% { transform: rotate(8deg); }
+}
+
+@keyframes dogEarRight {
+  0%, 100% { transform: rotate(0); }
+  50% { transform: rotate(-8deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .python-avatar,
+  .python-avatar *,
+  .dog-body,
+  .dog-head,
+  .dog-tail-group {
+    animation: none !important;
+  }
 }
 
 .brand-cube {
