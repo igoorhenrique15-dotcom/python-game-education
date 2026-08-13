@@ -36,6 +36,7 @@ function emptyProgress() {
     questionStats: {},
     reviewSessions: 0,
     unitReviews: {},
+    projects: {},
     hearts: MAX_HEARTS,
     xp: 0,
     gems: 100,
@@ -124,6 +125,7 @@ function readProgress() {
       questionStats: saved.questionStats || {},
       reviewSessions: saved.reviewSessions || 0,
       unitReviews: saved.unitReviews || {},
+      projects: saved.projects || {},
       hearts: Number.isFinite(saved.hearts) ? Math.min(MAX_HEARTS, Math.max(0, saved.hearts)) : MAX_HEARTS,
       xp: Number.isFinite(saved.xp) ? Math.max(0, saved.xp) : 0,
       gems: Number.isFinite(saved.gems) ? Math.max(0, saved.gems) : 100,
@@ -361,7 +363,7 @@ function FlameIcon() {
   );
 }
 
-function AppHeader({ stats, settings, onHome, onReview, onHearts, onToggleSound, onToggleScanlines }) {
+function AppHeader({ stats, settings, active = 'map', onHome, onReview, onProjects, onHearts, onToggleSound, onToggleScanlines }) {
   return (
     <header className="app-header">
       <button type="button" className="brand" onClick={onHome} aria-label="Voltar para a trilha">
@@ -370,8 +372,9 @@ function AppHeader({ stats, settings, onHome, onReview, onHearts, onToggleSound,
       </button>
 
       <nav className="desktop-nav" aria-label="Navegação principal">
-        <button type="button" className="active" onClick={onHome}><span>⌁</span> TRILHA</button>
-        <button type="button" onClick={onReview}><span>◎</span> PRATICAR</button>
+        <button type="button" className={active === 'map' ? 'active' : ''} onClick={onHome}><span>⌁</span> TRILHA</button>
+        <button type="button" className={active === 'practice' ? 'active' : ''} onClick={onReview}><span>◎</span> PRATICAR</button>
+        <button type="button" className={active === 'projects' ? 'active' : ''} onClick={onProjects}><span>▣</span> PROJETOS</button>
       </nav>
 
       <div className="header-stats">
@@ -390,11 +393,12 @@ function AppHeader({ stats, settings, onHome, onReview, onHearts, onToggleSound,
   );
 }
 
-function MobileNav({ onHome, onReview, onHearts, hearts }) {
+function MobileNav({ active = 'map', onHome, onReview, onProjects, onHearts, hearts }) {
   return (
     <nav className="mobile-nav" aria-label="Navegação para celular">
-      <button type="button" className="active" onClick={onHome}><span>⌁</span><small>TRILHA</small></button>
-      <button type="button" onClick={onReview}><span>◎</span><small>PRATICAR</small></button>
+      <button type="button" className={active === 'map' ? 'active' : ''} onClick={onHome}><span>⌁</span><small>TRILHA</small></button>
+      <button type="button" className={active === 'practice' ? 'active' : ''} onClick={onReview}><span>◎</span><small>PRATICAR</small></button>
+      <button type="button" className={active === 'projects' ? 'active' : ''} onClick={onProjects}><span>▣</span><small>PROJETOS</small></button>
       <button type="button" className="mobile-hearts" onClick={onHearts}><span>♥</span><small>{hearts}/{MAX_HEARTS} VIDAS</small></button>
     </nav>
   );
@@ -1050,6 +1054,157 @@ function HeartsScreen({ progress, onExit, onPractice, onRefill }) {
   );
 }
 
+
+function ProjectHub({ projects, stages, progress, onExit, onOpen }) {
+  const completed = Object.keys(progress.projects || {}).length;
+  const stageNumber = (stageId) => stages.findIndex((stage) => stage.id === stageId) + 1;
+  const unlocked = (project) => Boolean(progress.completed?.[project.unlockStage]);
+
+  return (
+    <main className="project-hub">
+      <section className="project-hero">
+        <div>
+          <span className="project-kicker">LABORATÓRIO DE PROJETOS</span>
+          <h1>Transforme conceitos em <strong>soluções.</strong></h1>
+          <p>Escolha decisões de implementação, leia o código-base e conclua pequenas simulações. Sem editor e sem perder vidas.</p>
+          <div className="project-hero-stats">
+            <span><b>{completed}</b><small>CONCLUÍDOS</small></span>
+            <span><b>{projects.length}</b><small>PROJETOS</small></span>
+            <span><b>{projects.reduce((total, project) => total + project.steps.length, 0)}</b><small>DECISÕES</small></span>
+          </div>
+        </div>
+        <div className="project-hero-mascot"><PinscherMascot size="large" mood="focus" /><span>▣</span></div>
+      </section>
+
+      <section className="project-grid-shell">
+        <div className="project-grid-title">
+          <div><small>PORTFÓLIO GUIADO</small><h2>Oito desafios práticos</h2></div>
+          <button type="button" onClick={onExit}>VOLTAR À TRILHA</button>
+        </div>
+        <div className="project-grid">
+          {projects.map((project, index) => {
+            const isUnlocked = unlocked(project);
+            const isCompleted = Boolean(progress.projects?.[project.id]);
+            return (
+              <article className={`project-card ${isUnlocked ? 'unlocked' : 'locked'} ${isCompleted ? 'completed' : ''}`} key={project.id} style={{ '--project-color': project.color }}>
+                <div className="project-card-top"><span>{project.icon}</span><small>PROJETO {String(index + 1).padStart(2, '0')}</small></div>
+                <em>{project.category}</em>
+                <h3>{project.title}</h3>
+                <p>{project.brief}</p>
+                <div className="project-outcome"><b>VOCÊ PRATICA</b><span>{project.outcome}</span></div>
+                <div className="project-card-footer">
+                  <small>{isCompleted ? 'CONCLUÍDO ✓' : isUnlocked ? `${project.steps.length} DECISÕES` : `LIBERA NA FASE ${String(stageNumber(project.unlockStage)).padStart(2, '0')}`}</small>
+                  <PixelButton
+                    color={project.color}
+                    variant={isCompleted ? 'outline' : 'solid'}
+                    disabled={!isUnlocked}
+                    onClick={() => onOpen(project)}
+                  >
+                    {isCompleted ? 'REFAZER' : isUnlocked ? 'ABRIR PROJETO' : 'BLOQUEADO'}
+                  </PixelButton>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </section>
+    </main>
+  );
+}
+
+function ProjectScreen({ project, alreadyCompleted, onExit, onComplete, sfx }) {
+  const [firstCompletion] = useState(() => !alreadyCompleted);
+  const [step, setStep] = useState(0);
+  const [selected, setSelected] = useState(null);
+  const [finished, setFinished] = useState(false);
+  const current = project.steps[step];
+  const correct = selected === current?.a;
+
+  const choose = (index) => {
+    if (selected !== null) return;
+    setSelected(index);
+    sfx(index === current.a ? 'ok' : 'bad');
+  };
+
+  const advance = () => {
+    if (selected === null) return;
+    if (step === project.steps.length - 1) {
+      onComplete(project);
+      setFinished(true);
+      sfx('win');
+      return;
+    }
+    setStep((value) => value + 1);
+    setSelected(null);
+  };
+
+  if (finished) {
+    return (
+      <main className="project-finish" style={{ '--project-color': project.color }}>
+        <section>
+          <div className="project-finish-mascot"><PinscherMascot size="large" mood="celebrate" /><span>✓</span></div>
+          <small>MINIPROJETO CONCLUÍDO</small>
+          <h1>{project.title}</h1>
+          <p>Você fechou as decisões centrais do projeto e já tem uma arquitetura pronta para implementar.</p>
+          <div className="project-reward">
+            <span><b>+{firstCompletion ? 15 : 5}</b> XP</span>
+            <span><b>+{firstCompletion ? 15 : 0}</b> GEMAS</span>
+          </div>
+          <PixelButton color={project.color} onClick={onExit}>VER TODOS OS PROJETOS</PixelButton>
+        </section>
+      </main>
+    );
+  }
+
+  return (
+    <main className="project-player" style={{ '--project-color': project.color }}>
+      <header className="project-player-header">
+        <button type="button" onClick={onExit} aria-label="Fechar projeto">×</button>
+        <LinearProgress value={((step + 1) / project.steps.length) * 100} color={project.color} label={`Decisão ${step + 1} de ${project.steps.length}`} />
+        <span>{step + 1}/{project.steps.length}</span>
+      </header>
+
+      <div className="project-player-shell">
+        <section className="project-brief">
+          <span className="project-kicker">{project.category} · PROJETO GUIADO</span>
+          <h1>{project.title}</h1>
+          <p>{project.brief}</p>
+          <div><b>RESULTADO</b><span>{project.outcome}</span></div>
+        </section>
+
+        <CodeBlock text={project.starter} filename={`${project.id}_starter.py`} label="CÓDIGO-BASE" />
+
+        <section className="project-decision">
+          <small>DECISÃO {step + 1} DE {project.steps.length}</small>
+          <h2>{current.q}</h2>
+          <div className="project-options">
+            {current.opts.map((option, index) => (
+              <button
+                type="button"
+                key={option}
+                className={selected === null ? '' : index === current.a ? 'correct' : index === selected ? 'wrong' : 'muted'}
+                onClick={() => choose(index)}
+                disabled={selected !== null}
+              >
+                <span>{String.fromCharCode(65 + index)}</span>{option}
+              </button>
+            ))}
+          </div>
+          {selected !== null && (
+            <div className={`project-feedback ${correct ? 'correct' : 'wrong'}`}>
+              <b>{correct ? 'BOA DECISÃO' : 'VEJA A MELHOR ESCOLHA'}</b>
+              <p>{current.explanation}</p>
+            </div>
+          )}
+          <PixelButton color={project.color} disabled={selected === null} onClick={advance}>
+            {step === project.steps.length - 1 ? 'CONCLUIR PROJETO' : 'PRÓXIMA DECISÃO'}
+          </PixelButton>
+        </section>
+      </div>
+    </main>
+  );
+}
+
 function PracticeHub({ stages, progress, onExit, onStart }) {
   const learning = courseLearningSummary(stages, progress);
   const completed = Object.keys(progress.completed).length;
@@ -1261,6 +1416,7 @@ function ReviewScreen({ stages, progress, mode, unitStageIds = [], onExit, onSta
 export default function CompleteApp() {
   useFonts();
   const stages = course.stages;
+  const projects = course.projects || [];
   const [progress, setProgress] = useState(readProgress);
   const [settings, setSettings] = useState(readSettings);
   const [screen, setScreen] = useState('map');
@@ -1269,6 +1425,7 @@ export default function CompleteApp() {
   const [reviewKey, setReviewKey] = useState(0);
   const [reviewMode, setReviewMode] = useState('mixed');
   const [reviewUnit, setReviewUnit] = useState(null);
+  const [activeProject, setActiveProject] = useState(projects[0] || null);
   const [lastReward, setLastReward] = useState({ xp: 10, gems: 10 });
   const sfx = useSfx(settings.sound);
 
@@ -1317,6 +1474,19 @@ export default function CompleteApp() {
     setScreen('practice');
     sfx('click');
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const openProjects = () => {
+    setScreen('projects');
+    sfx('click');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const openProject = (project) => {
+    setActiveProject(project);
+    setScreen('project');
+    sfx('click');
+    window.scrollTo(0, 0);
   };
 
   const openHearts = () => {
@@ -1415,6 +1585,16 @@ export default function CompleteApp() {
     }, reward));
   }, [reviewUnit, updateProgress]);
 
+  const finishProject = useCallback((project) => {
+    updateProgress((current) => {
+      const firstCompletion = !current.projects?.[project.id];
+      return withStudyReward({
+        ...current,
+        projects: { ...(current.projects || {}), [project.id]: true },
+      }, firstCompletion ? { xp: 15, gems: 15 } : { xp: 5, gems: 0 });
+    });
+  }, [updateProgress]);
+
   const refillHearts = () => {
     if (progress.hearts >= MAX_HEARTS || progress.gems < HEART_REFILL_COST) return;
     updateProgress((current) => current.hearts >= MAX_HEARTS || current.gems < HEART_REFILL_COST ? current : ({
@@ -1435,7 +1615,7 @@ export default function CompleteApp() {
 
   const activeIndex = stages.findIndex((stage) => stage.id === activeStage.id);
   const nextStage = activeIndex < stages.length - 1 ? stages[activeIndex + 1] : null;
-  const showMainNavigation = screen === 'map';
+  const showMainNavigation = screen === 'map' || screen === 'projects';
 
   return (
     <div className={`app ${settings.scanlines ? 'scanlines-on' : ''}`}>
@@ -1446,8 +1626,10 @@ export default function CompleteApp() {
         <AppHeader
           stats={stats}
           settings={settings}
+          active={screen}
           onHome={goMap}
           onReview={openPractice}
+          onProjects={openProjects}
           onHearts={openHearts}
           onToggleSound={() => updateSetting('sound')}
           onToggleScanlines={() => updateSetting('scanlines')}
@@ -1462,6 +1644,19 @@ export default function CompleteApp() {
           onReview={openPractice}
           onUnitReview={(unit) => startReview('unit', unit)}
           onReset={reset}
+        />
+      )}
+      {screen === 'projects' && (
+        <ProjectHub projects={projects} stages={stages} progress={progress} onExit={goMap} onOpen={openProject} />
+      )}
+      {screen === 'project' && activeProject && (
+        <ProjectScreen
+          key={activeProject.id}
+          project={activeProject}
+          alreadyCompleted={Boolean(progress.projects?.[activeProject.id])}
+          onExit={openProjects}
+          onComplete={finishProject}
+          sfx={sfx}
         />
       )}
       {screen === 'practice' && (
@@ -1512,7 +1707,9 @@ export default function CompleteApp() {
         />
       )}
 
-      {screen === 'map' && <MobileNav onHome={goMap} onReview={openPractice} onHearts={openHearts} hearts={progress.hearts} />}
+      {(screen === 'map' || screen === 'projects') && (
+        <MobileNav active={screen} onHome={goMap} onReview={openPractice} onProjects={openProjects} onHearts={openHearts} hearts={progress.hearts} />
+      )}
     </div>
   );
 }
