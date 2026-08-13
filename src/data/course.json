@@ -1,6 +1,6 @@
 {
   "title": "PYTHON // BLACK BUSTER",
-  "version": 7,
+  "version": 8,
   "stages": [
     {
       "id": "s1",
@@ -4625,6 +4625,402 @@
           ],
           "a": 0,
           "explanation": "Testes verificam comportamentos esperados após mudanças."
+        }
+      ]
+    }
+  ],
+  "tracks": [
+    {
+      "id": "automation",
+      "title": "TRILHA DE AUTOMAÇÃO",
+      "subtitle": "Transforme rotinas repetitivas em fluxos confiáveis.",
+      "color": "#22c55e",
+      "icon": "⚙",
+      "unlockStage": "s32",
+      "missions": [
+        {
+          "id": "auto-1",
+          "title": "Organização em lote",
+          "category": "AUTOMAÇÃO · MISSÃO 1",
+          "color": "#22c55e",
+          "icon": "⌁",
+          "unlockStage": "s32",
+          "brief": "Planeje uma automação que classifica centenas de arquivos com prévia antes de qualquer alteração.",
+          "outcome": "pathlib, regras por extensão, dry-run e logs de operação.",
+          "starter": "from pathlib import Path\nimport logging\n\norigem = Path('entrada')\ndry_run = True\n\nfor arquivo in origem.iterdir():\n    # planeje o destino e registre a ação\n    pass",
+          "steps": [
+            {
+              "q": "Qual proteção permite conferir ações antes de mover arquivos?",
+              "opts": [
+                "Modo dry-run",
+                "Excluir primeiro",
+                "Ignorar logs",
+                "Usar caminho aleatório"
+              ],
+              "a": 0,
+              "explanation": "Dry-run simula e registra as ações sem modificar os arquivos."
+            },
+            {
+              "q": "Como evitar processar subpastas como arquivos?",
+              "opts": [
+                "Verificar arquivo.is_file()",
+                "Usar arquivo.unlink()",
+                "Comparar apenas o tamanho",
+                "Abrir tudo com read_text()"
+              ],
+              "a": 0,
+              "explanation": "is_file confirma que a entrada é um arquivo comum."
+            },
+            {
+              "q": "O que registrar em cada movimento?",
+              "opts": [
+                "Origem, destino e resultado",
+                "Somente a hora",
+                "A senha do usuário",
+                "Nada"
+              ],
+              "a": 0,
+              "explanation": "Origem, destino e resultado tornam a execução auditável."
+            }
+          ]
+        },
+        {
+          "id": "auto-2",
+          "title": "Relatório recorrente",
+          "category": "AUTOMAÇÃO · MISSÃO 2",
+          "color": "#16a34a",
+          "icon": "▦",
+          "unlockStage": "s32",
+          "prerequisite": "auto-1",
+          "brief": "Consolide vários CSVs de uma pasta em um resumo único e verificável.",
+          "outcome": "glob, DictReader, agregação, validação e saída CSV.",
+          "starter": "from pathlib import Path\nimport csv\n\narquivos = Path('vendas').glob('*.csv')\ntotais = {}\n\n# valide colunas e consolide os registros",
+          "steps": [
+            {
+              "q": "Como selecionar apenas arquivos CSV?",
+              "opts": [
+                "pasta.glob('*.csv')",
+                "pasta.read_text()",
+                "pasta / '*'",
+                "open('csv')"
+              ],
+              "a": 0,
+              "explanation": "glob aplica o padrão aos caminhos da pasta."
+            },
+            {
+              "q": "O que fazer se uma coluna obrigatória não existir?",
+              "opts": [
+                "Registrar e rejeitar o arquivo inválido",
+                "Inventar qualquer valor",
+                "Apagar todos os arquivos",
+                "Dividir por zero"
+              ],
+              "a": 0,
+              "explanation": "Validar o esquema evita relatórios silenciosamente incorretos."
+            },
+            {
+              "q": "Qual campo ajuda a rastrear a origem de cada linha?",
+              "opts": [
+                "Nome do arquivo-fonte",
+                "Cor do terminal",
+                "Versão do navegador",
+                "Senha do sistema"
+              ],
+              "a": 0,
+              "explanation": "Guardar a fonte facilita auditoria e correção de dados."
+            }
+          ]
+        },
+        {
+          "id": "auto-3",
+          "title": "Backup compactado",
+          "category": "AUTOMAÇÃO · MISSÃO 3",
+          "color": "#15803d",
+          "icon": "⬡",
+          "unlockStage": "s32",
+          "prerequisite": "auto-2",
+          "brief": "Crie um backup com data no nome, seleção explícita de pastas e verificação do arquivo final.",
+          "outcome": "shutil, zipfile, datas, caminhos e tratamento de falhas.",
+          "starter": "from pathlib import Path\nfrom datetime import datetime\nimport shutil\n\norigem = Path('projeto')\ndata = datetime.now().strftime('%Y-%m-%d')\ndestino = Path('backups') / f'projeto-{data}'\n\n# crie o arquivo compactado",
+          "steps": [
+            {
+              "q": "Por que incluir a data no nome?",
+              "opts": [
+                "Distinguir versões do backup",
+                "Acelerar o Python",
+                "Ocultar o arquivo",
+                "Remover a extensão"
+              ],
+              "a": 0,
+              "explanation": "A data evita sobrescrever versões e ajuda a localizar pontos de restauração."
+            },
+            {
+              "q": "Qual verificação deve ocorrer após compactar?",
+              "opts": [
+                "Confirmar que o arquivo existe e tem tamanho válido",
+                "Apagar a origem",
+                "Ignorar exceções",
+                "Renomear aleatoriamente"
+              ],
+              "a": 0,
+              "explanation": "Verificar existência e tamanho detecta falhas óbvias na geração."
+            },
+            {
+              "q": "O que nunca deve entrar por padrão no backup público?",
+              "opts": [
+                "Segredos e ambientes virtuais",
+                "Código-fonte autorizado",
+                "Documentação",
+                "Testes"
+              ],
+              "a": 0,
+              "explanation": "Credenciais e artefatos recriáveis devem ser excluídos por regras claras."
+            }
+          ]
+        },
+        {
+          "id": "auto-4",
+          "title": "Monitor de processos",
+          "category": "AUTOMAÇÃO · MISSÃO FINAL",
+          "color": "#166534",
+          "icon": "◎",
+          "unlockStage": "s32",
+          "prerequisite": "auto-3",
+          "brief": "Projete um monitor que executa checagens periódicas, registra mudanças e evita alertas repetidos.",
+          "outcome": "Funções de checagem, estado anterior, intervalos, logs e tolerância a falhas.",
+          "starter": "import time\nimport logging\n\nestado_anterior = None\n\nwhile True:\n    try:\n        estado_atual = verificar()\n        # avise somente quando houver mudança\n    except Exception:\n        logging.exception('Falha na checagem')\n    time.sleep(60)",
+          "steps": [
+            {
+              "q": "Como evitar alertas idênticos a cada ciclo?",
+              "opts": [
+                "Comparar estado atual com o anterior",
+                "Enviar sempre",
+                "Apagar o log",
+                "Reiniciar o computador"
+              ],
+              "a": 0,
+              "explanation": "Alertar apenas em mudanças reduz ruído sem perder eventos importantes."
+            },
+            {
+              "q": "Por que manter um intervalo entre checagens?",
+              "opts": [
+                "Evitar consumo e requisições excessivas",
+                "Garantir erro 500",
+                "Remover o estado",
+                "Desativar logs"
+              ],
+              "a": 0,
+              "explanation": "O intervalo controla carga local e pressão sobre serviços externos."
+            },
+            {
+              "q": "Como lidar com falha temporária de uma checagem?",
+              "opts": [
+                "Registrar, preservar o processo e tentar depois",
+                "Encerrar sem informação",
+                "Marcar sempre como sucesso",
+                "Expor credenciais"
+              ],
+              "a": 0,
+              "explanation": "Tratamento de exceção mantém o monitor vivo e deixa evidência para diagnóstico."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "applications",
+      "title": "TRILHA DE APLICAÇÕES",
+      "subtitle": "Organize programas completos com interfaces, dados e integrações.",
+      "color": "#3b82f6",
+      "icon": "▣",
+      "unlockStage": "s32",
+      "missions": [
+        {
+          "id": "app-1",
+          "title": "CLI profissional",
+          "category": "APLICAÇÕES · MISSÃO 1",
+          "color": "#3b82f6",
+          "icon": ">_",
+          "unlockStage": "s32",
+          "brief": "Modele uma aplicação de terminal com comandos, ajuda automática e códigos de saída.",
+          "outcome": "argparse, funções de comando, validação e experiência de terminal.",
+          "starter": "import argparse\n\nparser = argparse.ArgumentParser(description='Gerenciador de tarefas')\nsub = parser.add_subparsers(dest='comando', required=True)\nsub.add_parser('listar')\nadicionar = sub.add_parser('adicionar')\nadicionar.add_argument('titulo')\n\nargs = parser.parse_args()",
+          "steps": [
+            {
+              "q": "Qual módulo padrão cria interfaces de linha de comando?",
+              "opts": [
+                "argparse",
+                "logging",
+                "csv",
+                "pathlib apenas"
+              ],
+              "a": 0,
+              "explanation": "argparse interpreta argumentos e gera mensagens de ajuda."
+            },
+            {
+              "q": "Como separar ações como listar e adicionar?",
+              "opts": [
+                "Subcomandos",
+                "Uma variável sem validação",
+                "Arquivos duplicados",
+                "Exceções aleatórias"
+              ],
+              "a": 0,
+              "explanation": "Subcomandos tornam a interface explícita e extensível."
+            },
+            {
+              "q": "O que uma mensagem de erro deve informar?",
+              "opts": [
+                "Problema e forma de corrigir",
+                "Somente 'falhou'",
+                "Uma pilha sem contexto para todo usuário",
+                "Dados secretos"
+              ],
+              "a": 0,
+              "explanation": "Erros acionáveis ajudam a pessoa a corrigir a entrada."
+            }
+          ]
+        },
+        {
+          "id": "app-2",
+          "title": "Cliente de API resiliente",
+          "category": "APLICAÇÕES · MISSÃO 2",
+          "color": "#2563eb",
+          "icon": "↗",
+          "unlockStage": "s32",
+          "prerequisite": "app-1",
+          "brief": "Crie a camada cliente de uma API com timeout, validação e mensagens de falha úteis.",
+          "outcome": "HTTP, JSON, configuração, erros e funções testáveis.",
+          "starter": "import json\nfrom urllib.request import urlopen\nfrom urllib.error import HTTPError, URLError\n\nBASE_URL = 'https://api.exemplo.dev'\n\ndef buscar_item(codigo):\n    # monte URL, limite espera e valide resposta\n    pass",
+          "steps": [
+            {
+              "q": "Onde deve ficar a URL-base?",
+              "opts": [
+                "Em configuração centralizada",
+                "Repetida em toda função",
+                "Dentro de cada print",
+                "No nome da classe"
+              ],
+              "a": 0,
+              "explanation": "Configuração central reduz duplicação e facilita mudar ambientes."
+            },
+            {
+              "q": "Qual parâmetro evita espera infinita?",
+              "opts": [
+                "timeout",
+                "encoding apenas",
+                "sort",
+                "yield"
+              ],
+              "a": 0,
+              "explanation": "Timeout limita o tempo máximo da operação de rede."
+            },
+            {
+              "q": "O que validar antes de usar dados JSON?",
+              "opts": [
+                "Tipos e campos esperados",
+                "Somente a cor da resposta",
+                "A ordem física dos bytes apenas",
+                "Nada"
+              ],
+              "a": 0,
+              "explanation": "APIs podem responder formatos inesperados mesmo com JSON válido."
+            }
+          ]
+        },
+        {
+          "id": "app-3",
+          "title": "Serviço em camadas",
+          "category": "APLICAÇÕES · MISSÃO 3",
+          "color": "#1d4ed8",
+          "icon": "▤",
+          "unlockStage": "s32",
+          "prerequisite": "app-2",
+          "brief": "Desenhe um serviço separando interface HTTP, regras de negócio e armazenamento.",
+          "outcome": "Rotas, serviços, repositórios, erros de domínio e testes.",
+          "starter": "app/\n  main.py          # entrada e rotas\n  services.py      # regras de negócio\n  repository.py    # persistência\n  models.py        # estruturas de dados\n  tests/\n\n# defina o fluxo de uma criação",
+          "steps": [
+            {
+              "q": "Onde deve ficar a regra de negócio principal?",
+              "opts": [
+                "Na camada de serviços",
+                "Duplicada em cada rota",
+                "Somente no banco",
+                "Dentro do CSS"
+              ],
+              "a": 0,
+              "explanation": "Serviços centralizam regras e podem ser testados sem interface HTTP."
+            },
+            {
+              "q": "Qual responsabilidade pertence ao repositório?",
+              "opts": [
+                "Ler e gravar dados",
+                "Formatar toda resposta visual",
+                "Escolher cores",
+                "Analisar argumentos CLI"
+              ],
+              "a": 0,
+              "explanation": "O repositório abstrai a persistência."
+            },
+            {
+              "q": "Por que rotas devem permanecer pequenas?",
+              "opts": [
+                "Para coordenar entrada e saída sem esconder regras",
+                "Para evitar funções",
+                "Para dispensar testes",
+                "Para guardar segredos"
+              ],
+              "a": 0,
+              "explanation": "Rotas enxutas delegam regras e deixam o fluxo mais claro."
+            }
+          ]
+        },
+        {
+          "id": "app-4",
+          "title": "Aplicação pronta para evoluir",
+          "category": "APLICAÇÕES · MISSÃO FINAL",
+          "color": "#1e40af",
+          "icon": "Ω",
+          "unlockStage": "s32",
+          "prerequisite": "app-3",
+          "brief": "Finalize a arquitetura de uma aplicação com configuração, logs, testes e documentação de execução.",
+          "outcome": "Integração dos 32 níveis em um produto pequeno, reproduzível e observável.",
+          "starter": "projeto/\n  src/\n  tests/\n  .env.example\n  requirements.txt\n  README.md\n\n# checklist: configurar, testar, observar e publicar",
+          "steps": [
+            {
+              "q": "Qual arquivo documenta variáveis necessárias sem expor valores reais?",
+              "opts": [
+                ".env.example",
+                "Um .env com segredos reais",
+                "requirements.txt",
+                "Um log público"
+              ],
+              "a": 0,
+              "explanation": ".env.example lista nomes e exemplos seguros para configurar o projeto."
+            },
+            {
+              "q": "O que executar antes de publicar uma nova versão?",
+              "opts": [
+                "Testes e verificações automatizadas",
+                "Apagar documentação",
+                "Remover logs",
+                "Fixar senhas no código"
+              ],
+              "a": 0,
+              "explanation": "A automação de qualidade reduz regressões antes da entrega."
+            },
+            {
+              "q": "Qual conjunto torna a aplicação sustentável?",
+              "opts": [
+                "Código modular, testes, logs e documentação",
+                "Um único arquivo sem testes",
+                "Dependências globais invisíveis",
+                "Erros silenciosos"
+              ],
+              "a": 0,
+              "explanation": "Esses elementos facilitam operar, corrigir e ampliar o produto."
+            }
+          ]
         }
       ]
     }
