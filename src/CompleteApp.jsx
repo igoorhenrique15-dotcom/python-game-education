@@ -78,30 +78,85 @@ function withStudyReward(progress, { xp = 0, gems = 0, hearts = 0 }) {
 
 const UNIT_META = [
   {
-    title: 'Primeiros comandos',
-    goal: 'Guarde dados, faça escolhas e repita ações.',
-    color: '#58cc02',
+    title: 'Primeiros passos',
+    goal: 'Entenda dados, entradas, cálculos e textos.',
+    color: '#58cc02'
   },
   {
-    title: 'Dados e funções',
-    goal: 'Organize informações e crie blocos reutilizáveis.',
-    color: '#1cb0f6',
+    title: 'Decisões e repetições',
+    goal: 'Controle caminhos e repita ações com clareza.',
+    color: '#46a302'
   },
   {
-    title: 'Python essencial',
-    goal: 'Receba dados, combine coleções e importe recursos.',
-    color: '#ce82ff',
+    title: 'Coleções',
+    goal: 'Organize sequências, conjuntos e registros.',
+    color: '#1cb0f6'
   },
   {
-    title: 'Programas robustos',
-    goal: 'Trate erros, arquivos, JSON e objetos.',
-    color: '#ff9600',
+    title: 'Funções e organização',
+    goal: 'Crie blocos reutilizáveis e módulos confiáveis.',
+    color: '#168dc4'
   },
   {
-    title: 'Projetos reais',
-    goal: 'Aplique orientação a objetos e conclua sua jornada.',
-    color: '#ff4b4b',
+    title: 'Arquivos e dados',
+    goal: 'Leia, transforme e persista informações.',
+    color: '#ce82ff'
   },
+  {
+    title: 'Objetos e modelagem',
+    goal: 'Modele entidades e comportamentos reutilizáveis.',
+    color: '#9b55db'
+  },
+  {
+    title: 'Qualidade profissional',
+    goal: 'Teste, registre e documente o comportamento.',
+    color: '#ff9600'
+  },
+  {
+    title: 'Aplicações reais',
+    goal: 'Prepare ambientes, integrações e automações.',
+    color: '#ff4b4b'
+  },
+  {
+    title: 'Dados aprofundados',
+    goal: 'Trate formatos, caminhos e persistência com segurança.',
+    color: '#20b486'
+  },
+  {
+    title: 'Engenharia de dados',
+    goal: 'Valide, consulte e transforme conjuntos reais.',
+    color: '#0d9488'
+  },
+  {
+    title: 'Orientação a objetos II',
+    goal: 'Aprofunde estado, propriedades e composição.',
+    color: '#6366f1'
+  },
+  {
+    title: 'Modelagem avançada',
+    goal: 'Crie objetos expressivos, iteráveis e testáveis.',
+    color: '#4f46e5'
+  },
+  {
+    title: 'Python profissional II',
+    goal: 'Depure, teste e configure aplicações.',
+    color: '#f59e0b'
+  },
+  {
+    title: 'Projetos sustentáveis',
+    goal: 'Organize dependências, qualidade e manutenção.',
+    color: '#d97706'
+  },
+  {
+    title: 'Aplicações conectadas',
+    goal: 'Crie interfaces, APIs e persistência local.',
+    color: '#ef4444'
+  },
+  {
+    title: 'Entrega final',
+    goal: 'Automatize, empacote e conclua um produto completo.',
+    color: '#dc2626'
+  }
 ];
 
 const JOURNEY_X = [50, 68, 76, 64, 43, 27, 22, 36];
