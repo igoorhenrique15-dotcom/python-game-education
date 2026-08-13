@@ -171,6 +171,11 @@ const UNIT_META = [
     title: 'Concorrência e desempenho',
     goal: 'Coordene tarefas externas, processos e otimizações mensuráveis.',
     color: '#8b5cf6'
+  },
+  {
+    title: 'Engenharia profissional',
+    goal: 'Tipar, empacotar, proteger e entregar um produto Python completo.',
+    color: '#f97316'
   }
 ];
 
@@ -851,7 +856,7 @@ function CourseMap({ stages, projects = [], tracks = [], progress, onEnter, onRe
 
           <TrailSpecializations tracks={tracks} progress={progress} onOpen={onOpenProject} />
 
-          <div className="finish-marker"><span>Ω</span><div><b>TRILHA PYTHON COMPLETA</b><small>64 fases, projetos e especializações no mesmo caminho.</small></div></div>
+          <div className="finish-marker"><span>Ω</span><div><b>TRILHA PYTHON COMPLETA</b><small>80 fases, projetos e especializações no mesmo caminho.</small></div></div>
           <button className="reset-progress" type="button" onClick={onReset}>ZERAR PROGRESSO SALVO</button>
         </div>
 
@@ -1256,7 +1261,7 @@ function TrailSpecializations({ tracks, progress, onOpen }) {
   return (
     <section className="trail-specializations">
       <div className="trail-specializations-title">
-        <span className="project-kicker">DEPOIS DAS 64 FASES</span>
+        <span className="project-kicker">DEPOIS DAS 80 FASES</span>
         <h2>Especializações da trilha Python</h2>
         <p>Escolha Automação ou Aplicações. Cada missão abre a próxima e continua usando desafios guiados.</p>
       </div>
@@ -1286,7 +1291,7 @@ function TrailSpecializations({ tracks, progress, onOpen }) {
                       disabled={!missionUnlocked}
                       onClick={() => onOpen(mission)}
                     >
-                      {missionCompleted ? 'REFAZER' : missionUnlocked ? 'INICIAR' : mission.prerequisite ? 'EM SEQUÊNCIA' : 'FASE 64'}
+                      {missionCompleted ? 'REFAZER' : missionUnlocked ? 'INICIAR' : mission.prerequisite ? 'EM SEQUÊNCIA' : 'FASE 80'}
                     </PixelButton>
                   </div>
                 );
