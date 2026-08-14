@@ -292,6 +292,21 @@ function courseUnits(stages) {
   return units;
 }
 
+function unitMastery(unit, progress) {
+  const completed = unit.stages.filter((stage) => progress.completed[stage.id]).length;
+  const reviewed = Boolean(progress.unitReviews?.[unit.number]);
+  return {
+    completed,
+    reviewed,
+    mastered: completed === unit.stages.length && reviewed,
+  };
+}
+
+function courseMasterySummary(units, progress) {
+  const mastered = units.filter((unit) => unitMastery(unit, progress).mastered).length;
+  return { mastered, total: units.length, complete: mastered === units.length };
+}
+
 function questionKey(stageId, questionIndex) {
   return `${stageId}:${questionIndex}`;
 }
@@ -537,7 +552,7 @@ function NextLessonCard({ stage, stageIndex, started, onContinue, onReview }) {
   );
 }
 
-function CourseHero({ stages, progress, currentStage, currentIndex, onContinue, onReview }) {
+function CourseHero({ stages, progress, currentStage, currentIndex, mastery, onContinue, onReview }) {
   const completed = Object.keys(progress.completed).length;
   const percent = Math.round((completed / stages.length) * 100);
   const lessonCount = stages.reduce((total, stage) => total + stage.lesson.length, 0);
@@ -567,6 +582,7 @@ function CourseHero({ stages, progress, currentStage, currentIndex, onContinue, 
           <span><b>{stages.length}</b> FASES</span>
           <span><b>{lessonCount}</b> AULAS</span>
           <span><b>{challengeCount}</b> QUESTÕES</span>
+          <span className={mastery.complete ? 'mastery-complete' : ''}><b>{mastery.mastered}/{mastery.total}</b> UNIDADES DOMINADAS</span>
         </div>
       </div>
       <NextLessonCard
@@ -592,11 +608,12 @@ function UnitPath({ unit, progress, currentIndex, selectedId, onSelect, onUnitRe
     return `M ${from.x} ${from.y} C ${from.x} ${middle}, ${to.x} ${middle}, ${to.x} ${to.y}`;
   };
 
-  const completedInUnit = unit.stages.filter((stage) => progress.completed[stage.id]).length;
+  const mastery = unitMastery(unit, progress);
+  const completedInUnit = mastery.completed;
   const unitPercent = Math.round((completedInUnit / unit.stages.length) * 100);
 
   return (
-    <section className={`unit-section unit-${unit.number} ${completedInUnit === unit.stages.length ? 'unit-complete' : ''}`} style={{ '--unit-color': unit.color }}>
+    <section className={`unit-section unit-${unit.number} ${completedInUnit === unit.stages.length ? 'unit-complete' : ''} ${mastery.mastered ? 'unit-mastered' : ''}`} style={{ '--unit-color': unit.color }}>
       <header className="unit-banner">
         <div>
           <span>UNIDADE {unit.number}</span>
@@ -607,7 +624,7 @@ function UnitPath({ unit, progress, currentIndex, selectedId, onSelect, onUnitRe
           </div>
         </div>
         <span className="unit-progress">
-          {completedInUnit}/{unit.stages.length}
+          {mastery.mastered ? 'DOMINADA ✓' : `${completedInUnit}/${unit.stages.length}`}
         </span>
       </header>
 
@@ -667,7 +684,7 @@ function UnitPath({ unit, progress, currentIndex, selectedId, onSelect, onUnitRe
         <span className="unit-review-icon">{progress.unitReviews?.[unit.number] ? '✓' : '◎'}</span>
         <div>
           <small>REVISÃO DA UNIDADE {unit.number}</small>
-          <h3>{progress.unitReviews?.[unit.number] ? 'Revisão concluída' : completedInUnit === unit.stages.length ? 'Misture o que aprendeu' : 'Conclua as quatro fases'}</h3>
+          <h3>{mastery.mastered ? 'Unidade dominada' : completedInUnit === unit.stages.length ? 'Misture o que aprendeu' : 'Conclua as quatro fases'}</h3>
           <p>8 questões das fases desta unidade · prática segura, sem perder vidas.</p>
         </div>
         <PixelButton
@@ -770,9 +787,51 @@ function DailyGoalCard({ progress }) {
   );
 }
 
+function downloadCertificate() {
+  const issuedAt = new Date().toLocaleDateString('pt-BR');
+  const content = [
+    'CERTIFICADO DE CONCLUSÃO',
+    'PYTHON // BLACK BUSTER',
+    '',
+    'Certificamos a conclusão da trilha completa de Python.',
+    '80 fases · 240 aulas · 640 questões · 20 unidades dominadas',
+    '',
+    `Emitido em ${issuedAt}`,
+  ].join('\n');
+  const url = URL.createObjectURL(new Blob([content], { type: 'text/plain;charset=utf-8' }));
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'certificado-python-black-buster.txt';
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+}
+
+function CourseCompletionPanel({ mastery }) {
+  return (
+    <section className={`course-completion ${mastery.complete ? 'complete' : ''}`}>
+      <div className="completion-seal">{mastery.complete ? '★' : '◎'}</div>
+      <div>
+        <small>{mastery.complete ? 'CERTIFICADO LIBERADO' : 'DOMÍNIO DA TRILHA'}</small>
+        <h2>{mastery.complete ? 'Python Black Buster concluído' : `${mastery.mastered} de ${mastery.total} unidades dominadas`}</h2>
+        <p>{mastery.complete
+          ? 'Você concluiu as 80 fases e as revisões de todas as unidades.'
+          : 'Conclua as quatro fases e a revisão de cada unidade para liberar o certificado.'}</p>
+      </div>
+      {mastery.complete ? (
+        <PixelButton color="#f59e0b" onClick={downloadCertificate}>BAIXAR CERTIFICADO</PixelButton>
+      ) : (
+        <strong>{Math.round((mastery.mastered / mastery.total) * 100)}%</strong>
+      )}
+    </section>
+  );
+}
+
 function CourseMap({ stages, projects = [], tracks = [], progress, onEnter, onReview, onUnitReview, onOpenProject, onPurchase, onReset }) {
   const units = useMemo(() => courseUnits(stages), [stages]);
   const learning = courseLearningSummary(stages, progress);
+  const mastery = courseMasterySummary(units, progress);
   const currentIndex = Math.max(0, stages.findIndex((stage) => !progress.completed[stage.id]));
   const fallbackIndex = currentIndex === -1 ? stages.length - 1 : currentIndex;
   const recommendedIndex = stages.every((stage) => progress.completed[stage.id]) ? stages.length - 1 : fallbackIndex;
@@ -803,6 +862,7 @@ function CourseMap({ stages, projects = [], tracks = [], progress, onEnter, onRe
         progress={progress}
         currentStage={recommended}
         currentIndex={recommendedIndex}
+        mastery={mastery}
         onContinue={() => onEnter(recommended)}
         onReview={onReview}
       />
@@ -856,6 +916,7 @@ function CourseMap({ stages, projects = [], tracks = [], progress, onEnter, onRe
 
           <TrailSpecializations tracks={tracks} progress={progress} onOpen={onOpenProject} />
 
+          <CourseCompletionPanel mastery={mastery} />
           <div className="finish-marker"><span>Ω</span><div><b>TRILHA PYTHON COMPLETA</b><small>80 fases, projetos e especializações no mesmo caminho.</small></div></div>
           <button className="reset-progress" type="button" onClick={onReset}>ZERAR PROGRESSO SALVO</button>
         </div>
