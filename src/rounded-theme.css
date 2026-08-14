@@ -4921,3 +4921,34 @@ button {
     height: 39px;
   }
 }
+
+
+/* Ciclo progressivo dos projetos */
+.project-build-cycle {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin: 22px 0;
+}
+.project-build-cycle article {
+  display: flex;
+  gap: 10px;
+  min-height: 104px;
+  padding: 14px;
+  border: 2px solid var(--line, #dce3ea);
+  border-radius: 16px;
+  background: var(--panel, #fff);
+  opacity: .62;
+}
+.project-build-cycle article.active { border-color: var(--project-color); opacity: 1; box-shadow: 0 4px 0 color-mix(in srgb, var(--project-color) 28%, transparent); }
+.project-build-cycle article > span { display: grid; place-items: center; flex: 0 0 28px; height: 28px; border-radius: 50%; background: var(--project-color); color: #fff; font-weight: 900; }
+.project-build-cycle b { display: block; color: var(--project-color); font-size: .75rem; letter-spacing: .06em; }
+.project-build-cycle p { margin: 6px 0 0; font-size: .8rem; line-height: 1.35; }
+.project-checklist { display: grid; gap: 8px; max-width: 700px; margin: 20px auto; padding: 18px; border: 2px solid color-mix(in srgb, var(--project-color) 40%, #dce3ea); border-radius: 18px; text-align: left; }
+.project-checklist b { color: var(--project-color); margin-bottom: 4px; }
+.project-checklist span { font-weight: 700; }
+.project-delivery > section { width: min(920px, calc(100% - 28px)); }
+.project-delivery .code-shell { text-align: left; }
+.project-finish-actions { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+@media (max-width: 760px) { .project-build-cycle { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 460px) { .project-build-cycle { grid-template-columns: 1fr; } .project-build-cycle article { min-height: 0; } }
