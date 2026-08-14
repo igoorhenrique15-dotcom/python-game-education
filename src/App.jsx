@@ -1304,6 +1304,24 @@ function TrailSpecializations({ tracks, progress, onOpen }) {
   );
 }
 
+function downloadProjectCode(project) {
+  const source = project.finalCode || project.starter;
+  const slug = project.title
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-|-$/g, '');
+  const url = URL.createObjectURL(new Blob([source], { type: 'text/x-python;charset=utf-8' }));
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = `${project.id}-${slug}.py`;
+  document.body.appendChild(link);
+  link.click();
+  link.remove();
+  URL.revokeObjectURL(url);
+}
+
 function ProjectScreen({ project, alreadyCompleted, onExit, onComplete, sfx }) {
   const [firstCompletion] = useState(() => !alreadyCompleted);
   const [step, setStep] = useState(0);
@@ -1332,17 +1350,25 @@ function ProjectScreen({ project, alreadyCompleted, onExit, onComplete, sfx }) {
 
   if (finished) {
     return (
-      <main className="project-finish" style={{ '--project-color': project.color }}>
+      <main className="project-finish project-delivery" style={{ '--project-color': project.color }}>
         <section>
           <div className="project-finish-mascot"><PinscherMascot size="large" mood="celebrate" /><span>✓</span></div>
-          <small>DESAFIO CONCLUÍDO</small>
+          <small>PROJETO PRONTO PARA ENTREGAR</small>
           <h1>{project.title}</h1>
-          <p>Você fechou as decisões centrais do projeto e já tem uma arquitetura pronta para implementar.</p>
+          <p>{project.deliverable}</p>
+          <div className="project-checklist">
+            <b>CHECKLIST DA ENTREGA</b>
+            {project.checklist.map((item) => <span key={item}>✓ {item}</span>)}
+          </div>
+          <CodeBlock text={project.finalCode} filename={`${project.id}_final.py`} label="CÓDIGO FINAL" />
           <div className="project-reward">
             <span><b>+{firstCompletion ? 15 : 5}</b> XP</span>
             <span><b>+{firstCompletion ? 15 : 0}</b> GEMAS</span>
           </div>
-          <PixelButton color={project.color} onClick={onExit}>VOLTAR AO LABORATÓRIO</PixelButton>
+          <div className="project-finish-actions">
+            <PixelButton color={project.color} onClick={() => downloadProjectCode(project)}>BAIXAR CÓDIGO .PY</PixelButton>
+            <PixelButton variant="ghost" color="#8190a5" onClick={onExit}>VOLTAR AO LABORATÓRIO</PixelButton>
+          </div>
         </section>
       </main>
     );
@@ -1361,7 +1387,16 @@ function ProjectScreen({ project, alreadyCompleted, onExit, onComplete, sfx }) {
           <span className="project-kicker">{project.category} · PROJETO GUIADO</span>
           <h1>{project.title}</h1>
           <p>{project.brief}</p>
-          <div><b>RESULTADO</b><span>{project.outcome}</span></div>
+          <div><b>ENTREGA</b><span>{project.deliverable}</span></div>
+        </section>
+
+        <section className="project-build-cycle" aria-label="Ciclo do projeto">
+          {project.phases.map((phase, index) => (
+            <article key={phase.label} className={index <= step ? 'active' : ''}>
+              <span>{index + 1}</span>
+              <div><b>{phase.label}</b><p>{phase.text}</p></div>
+            </article>
+          ))}
         </section>
 
         <CodeBlock text={project.starter} filename={`${project.id}_starter.py`} label="CÓDIGO-BASE" />
@@ -1389,7 +1424,7 @@ function ProjectScreen({ project, alreadyCompleted, onExit, onComplete, sfx }) {
             </div>
           )}
           <PixelButton color={project.color} disabled={selected === null} onClick={advance}>
-            {step === project.steps.length - 1 ? 'CONCLUIR PROJETO' : 'PRÓXIMA DECISÃO'}
+            {step === project.steps.length - 1 ? 'GERAR ENTREGA FINAL' : 'PRÓXIMA DECISÃO'}
           </PixelButton>
         </section>
       </div>
