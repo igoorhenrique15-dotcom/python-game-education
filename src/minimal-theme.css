@@ -339,6 +339,7 @@
 
 /* ---- Bottom nav */
 .mobile-nav {
+  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
   border: 1px solid var(--line) !important;
   background: rgba(19, 19, 22, 0.95) !important;
 }
@@ -346,4 +347,78 @@
 .mobile-nav button.active {
   background: var(--panel-soft) !important;
   color: var(--ink) !important;
+}
+
+/* ---- Tracks (courses) picker screen */
+.tracks-screen {
+  width: min(1220px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 24px 0 100px;
+}
+
+.tracks-screen h1 {
+  margin: 0 0 16px;
+  color: var(--ink);
+  font-size: 20px;
+  font-weight: 800;
+}
+
+.tracks-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 12px;
+}
+
+.track-card {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--panel);
+}
+
+.track-card.soon {
+  opacity: 0.6;
+}
+
+.track-card-icon {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  place-items: center;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--panel-soft);
+  color: var(--track-color);
+  font-size: 20px;
+}
+
+.track-card-copy h3 {
+  margin: 0 0 4px;
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.track-card-copy p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+.track-card .pixel-button {
+  margin-top: auto;
+}
+
+.track-card-soon {
+  margin-top: auto;
+  padding: 10px 0;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 0.6px;
+  text-align: center;
 }
