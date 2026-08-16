@@ -1,0 +1,2346 @@
+{
+  "title": "HTML & CSS",
+  "version": 1,
+  "stages": [
+    {
+      "id": "html-1",
+      "name": "ESTRUTURA DO DOCUMENTO",
+      "difficulty": "INICIANTE",
+      "color": "#ff9600",
+      "icon": "◆",
+      "summary": "Entenda o esqueleto de toda página HTML: doctype, html, head e body.",
+      "lesson": [
+        {
+          "title": "O esqueleto de uma página",
+          "body": "Todo arquivo HTML começa com <!DOCTYPE html>, que avisa ao navegador qual versão do HTML usar. Depois vem a tag <html>, que envolve tudo. Dentro dela ficam <head> (informações da página, não visíveis) e <body> (o conteúdo visível).",
+          "code": "<!DOCTYPE html>\n<html>\n  <head>\n    <title>Minha página</title>\n  </head>\n  <body>\n    <h1>Olá, mundo!</h1>\n  </body>\n</html>"
+        },
+        {
+          "title": "O que vai em cada parte",
+          "body": "O <head> guarda metadados: título da aba (<title>), charset, links para CSS. O <body> guarda tudo que aparece na tela: textos, imagens, botões. Só existe um <body> por página.",
+          "code": "<head>\n  <meta charset=\"UTF-8\">\n  <title>Loja Online</title>\n</head>"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que fica dentro da tag <body>?",
+          "opts": [
+            "Metadados da página",
+            "O conteúdo visível da página",
+            "Apenas o título da aba",
+            "Comentários do código"
+          ],
+          "a": 1,
+          "hint": "Pense no que o usuário realmente vê na tela.",
+          "ex": "O <body> contém tudo que aparece visualmente na página.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Para que serve o <!DOCTYPE html>?",
+          "opts": [
+            "Cria um comentário",
+            "Declara qual versão do HTML está sendo usada",
+            "Define a cor de fundo",
+            "É opcional e nunca usado"
+          ],
+          "a": 1,
+          "hint": "É a primeira linha de qualquer página HTML.",
+          "ex": "O doctype informa ao navegador como interpretar o documento.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual tag define o título mostrado na aba do navegador?\n<head>\n  <title>Minha Loja</title>\n</head>",
+          "opts": [
+            "<head>",
+            "<title>",
+            "<h1>",
+            "<body>"
+          ],
+          "a": 1,
+          "hint": "Procure a tag que envolve diretamente o texto 'Minha Loja'.",
+          "ex": "<title> define o texto exibido na aba do navegador.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Quantas tags <body> uma página HTML válida pode ter?",
+          "opts": [
+            "Nenhuma",
+            "Exatamente uma",
+            "Até três",
+            "Quantas forem necessárias"
+          ],
+          "a": 1,
+          "hint": "O body representa a página inteira visível — não faz sentido repetir.",
+          "ex": "Uma página válida tem apenas um <body>.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "html-2",
+      "name": "TAGS E ELEMENTOS",
+      "difficulty": "INICIANTE",
+      "color": "#ff9600",
+      "icon": "▲",
+      "summary": "Aprenda como tags se abrem, fecham e se aninham para formar elementos.",
+      "lesson": [
+        {
+          "title": "Abrindo e fechando tags",
+          "body": "A maioria das tags tem abertura e fechamento: <p>texto</p>. O conjunto de tag de abertura + conteúdo + tag de fechamento forma um elemento. Elementos podem conter outros elementos dentro deles — isso se chama aninhamento.",
+          "code": "<p>Este texto tem <strong>uma parte em negrito</strong> dentro do parágrafo.</p>"
+        },
+        {
+          "title": "Elementos vazios",
+          "body": "Algumas tags não têm conteúdo nem fechamento, como <img>, <br> e <input>. Elas são chamadas de elementos vazios (ou auto-fechados) e carregam toda informação em seus atributos.",
+          "code": "<img src=\"logo.png\" alt=\"Logo\">\n<br>\n<input type=\"text\">"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que significa 'aninhar' elementos HTML?",
+          "opts": [
+            "Colocar um elemento dentro de outro",
+            "Deletar uma tag",
+            "Usar apenas um elemento por página",
+            "Escrever tags em maiúsculas"
+          ],
+          "a": 0,
+          "hint": "Pense em caixas dentro de caixas.",
+          "ex": "Aninhar é colocar elementos uns dentro dos outros.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual destas tags NÃO precisa de fechamento?",
+          "opts": [
+            "<p>",
+            "<div>",
+            "<img>",
+            "<h1>"
+          ],
+          "a": 2,
+          "hint": "Uma imagem não tem conteúdo interno para fechar.",
+          "ex": "<img> é um elemento vazio, sem tag de fechamento.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Este código está correto?\n<p>Olá <strong>mundo</p></strong>",
+          "opts": [
+            "Sim, está correto",
+            "Não, as tags fecham fora de ordem",
+            "Não, falta o DOCTYPE",
+            "Sim, mas só em navegadores antigos"
+          ],
+          "a": 1,
+          "hint": "A última tag aberta deve ser a primeira a fechar.",
+          "ex": "As tags aninhadas devem fechar na ordem inversa em que abriram: </strong> antes de </p>.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "O conjunto 'tag de abertura + conteúdo + tag de fechamento' é chamado de:",
+          "opts": [
+            "Atributo",
+            "Elemento",
+            "Seletor",
+            "Documento"
+          ],
+          "a": 1,
+          "hint": "É o termo usado para a unidade completa de marcação.",
+          "ex": "Esse conjunto completo forma um elemento HTML.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "html-3",
+      "name": "ATRIBUTOS",
+      "difficulty": "INICIANTE",
+      "color": "#ff9600",
+      "icon": "★",
+      "summary": "Use atributos para dar informações extras às tags, como id, class e src.",
+      "lesson": [
+        {
+          "title": "O que é um atributo",
+          "body": "Atributos ficam dentro da tag de abertura e dão informações extras ao elemento, no formato nome=\"valor\". Todo elemento pode ter vários atributos, separados por espaço.",
+          "code": "<a href=\"https://exemplo.com\" target=\"_blank\">Visitar site</a>"
+        },
+        {
+          "title": "id e class",
+          "body": "id identifica um único elemento na página (não pode repetir). class pode ser usada em vários elementos e serve para agrupá-los, geralmente para aplicar o mesmo estilo com CSS.",
+          "code": "<div id=\"cabecalho\">\n  <p class=\"destaque\">Oferta especial</p>\n  <p class=\"destaque\">Só hoje</p>\n</div>"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Onde os atributos ficam escritos?",
+          "opts": [
+            "Dentro da tag de abertura",
+            "Depois da tag de fechamento",
+            "Em outro arquivo",
+            "No título da página"
+          ],
+          "a": 0,
+          "hint": "Eles fazem parte da própria tag, antes do '>'.",
+          "ex": "Atributos vivem dentro da tag de abertura do elemento.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual a principal diferença entre id e class?",
+          "opts": [
+            "Não há diferença",
+            "id deve ser único na página; class pode repetir",
+            "class só funciona em <div>",
+            "id é usado apenas em imagens"
+          ],
+          "a": 1,
+          "hint": "Pense em algo exclusivo versus algo reutilizável.",
+          "ex": "id identifica um elemento único; class agrupa vários elementos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Quantos atributos essa tag tem?\n<img src=\"foto.jpg\" alt=\"Uma foto\" width=\"200\">",
+          "opts": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "a": 2,
+          "hint": "Conte os pares nome=\"valor\".",
+          "ex": "src, alt e width são os três atributos usados.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual atributo do link abre a página em uma nova aba?",
+          "opts": [
+            "href=\"nova\"",
+            "target=\"_blank\"",
+            "new=\"true\"",
+            "open=\"tab\""
+          ],
+          "a": 1,
+          "hint": "É o mesmo atributo usado no exemplo da primeira aula.",
+          "ex": "target=\"_blank\" faz o link abrir em uma nova aba.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "html-4",
+      "name": "TEXTOS E TÍTULOS",
+      "difficulty": "INICIANTE",
+      "color": "#f6c445",
+      "icon": "Aa",
+      "summary": "Organize o texto da página com títulos, parágrafos e ênfase.",
+      "lesson": [
+        {
+          "title": "Hierarquia de títulos",
+          "body": "HTML tem seis níveis de título: <h1> até <h6>. <h1> é o mais importante (geralmente só um por página) e a importância vai diminuindo até <h6>. Use a ordem certa para organizar o conteúdo, não só pelo tamanho da fonte.",
+          "code": "<h1>Loja de Roupas</h1>\n<h2>Novidades</h2>\n<h3>Camisetas</h3>"
+        },
+        {
+          "title": "Parágrafos e ênfase",
+          "body": "Use <p> para blocos de texto. Para dar ênfase, <strong> deixa o texto em negrito com importância semântica, e <em> deixa em itálico indicando ênfase. Prefira essas tags a <b> e <i>, que são só visuais.",
+          "code": "<p>Este produto está com <strong>50% de desconto</strong> apenas hoje.</p>"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual título é considerado o mais importante da página?",
+          "opts": [
+            "<h6>",
+            "<h1>",
+            "<h3>",
+            "Todos têm a mesma importância"
+          ],
+          "a": 1,
+          "hint": "É o de número mais baixo.",
+          "ex": "<h1> representa o título de maior importância.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que preferir <strong> a <b> para dar ênfase importante?",
+          "opts": [
+            "<strong> carrega significado semântico, não só visual",
+            "<b> não existe mais em HTML",
+            "Não há diferença nenhuma",
+            "<strong> deixa o texto sublinhado"
+          ],
+          "a": 0,
+          "hint": "Pense em significado para leitores de tela, não só aparência.",
+          "ex": "<strong> comunica importância real, além do efeito visual.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Essa hierarquia de títulos está bem organizada?\n<h1>Loja</h1>\n<h3>Novidades</h3>\n<h2>Camisetas</h2>",
+          "opts": [
+            "Sim, está correta",
+            "Não, pulou o <h2> e depois voltou",
+            "Não, faltou o <h4>",
+            "Sim, a ordem não importa"
+          ],
+          "a": 1,
+          "hint": "Veja se os números vão crescendo de forma lógica.",
+          "ex": "O ideal é seguir h1, h2, h3 em ordem, sem pular níveis.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual tag agrupa um bloco de texto corrido?",
+          "opts": [
+            "<p>",
+            "<h1>",
+            "<img>",
+            "<li>"
+          ],
+          "a": 0,
+          "hint": "É a tag mais usada para parágrafos.",
+          "ex": "<p> é a tag padrão para parágrafos de texto.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "html-5",
+      "name": "LINKS",
+      "difficulty": "INICIANTE",
+      "color": "#f6c445",
+      "icon": "↗",
+      "summary": "Conecte páginas com a tag <a> e o atributo href.",
+      "lesson": [
+        {
+          "title": "Criando um link",
+          "body": "A tag <a> cria um link (âncora). O atributo href define para onde ele leva: outra página, outro site ou até uma parte da mesma página. O texto entre <a> e </a> é o que fica clicável.",
+          "code": "<a href=\"contato.html\">Fale conosco</a>\n<a href=\"https://exemplo.com\">Site externo</a>"
+        },
+        {
+          "title": "Links internos e âncoras",
+          "body": "Para pular para uma parte da mesma página, use href=\"#id-do-elemento\", apontando para um elemento com esse id. É útil em páginas longas com sumário.",
+          "code": "<a href=\"#secao-precos\">Ver preços</a>\n...\n<h2 id=\"secao-precos\">Preços</h2>"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual atributo define o destino de um link?",
+          "opts": [
+            "src",
+            "href",
+            "alt",
+            "to"
+          ],
+          "a": 1,
+          "hint": "É o atributo usado em todos os exemplos desta aula.",
+          "ex": "href define para onde o link aponta.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Para onde este link leva?\n<a href=\"#secao-precos\">Ver preços</a>",
+          "opts": [
+            "Para outro site",
+            "Para um elemento com id 'secao-precos' na mesma página",
+            "Não leva a lugar nenhum",
+            "Para o topo da página"
+          ],
+          "a": 1,
+          "hint": "O símbolo # indica uma âncora dentro da própria página.",
+          "ex": "href=\"#id\" navega até o elemento com esse id na mesma página.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual tag deve envolver o texto clicável de um link?",
+          "opts": [
+            "<link>",
+            "<a>",
+            "<href>",
+            "<nav>"
+          ],
+          "a": 1,
+          "hint": "É chamada de 'âncora' em inglês (anchor).",
+          "ex": "A tag <a> é usada para criar links.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que um id repetido em dois elementos causa em um link de âncora?",
+          "opts": [
+            "Nada, funciona normalmente",
+            "Ambiguidade — o navegador não sabe qual elemento é o destino correto",
+            "O link para de funcionar totalmente",
+            "O HTML não compila"
+          ],
+          "a": 1,
+          "hint": "Lembre que id deve ser único na página.",
+          "ex": "IDs duplicados quebram a referência exata que o link deveria seguir.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "html-6",
+      "name": "LISTAS",
+      "difficulty": "INICIANTE",
+      "color": "#f6c445",
+      "icon": "▤",
+      "summary": "Organize itens com listas não ordenadas e ordenadas.",
+      "lesson": [
+        {
+          "title": "Listas não ordenadas",
+          "body": "<ul> cria uma lista sem ordem numérica (com marcadores). Cada item vai dentro de <li>. É ótima para menus, ingredientes, características de um produto.",
+          "code": "<ul>\n  <li>Leite</li>\n  <li>Ovos</li>\n  <li>Farinha</li>\n</ul>"
+        },
+        {
+          "title": "Listas ordenadas",
+          "body": "<ol> cria uma lista numerada automaticamente, útil para passo a passo. Os itens também usam <li>. Listas podem ser aninhadas, colocando uma <ul> ou <ol> dentro de um <li>.",
+          "code": "<ol>\n  <li>Misture os ingredientes</li>\n  <li>Asse por 30 minutos</li>\n  <li>Deixe esfriar</li>\n</ol>"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual tag cria uma lista numerada?",
+          "opts": [
+            "<ul>",
+            "<li>",
+            "<ol>",
+            "<list>"
+          ],
+          "a": 2,
+          "hint": "'Ordered list' — pense na tradução.",
+          "ex": "<ol> cria listas numeradas automaticamente.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Onde cada item de uma lista deve ficar?",
+          "opts": [
+            "Direto dentro de <ul> ou <ol>, sem outra tag",
+            "Dentro de <li>",
+            "Dentro de <p>",
+            "Dentro de <a>"
+          ],
+          "a": 1,
+          "hint": "É a tag específica para itens de lista.",
+          "ex": "Cada item de lista fica dentro de <li>.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Quantos itens essa lista tem?\n<ul>\n  <li>Café</li>\n  <li>Chá</li>\n  <li>Suco</li>\n</ul>",
+          "opts": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "a": 2,
+          "hint": "Conte as tags <li>.",
+          "ex": "Há três tags <li>, então três itens.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "É possível colocar uma lista dentro de outra?",
+          "opts": [
+            "Não, HTML não permite",
+            "Sim, aninhando uma <ul> ou <ol> dentro de um <li>",
+            "Só usando CSS",
+            "Só em HTML5.1 ou mais recente"
+          ],
+          "a": 1,
+          "hint": "Pense no conceito de aninhamento visto antes.",
+          "ex": "Listas podem ser aninhadas dentro de um <li> da lista externa.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "html-7",
+      "name": "IMAGENS",
+      "difficulty": "INICIANTE",
+      "color": "#22c55e",
+      "icon": "◈",
+      "summary": "Insira imagens com <img> e escreva textos alternativos úteis.",
+      "lesson": [
+        {
+          "title": "Inserindo uma imagem",
+          "body": "<img> é um elemento vazio que exibe uma imagem. O atributo src indica o caminho do arquivo (local ou uma URL), e é obrigatório para a imagem aparecer.",
+          "code": "<img src=\"produto.jpg\">\n<img src=\"https://exemplo.com/logo.png\">"
+        },
+        {
+          "title": "O atributo alt",
+          "body": "alt descreve a imagem em texto. É essencial para acessibilidade (leitores de tela) e aparece se a imagem não carregar. Toda imagem com significado deve ter um alt descritivo.",
+          "code": "<img src=\"gato.jpg\" alt=\"Gato laranja dormindo no sofá\">"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual atributo é obrigatório para a imagem aparecer?",
+          "opts": [
+            "alt",
+            "src",
+            "width",
+            "title"
+          ],
+          "a": 1,
+          "hint": "É o que indica o caminho do arquivo.",
+          "ex": "src aponta para o arquivo de imagem a ser exibido.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Para que serve o atributo alt?",
+          "opts": [
+            "Definir a largura da imagem",
+            "Descrever a imagem em texto, para acessibilidade",
+            "Mudar a cor da imagem",
+            "Adicionar um link à imagem"
+          ],
+          "a": 1,
+          "hint": "Pense em leitores de tela e imagens que não carregam.",
+          "ex": "alt fornece uma descrição textual da imagem.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Essa imagem tem um bom alt?\n<img src=\"grafico-vendas.png\" alt=\"imagem\">",
+          "opts": [
+            "Sim, está ótimo",
+            "Não, o alt é genérico e não descreve o conteúdo",
+            "Não, falta o src",
+            "Sim, alt só precisa existir"
+          ],
+          "a": 1,
+          "hint": "'imagem' não diz nada sobre o que está no gráfico.",
+          "ex": "Um alt útil seria algo como 'Gráfico de vendas do trimestre'.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que <img> não tem tag de fechamento?",
+          "opts": [
+            "É um erro comum de digitação",
+            "É um elemento vazio, toda informação está nos atributos",
+            "Porque imagens não existem em HTML puro",
+            "Porque precisa de JavaScript"
+          ],
+          "a": 1,
+          "hint": "Lembre do conceito de elementos vazios da unidade 1.",
+          "ex": "<img> não tem conteúdo interno, por isso não precisa fechar.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "html-8",
+      "name": "TABELAS",
+      "difficulty": "INICIANTE",
+      "color": "#22c55e",
+      "icon": "▦",
+      "summary": "Organize dados em linhas e colunas com <table>.",
+      "lesson": [
+        {
+          "title": "Estrutura de uma tabela",
+          "body": "<table> envolve a tabela inteira. <tr> cria uma linha (table row). Dentro de cada linha, <td> cria uma célula de dado (table data).",
+          "code": "<table>\n  <tr>\n    <td>Camiseta</td>\n    <td>R$ 49,90</td>\n  </tr>\n</table>"
+        },
+        {
+          "title": "Cabeçalho da tabela",
+          "body": "<th> cria uma célula de cabeçalho, geralmente em negrito e centralizada, usada para nomear as colunas. Use-a na primeira linha para explicar o que cada coluna representa.",
+          "code": "<table>\n  <tr>\n    <th>Produto</th>\n    <th>Preço</th>\n  </tr>\n  <tr>\n    <td>Camiseta</td>\n    <td>R$ 49,90</td>\n  </tr>\n</table>"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual tag cria uma linha de tabela?",
+          "opts": [
+            "<td>",
+            "<table>",
+            "<tr>",
+            "<th>"
+          ],
+          "a": 2,
+          "hint": "'Table row' — pense na tradução.",
+          "ex": "<tr> representa uma linha da tabela.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual a diferença entre <td> e <th>?",
+          "opts": [
+            "Não há diferença",
+            "<th> é usada para células de cabeçalho, <td> para dados comuns",
+            "<td> só existe fora de tabelas",
+            "<th> é obsoleta"
+          ],
+          "a": 1,
+          "hint": "Pense em qual delas nomeia as colunas.",
+          "ex": "<th> marca células de cabeçalho, com destaque visual e semântico.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Quantas colunas essa tabela tem?\n<table>\n  <tr>\n    <th>Nome</th>\n    <th>Idade</th>\n    <th>Cidade</th>\n  </tr>\n</table>",
+          "opts": [
+            "1",
+            "2",
+            "3",
+            "4"
+          ],
+          "a": 2,
+          "hint": "Conte as células <th> na linha de cabeçalho.",
+          "ex": "Três <th> significam três colunas: Nome, Idade e Cidade.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Tabelas HTML devem ser usadas para:",
+          "opts": [
+            "Organizar o layout geral da página",
+            "Exibir dados tabulares, como planilhas",
+            "Substituir o CSS",
+            "Criar menus de navegação"
+          ],
+          "a": 1,
+          "hint": "Layout de página é tarefa do CSS (flexbox/grid), não da tabela.",
+          "ex": "Tabelas servem para dados tabulares reais, não para layout geral.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "html-9",
+      "name": "FORMULÁRIOS BÁSICOS",
+      "difficulty": "INICIANTE",
+      "color": "#22c55e",
+      "icon": "▣",
+      "summary": "Colete informações do usuário com <form>, <input> e <button>.",
+      "lesson": [
+        {
+          "title": "A tag <form>",
+          "body": "<form> agrupa campos que coletam dados do usuário, como em um cadastro ou login. Dentro dela ficam elementos como <input> e <button>.",
+          "code": "<form>\n  <input type=\"text\">\n  <button>Enviar</button>\n</form>"
+        },
+        {
+          "title": "Campos de entrada",
+          "body": "<input> é o elemento mais usado em formulários. O atributo type define o tipo de campo, como texto, senha ou e-mail. <button> cria um botão clicável, geralmente para enviar o formulário.",
+          "code": "<input type=\"text\" placeholder=\"Seu nome\">\n<input type=\"password\" placeholder=\"Senha\">\n<button>Entrar</button>"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual tag agrupa os campos de um formulário?",
+          "opts": [
+            "<input>",
+            "<form>",
+            "<table>",
+            "<field>"
+          ],
+          "a": 1,
+          "hint": "É a tag que envolve todo o conjunto de campos.",
+          "ex": "<form> é a tag que agrupa os campos de entrada.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual atributo define o tipo de um <input>?",
+          "opts": [
+            "kind",
+            "type",
+            "input-type",
+            "format"
+          ],
+          "a": 1,
+          "hint": "É o atributo usado nos exemplos, com valores como 'text' e 'password'.",
+          "ex": "type define se o campo é texto, senha, e-mail, etc.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Que tipo de campo este código cria?\n<input type=\"password\" placeholder=\"Senha\">",
+          "opts": [
+            "Um campo de texto comum, visível",
+            "Um campo que oculta os caracteres digitados",
+            "Um botão",
+            "Uma caixa de seleção"
+          ],
+          "a": 1,
+          "hint": "type=\"password\" tem um comportamento visual especial.",
+          "ex": "Campos password ocultam o texto digitado com pontos ou asteriscos.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Para que serve o atributo placeholder?",
+          "opts": [
+            "Define o valor enviado ao servidor",
+            "Mostra um texto de exemplo dentro do campo vazio",
+            "Bloqueia o campo para edição",
+            "Cria uma nova linha"
+          ],
+          "a": 1,
+          "hint": "É o texto claro que some quando você começa a digitar.",
+          "ex": "placeholder mostra uma dica visual, que não é o valor real do campo.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "html-10",
+      "name": "TIPOS DE INPUT",
+      "difficulty": "INICIANTE",
+      "color": "#34d399",
+      "icon": "◐",
+      "summary": "Explore os diferentes tipos de campo: email, number, checkbox e radio.",
+      "lesson": [
+        {
+          "title": "Tipos comuns",
+          "body": "Além de text e password, existem tipos como email (valida formato de e-mail), number (só aceita números) e date (seletor de data). O navegador ajuda a validar automaticamente cada tipo.",
+          "code": "<input type=\"email\" placeholder=\"seu@email.com\">\n<input type=\"number\" min=\"1\" max=\"10\">"
+        },
+        {
+          "title": "Checkbox e radio",
+          "body": "checkbox permite marcar várias opções independentes. radio permite escolher apenas uma opção entre um grupo — para isso, todos os radios do grupo devem ter o mesmo atributo name.",
+          "code": "<input type=\"checkbox\"> Aceito os termos\n\n<input type=\"radio\" name=\"plano\"> Mensal\n<input type=\"radio\" name=\"plano\"> Anual"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual type deixa o usuário escolher apenas uma opção entre várias?",
+          "opts": [
+            "checkbox",
+            "radio",
+            "text",
+            "email"
+          ],
+          "a": 1,
+          "hint": "Pense nos botões redondos de seleção única.",
+          "ex": "type=\"radio\" permite escolher só uma opção de um grupo.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Esses dois radios pertencem ao mesmo grupo?\n<input type=\"radio\" name=\"plano\">\n<input type=\"radio\" name=\"envio\">",
+          "opts": [
+            "Sim, ambos são radio",
+            "Não, têm names diferentes, então são grupos separados",
+            "Sim, sempre que estão próximos",
+            "Não é possível saber"
+          ],
+          "a": 1,
+          "hint": "Radios do mesmo grupo precisam do mesmo atributo name.",
+          "ex": "Names diferentes ('plano' e 'envio') formam grupos independentes.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual a vantagem de usar type=\"email\" em vez de type=\"text\"?",
+          "opts": [
+            "Nenhuma, são idênticos",
+            "O navegador pode validar automaticamente o formato de e-mail",
+            "Deixa o campo maior",
+            "Impede o uso do teclado"
+          ],
+          "a": 1,
+          "hint": "Pense em validação automática do navegador.",
+          "ex": "type=\"email\" ativa validação de formato pelo próprio navegador.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "É possível marcar mais de um checkbox ao mesmo tempo?",
+          "opts": [
+            "Não, só um por vez",
+            "Sim, cada checkbox é independente",
+            "Só se tiverem o mesmo name",
+            "Só em formulários grandes"
+          ],
+          "a": 1,
+          "hint": "Ao contrário do radio, o checkbox não limita a escolha.",
+          "ex": "Checkboxes são independentes: qualquer combinação pode ser marcada.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "html-11",
+      "name": "RÓTULOS E VALIDAÇÃO",
+      "difficulty": "INICIANTE",
+      "color": "#34d399",
+      "icon": "✓",
+      "summary": "Use <label> para acessibilidade e required para validação simples.",
+      "lesson": [
+        {
+          "title": "Conectando label ao input",
+          "body": "<label> descreve um campo. Usando o atributo for com o mesmo valor do id do input, clicar no texto do label foca automaticamente o campo — ótimo para acessibilidade e usabilidade.",
+          "code": "<label for=\"nome\">Nome completo</label>\n<input id=\"nome\" type=\"text\">"
+        },
+        {
+          "title": "Validação simples com required",
+          "body": "O atributo required impede o envio do formulário se o campo estiver vazio, sem precisar de JavaScript. É uma validação básica feita pelo próprio navegador.",
+          "code": "<label for=\"email\">E-mail</label>\n<input id=\"email\" type=\"email\" required>"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Como o <label> se conecta a um <input> específico?",
+          "opts": [
+            "Pelo atributo for, igual ao id do input",
+            "Automaticamente, sem nenhum atributo",
+            "Pela ordem em que aparecem",
+            "Não é possível conectar"
+          ],
+          "a": 0,
+          "hint": "Compare os valores de for e id no exemplo.",
+          "ex": "for=\"nome\" conecta o label ao input com id=\"nome\".",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que acontece ao tentar enviar este formulário com o campo vazio?\n<input type=\"email\" required>",
+          "opts": [
+            "Envia normalmente",
+            "O navegador bloqueia o envio e pede para preencher",
+            "Gera um erro no servidor",
+            "O campo é preenchido automaticamente"
+          ],
+          "a": 1,
+          "hint": "required ativa uma validação automática do navegador.",
+          "ex": "Com required, o navegador impede o envio de campos vazios.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que usar <label> em vez de apenas um texto solto antes do input?",
+          "opts": [
+            "Não faz diferença nenhuma",
+            "Melhora acessibilidade e permite clicar no texto para focar o campo",
+            "label é mais rápido de carregar",
+            "label é obrigatório em HTML5"
+          ],
+          "a": 1,
+          "hint": "Pense em leitores de tela e clique no texto.",
+          "ex": "label conecta semanticamente o texto ao campo, ajudando acessibilidade.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "required é suficiente para validar todo tipo de dado enviado por um usuário?",
+          "opts": [
+            "Sim, cobre todos os casos",
+            "Não, é só uma validação básica no navegador; dados sensíveis também devem ser validados no servidor",
+            "Não, required não existe em HTML",
+            "Sim, mas só para senhas"
+          ],
+          "a": 1,
+          "hint": "Pense em segurança: o navegador pode ser contornado.",
+          "ex": "Validação no front-end ajuda a experiência, mas o servidor deve sempre revalidar.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "html-12",
+      "name": "HTML SEMÂNTICO",
+      "difficulty": "INICIANTE",
+      "color": "#34d399",
+      "icon": "⌗",
+      "summary": "Use tags que descrevem o significado das seções, não só a aparência.",
+      "lesson": [
+        {
+          "title": "Por que usar tags semânticas",
+          "body": "Em vez de usar só <div> para tudo, HTML5 tem tags que descrevem a função de cada área: <header> (cabeçalho), <nav> (navegação), <main> (conteúdo principal) e <footer> (rodapé). Isso ajuda buscadores e leitores de tela a entender a página.",
+          "code": "<header>\n  <h1>Minha Loja</h1>\n  <nav>...</nav>\n</header>\n<main>...</main>\n<footer>...</footer>"
+        },
+        {
+          "title": "section e article",
+          "body": "<section> agrupa uma parte temática do conteúdo, geralmente com seu próprio título. <article> representa um conteúdo independente, que faria sentido sozinho, como um post de blog ou notícia.",
+          "code": "<section>\n  <h2>Últimas notícias</h2>\n  <article>\n    <h3>Título da notícia</h3>\n    <p>Resumo do conteúdo...</p>\n  </article>\n</section>"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual a principal vantagem das tags semânticas sobre usar só <div>?",
+          "opts": [
+            "Elas são mais rápidas de carregar",
+            "Elas comunicam significado para buscadores e leitores de tela",
+            "Elas têm mais estilos por padrão",
+            "Não há vantagem real"
+          ],
+          "a": 1,
+          "hint": "Pense em quem 'lê' a estrutura da página além dos humanos que veem.",
+          "ex": "Tags semânticas dão significado à estrutura, ajudando acessibilidade e SEO.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual tag representa o rodapé da página?",
+          "opts": [
+            "<end>",
+            "<bottom>",
+            "<footer>",
+            "<foot>"
+          ],
+          "a": 2,
+          "hint": "É a mesma palavra usada em inglês para 'rodapé'.",
+          "ex": "<footer> é a tag semântica para o rodapé.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual dessas seria um bom uso de <article>?\n<article>\n  <h3>Como escolher tênis de corrida</h3>\n  <p>Guia completo sobre o assunto...</p>\n</article>",
+          "opts": [
+            "Ruim, deveria ser uma <table>",
+            "Bom, é um conteúdo independente que faz sentido sozinho",
+            "Ruim, article só serve para imagens",
+            "Bom, mas só se estiver dentro de <nav>"
+          ],
+          "a": 1,
+          "hint": "Pense se o conteúdo faz sentido publicado separadamente.",
+          "ex": "Um guia completo é um conteúdo independente, uso correto de <article>.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual tag é usada para o menu de navegação do site?",
+          "opts": [
+            "<menu-links>",
+            "<nav>",
+            "<links>",
+            "<header-nav>"
+          ],
+          "a": 1,
+          "hint": "É uma abreviação de 'navigation'.",
+          "ex": "<nav> é a tag semântica para blocos de navegação.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "html-13",
+      "name": "COMO APLICAR CSS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#1cb0f6",
+      "icon": "◆",
+      "summary": "Conecte estilos ao HTML com CSS externo, interno ou inline.",
+      "lesson": [
+        {
+          "title": "As três formas de aplicar CSS",
+          "body": "CSS pode ser: inline (atributo style direto na tag), interno (dentro de <style> no <head>) ou externo (arquivo .css separado, ligado com <link>). O externo é o mais usado, pois separa conteúdo de estilo e pode ser reaproveitado em várias páginas.",
+          "code": "<link rel=\"stylesheet\" href=\"estilos.css\">"
+        },
+        {
+          "title": "Seletor básico",
+          "body": "Um seletor escolhe quais elementos receberão o estilo. O seletor de tag aplica a todos os elementos daquele tipo, como p { } para todos os parágrafos.",
+          "code": "p {\n  color: blue;\n}\n\nh1 {\n  color: darkred;\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual forma de aplicar CSS é considerada a melhor prática geral?",
+          "opts": [
+            "Inline, com style em cada tag",
+            "Interno, com <style> no head",
+            "Externo, com um arquivo .css separado",
+            "Não há diferença"
+          ],
+          "a": 2,
+          "hint": "Pense em reaproveitar o mesmo estilo em várias páginas.",
+          "ex": "CSS externo separa conteúdo de estilo e é reutilizável entre páginas.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual tag conecta um arquivo CSS externo ao HTML?",
+          "opts": [
+            "<style>",
+            "<css>",
+            "<link>",
+            "<script>"
+          ],
+          "a": 2,
+          "hint": "É colocada dentro do <head>.",
+          "ex": "<link rel=\"stylesheet\" href=\"...\"> conecta o arquivo CSS.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Quais elementos ficam azuis com este CSS?\np {\n  color: blue;\n}",
+          "opts": [
+            "Todos os elementos da página",
+            "Apenas os parágrafos <p>",
+            "Apenas o primeiro parágrafo",
+            "Nenhum, falta um id"
+          ],
+          "a": 1,
+          "hint": "O seletor 'p' escolhe pela tag.",
+          "ex": "O seletor de tag 'p' aplica o estilo a todos os parágrafos.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que um seletor CSS faz?",
+          "opts": [
+            "Cria novos elementos HTML",
+            "Define quais elementos vão receber determinado estilo",
+            "Substitui o JavaScript",
+            "Valida o formulário"
+          ],
+          "a": 1,
+          "hint": "É a parte antes das chaves { } na regra CSS.",
+          "ex": "O seletor escolhe o alvo do estilo definido dentro das chaves.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "html-14",
+      "name": "CORES E FONTES",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#1cb0f6",
+      "icon": "▲",
+      "summary": "Controle cores de texto, fundo e a fonte usada na página.",
+      "lesson": [
+        {
+          "title": "Definindo cores",
+          "body": "color define a cor do texto. background-color define a cor de fundo. Cores podem ser escritas por nome (red), hexadecimal (#ff0000) ou rgb(255, 0, 0).",
+          "code": "h1 {\n  color: #1e293b;\n  background-color: #fef3c7;\n}"
+        },
+        {
+          "title": "Fontes",
+          "body": "font-family escolhe a fonte usada. É comum listar várias opções separadas por vírgula, como reserva caso a primeira não esteja disponível. font-size controla o tamanho do texto.",
+          "code": "body {\n  font-family: Arial, Helvetica, sans-serif;\n  font-size: 16px;\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual propriedade define a cor do texto?",
+          "opts": [
+            "background-color",
+            "color",
+            "font-color",
+            "text-color"
+          ],
+          "a": 1,
+          "hint": "É a propriedade mais direta, sem prefixo.",
+          "ex": "color define a cor do texto de um elemento.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que listar várias fontes em font-family, separadas por vírgula?",
+          "opts": [
+            "É só um erro comum, sem função real",
+            "Servem como opções reservas, caso a primeira não esteja disponível",
+            "O navegador mistura todas ao mesmo tempo",
+            "Cada palavra vira uma cor diferente"
+          ],
+          "a": 1,
+          "hint": "Pense no que acontece se a fonte 'Arial' não existir no computador do usuário.",
+          "ex": "O navegador tenta cada fonte da lista em ordem, até encontrar uma disponível.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual será o fundo deste título?\nh1 {\n  background-color: #fef3c7;\n}",
+          "opts": [
+            "Transparente",
+            "Um tom claro de amarelo",
+            "Preto",
+            "Não afeta o fundo"
+          ],
+          "a": 1,
+          "hint": "#fef3c7 é um hexadecimal de um amarelo claro.",
+          "ex": "background-color: #fef3c7 pinta o fundo de amarelo claro.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual destas é uma forma válida de escrever uma cor em CSS?",
+          "opts": [
+            "color: red;",
+            "color: #ff0000;",
+            "color: rgb(255, 0, 0);",
+            "Todas as anteriores"
+          ],
+          "a": 3,
+          "hint": "CSS aceita mais de uma sintaxe para cores.",
+          "ex": "Nome, hexadecimal e rgb() são formas válidas de definir cores.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "html-15",
+      "name": "O BOX MODEL",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#1cb0f6",
+      "icon": "◫",
+      "summary": "Entenda como margin, border, padding e o conteúdo formam cada elemento.",
+      "lesson": [
+        {
+          "title": "As quatro camadas",
+          "body": "Todo elemento HTML é uma caixa com quatro camadas, de dentro para fora: conteúdo, padding (espaço interno), border (borda) e margin (espaço externo, entre elementos).",
+          "code": "div {\n  padding: 16px;\n  border: 2px solid black;\n  margin: 24px;\n}"
+        },
+        {
+          "title": "padding vs margin",
+          "body": "padding empurra o conteúdo para dentro da própria caixa (afeta o espaço interno). margin empurra a caixa inteira para longe de outros elementos (afeta o espaço externo). Confundir os dois é um erro comum.",
+          "code": "/* padding: espaço DENTRO da borda */\n/* margin: espaço FORA da borda */"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual a ordem das camadas do box model, de dentro para fora?",
+          "opts": [
+            "Margin, border, padding, conteúdo",
+            "Conteúdo, padding, border, margin",
+            "Border, conteúdo, margin, padding",
+            "Padding, margin, conteúdo, border"
+          ],
+          "a": 1,
+          "hint": "Comece pelo texto/imagem e vá se afastando.",
+          "ex": "A ordem correta é: conteúdo → padding → border → margin.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual propriedade cria espaço entre uma caixa e a caixa vizinha?",
+          "opts": [
+            "padding",
+            "border",
+            "margin",
+            "content"
+          ],
+          "a": 2,
+          "hint": "É a camada mais externa da caixa.",
+          "ex": "margin cria espaço fora da caixa, separando de outros elementos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que padding: 16px faz neste botão?\nbutton {\n  padding: 16px;\n}",
+          "opts": [
+            "Afasta o botão de outros elementos",
+            "Aumenta o espaço interno entre o texto e a borda do botão",
+            "Deixa o texto do botão maior",
+            "Muda a cor do botão"
+          ],
+          "a": 1,
+          "hint": "padding afeta o espaço interno da caixa, não externo.",
+          "ex": "padding aumenta o espaço entre o conteúdo e a borda da caixa.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Um elemento com margin: 0 auto; centralizado, tem o que definido antes?",
+          "opts": [
+            "display: none",
+            "Uma largura (width) definida",
+            "position: fixed",
+            "Nenhuma propriedade é necessária"
+          ],
+          "a": 1,
+          "hint": "auto nas laterais só centraliza se a caixa tiver uma largura menor que o container.",
+          "ex": "margin: 0 auto centraliza horizontalmente uma caixa com width definida.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "html-16",
+      "name": "SELETORES AVANÇADOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#0ea5e9",
+      "icon": "⌕",
+      "summary": "Combine classes, ids e descendentes para mirar elementos com precisão.",
+      "lesson": [
+        {
+          "title": "Classe e id no CSS",
+          "body": "Para selecionar por classe, use um ponto antes do nome: .destaque. Para selecionar por id, use uma cerquilha: #cabecalho. Classes são reutilizáveis; ids devem ser únicos.",
+          "code": ".destaque {\n  color: red;\n}\n\n#cabecalho {\n  background: black;\n}"
+        },
+        {
+          "title": "Seletor descendente",
+          "body": "Colocar dois seletores separados por espaço seleciona elementos que estão dentro de outro. nav a seleciona apenas links <a> que estão dentro de um <nav>, não todos os links da página.",
+          "code": "nav a {\n  color: white;\n  text-decoration: none;\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Como se escreve um seletor de classe em CSS?",
+          "opts": [
+            "#nome-da-classe",
+            ".nome-da-classe",
+            "*nome-da-classe",
+            "@nome-da-classe"
+          ],
+          "a": 1,
+          "hint": "Use o mesmo símbolo do ponto final.",
+          "ex": "Um ponto antes do nome seleciona por classe.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Este CSS afeta quais links?\nnav a {\n  color: white;\n}\n\n<p><a href=\"#\">Link no texto</a></p>\n<nav><a href=\"#\">Link no menu</a></nav>",
+          "opts": [
+            "Ambos os links",
+            "Só o link dentro de <nav>",
+            "Só o link dentro de <p>",
+            "Nenhum link"
+          ],
+          "a": 1,
+          "hint": "'nav a' seleciona links que estão dentro de um nav.",
+          "ex": "O seletor descendente 'nav a' atinge apenas o link dentro do <nav>.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que usar classe em vez de id quando o estilo se repete em vários elementos?",
+          "opts": [
+            "Não faz diferença",
+            "id deve ser único por página; classe pode repetir em vários elementos",
+            "Classe é mais rápida de carregar",
+            "id não funciona com CSS"
+          ],
+          "a": 1,
+          "hint": "Lembre a regra de unicidade do id, vista na unidade de HTML.",
+          "ex": "Classes foram feitas para reutilização; ids são únicos por definição.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual seletor tem prioridade maior em caso de conflito: .classe ou #id?",
+          "opts": [
+            ".classe",
+            "#id",
+            "Empatam sempre",
+            "Depende da ordem no arquivo, nunca da especificidade"
+          ],
+          "a": 1,
+          "hint": "ids são considerados mais específicos que classes.",
+          "ex": "Seletores de id têm maior especificidade que seletores de classe.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "html-17",
+      "name": "DISPLAY E POSICIONAMENTO",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#0ea5e9",
+      "icon": "◧",
+      "summary": "Controle como elementos ocupam espaço com display e position.",
+      "lesson": [
+        {
+          "title": "block, inline e inline-block",
+          "body": "Elementos block (como <div>, <p>) ocupam toda a largura disponível e começam em nova linha. Elementos inline (como <span>, <a>) ficam na mesma linha e só ocupam o espaço do conteúdo. inline-block mistura os dois: fica na linha, mas aceita largura e altura.",
+          "code": "span {\n  display: inline-block;\n  width: 100px;\n}"
+        },
+        {
+          "title": "position básico",
+          "body": "position: relative move o elemento em relação à sua posição normal, sem tirar o espaço que ele ocupava. position: absolute tira o elemento do fluxo normal e o posiciona em relação ao ancestral posicionado mais próximo.",
+          "code": ".card {\n  position: relative;\n}\n.badge {\n  position: absolute;\n  top: 8px;\n  right: 8px;\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Um elemento com display: block faz o quê por padrão?",
+          "opts": [
+            "Fica na mesma linha que o próximo elemento",
+            "Ocupa toda a largura disponível e começa em nova linha",
+            "Fica invisível",
+            "Não pode ter largura definida"
+          ],
+          "a": 1,
+          "hint": "Pense em como <div> e <p> se comportam.",
+          "ex": "Elementos block ocupam a largura disponível, um por linha.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual a diferença principal entre inline e inline-block?",
+          "opts": [
+            "Não há diferença",
+            "inline-block aceita width e height definidos; inline não",
+            "inline sempre quebra linha",
+            "inline-block é obsoleto"
+          ],
+          "a": 1,
+          "hint": "Pense em qual dos dois permite definir um tamanho fixo.",
+          "ex": "inline-block combina ficar na linha com poder ter largura/altura.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Onde o .badge vai aparecer com este CSS?\n.card {\n  position: relative;\n}\n.badge {\n  position: absolute;\n  top: 8px;\n  right: 8px;\n}",
+          "opts": [
+            "No canto superior direito do .card",
+            "No centro da tela inteira",
+            "Embaixo do .card, fora dele",
+            "Não aparece, falta left"
+          ],
+          "a": 0,
+          "hint": "absolute se posiciona em relação ao ancestral com position: relative mais próximo.",
+          "ex": "O .badge fica posicionado no canto superior direito do .card, seu ancestral relative.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Um elemento com position: absolute continua ocupando espaço no fluxo normal da página?",
+          "opts": [
+            "Sim, normalmente",
+            "Não, ele é retirado do fluxo normal",
+            "Só se tiver display: block",
+            "Depende do navegador"
+          ],
+          "a": 1,
+          "hint": "Pense em como o badge 'flutua' sobre o card sem empurrar outros elementos.",
+          "ex": "position: absolute retira o elemento do fluxo, ele não empurra os vizinhos.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "html-18",
+      "name": "FLEXBOX BÁSICO",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#0ea5e9",
+      "icon": "⇄",
+      "summary": "Alinhe elementos em linha ou coluna com display: flex.",
+      "lesson": [
+        {
+          "title": "Ativando o flexbox",
+          "body": "display: flex transforma um elemento em um container flexível: seus filhos diretos se organizam automaticamente em linha, um ao lado do outro, sem precisar de float ou position.",
+          "code": ".menu {\n  display: flex;\n}"
+        },
+        {
+          "title": "Alinhando os itens",
+          "body": "justify-content alinha os itens no eixo horizontal (space-between, center, flex-end...). align-items alinha no eixo vertical dentro do container (center, flex-start, stretch...).",
+          "code": ".menu {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que display: flex faz aos filhos diretos do elemento?",
+          "opts": [
+            "Os esconde",
+            "Os organiza automaticamente em linha, lado a lado",
+            "Os transforma em tabelas",
+            "Não afeta nada sozinho"
+          ],
+          "a": 1,
+          "hint": "É o comportamento padrão do flexbox, sem configurar mais nada.",
+          "ex": "display: flex organiza os filhos diretos em linha, por padrão.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual propriedade centraliza os itens no eixo vertical de um flex container?",
+          "opts": [
+            "justify-content",
+            "align-items",
+            "text-align",
+            "vertical-align"
+          ],
+          "a": 1,
+          "hint": "'justify' cuida do eixo principal, o outro cuida do eixo cruzado.",
+          "ex": "align-items: center centraliza os itens no eixo transversal (vertical, por padrão).",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Como os itens ficam distribuídos com este CSS?\n.menu {\n  display: flex;\n  justify-content: space-between;\n}",
+          "opts": [
+            "Todos colados à esquerda",
+            "Espaçados igualmente, o primeiro na ponta esquerda e o último na direita",
+            "Um em cima do outro",
+            "Centralizados no meio"
+          ],
+          "a": 1,
+          "hint": "space-between empurra o primeiro e o último para as extremidades.",
+          "ex": "justify-content: space-between distribui o espaço entre os itens.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Antes do flexbox, como esse tipo de alinhamento em linha costumava ser feito?",
+          "opts": [
+            "Com float e cálculos manuais de largura, de forma mais trabalhosa",
+            "Não era possível de jeito nenhum",
+            "Só com JavaScript",
+            "Com a tag <table> obrigatoriamente"
+          ],
+          "a": 0,
+          "hint": "Pense em técnicas mais antigas de layout em CSS.",
+          "ex": "Antes do flexbox, float e outras técnicas exigiam mais cálculo manual.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "html-19",
+      "name": "FLEXBOX NA PRÁTICA",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#38bdf8",
+      "icon": "⇆",
+      "summary": "Use flex-direction, flex-wrap e gap para montar layouts reais.",
+      "lesson": [
+        {
+          "title": "Direção e quebra de linha",
+          "body": "flex-direction: column empilha os itens verticalmente, em vez da linha padrão. flex-wrap: wrap permite que os itens quebrem para a próxima linha quando não cabem mais, em vez de espremer tudo.",
+          "code": ".galeria {\n  display: flex;\n  flex-wrap: wrap;\n}"
+        },
+        {
+          "title": "Espaçamento com gap",
+          "body": "gap define o espaço entre os itens flex, sem precisar de margin em cada um individualmente. É a forma moderna e mais simples de espaçar itens dentro de um flex container.",
+          "code": ".galeria {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 16px;\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que flex-direction: column faz?",
+          "opts": [
+            "Empilha os itens na vertical, um abaixo do outro",
+            "Deixa os itens em linha, lado a lado",
+            "Esconde os itens",
+            "Inverte as cores"
+          ],
+          "a": 0,
+          "hint": "'Column' remete a coluna, empilhamento vertical.",
+          "ex": "flex-direction: column organiza os itens em coluna (vertical).",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Para que serve flex-wrap: wrap?",
+          "opts": [
+            "Some com os itens que não cabem",
+            "Permite que os itens quebrem para a próxima linha",
+            "Aumenta o tamanho da fonte",
+            "Remove o espaçamento entre itens"
+          ],
+          "a": 1,
+          "hint": "Pense em uma galeria de fotos que não cabe tudo em uma linha só.",
+          "ex": "flex-wrap: wrap evita que os itens sejam espremidos, quebrando linha.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual a vantagem de gap sobre usar margin em cada item?",
+          "opts": [
+            "Nenhuma, são idênticos",
+            "gap não cria espaço extra nas bordas externas do container",
+            "gap só funciona em grid, não em flex",
+            "margin é mais simples de usar"
+          ],
+          "a": 1,
+          "hint": "Pense no espaço indesejado que margin pode criar nas bordas do container.",
+          "ex": "gap espaça só entre os itens, sem sobrar margem nas bordas externas.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Sem flex-wrap: wrap, o que acontece se os itens não couberem na linha?",
+          "opts": [
+            "Eles quebram para a próxima linha automaticamente",
+            "Eles são espremidos na mesma linha (comportamento padrão nowrap)",
+            "A página trava",
+            "Eles desaparecem"
+          ],
+          "a": 1,
+          "hint": "O valor padrão de flex-wrap é nowrap.",
+          "ex": "Por padrão (nowrap), os itens são espremidos para caber em uma única linha.",
+          "format": "PREVISÃO DE RESULTADO"
+        }
+      ]
+    },
+    {
+      "id": "html-20",
+      "name": "GRID BÁSICO",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#38bdf8",
+      "icon": "▦",
+      "summary": "Crie layouts em grade com display: grid e grid-template-columns.",
+      "lesson": [
+        {
+          "title": "Ativando o grid",
+          "body": "display: grid transforma um elemento em um container de grade. grid-template-columns define quantas colunas existem e a largura de cada uma.",
+          "code": ".produtos {\n  display: grid;\n  grid-template-columns: 1fr 1fr 1fr;\n  gap: 16px;\n}"
+        },
+        {
+          "title": "A unidade fr",
+          "body": "fr representa uma fração do espaço disponível. grid-template-columns: 1fr 1fr 1fr cria três colunas de larguras iguais. 2fr 1fr criaria duas colunas, a primeira com o dobro da largura da segunda.",
+          "code": ".layout {\n  display: grid;\n  grid-template-columns: 2fr 1fr;\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que grid-template-columns: 1fr 1fr 1fr cria?",
+          "opts": [
+            "Uma coluna só, três vezes mais larga",
+            "Três colunas de larguras iguais",
+            "Três linhas de mesma altura",
+            "Nenhuma coluna, é inválido"
+          ],
+          "a": 1,
+          "hint": "Cada 'fr' representa uma fração igual do espaço.",
+          "ex": "Três valores 1fr criam três colunas com larguras iguais.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Nesta grade, qual coluna é mais larga?\n.layout {\n  display: grid;\n  grid-template-columns: 2fr 1fr;\n}",
+          "opts": [
+            "A primeira coluna",
+            "A segunda coluna",
+            "As duas têm a mesma largura",
+            "Não é possível saber"
+          ],
+          "a": 0,
+          "hint": "2fr representa o dobro do espaço de 1fr.",
+          "ex": "2fr é o dobro de 1fr, então a primeira coluna fica mais larga.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual a diferença fundamental entre flexbox e grid?",
+          "opts": [
+            "Não há diferença nenhuma",
+            "Flexbox é pensado para uma dimensão (linha ou coluna); grid controla linhas e colunas ao mesmo tempo",
+            "Grid não aceita gap",
+            "Flexbox só funciona em navegadores antigos"
+          ],
+          "a": 1,
+          "hint": "Pense em quantos eixos cada um controla ao mesmo tempo.",
+          "ex": "Flexbox é unidimensional; grid é bidimensional (controla linhas e colunas juntas).",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual propriedade transforma um elemento em um container de grade?",
+          "opts": [
+            "display: flex",
+            "display: grid",
+            "display: table",
+            "grid: true"
+          ],
+          "a": 1,
+          "hint": "É análoga a display: flex, mas para grid.",
+          "ex": "display: grid ativa o comportamento de grade no elemento.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "html-21",
+      "name": "GRID NA PRÁTICA",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#38bdf8",
+      "icon": "▧",
+      "summary": "Combine linhas, colunas e alinhamento para montar telas completas.",
+      "lesson": [
+        {
+          "title": "Linhas e responsividade simples",
+          "body": "Além das colunas, dá para definir grid-template-rows para a altura das linhas. auto-fit e minmax() ajudam a criar grades que se ajustam sozinhas ao espaço disponível, sem media queries.",
+          "code": ".galeria {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));\n  gap: 12px;\n}"
+        },
+        {
+          "title": "Alinhando itens no grid",
+          "body": "Assim como no flexbox, justify-items e align-items alinham o conteúdo dentro de cada célula da grade. place-items é um atalho que define os dois de uma vez.",
+          "code": ".card-grid {\n  display: grid;\n  place-items: center;\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que repeat(auto-fit, minmax(150px, 1fr)) faz, resumidamente?",
+          "opts": [
+            "Cria sempre exatamente 3 colunas fixas",
+            "Cria quantas colunas de no mínimo 150px couberem no espaço disponível",
+            "Ignora a largura da tela",
+            "Cria colunas de altura fixa"
+          ],
+          "a": 1,
+          "hint": "auto-fit ajusta o número de colunas automaticamente ao espaço.",
+          "ex": "Essa combinação cria uma grade que se adapta à largura disponível.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual propriedade é um atalho para justify-items e align-items juntos?",
+          "opts": [
+            "place-items",
+            "align-content",
+            "grid-align",
+            "center-items"
+          ],
+          "a": 0,
+          "hint": "É uma propriedade curta, mencionada na aula.",
+          "ex": "place-items define alinhamento horizontal e vertical de uma vez.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que place-items: center faz com o conteúdo de cada célula do grid?",
+          "opts": [
+            "Alinha à esquerda",
+            "Centraliza tanto horizontal quanto verticalmente",
+            "Estica para ocupar toda a célula",
+            "Não afeta o alinhamento"
+          ],
+          "a": 1,
+          "hint": "'Center' nos dois eixos ao mesmo tempo.",
+          "ex": "place-items: center centraliza o conteúdo nos dois eixos de cada célula.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Quando o grid costuma ser a escolha mais natural em vez do flexbox?",
+          "opts": [
+            "Para alinhar um único texto no centro de um botão",
+            "Para montar um layout com linhas e colunas bem definidas, como um painel de cards",
+            "Nunca, flexbox sempre é melhor",
+            "Só para animações"
+          ],
+          "a": 1,
+          "hint": "Pense em layouts bidimensionais completos, não só uma fileira.",
+          "ex": "Grid brilha em layouts com linhas e colunas definidas, como painéis e galerias.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "html-22",
+      "name": "UNIDADES DE MEDIDA",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#a78bfa",
+      "icon": "◆",
+      "summary": "Escolha entre px, %, em, rem e unidades de viewport.",
+      "lesson": [
+        {
+          "title": "Unidades fixas e relativas",
+          "body": "px é uma unidade fixa: sempre o mesmo tamanho. % é relativa ao elemento pai. rem é relativa ao tamanho de fonte da página inteira (raiz), o que a torna previsível mesmo em componentes aninhados.",
+          "code": "html {\n  font-size: 16px;\n}\np {\n  font-size: 1rem; /* 16px */\n}"
+        },
+        {
+          "title": "Unidades de viewport",
+          "body": "vw e vh são relativas ao tamanho da janela do navegador: 1vw é 1% da largura da tela, 1vh é 1% da altura. São úteis para elementos que devem ocupar uma fração da tela, como um banner de altura total.",
+          "code": ".banner {\n  height: 50vh;\n  width: 100vw;\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "rem é relativo a qual elemento?",
+          "opts": [
+            "Ao elemento pai direto",
+            "Ao tamanho de fonte do elemento raiz (html)",
+            "À largura da tela",
+            "A nenhum, é uma unidade fixa"
+          ],
+          "a": 1,
+          "hint": "O 'r' de rem significa 'root' (raiz).",
+          "ex": "rem é sempre relativo ao font-size do elemento <html>.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que 100vh representa?",
+          "opts": [
+            "100 pixels",
+            "100% da altura da janela visível",
+            "100% da largura da página",
+            "Metade da tela"
+          ],
+          "a": 1,
+          "hint": "'vh' significa viewport height.",
+          "ex": "100vh equivale a 100% da altura visível da janela do navegador.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Se html { font-size: 16px; } e um elemento tem font-size: 2rem, qual o tamanho final em pixels?",
+          "opts": [
+            "16px",
+            "32px",
+            "2px",
+            "Depende do elemento pai direto"
+          ],
+          "a": 1,
+          "hint": "2rem é sempre 2 vezes o font-size do html, não do pai direto.",
+          "ex": "2rem × 16px (tamanho da raiz) = 32px.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que rem costuma ser preferido a px para tamanhos de fonte responsivos?",
+          "opts": [
+            "Não há motivo, são idênticos",
+            "rem escala proporcionalmente se o usuário mudar o tamanho de fonte padrão do navegador",
+            "px é mais rápido de processar",
+            "rem só funciona em celulares"
+          ],
+          "a": 1,
+          "hint": "Pense em acessibilidade: usuários que aumentam a fonte padrão do navegador.",
+          "ex": "rem respeita as preferências de acessibilidade de fonte do usuário; px não.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "html-23",
+      "name": "MEDIA QUERIES",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#a78bfa",
+      "icon": "◉",
+      "summary": "Aplique estilos diferentes conforme o tamanho da tela.",
+      "lesson": [
+        {
+          "title": "A sintaxe básica",
+          "body": "@media (max-width: 768px) { } aplica o CSS de dentro apenas quando a tela tem 768px de largura ou menos. É a base da responsividade: layouts diferentes para celular, tablet e desktop.",
+          "code": "@media (max-width: 768px) {\n  .menu {\n    flex-direction: column;\n  }\n}"
+        },
+        {
+          "title": "Mobile first",
+          "body": "Na abordagem mobile first, o CSS padrão (sem media query) já é pensado para telas pequenas. Depois, media queries com min-width vão adicionando ajustes para telas maiores, em vez de remover estilos de telas grandes.",
+          "code": ".menu {\n  flex-direction: column;\n}\n@media (min-width: 768px) {\n  .menu {\n    flex-direction: row;\n  }\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Quando o CSS dentro de @media (max-width: 768px) é aplicado?",
+          "opts": [
+            "Sempre, em qualquer tela",
+            "Quando a largura da tela é 768px ou menor",
+            "Só em impressoras",
+            "Quando a largura é maior que 768px"
+          ],
+          "a": 1,
+          "hint": "'max-width' define um limite máximo.",
+          "ex": "max-width: 768px ativa o estilo em telas de até 768px de largura.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Com este CSS, o menu fica em coluna ou em linha numa tela de 1200px?\n.menu { flex-direction: column; }\n@media (min-width: 768px) {\n  .menu { flex-direction: row; }\n}",
+          "opts": [
+            "Em coluna",
+            "Em linha (row)",
+            "Alterna aleatoriamente",
+            "Nenhum dos dois, dá erro"
+          ],
+          "a": 1,
+          "hint": "1200px é maior que 768px, então a media query com min-width se aplica.",
+          "ex": "Como 1200px ≥ 768px, a regra row da media query é aplicada.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que caracteriza a abordagem 'mobile first'?",
+          "opts": [
+            "Escrever primeiro o CSS para telas grandes",
+            "Escrever o CSS padrão pensando em telas pequenas, e ampliar com min-width",
+            "Ignorar completamente o desktop",
+            "Usar só unidades em px"
+          ],
+          "a": 1,
+          "hint": "Pense em qual estilo é o 'padrão' (sem media query).",
+          "ex": "Mobile first começa pelo estilo de tela pequena como padrão.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que usar media queries em vez de um único layout fixo para todas as telas?",
+          "opts": [
+            "Não há motivo real",
+            "Telas de tamanhos muito diferentes precisam de layouts adaptados para boa usabilidade",
+            "Media queries deixam o site mais lento sempre",
+            "É só uma questão estética, sem impacto de uso"
+          ],
+          "a": 1,
+          "hint": "Pense em um menu horizontal apertado numa tela de celular.",
+          "ex": "Layouts adaptados garantem boa usabilidade em qualquer tamanho de tela.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "html-24",
+      "name": "IMAGENS E LAYOUT RESPONSIVO",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#a78bfa",
+      "icon": "◈",
+      "summary": "Evite imagens quebrando o layout com max-width e boas práticas.",
+      "lesson": [
+        {
+          "title": "Imagens que se ajustam",
+          "body": "max-width: 100% impede que uma imagem fique maior que seu container, encolhendo proporcionalmente em telas menores, sem esticar além do espaço disponível.",
+          "code": "img {\n  max-width: 100%;\n  height: auto;\n}"
+        },
+        {
+          "title": "height: auto e proporção",
+          "body": "Combinar max-width: 100% com height: auto mantém a proporção original da imagem enquanto ela encolhe, evitando que fique distorcida (esticada ou achatada).",
+          "code": ".card img {\n  max-width: 100%;\n  height: auto;\n  display: block;\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que max-width: 100% faz em uma imagem?",
+          "opts": [
+            "Força a imagem a ocupar sempre 100% da tela inteira",
+            "Impede que a imagem fique maior que seu container",
+            "Deixa a imagem quadrada",
+            "Remove a imagem em telas pequenas"
+          ],
+          "a": 1,
+          "hint": "Pense em um limite máximo, não um valor fixo.",
+          "ex": "max-width: 100% limita a imagem ao tamanho do seu container.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Sem height: auto, o que pode acontecer a uma imagem com width e height fixos ao encolher a tela?",
+          "opts": [
+            "Nada, ela sempre fica perfeita",
+            "Ela pode ficar distorcida, esticada ou achatada",
+            "Ela desaparece completamente",
+            "Ela vira um link"
+          ],
+          "a": 1,
+          "hint": "Pense em manter a proporção original (largura × altura).",
+          "ex": "Sem height: auto, a proporção da imagem pode ser perdida ao redimensionar.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que evitar definir width fixo em pixels para imagens em layouts responsivos?",
+          "opts": [
+            "Porque pixels não existem em CSS",
+            "Porque a imagem pode ficar maior que a tela em dispositivos pequenos, causando rolagem horizontal",
+            "Porque pixels deixam a imagem invisível",
+            "Não há motivo, é sempre seguro"
+          ],
+          "a": 1,
+          "hint": "Pense em uma imagem de 800px de largura fixa numa tela de 360px.",
+          "ex": "Um width fixo maior que a tela força rolagem horizontal indesejada.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual combinação de propriedades é a base para imagens responsivas simples?",
+          "opts": [
+            "width: 100% e height: 100%",
+            "max-width: 100% e height: auto",
+            "position: absolute e z-index: 1",
+            "display: none em telas pequenas"
+          ],
+          "a": 1,
+          "hint": "É a combinação usada nos dois exemplos desta aula.",
+          "ex": "max-width: 100% com height: auto é o padrão básico para imagens responsivas.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "html-25",
+      "name": "PSEUDO-CLASSES E ESTADOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#f472b6",
+      "icon": "◐",
+      "summary": "Estilize elementos conforme interação: hover, focus e active.",
+      "lesson": [
+        {
+          "title": "hover e focus",
+          "body": ":hover aplica um estilo quando o mouse está sobre o elemento. :focus aplica quando o elemento está selecionado (por clique ou tab do teclado) — essencial para quem navega sem mouse.",
+          "code": "button:hover {\n  background: #1cb0f6;\n}\nbutton:focus {\n  outline: 2px solid #58cc02;\n}"
+        },
+        {
+          "title": "active e outras pseudo-classes",
+          "body": ":active aplica um estilo no instante em que o elemento é clicado (pressionado). Existem outras úteis como :first-child (primeiro filho) e :nth-child() (filho em posição específica).",
+          "code": "button:active {\n  transform: scale(0.97);\n}\nli:first-child {\n  font-weight: bold;\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Quando o estilo de :hover é aplicado?",
+          "opts": [
+            "Quando a página carrega",
+            "Quando o mouse está sobre o elemento",
+            "Quando o elemento é clicado",
+            "Nunca, é só decorativo"
+          ],
+          "a": 1,
+          "hint": "Pense no cursor pairando sobre um botão.",
+          "ex": ":hover ativa o estilo enquanto o mouse está sobre o elemento.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que :focus é importante para acessibilidade?",
+          "opts": [
+            "Não tem relação com acessibilidade",
+            "Mostra visualmente qual elemento está selecionado para quem navega pelo teclado",
+            "Só funciona em mouse",
+            "Substitui o :hover completamente"
+          ],
+          "a": 1,
+          "hint": "Pense em alguém navegando com a tecla Tab, sem usar mouse.",
+          "ex": ":focus dá um indicador visual essencial para navegação via teclado.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual pseudo-classe é ativada durante o clique, antes de soltar o botão do mouse?",
+          "opts": [
+            ":hover",
+            ":active",
+            ":focus",
+            ":visited"
+          ],
+          "a": 1,
+          "hint": "É o estado mais curto, só durante a pressão.",
+          "ex": ":active representa o instante em que o botão está sendo pressionado.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Remover o outline do :focus sem colocar outro indicador visual é uma boa prática?",
+          "opts": [
+            "Sim, sempre deixa mais bonito",
+            "Não, prejudica quem navega pelo teclado, que perde a referência visual",
+            "Sim, mas só em formulários",
+            "Não faz diferença nenhuma"
+          ],
+          "a": 1,
+          "hint": "Pense em como alguém saberia qual campo está selecionado sem outline nem substituto.",
+          "ex": "Remover o outline sem alternativa prejudica seriamente a acessibilidade.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "html-26",
+      "name": "TRANSIÇÕES E ANIMAÇÕES",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#f472b6",
+      "icon": "⟳",
+      "summary": "Suavize mudanças de estado com transition e crie animações com @keyframes.",
+      "lesson": [
+        {
+          "title": "transition",
+          "body": "transition anima a mudança de uma propriedade ao longo do tempo, em vez de trocar instantaneamente. Definindo transition: background-color 0.2s, uma mudança de cor no hover fica suave.",
+          "code": "button {\n  background: #58cc02;\n  transition: background-color 0.2s ease;\n}\nbutton:hover {\n  background: #46a302;\n}"
+        },
+        {
+          "title": "@keyframes",
+          "body": "@keyframes define uma animação com vários pontos no tempo (0%, 50%, 100%...). Depois, a propriedade animation aplica essa animação a um elemento, controlando duração e repetição.",
+          "code": "@keyframes pulsar {\n  0%, 100% { transform: scale(1); }\n  50% { transform: scale(1.05); }\n}\n.badge {\n  animation: pulsar 1.5s infinite;\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que a propriedade transition faz?",
+          "opts": [
+            "Cria elementos novos",
+            "Anima a mudança de uma propriedade CSS ao longo do tempo",
+            "Remove elementos da tela",
+            "Só funciona em imagens"
+          ],
+          "a": 1,
+          "hint": "Pense em uma cor mudando suavemente, não de forma instantânea.",
+          "ex": "transition suaviza a mudança de valor de uma propriedade CSS.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Quanto tempo dura a transição de cor deste botão ao passar o mouse?\nbutton {\n  transition: background-color 0.2s ease;\n}",
+          "opts": [
+            "2 segundos",
+            "0.2 segundos",
+            "20 segundos",
+            "Instantâneo, sem duração"
+          ],
+          "a": 1,
+          "hint": "Observe o valor logo após o nome da propriedade animada.",
+          "ex": "0.2s define a duração da transição como 0,2 segundos.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual regra define os pontos no tempo de uma animação CSS?",
+          "opts": [
+            "@media",
+            "@keyframes",
+            "@font-face",
+            "@import"
+          ],
+          "a": 1,
+          "hint": "É a mesma regra usada no exemplo 'pulsar'.",
+          "ex": "@keyframes define os estágios de uma animação CSS.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que animation: pulsar 1.5s infinite faz?",
+          "opts": [
+            "Executa a animação 'pulsar' uma única vez",
+            "Executa a animação 'pulsar' repetidamente, sem parar",
+            "Aplica a animação só no hover",
+            "Cria a animação do zero"
+          ],
+          "a": 1,
+          "hint": "'infinite' indica quantas vezes a animação se repete.",
+          "ex": "infinite faz a animação se repetir continuamente, sem fim.",
+          "format": "PREVISÃO DE RESULTADO"
+        }
+      ]
+    },
+    {
+      "id": "html-27",
+      "name": "ACESSIBILIDADE BÁSICA",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#f472b6",
+      "icon": "✓",
+      "summary": "Escreva páginas que funcionam bem para todo mundo, com boas práticas simples.",
+      "lesson": [
+        {
+          "title": "Contraste e leitura",
+          "body": "Texto com pouco contraste em relação ao fundo é difícil de ler para muitas pessoas, incluindo quem tem baixa visão. Prefira combinações de cor com contraste forte, especialmente em textos importantes.",
+          "code": "/* Bom contraste */\np {\n  color: #1e293b;\n  background: #ffffff;\n}"
+        },
+        {
+          "title": "Estrutura acessível",
+          "body": "Usar tags semânticas, alt em imagens, label em campos de formulário e uma hierarquia de títulos organizada já resolve boa parte da acessibilidade básica. São práticas simples com grande impacto para quem usa leitores de tela.",
+          "code": "<img src=\"grafico.png\" alt=\"Gráfico de vendas crescendo em 20% no trimestre\">"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Por que o contraste entre texto e fundo é importante?",
+          "opts": [
+            "É só uma questão estética, sem outro impacto",
+            "Baixo contraste dificulta a leitura, especialmente para pessoas com baixa visão",
+            "Alto contraste deixa o site mais lento",
+            "Não tem relação com acessibilidade"
+          ],
+          "a": 1,
+          "hint": "Pense em ler um texto cinza claro sobre fundo branco.",
+          "ex": "Bom contraste é essencial para legibilidade, incluindo pessoas com baixa visão.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Quais práticas ajudam na acessibilidade básica de uma página?",
+          "opts": [
+            "Tags semânticas, alt em imagens e label em formulários",
+            "Usar apenas <div> para tudo",
+            "Remover todos os títulos",
+            "Usar cores aleatórias sem padrão"
+          ],
+          "a": 0,
+          "hint": "Revise o que foi visto nas unidades de HTML semântico e formulários.",
+          "ex": "Semântica, alt e label são práticas simples com grande efeito em acessibilidade.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual desses textos alternativos é mais útil para acessibilidade?\n<img src=\"grafico.png\" alt=\"Gráfico de vendas crescendo 20% no trimestre\">\n<img src=\"grafico.png\" alt=\"imagem123\">",
+          "opts": [
+            "O segundo, é mais curto",
+            "O primeiro, descreve o conteúdo real da imagem",
+            "Nenhum dos dois importa",
+            "Os dois são igualmente bons"
+          ],
+          "a": 1,
+          "hint": "Pense em alguém que só ouve a descrição, sem ver a imagem.",
+          "ex": "Um alt descritivo comunica o conteúdo real da imagem a quem não a vê.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Acessibilidade beneficia apenas pessoas com deficiência?",
+          "opts": [
+            "Sim, exclusivamente",
+            "Não, também ajuda em conexões lentas, telas pequenas e situações diversas de uso",
+            "Não tem benefício real para ninguém",
+            "Só beneficia buscadores"
+          ],
+          "a": 1,
+          "hint": "Pense em legendas em vídeo sem som, ou textos claros em telas pequenas.",
+          "ex": "Boas práticas de acessibilidade melhoram a experiência de todos os usuários.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "html-28",
+      "name": "ORGANIZAÇÃO DE ARQUIVOS",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "▣",
+      "summary": "Estruture pastas e separe HTML, CSS e imagens de forma clara.",
+      "lesson": [
+        {
+          "title": "Uma estrutura simples",
+          "body": "Um projeto organizado costuma separar arquivos por tipo: index.html na raiz, uma pasta css/ para estilos, e uma pasta images/ (ou assets/) para imagens. Isso facilita encontrar e manter os arquivos conforme o projeto cresce.",
+          "code": "projeto/\n  index.html\n  css/\n    estilos.css\n  images/\n    logo.png"
+        },
+        {
+          "title": "Caminhos relativos",
+          "body": "Ao referenciar arquivos de outras pastas, use caminhos relativos à posição do arquivo atual. De dentro do HTML na raiz, css/estilos.css aponta para o arquivo dentro da pasta css.",
+          "code": "<link rel=\"stylesheet\" href=\"css/estilos.css\">\n<img src=\"images/logo.png\" alt=\"Logo\">"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Por que separar CSS e imagens em pastas próprias?",
+          "opts": [
+            "É obrigatório, o navegador não funciona sem isso",
+            "Facilita a organização e manutenção do projeto conforme ele cresce",
+            "Deixa o site mais rápido automaticamente",
+            "Não traz nenhum benefício real"
+          ],
+          "a": 1,
+          "hint": "Pense em um projeto com centenas de arquivos misturados numa pasta só.",
+          "ex": "Organizar por tipo de arquivo facilita encontrar e manter o projeto.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "De dentro de um index.html na raiz do projeto, qual caminho aponta para uma imagem em images/logo.png?",
+          "opts": [
+            "logo.png",
+            "images/logo.png",
+            "/logo.png",
+            "../images/logo.png"
+          ],
+          "a": 1,
+          "hint": "Some o nome da pasta antes do nome do arquivo.",
+          "ex": "images/logo.png é o caminho relativo correto a partir da raiz.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que significa um 'caminho relativo'?",
+          "opts": [
+            "Um endereço completo de internet, como https://...",
+            "Um caminho baseado na posição do arquivo atual, não no disco inteiro",
+            "Um caminho que nunca funciona",
+            "O mesmo que um caminho absoluto"
+          ],
+          "a": 1,
+          "hint": "Pense em 'relativo a onde eu estou agora'.",
+          "ex": "Caminhos relativos partem da localização do arquivo atual.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual arquivo costuma ficar na raiz de um projeto de site simples?",
+          "opts": [
+            "estilos.css",
+            "index.html",
+            "logo.png",
+            "Nenhum, tudo fica em subpastas"
+          ],
+          "a": 1,
+          "hint": "É o arquivo que o navegador abre por padrão ao acessar o site.",
+          "ex": "index.html é convencionalmente o arquivo principal na raiz do projeto.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "html-29",
+      "name": "PERFORMANCE BÁSICA",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "⏱",
+      "summary": "Aprenda hábitos simples para deixar a página mais rápida.",
+      "lesson": [
+        {
+          "title": "Otimizando imagens",
+          "body": "Imagens muito grandes deixam a página lenta para carregar. Usar formatos modernos (como WebP), comprimir imagens antes de subir e definir width/height ajudam bastante na performance.",
+          "code": "<img src=\"banner.webp\" alt=\"Banner promocional\" width=\"800\" height=\"400\">"
+        },
+        {
+          "title": "Reduzindo requisições",
+          "body": "Cada arquivo CSS, imagem ou fonte é uma requisição extra ao servidor. Reduzir o número de arquivos separados, quando possível, e evitar recursos não utilizados ajuda o site a carregar mais rápido.",
+          "code": "<!-- Prefira poucos arquivos CSS bem organizados a muitos arquivos pequenos -->\n<link rel=\"stylesheet\" href=\"css/estilos.css\">"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Por que comprimir imagens antes de publicar o site?",
+          "opts": [
+            "Não faz diferença nenhuma",
+            "Imagens grandes deixam a página mais lenta para carregar",
+            "Imagens comprimidas ficam com mais qualidade",
+            "É obrigatório por lei"
+          ],
+          "a": 1,
+          "hint": "Pense no tempo de download de um arquivo muito grande.",
+          "ex": "Imagens comprimidas reduzem o tempo de carregamento da página.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Definir width e height numa <img> ajuda em quê?",
+          "opts": [
+            "Deixa a imagem colorida",
+            "Evita que o layout 'pule' enquanto a imagem carrega",
+            "Não tem nenhum efeito",
+            "Faz a imagem carregar mais devagar"
+          ],
+          "a": 1,
+          "hint": "Pense no espaço reservado antes da imagem terminar de carregar.",
+          "ex": "width/height reservam o espaço da imagem, evitando saltos no layout.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que reduzir o número de requisições ao servidor tende a melhorar?",
+          "opts": [
+            "A cor do site",
+            "O tempo de carregamento da página",
+            "O conteúdo do texto",
+            "A ortografia dos textos"
+          ],
+          "a": 1,
+          "hint": "Cada requisição extra soma tempo de espera.",
+          "ex": "Menos requisições geralmente significam um carregamento mais rápido.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual das opções tende a carregar mais rápido, considerando o mesmo conteúdo visual?",
+          "opts": [
+            "Uma imagem de 5MB sem compressão",
+            "A mesma imagem comprimida para 200KB em WebP",
+            "Não há diferença de velocidade",
+            "Depende só da cor da imagem"
+          ],
+          "a": 1,
+          "hint": "Compare o tamanho dos arquivos em MB e KB.",
+          "ex": "Um arquivo bem menor (200KB) carrega significativamente mais rápido que 5MB.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "html-30",
+      "name": "PUBLICANDO UMA PÁGINA",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "Ω",
+      "summary": "Entenda os passos gerais para colocar um site estático no ar.",
+      "lesson": [
+        {
+          "title": "O que é hospedagem estática",
+          "body": "Um site feito só com HTML, CSS e (opcionalmente) JavaScript, sem um servidor que gera páginas dinamicamente, é chamado de site estático. Ele pode ser hospedado em serviços gratuitos como GitHub Pages, que servem os arquivos diretamente.",
+          "code": "projeto/\n  index.html\n  css/\n  images/\n# Esses arquivos podem ser publicados diretamente"
+        },
+        {
+          "title": "Passos gerais de publicação",
+          "body": "De forma resumida: organizar os arquivos do projeto, enviá-los para um serviço de hospedagem (como GitHub Pages, Netlify ou Vercel) e apontar o serviço para o arquivo index.html como página inicial.",
+          "code": "# Fluxo típico:\n# 1. Organizar arquivos\n# 2. Enviar para o serviço de hospedagem\n# 3. Apontar index.html como página inicial"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que caracteriza um 'site estático'?",
+          "opts": [
+            "Um site que nunca muda de cor",
+            "Um site feito de arquivos HTML/CSS/JS prontos, sem geração dinâmica no servidor",
+            "Um site sem nenhuma imagem",
+            "Um site que só funciona offline"
+          ],
+          "a": 1,
+          "hint": "Pense em arquivos prontos servidos como estão, sem processamento no servidor.",
+          "ex": "Um site estático serve arquivos já prontos, sem lógica de servidor gerando HTML dinamicamente.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual arquivo geralmente deve ser apontado como página inicial de um site?",
+          "opts": [
+            "estilos.css",
+            "logo.png",
+            "index.html",
+            "README.md"
+          ],
+          "a": 2,
+          "hint": "É o mesmo arquivo mencionado na aula de organização de arquivos.",
+          "ex": "index.html é convencionalmente a página inicial de um site.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual destes é um exemplo de serviço de hospedagem para sites estáticos?",
+          "opts": [
+            "GitHub Pages",
+            "Microsoft Word",
+            "Photoshop",
+            "Excel"
+          ],
+          "a": 0,
+          "hint": "É o serviço citado na aula sobre hospedagem estática.",
+          "ex": "GitHub Pages é um serviço gratuito de hospedagem de sites estáticos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Antes de publicar, por que é importante testar o site localmente primeiro?",
+          "opts": [
+            "Não é necessário, pode publicar direto sempre",
+            "Para identificar erros de layout ou links quebrados antes que fiquem visíveis publicamente",
+            "Testar localmente é proibido pelos serviços de hospedagem",
+            "Só é necessário para sites com formulários"
+          ],
+          "a": 1,
+          "hint": "Pense em encontrar problemas antes que outras pessoas vejam o site no ar.",
+          "ex": "Testar localmente evita publicar erros visíveis para o público.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    }
+  ]
+}
