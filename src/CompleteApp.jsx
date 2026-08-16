@@ -13,6 +13,10 @@ const FONT_ID = 'black-buster-fonts';
 const MAX_HEARTS = 5;
 const HEART_REFILL_COST = 50;
 const DAILY_GOAL_XP = 20;
+// Sem backend/banco de dados por enquanto: paywall e bloqueio por vidas
+// ficam desligados e a trilha inteira permanece aberta. O código de
+// monetização continua aqui pronto para religar quando houver back-end.
+const MONETIZATION_ENABLED = false;
 
 function localDayKey(date = new Date()) {
   const year = date.getFullYear();
@@ -958,7 +962,7 @@ function BattleScreen({ stage, hearts, infiniteHearts = false, progress, onExit,
       setSelected(null);
       onStat('wrong', { stageId: stage.id, questionIndex: index, mode: 'battle', firstTry: false });
       sfx('bad');
-      if (!infiniteHearts && hearts <= 1) setHeartGate(true);
+      if (MONETIZATION_ENABLED && !infiniteHearts && hearts <= 1) setHeartGate(true);
     }
   }, [correct, hearts, index, infiniteHearts, onStat, question.a, selected, sfx, stage.id, wrong.length]);
 
@@ -1082,7 +1086,7 @@ function HeartsScreen({ progress, onExit, onPractice, onRefill, onPurchasePremiu
           <PixelButton color="#1cb0f6" variant="outline" disabled={!canBuy} onClick={onRefill}>
             {infinite ? 'RECURSO PREMIUM ATIVO' : full ? 'NÃO PRECISA RECARREGAR' : `COMPLETAR VIDAS · ◆ ${HEART_REFILL_COST}`}
           </PixelButton>
-          {!infinite && (
+          {MONETIZATION_ENABLED && !infinite && (
             <PixelButton color="#ce82ff" variant="outline" onClick={onPurchasePremium}>
               VIDAS INFINITAS · R$ 25,00
             </PixelButton>
@@ -1394,7 +1398,7 @@ export default function CompleteApp() {
   };
 
   const enterStage = (stage) => {
-    if (!progress.entitlements?.infiniteHearts && progress.hearts <= 0) {
+    if (MONETIZATION_ENABLED && !progress.entitlements?.infiniteHearts && progress.hearts <= 0) {
       openHearts();
       return;
     }
@@ -1532,7 +1536,7 @@ export default function CompleteApp() {
         />
       )}
 
-      {screen === 'map' && !progress.entitlements?.infiniteHearts && (
+      {MONETIZATION_ENABLED && screen === 'map' && !progress.entitlements?.infiniteHearts && (
         <PremiumOfferBar onPurchase={purchasePremiumBundle} />
       )}
 
