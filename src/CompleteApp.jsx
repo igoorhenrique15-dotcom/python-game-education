@@ -1,6 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import pythonCourse from './data/course.json';
 import htmlCourse from './data/course-html.json';
+import javaCourse from './data/course-java.json';
 import mascotReady from './assets/mascot/guia-py-ready.webp';
 import mascotFocus from './assets/mascot/guia-py-focus.webp';
 import mascotCelebrate from './assets/mascot/guia-py-celebrate.webp';
@@ -165,6 +166,19 @@ const HTML_UNIT_META = [
   { title: 'Projeto final', goal: 'Organização, performance e publicação.', color: '#facc15' },
 ];
 
+const JAVA_UNIT_META = [
+  { title: 'Primeiros passos', goal: 'Sintaxe, variáveis e entrada de dados.', color: '#f59e0b' },
+  { title: 'Operadores e decisões', goal: 'Operadores, condicionais e switch.', color: '#fb923c' },
+  { title: 'Repetição', goal: 'Loops for, while e arrays.', color: '#facc15' },
+  { title: 'Métodos', goal: 'Declarar, parametrizar e sobrecarregar métodos.', color: '#4ade80' },
+  { title: 'Orientação a objetos I', goal: 'Classes, construtores e encapsulamento.', color: '#38bdf8' },
+  { title: 'Orientação a objetos II', goal: 'Herança, polimorfismo e interfaces.', color: '#818cf8' },
+  { title: 'Coleções', goal: 'ArrayList, HashMap e iteração.', color: '#f472b6' },
+  { title: 'Exceções', goal: 'Try/catch, exceções customizadas e boas práticas.', color: '#fb7185' },
+  { title: 'Java moderno', goal: 'Streams, lambdas e records.', color: '#c084fc' },
+  { title: 'Projeto final', goal: 'Estrutura de projeto e aplicação completa.', color: '#facc15' },
+];
+
 const TRACK_CATALOG = [
   {
     id: 'python',
@@ -194,8 +208,8 @@ const TRACK_CATALOG = [
     subtitle: 'Orientação a objetos e back-end.',
     icon: '☕',
     color: '#f59e0b',
-    course: null,
-    unitMeta: null,
+    course: javaCourse,
+    unitMeta: JAVA_UNIT_META,
     stagesPerUnit: 3,
     fileExt: 'java',
   },
