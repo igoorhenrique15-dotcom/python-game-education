@@ -1,0 +1,2346 @@
+{
+  "title": "Java",
+  "version": 1,
+  "stages": [
+    {
+      "id": "java-1",
+      "name": "SINTAXE E MAIN",
+      "difficulty": "INICIANTE",
+      "color": "#f59e0b",
+      "icon": "◆",
+      "summary": "Entenda a estrutura básica de um programa Java e o método main.",
+      "lesson": [
+        {
+          "title": "Toda classe, um arquivo",
+          "body": "Todo código Java vive dentro de uma classe. O nome do arquivo .java deve ser igual ao nome da classe pública que ele contém. A execução de um programa começa sempre pelo método main.",
+          "code": "public class Main {\n  public static void main(String[] args) {\n    System.out.println(\"Ola, mundo!\");\n  }\n}"
+        },
+        {
+          "title": "Ponto e vírgula e blocos",
+          "body": "Em Java, cada instrução termina com ponto e vírgula (;). Blocos de código, como o corpo de um método, ficam entre chaves { }. Esquecer o ; é um dos erros mais comuns para quem está começando.",
+          "code": "public static void main(String[] args) {\n  System.out.println(\"Linha 1\");\n  System.out.println(\"Linha 2\");\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual método é o ponto de entrada de um programa Java?",
+          "opts": [
+            "start()",
+            "main()",
+            "run()",
+            "init()"
+          ],
+          "a": 1,
+          "hint": "É o método usado em todos os exemplos desta aula.",
+          "ex": "A execução de um programa Java começa pelo método main.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que acontece se o nome do arquivo .java não bater com o nome da classe pública?",
+          "opts": [
+            "Nada, funciona normalmente",
+            "Um erro de compilação",
+            "O programa roda mais rápido",
+            "O Java renomeia o arquivo sozinho"
+          ],
+          "a": 1,
+          "hint": "Java exige essa correspondência para classes públicas.",
+          "ex": "O compilador exige que o nome do arquivo combine com a classe pública.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que este código imprime no console?\nSystem.out.println(\"Ola, mundo!\");",
+          "opts": [
+            "Nada",
+            "Ola, mundo!",
+            "System.out.println",
+            "Um erro"
+          ],
+          "a": 1,
+          "hint": "println imprime o texto entre aspas.",
+          "ex": "System.out.println imprime o texto exatamente como está entre aspas.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual caractere marca o fim de uma instrução em Java?",
+          "opts": [
+            "Vírgula (,)",
+            "Dois pontos (:)",
+            "Ponto e vírgula (;)",
+            "Nenhum, quebra de linha basta"
+          ],
+          "a": 2,
+          "hint": "É esquecido com frequência por iniciantes.",
+          "ex": "Toda instrução Java termina com ponto e vírgula.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "java-2",
+      "name": "VARIÁVEIS E TIPOS",
+      "difficulty": "INICIANTE",
+      "color": "#f59e0b",
+      "icon": "▲",
+      "summary": "Declare variáveis com tipos primitivos como int, double e boolean.",
+      "lesson": [
+        {
+          "title": "Tipagem estática",
+          "body": "Java é uma linguagem de tipagem estática: toda variável precisa ter um tipo declarado antes do nome, e esse tipo não muda depois. Os tipos primitivos mais comuns são int (inteiros), double (decimais) e boolean (verdadeiro/falso).",
+          "code": "int idade = 30;\ndouble preco = 19.90;\nboolean ativo = true;"
+        },
+        {
+          "title": "String e char",
+          "body": "String representa texto (com maiúscula, pois é uma classe, não um tipo primitivo). char representa um único caractere, sempre entre aspas simples.",
+          "code": "String nome = \"Igor\";\nchar inicial = 'I';"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que significa Java ter 'tipagem estática'?",
+          "opts": [
+            "O tipo da variável é definido em tempo de execução",
+            "O tipo é declarado e fixo, verificado em tempo de compilação",
+            "Variáveis não têm tipo",
+            "Só existem variáveis numéricas"
+          ],
+          "a": 1,
+          "hint": "Pense na diferença entre declarar o tipo antes de usar versus deixar o tipo livre.",
+          "ex": "Em tipagem estática, o tipo é fixo e checado durante a compilação.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual o tipo mais adequado para armazenar preco = 19.90?",
+          "opts": [
+            "int",
+            "double",
+            "boolean",
+            "char"
+          ],
+          "a": 1,
+          "hint": "O valor tem casas decimais.",
+          "ex": "double é o tipo usado para números com parte decimal.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Como se declara uma variável de texto em Java?",
+          "opts": [
+            "string nome = \"Igor\";",
+            "String nome = \"Igor\";",
+            "text nome = \"Igor\";",
+            "var nome = Igor;"
+          ],
+          "a": 1,
+          "hint": "String começa com letra maiúscula, por ser uma classe.",
+          "ex": "String (com S maiúsculo) é o tipo correto para texto em Java.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual a diferença entre char e String?",
+          "opts": [
+            "Não há diferença",
+            "char guarda um único caractere; String guarda uma sequência de caracteres",
+            "char é mais rápido para textos longos",
+            "String só aceita números"
+          ],
+          "a": 1,
+          "hint": "Pense em 'I' contra \"Igor\".",
+          "ex": "char armazena exatamente um caractere; String armazena um texto inteiro.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "java-3",
+      "name": "ENTRADA E SAÍDA",
+      "difficulty": "INICIANTE",
+      "color": "#f59e0b",
+      "icon": "★",
+      "summary": "Leia dados digitados pelo usuário com a classe Scanner.",
+      "lesson": [
+        {
+          "title": "Lendo dados com Scanner",
+          "body": "A classe Scanner, do pacote java.util, permite ler dados digitados pelo usuário no console. Primeiro é preciso importar a classe e criar um objeto Scanner associado à entrada padrão (System.in).",
+          "code": "import java.util.Scanner;\n\nScanner leitor = new Scanner(System.in);\nString nome = leitor.nextLine();"
+        },
+        {
+          "title": "Lendo números",
+          "body": "Scanner tem métodos específicos para cada tipo: nextInt() lê um número inteiro, nextDouble() lê um decimal, nextLine() lê uma linha inteira de texto.",
+          "code": "System.out.print(\"Digite sua idade: \");\nint idade = leitor.nextInt();"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual classe é usada para ler dados digitados pelo usuário?",
+          "opts": [
+            "Reader",
+            "Scanner",
+            "Input",
+            "Console"
+          ],
+          "a": 1,
+          "hint": "É o nome usado em todos os exemplos desta aula.",
+          "ex": "Scanner é a classe padrão para leitura de entrada em Java.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual método lê um número inteiro digitado pelo usuário?\nScanner leitor = new Scanner(System.in);\nint idade = leitor.???();",
+          "opts": [
+            "nextLine()",
+            "nextInt()",
+            "nextDouble()",
+            "readInt()"
+          ],
+          "a": 1,
+          "hint": "O nome do método indica o tipo lido.",
+          "ex": "nextInt() lê especificamente um valor inteiro.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "De qual pacote a classe Scanner precisa ser importada?",
+          "opts": [
+            "java.io",
+            "java.util",
+            "java.lang",
+            "java.scanner"
+          ],
+          "a": 1,
+          "hint": "É a linha de import usada no primeiro exemplo.",
+          "ex": "Scanner faz parte do pacote java.util.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "A que fluxo de entrada o objeto Scanner é conectado no exemplo new Scanner(System.in)?",
+          "opts": [
+            "A um arquivo no disco",
+            "Ao teclado, via entrada padrão do console",
+            "À internet",
+            "A outro programa"
+          ],
+          "a": 1,
+          "hint": "System.in representa a entrada padrão do console.",
+          "ex": "System.in conecta o Scanner à entrada padrão, geralmente o teclado.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "java-4",
+      "name": "OPERADORES",
+      "difficulty": "INICIANTE",
+      "color": "#fb923c",
+      "icon": "◈",
+      "summary": "Use operadores aritméticos, de comparação e lógicos.",
+      "lesson": [
+        {
+          "title": "Aritméticos e comparação",
+          "body": "Os operadores aritméticos são +, -, *, / e % (resto da divisão). Os de comparação (==, !=, >, <, >=, <=) retornam sempre um valor boolean: true ou false.",
+          "code": "int a = 10, b = 3;\nint soma = a + b;\nint resto = a % b;\nboolean maior = a > b;"
+        },
+        {
+          "title": "Operadores lógicos",
+          "body": "&& (E lógico) retorna true se ambos os lados forem true. || (OU lógico) retorna true se pelo menos um lado for true. ! (NÃO) inverte um valor boolean.",
+          "code": "boolean maiorDeIdade = idade >= 18;\nboolean podeEntrar = maiorDeIdade && temIngresso;"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "Qual o valor de resto?\nint a = 10, b = 3;\nint resto = a % b;",
+          "opts": [
+            "3",
+            "1",
+            "0",
+            "3.33"
+          ],
+          "a": 1,
+          "hint": "% retorna o resto da divisão inteira.",
+          "ex": "10 dividido por 3 dá resto 1.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual operador representa o 'E lógico' em Java?",
+          "opts": [
+            "&",
+            "&&",
+            "AND",
+            "and"
+          ],
+          "a": 1,
+          "hint": "É formado por dois caracteres iguais.",
+          "ex": "&& é o operador lógico E, usado para combinar duas condições.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual o resultado desta expressão?\nboolean r = (5 > 3) && (2 > 4);",
+          "opts": [
+            "true",
+            "false",
+            "5",
+            "Erro"
+          ],
+          "a": 1,
+          "hint": "Ambos os lados precisam ser true para o && resultar em true.",
+          "ex": "(5 > 3) é true, mas (2 > 4) é false, então o resultado é false.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que o operador == compara em tipos primitivos, como int?",
+          "opts": [
+            "Apenas os endereços de memória",
+            "Se os valores são iguais",
+            "Se os tipos são iguais",
+            "Nada, não existe == em Java"
+          ],
+          "a": 1,
+          "hint": "Para tipos primitivos, == compara o valor diretamente.",
+          "ex": "Em tipos primitivos, == compara os valores numéricos diretamente.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "java-5",
+      "name": "CONDICIONAIS",
+      "difficulty": "INICIANTE",
+      "color": "#fb923c",
+      "icon": "◇",
+      "summary": "Controle o fluxo do programa com if, else if e else.",
+      "lesson": [
+        {
+          "title": "if, else if, else",
+          "body": "if executa um bloco somente se a condição for true. else if testa outra condição caso a primeira seja false. else executa quando nenhuma condição anterior foi verdadeira.",
+          "code": "if (nota >= 7) {\n  System.out.println(\"Aprovado\");\n} else if (nota >= 5) {\n  System.out.println(\"Recuperacao\");\n} else {\n  System.out.println(\"Reprovado\");\n}"
+        },
+        {
+          "title": "Operador ternário",
+          "body": "Para decisões simples de duas opções, o operador ternário condicao ? valorSeVerdadeiro : valorSeFalso é uma forma curta de escrever um if/else que retorna um valor.",
+          "code": "String status = idade >= 18 ? \"Adulto\" : \"Menor\";"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "O que este código imprime, se nota = 6?\nif (nota >= 7) {\n  System.out.println(\"Aprovado\");\n} else if (nota >= 5) {\n  System.out.println(\"Recuperacao\");\n} else {\n  System.out.println(\"Reprovado\");\n}",
+          "opts": [
+            "Aprovado",
+            "Recuperacao",
+            "Reprovado",
+            "Nada"
+          ],
+          "a": 1,
+          "hint": "6 não é >= 7, mas é >= 5.",
+          "ex": "Como 6 é menor que 7 mas maior ou igual a 5, cai no else if.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Quando o bloco else é executado?",
+          "opts": [
+            "Sempre, junto com o if",
+            "Quando nenhuma condição anterior (if/else if) foi verdadeira",
+            "Antes do if",
+            "Nunca, é opcional e ignorado"
+          ],
+          "a": 1,
+          "hint": "É o bloco 'padrão', para quando nada mais se aplicou.",
+          "ex": "else executa apenas quando todas as condições anteriores foram false.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual o valor de status?\nint idade = 15;\nString status = idade >= 18 ? \"Adulto\" : \"Menor\";",
+          "opts": [
+            "Adulto",
+            "Menor",
+            "15",
+            "Erro"
+          ],
+          "a": 1,
+          "hint": "15 não é maior ou igual a 18.",
+          "ex": "Como a condição é false, o ternário retorna \"Menor\".",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que usar operador ternário em vez de if/else em casos simples?",
+          "opts": [
+            "Não há vantagem nenhuma",
+            "É mais compacto para atribuir um valor com base numa condição simples",
+            "É a única forma válida em Java",
+            "Ternário é mais lento sempre"
+          ],
+          "a": 1,
+          "hint": "Pense em uma linha só, em vez de várias.",
+          "ex": "O ternário condensa uma decisão simples de atribuição em uma linha.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "java-6",
+      "name": "SWITCH",
+      "difficulty": "INICIANTE",
+      "color": "#fb923c",
+      "icon": "◫",
+      "summary": "Compare um valor com vários casos possíveis usando switch.",
+      "lesson": [
+        {
+          "title": "A estrutura switch",
+          "body": "switch compara uma variável com vários valores possíveis (case), executando o bloco correspondente. break impede que a execução 'caia' para o próximo case.",
+          "code": "switch (diaSemana) {\n  case 1:\n    System.out.println(\"Segunda\");\n    break;\n  case 2:\n    System.out.println(\"Terca\");\n    break;\n  default:\n    System.out.println(\"Outro dia\");\n}"
+        },
+        {
+          "title": "O caso default",
+          "body": "default funciona como o else de um switch: executa quando nenhum case bateu com o valor. É uma boa prática sempre incluir um default para cobrir casos inesperados.",
+          "code": "switch (nota) {\n  case 10:\n    System.out.println(\"Perfeito\");\n    break;\n  default:\n    System.out.println(\"Continue estudando\");\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Para que serve o break dentro de um case?",
+          "opts": [
+            "Encerra o programa inteiro",
+            "Evita que a execução continue para o próximo case",
+            "É opcional e nunca necessário",
+            "Reinicia o switch"
+          ],
+          "a": 1,
+          "hint": "Sem ele, a execução 'cai' para o case seguinte.",
+          "ex": "break interrompe o switch, impedindo a execução dos cases seguintes.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que este código imprime, se diaSemana = 2?\nswitch (diaSemana) {\n  case 1:\n    System.out.println(\"Segunda\");\n    break;\n  case 2:\n    System.out.println(\"Terca\");\n    break;\n  default:\n    System.out.println(\"Outro dia\");\n}",
+          "opts": [
+            "Segunda",
+            "Terca",
+            "Outro dia",
+            "Nada"
+          ],
+          "a": 1,
+          "hint": "Procure o case que bate com o valor 2.",
+          "ex": "diaSemana igual a 2 corresponde ao case 2, que imprime 'Terca'.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Quando o bloco default é executado?",
+          "opts": [
+            "Sempre, mesmo com um case correspondente",
+            "Quando nenhum case bate com o valor testado",
+            "Apenas no primeiro switch do programa",
+            "Nunca, é apenas decorativo"
+          ],
+          "a": 1,
+          "hint": "É equivalente ao else de um if/else if.",
+          "ex": "default executa quando o valor não corresponde a nenhum case.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Quando faz mais sentido usar switch em vez de vários if/else if?",
+          "opts": [
+            "Nunca, if/else if é sempre melhor",
+            "Quando se compara uma mesma variável com muitos valores possíveis específicos",
+            "Apenas com textos, nunca com números",
+            "Switch substitui totalmente os loops"
+          ],
+          "a": 1,
+          "hint": "Pense em comparar um número de dia da semana com vários valores fixos.",
+          "ex": "switch é mais legível quando há muitas comparações de igualdade com a mesma variável.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "java-7",
+      "name": "FOR",
+      "difficulty": "INICIANTE",
+      "color": "#facc15",
+      "icon": "⟳",
+      "summary": "Repita um bloco de código um número definido de vezes.",
+      "lesson": [
+        {
+          "title": "A estrutura do for",
+          "body": "O laço for tem três partes: inicialização, condição e incremento, separadas por ponto e vírgula. Ele repete o bloco enquanto a condição for true.",
+          "code": "for (int i = 0; i < 5; i++) {\n  System.out.println(\"Volta \" + i);\n}"
+        },
+        {
+          "title": "for-each",
+          "body": "O for-each percorre cada elemento de uma coleção ou array diretamente, sem precisar controlar um índice manualmente. É mais simples quando não é necessário saber a posição do item.",
+          "code": "int[] numeros = {10, 20, 30};\nfor (int n : numeros) {\n  System.out.println(n);\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "Quantas vezes este laço executa?\nfor (int i = 0; i < 5; i++) {\n  System.out.println(\"Volta \" + i);\n}",
+          "opts": [
+            "4 vezes",
+            "5 vezes",
+            "6 vezes",
+            "Infinitas vezes"
+          ],
+          "a": 1,
+          "hint": "i vai de 0 até 4 (enquanto i < 5).",
+          "ex": "i assume os valores 0, 1, 2, 3 e 4 — cinco execuções no total.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Quais as três partes de um for tradicional, separadas por ponto e vírgula?",
+          "opts": [
+            "Início, meio e fim",
+            "Inicialização, condição e incremento",
+            "Nome, tipo e valor",
+            "Import, classe e método"
+          ],
+          "a": 1,
+          "hint": "Pense em int i = 0; i < 5; i++.",
+          "ex": "As três partes são: inicialização, condição de parada e incremento.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que este for-each imprime?\nint[] numeros = {10, 20, 30};\nfor (int n : numeros) {\n  System.out.println(n);\n}",
+          "opts": [
+            "10 20 30, cada um em uma linha",
+            "Apenas 10",
+            "O array inteiro em uma linha",
+            "Um erro de compilação"
+          ],
+          "a": 0,
+          "hint": "for-each imprime cada elemento, um de cada vez.",
+          "ex": "O for-each percorre e imprime cada elemento do array, em ordem.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Quando o for-each é preferível ao for tradicional?",
+          "opts": [
+            "Quando é preciso saber o índice de cada elemento",
+            "Quando basta acessar cada elemento, sem precisar do índice",
+            "Nunca, for-each não existe em Java",
+            "Apenas para números"
+          ],
+          "a": 1,
+          "hint": "Pense em não precisar controlar a posição manualmente.",
+          "ex": "for-each simplifica a percorrida quando o índice não é necessário.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "java-8",
+      "name": "WHILE",
+      "difficulty": "INICIANTE",
+      "color": "#facc15",
+      "icon": "↻",
+      "summary": "Repita um bloco enquanto uma condição for verdadeira.",
+      "lesson": [
+        {
+          "title": "while e do-while",
+          "body": "while repete um bloco enquanto a condição for true, testada antes de cada execução. do-while executa o bloco pelo menos uma vez, testando a condição só depois.",
+          "code": "int contador = 0;\nwhile (contador < 3) {\n  System.out.println(contador);\n  contador++;\n}"
+        },
+        {
+          "title": "Cuidado com loops infinitos",
+          "body": "Se a condição de um while nunca se tornar false, o laço nunca termina — um loop infinito. É essencial garantir que alguma variável usada na condição seja atualizada dentro do laço.",
+          "code": "// Loop infinito perigoso: contador nunca muda\nwhile (contador < 3) {\n  System.out.println(\"Preso aqui\");\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual a diferença entre while e do-while?",
+          "opts": [
+            "Não há diferença",
+            "do-while sempre executa o bloco pelo menos uma vez, mesmo se a condição já for false",
+            "while é mais rápido",
+            "do-while não aceita condições"
+          ],
+          "a": 1,
+          "hint": "Pense em quando a condição é testada: antes ou depois.",
+          "ex": "do-while testa a condição depois de executar o bloco uma primeira vez.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que este código imprime?\nint contador = 0;\nwhile (contador < 3) {\n  System.out.println(contador);\n  contador++;\n}",
+          "opts": [
+            "0 1 2",
+            "0 1 2 3",
+            "1 2 3",
+            "Nada"
+          ],
+          "a": 0,
+          "hint": "O laço para assim que contador chega a 3.",
+          "ex": "contador imprime 0, 1 e 2, parando antes de chegar a 3.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que causa um loop infinito em um while?",
+          "opts": [
+            "Usar chaves { }",
+            "A condição do while nunca se tornar false",
+            "Usar contador++",
+            "Declarar a variável antes do laço"
+          ],
+          "a": 1,
+          "hint": "Pense no exemplo do 'loop infinito perigoso'.",
+          "ex": "Se nada dentro do laço muda a condição para false, ele nunca termina.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que é importante atualizar a variável de controle dentro do while?",
+          "opts": [
+            "Não é necessário nunca",
+            "Para que a condição eventualmente se torne false e o laço termine",
+            "Só por estética do código",
+            "Java atualiza automaticamente"
+          ],
+          "a": 1,
+          "hint": "Pense no que acontece se contador nunca mudar.",
+          "ex": "Atualizar a variável garante que a condição mude e o laço termine.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "java-9",
+      "name": "ARRAYS",
+      "difficulty": "INICIANTE",
+      "color": "#facc15",
+      "icon": "▦",
+      "summary": "Armazene múltiplos valores do mesmo tipo em uma única variável.",
+      "lesson": [
+        {
+          "title": "Criando um array",
+          "body": "Um array guarda vários valores do mesmo tipo, com tamanho fixo definido na criação. O acesso a cada posição é feito por um índice, começando em 0.",
+          "code": "int[] notas = {8, 7, 9, 10};\nSystem.out.println(notas[0]);\nSystem.out.println(notas.length);"
+        },
+        {
+          "title": "Percorrendo um array",
+          "body": "É comum percorrer um array com um for tradicional (usando o índice até array.length - 1) ou com for-each quando não é preciso saber a posição.",
+          "code": "for (int i = 0; i < notas.length; i++) {\n  System.out.println(\"Nota \" + i + \": \" + notas[i]);\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "Qual o valor de notas[0]?\nint[] notas = {8, 7, 9, 10};",
+          "opts": [
+            "7",
+            "8",
+            "10",
+            "4"
+          ],
+          "a": 1,
+          "hint": "Índices em Java começam em 0.",
+          "ex": "notas[0] é o primeiro elemento do array, que vale 8.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que a propriedade .length retorna em um array?",
+          "opts": [
+            "O último valor do array",
+            "A quantidade de elementos do array",
+            "O primeiro valor do array",
+            "O tipo do array"
+          ],
+          "a": 1,
+          "hint": "É usada no exemplo para saber o tamanho.",
+          "ex": "array.length retorna quantos elementos o array tem.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual o índice válido do último elemento de um array de tamanho 4?",
+          "opts": [
+            "4",
+            "3",
+            "0",
+            "5"
+          ],
+          "a": 1,
+          "hint": "O último índice é sempre o tamanho menos 1.",
+          "ex": "Em um array de 4 elementos, os índices vão de 0 a 3.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "É possível mudar o tamanho de um array depois de criado?",
+          "opts": [
+            "Sim, com array.resize()",
+            "Não, o tamanho de um array é fixo desde a criação",
+            "Sim, automaticamente ao adicionar itens",
+            "Só se o array for de String"
+          ],
+          "a": 1,
+          "hint": "Pense em 'tamanho fixo', mencionado na aula.",
+          "ex": "O tamanho de um array em Java é definido na criação e não muda depois.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "java-10",
+      "name": "DECLARANDO MÉTODOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#4ade80",
+      "icon": "◆",
+      "summary": "Organize código reutilizável em métodos com nome, tipo de retorno e corpo.",
+      "lesson": [
+        {
+          "title": "Anatomia de um método",
+          "body": "Um método tem um modificador de acesso, um tipo de retorno, um nome e (opcionalmente) parâmetros. void indica que o método não retorna nenhum valor.",
+          "code": "public static void saudar() {\n  System.out.println(\"Ola!\");\n}"
+        },
+        {
+          "title": "Chamando um método",
+          "body": "Para executar um método, basta chamá-lo pelo nome seguido de parênteses. Métodos evitam repetição de código: escreve-se a lógica uma vez e reutiliza-se quantas vezes for preciso.",
+          "code": "public static void main(String[] args) {\n  saudar();\n  saudar();\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que a palavra void indica em um método?",
+          "opts": [
+            "Que ele recebe parâmetros",
+            "Que ele não retorna nenhum valor",
+            "Que ele é privado",
+            "Que ele é vazio, sem código"
+          ],
+          "a": 1,
+          "hint": "Compare com métodos que retornam int ou String.",
+          "ex": "void indica que o método não devolve valor algum ao ser chamado.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual a principal vantagem de organizar código em métodos?",
+          "opts": [
+            "O programa fica maior",
+            "Evita repetição de código e melhora a organização",
+            "É obrigatório em Java, sem exceção",
+            "Deixa o programa mais lento"
+          ],
+          "a": 1,
+          "hint": "Pense em escrever uma lógica uma vez e reaproveitar.",
+          "ex": "Métodos evitam duplicação de código e organizam a lógica em blocos reutilizáveis.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Quantas vezes 'Ola!' é impresso?\npublic static void main(String[] args) {\n  saudar();\n  saudar();\n}",
+          "opts": [
+            "Uma vez",
+            "Duas vezes",
+            "Nenhuma",
+            "Depende do sistema"
+          ],
+          "a": 1,
+          "hint": "Conte quantas vezes saudar() é chamado.",
+          "ex": "saudar() é chamado duas vezes, imprimindo 'Ola!' duas vezes.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que faz um método ser 'chamado' (executado)?",
+          "opts": [
+            "Apenas declará-lo já executa",
+            "Escrever seu nome seguido de parênteses em algum ponto do código",
+            "Compilar o programa",
+            "Nada, métodos rodam automaticamente"
+          ],
+          "a": 1,
+          "hint": "Veja como saudar() é usado dentro do main.",
+          "ex": "Um método só executa quando é chamado pelo nome com parênteses.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "java-11",
+      "name": "PARÂMETROS E RETORNO",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#4ade80",
+      "icon": "▲",
+      "summary": "Envie dados para um método e receba um resultado de volta.",
+      "lesson": [
+        {
+          "title": "Parâmetros",
+          "body": "Parâmetros são variáveis declaradas entre os parênteses do método, que recebem valores no momento da chamada. Isso permite que o método trabalhe com dados diferentes a cada execução.",
+          "code": "public static void saudar(String nome) {\n  System.out.println(\"Ola, \" + nome + \"!\");\n}\n\nsaudar(\"Ana\");"
+        },
+        {
+          "title": "return",
+          "body": "Quando um método precisa devolver um valor, seu tipo de retorno não é void, e a palavra return é usada para enviar o valor de volta a quem chamou o método.",
+          "code": "public static int somar(int a, int b) {\n  return a + b;\n}\n\nint resultado = somar(2, 3);"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "Qual o valor de resultado?\npublic static int somar(int a, int b) {\n  return a + b;\n}\nint resultado = somar(2, 3);",
+          "opts": [
+            "2",
+            "3",
+            "5",
+            "23"
+          ],
+          "a": 2,
+          "hint": "O método soma os dois parâmetros.",
+          "ex": "somar(2, 3) retorna 2 + 3, que é 5.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que os parâmetros de um método permitem?",
+          "opts": [
+            "Que o método sempre faça a mesma coisa",
+            "Que o método receba dados diferentes a cada chamada",
+            "Que o método não precise ser chamado",
+            "Que o método vire uma classe"
+          ],
+          "a": 1,
+          "hint": "Pense em saudar(\"Ana\") versus saudar(\"João\").",
+          "ex": "Parâmetros tornam o método flexível, trabalhando com valores diferentes.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Um método com tipo de retorno int, mas sem nenhum return, compila corretamente?",
+          "opts": [
+            "Sim, sempre",
+            "Não, o compilador exige que todos os caminhos retornem um valor",
+            "Sim, mas retorna 0 automaticamente",
+            "Depende do nome do método"
+          ],
+          "a": 1,
+          "hint": "Pense na promessa que o tipo de retorno faz ao chamador.",
+          "ex": "Um método com retorno declarado precisa garantir um return em todos os caminhos possíveis.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que return faz dentro de um método?",
+          "opts": [
+            "Imprime um valor na tela",
+            "Encerra o método e devolve um valor a quem o chamou",
+            "Reinicia o método",
+            "Declara uma nova variável"
+          ],
+          "a": 1,
+          "hint": "É diferente de System.out.println.",
+          "ex": "return encerra a execução do método e envia o valor de volta ao chamador.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "java-12",
+      "name": "SOBRECARGA",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#4ade80",
+      "icon": "★",
+      "summary": "Crie versões diferentes de um mesmo método, com parâmetros distintos.",
+      "lesson": [
+        {
+          "title": "O que é sobrecarga",
+          "body": "Sobrecarga (overloading) permite que vários métodos tenham o mesmo nome, desde que a quantidade ou o tipo dos parâmetros seja diferente. O compilador escolhe qual versão chamar com base nos argumentos passados.",
+          "code": "public static int somar(int a, int b) {\n  return a + b;\n}\n\npublic static double somar(double a, double b) {\n  return a + b;\n}"
+        },
+        {
+          "title": "Assinatura do método",
+          "body": "A combinação de nome + tipos e quantidade de parâmetros é chamada de assinatura do método. Métodos sobrecarregados devem ter assinaturas diferentes — apenas mudar o tipo de retorno não é suficiente.",
+          "code": "somar(2, 3);       // chama a versão int\nsomar(2.5, 3.1);    // chama a versão double"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que caracteriza a sobrecarga de métodos?",
+          "opts": [
+            "Métodos com nomes diferentes fazendo a mesma coisa",
+            "Métodos com o mesmo nome, mas parâmetros diferentes",
+            "Um método chamando a si mesmo",
+            "Um método dentro de outro método"
+          ],
+          "a": 1,
+          "hint": "Repare que os dois métodos 'somar' têm nomes iguais.",
+          "ex": "Sobrecarga é ter métodos de mesmo nome com listas de parâmetros diferentes.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual versão de somar é chamada aqui?\nsomar(2.5, 3.1);",
+          "opts": [
+            "A versão com parâmetros int",
+            "A versão com parâmetros double",
+            "Nenhuma, dá erro",
+            "As duas ao mesmo tempo"
+          ],
+          "a": 1,
+          "hint": "Compare o tipo dos argumentos passados com os parâmetros de cada versão.",
+          "ex": "Como os argumentos são decimais, a versão double é escolhida.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Apenas mudar o tipo de retorno, mantendo os mesmos parâmetros, é suficiente para sobrecarregar um método?",
+          "opts": [
+            "Sim, sempre",
+            "Não, a assinatura (parâmetros) precisa ser diferente",
+            "Sim, mas só com void",
+            "Não é possível sobrecarregar métodos em Java"
+          ],
+          "a": 1,
+          "hint": "A assinatura considera nome e parâmetros, não o retorno.",
+          "ex": "Apenas o tipo de retorno não é suficiente; os parâmetros precisam diferir.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual a vantagem prática da sobrecarga de métodos?",
+          "opts": [
+            "Nenhuma, é só uma curiosidade da linguagem",
+            "Permite usar um nome intuitivo para operações semelhantes com tipos diferentes",
+            "Deixa o programa mais lento",
+            "Elimina a necessidade de parâmetros"
+          ],
+          "a": 1,
+          "hint": "Pense em 'somar' funcionando tanto para int quanto para double.",
+          "ex": "Sobrecarga permite manter um nome único e intuitivo para variações da mesma operação.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "java-13",
+      "name": "CLASSES E OBJETOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#38bdf8",
+      "icon": "◆",
+      "summary": "Modele entidades do mundo real com classes e crie objetos a partir delas.",
+      "lesson": [
+        {
+          "title": "Classe como um molde",
+          "body": "Uma classe é um molde que define atributos (dados) e métodos (comportamentos) de um tipo de objeto. Um objeto é uma instância concreta criada a partir dessa classe, com a palavra-chave new.",
+          "code": "public class Produto {\n  String nome;\n  double preco;\n}\n\nProduto p1 = new Produto();\np1.nome = \"Camiseta\";\np1.preco = 49.90;"
+        },
+        {
+          "title": "Múltiplos objetos",
+          "body": "A partir da mesma classe, é possível criar vários objetos independentes, cada um com seus próprios valores de atributos.",
+          "code": "Produto p2 = new Produto();\np2.nome = \"Tenis\";\np2.preco = 199.90;"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual palavra-chave é usada para criar um objeto a partir de uma classe?",
+          "opts": [
+            "create",
+            "new",
+            "object",
+            "make"
+          ],
+          "a": 1,
+          "hint": "É usada em todos os exemplos: new Produto().",
+          "ex": "new cria uma nova instância (objeto) de uma classe.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual a melhor analogia para o que é uma classe?",
+          "opts": [
+            "Um objeto específico já criado",
+            "Um molde que define como os objetos serão",
+            "Um método isolado",
+            "Um arquivo de configuração"
+          ],
+          "a": 1,
+          "hint": "Pense em uma fôrma de bolo versus o bolo pronto.",
+          "ex": "A classe é o molde; o objeto é a instância concreta criada a partir dele.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "p1 e p2 são objetos independentes?\nProduto p1 = new Produto();\np1.nome = \"Camiseta\";\nProduto p2 = new Produto();\np2.nome = \"Tenis\";",
+          "opts": [
+            "Sim, cada um guarda seus próprios valores",
+            "Não, mudar p2 muda p1 também",
+            "Não, são o mesmo objeto",
+            "Depende do valor de preco"
+          ],
+          "a": 0,
+          "hint": "Cada 'new' cria uma instância separada.",
+          "ex": "Cada chamada a new Produto() cria um objeto independente, com seus próprios dados.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que os atributos de uma classe representam?",
+          "opts": [
+            "Os métodos disponíveis",
+            "Os dados que cada objeto armazena",
+            "O nome do arquivo",
+            "Apenas valores numéricos"
+          ],
+          "a": 1,
+          "hint": "Pense em nome e preco na classe Produto.",
+          "ex": "Atributos são os dados que cada objeto da classe pode armazenar.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "java-14",
+      "name": "CONSTRUTORES",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#38bdf8",
+      "icon": "▲",
+      "summary": "Inicialize objetos de forma organizada com construtores.",
+      "lesson": [
+        {
+          "title": "O que é um construtor",
+          "body": "Um construtor é um método especial, com o mesmo nome da classe e sem tipo de retorno, executado automaticamente ao criar um objeto com new. Ele serve para inicializar os atributos do objeto.",
+          "code": "public class Produto {\n  String nome;\n  double preco;\n\n  public Produto(String nome, double preco) {\n    this.nome = nome;\n    this.preco = preco;\n  }\n}"
+        },
+        {
+          "title": "Usando this",
+          "body": "this se refere ao próprio objeto sendo construído. É usado para diferenciar o atributo da classe (this.nome) do parâmetro recebido (nome), quando eles têm o mesmo nome.",
+          "code": "Produto p1 = new Produto(\"Camiseta\", 49.90);\nSystem.out.println(p1.nome);"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Como o nome de um construtor deve ser?",
+          "opts": [
+            "Qualquer nome, como um método comum",
+            "Idêntico ao nome da classe",
+            "Sempre 'construtor'",
+            "Começar com 'new'"
+          ],
+          "a": 1,
+          "hint": "Compare 'Produto' (classe) com o método no exemplo.",
+          "ex": "O construtor tem exatamente o mesmo nome da classe a que pertence.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Para que serve a palavra this dentro do construtor?",
+          "opts": [
+            "Criar um novo objeto",
+            "Referenciar o próprio objeto, diferenciando atributo de parâmetro com mesmo nome",
+            "Importar uma classe",
+            "Encerrar o construtor"
+          ],
+          "a": 1,
+          "hint": "Veja this.nome = nome; no exemplo.",
+          "ex": "this.nome se refere ao atributo do objeto; nome sozinho é o parâmetro recebido.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que este código imprime?\nProduto p1 = new Produto(\"Camiseta\", 49.90);\nSystem.out.println(p1.nome);",
+          "opts": [
+            "Produto",
+            "Camiseta",
+            "49.90",
+            "null"
+          ],
+          "a": 1,
+          "hint": "O construtor atribui o primeiro argumento a this.nome.",
+          "ex": "p1.nome recebe \"Camiseta\", o primeiro argumento passado ao construtor.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Um construtor pode ter tipo de retorno, como void ou int?",
+          "opts": [
+            "Sim, geralmente void",
+            "Não, construtores não têm tipo de retorno algum",
+            "Sim, sempre int",
+            "Só se a classe for pública"
+          ],
+          "a": 1,
+          "hint": "Construtores são diferentes de métodos comuns nesse ponto.",
+          "ex": "Construtores nunca têm tipo de retorno, nem mesmo void.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "java-15",
+      "name": "ENCAPSULAMENTO",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#38bdf8",
+      "icon": "◫",
+      "summary": "Proteja os dados de um objeto com atributos privados e métodos de acesso.",
+      "lesson": [
+        {
+          "title": "private e getters/setters",
+          "body": "Tornar atributos private impede que sejam acessados diretamente de fora da classe. O acesso controlado é feito por métodos públicos: getters (para ler o valor) e setters (para alterar, com validações se necessário).",
+          "code": "public class Produto {\n  private double preco;\n\n  public double getPreco() {\n    return preco;\n  }\n\n  public void setPreco(double preco) {\n    if (preco >= 0) this.preco = preco;\n  }\n}"
+        },
+        {
+          "title": "Por que encapsular",
+          "body": "Encapsulamento protege o objeto contra estados inválidos: o setPreco do exemplo impede que o preço fique negativo. Sem essa proteção, qualquer código externo poderia atribuir valores inconsistentes diretamente.",
+          "code": "Produto p = new Produto();\np.setPreco(-10); // ignorado pela validacao\nSystem.out.println(p.getPreco());"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que o modificador private impede?",
+          "opts": [
+            "Que a classe seja usada",
+            "Que o atributo seja acessado diretamente de fora da classe",
+            "Que o método retorne valores",
+            "Que o objeto seja criado"
+          ],
+          "a": 1,
+          "hint": "Compare com atributos sem modificador, acessíveis diretamente.",
+          "ex": "private restringe o acesso ao atributo apenas de dentro da própria classe.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual a função de um setter com validação, como no exemplo setPreco?",
+          "opts": [
+            "Deixar o código mais longo, sem outro efeito",
+            "Impedir que o objeto entre em um estado inválido, como preço negativo",
+            "Substituir o construtor",
+            "Tornar o atributo público"
+          ],
+          "a": 1,
+          "hint": "Veja a condição if (preco >= 0) no exemplo.",
+          "ex": "O setter valida a entrada antes de aceitar a mudança, protegendo o objeto.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que acontece ao chamar p.setPreco(-10) no exemplo da aula?",
+          "opts": [
+            "O preço fica -10",
+            "O preço não muda, pois a validação rejeita valores negativos",
+            "O programa trava",
+            "O preço vira 0 automaticamente"
+          ],
+          "a": 1,
+          "hint": "A condição if (preco >= 0) bloqueia valores negativos.",
+          "ex": "Como -10 não passa na validação, this.preco não é alterado.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que preferir atributos private com getters/setters a atributos públicos diretos?",
+          "opts": [
+            "Não há vantagem real",
+            "Permite validar e controlar como os dados do objeto são acessados e alterados",
+            "É mais rápido de digitar",
+            "É a única forma de criar atributos em Java"
+          ],
+          "a": 1,
+          "hint": "Pense na proteção contra estados inválidos vista nesta aula.",
+          "ex": "Encapsulamento dá controle sobre como e quando os dados podem mudar.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "java-16",
+      "name": "HERANÇA",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#818cf8",
+      "icon": "◆",
+      "summary": "Reaproveite código entre classes com extends.",
+      "lesson": [
+        {
+          "title": "extends",
+          "body": "Herança permite que uma classe (subclasse) reaproveite atributos e métodos de outra (superclasse), usando extends. A subclasse pode adicionar novos membros ou modificar o comportamento herdado.",
+          "code": "public class Animal {\n  String nome;\n  void emitirSom() {\n    System.out.println(\"Som generico\");\n  }\n}\n\npublic class Cachorro extends Animal {\n  void latir() {\n    System.out.println(nome + \" esta latindo\");\n  }\n}"
+        },
+        {
+          "title": "super",
+          "body": "super permite acessar membros da superclasse a partir da subclasse, como chamar o construtor da classe pai (super(...)) ou um método sobrescrito (super.metodo()).",
+          "code": "public class Cachorro extends Animal {\n  Cachorro(String nome) {\n    super();\n    this.nome = nome;\n  }\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual palavra-chave indica que uma classe herda de outra?",
+          "opts": [
+            "implements",
+            "extends",
+            "inherits",
+            "super"
+          ],
+          "a": 1,
+          "hint": "É usada em 'class Cachorro extends Animal'.",
+          "ex": "extends indica que uma classe herda de outra em Java.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Cachorro (que extends Animal) tem acesso ao atributo nome?\npublic class Animal {\n  String nome;\n}\npublic class Cachorro extends Animal {\n  void latir() {\n    System.out.println(nome + \" esta latindo\");\n  }\n}",
+          "opts": [
+            "Sim, herda o atributo da superclasse",
+            "Não, precisa redeclarar nome",
+            "Não, atributos nunca são herdados",
+            "Só se nome for private"
+          ],
+          "a": 0,
+          "hint": "Herança traz os membros não-privados da superclasse.",
+          "ex": "Cachorro herda o atributo nome de Animal, podendo usá-lo diretamente.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Para que serve a palavra-chave super?",
+          "opts": [
+            "Criar uma nova classe",
+            "Acessar membros da superclasse, como seu construtor",
+            "Tornar um método privado",
+            "Substituir extends"
+          ],
+          "a": 1,
+          "hint": "Veja super() sendo chamado dentro do construtor de Cachorro.",
+          "ex": "super permite acessar construtor ou métodos da classe pai.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual a principal vantagem da herança?",
+          "opts": [
+            "Duplicar código entre classes parecidas",
+            "Reaproveitar atributos e métodos comuns entre classes relacionadas",
+            "Tornar todas as classes independentes",
+            "Impedir a criação de subclasses"
+          ],
+          "a": 1,
+          "hint": "Pense em Animal e Cachorro compartilhando comportamento comum.",
+          "ex": "Herança evita duplicação, compartilhando código entre classes relacionadas.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "java-17",
+      "name": "POLIMORFISMO",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#818cf8",
+      "icon": "▲",
+      "summary": "Sobrescreva métodos para que cada subclasse tenha seu próprio comportamento.",
+      "lesson": [
+        {
+          "title": "Sobrescrita com @Override",
+          "body": "Uma subclasse pode sobrescrever (override) um método herdado, dando a ele um comportamento diferente. A anotação @Override avisa o compilador (e quem lê o código) que a intenção é sobrescrever, não criar um método novo.",
+          "code": "public class Cachorro extends Animal {\n  @Override\n  void emitirSom() {\n    System.out.println(\"Au au!\");\n  }\n}"
+        },
+        {
+          "title": "Polimorfismo na prática",
+          "body": "Graças ao polimorfismo, uma variável do tipo Animal pode referenciar um objeto Cachorro, e chamar emitirSom() executa a versão sobrescrita, específica do Cachorro — decidido em tempo de execução.",
+          "code": "Animal a = new Cachorro();\na.emitirSom(); // imprime \"Au au!\""
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Para que serve a anotação @Override?",
+          "opts": [
+            "Criar um novo método",
+            "Indicar que o método está sobrescrevendo um método herdado",
+            "Tornar o método privado",
+            "Importar uma classe"
+          ],
+          "a": 1,
+          "hint": "É colocada logo acima do método que sobrescreve o comportamento herdado.",
+          "ex": "@Override sinaliza a intenção de sobrescrever um método da superclasse.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que este código imprime?\nAnimal a = new Cachorro();\na.emitirSom();",
+          "opts": [
+            "Som generico",
+            "Au au!",
+            "Erro de compilação",
+            "Nada"
+          ],
+          "a": 1,
+          "hint": "O objeto real é um Cachorro, mesmo com a variável do tipo Animal.",
+          "ex": "Polimorfismo executa a versão sobrescrita do objeto real (Cachorro), não do tipo da variável.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que é polimorfismo, resumidamente?",
+          "opts": [
+            "Ter várias classes sem relação alguma",
+            "Um mesmo método se comportar de forma diferente conforme o objeto real que o executa",
+            "Usar vários construtores",
+            "Um tipo de erro comum em Java"
+          ],
+          "a": 1,
+          "hint": "Pense em emitirSom() se comportando diferente para cada subclasse.",
+          "ex": "Polimorfismo permite que o mesmo método tenha comportamentos diferentes por objeto.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que declarar Animal a = new Cachorro() é útil, em vez de sempre usar Cachorro diretamente?",
+          "opts": [
+            "Não é útil, é só uma curiosidade",
+            "Permite escrever código genérico que funciona com qualquer subclasse de Animal",
+            "Impede o uso de métodos do Cachorro",
+            "É obrigatório em Java"
+          ],
+          "a": 1,
+          "hint": "Pense em uma lista de Animais contendo Cachorros, Gatos etc.",
+          "ex": "Código genérico baseado no tipo Animal funciona com qualquer subclasse, graças ao polimorfismo.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "java-18",
+      "name": "INTERFACES",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#818cf8",
+      "icon": "◫",
+      "summary": "Defina contratos de comportamento que classes se comprometem a seguir.",
+      "lesson": [
+        {
+          "title": "O que é uma interface",
+          "body": "Uma interface define um conjunto de métodos que uma classe deve implementar, usando a palavra-chave implements. Diferente de herança (extends), uma classe pode implementar várias interfaces.",
+          "code": "public interface Pagavel {\n  void pagar(double valor);\n}\n\npublic class Boleto implements Pagavel {\n  public void pagar(double valor) {\n    System.out.println(\"Pagando R$ \" + valor + \" via boleto\");\n  }\n}"
+        },
+        {
+          "title": "Interfaces como contrato",
+          "body": "Uma interface é um contrato: qualquer classe que a implemente promete ter aqueles métodos. Isso permite tratar objetos de classes diferentes de forma uniforme, desde que sigam o mesmo contrato.",
+          "code": "Pagavel forma = new Boleto();\nforma.pagar(150.0);"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual palavra-chave uma classe usa para adotar uma interface?",
+          "opts": [
+            "extends",
+            "implements",
+            "interface",
+            "uses"
+          ],
+          "a": 1,
+          "hint": "Compare com extends, usado para herança de classes.",
+          "ex": "implements é usado para uma classe adotar uma interface.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Uma classe pode implementar mais de uma interface ao mesmo tempo?",
+          "opts": [
+            "Não, apenas uma",
+            "Sim, uma classe pode implementar várias interfaces",
+            "Só se as interfaces forem idênticas",
+            "Não, isso não existe em Java"
+          ],
+          "a": 1,
+          "hint": "É uma das diferenças citadas em relação à herança de classes.",
+          "ex": "Diferente de extends, uma classe pode implementar várias interfaces.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que acontece se uma classe implementa uma interface mas não implementa todos os métodos exigidos?",
+          "opts": [
+            "Nada, é opcional",
+            "Um erro de compilação, a menos que a classe seja abstrata",
+            "O método fica com corpo vazio automaticamente",
+            "A interface é ignorada"
+          ],
+          "a": 1,
+          "hint": "Pense na interface como um contrato obrigatório.",
+          "ex": "Implementar uma interface exige fornecer todos os métodos declarados nela.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual a vantagem de programar contra uma interface (Pagavel), em vez de uma classe concreta (Boleto)?",
+          "opts": [
+            "Nenhuma, dá exatamente no mesmo",
+            "Permite trocar a implementação (Boleto, Pix, Cartão...) sem mudar o código que usa Pagavel",
+            "Torna o código mais lento",
+            "Impede a criação de novos tipos de pagamento"
+          ],
+          "a": 1,
+          "hint": "Pense em adicionar um novo tipo de pagamento no futuro.",
+          "ex": "Interfaces permitem flexibilidade: qualquer implementação futura funciona sem alterar o código existente.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "java-19",
+      "name": "ARRAYLIST",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#f472b6",
+      "icon": "◆",
+      "summary": "Armazene listas de tamanho dinâmico com ArrayList.",
+      "lesson": [
+        {
+          "title": "Por que ArrayList",
+          "body": "Diferente de arrays, um ArrayList pode crescer ou diminuir de tamanho dinamicamente. Ele faz parte do pacote java.util e guarda objetos, não tipos primitivos diretamente.",
+          "code": "import java.util.ArrayList;\n\nArrayList<String> nomes = new ArrayList<>();\nnomes.add(\"Ana\");\nnomes.add(\"Bruno\");"
+        },
+        {
+          "title": "Métodos comuns",
+          "body": "get(indice) acessa um elemento pela posição. size() retorna a quantidade de elementos. remove(indice) remove um elemento de uma posição específica.",
+          "code": "System.out.println(nomes.get(0));\nSystem.out.println(nomes.size());\nnomes.remove(1);"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual a principal diferença entre array e ArrayList?",
+          "opts": [
+            "Não há diferença nenhuma",
+            "ArrayList pode crescer ou diminuir de tamanho dinamicamente; array tem tamanho fixo",
+            "Array é mais moderno que ArrayList",
+            "ArrayList só guarda números"
+          ],
+          "a": 1,
+          "hint": "Pense no tamanho fixo dos arrays visto na unidade anterior.",
+          "ex": "ArrayList tem tamanho dinâmico; arrays são de tamanho fixo.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual o valor de nomes.get(0)?\nArrayList<String> nomes = new ArrayList<>();\nnomes.add(\"Ana\");\nnomes.add(\"Bruno\");",
+          "opts": [
+            "Ana",
+            "Bruno",
+            "0",
+            "null"
+          ],
+          "a": 0,
+          "hint": "get(0) acessa o primeiro elemento adicionado.",
+          "ex": "\"Ana\" foi adicionado primeiro, ocupando o índice 0.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual método adiciona um elemento a um ArrayList?",
+          "opts": [
+            "insert()",
+            "add()",
+            "push()",
+            "put()"
+          ],
+          "a": 1,
+          "hint": "É o método usado em ambos os exemplos.",
+          "ex": "add() é o método usado para inserir elementos em um ArrayList.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Depois de nomes.remove(1), quantos elementos restam se a lista tinha 2?",
+          "opts": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "a": 1,
+          "hint": "remove(indice) tira exatamente um elemento da lista.",
+          "ex": "Removendo um elemento de uma lista com 2, sobra 1.",
+          "format": "PREVISÃO DE RESULTADO"
+        }
+      ]
+    },
+    {
+      "id": "java-20",
+      "name": "HASHMAP",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#f472b6",
+      "icon": "▲",
+      "summary": "Associe chaves a valores com a coleção HashMap.",
+      "lesson": [
+        {
+          "title": "Pares chave-valor",
+          "body": "HashMap armazena dados como pares de chave e valor, permitindo buscar um valor rapidamente pela sua chave, sem precisar percorrer toda a coleção como em uma lista.",
+          "code": "import java.util.HashMap;\n\nHashMap<String, Double> precos = new HashMap<>();\nprecos.put(\"Camiseta\", 49.90);\nprecos.put(\"Tenis\", 199.90);"
+        },
+        {
+          "title": "Acessando valores",
+          "body": "get(chave) retorna o valor associado a essa chave, ou null se a chave não existir. containsKey(chave) verifica se uma chave existe no mapa antes de tentar acessá-la.",
+          "code": "double preco = precos.get(\"Camiseta\");\nboolean existe = precos.containsKey(\"Bone\");"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Como o HashMap organiza os dados?",
+          "opts": [
+            "Em uma sequência numerada, como um array",
+            "Em pares de chave e valor",
+            "Apenas como texto",
+            "Em ordem alfabética automática"
+          ],
+          "a": 1,
+          "hint": "Pense em 'Camiseta' associado a 49.90.",
+          "ex": "HashMap guarda dados como pares chave-valor, associando cada chave a um valor.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual o valor de preco?\nHashMap<String, Double> precos = new HashMap<>();\nprecos.put(\"Camiseta\", 49.90);\ndouble preco = precos.get(\"Camiseta\");",
+          "opts": [
+            "\"Camiseta\"",
+            "49.90",
+            "0.0",
+            "null"
+          ],
+          "a": 1,
+          "hint": "get busca o valor associado à chave informada.",
+          "ex": "get(\"Camiseta\") retorna o valor associado a essa chave, 49.90.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que get(chave) retorna se a chave não existir no HashMap?",
+          "opts": [
+            "Um erro imediato sempre",
+            "null",
+            "0 automaticamente",
+            "A primeira chave do mapa"
+          ],
+          "a": 1,
+          "hint": "É diferente de lançar um erro.",
+          "ex": "Buscar uma chave inexistente retorna null, sem lançar erro.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Quando um HashMap é mais adequado que um ArrayList?",
+          "opts": [
+            "Quando a ordem de inserção é o mais importante",
+            "Quando é preciso buscar valores rapidamente por uma chave única",
+            "Nunca, ArrayList sempre é melhor",
+            "Apenas para números"
+          ],
+          "a": 1,
+          "hint": "Pense em buscar o preço de um produto pelo nome dele.",
+          "ex": "HashMap se destaca quando a busca por uma chave específica é frequente.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "java-21",
+      "name": "ITERAÇÃO",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#f472b6",
+      "icon": "⟳",
+      "summary": "Percorra listas e mapas com for-each e métodos de coleção.",
+      "lesson": [
+        {
+          "title": "Percorrendo um ArrayList",
+          "body": "Assim como arrays, ArrayLists podem ser percorridos com for-each, acessando cada elemento diretamente, sem precisar de um índice manual.",
+          "code": "for (String nome : nomes) {\n  System.out.println(nome);\n}"
+        },
+        {
+          "title": "Percorrendo um HashMap",
+          "body": "Para percorrer um HashMap, é comum usar entrySet(), que retorna cada par chave-valor, permitindo acessar getKey() e getValue() de cada entrada.",
+          "code": "for (var entrada : precos.entrySet()) {\n  System.out.println(entrada.getKey() + \": \" + entrada.getValue());\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual estrutura de repetição costuma ser usada para percorrer um ArrayList sem índice?",
+          "opts": [
+            "for tradicional apenas",
+            "for-each",
+            "switch",
+            "do-while apenas"
+          ],
+          "a": 1,
+          "hint": "Compare com o for-each usado em arrays.",
+          "ex": "for-each percorre cada elemento do ArrayList diretamente.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que entrySet() retorna ao percorrer um HashMap?",
+          "opts": [
+            "Apenas as chaves",
+            "Apenas os valores",
+            "Cada par chave-valor do mapa",
+            "Um número aleatório"
+          ],
+          "a": 2,
+          "hint": "Veja getKey() e getValue() sendo usados no exemplo.",
+          "ex": "entrySet() dá acesso a cada par chave-valor, via getKey() e getValue().",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que este laço imprime, considerando precos = {\"Camiseta\": 49.90}?\nfor (var entrada : precos.entrySet()) {\n  System.out.println(entrada.getKey() + \": \" + entrada.getValue());\n}",
+          "opts": [
+            "Camiseta: 49.90",
+            "49.90: Camiseta",
+            "Apenas Camiseta",
+            "Apenas 49.90"
+          ],
+          "a": 0,
+          "hint": "getKey() vem antes de getValue() no print.",
+          "ex": "A saída combina a chave e o valor na ordem escrita: 'Camiseta: 49.90'.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "É possível usar for-each também em arrays, além de ArrayList e HashMap (via entrySet)?",
+          "opts": [
+            "Não, for-each só funciona em ArrayList",
+            "Sim, for-each funciona em arrays também",
+            "Sim, mas só em arrays de String",
+            "Não, arrays exigem sempre índice manual"
+          ],
+          "a": 1,
+          "hint": "Revise a aula de arrays: for-each já foi usado lá.",
+          "ex": "for-each funciona tanto em arrays quanto em coleções como ArrayList.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "java-22",
+      "name": "TRY/CATCH",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#fb7185",
+      "icon": "◆",
+      "summary": "Trate erros em tempo de execução sem derrubar o programa.",
+      "lesson": [
+        {
+          "title": "Capturando exceções",
+          "body": "try envolve um código que pode lançar uma exceção (um erro em tempo de execução). catch captura essa exceção e trata o problema, evitando que o programa pare abruptamente.",
+          "code": "try {\n  int resultado = 10 / 0;\n} catch (ArithmeticException e) {\n  System.out.println(\"Erro: divisao por zero\");\n}"
+        },
+        {
+          "title": "finally",
+          "body": "O bloco finally, opcional, executa sempre — ocorrendo exceção ou não. É usado para tarefas de limpeza, como fechar um arquivo ou conexão, garantindo que aconteçam de qualquer forma.",
+          "code": "try {\n  arquivo.abrir();\n} finally {\n  arquivo.fechar();\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que o bloco catch faz?",
+          "opts": [
+            "Impede que exceções aconteçam",
+            "Captura e trata uma exceção lançada no bloco try",
+            "Encerra o programa imediatamente",
+            "Substitui o bloco try"
+          ],
+          "a": 1,
+          "hint": "Veja como ele reage à divisão por zero no exemplo.",
+          "ex": "catch captura a exceção lançada no try, permitindo tratá-la.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que este código imprime?\ntry {\n  int resultado = 10 / 0;\n} catch (ArithmeticException e) {\n  System.out.println(\"Erro: divisao por zero\");\n}",
+          "opts": [
+            "10",
+            "Um erro que derruba o programa",
+            "Erro: divisao por zero",
+            "0"
+          ],
+          "a": 2,
+          "hint": "A divisão por zero lança uma ArithmeticException, capturada pelo catch.",
+          "ex": "O catch captura a exceção e imprime a mensagem tratada, sem derrubar o programa.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Quando o bloco finally executa?",
+          "opts": [
+            "Só se houver exceção",
+            "Só se não houver exceção",
+            "Sempre, com ou sem exceção",
+            "Nunca, é apenas documentação"
+          ],
+          "a": 2,
+          "hint": "É usado para garantir tarefas de limpeza, como fechar um arquivo.",
+          "ex": "finally sempre executa, independentemente de uma exceção ter ocorrido.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que usar try/catch em vez de deixar o programa parar em um erro?",
+          "opts": [
+            "Não há motivo, deixar parar é sempre melhor",
+            "Permite tratar o problema e manter o programa em execução de forma controlada",
+            "try/catch deixa o programa mais lento sem benefício",
+            "É obrigatório em todo código Java"
+          ],
+          "a": 1,
+          "hint": "Pense em um programa continuar funcionando após um erro esperado.",
+          "ex": "Tratar exceções evita que erros previsíveis derrubem toda a aplicação.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "java-23",
+      "name": "EXCEÇÕES CUSTOMIZADAS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#fb7185",
+      "icon": "▲",
+      "summary": "Crie tipos de exceção próprios para representar erros específicos do seu programa.",
+      "lesson": [
+        {
+          "title": "Estendendo Exception",
+          "body": "É possível criar uma exceção própria estendendo a classe Exception (ou RuntimeException). Isso permite representar erros específicos do domínio do programa, com nomes mais claros que exceções genéricas.",
+          "code": "public class SaldoInsuficienteException extends Exception {\n  public SaldoInsuficienteException(String mensagem) {\n    super(mensagem);\n  }\n}"
+        },
+        {
+          "title": "Lançando uma exceção com throw",
+          "body": "A palavra-chave throw lança manualmente uma exceção quando uma condição de erro é detectada no código, interrompendo o fluxo normal até que algum catch a capture.",
+          "code": "if (saldo < valor) {\n  throw new SaldoInsuficienteException(\"Saldo nao cobre o valor\");\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual classe geralmente é estendida para criar uma exceção customizada?",
+          "opts": [
+            "String",
+            "Exception",
+            "Scanner",
+            "ArrayList"
+          ],
+          "a": 1,
+          "hint": "É a classe base para a maioria das exceções em Java.",
+          "ex": "Exception (ou RuntimeException) é a base para criar exceções customizadas.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Para que serve a palavra-chave throw?",
+          "opts": [
+            "Capturar uma exceção",
+            "Lançar manualmente uma exceção",
+            "Declarar uma variável",
+            "Finalizar um bloco try"
+          ],
+          "a": 1,
+          "hint": "É usada quando uma condição de erro é detectada explicitamente.",
+          "ex": "throw lança manualmente uma exceção quando o código detecta um erro.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Quando SaldoInsuficienteException é lançada neste código?\nif (saldo < valor) {\n  throw new SaldoInsuficienteException(\"Saldo nao cobre o valor\");\n}",
+          "opts": [
+            "Sempre que o método é chamado",
+            "Quando saldo é menor que valor",
+            "Quando saldo é maior que valor",
+            "Nunca, o código está incompleto"
+          ],
+          "a": 1,
+          "hint": "Observe a condição do if.",
+          "ex": "A exceção é lançada apenas quando saldo é menor que o valor solicitado.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual a vantagem de criar SaldoInsuficienteException em vez de usar uma exceção genérica?",
+          "opts": [
+            "Nenhuma, dá exatamente no mesmo",
+            "O nome da exceção comunica claramente qual erro específico ocorreu",
+            "Exceções customizadas são mais rápidas",
+            "É a única forma de lançar erros em Java"
+          ],
+          "a": 1,
+          "hint": "Pense em ler o nome da exceção no código ou em um log de erro.",
+          "ex": "Exceções customizadas tornam o código e os erros mais claros e específicos.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "java-24",
+      "name": "BOAS PRÁTICAS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#fb7185",
+      "icon": "✓",
+      "summary": "Trate exceções de forma útil, sem esconder problemas.",
+      "lesson": [
+        {
+          "title": "Não ignore exceções silenciosamente",
+          "body": "Um catch vazio, que não faz nada com o erro, esconde problemas e dificulta encontrar bugs. É melhor ao menos registrar (log) o erro, mesmo que a decisão seja continuar a execução.",
+          "code": "// Evite:\ntry {\n  operacaoArriscada();\n} catch (Exception e) {\n  // vazio, esconde o erro\n}"
+        },
+        {
+          "title": "Capture exceções específicas",
+          "body": "Capturar Exception genérica esconde detalhes sobre o que realmente pode dar errado. É melhor capturar tipos específicos (como ArithmeticException ou SaldoInsuficienteException) sempre que possível, tratando cada caso de forma apropriada.",
+          "code": "try {\n  transferir(valor);\n} catch (SaldoInsuficienteException e) {\n  System.out.println(\"Saldo insuficiente: \" + e.getMessage());\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Por que um catch vazio é considerado uma má prática?",
+          "opts": [
+            "Não é má prática, é recomendado",
+            "Porque esconde o erro, dificultando encontrar e corrigir problemas depois",
+            "Porque é mais lento que um catch com código",
+            "Porque não compila"
+          ],
+          "a": 1,
+          "hint": "Pense em um erro acontecendo sem deixar nenhum rastro.",
+          "ex": "Um catch vazio silencia o erro, tornando bugs difíceis de rastrear.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que preferir capturar exceções específicas a uma Exception genérica?",
+          "opts": [
+            "Não há motivo real",
+            "Permite tratar cada tipo de erro de forma apropriada e específica",
+            "Exceções específicas não existem em Java",
+            "É proibido usar Exception genérica"
+          ],
+          "a": 1,
+          "hint": "Pense em tratar um saldo insuficiente de forma diferente de um erro de rede.",
+          "ex": "Capturar tipos específicos permite um tratamento mais preciso para cada erro.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que fazer, no mínimo, ao capturar uma exceção, mesmo que a execução continue?",
+          "opts": [
+            "Nada, ignorar é sempre seguro",
+            "Registrar (log) ou exibir alguma informação sobre o que aconteceu",
+            "Encerrar o programa imediatamente",
+            "Relançar a mesma exceção sempre"
+          ],
+          "a": 1,
+          "hint": "Pense na diferença entre o catch vazio e o catch com println no exemplo.",
+          "ex": "Registrar o erro, mesmo que a execução continue, evita silenciar problemas.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "code",
+          "q": "Qual das duas abordagens é considerada melhor prática?\nA) catch (Exception e) { }\nB) catch (SaldoInsuficienteException e) { System.out.println(e.getMessage()); }",
+          "opts": [
+            "A, porque é mais curta",
+            "B, porque trata um erro específico e informa o que aconteceu",
+            "As duas são igualmente boas",
+            "Nenhuma das duas, deve-se evitar try/catch"
+          ],
+          "a": 1,
+          "hint": "Combine os dois princípios vistos nesta aula: especificidade e não silenciar erros.",
+          "ex": "A opção B captura um erro específico e comunica claramente o que ocorreu.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "java-25",
+      "name": "STREAMS",
+      "difficulty": "AVANÇADO",
+      "color": "#c084fc",
+      "icon": "◆",
+      "summary": "Processe coleções de forma declarativa com a API de Streams.",
+      "lesson": [
+        {
+          "title": "O que é um Stream",
+          "body": "Stream é uma forma de processar coleções de dados de forma declarativa, encadeando operações como filter (filtrar), map (transformar) e collect (juntar o resultado), em vez de escrever loops manuais.",
+          "code": "List<Integer> numeros = List.of(1, 2, 3, 4, 5, 6);\nList<Integer> pares = numeros.stream()\n  .filter(n -> n % 2 == 0)\n  .collect(Collectors.toList());"
+        },
+        {
+          "title": "Encadeando operações",
+          "body": "Operações de Stream podem ser encadeadas em sequência: primeiro filter seleciona elementos, depois map pode transformar cada um, e collect converte o resultado de volta para uma coleção.",
+          "code": "List<Integer> dobrados = numeros.stream()\n  .filter(n -> n % 2 == 0)\n  .map(n -> n * 2)\n  .collect(Collectors.toList());"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que o método filter de um Stream faz?",
+          "opts": [
+            "Ordena os elementos",
+            "Seleciona apenas os elementos que atendem a uma condição",
+            "Soma todos os elementos",
+            "Remove todos os elementos"
+          ],
+          "a": 1,
+          "hint": "Veja n % 2 == 0 selecionando os números pares.",
+          "ex": "filter mantém apenas os elementos que satisfazem a condição informada.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual o conteúdo de pares?\nList<Integer> numeros = List.of(1, 2, 3, 4, 5, 6);\nList<Integer> pares = numeros.stream()\n  .filter(n -> n % 2 == 0)\n  .collect(Collectors.toList());",
+          "opts": [
+            "[1, 3, 5]",
+            "[2, 4, 6]",
+            "[1, 2, 3, 4, 5, 6]",
+            "[]"
+          ],
+          "a": 1,
+          "hint": "O filtro seleciona os números com resto 0 na divisão por 2.",
+          "ex": "filter mantém apenas os números pares: 2, 4 e 6.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que o método map de um Stream faz?",
+          "opts": [
+            "Filtra elementos",
+            "Transforma cada elemento, gerando um novo valor para cada um",
+            "Conta os elementos",
+            "Ordena os elementos"
+          ],
+          "a": 1,
+          "hint": "Veja n -> n * 2 no segundo exemplo.",
+          "ex": "map aplica uma transformação a cada elemento do Stream.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual a vantagem de usar Streams em vez de loops manuais para essas operações?",
+          "opts": [
+            "Não há vantagem real",
+            "Deixa a intenção do código mais clara e declarativa, encadeando operações",
+            "Streams são sempre a única opção válida",
+            "Streams eliminam a necessidade de coleções"
+          ],
+          "a": 1,
+          "hint": "Pense em ler filter().map().collect() versus vários loops aninhados.",
+          "ex": "Streams tornam operações comuns em coleções mais legíveis e declarativas.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "java-26",
+      "name": "LAMBDAS",
+      "difficulty": "AVANÇADO",
+      "color": "#c084fc",
+      "icon": "▲",
+      "summary": "Escreva funções curtas e anônimas com expressões lambda.",
+      "lesson": [
+        {
+          "title": "A sintaxe lambda",
+          "body": "Uma expressão lambda representa uma função anônima curta, no formato (parametros) -> corpo. É muito usada como argumento de métodos de Stream, como filter e map.",
+          "code": "// Lambda que verifica se um número é par\nn -> n % 2 == 0"
+        },
+        {
+          "title": "Lambdas em variáveis funcionais",
+          "body": "Lambdas podem ser atribuídas a variáveis de tipos funcionais, como Predicate<T> (recebe um valor, retorna boolean) ou Function<T, R> (recebe um valor, retorna outro).",
+          "code": "Predicate<Integer> ehPar = n -> n % 2 == 0;\nSystem.out.println(ehPar.test(4));"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual símbolo separa os parâmetros do corpo em uma expressão lambda?",
+          "opts": [
+            "=>",
+            "->",
+            "::",
+            ":"
+          ],
+          "a": 1,
+          "hint": "Aparece em n -> n % 2 == 0.",
+          "ex": "-> é o operador usado para separar parâmetros e corpo em uma lambda.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que ehPar.test(4) retorna?\nPredicate<Integer> ehPar = n -> n % 2 == 0;\nSystem.out.println(ehPar.test(4));",
+          "opts": [
+            "true",
+            "false",
+            "4",
+            "Um erro"
+          ],
+          "a": 0,
+          "hint": "4 é par, então n % 2 == 0 é true.",
+          "ex": "Como 4 é par, a expressão n % 2 == 0 avalia como true.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Onde lambdas são frequentemente usadas em Java moderno?",
+          "opts": [
+            "Apenas em comentários",
+            "Como argumento de métodos de Stream, como filter e map",
+            "Apenas em construtores",
+            "Não são usadas em Java"
+          ],
+          "a": 1,
+          "hint": "Relembre os exemplos da aula de Streams.",
+          "ex": "Lambdas são muito usadas como argumentos de operações de Stream.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que lambdas costumam deixar o código mais conciso?",
+          "opts": [
+            "Porque eliminam a necessidade de métodos",
+            "Porque evitam escrever uma classe inteira só para uma função curta e usada uma vez",
+            "Porque removem a necessidade de tipos",
+            "Não deixam o código mais conciso"
+          ],
+          "a": 1,
+          "hint": "Compare com a alternativa de criar uma classe separada para cada pequena função.",
+          "ex": "Lambdas evitam a verbosidade de criar classes inteiras para comportamentos curtos.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "java-27",
+      "name": "RECORDS",
+      "difficulty": "AVANÇADO",
+      "color": "#c084fc",
+      "icon": "◫",
+      "summary": "Modele dados imutáveis de forma compacta com records.",
+      "lesson": [
+        {
+          "title": "O que é um record",
+          "body": "record é uma forma compacta de criar uma classe que só guarda dados imutáveis. O compilador gera automaticamente o construtor, getters, equals, hashCode e toString, reduzindo código repetitivo.",
+          "code": "public record Produto(String nome, double preco) {}\n\nProduto p = new Produto(\"Camiseta\", 49.90);\nSystem.out.println(p.nome());"
+        },
+        {
+          "title": "Imutabilidade",
+          "body": "Os campos de um record são finais (não podem ser reatribuídos após a criação). Isso torna records ideais para representar dados que não devem mudar, como coordenadas, valores monetários ou registros vindos de uma API.",
+          "code": "Produto p = new Produto(\"Camiseta\", 49.90);\n// p.preco = 59.90; // erro de compilação, campo imutavel"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que um record gera automaticamente, sem precisar escrever manualmente?",
+          "opts": [
+            "Apenas o nome da classe",
+            "Construtor, getters, equals, hashCode e toString",
+            "Apenas métodos privados",
+            "Nada, precisa escrever tudo"
+          ],
+          "a": 1,
+          "hint": "É citado explicitamente na aula.",
+          "ex": "records geram automaticamente construtor, getters e outros métodos comuns.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Como se acessa o campo nome de um record chamado p?\npublic record Produto(String nome, double preco) {}\nProduto p = new Produto(\"Camiseta\", 49.90);",
+          "opts": [
+            "p.nome",
+            "p.getNome()",
+            "p.nome()",
+            "p[\"nome\"]"
+          ],
+          "a": 2,
+          "hint": "Records geram um getter com o mesmo nome do campo, sem 'get'.",
+          "ex": "O getter gerado se chama nome(), igual ao nome do campo.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Os campos de um record podem ser reatribuídos depois de criado o objeto?",
+          "opts": [
+            "Sim, livremente",
+            "Não, os campos de um record são imutáveis",
+            "Sim, mas só com um setter customizado",
+            "Depende do tipo do campo"
+          ],
+          "a": 1,
+          "hint": "Foi explicado no segundo bloco da aula.",
+          "ex": "Campos de um record são finais e não podem ser alterados após a criação.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Quando um record é uma boa escolha para modelar dados?",
+          "opts": [
+            "Quando os dados precisam mudar constantemente",
+            "Quando os dados representam um valor imutável simples, como um registro de API",
+            "Nunca, classes tradicionais são sempre melhores",
+            "Apenas para números"
+          ],
+          "a": 1,
+          "hint": "Pense em coordenadas ou valores que não devem mudar depois de criados.",
+          "ex": "records são ideais para dados imutáveis e simples, como registros e valores.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "java-28",
+      "name": "ESTRUTURA DE PROJETO",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "▣",
+      "summary": "Organize pacotes e classes de um projeto Java maior.",
+      "lesson": [
+        {
+          "title": "Pacotes",
+          "body": "Pacotes (package) organizam classes relacionadas em grupos, evitando conflitos de nomes e deixando o projeto mais organizado conforme cresce. O nome do pacote costuma refletir a estrutura de pastas.",
+          "code": "package com.loja.modelo;\n\npublic class Produto {\n  // ...\n}"
+        },
+        {
+          "title": "Separando responsabilidades",
+          "body": "É comum separar um projeto em pacotes por responsabilidade: modelo (classes de dados), servico (regras de negócio) e principal (ponto de entrada). Isso facilita encontrar e manter cada parte do código.",
+          "code": "com.loja.modelo.Produto\ncom.loja.servico.CalculadoraDePreco\ncom.loja.Main"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Para que serve um pacote (package) em Java?",
+          "opts": [
+            "Compactar o programa em um arquivo",
+            "Organizar classes relacionadas e evitar conflitos de nomes",
+            "Executar o programa mais rápido",
+            "Substituir o método main"
+          ],
+          "a": 1,
+          "hint": "Pense em agrupar arquivos relacionados em pastas.",
+          "ex": "Pacotes organizam e agrupam classes relacionadas, evitando conflitos de nome.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que separar um projeto em pacotes como modelo, servico e principal?",
+          "opts": [
+            "É apenas uma formalidade sem efeito prático",
+            "Facilita encontrar, entender e manter cada parte do código conforme o projeto cresce",
+            "É obrigatório para o programa compilar",
+            "Deixa o programa mais lento"
+          ],
+          "a": 1,
+          "hint": "Pense em um projeto grande, com centenas de classes.",
+          "ex": "Separar por responsabilidade torna o projeto mais fácil de navegar e manter.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que a linha 'package com.loja.modelo;' declara?",
+          "opts": [
+            "O nome de uma variável",
+            "A que pacote a classe pertence",
+            "Um comentário",
+            "Uma importação"
+          ],
+          "a": 1,
+          "hint": "É a primeira linha de uma classe, antes dos imports.",
+          "ex": "A declaração package define a qual pacote aquela classe pertence.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Em qual pacote a classe Produto do exemplo está?",
+          "opts": [
+            "com.loja",
+            "com.loja.modelo",
+            "modelo",
+            "Produto"
+          ],
+          "a": 1,
+          "hint": "Veja a declaração package no topo do arquivo.",
+          "ex": "A declaração 'package com.loja.modelo;' indica esse pacote exato.",
+          "format": "LEITURA DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "java-29",
+      "name": "TESTES SIMPLES",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "✓",
+      "summary": "Verifique se seu código funciona como esperado, de forma sistemática.",
+      "lesson": [
+        {
+          "title": "Por que testar",
+          "body": "Testar manualmente rodando o programa a cada mudança é lento e fácil de esquecer casos. Testes automatizados verificam o comportamento esperado do código de forma rápida e repetível, geralmente comparando um resultado obtido com um resultado esperado.",
+          "code": "// Ideia geral de um teste simples:\nint resultado = somar(2, 3);\nif (resultado != 5) {\n  System.out.println(\"Teste falhou! Esperado 5, obtido \" + resultado);\n}"
+        },
+        {
+          "title": "Casos de borda",
+          "body": "Bons testes não cobrem só o caminho feliz (entrada normal), mas também casos de borda: valores extremos, entradas vazias, números negativos. É nesses casos que bugs costumam aparecer.",
+          "code": "// Testar também: soma(0, 0), soma(-5, 5), soma(numeros muito grandes)"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual a principal vantagem de testes automatizados sobre testar manualmente?",
+          "opts": [
+            "Não há vantagem real",
+            "São rápidos, repetíveis e ajudam a não esquecer casos importantes",
+            "Testes automatizados eliminam totalmente a necessidade de pensar em casos de erro",
+            "Deixam o programa mais lento em produção"
+          ],
+          "a": 1,
+          "hint": "Pense em rodar o mesmo teste centenas de vezes sem esforço extra.",
+          "ex": "Testes automatizados economizam tempo e reduzem erros humanos ao verificar o código.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que são 'casos de borda' em testes?",
+          "opts": [
+            "Os testes mais simples possíveis",
+            "Situações extremas ou incomuns, como entradas vazias ou valores negativos",
+            "Testes que sempre falham",
+            "Testes escritos por engano"
+          ],
+          "a": 1,
+          "hint": "Pense em soma(-5, 5) ou soma(0, 0).",
+          "ex": "Casos de borda testam situações extremas, onde bugs costumam aparecer.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Este teste simples passaria ou falharia?\nint resultado = somar(2, 3);\nif (resultado != 5) {\n  System.out.println(\"Teste falhou!\");\n}",
+          "opts": [
+            "Passaria (nada seria impresso), pois 2+3=5",
+            "Falharia sempre",
+            "Depende do sistema operacional",
+            "Não compila"
+          ],
+          "a": 0,
+          "hint": "Calcule 2 + 3 e compare com o valor esperado (5).",
+          "ex": "Como somar(2, 3) deve retornar 5, o teste passa e nada é impresso.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Testar apenas o 'caminho feliz' (entradas normais e esperadas) é suficiente para um bom conjunto de testes?",
+          "opts": [
+            "Sim, é sempre suficiente",
+            "Não, é importante testar também casos de borda e entradas inesperadas",
+            "Sim, casos de borda nunca acontecem na prática",
+            "Não, testes são desnecessários"
+          ],
+          "a": 1,
+          "hint": "Relembre por que casos de borda são importantes.",
+          "ex": "Bons testes cobrem tanto o caminho feliz quanto casos extremos e inesperados.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "java-30",
+      "name": "APLICAÇÃO CONSOLE COMPLETA",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "Ω",
+      "summary": "Junte classes, coleções e tratamento de erros em um programa completo.",
+      "lesson": [
+        {
+          "title": "Juntando as peças",
+          "body": "Uma aplicação real combina o que foi visto: classes para modelar dados (como Produto), coleções para guardar vários itens (como ArrayList<Produto>), métodos para organizar a lógica, e try/catch para lidar com entradas inválidas do usuário.",
+          "code": "ArrayList<Produto> estoque = new ArrayList<>();\nestoque.add(new Produto(\"Camiseta\", 49.90));\nestoque.add(new Produto(\"Tenis\", 199.90));"
+        },
+        {
+          "title": "Um fluxo simples de programa",
+          "body": "Um programa de console típico: lê uma entrada do usuário com Scanner, processa essa entrada (buscando, calculando ou validando), e mostra um resultado com System.out.println — tudo dentro de um método main organizado.",
+          "code": "Scanner leitor = new Scanner(System.in);\nSystem.out.print(\"Digite o nome do produto: \");\nString busca = leitor.nextLine();\n// buscar 'busca' na lista 'estoque' e mostrar o resultado"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual estrutura é adequada para guardar uma lista de vários objetos Produto?",
+          "opts": [
+            "Um único int",
+            "ArrayList<Produto>",
+            "Um HashMap<Produto>",
+            "Uma String"
+          ],
+          "a": 1,
+          "hint": "ArrayList armazena uma quantidade variável de objetos do mesmo tipo.",
+          "ex": "ArrayList<Produto> é a estrutura correta para uma lista de vários produtos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Em uma aplicação de console real, por que combinar Scanner com try/catch é uma boa prática?",
+          "opts": [
+            "Não é necessário nunca",
+            "Porque a entrada do usuário pode vir em formato inesperado, causando erros que precisam ser tratados",
+            "Porque Scanner exige try/catch para compilar",
+            "Porque deixa o programa mais lento sem benefício"
+          ],
+          "a": 1,
+          "hint": "Pense em um usuário digitando texto onde um número era esperado.",
+          "ex": "Entradas do usuário são imprevisíveis, então tratar erros evita que o programa quebre.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "code",
+          "q": "Depois deste código, quantos produtos existem em estoque?\nArrayList<Produto> estoque = new ArrayList<>();\nestoque.add(new Produto(\"Camiseta\", 49.90));\nestoque.add(new Produto(\"Tenis\", 199.90));",
+          "opts": [
+            "0",
+            "1",
+            "2",
+            "3"
+          ],
+          "a": 2,
+          "hint": "Conte quantas vezes add() é chamado.",
+          "ex": "Dois produtos foram adicionados com add(), então estoque.size() seria 2.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual conceito desta trilha é essencial para ler o texto digitado pelo usuário nesse fluxo?",
+          "opts": [
+            "Herança",
+            "Scanner e seus métodos como nextLine()",
+            "Records",
+            "Interfaces"
+          ],
+          "a": 1,
+          "hint": "Foi apresentado na unidade 'Primeiros passos'.",
+          "ex": "Scanner (com nextLine, nextInt, etc.) é o mecanismo para ler entradas do usuário.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    }
+  ]
+}
