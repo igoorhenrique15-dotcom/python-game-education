@@ -80,6 +80,38 @@
   letter-spacing: 0.6px !important;
 }
 
+/* Keep the app name visible on narrow phones — only the subtitle
+   (already hidden at 650px) needs to go, not the whole brand label.
+   Trim padding/gaps/icon size too, so brand + stat chips both fit
+   without the heart chip getting clipped off the right edge. */
+@media (max-width: 410px) {
+  .app-header {
+    gap: 10px !important;
+    padding: 8px 10px !important;
+  }
+
+  .brand {
+    gap: 8px !important;
+  }
+
+  .brand-cube {
+    width: 36px !important;
+    height: 36px !important;
+  }
+
+  .brand > span:last-child {
+    display: block !important;
+  }
+
+  .brand b {
+    font-size: 11px !important;
+  }
+
+  .header-stats {
+    gap: 4px !important;
+  }
+}
+
 .desktop-nav {
   border: 1px solid var(--line) !important;
   background: var(--panel) !important;
@@ -365,7 +397,7 @@
 
 .tracks-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 12px;
 }
 
