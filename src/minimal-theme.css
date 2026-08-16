@@ -157,37 +157,49 @@
 }
 
 /* ---- Hero / mascot intro card */
+/* ---- Compact hero: mascot + current stage name + progress + one button,
+   replacing the old two-column headline + code-editor preview card. */
 .course-hero {
+  display: flex !important;
+  grid-template-columns: none !important;
+  align-items: center !important;
+  gap: 14px !important;
+  min-height: 0 !important;
+  padding: 14px 16px !important;
   border: 1px solid var(--line) !important;
+  border-radius: var(--radius-lg) !important;
   background: var(--panel) !important;
+}
+
+.course-hero .python-avatar {
+  flex: 0 0 auto;
+}
+
+.course-hero .hero-content {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.course-hero .hero-content small {
+  color: color-mix(in srgb, var(--stage-color) 70%, var(--muted));
+  font-weight: 800;
+  letter-spacing: 0.5px;
 }
 
 .course-hero h1 {
-  font-weight: 800 !important;
+  margin: 2px 0 8px;
+  overflow: hidden;
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 800;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.course-hero h1 strong {
-  background: none !important;
-  -webkit-background-clip: initial !important;
-  background-clip: initial !important;
-  -webkit-text-fill-color: initial !important;
-  color: var(--cyan) !important;
-}
-
-.hero-guide {
-  border: 1px solid var(--line) !important;
-  background: var(--panel-soft) !important;
-}
-
-/* ---- Code / next lesson card */
-.next-lesson-card {
-  border: 1px solid var(--line) !important;
-  background: var(--panel) !important;
-}
-
-.next-card-titlebar {
-  border-bottom: 1px solid var(--line) !important;
-  background: var(--panel-soft) !important;
+.course-hero .pixel-button {
+  flex: 0 0 auto;
+  min-height: 0 !important;
+  padding: 10px 16px !important;
 }
 
 /* ---- Unit sections: full-bleed color gradient -> flat card with a small

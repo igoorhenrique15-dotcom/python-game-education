@@ -79,24 +79,14 @@ function withStudyReward(progress, { xp = 0, gems = 0, hearts = 0 }) {
 
 const UNIT_META = [
   {
-    title: 'Primeiros passos',
-    goal: 'Entenda dados, entradas, cálculos e textos.',
+    title: 'Fundamentos',
+    goal: 'Dados, decisões e repetições.',
     color: '#58cc02'
   },
   {
-    title: 'Decisões e repetições',
-    goal: 'Controle caminhos e repita ações com clareza.',
-    color: '#46a302'
-  },
-  {
-    title: 'Coleções',
-    goal: 'Organize sequências, conjuntos e registros.',
+    title: 'Coleções e funções',
+    goal: 'Organize dados e crie blocos reutilizáveis.',
     color: '#1cb0f6'
-  },
-  {
-    title: 'Funções e organização',
-    goal: 'Crie blocos reutilizáveis e módulos confiáveis.',
-    color: '#168dc4'
   },
   {
     title: 'Arquivos e dados',
@@ -104,64 +94,39 @@ const UNIT_META = [
     color: '#ce82ff'
   },
   {
-    title: 'Objetos e modelagem',
-    goal: 'Modele entidades e comportamentos reutilizáveis.',
-    color: '#9b55db'
+    title: 'Dados e objetos',
+    goal: 'Valide dados e comece a modelar objetos.',
+    color: '#20b486'
   },
   {
-    title: 'Qualidade profissional',
-    goal: 'Teste, registre e documente o comportamento.',
+    title: 'Orientação a objetos',
+    goal: 'Modele entidades e comportamentos reutilizáveis.',
+    color: '#6366f1'
+  },
+  {
+    title: 'Testes e qualidade',
+    goal: 'Depure, teste e documente o comportamento.',
+    color: '#f59e0b'
+  },
+  {
+    title: 'Projetos profissionais',
+    goal: 'Estruture, configure e publique com qualidade.',
     color: '#ff9600'
   },
   {
     title: 'Aplicações reais',
-    goal: 'Prepare ambientes, integrações e automações.',
+    goal: 'Integrações, automações e entregas completas.',
     color: '#ff4b4b'
   },
   {
-    title: 'Dados aprofundados',
-    goal: 'Trate formatos, caminhos e persistência com segurança.',
-    color: '#20b486'
-  },
-  {
-    title: 'Engenharia de dados',
-    goal: 'Valide, consulte e transforme conjuntos reais.',
+    title: 'Python avançado',
+    goal: 'Algoritmos, coleções e concorrência.',
     color: '#0d9488'
   },
   {
-    title: 'Orientação a objetos II',
-    goal: 'Aprofunde estado, propriedades e composição.',
-    color: '#6366f1'
-  },
-  {
-    title: 'Modelagem avançada',
-    goal: 'Crie objetos expressivos, iteráveis e testáveis.',
-    color: '#4f46e5'
-  },
-  {
-    title: 'Python profissional II',
-    goal: 'Depure, teste e configure aplicações.',
-    color: '#f59e0b'
-  },
-  {
-    title: 'Projetos sustentáveis',
-    goal: 'Organize dependências, qualidade e manutenção.',
-    color: '#d97706'
-  },
-  {
-    title: 'Aplicações conectadas',
-    goal: 'Crie interfaces, APIs e persistência local.',
-    color: '#ef4444'
-  },
-  {
-    title: 'Entrega final',
-    goal: 'Automatize, empacote e conclua um produto completo.',
+    title: 'Projeto final',
+    goal: 'Otimize, empacote e entregue um produto completo.',
     color: '#dc2626'
-  },
-  {
-    title: 'Fundamentos aprofundados',
-    goal: 'Execute scripts, entenda referências e compare algoritmos.',
-    color: '#22c55e'
   }
 ];
 
@@ -260,9 +225,11 @@ function useSfx(enabled) {
   }, [enabled]);
 }
 
+const STAGES_PER_UNIT = 8;
+
 function courseUnits(stages) {
   const units = [];
-  for (let index = 0; index < stages.length; index += 4) {
+  for (let index = 0; index < stages.length; index += STAGES_PER_UNIT) {
     const meta = UNIT_META[units.length] || {
       title: `Unidade ${units.length + 1}`,
       goal: 'Continue avançando pela trilha.',
@@ -271,7 +238,7 @@ function courseUnits(stages) {
     units.push({
       ...meta,
       number: units.length + 1,
-      stages: stages.slice(index, index + 4),
+      stages: stages.slice(index, index + STAGES_PER_UNIT),
       startIndex: index,
     });
   }
@@ -492,76 +459,21 @@ function PremiumOfferBar({ onPurchase }) {
   );
 }
 
-function NextLessonCard({ stage, stageIndex, started, onContinue, onReview }) {
-  return (
-    <aside className="next-lesson-card" style={{ '--stage-color': stage.color }}>
-      <div className="next-card-titlebar">
-        <span><i /><i /><i /></span>
-        <b>next_lesson.py</b>
-        <em>PY</em>
-      </div>
-      <div className="next-card-body">
-        <div className="next-card-status">
-          <span className="next-stage-icon">{stage.icon}</span>
-          <div>
-            <small>{started ? 'CONTINUE DE ONDE PAROU' : 'SEU PRIMEIRO PASSO'}</small>
-            <b>FASE {String(stageIndex + 1).padStart(2, '0')}</b>
-          </div>
-        </div>
-        <h2>{stage.name}</h2>
-        <p>{stage.summary}</p>
-        <div className="next-card-facts">
-          <span><b>{stage.lesson.length}</b> aulas curtas</span>
-          <span><b>{stage.questions.length}</b> questões</span>
-        </div>
-        <PixelButton onClick={onContinue} color={stage.color}>
-          {started ? 'CONTINUAR AGORA' : 'COMEÇAR AGORA'}
-        </PixelButton>
-        <button type="button" className="hero-practice-link" onClick={onReview}>Treinar antes desta fase</button>
-      </div>
-    </aside>
-  );
-}
-
-function CourseHero({ stages, progress, currentStage, currentIndex, onContinue, onReview }) {
+function CourseHero({ stages, progress, currentStage, onContinue }) {
   const completed = Object.keys(progress.completed).length;
   const percent = Math.round((completed / stages.length) * 100);
-  const lessonCount = stages.reduce((total, stage) => total + stage.lesson.length, 0);
-  const challengeCount = stages.reduce((total, stage) => total + stage.questions.length, 0);
 
   return (
-    <section className="course-hero route-hero">
+    <section className="course-hero route-hero" style={{ '--stage-color': currentStage.color }}>
+      <PinscherMascot size="small" mood={completed ? 'focus' : 'ready'} />
       <div className="hero-content">
-        <span className="hero-kicker">TRILHA GUIADA · DO ZERO AO PROJETO</span>
-        <h1>{completed ? <>CONTINUE SUA<br /><strong>TRILHA.</strong></> : <>PYTHON, PASSO<br /><strong>A PASSO.</strong></>}</h1>
-        <div className="hero-guide">
-          <PinscherMascot size="medium" mood={completed ? 'focus' : 'ready'} />
-          <div>
-            <small>GUIA PY · SUA PARCEIRA DE CÓDIGO</small>
-            <p>{completed
-              ? <>Próxima fase: <b className="hero-next-stage">{currentStage.name}</b>. Continue exatamente de onde parou.</>
-              : 'Eu acompanho cada conceito, exemplo e tentativa até você entender.'}</p>
-          </div>
-        </div>
-
-        <div className="hero-progress">
-          <div><span>PROGRESSO GERAL</span><b>{percent}%</b></div>
-          <LinearProgress value={percent} color="#58cc02" label={`${percent}% do curso concluído`} />
-        </div>
-
-        <div className="course-totals">
-          <span><b>{stages.length}</b> FASES</span>
-          <span><b>{lessonCount}</b> AULAS</span>
-          <span><b>{challengeCount}</b> QUESTÕES</span>
-        </div>
+        <small>{completed ? 'CONTINUE DE ONDE PAROU' : 'GUIA PY'}</small>
+        <h1>{currentStage.name}</h1>
+        <LinearProgress value={percent} color="#58cc02" label={`${percent}% do curso concluído`} />
       </div>
-      <NextLessonCard
-        stage={currentStage}
-        stageIndex={currentIndex}
-        started={completed > 0}
-        onContinue={onContinue}
-        onReview={onReview}
-      />
+      <PixelButton onClick={onContinue} color={currentStage.color}>
+        {completed > 0 ? 'CONTINUAR' : 'COMEÇAR'}
+      </PixelButton>
     </section>
   );
 }
@@ -587,7 +499,6 @@ function UnitPath({ unit, progress, currentIndex, selectedId, onSelect, onUnitRe
         <div>
           <span>UNIDADE {unit.number}</span>
           <h2>{unit.title}</h2>
-          <p>{unit.goal}</p>
           <div className="unit-meter" aria-label={`${unitPercent}% da unidade concluída`}>
             <span style={{ width: `${unitPercent}%` }} />
           </div>
@@ -616,7 +527,6 @@ function UnitPath({ unit, progress, currentIndex, selectedId, onSelect, onUnitRe
           const state = stageState(stage, stageIndex, currentIndex, progress);
           const selected = selectedId === stage.id;
           const point = points[localIndex];
-          const attemptCount = progress.attempts[stage.id] || 0;
           const learning = stageLearningSummary(progress, stage);
 
           return (
@@ -641,9 +551,6 @@ function UnitPath({ unit, progress, currentIndex, selectedId, onSelect, onUnitRe
                   </span>
                 )}
               </button>
-              <span className="level-number">FASE {String(stageIndex + 1).padStart(2, '0')}</span>
-              <strong>{stage.name}</strong>
-              {attemptCount > 1 && <small>{attemptCount} tentativas</small>}
             </div>
           );
         })}
@@ -653,7 +560,7 @@ function UnitPath({ unit, progress, currentIndex, selectedId, onSelect, onUnitRe
         <span className="unit-review-icon">{progress.unitReviews?.[unit.number] ? '✓' : '◎'}</span>
         <div>
           <small>REVISÃO DA UNIDADE {unit.number}</small>
-          <h3>{progress.unitReviews?.[unit.number] ? 'Revisão concluída' : completedInUnit === unit.stages.length ? 'Misture o que aprendeu' : 'Conclua as quatro fases'}</h3>
+          <h3>{progress.unitReviews?.[unit.number] ? 'Revisão concluída' : completedInUnit === unit.stages.length ? 'Misture o que aprendeu' : 'Conclua as fases da unidade'}</h3>
           <p>8 questões das fases desta unidade · prática segura, sem perder vidas.</p>
         </div>
         <PixelButton
@@ -756,7 +663,7 @@ function DailyGoalCard({ progress }) {
   );
 }
 
-function CourseMap({ stages, projects = [], tracks = [], progress, onEnter, onReview, onUnitReview, onOpenProject, onPurchase, onReset }) {
+function CourseMap({ stages, projects = [], tracks = [], progress, onEnter, onReview, onUnitReview, onOpenProject, onReset }) {
   const units = useMemo(() => courseUnits(stages), [stages]);
   const learning = courseLearningSummary(stages, progress);
   const currentIndex = Math.max(0, stages.findIndex((stage) => !progress.completed[stage.id]));
@@ -788,18 +695,11 @@ function CourseMap({ stages, projects = [], tracks = [], progress, onEnter, onRe
         stages={stages}
         progress={progress}
         currentStage={recommended}
-        currentIndex={recommendedIndex}
         onContinue={() => onEnter(recommended)}
-        onReview={onReview}
       />
 
       <div className="course-layout">
         <div className="path-column">
-          <div className="path-intro">
-            <div><span>TRILHA DE PYTHON</span><h2>Aprenda e aplique no mesmo caminho</h2></div>
-            <p>Fases, revisões, projetos práticos e especializações agora fazem parte de uma única trilha.</p>
-          </div>
-
           {units.map((unit) => {
             const stageIds = new Set(unit.stages.map((stage) => stage.id));
             const unitProjects = projects.filter((project) => stageIds.has(project.unlockStage));
@@ -823,26 +723,9 @@ function CourseMap({ stages, projects = [], tracks = [], progress, onEnter, onRe
             );
           })}
 
-          <section className="premium-store trail-premium-store">
-            <div className="premium-store-title">
-              <div><span className="project-kicker">PACOTE COMPLETO · COMPRA ILUSTRATIVA</span><h2>Projetos livres + vidas infinitas</h2></div>
-              <small>Pagamento único de R$ 25,00 · nenhuma cobrança real nesta versão.</small>
-            </div>
-            <div className="premium-products">
-              <article className={progress.entitlements?.allProjects && progress.entitlements?.infiniteHearts ? 'active premium-bundle' : 'premium-bundle'}>
-                <span className="premium-product-icon">★</span>
-                <div><small>ACESSO TOTAL À TRILHA</small><h3>Libere toda a prática Python</h3><p>Abre projetos e missões sem pré-requisitos e remove a perda de vidas.</p></div>
-                <strong>R$ 25,00<small>PAGAMENTO ÚNICO</small></strong>
-                <PixelButton className="premium-buy-button" color="#8b5cf6" disabled={progress.entitlements?.allProjects && progress.entitlements?.infiniteHearts} onClick={onPurchase}>
-                  {progress.entitlements?.allProjects && progress.entitlements?.infiniteHearts ? 'PACOTE ATIVO ✓' : 'COMPRAR PACOTE · ILUSTRATIVO'}
-                </PixelButton>
-              </article>
-            </div>
-          </section>
-
           <TrailSpecializations tracks={tracks} progress={progress} onOpen={onOpenProject} />
 
-          <div className="finish-marker"><span>Ω</span><div><b>TRILHA PYTHON COMPLETA</b><small>64 fases, projetos e especializações no mesmo caminho.</small></div></div>
+          <div className="finish-marker"><span>Ω</span><div><b>TRILHA PYTHON COMPLETA</b></div></div>
           <button className="reset-progress" type="button" onClick={onReset}>ZERAR PROGRESSO SALVO</button>
         </div>
 
@@ -1222,7 +1105,6 @@ function TrailProjectMilestones({ projects, stages, progress, onOpen }) {
                 <small>PROJETO · APÓS A FASE {String(stageNumber(project.unlockStage)).padStart(2, '0')}</small>
                 <h4>{project.title}</h4>
                 <p>{project.brief}</p>
-                <em>{project.outcome}</em>
               </div>
               <PixelButton
                 color={project.color}
@@ -1247,9 +1129,8 @@ function TrailSpecializations({ tracks, progress, onOpen }) {
   return (
     <section className="trail-specializations">
       <div className="trail-specializations-title">
-        <span className="project-kicker">DEPOIS DAS 64 FASES</span>
-        <h2>Especializações da trilha Python</h2>
-        <p>Escolha Automação ou Aplicações. Cada missão abre a próxima e continua usando desafios guiados.</p>
+        <span className="project-kicker">DEPOIS DA TRILHA</span>
+        <h2>Especializações</h2>
       </div>
 
       {tracks.map((track) => {
@@ -1845,7 +1726,6 @@ export default function CompleteApp() {
           onReview={openPractice}
           onUnitReview={(unit) => startReview('unit', unit)}
           onOpenProject={openProject}
-          onPurchase={purchasePremiumBundle}
           onReset={reset}
         />
       )}
