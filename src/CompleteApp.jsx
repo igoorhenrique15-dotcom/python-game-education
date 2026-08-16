@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import course from './data/course.json';
+import pythonCourse from './data/course.json';
+import htmlCourse from './data/course-html.json';
 import mascotReady from './assets/mascot/guia-py-ready.webp';
 import mascotFocus from './assets/mascot/guia-py-focus.webp';
 import mascotCelebrate from './assets/mascot/guia-py-celebrate.webp';
@@ -7,7 +8,11 @@ import '../style.css';
 import './rounded-theme.css';
 import './minimal-theme.css';
 
-const STORAGE_KEY = 'black-buster-progress-v5';
+const LEGACY_STORAGE_KEY = 'black-buster-progress-v5';
+const ACCOUNT_STORAGE_KEY = 'black-buster-account-v1';
+const trackStorageKey = (trackId) => `black-buster-track-${trackId}-v1`;
+const ACCOUNT_FIELDS = ['entitlements', 'hearts', 'xp', 'gems', 'streak', 'lastStudyDate', 'dailyXp', 'dailyXpDate'];
+const TRACK_FIELDS = ['completed', 'attempts', 'correct', 'wrong', 'lastStage', 'questionStats', 'reviewSessions', 'unitReviews'];
 const SETTINGS_KEY = 'black-buster-settings-v2';
 const FONT_ID = 'black-buster-fonts';
 const MAX_HEARTS = 5;
@@ -31,16 +36,14 @@ function yesterdayKey() {
   return localDayKey(date);
 }
 
-function emptyProgress() {
+function pickFields(obj, fields) {
+  const out = {};
+  fields.forEach((field) => { out[field] = obj[field]; });
+  return out;
+}
+
+function emptyAccount() {
   return {
-    completed: {},
-    attempts: {},
-    correct: 0,
-    wrong: 0,
-    lastStage: null,
-    questionStats: {},
-    reviewSessions: 0,
-    unitReviews: {},
     entitlements: {
       infiniteHearts: false,
     },
@@ -52,6 +55,23 @@ function emptyProgress() {
     dailyXp: 0,
     dailyXpDate: null,
   };
+}
+
+function emptyTrackProgress() {
+  return {
+    completed: {},
+    attempts: {},
+    correct: 0,
+    wrong: 0,
+    lastStage: null,
+    questionStats: {},
+    reviewSessions: 0,
+    unitReviews: {},
+  };
+}
+
+function emptyProgress() {
+  return { ...emptyAccount(), ...emptyTrackProgress() };
 }
 
 function withStudyReward(progress, { xp = 0, gems = 0, hearts = 0 }) {
@@ -79,7 +99,7 @@ function withStudyReward(progress, { xp = 0, gems = 0, hearts = 0 }) {
   };
 }
 
-const UNIT_META = [
+const PYTHON_UNIT_META = [
   {
     title: 'Fundamentos',
     goal: 'Dados, decisões e repetições.',
@@ -132,6 +152,66 @@ const UNIT_META = [
   }
 ];
 
+const HTML_UNIT_META = [
+  { title: 'Fundamentos do HTML', goal: 'Estrutura, tags e atributos.', color: '#ff9600' },
+  { title: 'Texto e navegação', goal: 'Títulos, links e listas.', color: '#f6c445' },
+  { title: 'Mídia e tabelas', goal: 'Imagens, tabelas e formulários básicos.', color: '#22c55e' },
+  { title: 'Formulários e semântica', goal: 'Tipos de input, validação e tags semânticas.', color: '#34d399' },
+  { title: 'Fundamentos de CSS', goal: 'Como estilizar, cores, fontes e box model.', color: '#1cb0f6' },
+  { title: 'Seletores e layout', goal: 'Seletores avançados, display e flexbox básico.', color: '#0ea5e9' },
+  { title: 'Layout avançado', goal: 'Flexbox na prática e grid.', color: '#38bdf8' },
+  { title: 'Responsividade', goal: 'Unidades, media queries e imagens flexíveis.', color: '#a78bfa' },
+  { title: 'Interatividade e boas práticas', goal: 'Estados, transições e acessibilidade.', color: '#f472b6' },
+  { title: 'Projeto final', goal: 'Organização, performance e publicação.', color: '#facc15' },
+];
+
+const TRACK_CATALOG = [
+  {
+    id: 'python',
+    title: 'Python',
+    subtitle: 'Do zero à prática profissional.',
+    icon: '⌗',
+    color: '#58cc02',
+    course: pythonCourse,
+    unitMeta: PYTHON_UNIT_META,
+    stagesPerUnit: 8,
+    fileExt: 'py',
+  },
+  {
+    id: 'html',
+    title: 'HTML & CSS',
+    subtitle: 'Estrutura e estilo para a web.',
+    icon: '◇',
+    color: '#ff9600',
+    course: htmlCourse,
+    unitMeta: HTML_UNIT_META,
+    stagesPerUnit: 3,
+    fileExt: 'html',
+  },
+  {
+    id: 'java',
+    title: 'Java',
+    subtitle: 'Orientação a objetos e back-end.',
+    icon: '☕',
+    color: '#f59e0b',
+    course: null,
+    unitMeta: null,
+    stagesPerUnit: 3,
+    fileExt: 'java',
+  },
+  {
+    id: 'ia',
+    title: 'Inteligência Artificial',
+    subtitle: 'Dados, modelos e automação.',
+    icon: '✦',
+    color: '#6366f1',
+    course: null,
+    unitMeta: null,
+    stagesPerUnit: 3,
+    fileExt: 'py',
+  },
+];
+
 const JOURNEY_X = [50, 68, 76, 64, 43, 27, 22, 36];
 
 function useFonts() {
@@ -145,20 +225,23 @@ function useFonts() {
   }, []);
 }
 
-function readProgress() {
+function readLegacyRaw() {
   try {
-    const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
+    return JSON.parse(localStorage.getItem(LEGACY_STORAGE_KEY) || 'null');
+  } catch {
+    return null;
+  }
+}
+
+// Account-wide stats (hearts, xp, gems, streak) are shared across every
+// trilha, like a single learner profile. Only completion/answer history is
+// tracked per track — see readTrackProgress.
+function readAccount() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(ACCOUNT_STORAGE_KEY) || 'null') || readLegacyRaw() || {};
     const lastStudyDate = saved.lastStudyDate || null;
     const streakIsActive = lastStudyDate === localDayKey() || lastStudyDate === yesterdayKey();
     return {
-      completed: saved.completed || {},
-      attempts: saved.attempts || {},
-      correct: saved.correct || 0,
-      wrong: saved.wrong || 0,
-      lastStage: saved.lastStage || null,
-      questionStats: saved.questionStats || {},
-      reviewSessions: saved.reviewSessions || 0,
-      unitReviews: saved.unitReviews || {},
       entitlements: {
         infiniteHearts: Boolean(saved.entitlements?.infiniteHearts),
       },
@@ -171,8 +254,31 @@ function readProgress() {
       dailyXpDate: saved.dailyXpDate || null,
     };
   } catch {
-    return emptyProgress();
+    return emptyAccount();
   }
+}
+
+function readTrackProgress(trackId) {
+  try {
+    const raw = localStorage.getItem(trackStorageKey(trackId));
+    const saved = (raw ? JSON.parse(raw) : null) || (trackId === 'python' ? readLegacyRaw() : null) || {};
+    return {
+      completed: saved.completed || {},
+      attempts: saved.attempts || {},
+      correct: saved.correct || 0,
+      wrong: saved.wrong || 0,
+      lastStage: saved.lastStage || null,
+      questionStats: saved.questionStats || {},
+      reviewSessions: saved.reviewSessions || 0,
+      unitReviews: saved.unitReviews || {},
+    };
+  } catch {
+    return emptyTrackProgress();
+  }
+}
+
+function readProgress(trackId) {
+  return { ...readAccount(), ...readTrackProgress(trackId) };
 }
 
 function readSettings() {
@@ -187,8 +293,9 @@ function readSettings() {
   }
 }
 
-function persistProgress(value) {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(value));
+function persistProgress(trackId, value) {
+  localStorage.setItem(ACCOUNT_STORAGE_KEY, JSON.stringify(pickFields(value, ACCOUNT_FIELDS)));
+  localStorage.setItem(trackStorageKey(trackId), JSON.stringify(pickFields(value, TRACK_FIELDS)));
 }
 
 function persistSettings(value) {
@@ -225,12 +332,10 @@ function useSfx(enabled) {
   }, [enabled]);
 }
 
-const STAGES_PER_UNIT = 8;
-
-function courseUnits(stages) {
+function courseUnits(stages, unitMeta, stagesPerUnit) {
   const units = [];
-  for (let index = 0; index < stages.length; index += STAGES_PER_UNIT) {
-    const meta = UNIT_META[units.length] || {
+  for (let index = 0; index < stages.length; index += stagesPerUnit) {
+    const meta = unitMeta[units.length] || {
       title: `Unidade ${units.length + 1}`,
       goal: 'Continue avançando pela trilha.',
       color: '#1cb0f6',
@@ -238,7 +343,7 @@ function courseUnits(stages) {
     units.push({
       ...meta,
       number: units.length + 1,
-      stages: stages.slice(index, index + STAGES_PER_UNIT),
+      stages: stages.slice(index, index + stagesPerUnit),
       startIndex: index,
     });
   }
@@ -366,12 +471,13 @@ function HighlightedPythonLine({ line }) {
 
 function CodeBlock({ text, filename = 'python.py', label = 'EXEMPLO GUIADO', compact = false }) {
   const lines = String(text || '').split('\n');
+  const ext = filename.split('.').pop().toUpperCase();
   return (
     <div className={`code-window ${compact ? 'compact' : ''}`} aria-label={`${label}: ${filename}`}>
       <div className="code-titlebar">
         <span><i /><i /><i /></span>
         <b>{filename}</b>
-        <em>PY</em>
+        <em>{ext}</em>
       </div>
       <div className="code-modebar"><span>{label}</span><small>SOMENTE LEITURA</small></div>
       <pre><code>{lines.map((line, index) => (
@@ -401,12 +507,12 @@ function FlameIcon() {
   );
 }
 
-function AppHeader({ stats, settings, active = 'map', onHome, onTracks, onReview, onHearts, onToggleSound, onToggleScanlines }) {
+function AppHeader({ stats, settings, active = 'map', trackTitle, onHome, onTracks, onReview, onHearts, onToggleSound, onToggleScanlines }) {
   return (
     <header className="app-header">
       <button type="button" className="brand" onClick={onHome} aria-label="Voltar para a trilha">
         <span className="brand-cube"><PinscherMascot size="small" /></span>
-        <span><b>BLACK BUSTER</b><small>TRILHA COMPLETA DE PYTHON</small></span>
+        <span><b>BLACK BUSTER</b><small>TRILHA DE {trackTitle.toUpperCase()}</small></span>
       </button>
 
       <nav className="desktop-nav" aria-label="Navegação principal">
@@ -480,34 +586,35 @@ function CourseHero({ stages, progress, currentStage, onContinue }) {
   );
 }
 
-const LANGUAGE_TRACKS = [
-  { id: 'python', title: 'Python', subtitle: 'Do zero à prática profissional.', icon: '⌗', color: '#58cc02', status: 'available' },
-  { id: 'html', title: 'HTML & CSS', subtitle: 'Estrutura e estilo para a web.', icon: '◇', color: '#ff9600', status: 'soon' },
-  { id: 'java', title: 'Java', subtitle: 'Orientação a objetos e back-end.', icon: '☕', color: '#f59e0b', status: 'soon' },
-  { id: 'ia', title: 'Inteligência Artificial', subtitle: 'Dados, modelos e automação.', icon: '✦', color: '#6366f1', status: 'soon' },
-];
-
-function TracksScreen({ percent, onOpenPython }) {
+function TracksScreen({ activeTrackId, onSelectTrack }) {
   return (
     <main className="tracks-screen">
       <h1>Trilhas</h1>
       <div className="tracks-grid">
-        {LANGUAGE_TRACKS.map((track) => (
-          <article className={`track-card ${track.status}`} key={track.id} style={{ '--track-color': track.color }}>
-            <span className="track-card-icon">{track.icon}</span>
-            <div className="track-card-copy">
-              <h3>{track.title}</h3>
-              <p>{track.subtitle}</p>
-            </div>
-            {track.status === 'available' ? (
-              <PixelButton color={track.color} onClick={onOpenPython}>
-                {percent > 0 ? `CONTINUAR · ${percent}%` : 'COMEÇAR'}
-              </PixelButton>
-            ) : (
-              <span className="track-card-soon">EM BREVE</span>
-            )}
-          </article>
-        ))}
+        {TRACK_CATALOG.map((track) => {
+          const available = Boolean(track.course);
+          const trackProgress = available ? readTrackProgress(track.id) : null;
+          const completedCount = trackProgress ? Object.keys(trackProgress.completed).length : 0;
+          const percent = trackProgress && track.course.stages.length
+            ? Math.round((completedCount / track.course.stages.length) * 100)
+            : 0;
+          return (
+            <article className={`track-card ${available ? 'available' : 'soon'}`} key={track.id} style={{ '--track-color': track.color }}>
+              <span className="track-card-icon">{track.icon}</span>
+              <div className="track-card-copy">
+                <h3>{track.title}</h3>
+                <p>{track.subtitle}</p>
+              </div>
+              {available ? (
+                <PixelButton color={track.color} onClick={() => onSelectTrack(track.id)}>
+                  {track.id === activeTrackId && percent > 0 ? `CONTINUAR · ${percent}%` : percent > 0 ? `ABRIR · ${percent}%` : 'COMEÇAR'}
+                </PixelButton>
+              ) : (
+                <span className="track-card-soon">EM BREVE</span>
+              )}
+            </article>
+          );
+        })}
       </div>
     </main>
   );
@@ -515,7 +622,7 @@ function TracksScreen({ percent, onOpenPython }) {
 
 function UnitPath({ unit, progress, currentIndex, selectedId, onSelect, onUnitReview }) {
   const points = unit.stages.map((_, localIndex) => ({
-    x: JOURNEY_X[(unit.startIndex + localIndex) % JOURNEY_X.length],
+    x: JOURNEY_X[localIndex % JOURNEY_X.length],
     y: 100 + localIndex * 136,
   }));
   const height = Math.max(266, 180 + (unit.stages.length - 1) * 136);
@@ -698,8 +805,8 @@ function DailyGoalCard({ progress }) {
   );
 }
 
-function CourseMap({ stages, progress, onEnter, onReview, onUnitReview, onReset }) {
-  const units = useMemo(() => courseUnits(stages), [stages]);
+function CourseMap({ stages, unitMeta, stagesPerUnit, trackTitle, progress, onEnter, onReview, onUnitReview, onReset }) {
+  const units = useMemo(() => courseUnits(stages, unitMeta, stagesPerUnit), [stages, unitMeta, stagesPerUnit]);
   const learning = courseLearningSummary(stages, progress);
   const currentIndex = Math.max(0, stages.findIndex((stage) => !progress.completed[stage.id]));
   const fallbackIndex = currentIndex === -1 ? stages.length - 1 : currentIndex;
@@ -747,7 +854,7 @@ function CourseMap({ stages, progress, onEnter, onReview, onUnitReview, onReset 
             />
           ))}
 
-          <div className="finish-marker"><span>Ω</span><div><b>TRILHA PYTHON COMPLETA</b></div></div>
+          <div className="finish-marker"><span>Ω</span><div><b>TRILHA {trackTitle.toUpperCase()} COMPLETA</b></div></div>
           <button className="reset-progress" type="button" onClick={onReset}>ZERAR PROGRESSO SALVO</button>
         </div>
 
@@ -789,7 +896,7 @@ function FocusHeader({ stage, step, total, onExit, hearts = MAX_HEARTS, safePrac
   );
 }
 
-function LessonScreen({ stage, stageIndex, hearts, infiniteHearts = false, onExit, onBattle, sfx }) {
+function LessonScreen({ stage, stageIndex, fileExt, hearts, infiniteHearts = false, onExit, onBattle, sfx }) {
   const [index, setIndex] = useState(0);
   const card = stage.lesson[index];
   const last = index === stage.lesson.length - 1;
@@ -839,7 +946,7 @@ function LessonScreen({ stage, stageIndex, hearts, infiniteHearts = false, onExi
           </div>
           <CodeBlock
             text={card.code}
-            filename={`${stage.id}_conceito_${index + 1}.py`}
+            filename={`${stage.id}_conceito_${index + 1}.${fileExt}`}
             label="LEITURA DE CÓDIGO"
           />
         </section>
@@ -867,7 +974,7 @@ const QUESTION_FORMAT_LABELS = {
   'APLICAÇÃO PRÁTICA': 'APLIQUE O QUE APRENDEU',
 };
 
-function QuestionCard({ question, stageColor, selected, wrong, correct, onSelect, hearts, safePractice = false }) {
+function QuestionCard({ question, stageColor, selected, wrong, correct, onSelect, hearts, safePractice = false, fileExt = 'py' }) {
   return (
     <section className="question-card">
       <div className="question-card-header">
@@ -878,7 +985,7 @@ function QuestionCard({ question, stageColor, selected, wrong, correct, onSelect
             : `♥ ${hearts} ${hearts === 1 ? 'VIDA' : 'VIDAS'}`}
         </span>
       </div>
-      {question.type === 'code' ? <CodeBlock text={question.q} filename="desafio.py" label="ANALISE O CÓDIGO" compact /> : <h2>{question.q}</h2>}
+      {question.type === 'code' ? <CodeBlock text={question.q} filename={`desafio.${fileExt}`} label="ANALISE O CÓDIGO" compact /> : <h2>{question.q}</h2>}
       <div className="answers">
         {question.opts.map((option, index) => {
           const state = correct && index === question.a
@@ -936,7 +1043,7 @@ function QuestionFeedback({ question, selected, wrong, correct, color, nextLabel
   );
 }
 
-function BattleScreen({ stage, hearts, infiniteHearts = false, progress, onExit, onWin, onStat, onHeartPractice, onRefillHearts, onPurchasePremium, sfx }) {
+function BattleScreen({ stage, fileExt, hearts, infiniteHearts = false, progress, onExit, onWin, onStat, onHeartPractice, onRefillHearts, onPurchasePremium, sfx }) {
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState(null);
   const [wrong, setWrong] = useState([]);
@@ -1021,6 +1128,7 @@ function BattleScreen({ stage, hearts, infiniteHearts = false, progress, onExit,
           onSelect={select}
           hearts={hearts}
           safePractice={infiniteHearts}
+          fileExt={fileExt}
         />
         <QuestionFeedback
           question={question}
@@ -1191,7 +1299,7 @@ function PracticeHub({ stages, progress, onExit, onStart }) {
   );
 }
 
-function ReviewScreen({ stages, progress, mode, unitStageIds = [], onExit, onStat, onComplete, sfx }) {
+function ReviewScreen({ stages, fileExt, progress, mode, unitStageIds = [], onExit, onStat, onComplete, sfx }) {
   const pool = useMemo(() => questionPool(stages), [stages]);
   const [queue] = useState(() => {
     const source = mode === 'mistakes'
@@ -1297,6 +1405,7 @@ function ReviewScreen({ stages, progress, mode, unitStageIds = [], onExit, onSta
           onSelect={select}
           hearts={progress.hearts}
           safePractice
+          fileExt={fileExt}
         />
         <QuestionFeedback
           question={question}
@@ -1316,8 +1425,13 @@ function ReviewScreen({ stages, progress, mode, unitStageIds = [], onExit, onSta
 
 export default function CompleteApp() {
   useFonts();
-  const stages = course.stages;
-  const [progress, setProgress] = useState(readProgress);
+  const [activeTrackId, setActiveTrackId] = useState('python');
+  const activeTrack = useMemo(
+    () => TRACK_CATALOG.find((track) => track.id === activeTrackId) || TRACK_CATALOG[0],
+    [activeTrackId],
+  );
+  const stages = activeTrack.course.stages;
+  const [progress, setProgress] = useState(() => readProgress(activeTrackId));
   const [settings, setSettings] = useState(readSettings);
   const [screen, setScreen] = useState('map');
   const [activeStage, setActiveStage] = useState(stages[0]);
@@ -1352,10 +1466,10 @@ export default function CompleteApp() {
   const updateProgress = useCallback((updater) => {
     setProgress((current) => {
       const next = typeof updater === 'function' ? updater(current) : updater;
-      persistProgress(next);
+      persistProgress(activeTrackId, next);
       return next;
     });
-  }, []);
+  }, [activeTrackId]);
 
   const updateSetting = (key) => {
     setSettings((current) => {
@@ -1378,6 +1492,18 @@ export default function CompleteApp() {
 
   const openTracks = () => {
     setScreen('tracks');
+    sfx('click');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const selectTrack = (trackId) => {
+    if (trackId !== activeTrackId) {
+      const track = TRACK_CATALOG.find((item) => item.id === trackId);
+      setActiveTrackId(trackId);
+      setProgress((current) => ({ ...pickFields(current, ACCOUNT_FIELDS), ...readTrackProgress(trackId) }));
+      setActiveStage(track.course.stages[0]);
+    }
+    setScreen('map');
     sfx('click');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -1507,7 +1633,7 @@ export default function CompleteApp() {
   const reset = () => {
     if (!window.confirm('Zerar apenas o progresso e as estatísticas do game?')) return;
     const clean = emptyProgress();
-    persistProgress(clean);
+    persistProgress(activeTrackId, clean);
     setProgress(clean);
     sfx('bad');
   };
@@ -1515,7 +1641,6 @@ export default function CompleteApp() {
   const activeIndex = stages.findIndex((stage) => stage.id === activeStage.id);
   const nextStage = activeIndex < stages.length - 1 ? stages[activeIndex + 1] : null;
   const showMainNavigation = screen === 'map' || screen === 'tracks';
-  const percentComplete = Math.round((Object.keys(progress.completed).length / stages.length) * 100);
 
   return (
     <div className={`app ${settings.scanlines ? 'scanlines-on' : ''}`}>
@@ -1527,6 +1652,7 @@ export default function CompleteApp() {
           stats={stats}
           settings={settings}
           active={screen}
+          trackTitle={activeTrack.title}
           onHome={goMap}
           onTracks={openTracks}
           onReview={openPractice}
@@ -1541,12 +1667,15 @@ export default function CompleteApp() {
       )}
 
       {screen === 'tracks' && (
-        <TracksScreen percent={percentComplete} onOpenPython={goMap} />
+        <TracksScreen activeTrackId={activeTrackId} onSelectTrack={selectTrack} />
       )}
 
       {screen === 'map' && (
         <CourseMap
           stages={stages}
+          unitMeta={activeTrack.unitMeta}
+          stagesPerUnit={activeTrack.stagesPerUnit}
+          trackTitle={activeTrack.title}
           progress={progress}
           onEnter={enterStage}
           onReview={openPractice}
@@ -1561,12 +1690,13 @@ export default function CompleteApp() {
         <HeartsScreen progress={progress} onExit={goMap} onPractice={() => startReview('hearts')} onRefill={refillHearts} onPurchasePremium={purchasePremiumBundle} />
       )}
       {screen === 'lesson' && (
-        <LessonScreen stage={activeStage} stageIndex={activeIndex} hearts={progress.hearts} infiniteHearts={Boolean(progress.entitlements?.infiniteHearts)} onExit={goMap} onBattle={startBattle} sfx={sfx} />
+        <LessonScreen stage={activeStage} stageIndex={activeIndex} fileExt={activeTrack.fileExt} hearts={progress.hearts} infiniteHearts={Boolean(progress.entitlements?.infiniteHearts)} onExit={goMap} onBattle={startBattle} sfx={sfx} />
       )}
       {screen === 'battle' && (
         <BattleScreen
           key={battleKey}
           stage={activeStage}
+          fileExt={activeTrack.fileExt}
           hearts={progress.hearts}
           infiniteHearts={Boolean(progress.entitlements?.infiniteHearts)}
           progress={progress}
@@ -1594,6 +1724,7 @@ export default function CompleteApp() {
         <ReviewScreen
           key={reviewKey}
           stages={stages}
+          fileExt={activeTrack.fileExt}
           progress={progress}
           mode={reviewMode}
           unitStageIds={reviewUnit?.stages.map((stage) => stage.id) || []}
