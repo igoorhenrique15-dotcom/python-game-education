@@ -181,16 +181,16 @@ const JAVA_UNIT_META = [
 ];
 
 const IA_UNIT_META = [
-  { title: 'Fundamentos de IA', goal: 'O que é IA, tipos de aprendizado e dados.', color: '#6366f1' },
-  { title: 'Python para dados', goal: 'NumPy, Pandas e visualização simples.', color: '#818cf8' },
-  { title: 'Aprendizado supervisionado', goal: 'Regressão, classificação e divisão treino/teste.', color: '#22c55e' },
-  { title: 'Avaliação de modelos', goal: 'Métricas, overfitting e validação cruzada.', color: '#0ea5e9' },
-  { title: 'Árvores e ensembles', goal: 'Árvores de decisão, random forest e boosting.', color: '#14b8a6' },
-  { title: 'Redes neurais I', goal: 'Neurônio artificial, camadas e ativação.', color: '#a855f7' },
-  { title: 'Redes neurais II', goal: 'Redes convolucionais, recorrentes e frameworks.', color: '#e879f9' },
-  { title: 'Processamento de linguagem', goal: 'Tokenização, embeddings e modelos de linguagem.', color: '#fb923c' },
-  { title: 'Boas práticas em IA', goal: 'Ética, qualidade de dados e deploy.', color: '#34d399' },
-  { title: 'Projeto final', goal: 'Pipeline de dados e apresentação de resultados.', color: '#facc15' },
+  { title: 'Primeiros passos com IA', goal: 'O que são assistentes de IA e onde eles aparecem.', color: '#6366f1' },
+  { title: 'Escrevendo bons prompts', goal: 'A anatomia de um pedido claro para a IA.', color: '#818cf8' },
+  { title: 'Técnicas de prompt', goal: 'Exemplos, raciocínio passo a passo e personas.', color: '#22c55e' },
+  { title: 'Conversando com a IA', goal: 'Refinar, dividir tarefas e revisar respostas.', color: '#0ea5e9' },
+  { title: 'IA para escrever e estudar', goal: 'Resumir, explicar e revisar textos.', color: '#14b8a6' },
+  { title: 'IA para trabalho e produtividade', goal: 'Organizar ideias, e-mails e comparações.', color: '#f59e0b' },
+  { title: 'IA com imagens, áudio e vídeo', goal: 'Geração de imagens, transcrição e assistentes de voz.', color: '#ec4899' },
+  { title: 'Limitações e erros da IA', goal: 'Alucinações, vieses e erros lógicos.', color: '#f97316' },
+  { title: 'Uso responsável de IA', goal: 'Verificação, privacidade e direitos autorais.', color: '#34d399' },
+  { title: 'Projeto final', goal: 'Monte seu próprio fluxo de trabalho com IA.', color: '#facc15' },
 ];
 
 const TRACK_CATALOG = [
@@ -230,7 +230,7 @@ const TRACK_CATALOG = [
   {
     id: 'ia',
     title: 'Inteligência Artificial',
-    subtitle: 'Dados, modelos e automação.',
+    subtitle: 'Aprenda a usar IA no dia a dia.',
     icon: '✦',
     color: '#6366f1',
     course: iaCourse,
@@ -535,7 +535,7 @@ function FlameIcon() {
   );
 }
 
-function AppHeader({ stats, settings, active = 'map', trackTitle, onHome, onTracks, onReview, onHearts, onToggleSound, onToggleScanlines }) {
+function AppHeader({ stats, settings, active = 'map', trackTitle, onHome, onTracks, onHearts, onToggleSound, onToggleScanlines }) {
   return (
     <header className="app-header">
       <button type="button" className="brand" onClick={onHome} aria-label="Voltar para a trilha">
@@ -546,7 +546,6 @@ function AppHeader({ stats, settings, active = 'map', trackTitle, onHome, onTrac
       <nav className="desktop-nav" aria-label="Navegação principal">
         <button type="button" className={active === 'map' ? 'active' : ''} onClick={onHome}><span>⌁</span> TRILHA</button>
         <button type="button" className={active === 'tracks' ? 'active' : ''} onClick={onTracks}><span>▦</span> CURSOS</button>
-        <button type="button" className={active === 'practice' ? 'active' : ''} onClick={onReview}><span>◎</span> PRATICAR</button>
       </nav>
 
       <div className="header-stats">
@@ -571,12 +570,11 @@ function AppHeader({ stats, settings, active = 'map', trackTitle, onHome, onTrac
   );
 }
 
-function MobileNav({ active = 'map', onHome, onTracks, onReview, onHearts, hearts, infiniteHearts = false }) {
+function MobileNav({ active = 'map', onHome, onTracks, onHearts, hearts, infiniteHearts = false }) {
   return (
     <nav className="mobile-nav" aria-label="Navegação para celular">
       <button type="button" className={active === 'map' ? 'active' : ''} onClick={onHome}><span>⌁</span><small>TRILHA</small></button>
       <button type="button" className={active === 'tracks' ? 'active' : ''} onClick={onTracks}><span>▦</span><small>CURSOS</small></button>
-      <button type="button" className={active === 'practice' ? 'active' : ''} onClick={onReview}><span>◎</span><small>PRATICAR</small></button>
       <button type="button" className={`mobile-hearts ${infiniteHearts ? 'infinite' : ''}`} onClick={onHearts}><span>♥</span><small>{infiniteHearts ? '∞ VIDAS' : `${hearts}/${MAX_HEARTS} VIDAS`}</small></button>
     </nav>
   );
@@ -833,9 +831,8 @@ function DailyGoalCard({ progress }) {
   );
 }
 
-function CourseMap({ stages, unitMeta, stagesPerUnit, trackTitle, progress, onEnter, onReview, onUnitReview, onReset }) {
+function CourseMap({ stages, unitMeta, stagesPerUnit, trackTitle, progress, onEnter, onUnitReview, onReset }) {
   const units = useMemo(() => courseUnits(stages, unitMeta, stagesPerUnit), [stages, unitMeta, stagesPerUnit]);
-  const learning = courseLearningSummary(stages, progress);
   const currentIndex = Math.max(0, stages.findIndex((stage) => !progress.completed[stage.id]));
   const fallbackIndex = currentIndex === -1 ? stages.length - 1 : currentIndex;
   const recommendedIndex = stages.every((stage) => progress.completed[stage.id]) ? stages.length - 1 : fallbackIndex;
@@ -898,13 +895,6 @@ function CourseMap({ stages, unitMeta, stagesPerUnit, trackTitle, progress, onEn
           />
           <DailyGoalCard progress={progress} />
           <ProgressCard stages={stages} progress={progress} />
-          <section className="rail-card practice-card">
-            <span className="practice-symbol">◎</span>
-            <div><small>REVISÃO INTELIGENTE</small><h3>{learning.pending ? `${learning.pending} ${learning.pending === 1 ? 'ponto pede' : 'pontos pedem'} atenção` : 'Pratique sem alterar a trilha'}</h3><p>{learning.pending ? 'Treine primeiro as questões em que você errou.' : 'Misture questões de todas as fases quando quiser.'}</p></div>
-            <PixelButton color={learning.pending ? '#ff9600' : '#1cb0f6'} variant="outline" onClick={onReview}>
-              {learning.pending ? `REVISAR ${learning.pending} ${learning.pending === 1 ? 'ERRO' : 'ERROS'}` : 'ABRIR PRÁTICA'}
-            </PixelButton>
-          </section>
         </aside>
       </div>
     </main>
@@ -959,7 +949,7 @@ function LessonScreen({ stage, stageIndex, fileExt, hearts, infiniteHearts = fal
           })}
         </nav>
 
-        <section className="learning-card">
+        <section className={`learning-card ${card.code ? '' : 'text-only'}`}>
           <div className="lesson-copy">
             <div className="lesson-card-topline">
               <span className="card-kicker">CONCEITO {String(index + 1).padStart(2, '0')}</span>
@@ -967,16 +957,25 @@ function LessonScreen({ stage, stageIndex, fileExt, hearts, infiniteHearts = fal
             </div>
             <h2>{card.title}</h2>
             <p>{card.body}</p>
-            <div className="lesson-read-tip">
-              <span>→</span>
-              <p><b>Agora observe o exemplo</b>Leia de cima para baixo e procure o conceito destacado. Você não precisa digitar código nesta etapa.</p>
-            </div>
+            {card.code ? (
+              <div className="lesson-read-tip">
+                <span>→</span>
+                <p><b>Agora observe o exemplo</b>Leia de cima para baixo e procure o conceito destacado. Você não precisa digitar código nesta etapa.</p>
+              </div>
+            ) : card.tip ? (
+              <div className="lesson-read-tip">
+                <span>→</span>
+                <p><b>Na prática</b>{card.tip}</p>
+              </div>
+            ) : null}
           </div>
-          <CodeBlock
-            text={card.code}
-            filename={`${stage.id}_conceito_${index + 1}.${fileExt}`}
-            label="LEITURA DE CÓDIGO"
-          />
+          {card.code && (
+            <CodeBlock
+              text={card.code}
+              filename={`${stage.id}_conceito_${index + 1}.${fileExt}`}
+              label="LEITURA DE CÓDIGO"
+            />
+          )}
         </section>
 
         <div className="focus-actions">
@@ -1236,97 +1235,6 @@ function HeartsScreen({ progress, onExit, onPractice, onRefill, onPurchasePremiu
 }
 
 
-
-function PracticeHub({ stages, progress, onExit, onStart }) {
-  const infiniteHearts = Boolean(progress.entitlements?.infiniteHearts);
-  const learning = courseLearningSummary(stages, progress);
-  const completed = Object.keys(progress.completed).length;
-  const weakStages = stages
-    .map((stage, stageIndex) => ({ stage, stageIndex, ...stageLearningSummary(progress, stage) }))
-    .filter((item) => item.pending > 0)
-    .sort((a, b) => b.pending - a.pending);
-
-  return (
-    <main className="practice-hub">
-      <header className="practice-hub-header">
-        <button type="button" onClick={onExit} aria-label="Fechar a central de revisão">×</button>
-        <div><small>CENTRAL DE REVISÃO</small><b>Pratique com propósito</b></div>
-        <span><PinscherMascot size="tiny" mood="focus" /></span>
-      </header>
-
-      <div className="practice-hub-shell">
-        <section className="practice-intro">
-          <div>
-            <span className="practice-kicker">SEU PLANO DE ESTUDO</span>
-            <h1>Fortaleça o que ainda precisa de atenção.</h1>
-            <p>A Guia Py separa seus erros para você revisar primeiro. A prática é segura e não consome vidas.</p>
-          </div>
-          <div className="practice-overview" aria-label="Resumo do aprendizado">
-            <span><b>{learning.mastered}</b><small>DE {learning.total}<br />DOMINADAS</small></span>
-            <span className={learning.pending ? 'attention' : ''}><b>{learning.pending}</b><small>PARA<br />REVISAR</small></span>
-            <span><b>{progress.reviewSessions || 0}</b><small>SESSÕES<br />FEITAS</small></span>
-          </div>
-        </section>
-
-        <section className={`practice-heart-banner ${!infiniteHearts && progress.hearts < MAX_HEARTS ? 'needs-heart' : ''} ${infiniteHearts ? 'infinite' : ''}`}>
-          <span className="practice-heart-icon">{infiniteHearts ? '∞' : '♥'}</span>
-          <div>
-            <small>VIDAS</small>
-            <h2>{infiniteHearts ? '∞ disponíveis' : `${progress.hearts}/${MAX_HEARTS} disponíveis`}</h2>
-            <p>{infiniteHearts ? 'Vidas infinitas ativas: erros não interrompem seu estudo.' : 'Complete uma prática de 5 questões para recuperar uma vida.'}</p>
-          </div>
-          <PixelButton color="#ff4b4b" variant="outline" disabled={infiniteHearts || progress.hearts >= MAX_HEARTS} onClick={() => onStart('hearts')}>
-            {infiniteHearts ? 'VIDAS INFINITAS ✓' : progress.hearts >= MAX_HEARTS ? 'VIDAS CHEIAS ✓' : 'RECUPERAR 1 VIDA'}
-          </PixelButton>
-        </section>
-
-        <div className="practice-modes">
-          <article className={`practice-mode focused ${learning.pending ? '' : 'is-clear'}`}>
-            <div className="practice-mode-top"><span>↺</span><small>RECOMENDADO</small></div>
-            <div className="practice-mode-count"><b>{learning.pending}</b><span>{learning.pending === 1 ? 'QUESTÃO' : 'QUESTÕES'}</span></div>
-            <h2>{learning.pending ? 'Revisar meus erros' : 'Nenhum erro pendente'}</h2>
-            <p>{learning.pending
-              ? 'Um treino curto só com os pontos que você errou. A pendência some quando você acertar de primeira.'
-              : 'Ótimo trabalho. Quando surgir um novo erro, ele aparecerá automaticamente aqui.'}</p>
-            <PixelButton color={learning.pending ? '#ff9600' : '#58cc02'} disabled={!learning.pending} onClick={() => onStart('mistakes')}>
-              {learning.pending ? 'COMEÇAR REVISÃO' : 'TUDO EM DIA ✓'}
-            </PixelButton>
-          </article>
-
-          <article className="practice-mode mixed">
-            <div className="practice-mode-top"><span>⌘</span><small>TREINO LIVRE</small></div>
-            <div className="practice-mode-count"><b>10</b><span>QUESTÕES</span></div>
-            <h2>Treino misto</h2>
-            <p>Dez questões aleatórias de toda a trilha para manter os conceitos frescos, sem mudar a conclusão das fases.</p>
-            <PixelButton color="#1cb0f6" onClick={() => onStart('mixed')}>MISTURAR QUESTÕES</PixelButton>
-          </article>
-        </div>
-
-        <section className="review-map">
-          <div className="review-map-title">
-            <div><small>MAPA DE REVISÃO</small><h2>{weakStages.length ? 'Fases que pedem atenção' : 'Seu mapa está limpo'}</h2></div>
-            <span>{completed}/{stages.length} FASES CONCLUÍDAS</span>
-          </div>
-          {weakStages.length ? (
-            <div className="review-stage-list">
-              {weakStages.slice(0, 5).map(({ stage, stageIndex, pending, mastered, total }) => (
-                <div className="review-stage-row" key={stage.id} style={{ '--review-color': stage.color }}>
-                  <span className="review-stage-icon">{stage.icon}</span>
-                  <div><small>FASE {String(stageIndex + 1).padStart(2, '0')}</small><b>{stage.name}</b></div>
-                  <div className="review-stage-progress"><span style={{ width: `${(mastered / total) * 100}%` }} /></div>
-                  <strong>{pending} {pending === 1 ? 'REVISÃO' : 'REVISÕES'}</strong>
-                </div>
-              ))}
-            </div>
-          ) : (
-            <div className="review-clear-state"><span>✓</span><p><b>Nada pendente por enquanto.</b>Faça um treino misto ou continue avançando na trilha.</p></div>
-          )}
-        </section>
-      </div>
-    </main>
-  );
-}
-
 function ReviewScreen({ stages, fileExt, progress, mode, unitStageIds = [], onExit, onStat, onComplete, sfx }) {
   const pool = useMemo(() => questionPool(stages), [stages]);
   const [queue] = useState(() => {
@@ -1512,12 +1420,6 @@ export default function CompleteApp() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const openPractice = () => {
-    setScreen('practice');
-    sfx('click');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   const openTracks = () => {
     setScreen('tracks');
     sfx('click');
@@ -1683,7 +1585,6 @@ export default function CompleteApp() {
           trackTitle={activeTrack.title}
           onHome={goMap}
           onTracks={openTracks}
-          onReview={openPractice}
           onHearts={openHearts}
           onToggleSound={() => updateSetting('sound')}
           onToggleScanlines={() => updateSetting('scanlines')}
@@ -1706,13 +1607,9 @@ export default function CompleteApp() {
           trackTitle={activeTrack.title}
           progress={progress}
           onEnter={enterStage}
-          onReview={openPractice}
           onUnitReview={(unit) => startReview('unit', unit)}
           onReset={reset}
         />
-      )}
-      {screen === 'practice' && (
-        <PracticeHub stages={stages} progress={progress} onExit={goMap} onStart={startReview} />
       )}
       {screen === 'hearts' && (
         <HeartsScreen progress={progress} onExit={goMap} onPractice={() => startReview('hearts')} onRefill={refillHearts} onPurchasePremium={purchasePremiumBundle} />
@@ -1756,7 +1653,7 @@ export default function CompleteApp() {
           progress={progress}
           mode={reviewMode}
           unitStageIds={reviewUnit?.stages.map((stage) => stage.id) || []}
-          onExit={reviewMode === 'hearts' || reviewMode === 'unit' ? goMap : openPractice}
+          onExit={goMap}
           onStat={recordAnswer}
           onComplete={finishReview}
           sfx={sfx}
@@ -1764,7 +1661,7 @@ export default function CompleteApp() {
       )}
 
       {showMainNavigation && (
-        <MobileNav active={screen} onHome={goMap} onTracks={openTracks} onReview={openPractice} onHearts={openHearts} hearts={progress.hearts} infiniteHearts={Boolean(progress.entitlements?.infiniteHearts)} />
+        <MobileNav active={screen} onHome={goMap} onTracks={openTracks} onHearts={openHearts} hearts={progress.hearts} infiniteHearts={Boolean(progress.entitlements?.infiniteHearts)} />
       )}
     </div>
   );
