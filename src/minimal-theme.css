@@ -1,0 +1,337 @@
+/*
+ * Minimal theme
+ *
+ * Flattens the retro "pixel game" skin (thick borders, chunky 3D button
+ * shadows, pixel font, rainbow glows, floating decorations) into a calm,
+ * neutral dark UI closer to a modern learning-path app: flat hexagon
+ * nodes, thin hairline borders, a small icon+number stat row, and no
+ * decorative noise. Structure, colors-as-data (unit/stage colors) and the
+ * Guia Py mascot are untouched — this file only restyles the chrome.
+ */
+
+:root {
+  --ink: #eef0f3;
+  --muted: #8b909b;
+  --panel: #18191d;
+  --panel-soft: #1e2025;
+  --line: #2b2c32;
+  --deep: #131316;
+  --shadow: transparent;
+  --ui-font: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --pixel-font: var(--ui-font);
+  --display-font: var(--ui-font);
+}
+
+/* ---- Global reset: strip pixel font, hard drop-shadows and glow text.
+   Specific selectors below re-introduce the few shadows that are worth
+   keeping; a single-class selector always outranks this universal one. */
+* {
+  font-family: var(--ui-font) !important;
+  text-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.code-line, .code-line *,
+.next-card-titlebar, .next-card-titlebar *,
+.code-modebar, .code-modebar * {
+  font-family: var(--code-font) !important;
+}
+
+/* ---- Decorative noise: off */
+.unit-pixel-scenery,
+.pixel-confetti,
+.unit-banner::after,
+.course-hero::before,
+.course-hero::after,
+.journey-canvas::before {
+  display: none !important;
+}
+
+.page-backdrop {
+  background: var(--deep) !important;
+}
+
+.page-backdrop::after {
+  display: none !important;
+}
+
+/* ---- Header */
+.app-header {
+  border-bottom: 1px solid var(--line) !important;
+  background: rgba(19, 19, 22, 0.92) !important;
+}
+
+.brand-cube {
+  border: 1px solid var(--line) !important;
+  background: var(--panel) !important;
+}
+
+.brand-cube::after {
+  display: none !important;
+}
+
+.brand b {
+  font-weight: 800 !important;
+  letter-spacing: 0 !important;
+}
+
+.brand small {
+  font-weight: 700 !important;
+  letter-spacing: 0.6px !important;
+}
+
+.desktop-nav {
+  border: 1px solid var(--line) !important;
+  background: var(--panel) !important;
+}
+
+.desktop-nav button.active {
+  background: var(--panel-soft) !important;
+}
+
+.header-stats > div,
+.header-stats > button {
+  border: 1px solid var(--line) !important;
+  background: var(--panel) !important;
+}
+
+.header-stats > button.header-utility {
+  border-color: transparent !important;
+}
+
+.header-stats > button.stat-hearts {
+  border-color: color-mix(in srgb, var(--red) 40%, var(--line)) !important;
+}
+
+/* ---- Buttons */
+.pixel-button {
+  border: 1px solid color-mix(in srgb, var(--button-color) 55%, var(--line)) !important;
+}
+
+.pixel-button:hover:not(:disabled) {
+  transform: none !important;
+  filter: brightness(1.08);
+}
+
+.pixel-button:active:not(:disabled) {
+  transform: scale(0.98) !important;
+}
+
+.pixel-button.outline,
+.pixel-button.ghost {
+  background: var(--panel) !important;
+}
+
+/* ---- Premium banner: vivid purple/gold gradient -> flat card */
+.premium-offer-shell {
+  border: 1px solid var(--line) !important;
+  background: var(--panel) !important;
+  color: var(--ink) !important;
+}
+
+.premium-offer-icon {
+  border: 1px solid var(--line) !important;
+  background: var(--panel-soft) !important;
+  color: var(--yellow) !important;
+}
+
+.premium-offer-copy small,
+.premium-offer-price strong {
+  color: var(--yellow) !important;
+}
+
+.premium-offer-copy b {
+  color: var(--ink) !important;
+}
+
+.premium-offer-price {
+  border-left: 1px solid var(--line) !important;
+}
+
+.premium-offer-price small {
+  color: var(--muted) !important;
+}
+
+.premium-offer-button {
+  border: 1px solid var(--yellow) !important;
+}
+
+/* ---- Hero / mascot intro card */
+.course-hero {
+  border: 1px solid var(--line) !important;
+  background: var(--panel) !important;
+}
+
+.course-hero h1 {
+  font-weight: 800 !important;
+}
+
+.course-hero h1 strong {
+  background: none !important;
+  -webkit-background-clip: initial !important;
+  background-clip: initial !important;
+  -webkit-text-fill-color: initial !important;
+  color: var(--cyan) !important;
+}
+
+.hero-guide {
+  border: 1px solid var(--line) !important;
+  background: var(--panel-soft) !important;
+}
+
+/* ---- Code / next lesson card */
+.next-lesson-card {
+  border: 1px solid var(--line) !important;
+  background: var(--panel) !important;
+}
+
+.next-card-titlebar {
+  border-bottom: 1px solid var(--line) !important;
+  background: var(--panel-soft) !important;
+}
+
+/* ---- Unit sections: full-bleed color gradient -> flat card with a small
+   accent instead of a rainbow block per unit */
+.unit-section {
+  border: 1px solid var(--line) !important;
+  background: var(--panel) !important;
+}
+
+.unit-banner {
+  border-bottom: 1px solid var(--line) !important;
+  background: var(--panel-soft) !important;
+}
+
+.unit-banner > div > span {
+  color: var(--unit-color) !important;
+  font-weight: 800 !important;
+}
+
+.unit-banner h2 {
+  color: var(--ink) !important;
+  font-weight: 800 !important;
+}
+
+.unit-banner p {
+  color: var(--muted) !important;
+}
+
+.unit-meter {
+  background: rgba(255, 255, 255, 0.08) !important;
+}
+
+.unit-meter span {
+  background: var(--unit-color) !important;
+}
+
+.unit-progress {
+  border: 1px solid var(--line) !important;
+  background: var(--panel) !important;
+  color: var(--ink) !important;
+}
+
+/* ---- Path lines: dashed double-stroke glow -> one thin flat line */
+.journey-line-shadow {
+  display: none !important;
+}
+
+.journey-line {
+  stroke: var(--line) !important;
+  stroke-width: 4 !important;
+  stroke-dasharray: none !important;
+}
+
+.journey-line.traveled {
+  stroke: var(--green) !important;
+  filter: none !important;
+}
+
+/* ---- Level nodes: glowing rainbow circles -> flat hexagons.
+   Locked/available nodes stay neutral gray regardless of stage color;
+   only the current node and completed nodes carry color. */
+.level-node {
+  width: 78px;
+  height: 78px;
+  margin-bottom: 12px;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: var(--panel-soft) !important;
+  color: var(--muted) !important;
+}
+
+.level-node:hover {
+  filter: brightness(1.12);
+  transform: none;
+}
+
+.level-node:active {
+  transform: none;
+}
+
+.node-face {
+  width: auto !important;
+  height: auto !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: none !important;
+  font-size: 20px !important;
+}
+
+.journey-step.open .level-node {
+  background: var(--panel-soft) !important;
+  color: #5b6472 !important;
+}
+
+.journey-step.done .level-node {
+  background: var(--green) !important;
+  color: #0c1f00 !important;
+}
+
+.journey-step.current .level-node,
+.journey-step.selected .level-node {
+  background: var(--stage-color) !important;
+  color: #0b0e14 !important;
+}
+
+.journey-step.current .level-node::before {
+  inset: -8px;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  border: 2px solid color-mix(in srgb, var(--stage-color) 55%, transparent) !important;
+  border-radius: 0 !important;
+  animation-name: minimalNodePulse;
+}
+
+@keyframes minimalNodePulse {
+  50% { transform: scale(1); opacity: 0.35; }
+}
+
+.node-mastery {
+  border: 1px solid var(--line) !important;
+  background: var(--panel) !important;
+}
+
+.continue-flag {
+  border: 1px solid color-mix(in srgb, var(--stage-color) 60%, var(--line)) !important;
+}
+
+.finish-marker {
+  border: 1px solid var(--line) !important;
+  background: var(--panel) !important;
+}
+
+.finish-marker > span {
+  border: 1px solid var(--line) !important;
+  background: var(--panel-soft) !important;
+}
+
+/* ---- Bottom nav */
+.mobile-nav {
+  border: 1px solid var(--line) !important;
+  background: rgba(19, 19, 22, 0.95) !important;
+}
+
+.mobile-nav button.active {
+  background: var(--panel-soft) !important;
+  color: var(--ink) !important;
+}

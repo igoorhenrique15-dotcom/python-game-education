@@ -5,6 +5,7 @@ import mascotFocus from './assets/mascot/guia-py-focus.webp';
 import mascotCelebrate from './assets/mascot/guia-py-celebrate.webp';
 import '../style.css';
 import './rounded-theme.css';
+import './minimal-theme.css';
 
 const STORAGE_KEY = 'black-buster-progress-v5';
 const SETTINGS_KEY = 'black-buster-settings-v2';
@@ -568,9 +569,9 @@ function CourseHero({ stages, progress, currentStage, currentIndex, onContinue, 
 function UnitPath({ unit, progress, currentIndex, selectedId, onSelect, onUnitReview }) {
   const points = unit.stages.map((_, localIndex) => ({
     x: JOURNEY_X[(unit.startIndex + localIndex) % JOURNEY_X.length],
-    y: 74 + localIndex * 136,
+    y: 100 + localIndex * 136,
   }));
-  const height = Math.max(240, 154 + (unit.stages.length - 1) * 136);
+  const height = Math.max(266, 180 + (unit.stages.length - 1) * 136);
 
   const curve = (from, to) => {
     const middle = (from.y + to.y) / 2;
