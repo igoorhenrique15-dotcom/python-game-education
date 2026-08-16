@@ -1,0 +1,2346 @@
+{
+  "title": "Inteligência Artificial",
+  "version": 1,
+  "stages": [
+    {
+      "id": "ia-1",
+      "name": "O QUE É IA",
+      "difficulty": "INICIANTE",
+      "color": "#6366f1",
+      "icon": "◆",
+      "summary": "Entenda o que caracteriza um sistema de inteligência artificial.",
+      "lesson": [
+        {
+          "title": "Aprender padrões, não regras fixas",
+          "body": "Inteligência artificial é a área que cria sistemas capazes de realizar tarefas que normalmente exigiriam inteligência humana. Diferente de um programa tradicional, que segue regras fixas escritas por um programador, muitos sistemas de IA aprendem padrões a partir de dados.",
+          "code": "# Programa tradicional: regra fixa\nif idade >= 18:\n    print('Adulto')\n\n# Sistema de IA: aprende o padrao a partir de exemplos de dados"
+        },
+        {
+          "title": "Machine Learning como parte da IA",
+          "body": "Machine Learning (aprendizado de máquina) é o ramo da IA mais usado hoje: em vez de programar regras explícitas, o sistema aprende a partir de exemplos (dados), ajustando um modelo matemático para fazer previsões sobre novos casos.",
+          "code": "# Ideia geral:\n# dados de exemplo -> algoritmo de aprendizado -> modelo\n# modelo + dado novo -> previsao"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual a principal diferença entre um programa tradicional e um sistema de Machine Learning?",
+          "opts": [
+            "Não há diferença nenhuma",
+            "O programa tradicional segue regras fixas; o de ML aprende padrões a partir de dados",
+            "ML nunca usa código",
+            "Programas tradicionais são sempre mais rápidos"
+          ],
+          "a": 1,
+          "hint": "Pense no exemplo do if idade >= 18 comparado a aprender a partir de exemplos.",
+          "ex": "ML aprende padrões a partir de dados, em vez de seguir regras escritas manualmente.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que é um 'modelo', no contexto de Machine Learning?",
+          "opts": [
+            "Um tipo de banco de dados",
+            "Uma representação matemática aprendida a partir dos dados, usada para fazer previsões",
+            "Um tipo de computador",
+            "Um arquivo de imagem"
+          ],
+          "a": 1,
+          "hint": "Pense no resultado do processo de aprendizado.",
+          "ex": "O modelo é o que o algoritmo de aprendizado produz, usado depois para prever.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Machine Learning é a única forma de inteligência artificial que existe?",
+          "opts": [
+            "Sim, IA e Machine Learning são sinônimos exatos",
+            "Não, ML é um dos ramos mais usados dentro do campo mais amplo de IA",
+            "Não, IA é só um subconjunto de ML",
+            "Sim, todo sistema de IA usa ML"
+          ],
+          "a": 1,
+          "hint": "Pense em IA como o campo maior, e ML como uma abordagem dentro dele.",
+          "ex": "Machine Learning é um ramo importante da IA, mas não o único existente.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual destes é um exemplo típico de aplicação de IA no dia a dia?",
+          "opts": [
+            "Uma calculadora simples de soma",
+            "Recomendação de vídeos com base no histórico de um usuário",
+            "Uma planilha em branco",
+            "Um documento de texto"
+          ],
+          "a": 1,
+          "hint": "Pense em sistemas que aprendem com o comportamento do usuário.",
+          "ex": "Recomendações personalizadas são um exemplo clássico de IA aplicada.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "ia-2",
+      "name": "TIPOS DE APRENDIZADO",
+      "difficulty": "INICIANTE",
+      "color": "#6366f1",
+      "icon": "▲",
+      "summary": "Diferencie aprendizado supervisionado, não supervisionado e por reforço.",
+      "lesson": [
+        {
+          "title": "Supervisionado e não supervisionado",
+          "body": "No aprendizado supervisionado, os dados de treino vêm com a resposta certa (rótulo), como fotos marcadas como 'gato' ou 'cachorro'. No não supervisionado, não há rótulos: o algoritmo busca padrões e agrupamentos sozinho nos dados.",
+          "code": "# Supervisionado: dado -> rotulo conhecido\n# (foto do gato, 'gato')\n\n# Nao supervisionado: so o dado, sem rotulo\n# (lista de compras de clientes, sem categoria definida)"
+        },
+        {
+          "title": "Aprendizado por reforço",
+          "body": "No aprendizado por reforço, um agente aprende tentando ações em um ambiente e recebendo recompensas ou punições, ajustando seu comportamento para maximizar a recompensa ao longo do tempo — como um jogo em que o agente aprende jogando repetidamente.",
+          "code": "# Ideia geral:\n# agente toma uma acao -> ambiente da uma recompensa (ou punicao)\n# agente ajusta sua estrategia com base no resultado"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que caracteriza o aprendizado supervisionado?",
+          "opts": [
+            "Os dados de treino não têm nenhuma informação extra",
+            "Os dados de treino vêm acompanhados da resposta certa (rótulo)",
+            "Não existem dados de treino",
+            "É o único tipo de aprendizado que existe"
+          ],
+          "a": 1,
+          "hint": "Pense em fotos já marcadas como 'gato' ou 'cachorro'.",
+          "ex": "No aprendizado supervisionado, cada exemplo de treino tem um rótulo conhecido.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Em qual tipo de aprendizado o algoritmo busca padrões em dados sem rótulos?",
+          "opts": [
+            "Supervisionado",
+            "Não supervisionado",
+            "Por reforço",
+            "Nenhum deles"
+          ],
+          "a": 1,
+          "hint": "Pense em agrupar clientes parecidos sem saber categorias prévias.",
+          "ex": "O aprendizado não supervisionado trabalha com dados sem rótulos definidos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que orienta o aprendizado de um agente no aprendizado por reforço?",
+          "opts": [
+            "Rótulos definidos previamente",
+            "Recompensas e punições recebidas ao interagir com um ambiente",
+            "Apenas a quantidade de dados disponíveis",
+            "Nada, é aleatório"
+          ],
+          "a": 1,
+          "hint": "Pense em um jogo em que o agente aprende jogando repetidamente.",
+          "ex": "O agente ajusta seu comportamento com base nas recompensas recebidas.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Agrupar clientes em perfis de compra parecidos, sem saber os grupos de antemão, é um exemplo de qual tipo de aprendizado?",
+          "opts": [
+            "Supervisionado",
+            "Não supervisionado",
+            "Por reforço",
+            "Nenhum, isso não é possível"
+          ],
+          "a": 1,
+          "hint": "Não há um 'rótulo certo' definido previamente para cada cliente.",
+          "ex": "Agrupar dados sem rótulos prévios é um caso clássico de aprendizado não supervisionado.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "ia-3",
+      "name": "DADOS E FEATURES",
+      "difficulty": "INICIANTE",
+      "color": "#6366f1",
+      "icon": "★",
+      "summary": "Entenda o que são features e por que a qualidade dos dados importa tanto.",
+      "lesson": [
+        {
+          "title": "O que são features",
+          "body": "Features (características) são as informações usadas por um modelo para fazer previsões. Em um modelo que prevê o preço de uma casa, features poderiam ser área, número de quartos e localização.",
+          "code": "# Exemplo de features para prever preco de uma casa:\n# area_m2, numero_quartos, distancia_do_centro"
+        },
+        {
+          "title": "Lixo entra, lixo sai",
+          "body": "A qualidade dos dados de treino afeta diretamente a qualidade do modelo. Dados incompletos, errados ou enviesados levam a modelos ruins ou injustos, mesmo que o algoritmo usado seja excelente — um princípio conhecido como 'garbage in, garbage out'.",
+          "code": "# Dados com erros ou vieses -> modelo aprende esses erros e vieses tambem"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que são 'features' em Machine Learning?",
+          "opts": [
+            "Os erros do modelo",
+            "As informações/características usadas pelo modelo para fazer previsões",
+            "O nome do algoritmo usado",
+            "O resultado final do modelo"
+          ],
+          "a": 1,
+          "hint": "Pense em área, quartos e localização de uma casa.",
+          "ex": "Features são as variáveis de entrada usadas pelo modelo para prever algo.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que o princípio 'garbage in, garbage out' quer dizer?",
+          "opts": [
+            "Dados ruins não afetam o resultado do modelo",
+            "Dados de baixa qualidade tendem a gerar modelos ruins, mesmo com um bom algoritmo",
+            "É preciso descartar todos os dados antigos",
+            "Só importa a quantidade de dados, nunca a qualidade"
+          ],
+          "a": 1,
+          "hint": "Pense na relação entre a qualidade da entrada e a qualidade da saída.",
+          "ex": "Dados de má qualidade comprometem o modelo, independentemente do algoritmo usado.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Se os dados de treino de um modelo de contratação favorecem historicamente um grupo específico, o que provavelmente acontece?",
+          "opts": [
+            "O modelo corrige esse viés automaticamente",
+            "O modelo tende a aprender e reproduzir esse mesmo viés",
+            "O modelo ignora completamente os dados de treino",
+            "Não há relação entre dados de treino e o comportamento do modelo"
+          ],
+          "a": 1,
+          "hint": "Relembre o princípio 'garbage in, garbage out'.",
+          "ex": "Vieses presentes nos dados de treino tendem a ser aprendidos e reproduzidos pelo modelo.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Para prever se um e-mail é spam, qual destas seria uma feature razoável?",
+          "opts": [
+            "A cor da tela do usuário",
+            "A quantidade de palavras suspeitas no texto do e-mail",
+            "O modelo do computador do remetente",
+            "O nome do provedor de internet"
+          ],
+          "a": 1,
+          "hint": "Pense em uma característica do próprio e-mail, relevante para a tarefa.",
+          "ex": "A quantidade de palavras suspeitas é uma feature diretamente relevante para detectar spam.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "ia-4",
+      "name": "NUMPY BÁSICO",
+      "difficulty": "INICIANTE",
+      "color": "#818cf8",
+      "icon": "◆",
+      "summary": "Trabalhe com arrays numéricos de forma eficiente usando NumPy.",
+      "lesson": [
+        {
+          "title": "Por que NumPy",
+          "body": "NumPy é a biblioteca base para computação numérica em Python. Seu principal recurso é o array, uma estrutura otimizada para guardar e operar sobre grandes quantidades de números de forma muito mais rápida que listas comuns.",
+          "code": "import numpy as np\n\nnumeros = np.array([1, 2, 3, 4, 5])\nprint(numeros.mean())"
+        },
+        {
+          "title": "Operações vetorizadas",
+          "body": "Com NumPy, operações matemáticas são aplicadas a todo o array de uma vez (vetorização), sem precisar escrever um loop manual — o que é mais rápido e mais simples de ler.",
+          "code": "precos = np.array([10, 20, 30])\nprecos_com_desconto = precos * 0.9\nprint(precos_com_desconto)"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual a principal estrutura de dados do NumPy?",
+          "opts": [
+            "DataFrame",
+            "Array",
+            "Dicionário",
+            "Set"
+          ],
+          "a": 1,
+          "hint": "É criada com np.array([...]).",
+          "ex": "O array é a estrutura central do NumPy para dados numéricos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que numeros.mean() calcula?\nnumeros = np.array([1, 2, 3, 4, 5])\nprint(numeros.mean())",
+          "opts": [
+            "A soma dos valores",
+            "A média dos valores",
+            "O maior valor",
+            "A quantidade de valores"
+          ],
+          "a": 1,
+          "hint": "'Mean' significa média em inglês.",
+          "ex": "mean() calcula a média aritmética dos valores do array.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Qual o resultado de precos_com_desconto?\nprecos = np.array([10, 20, 30])\nprecos_com_desconto = precos * 0.9",
+          "opts": [
+            "[10, 20, 30]",
+            "[9.0, 18.0, 27.0]",
+            "[1, 2, 3]",
+            "Um erro"
+          ],
+          "a": 1,
+          "hint": "A multiplicação é aplicada a cada elemento do array.",
+          "ex": "A operação vetorizada multiplica cada preço por 0.9, aplicando 10% de desconto.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual a vantagem de uma operação vetorizada sobre um loop manual para o mesmo cálculo?",
+          "opts": [
+            "Nenhuma, dá exatamente no mesmo",
+            "É mais rápida e o código fica mais simples de ler",
+            "Vetorização só funciona com texto",
+            "Loops manuais são sempre mais rápidos"
+          ],
+          "a": 1,
+          "hint": "Pense em aplicar * 0.9 a um array inteiro de uma vez.",
+          "ex": "Operações vetorizadas do NumPy são otimizadas e mais concisas que loops manuais.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "ia-5",
+      "name": "PANDAS BÁSICO",
+      "difficulty": "INICIANTE",
+      "color": "#818cf8",
+      "icon": "▲",
+      "summary": "Organize e explore dados tabulares com DataFrames do Pandas.",
+      "lesson": [
+        {
+          "title": "O DataFrame",
+          "body": "Pandas é a biblioteca padrão para trabalhar com dados tabulares em Python, parecidos com uma planilha. Sua estrutura principal, o DataFrame, organiza dados em linhas e colunas nomeadas.",
+          "code": "import pandas as pd\n\ndados = pd.DataFrame({\n    'produto': ['Camiseta', 'Tenis'],\n    'preco': [49.90, 199.90]\n})\nprint(dados.head())"
+        },
+        {
+          "title": "Selecionando e filtrando",
+          "body": "É possível selecionar uma coluna pelo nome, entre colchetes, e filtrar linhas usando uma condição, de forma parecida com uma consulta em uma planilha.",
+          "code": "print(dados['preco'])\ncaros = dados[dados['preco'] > 100]"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual a estrutura principal do Pandas para dados tabulares?",
+          "opts": [
+            "Array",
+            "DataFrame",
+            "Set",
+            "Tuple"
+          ],
+          "a": 1,
+          "hint": "É criada com pd.DataFrame({...}).",
+          "ex": "DataFrame é a estrutura central do Pandas, organizando dados em linhas e colunas.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que dados.head() costuma mostrar?",
+          "opts": [
+            "Todas as linhas do DataFrame",
+            "As primeiras linhas do DataFrame",
+            "Apenas os nomes das colunas",
+            "O número total de linhas"
+          ],
+          "a": 1,
+          "hint": "'Head' remete à 'cabeça', o início dos dados.",
+          "ex": "head() mostra as primeiras linhas, útil para uma primeira olhada nos dados.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que a variável 'caros' contém neste código?\ncaros = dados[dados['preco'] > 100]",
+          "opts": [
+            "Todas as linhas do DataFrame",
+            "Apenas as linhas em que o preço é maior que 100",
+            "Apenas a coluna 'preco'",
+            "Um número"
+          ],
+          "a": 1,
+          "hint": "A condição entre colchetes filtra as linhas.",
+          "ex": "dados[dados['preco'] > 100] filtra apenas as linhas com preço acima de 100.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que Pandas é tão usado em projetos de dados e IA?",
+          "opts": [
+            "Porque substitui totalmente o Python",
+            "Porque facilita carregar, explorar e transformar dados tabulares antes de treinar modelos",
+            "Porque só funciona com imagens",
+            "Porque não precisa de instalação"
+          ],
+          "a": 1,
+          "hint": "Pense na etapa de preparar os dados antes do treino de um modelo.",
+          "ex": "Pandas simplifica bastante a etapa de exploração e preparação de dados.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "ia-6",
+      "name": "VISUALIZAÇÃO SIMPLES",
+      "difficulty": "INICIANTE",
+      "color": "#818cf8",
+      "icon": "◫",
+      "summary": "Entenda por que visualizar dados ajuda a encontrar padrões antes de treinar um modelo.",
+      "lesson": [
+        {
+          "title": "Por que visualizar dados",
+          "body": "Gráficos ajudam a identificar padrões, tendências e problemas nos dados (como valores fora do padrão) muito mais rápido do que olhando números em uma tabela. É um passo comum antes de treinar qualquer modelo.",
+          "code": "import matplotlib.pyplot as plt\n\nplt.hist(dados['preco'])\nplt.show()"
+        },
+        {
+          "title": "Tipos comuns de gráfico",
+          "body": "Histogramas mostram a distribuição de uma variável numérica. Gráficos de dispersão (scatter) mostram a relação entre duas variáveis. Gráficos de barras comparam categorias.",
+          "code": "plt.scatter(dados['area'], dados['preco'])\nplt.xlabel('Area (m2)')\nplt.ylabel('Preco')\nplt.show()"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Por que visualizar dados antes de treinar um modelo é uma boa prática?",
+          "opts": [
+            "Não traz benefício algum",
+            "Ajuda a identificar padrões, tendências e problemas nos dados rapidamente",
+            "É apenas uma etapa decorativa",
+            "Substitui a necessidade de qualquer modelo"
+          ],
+          "a": 1,
+          "hint": "Pense em identificar um erro visualmente, de forma mais rápida que analisando números.",
+          "ex": "Visualizações revelam padrões e problemas nos dados de forma mais intuitiva.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual tipo de gráfico é mais indicado para mostrar a relação entre duas variáveis numéricas, como área e preço?",
+          "opts": [
+            "Gráfico de dispersão (scatter)",
+            "Histograma",
+            "Gráfico de pizza",
+            "Nenhum gráfico ajuda nesse caso"
+          ],
+          "a": 0,
+          "hint": "Pense em pontos representando pares de valores (x, y).",
+          "ex": "Um gráfico de dispersão mostra bem a relação entre duas variáveis numéricas.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que um histograma costuma mostrar?",
+          "opts": [
+            "A relação entre duas variáveis",
+            "A distribuição de valores de uma única variável numérica",
+            "Apenas o valor máximo de uma variável",
+            "Uma tabela de dados brutos"
+          ],
+          "a": 1,
+          "hint": "Pense em quantos valores caem em cada faixa de preço.",
+          "ex": "Histogramas mostram como os valores de uma variável estão distribuídos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Um gráfico de dispersão mostra pontos claramente espalhados sem nenhum padrão entre área e preço. O que isso pode sugerir?",
+          "opts": [
+            "Que área é uma ótima feature para prever preço",
+            "Que a relação entre área e preço pode ser fraca ou inexistente nesses dados",
+            "Que os dados estão perfeitos",
+            "Que é impossível treinar qualquer modelo"
+          ],
+          "a": 1,
+          "hint": "Pense no que um padrão claro (ou a ausência dele) indica sobre a relação entre variáveis.",
+          "ex": "Pontos sem padrão visível sugerem uma relação fraca entre as duas variáveis analisadas.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "ia-7",
+      "name": "REGRESSÃO LINEAR",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#22c55e",
+      "icon": "◆",
+      "summary": "Preveja valores numéricos contínuos com o modelo mais simples de todos.",
+      "lesson": [
+        {
+          "title": "Prevendo um número",
+          "body": "Regressão linear é um dos modelos mais simples e usados para prever um valor numérico contínuo (como preço ou temperatura) a partir de uma ou mais features, ajustando uma linha (ou plano) que melhor se encaixa nos dados.",
+          "code": "from sklearn.linear_model import LinearRegression\n\nmodelo = LinearRegression()\nmodelo.fit(X_treino, y_treino)\nprevisao = modelo.predict(X_novo)"
+        },
+        {
+          "title": "A ideia por trás da linha",
+          "body": "O modelo encontra os coeficientes de uma equação (algo como preco = a * area + b) que minimizam o erro entre os valores previstos e os valores reais dos dados de treino.",
+          "code": "# Ideia simplificada:\n# preco_previsto = coeficiente * area + intercepto"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Para que tipo de problema a regressão linear é usada?",
+          "opts": [
+            "Para classificar imagens em categorias",
+            "Para prever um valor numérico contínuo",
+            "Para agrupar dados sem rótulo",
+            "Para jogar jogos"
+          ],
+          "a": 1,
+          "hint": "Pense em prever preço ou temperatura, não uma categoria.",
+          "ex": "Regressão linear prevê valores numéricos contínuos, como preços.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que o método fit(X_treino, y_treino) faz?",
+          "opts": [
+            "Faz uma previsão nova",
+            "Treina o modelo, ajustando-o aos dados de treino",
+            "Apaga o modelo",
+            "Mostra um gráfico"
+          ],
+          "a": 1,
+          "hint": "'Fit' significa ajustar.",
+          "ex": "fit() treina o modelo, ajustando seus parâmetros aos dados fornecidos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Depois do modelo treinado, qual método é usado para prever um novo valor?",
+          "opts": [
+            "fit()",
+            "predict()",
+            "train()",
+            "score()"
+          ],
+          "a": 1,
+          "hint": "Veja modelo.predict(X_novo) no exemplo.",
+          "ex": "predict() usa o modelo já treinado para gerar previsões sobre novos dados.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que a regressão linear tenta minimizar ao encontrar a melhor linha?",
+          "opts": [
+            "O número de features usadas",
+            "O erro entre os valores previstos e os valores reais dos dados de treino",
+            "O tempo de execução do programa",
+            "O tamanho do arquivo de dados"
+          ],
+          "a": 1,
+          "hint": "Pense em quão perto a linha passa dos pontos reais.",
+          "ex": "O modelo ajusta a linha para minimizar o erro em relação aos dados reais.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "ia-8",
+      "name": "CLASSIFICAÇÃO",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#22c55e",
+      "icon": "▲",
+      "summary": "Preveja categorias, como 'spam' ou 'não spam', em vez de números.",
+      "lesson": [
+        {
+          "title": "Prevendo uma categoria",
+          "body": "Diferente da regressão, a classificação prevê uma categoria (classe) entre um conjunto limitado de opções, como 'spam'/'não spam' ou 'aprovado'/'reprovado'. Um dos algoritmos mais simples é a regressão logística, apesar do nome parecido com regressão.",
+          "code": "from sklearn.linear_model import LogisticRegression\n\nmodelo = LogisticRegression()\nmodelo.fit(X_treino, y_treino)\nclasse_prevista = modelo.predict(X_novo)"
+        },
+        {
+          "title": "Classificação binária e multiclasse",
+          "body": "Classificação binária tem apenas duas classes possíveis (como spam/não spam). Classificação multiclasse tem três ou mais categorias possíveis, como classificar uma imagem entre 'gato', 'cachorro' e 'pássaro'.",
+          "code": "# Binaria: 0 ou 1 (spam ou nao spam)\n# Multiclasse: 'gato', 'cachorro' ou 'passaro'"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que um modelo de classificação prevê?",
+          "opts": [
+            "Um valor numérico contínuo",
+            "Uma categoria entre um conjunto de opções possíveis",
+            "Sempre um número entre 0 e 1",
+            "Nenhuma dessas opções"
+          ],
+          "a": 1,
+          "hint": "Pense em 'spam' ou 'não spam'.",
+          "ex": "Classificação prevê a qual categoria (classe) um exemplo pertence.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual a diferença entre classificação binária e multiclasse?",
+          "opts": [
+            "Não há diferença",
+            "Binária tem apenas duas classes possíveis; multiclasse tem três ou mais",
+            "Multiclasse só funciona com texto",
+            "Binária é sempre mais precisa"
+          ],
+          "a": 1,
+          "hint": "Pense em spam/não spam versus gato/cachorro/pássaro.",
+          "ex": "Binária lida com duas classes; multiclasse lida com três ou mais.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Prever se um paciente tem ou não uma determinada doença (sim/não) é um exemplo de:",
+          "opts": [
+            "Regressão linear",
+            "Classificação binária",
+            "Classificação multiclasse",
+            "Aprendizado por reforço"
+          ],
+          "a": 1,
+          "hint": "Há apenas duas respostas possíveis: sim ou não.",
+          "ex": "Duas categorias possíveis (sim/não) caracterizam uma classificação binária.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Prever a nota exata (0 a 10) de uma redação seria mais bem modelado como:",
+          "opts": [
+            "Classificação binária",
+            "Regressão, pois o resultado é um valor numérico contínuo",
+            "Classificação multiclasse obrigatoriamente",
+            "Nenhuma abordagem de ML se aplica"
+          ],
+          "a": 1,
+          "hint": "Pense se o resultado é uma categoria ou um número contínuo.",
+          "ex": "Uma nota numérica contínua é um problema de regressão, não de classificação.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "ia-9",
+      "name": "TREINO E TESTE",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#22c55e",
+      "icon": "★",
+      "summary": "Separe os dados para avaliar se o modelo realmente aprendeu a generalizar.",
+      "lesson": [
+        {
+          "title": "Por que separar treino e teste",
+          "body": "Se um modelo é avaliado com os mesmos dados usados para treiná-lo, ele pode parecer ótimo mesmo sem realmente ter aprendido a generalizar. Por isso, os dados são divididos: uma parte para treino, outra reservada para teste, nunca vista durante o treino.",
+          "code": "from sklearn.model_selection import train_test_split\n\nX_treino, X_teste, y_treino, y_teste = train_test_split(\n    X, y, test_size=0.2\n)"
+        },
+        {
+          "title": "Uma proporção comum",
+          "body": "Uma divisão comum é 80% dos dados para treino e 20% para teste, mas essa proporção pode variar conforme o tamanho do conjunto de dados disponível. O importante é que o conjunto de teste nunca seja usado durante o treino.",
+          "code": "# test_size=0.2 significa 20% dos dados reservados para teste\n# os outros 80% sao usados para treinar o modelo"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Por que não avaliar um modelo usando os mesmos dados do treino?",
+          "opts": [
+            "Não há problema nenhum em fazer isso",
+            "O modelo pode parecer bom sem realmente ter aprendido a generalizar para dados novos",
+            "É proibido por lei",
+            "Os dados de treino são sempre incorretos"
+          ],
+          "a": 1,
+          "hint": "Pense em decorar as respostas de uma prova em vez de aprender o conteúdo.",
+          "ex": "Avaliar com os dados de treino pode mascarar a real capacidade de generalização do modelo.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que test_size=0.2 representa em train_test_split?",
+          "opts": [
+            "2% dos dados vão para teste",
+            "20% dos dados vão para teste",
+            "0.2 exemplos vão para teste",
+            "80% dos dados vão para teste"
+          ],
+          "a": 1,
+          "hint": "0.2 representa uma fração, equivalente a 20%.",
+          "ex": "test_size=0.2 reserva 20% dos dados para o conjunto de teste.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O conjunto de teste deve ser usado durante o treino do modelo?",
+          "opts": [
+            "Sim, sempre",
+            "Não, ele deve ficar reservado, sem ser visto durante o treino",
+            "Sim, mas só uma vez",
+            "Depende do tamanho do conjunto de teste"
+          ],
+          "a": 1,
+          "hint": "Pense no propósito de ter dados 'nunca vistos' para avaliação.",
+          "ex": "O conjunto de teste precisa ficar de fora do treino para uma avaliação justa.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual o principal objetivo de avaliar um modelo em dados de teste separados?",
+          "opts": [
+            "Deixar o treino mais rápido",
+            "Estimar como o modelo se comportaria com dados novos, nunca vistos antes",
+            "Aumentar artificialmente a acurácia",
+            "Reduzir o tamanho do conjunto de dados"
+          ],
+          "a": 1,
+          "hint": "Pense em simular a chegada de dados reais e novos.",
+          "ex": "O teste estima o desempenho do modelo em situações reais, com dados desconhecidos.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "ia-10",
+      "name": "MÉTRICAS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#0ea5e9",
+      "icon": "◆",
+      "summary": "Meça o desempenho de um modelo com métricas como acurácia e precisão.",
+      "lesson": [
+        {
+          "title": "Acurácia",
+          "body": "Acurácia é a proporção de previsões corretas sobre o total de previsões feitas. É intuitiva, mas pode enganar em problemas com classes desbalanceadas — como detectar uma doença rara, onde prever sempre 'não tem' já dá alta acurácia.",
+          "code": "from sklearn.metrics import accuracy_score\n\nacuracia = accuracy_score(y_teste, previsoes)\nprint(acuracia)"
+        },
+        {
+          "title": "Precisão e recall",
+          "body": "Precisão mede, entre tudo que o modelo previu como positivo, quanto realmente era positivo. Recall mede, entre tudo que realmente era positivo, quanto o modelo conseguiu identificar corretamente. Os dois costumam ter um equilíbrio: melhorar um pode piorar o outro.",
+          "code": "from sklearn.metrics import precision_score, recall_score\n\nprecisao = precision_score(y_teste, previsoes)\nrecall = recall_score(y_teste, previsoes)"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que a acurácia mede?",
+          "opts": [
+            "O tempo de treino do modelo",
+            "A proporção de previsões corretas sobre o total de previsões",
+            "O número de features usadas",
+            "A quantidade de dados de treino"
+          ],
+          "a": 1,
+          "hint": "Pense em 'quantas vezes o modelo acertou, do total de tentativas'.",
+          "ex": "Acurácia é a fração de previsões corretas em relação ao total.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que a acurácia pode ser enganosa em um problema de detectar uma doença rara?",
+          "opts": [
+            "Ela nunca é enganosa em nenhum caso",
+            "Prever sempre 'não tem a doença' já resultaria em alta acurácia, mesmo sendo um modelo inútil",
+            "Acurácia só funciona com regressão",
+            "Doenças raras não podem ser modeladas"
+          ],
+          "a": 1,
+          "hint": "Pense em uma doença que só 1% das pessoas têm.",
+          "ex": "Com classes desbalanceadas, um modelo 'preguiçoso' pode ter alta acurácia sem ser útil.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que o recall mede?",
+          "opts": [
+            "Quanto do que foi previsto como positivo realmente era positivo",
+            "Quanto dos casos realmente positivos o modelo conseguiu identificar",
+            "O tempo de execução do modelo",
+            "A quantidade de features"
+          ],
+          "a": 1,
+          "hint": "Pense em 'não deixar passar' os casos positivos reais.",
+          "ex": "Recall mede a capacidade do modelo de encontrar todos os casos positivos reais.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Em qual cenário priorizar recall alto costuma ser mais importante que precisão?",
+          "opts": [
+            "Em recomendação de filmes",
+            "Em triagem médica, onde deixar passar um caso positivo real é mais grave que um falso alarme",
+            "Nunca, precisão é sempre mais importante",
+            "Em qualquer sistema de spam"
+          ],
+          "a": 1,
+          "hint": "Pense no custo de não detectar uma doença real, versus o custo de um falso positivo.",
+          "ex": "Em triagem médica, deixar de detectar um caso real costuma ser mais custoso que um alarme falso.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "ia-11",
+      "name": "OVERFITTING",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#0ea5e9",
+      "icon": "▲",
+      "summary": "Reconheça quando um modelo memoriza demais os dados de treino.",
+      "lesson": [
+        {
+          "title": "Decorar em vez de aprender",
+          "body": "Overfitting acontece quando o modelo se ajusta demais aos dados de treino, memorizando até o ruído, e perde a capacidade de generalizar para dados novos. Um sinal claro: desempenho ótimo no treino, mas ruim no teste.",
+          "code": "# Sinal de overfitting:\n# acuracia no treino: 99%\n# acuracia no teste: 60%"
+        },
+        {
+          "title": "Underfitting, o oposto",
+          "body": "Underfitting é o oposto: o modelo é simples demais para captar os padrões reais dos dados, tendo desempenho ruim tanto no treino quanto no teste. O objetivo é encontrar um equilíbrio entre os dois extremos.",
+          "code": "# Sinal de underfitting:\n# acuracia no treino: 55%\n# acuracia no teste: 53%"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que é overfitting?",
+          "opts": [
+            "O modelo é simples demais para os dados",
+            "O modelo se ajusta demais aos dados de treino e perde capacidade de generalizar",
+            "O modelo treina muito rápido",
+            "O modelo usa poucas features"
+          ],
+          "a": 1,
+          "hint": "Pense em 'decorar' em vez de 'aprender de verdade'.",
+          "ex": "Overfitting é quando o modelo memoriza os dados de treino em vez de generalizar.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Este resultado sugere overfitting, underfitting ou um bom ajuste?\nAcuracia no treino: 99%\nAcuracia no teste: 60%",
+          "opts": [
+            "Bom ajuste",
+            "Overfitting",
+            "Underfitting",
+            "Não é possível saber"
+          ],
+          "a": 1,
+          "hint": "Um desempenho muito maior no treino do que no teste é um sinal clássico.",
+          "ex": "A grande diferença entre treino (99%) e teste (60%) é um sinal típico de overfitting.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que caracteriza o underfitting?",
+          "opts": [
+            "Desempenho ótimo no treino e no teste",
+            "Desempenho ruim tanto no treino quanto no teste",
+            "Desempenho ótimo só no teste",
+            "O modelo demora para treinar"
+          ],
+          "a": 1,
+          "hint": "Pense em um modelo simples demais para captar os padrões dos dados.",
+          "ex": "No underfitting, o modelo tem desempenho ruim em ambos os conjuntos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual o objetivo ao ajustar um modelo, em relação a overfitting e underfitting?",
+          "opts": [
+            "Maximizar sempre a complexidade do modelo",
+            "Encontrar um equilíbrio, evitando os dois extremos",
+            "Minimizar sempre a complexidade do modelo",
+            "Ignorar o desempenho no conjunto de teste"
+          ],
+          "a": 1,
+          "hint": "Pense em nem memorizar demais, nem ser simples demais.",
+          "ex": "O ideal é um meio-termo, generalizando bem sem memorizar excessivamente.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "ia-12",
+      "name": "VALIDAÇÃO CRUZADA",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#0ea5e9",
+      "icon": "◫",
+      "summary": "Avalie um modelo de forma mais robusta, usando várias divisões dos dados.",
+      "lesson": [
+        {
+          "title": "O problema de uma única divisão",
+          "body": "Uma única divisão treino/teste pode dar uma avaliação enganosa, dependendo de quais dados caíram em cada lado por acaso. A validação cruzada resolve isso repetindo o processo várias vezes, com divisões diferentes.",
+          "code": "from sklearn.model_selection import cross_val_score\n\nresultados = cross_val_score(modelo, X, y, cv=5)\nprint(resultados.mean())"
+        },
+        {
+          "title": "K-fold",
+          "body": "Na validação cruzada k-fold, os dados são divididos em k partes (folds). O modelo é treinado k vezes, cada vez usando uma parte diferente como teste e o restante como treino, gerando uma avaliação mais confiável, feita com a média dos resultados.",
+          "code": "# cv=5 significa 5-fold:\n# 5 rodadas de treino/teste, revezando qual parte e o teste"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Por que uma única divisão treino/teste pode ser enganosa?",
+          "opts": [
+            "Ela nunca é enganosa",
+            "O resultado pode depender muito de quais dados caíram por acaso em cada parte",
+            "Divisões únicas são sempre mais precisas",
+            "Não é possível fazer apenas uma divisão"
+          ],
+          "a": 1,
+          "hint": "Pense no acaso de uma divisão específica influenciar o resultado.",
+          "ex": "Uma única divisão pode não representar bem o desempenho real, por depender do acaso.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que cv=5 significa em cross_val_score(modelo, X, y, cv=5)?",
+          "opts": [
+            "O modelo é treinado 5 vezes com a mesma divisão",
+            "Os dados são divididos em 5 partes, com 5 rodadas de treino/teste diferentes",
+            "Apenas 5 exemplos são usados no total",
+            "O modelo terá 5 features"
+          ],
+          "a": 1,
+          "hint": "'cv' se refere a 'cross-validation' (validação cruzada) com 5 divisões.",
+          "ex": "cv=5 configura uma validação cruzada de 5 partes (5-fold).",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual a principal vantagem da validação cruzada sobre uma única divisão treino/teste?",
+          "opts": [
+            "É sempre mais rápida",
+            "Dá uma estimativa mais robusta e confiável do desempenho do modelo",
+            "Elimina totalmente a necessidade de dados de teste",
+            "Não há vantagem real"
+          ],
+          "a": 1,
+          "hint": "Pense em fazer a média de vários resultados em vez de confiar em um só.",
+          "ex": "Validação cruzada reduz o impacto do acaso, dando uma avaliação mais confiável.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Em k-fold, o que acontece a cada rodada de treino?",
+          "opts": [
+            "Os mesmos dados são usados como treino e teste sempre",
+            "Uma parte diferente dos dados é usada como teste, e o restante como treino",
+            "O modelo é descartado e recriado do zero sem dados",
+            "Nenhum dado é usado"
+          ],
+          "a": 1,
+          "hint": "Pense em revezar qual 'fatia' dos dados vira o teste em cada rodada.",
+          "ex": "A cada rodada, uma parte diferente vira o conjunto de teste, revezando entre as k partes.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "ia-13",
+      "name": "ÁRVORES DE DECISÃO",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#14b8a6",
+      "icon": "◆",
+      "summary": "Entenda um modelo que toma decisões através de perguntas em sequência.",
+      "lesson": [
+        {
+          "title": "Perguntas em sequência",
+          "body": "Uma árvore de decisão faz previsões através de uma sequência de perguntas sobre as features, como 'área maior que 100m²?', dividindo os dados em ramos até chegar a uma decisão final nas folhas da árvore.",
+          "code": "from sklearn.tree import DecisionTreeClassifier\n\nmodelo = DecisionTreeClassifier()\nmodelo.fit(X_treino, y_treino)"
+        },
+        {
+          "title": "Fácil de interpretar",
+          "body": "Uma grande vantagem das árvores de decisão é que suas decisões podem ser visualizadas e explicadas facilmente, ao contrário de modelos mais 'caixa-preta'. Mas árvores muito profundas tendem a sofrer de overfitting.",
+          "code": "# area > 100m2?\n#   sim -> quartos > 3?\n#     sim -> preco alto\n#     nao -> preco medio\n#   nao -> preco baixo"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Como uma árvore de decisão chega a uma previsão?",
+          "opts": [
+            "Calculando uma média direta de todos os dados",
+            "Fazendo uma sequência de perguntas sobre as features, dividindo os dados em ramos",
+            "Sempre escolhendo a opção mais comum, sem analisar features",
+            "Usando apenas uma equação linear"
+          ],
+          "a": 1,
+          "hint": "Pense na sequência de perguntas 'área maior que...', 'quartos maior que...'.",
+          "ex": "A árvore divide os dados através de perguntas sucessivas sobre as features.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual uma vantagem citada das árvores de decisão em relação a modelos 'caixa-preta'?",
+          "opts": [
+            "São sempre mais precisas",
+            "Suas decisões podem ser visualizadas e explicadas com facilidade",
+            "Nunca sofrem overfitting",
+            "Não precisam de dados de treino"
+          ],
+          "a": 1,
+          "hint": "Pense em conseguir 'ler' o caminho de decisões que a árvore seguiu.",
+          "ex": "A interpretabilidade é uma vantagem marcante das árvores de decisão.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que tende a acontecer com árvores de decisão muito profundas?",
+          "opts": [
+            "Elas ficam mais simples de interpretar",
+            "Tendem a sofrer overfitting, memorizando demais os dados de treino",
+            "Elas sempre generalizam melhor",
+            "Não há relação entre profundidade e overfitting"
+          ],
+          "a": 1,
+          "hint": "Relembre o conceito de overfitting da unidade anterior.",
+          "ex": "Árvores muito profundas tendem a se ajustar demais aos dados de treino.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Nesta árvore simplificada, qual a decisão para uma casa com area=120, quartos=2?\n# area > 100m2?\n#   sim -> quartos > 3?\n#     sim -> preco alto\n#     nao -> preco medio\n#   nao -> preco baixo",
+          "opts": [
+            "preco baixo",
+            "preco medio",
+            "preco alto",
+            "Não é possível decidir"
+          ],
+          "a": 1,
+          "hint": "Siga o caminho: area > 100 (sim) -> quartos > 3 (não, pois quartos=2).",
+          "ex": "Área > 100 é verdadeiro, mas quartos > 3 é falso (2 quartos), levando a 'preço médio'.",
+          "format": "LEITURA DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "ia-14",
+      "name": "RANDOM FOREST",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#14b8a6",
+      "icon": "▲",
+      "summary": "Combine várias árvores de decisão para obter previsões mais robustas.",
+      "lesson": [
+        {
+          "title": "Várias árvores, uma decisão",
+          "body": "Random Forest é um conjunto (ensemble) de várias árvores de decisão, cada uma treinada com uma amostra ligeiramente diferente dos dados. A previsão final combina o resultado de todas as árvores, geralmente por votação (classificação) ou média (regressão).",
+          "code": "from sklearn.ensemble import RandomForestClassifier\n\nmodelo = RandomForestClassifier(n_estimators=100)\nmodelo.fit(X_treino, y_treino)"
+        },
+        {
+          "title": "Por que combinar árvores ajuda",
+          "body": "Uma única árvore pode se ajustar demais a peculiaridades dos dados de treino. Combinando várias árvores diferentes (cada uma com um pouco de erro, mas de formas diferentes), o resultado combinado tende a ser mais estável e generalizar melhor.",
+          "code": "# n_estimators=100 significa 100 arvores na floresta\n# a previsao final combina o resultado de todas elas"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que é Random Forest, resumidamente?",
+          "opts": [
+            "Uma única árvore de decisão muito grande",
+            "Um conjunto de várias árvores de decisão combinadas",
+            "Um tipo de regressão linear",
+            "Uma técnica de visualização de dados"
+          ],
+          "a": 1,
+          "hint": "'Forest' (floresta) sugere várias 'árvores' juntas.",
+          "ex": "Random Forest combina várias árvores de decisão em um único modelo.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que n_estimators=100 configura em RandomForestClassifier?",
+          "opts": [
+            "100 features do modelo",
+            "O número de árvores na floresta",
+            "100 linhas de dados de teste",
+            "A profundidade máxima de cada árvore"
+          ],
+          "a": 1,
+          "hint": "'Estimators' aqui se refere às árvores individuais do conjunto.",
+          "ex": "n_estimators define quantas árvores compõem a floresta.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que combinar várias árvores tende a gerar um modelo mais robusto que uma única árvore?",
+          "opts": [
+            "Porque árvores combinadas nunca erram",
+            "Porque os erros individuais de cada árvore tendem a se compensar, tornando o resultado mais estável",
+            "Porque é mais rápido treinar várias árvores pequenas",
+            "Não há vantagem real"
+          ],
+          "a": 1,
+          "hint": "Pense em várias opiniões diferentes sendo combinadas em uma decisão final.",
+          "ex": "A combinação de várias árvores reduz o impacto de erros individuais de cada uma.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Em um problema de classificação, como a Random Forest costuma combinar as previsões das árvores individuais?",
+          "opts": [
+            "Escolhendo sempre a primeira árvore treinada",
+            "Por votação — a classe mais votada entre as árvores vence",
+            "Somando os valores previstos",
+            "Ignorando todas as árvores exceto uma"
+          ],
+          "a": 1,
+          "hint": "Pense em cada árvore 'votando' em uma classe.",
+          "ex": "Em classificação, a classe mais votada entre as árvores é a previsão final.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "ia-15",
+      "name": "BOOSTING",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#14b8a6",
+      "icon": "★",
+      "summary": "Combine modelos fracos em sequência, cada um corrigindo os erros do anterior.",
+      "lesson": [
+        {
+          "title": "Aprendendo com os erros anteriores",
+          "body": "Boosting é outra técnica de ensemble, mas diferente da Random Forest: os modelos são treinados em sequência, e cada novo modelo foca em corrigir os erros cometidos pelos modelos anteriores.",
+          "code": "from sklearn.ensemble import GradientBoostingClassifier\n\nmodelo = GradientBoostingClassifier()\nmodelo.fit(X_treino, y_treino)"
+        },
+        {
+          "title": "Sequencial versus paralelo",
+          "body": "Enquanto Random Forest treina árvores de forma independente (em paralelo, conceitualmente), boosting treina modelos em sequência, onde cada etapa depende do resultado da anterior. Isso costuma dar ótima precisão, mas exige mais cuidado para evitar overfitting.",
+          "code": "# Random Forest: arvores independentes, combinadas no final\n# Boosting: modelos em sequencia, cada um corrigindo o anterior"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual a ideia central do boosting?",
+          "opts": [
+            "Treinar modelos totalmente independentes uns dos outros",
+            "Treinar modelos em sequência, cada um corrigindo os erros do anterior",
+            "Usar apenas um único modelo simples",
+            "Ignorar os erros dos modelos anteriores"
+          ],
+          "a": 1,
+          "hint": "Pense na palavra 'sequência' usada na aula.",
+          "ex": "Boosting treina modelos em sequência, focando em corrigir erros anteriores.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual a principal diferença entre Random Forest e boosting?",
+          "opts": [
+            "Não há diferença nenhuma",
+            "Random Forest treina árvores de forma independente; boosting treina em sequência, dependendo do resultado anterior",
+            "Boosting não usa árvores de decisão",
+            "Random Forest é sempre mais preciso"
+          ],
+          "a": 1,
+          "hint": "Relembre 'paralelo versus sequencial' desta aula.",
+          "ex": "A diferença central está em treinar de forma independente (Random Forest) ou sequencial (boosting).",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que boosting exige mais cuidado para evitar overfitting?",
+          "opts": [
+            "Porque não é possível avaliar boosting com dados de teste",
+            "Porque o foco em corrigir erros repetidamente pode levar o modelo a se ajustar demais aos dados de treino",
+            "Porque boosting nunca comete erros",
+            "Não é verdade, boosting nunca sofre overfitting"
+          ],
+          "a": 1,
+          "hint": "Pense em corrigir erros repetidamente até 'decorar' demais os dados.",
+          "ex": "O foco intenso em corrigir erros do treino pode levar a um ajuste excessivo.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Random Forest e boosting são exemplos de qual conceito mais amplo?",
+          "opts": [
+            "Aprendizado por reforço",
+            "Métodos de ensemble, que combinam vários modelos",
+            "Regressão linear simples",
+            "Visualização de dados"
+          ],
+          "a": 1,
+          "hint": "Ambos combinam múltiplos modelos de alguma forma.",
+          "ex": "Ambos são técnicas de ensemble, que combinam múltiplos modelos para melhorar o resultado.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "ia-16",
+      "name": "NEURÔNIO ARTIFICIAL",
+      "difficulty": "AVANÇADO",
+      "color": "#a855f7",
+      "icon": "◆",
+      "summary": "Entenda a unidade básica que forma as redes neurais.",
+      "lesson": [
+        {
+          "title": "Uma soma ponderada",
+          "body": "Um neurônio artificial recebe várias entradas, multiplica cada uma por um peso, soma tudo (mais um valor chamado viés) e passa o resultado por uma função de ativação, que decide a saída final do neurônio.",
+          "code": "# entrada1 * peso1 + entrada2 * peso2 + ... + vies\n# resultado -> funcao de ativacao -> saida do neuronio"
+        },
+        {
+          "title": "Pesos aprendidos",
+          "body": "Os pesos começam com valores aleatórios e são ajustados durante o treino, para que o neurônio (e a rede inteira) produza saídas cada vez mais próximas do resultado esperado nos dados de treino.",
+          "code": "# Antes do treino: pesos aleatorios, previsoes ruins\n# Durante o treino: pesos ajustados repetidamente\n# Depois do treino: pesos otimizados para o problema"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que um neurônio artificial faz com suas entradas?",
+          "opts": [
+            "Ignora todas elas",
+            "Multiplica cada uma por um peso, soma tudo e aplica uma função de ativação",
+            "Apenas escolhe a maior entrada",
+            "Concatena o texto das entradas"
+          ],
+          "a": 1,
+          "hint": "Siga o fluxo descrito na aula: entrada, peso, soma, ativação.",
+          "ex": "O neurônio combina entradas ponderadas por pesos, somando e ativando o resultado.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que são os 'pesos' de um neurônio?",
+          "opts": [
+            "Valores fixos que nunca mudam",
+            "Valores ajustáveis que determinam a importância de cada entrada, aprendidos durante o treino",
+            "O número de camadas da rede",
+            "O tipo de dado de entrada"
+          ],
+          "a": 1,
+          "hint": "Pense em como cada entrada tem uma influência diferente na saída.",
+          "ex": "Pesos são parâmetros ajustáveis, aprendidos durante o treinamento da rede.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Como os pesos de uma rede neural costumam começar, antes do treino?",
+          "opts": [
+            "Já perfeitamente ajustados",
+            "Com valores aleatórios, sendo ajustados ao longo do treino",
+            "Sempre em zero e nunca mudam",
+            "Copiados de outro modelo obrigatoriamente"
+          ],
+          "a": 1,
+          "hint": "Veja a descrição do processo 'antes do treino' na aula.",
+          "ex": "Os pesos geralmente começam aleatórios e são ajustados durante o treinamento.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual analogia melhor descreve o papel de um único neurônio artificial dentro de uma rede?",
+          "opts": [
+            "É a rede inteira sozinho",
+            "É uma pequena unidade de processamento que, combinada com muitas outras, forma a rede",
+            "É apenas um tipo de dado de entrada",
+            "É o mesmo que um dado de treino"
+          ],
+          "a": 1,
+          "hint": "Pense em uma peça pequena que faz parte de um sistema maior.",
+          "ex": "Um neurônio é uma unidade básica que, combinada a muitas outras, forma a rede completa.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "ia-17",
+      "name": "CAMADAS E ATIVAÇÃO",
+      "difficulty": "AVANÇADO",
+      "color": "#a855f7",
+      "icon": "▲",
+      "summary": "Organize neurônios em camadas e entenda por que a ativação é importante.",
+      "lesson": [
+        {
+          "title": "Camadas de entrada, ocultas e saída",
+          "body": "Uma rede neural organiza neurônios em camadas: a camada de entrada recebe os dados, camadas ocultas processam informações intermediárias, e a camada de saída produz o resultado final (uma previsão).",
+          "code": "# Camada de entrada -> Camada oculta 1 -> Camada oculta 2 -> Camada de saida"
+        },
+        {
+          "title": "Por que a ativação importa",
+          "body": "Sem uma função de ativação não linear (como ReLU ou sigmoid), empilhar várias camadas equivaleria matematicamente a uma única camada linear, perdendo a capacidade de aprender padrões complexos. A ativação é o que dá à rede poder de representar relações não lineares.",
+          "code": "# ReLU: retorna 0 se a entrada for negativa, ou a propria entrada se for positiva\ndef relu(x):\n    return max(0, x)"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual a função da camada de saída em uma rede neural?",
+          "opts": [
+            "Receber os dados brutos de entrada",
+            "Produzir o resultado final da rede, como uma previsão",
+            "Guardar os dados de treino",
+            "Visualizar os dados"
+          ],
+          "a": 1,
+          "hint": "É a última camada da rede, mencionada no exemplo.",
+          "ex": "A camada de saída gera o resultado final, como a previsão da rede.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que funções de ativação não lineares são importantes em uma rede neural?",
+          "opts": [
+            "Não são importantes, poderiam ser removidas sem efeito",
+            "Sem elas, várias camadas empilhadas equivaleriam matematicamente a uma única camada linear",
+            "Elas só servem para deixar o treino mais lento",
+            "Ativação só é usada na camada de entrada"
+          ],
+          "a": 1,
+          "hint": "Pense no que aconteceria se todas as camadas fossem puramente lineares.",
+          "ex": "A não linearidade da ativação é essencial para a rede aprender padrões complexos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que a função ReLU retorna para uma entrada de -3?\ndef relu(x):\n    return max(0, x)",
+          "opts": [
+            "-3",
+            "0",
+            "3",
+            "Um erro"
+          ],
+          "a": 1,
+          "hint": "ReLU retorna 0 para valores negativos.",
+          "ex": "Como -3 é negativo, max(0, -3) resulta em 0.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que são 'camadas ocultas' em uma rede neural?",
+          "opts": [
+            "Camadas que não existem de verdade",
+            "Camadas intermediárias entre a entrada e a saída, que processam informações internas da rede",
+            "Apenas a última camada da rede",
+            "Camadas visíveis diretamente ao usuário final"
+          ],
+          "a": 1,
+          "hint": "Elas ficam 'no meio' da rede, entre entrada e saída.",
+          "ex": "Camadas ocultas processam informações intermediárias entre entrada e saída.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "ia-18",
+      "name": "BACKPROPAGATION",
+      "difficulty": "AVANÇADO",
+      "color": "#a855f7",
+      "icon": "◫",
+      "summary": "Entenda, em conceito, como uma rede neural ajusta seus pesos durante o treino.",
+      "lesson": [
+        {
+          "title": "Medindo o erro",
+          "body": "Depois de uma previsão, uma função de perda (loss) mede o quão longe a previsão da rede ficou do valor esperado. O objetivo do treino é ajustar os pesos para minimizar essa perda ao longo de muitos exemplos.",
+          "code": "# perda = diferenca entre a previsao da rede e o valor real esperado\n# objetivo do treino: minimizar a perda media"
+        },
+        {
+          "title": "Propagando o ajuste para trás",
+          "body": "Backpropagation é o algoritmo que calcula o quanto cada peso da rede contribuiu para o erro final, propagando essa informação da camada de saída de volta até a camada de entrada, e ajustando cada peso na direção que reduz o erro.",
+          "code": "# Fluxo simplificado do treino:\n# 1. Fazer uma previsao (forward)\n# 2. Medir o erro (loss)\n# 3. Propagar o ajuste dos pesos para tras (backpropagation)\n# 4. Repetir com mais exemplos"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que uma função de perda (loss) mede?",
+          "opts": [
+            "A velocidade de treino da rede",
+            "O quão longe a previsão da rede ficou do valor esperado",
+            "O número de camadas da rede",
+            "O tamanho do conjunto de dados"
+          ],
+          "a": 1,
+          "hint": "Pense em 'erro' entre previsão e resultado real.",
+          "ex": "A função de perda quantifica o erro entre a previsão e o valor esperado.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Em que direção o backpropagation propaga o ajuste dos pesos?",
+          "opts": [
+            "Da camada de entrada para a saída",
+            "Da camada de saída de volta para a entrada",
+            "Não há direção definida",
+            "Apenas dentro de uma única camada"
+          ],
+          "a": 1,
+          "hint": "O próprio nome 'backpropagation' sugere a direção.",
+          "ex": "O ajuste é propagado de trás para frente, da saída em direção à entrada.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual o objetivo geral do processo de treino de uma rede neural?",
+          "opts": [
+            "Maximizar a função de perda",
+            "Minimizar a função de perda, ajustando os pesos ao longo de muitos exemplos",
+            "Manter os pesos sempre fixos",
+            "Aumentar o número de camadas indefinidamente"
+          ],
+          "a": 1,
+          "hint": "Pense em reduzir o erro entre previsão e valor real.",
+          "ex": "O treino busca ajustar os pesos para minimizar o erro (perda) da rede.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual a ordem correta do fluxo básico de treino descrito na aula?",
+          "opts": [
+            "Ajustar pesos, prever, medir erro",
+            "Prever, medir o erro, propagar o ajuste (backpropagation)",
+            "Medir o erro antes de qualquer previsão",
+            "Não existe uma ordem definida"
+          ],
+          "a": 1,
+          "hint": "Siga o fluxo numerado no segundo bloco da aula.",
+          "ex": "Primeiro a rede prevê, depois mede o erro, e então ajusta os pesos via backpropagation.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "ia-19",
+      "name": "REDES CONVOLUCIONAIS",
+      "difficulty": "AVANÇADO",
+      "color": "#e879f9",
+      "icon": "◆",
+      "summary": "Entenda como CNNs processam imagens de forma eficiente.",
+      "lesson": [
+        {
+          "title": "Feitas para imagens",
+          "body": "Redes Neurais Convolucionais (CNNs) são especializadas em processar dados com estrutura de grade, como imagens. Em vez de conectar cada pixel a cada neurônio (como em uma rede tradicional), elas usam filtros que percorrem a imagem, detectando padrões locais como bordas e texturas.",
+          "code": "# Ideia geral de uma camada convolucional:\n# filtro pequeno (ex: 3x3) percorre a imagem\n# detecta padroes locais em cada regiao"
+        },
+        {
+          "title": "Camadas hierárquicas de padrões",
+          "body": "As primeiras camadas de uma CNN costumam detectar padrões simples, como bordas e cores. Camadas mais profundas combinam esses padrões simples para reconhecer formas mais complexas, como olhos, rodas ou rostos inteiros.",
+          "code": "# Camadas iniciais: bordas, cores, texturas simples\n# Camadas profundas: formas complexas, combinando padroes simples"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Para qual tipo de dado as CNNs são especialmente indicadas?",
+          "opts": [
+            "Texto puro, sem estrutura",
+            "Dados com estrutura de grade, como imagens",
+            "Apenas números isolados",
+            "Dados em áudio, exclusivamente"
+          ],
+          "a": 1,
+          "hint": "O nome completo é 'Redes Neurais Convolucionais' e o exemplo citado é imagem.",
+          "ex": "CNNs foram desenhadas para processar bem dados estruturados em grade, como imagens.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que um filtro convolucional faz, de forma simplificada?",
+          "opts": [
+            "Conecta cada pixel a todos os neurônios da rede",
+            "Percorre a imagem detectando padrões locais, como bordas",
+            "Apaga partes da imagem aleatoriamente",
+            "Converte a imagem em texto"
+          ],
+          "a": 1,
+          "hint": "Pense em uma pequena janela deslizando sobre a imagem.",
+          "ex": "O filtro percorre regiões da imagem, detectando padrões locais específicos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que camadas mais profundas de uma CNN tendem a reconhecer, em comparação com as camadas iniciais?",
+          "opts": [
+            "Exatamente os mesmos padrões simples",
+            "Padrões e formas mais complexas, combinando padrões simples das camadas anteriores",
+            "Nada, camadas profundas são desnecessárias",
+            "Apenas cores isoladas"
+          ],
+          "a": 1,
+          "hint": "Pense na hierarquia descrita: bordas simples até formas complexas.",
+          "ex": "Camadas profundas combinam padrões simples em representações mais complexas.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Reconhecer rostos em fotos é uma tarefa típica resolvida com qual tipo de rede?",
+          "opts": [
+            "Redes convolucionais (CNNs)",
+            "Regressão linear simples",
+            "Árvore de decisão rasa",
+            "K-fold cross-validation"
+          ],
+          "a": 0,
+          "hint": "Pense na aplicação clássica de CNNs mencionada na aula.",
+          "ex": "CNNs são o tipo de rede mais usado para tarefas de visão computacional, como reconhecimento facial.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "ia-20",
+      "name": "REDES RECORRENTES",
+      "difficulty": "AVANÇADO",
+      "color": "#e879f9",
+      "icon": "▲",
+      "summary": "Entenda como RNNs lidam com dados sequenciais, como texto e séries temporais.",
+      "lesson": [
+        {
+          "title": "Dados com ordem importa",
+          "body": "Redes Neurais Recorrentes (RNNs) são projetadas para dados sequenciais, onde a ordem importa, como texto, áudio ou séries temporais. Diferente de uma rede comum, elas mantêm uma espécie de 'memória' do que já processaram na sequência.",
+          "code": "# Frase: 'O gato subiu no telhado'\n# A RNN processa palavra por palavra, mantendo contexto das anteriores"
+        },
+        {
+          "title": "O desafio de sequências longas",
+          "body": "RNNs tradicionais têm dificuldade em manter contexto de sequências muito longas — o efeito de palavras distantes tende a se perder. Variantes como LSTM e GRU foram criadas justamente para amenizar esse problema, lembrando informações relevantes por mais tempo.",
+          "code": "# RNN simples: dificuldade com dependencias de longo prazo\n# LSTM/GRU: variantes desenhadas para lembrar contexto por mais tempo"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Para qual tipo de dado as RNNs são especialmente indicadas?",
+          "opts": [
+            "Imagens estáticas isoladas",
+            "Dados sequenciais, onde a ordem importa, como texto ou séries temporais",
+            "Apenas dados tabulares simples",
+            "Dados sem nenhuma estrutura"
+          ],
+          "a": 1,
+          "hint": "Pense em texto, onde a ordem das palavras muda o significado.",
+          "ex": "RNNs são voltadas a dados sequenciais, como texto, áudio e séries temporais.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que diferencia uma RNN de uma rede neural comum?",
+          "opts": [
+            "RNNs não têm pesos",
+            "RNNs mantêm uma espécie de memória do que já processaram na sequência",
+            "RNNs só funcionam com imagens",
+            "Não há diferença nenhuma"
+          ],
+          "a": 1,
+          "hint": "Pense em processar uma frase palavra por palavra, lembrando o contexto anterior.",
+          "ex": "A capacidade de manter contexto ao longo da sequência é a característica central das RNNs.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual problema comum em RNNs tradicionais motivou a criação de LSTM e GRU?",
+          "opts": [
+            "RNNs tradicionais são rápidas demais",
+            "Dificuldade em manter contexto de dependências muito longas na sequência",
+            "RNNs tradicionais não conseguem processar texto algum",
+            "Não há motivo real, são apenas variações estéticas"
+          ],
+          "a": 1,
+          "hint": "Relembre 'o desafio de sequências longas' desta aula.",
+          "ex": "LSTM e GRU foram criadas para lidar melhor com dependências de longo prazo.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Prever a próxima palavra de uma frase, com base nas palavras anteriores, é uma tarefa típica de qual tipo de rede?",
+          "opts": [
+            "Redes convolucionais (CNNs)",
+            "Redes recorrentes (RNNs)",
+            "Árvores de decisão rasas",
+            "Regressão linear simples"
+          ],
+          "a": 1,
+          "hint": "Pense na natureza sequencial dessa tarefa.",
+          "ex": "Prever a próxima palavra de uma sequência é um caso clássico para RNNs.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "ia-21",
+      "name": "FRAMEWORKS",
+      "difficulty": "AVANÇADO",
+      "color": "#e879f9",
+      "icon": "◫",
+      "summary": "Conheça as principais ferramentas usadas para construir redes neurais na prática.",
+      "lesson": [
+        {
+          "title": "TensorFlow e PyTorch",
+          "body": "Na prática, redes neurais raramente são implementadas do zero. Frameworks como TensorFlow e PyTorch oferecem blocos prontos (camadas, funções de ativação, otimizadores) e cuidam automaticamente do cálculo do backpropagation.",
+          "code": "# Exemplo conceitual com PyTorch\nimport torch.nn as nn\n\nmodelo = nn.Sequential(\n    nn.Linear(10, 32),\n    nn.ReLU(),\n    nn.Linear(32, 1)\n)"
+        },
+        {
+          "title": "Por que usar um framework",
+          "body": "Além de economizar tempo, frameworks são altamente otimizados, aproveitando hardware especializado como GPUs para acelerar drasticamente o treino de redes grandes, algo muito difícil de replicar manualmente com a mesma eficiência.",
+          "code": "# Frameworks cuidam de:\n# - calculo automatico de gradientes (backpropagation)\n# - uso eficiente de GPU\n# - camadas e otimizadores prontos"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual a função principal de frameworks como TensorFlow e PyTorch?",
+          "opts": [
+            "Substituir totalmente a necessidade de dados",
+            "Fornecer blocos prontos e automatizar cálculos complexos, como o backpropagation",
+            "Criar apenas gráficos e visualizações",
+            "Servir apenas para armazenar dados"
+          ],
+          "a": 1,
+          "hint": "Pense no que eles automatizam, mencionado na aula.",
+          "ex": "Esses frameworks automatizam cálculos complexos e oferecem componentes prontos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que hardware como GPU é importante no treino de redes neurais grandes?",
+          "opts": [
+            "GPUs não têm nenhuma relação com redes neurais",
+            "GPUs aceleram drasticamente os cálculos envolvidos no treino de redes grandes",
+            "GPUs servem apenas para exibir gráficos na tela",
+            "GPUs substituem totalmente os dados de treino"
+          ],
+          "a": 1,
+          "hint": "Pense em treino de redes grandes sendo muito mais rápido com hardware especializado.",
+          "ex": "GPUs aceleram significativamente o processamento necessário para treinar redes grandes.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Neste exemplo conceitual, quantas camadas 'Linear' o modelo tem?\nmodelo = nn.Sequential(\n    nn.Linear(10, 32),\n    nn.ReLU(),\n    nn.Linear(32, 1)\n)",
+          "opts": [
+            "1",
+            "2",
+            "3",
+            "0"
+          ],
+          "a": 1,
+          "hint": "Conte as ocorrências de nn.Linear no código.",
+          "ex": "Há duas camadas Linear: uma de entrada para 32 neurônios, outra de 32 para 1 saída.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que raramente se implementa uma rede neural 'do zero', sem nenhum framework, em projetos reais?",
+          "opts": [
+            "Porque é proibido por lei",
+            "Porque frameworks já resolvem cálculos complexos e otimizações de forma testada e eficiente",
+            "Porque redes neurais não podem ser implementadas manualmente de jeito nenhum",
+            "Não há motivo real, tanto faz usar ou não"
+          ],
+          "a": 1,
+          "hint": "Pense no tempo e esforço economizado ao reaproveitar ferramentas prontas e otimizadas.",
+          "ex": "Frameworks economizam tempo e evitam reinventar cálculos complexos já resolvidos e otimizados.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "ia-22",
+      "name": "TOKENIZAÇÃO",
+      "difficulty": "AVANÇADO",
+      "color": "#fb923c",
+      "icon": "◆",
+      "summary": "Entenda o primeiro passo para transformar texto em algo que um modelo entenda.",
+      "lesson": [
+        {
+          "title": "Quebrando o texto em pedaços",
+          "body": "Tokenização é o processo de dividir um texto em unidades menores, chamadas tokens — que podem ser palavras, partes de palavras ou até caracteres, dependendo da abordagem usada.",
+          "code": "texto = \"Eu gosto de Python\"\ntokens = texto.split()\nprint(tokens)\n# ['Eu', 'gosto', 'de', 'Python']"
+        },
+        {
+          "title": "Por que tokenizar",
+          "body": "Modelos de linguagem trabalham com números, não com texto bruto diretamente. A tokenização é o primeiro passo para depois converter cada token em uma representação numérica que o modelo consiga processar.",
+          "code": "# Texto -> tokens -> numeros (ids) -> entrada do modelo"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que é tokenização?",
+          "opts": [
+            "Traduzir um texto para outro idioma",
+            "Dividir um texto em unidades menores, chamadas tokens",
+            "Apagar palavras repetidas de um texto",
+            "Corrigir erros ortográficos"
+          ],
+          "a": 1,
+          "hint": "Pense em quebrar uma frase em palavras separadas.",
+          "ex": "Tokenização divide o texto em pedaços menores (tokens) para processamento.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que texto.split() retorna para \"Eu gosto de Python\"?",
+          "opts": [
+            "\"Eu gosto de Python\"",
+            "['Eu', 'gosto', 'de', 'Python']",
+            "4",
+            "Um erro"
+          ],
+          "a": 1,
+          "hint": "split() por padrão divide o texto pelos espaços.",
+          "ex": "split() divide a frase em uma lista de palavras separadas.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que é necessário tokenizar um texto antes de um modelo processá-lo?",
+          "opts": [
+            "Não é necessário, modelos entendem texto bruto diretamente",
+            "Modelos trabalham com números, então o texto precisa antes ser dividido e depois convertido em representações numéricas",
+            "Tokenização substitui a necessidade de qualquer modelo",
+            "Apenas para deixar o texto mais bonito"
+          ],
+          "a": 1,
+          "hint": "Pense na sequência 'texto -> tokens -> números' descrita na aula.",
+          "ex": "A tokenização é o primeiro passo para transformar texto em uma forma numérica processável.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Um token sempre corresponde a uma palavra inteira?",
+          "opts": [
+            "Sim, sempre",
+            "Não, dependendo da abordagem, um token pode ser uma palavra, parte de uma palavra ou até um caractere",
+            "Não, um token é sempre uma frase inteira",
+            "Tokens só existem em inglês"
+          ],
+          "a": 1,
+          "hint": "Relembre a definição mais ampla dada na aula.",
+          "ex": "Tokens podem representar diferentes unidades, não só palavras completas.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "ia-23",
+      "name": "EMBEDDINGS",
+      "difficulty": "AVANÇADO",
+      "color": "#fb923c",
+      "icon": "▲",
+      "summary": "Represente palavras como vetores numéricos que capturam significado.",
+      "lesson": [
+        {
+          "title": "Palavras como números",
+          "body": "Um embedding representa cada token como um vetor de números (uma lista de valores decimais). Diferente de uma simples numeração arbitrária, embeddings são aprendidos de forma que palavras com significados parecidos fiquem com vetores próximos entre si.",
+          "code": "# Ideia simplificada (numeros ilustrativos):\n# 'rei'    -> [0.2, 0.8, -0.1, ...]\n# 'rainha' -> [0.2, 0.7, -0.2, ...]  (vetor proximo de 'rei')\n# 'banana' -> [-0.9, 0.1, 0.5, ...]  (vetor bem diferente)"
+        },
+        {
+          "title": "Capturando relações semânticas",
+          "body": "Embeddings bem treinados capturam relações semânticas surpreendentes: operações vetoriais entre embeddings de palavras às vezes refletem relações de significado do mundo real, como rei - homem + mulher aproximando-se do vetor de rainha.",
+          "code": "# Exemplo conceitual (nao literal):\n# vetor('rei') - vetor('homem') + vetor('mulher') aprox. vetor('rainha')"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que um embedding representa?",
+          "opts": [
+            "Um token como um vetor de números que captura significado",
+            "Apenas a contagem de letras de uma palavra",
+            "Uma tradução literal para outro idioma",
+            "Um tipo de gráfico de barras"
+          ],
+          "a": 0,
+          "hint": "Pense em 'rei' e 'rainha' tendo vetores parecidos.",
+          "ex": "Embeddings são vetores numéricos que representam o significado de tokens.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que caracteriza um bom embedding, em termos de significado?",
+          "opts": [
+            "Palavras com significados parecidos ficam com vetores próximos entre si",
+            "Todas as palavras têm exatamente o mesmo vetor",
+            "Vetores são atribuídos totalmente ao acaso, sem relação com significado",
+            "Só funciona para números, nunca para palavras"
+          ],
+          "a": 0,
+          "hint": "Compare os vetores ilustrativos de 'rei' e 'rainha' no exemplo.",
+          "ex": "Embeddings de qualidade aproximam palavras com significados semelhantes.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que uma simples numeração arbitrária de palavras (1, 2, 3...) não é tão útil quanto um embedding?",
+          "opts": [
+            "Não há diferença nenhuma entre os dois",
+            "A numeração arbitrária não captura nenhuma relação de significado entre as palavras",
+            "Numeração arbitrária é sempre melhor que embeddings",
+            "Embeddings não podem ser usados por modelos"
+          ],
+          "a": 1,
+          "hint": "Pense em números aleatórios não terem relação nenhuma com o significado das palavras.",
+          "ex": "Diferente de uma numeração arbitrária, embeddings preservam relações de significado.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Espera-se que os embeddings de 'gato' e 'cachorro' estejam, em geral, mais próximos entre si do que os de 'gato' e 'carro'. Por quê?",
+          "opts": [
+            "Porque as palavras têm o mesmo número de letras",
+            "Porque 'gato' e 'cachorro' compartilham contextos e significados mais semelhantes (ambos são animais de estimação)",
+            "Não há relação nenhuma esperada",
+            "Porque começam com a mesma letra"
+          ],
+          "a": 1,
+          "hint": "Pense na semelhança de significado e contexto de uso entre as palavras.",
+          "ex": "Palavras usadas em contextos semelhantes tendem a ter embeddings mais próximos.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "ia-24",
+      "name": "MODELOS DE LINGUAGEM",
+      "difficulty": "AVANÇADO",
+      "color": "#fb923c",
+      "icon": "◫",
+      "summary": "Entenda a ideia central por trás de modelos como os usados em assistentes de texto.",
+      "lesson": [
+        {
+          "title": "Prevendo o próximo token",
+          "body": "Em sua essência, um modelo de linguagem aprende a prever qual token é mais provável de vir a seguir, dado o texto anterior. Repetindo esse processo token a token, é possível gerar textos inteiros.",
+          "code": "# 'O gato subiu no' -> proximo token mais provavel: 'telhado'\n# 'O gato subiu no telhado' -> proximo token mais provavel: '.'"
+        },
+        {
+          "title": "Modelos grandes e contexto",
+          "body": "Modelos de linguagem modernos, treinados com enormes quantidades de texto, conseguem usar um contexto bem mais longo do que abordagens antigas, o que melhora muito a coerência dos textos gerados — mas eles continuam, fundamentalmente, prevendo o próximo token com base em padrões aprendidos dos dados.",
+          "code": "# Ideia central, mesmo em modelos grandes:\n# contexto (texto ate agora) -> modelo -> distribuicao de probabilidade sobre o proximo token"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual a tarefa central que um modelo de linguagem aprende a fazer?",
+          "opts": [
+            "Classificar imagens em categorias",
+            "Prever qual token é mais provável de vir a seguir, dado o texto anterior",
+            "Calcular médias de números",
+            "Agrupar dados sem rótulo"
+          ],
+          "a": 1,
+          "hint": "Pense no exemplo 'O gato subiu no' -> 'telhado'.",
+          "ex": "A tarefa central é prever o próximo token com base no contexto anterior.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Como um modelo de linguagem pode gerar um texto inteiro, não apenas uma palavra?",
+          "opts": [
+            "Não é possível, ele gera só uma palavra por vez sem continuar",
+            "Repetindo o processo de prever o próximo token, token a token",
+            "Copiando um texto pronto de uma base de dados",
+            "Traduzindo de outro idioma automaticamente"
+          ],
+          "a": 1,
+          "hint": "Pense em repetir a mesma previsão várias vezes em sequência.",
+          "ex": "O texto é gerado repetindo a previsão do próximo token sucessivamente.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que continua sendo, fundamentalmente, a operação central mesmo em modelos de linguagem muito grandes?",
+          "opts": [
+            "Classificação de imagens",
+            "Prever o próximo token com base em padrões aprendidos dos dados",
+            "Cálculo de média aritmética simples",
+            "Ordenação de números"
+          ],
+          "a": 1,
+          "hint": "Relembre a ideia central reforçada no segundo bloco da aula.",
+          "ex": "Mesmo modelos grandes seguem, no núcleo, o princípio de prever o próximo token.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que ter mais 'contexto' disponível tende a melhorar na geração de texto de um modelo de linguagem?",
+          "opts": [
+            "Nada, contexto não importa",
+            "A coerência do texto gerado, ao considerar mais informação anterior",
+            "Apenas a velocidade de geração",
+            "O tamanho da tela usada"
+          ],
+          "a": 1,
+          "hint": "Pense em lembrar de mais informações anteriores da conversa ou texto.",
+          "ex": "Mais contexto disponível costuma melhorar a coerência do texto gerado.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "ia-25",
+      "name": "ÉTICA E VIESES",
+      "difficulty": "AVANÇADO",
+      "color": "#34d399",
+      "icon": "◆",
+      "summary": "Reconheça como modelos podem reproduzir vieses presentes nos dados.",
+      "lesson": [
+        {
+          "title": "Vieses nos dados, vieses no modelo",
+          "body": "Se os dados históricos usados para treinar um modelo refletem desigualdades ou preconceitos (por exemplo, em decisões de contratação passadas), o modelo tende a aprender e reproduzir esses mesmos padrões, mesmo sem essa intenção explícita.",
+          "code": "# Se dados historicos de contratacao favoreceram um grupo,\n# um modelo treinado nesses dados pode repetir esse padrao"
+        },
+        {
+          "title": "Auditando modelos",
+          "body": "Uma boa prática é avaliar o desempenho e as previsões de um modelo separadamente para diferentes grupos (por exemplo, por gênero ou faixa etária), verificando se ele trata todos de forma equitativa, e não apenas olhar uma métrica geral única.",
+          "code": "# Em vez de olhar so a acuracia geral:\n# comparar acuracia do modelo entre diferentes subgrupos dos dados"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Por que um modelo pode reproduzir vieses presentes nos dados de treino?",
+          "opts": [
+            "Modelos sempre corrigem vieses automaticamente",
+            "O modelo aprende padrões dos dados, incluindo desigualdades ou preconceitos históricos presentes neles",
+            "Vieses só existem em dados de imagem",
+            "Não é possível um modelo ter viés"
+          ],
+          "a": 1,
+          "hint": "Relembre o princípio 'garbage in, garbage out' visto antes.",
+          "ex": "O modelo aprende os padrões dos dados, inclusive vieses históricos presentes neles.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que avaliar o desempenho de um modelo separadamente por subgrupos é uma boa prática?",
+          "opts": [
+            "Não traz nenhum benefício, uma métrica geral já é suficiente",
+            "Ajuda a identificar se o modelo trata diferentes grupos de forma desigual",
+            "Deixa o modelo mais lento sem outro efeito",
+            "É apenas uma formalidade sem utilidade real"
+          ],
+          "a": 1,
+          "hint": "Pense em uma métrica geral escondendo um problema específico em um subgrupo.",
+          "ex": "Avaliação por subgrupos revela desigualdades que uma métrica geral pode esconder.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Um modelo com alta acurácia geral está automaticamente livre de vieses?",
+          "opts": [
+            "Sim, alta acurácia geral garante ausência de vieses",
+            "Não, ele pode ter alta acurácia geral e ainda assim tratar subgrupos de forma desigual",
+            "Não, acurácia e viés são sempre a mesma coisa",
+            "Sim, mas só se o modelo for uma árvore de decisão"
+          ],
+          "a": 1,
+          "hint": "Pense em uma métrica geral escondendo diferenças entre subgrupos.",
+          "ex": "Uma boa métrica geral não garante ausência de viés em subgrupos específicos.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual atitude é mais responsável ao lidar com possíveis vieses em um modelo de IA usado em decisões importantes, como concessão de crédito?",
+          "opts": [
+            "Ignorar o problema, pois é impossível de resolver",
+            "Investigar, medir e mitigar vieses ativamente antes de usar o modelo em produção",
+            "Confiar cegamente no modelo, sem questionar seus resultados",
+            "Usar sempre o modelo mais complexo disponível, sem análise"
+          ],
+          "a": 1,
+          "hint": "Pense na responsabilidade envolvida em decisões que afetam pessoas de verdade.",
+          "ex": "Investigar e mitigar vieses ativamente é essencial em aplicações de alto impacto.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "ia-26",
+      "name": "QUALIDADE DE DADOS",
+      "difficulty": "AVANÇADO",
+      "color": "#34d399",
+      "icon": "▲",
+      "summary": "Trate dados ausentes e inconsistências antes de treinar um modelo.",
+      "lesson": [
+        {
+          "title": "Dados ausentes",
+          "body": "É comum que conjuntos de dados reais tenham valores ausentes (faltando). Estratégias comuns incluem remover as linhas afetadas, ou preencher (imputar) o valor ausente com a média, mediana, ou outro valor razoável.",
+          "code": "import pandas as pd\n\ndados['idade'] = dados['idade'].fillna(dados['idade'].median())"
+        },
+        {
+          "title": "Dados inconsistentes",
+          "body": "Dados também podem ter inconsistências, como o mesmo valor escrito de formas diferentes ('SP', 'sp', 'São Paulo'). Padronizar esses valores antes do treino evita que o modelo trate a mesma informação como categorias diferentes.",
+          "code": "dados['estado'] = dados['estado'].str.upper().str.strip()"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que 'imputar' um valor ausente significa?",
+          "opts": [
+            "Remover a coluna inteira do conjunto de dados",
+            "Preencher o valor ausente com um valor razoável, como a média ou mediana",
+            "Ignorar o problema completamente",
+            "Duplicar a linha com o valor ausente"
+          ],
+          "a": 1,
+          "hint": "Veja fillna(dados['idade'].median()) no exemplo.",
+          "ex": "Imputação preenche valores ausentes com uma estimativa razoável.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que este código faz?\ndados['idade'] = dados['idade'].fillna(dados['idade'].median())",
+          "opts": [
+            "Remove a coluna 'idade'",
+            "Preenche valores ausentes de 'idade' com a mediana da própria coluna",
+            "Duplica todos os valores de 'idade'",
+            "Ordena a coluna 'idade'"
+          ],
+          "a": 1,
+          "hint": "fillna preenche valores ausentes com o valor informado.",
+          "ex": "fillna substitui valores ausentes pela mediana calculada da coluna.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que padronizar valores como 'SP', 'sp' e 'São Paulo' antes de treinar um modelo?",
+          "opts": [
+            "Não é necessário, o modelo entende que são o mesmo valor automaticamente",
+            "Sem padronização, o modelo pode tratá-los como categorias completamente diferentes",
+            "Padronização é apenas uma questão estética",
+            "Isso só importa para dados numéricos"
+          ],
+          "a": 1,
+          "hint": "Pense em como um modelo compara textos exatamente, sem entender sinônimos sozinho.",
+          "ex": "Sem padronização, valores equivalentes escritos diferente viram categorias distintas para o modelo.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual das opções é uma estratégia válida ao lidar com dados ausentes?",
+          "opts": [
+            "Remover as linhas afetadas ou preencher com um valor razoável",
+            "Sempre ignorar o problema sem nenhuma ação",
+            "Duplicar todos os dados existentes",
+            "Trocar todos os valores por texto aleatório"
+          ],
+          "a": 0,
+          "hint": "Revise as duas estratégias mencionadas na aula.",
+          "ex": "Remover ou imputar (preencher) são as estratégias comuns para dados ausentes.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "ia-27",
+      "name": "DEPLOY DE MODELOS",
+      "difficulty": "AVANÇADO",
+      "color": "#34d399",
+      "icon": "◫",
+      "summary": "Entenda, em conceito, como um modelo treinado passa a ser usado na prática.",
+      "lesson": [
+        {
+          "title": "Do notebook à produção",
+          "body": "Treinar um modelo em um notebook é só parte do trabalho. Colocar o modelo 'em produção' (deploy) significa disponibilizá-lo para uso real, geralmente por trás de uma API que recebe dados novos e retorna previsões.",
+          "code": "# Fluxo conceitual:\n# modelo treinado -> salvo em arquivo -> carregado por uma API\n# API recebe requisicao com dados -> retorna a previsao do modelo"
+        },
+        {
+          "title": "Monitoramento contínuo",
+          "body": "Depois do deploy, o trabalho não termina: é importante monitorar o desempenho do modelo ao longo do tempo, pois os dados do mundo real podem mudar (um fenômeno chamado data drift), fazendo o modelo perder precisão gradualmente.",
+          "code": "# Monitorar apos o deploy:\n# - desempenho do modelo continua bom com o tempo?\n# - os dados novos ainda se parecem com os dados de treino?"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que significa fazer o 'deploy' de um modelo?",
+          "opts": [
+            "Apagar o modelo após o treino",
+            "Disponibilizar o modelo treinado para uso real, geralmente via uma API",
+            "Treinar o modelo pela primeira vez",
+            "Visualizar gráficos dos dados de treino"
+          ],
+          "a": 1,
+          "hint": "Pense em 'colocar o modelo em produção', citado na aula.",
+          "ex": "Deploy é o processo de disponibilizar o modelo para uso em situações reais.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que é 'data drift'?",
+          "opts": [
+            "Um tipo de algoritmo de classificação",
+            "A mudança dos dados do mundo real ao longo do tempo, que pode fazer o modelo perder precisão",
+            "Um erro de sintaxe em Python",
+            "Um tipo de gráfico de dispersão"
+          ],
+          "a": 1,
+          "hint": "Pense em dados novos se tornando diferentes dos dados de treino, com o tempo.",
+          "ex": "Data drift é a mudança gradual nos dados reais em relação aos dados de treino.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que monitorar um modelo depois do deploy é importante?",
+          "opts": [
+            "Não é importante, o trabalho termina no deploy",
+            "Porque o desempenho pode se degradar com o tempo, conforme os dados reais mudam",
+            "Porque monitorar impede totalmente qualquer mudança nos dados",
+            "Apenas por formalidade, sem impacto real"
+          ],
+          "a": 1,
+          "hint": "Relembre o conceito de data drift.",
+          "ex": "Monitoramento contínuo detecta quedas de desempenho causadas por mudanças nos dados reais.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Uma API que recebe dados novos e retorna a previsão de um modelo já treinado é um exemplo de:",
+          "opts": [
+            "Coleta de dados",
+            "Uma forma comum de servir um modelo em produção (deploy)",
+            "Validação cruzada",
+            "Tokenização"
+          ],
+          "a": 1,
+          "hint": "Relembre o fluxo conceitual descrito na aula.",
+          "ex": "Servir previsões via API é uma abordagem comum de deploy de modelos.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "ia-28",
+      "name": "PIPELINE DE DADOS",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "▣",
+      "summary": "Organize as etapas, da coleta de dados até um modelo pronto para avaliar.",
+      "lesson": [
+        {
+          "title": "As etapas de um projeto de dados",
+          "body": "Um projeto típico de IA segue etapas: coletar os dados, explorá-los e limpá-los, criar features relevantes, dividir em treino/teste, treinar o modelo e avaliar seu desempenho. Pular etapas costuma gerar modelos ruins ou enganosos.",
+          "code": "# 1. Coletar dados\n# 2. Explorar e limpar\n# 3. Criar features\n# 4. Dividir treino/teste\n# 5. Treinar o modelo\n# 6. Avaliar o desempenho"
+        },
+        {
+          "title": "Um pipeline reprodutível",
+          "body": "Organizar essas etapas como um pipeline (uma sequência automatizada de passos) torna o processo reproduzível: é possível repetir todo o fluxo com novos dados sem refazer manualmente cada etapa do zero.",
+          "code": "from sklearn.pipeline import Pipeline\nfrom sklearn.preprocessing import StandardScaler\n\npipeline = Pipeline([\n    ('escala', StandardScaler()),\n    ('modelo', LinearRegression())\n])"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual etapa costuma vir logo após coletar os dados brutos?",
+          "opts": [
+            "Publicar o modelo em produção diretamente",
+            "Explorar e limpar os dados",
+            "Apagar todos os dados coletados",
+            "Escrever a documentação final"
+          ],
+          "a": 1,
+          "hint": "Veja a ordem das etapas listadas na aula.",
+          "ex": "Depois de coletar, a exploração e limpeza dos dados costuma ser o próximo passo.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que um pipeline de dados representa?",
+          "opts": [
+            "Um único modelo treinado, sem outras etapas",
+            "Uma sequência organizada e automatizada de etapas de processamento e modelagem",
+            "Apenas a etapa de coleta de dados",
+            "Um gráfico de visualização"
+          ],
+          "a": 1,
+          "hint": "Pense em encadear várias etapas em sequência automatizada.",
+          "ex": "Um pipeline organiza e automatiza a sequência completa de etapas do processo.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que organizar as etapas como um pipeline reprodutível é útil?",
+          "opts": [
+            "Não traz nenhum benefício prático",
+            "Permite repetir o processo completo com novos dados sem refazer cada etapa manualmente",
+            "Torna impossível reutilizar o processo",
+            "Serve apenas para deixar o código mais longo"
+          ],
+          "a": 1,
+          "hint": "Pense em rodar o mesmo fluxo automaticamente quando novos dados chegarem.",
+          "ex": "Um pipeline reprodutível economiza tempo ao reaplicar o mesmo processo facilmente.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que acontece, tipicamente, se etapas como limpeza de dados ou divisão treino/teste forem puladas?",
+          "opts": [
+            "O modelo final tende a ser melhor",
+            "O modelo final tende a ser ruim ou sua avaliação pode ser enganosa",
+            "Não há nenhuma consequência",
+            "O treino fica automaticamente mais rápido, sem prejuízo"
+          ],
+          "a": 1,
+          "hint": "Relembre por que cada etapa (limpeza, divisão treino/teste) importa individualmente.",
+          "ex": "Pular etapas essenciais compromete a qualidade do modelo ou a confiabilidade da avaliação.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "ia-29",
+      "name": "ESCOLHA DE MODELO",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "✓",
+      "summary": "Compare diferentes modelos para escolher o mais adequado ao problema.",
+      "lesson": [
+        {
+          "title": "Não existe um modelo perfeito universal",
+          "body": "Diferentes algoritmos (regressão linear, árvores, redes neurais...) têm pontos fortes e fracos diferentes. A escolha depende do tipo de problema, da quantidade de dados disponível, da necessidade de interpretabilidade e do tempo disponível para treino.",
+          "code": "# Poucos dados + precisa explicar decisoes -> arvore de decisao pode ser melhor\n# Muitos dados + padroes complexos -> rede neural pode compensar o esforco extra"
+        },
+        {
+          "title": "Comparando modelos de forma justa",
+          "body": "Uma boa prática é treinar e avaliar vários modelos candidatos usando a mesma divisão de dados e as mesmas métricas, para poder comparar seus resultados de forma justa antes de decidir qual usar.",
+          "code": "modelos = {\n    'regressao': LinearRegression(),\n    'arvore': DecisionTreeRegressor(),\n    'floresta': RandomForestRegressor()\n}\n# treinar e avaliar cada um com os mesmos dados de teste"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Existe um único algoritmo de Machine Learning que é sempre a melhor escolha para qualquer problema?",
+          "opts": [
+            "Sim, redes neurais são sempre a melhor opção",
+            "Não, a escolha depende do problema, dos dados disponíveis e de outras restrições",
+            "Sim, regressão linear é sempre suficiente",
+            "Não, nenhum algoritmo funciona na prática"
+          ],
+          "a": 1,
+          "hint": "Relembre a ideia de 'pontos fortes e fracos diferentes' vista na aula.",
+          "ex": "A melhor escolha de modelo depende do contexto específico do problema.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Em um cenário com poucos dados e forte necessidade de explicar cada decisão a um regulador, qual tipo de modelo tende a ser mais adequado?",
+          "opts": [
+            "Uma rede neural profunda e complexa",
+            "Uma árvore de decisão, mais interpretável",
+            "Nenhum modelo pode ser usado nesse caso",
+            "Sempre o modelo mais complexo disponível"
+          ],
+          "a": 1,
+          "hint": "Pense na necessidade de interpretabilidade mencionada na aula.",
+          "ex": "Árvores de decisão costumam ser preferidas quando a interpretabilidade é essencial.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que comparar modelos usando a mesma divisão de dados e as mesmas métricas é importante?",
+          "opts": [
+            "Não é importante, cada modelo pode ser avaliado de forma diferente",
+            "Garante uma comparação justa entre os candidatos, sem vantagens artificiais para nenhum deles",
+            "Torna a comparação impossível de ser feita",
+            "Serve apenas para economizar tempo, sem outro motivo"
+          ],
+          "a": 1,
+          "hint": "Pense no que aconteceria comparando modelos avaliados com dados diferentes.",
+          "ex": "Usar a mesma base de comparação garante uma avaliação justa entre os modelos.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Quais fatores, segundo a aula, influenciam a escolha de um modelo?",
+          "opts": [
+            "Apenas a cor preferida do time de dados",
+            "Tipo de problema, quantidade de dados, necessidade de interpretabilidade e tempo disponível",
+            "Apenas o nome do algoritmo",
+            "Nenhum fator específico, a escolha é sempre aleatória"
+          ],
+          "a": 1,
+          "hint": "Revise os fatores citados no primeiro bloco desta aula.",
+          "ex": "Vários fatores práticos orientam a escolha do modelo mais adequado.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "ia-30",
+      "name": "APRESENTAÇÃO DE RESULTADOS",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "Ω",
+      "summary": "Comunique os resultados de um projeto de IA de forma clara para outras pessoas.",
+      "lesson": [
+        {
+          "title": "Além dos números técnicos",
+          "body": "Um resultado como 'acurácia de 87%' pode não dizer muito para quem não trabalha com dados. É importante traduzir métricas técnicas em impacto prático: o que esse resultado significa para o problema de negócio ou para os usuários finais?",
+          "code": "# Em vez de so 'acuracia: 87%':\n# 'o modelo identifica corretamente 87 em cada 100 casos de risco,\n#  reduzindo o tempo de analise manual pela equipe'"
+        },
+        {
+          "title": "Visualizações e limitações",
+          "body": "Gráficos simples ajudam a comunicar resultados a públicos não técnicos. É igualmente importante ser transparente sobre as limitações do modelo — em quais situações ele funciona bem e em quais pode falhar — em vez de apresentar apenas os pontos positivos.",
+          "code": "# Boa apresentacao inclui:\n# - o que o modelo faz bem\n# - em quais casos ele pode falhar ou ser menos confiavel\n# - graficos simples, direcionados ao publico certo"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Por que traduzir métricas técnicas em impacto prático é importante ao apresentar resultados?",
+          "opts": [
+            "Não é importante, números técnicos já bastam para qualquer público",
+            "Porque nem todo público entende ou se importa apenas com métricas técnicas isoladas",
+            "Porque métricas técnicas são sempre enganosas",
+            "Porque apresentações não devem ter números"
+          ],
+          "a": 1,
+          "hint": "Pense em explicar 'acurácia de 87%' para alguém fora da área de dados.",
+          "ex": "Traduzir métricas em impacto prático ajuda públicos não técnicos a entenderem o valor real.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que é importante ser transparente sobre as limitações de um modelo ao apresentá-lo?",
+          "opts": [
+            "Não é necessário, apenas os pontos positivos importam",
+            "Ajuda quem vai usar o modelo a entender quando confiar mais ou menos nele",
+            "Limitações não existem em modelos bem treinados",
+            "É apenas uma formalidade sem valor real"
+          ],
+          "a": 1,
+          "hint": "Pense em alguém tomando decisões com base no modelo, sem saber onde ele pode falhar.",
+          "ex": "Comunicar limitações ajuda a definir o uso responsável e confiável do modelo.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual destas frases comunica melhor um resultado técnico para um público não especializado?",
+          "opts": [
+            "'A acurácia foi 0.87 com f1-score de 0.85'",
+            "'O modelo acerta cerca de 87 em cada 100 casos, ajudando a equipe a priorizar melhor o trabalho'",
+            "'O modelo usou RandomForestClassifier com n_estimators=100'",
+            "'A validação cruzada teve cv=5'"
+          ],
+          "a": 1,
+          "hint": "Pense em qual frase qualquer pessoa, técnica ou não, conseguiria entender.",
+          "ex": "A frase que traduz o número em um impacto prático é mais acessível a públicos variados.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual elemento é citado como útil para comunicar resultados a um público não técnico?",
+          "opts": [
+            "Apenas tabelas extensas de números",
+            "Gráficos simples e diretos",
+            "Apenas o código-fonte do modelo",
+            "Nenhum recurso visual deve ser usado"
+          ],
+          "a": 1,
+          "hint": "Veja o que é mencionado no segundo bloco desta aula.",
+          "ex": "Visualizações simples ajudam bastante na comunicação com públicos variados.",
+          "format": "CONCEITO"
+        }
+      ]
+    }
+  ]
+}

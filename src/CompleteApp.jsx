@@ -2,6 +2,7 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import pythonCourse from './data/course.json';
 import htmlCourse from './data/course-html.json';
 import javaCourse from './data/course-java.json';
+import iaCourse from './data/course-ia.json';
 import mascotReady from './assets/mascot/guia-py-ready.webp';
 import mascotFocus from './assets/mascot/guia-py-focus.webp';
 import mascotCelebrate from './assets/mascot/guia-py-celebrate.webp';
@@ -179,6 +180,19 @@ const JAVA_UNIT_META = [
   { title: 'Projeto final', goal: 'Estrutura de projeto e aplicação completa.', color: '#facc15' },
 ];
 
+const IA_UNIT_META = [
+  { title: 'Fundamentos de IA', goal: 'O que é IA, tipos de aprendizado e dados.', color: '#6366f1' },
+  { title: 'Python para dados', goal: 'NumPy, Pandas e visualização simples.', color: '#818cf8' },
+  { title: 'Aprendizado supervisionado', goal: 'Regressão, classificação e divisão treino/teste.', color: '#22c55e' },
+  { title: 'Avaliação de modelos', goal: 'Métricas, overfitting e validação cruzada.', color: '#0ea5e9' },
+  { title: 'Árvores e ensembles', goal: 'Árvores de decisão, random forest e boosting.', color: '#14b8a6' },
+  { title: 'Redes neurais I', goal: 'Neurônio artificial, camadas e ativação.', color: '#a855f7' },
+  { title: 'Redes neurais II', goal: 'Redes convolucionais, recorrentes e frameworks.', color: '#e879f9' },
+  { title: 'Processamento de linguagem', goal: 'Tokenização, embeddings e modelos de linguagem.', color: '#fb923c' },
+  { title: 'Boas práticas em IA', goal: 'Ética, qualidade de dados e deploy.', color: '#34d399' },
+  { title: 'Projeto final', goal: 'Pipeline de dados e apresentação de resultados.', color: '#facc15' },
+];
+
 const TRACK_CATALOG = [
   {
     id: 'python',
@@ -219,8 +233,8 @@ const TRACK_CATALOG = [
     subtitle: 'Dados, modelos e automação.',
     icon: '✦',
     color: '#6366f1',
-    course: null,
-    unitMeta: null,
+    course: iaCourse,
+    unitMeta: IA_UNIT_META,
     stagesPerUnit: 3,
     fileExt: 'py',
   },
