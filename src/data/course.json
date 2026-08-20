@@ -4552,7 +4552,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase ENCAPSULAMENTO.",
-          "ex": "A resposta correta é: Controlar o acesso ao estado.",
+          "ex": "Encapsulamento existe para controlar como o estado interno do objeto pode ser lido e alterado, evitando modificações descontroladas.",
           "format": "CONCEITO"
         },
         {
@@ -4566,7 +4566,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase ENCAPSULAMENTO.",
-          "ex": "A resposta correta é: Uso interno por convenção.",
+          "ex": "O prefixo _ é uma convenção do Python para sinalizar uso interno, mesmo sem impedir o acesso de fato.",
           "format": "CONCEITO"
         },
         {
@@ -4580,7 +4580,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase ENCAPSULAMENTO.",
-          "ex": "A resposta correta é: Expor acesso controlado como atributo.",
+          "ex": "@property permite expor um método como se fosse um atributo, mantendo a validação por trás de um acesso simples.",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -4594,7 +4594,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase ENCAPSULAMENTO.",
-          "ex": "A resposta correta é: No método que altera o saldo.",
+          "ex": "Validações de saldo devem ficar no método que altera o valor, pois é ali que a mudança realmente acontece.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -4608,7 +4608,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase ENCAPSULAMENTO.",
-          "ex": "A resposta correta é: Regra que o objeto deve preservar.",
+          "ex": "Uma invariante é uma regra que o objeto deve manter válida durante toda sua existência, como saldo nunca negativo.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -4622,7 +4622,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase ENCAPSULAMENTO.",
-          "ex": "A resposta correta é: Pode contornar validações.",
+          "ex": "Alterar _saldo diretamente contorna os métodos responsáveis por validar a operação, quebrando as invariantes.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -4636,7 +4636,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase ENCAPSULAMENTO.",
-          "ex": "A resposta correta é: Quando a atribuição precisa de validação.",
+          "ex": "O setter de uma property é o lugar certo para validar valores no momento em que são atribuídos.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -4650,7 +4650,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase ENCAPSULAMENTO.",
-          "ex": "A resposta correta é: Métodos como depositar e sacar.",
+          "ex": "Expor métodos como depositar e sacar cria uma interface segura, pois cada operação pode validar suas próprias regras.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -4693,7 +4693,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase MÉTODOS DE CLASSE.",
-          "ex": "A resposta correta é: self.",
+          "ex": "self é o parâmetro convencional que recebe a instância atual, dando acesso aos seus atributos e métodos.",
           "format": "CONCEITO"
         },
         {
@@ -4707,7 +4707,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase MÉTODOS DE CLASSE.",
-          "ex": "A resposta correta é: cls.",
+          "ex": "cls é passado automaticamente para métodos de classe e representa a própria classe, não uma instância.",
           "format": "CONCEITO"
         },
         {
@@ -4721,7 +4721,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase MÉTODOS DE CLASSE.",
-          "ex": "A resposta correta é: Construtor alternativo.",
+          "ex": "classmethod é usado como construtor alternativo porque recebe a classe e pode retornar cls(...) com regras próprias de criação.",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -4735,7 +4735,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase MÉTODOS DE CLASSE.",
-          "ex": "A resposta correta é: Nem self nem cls.",
+          "ex": "staticmethod não recebe self nem cls porque não depende do estado da instância nem da classe.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -4749,7 +4749,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase MÉTODOS DE CLASSE.",
-          "ex": "A resposta correta é: Quando depende do estado do objeto.",
+          "ex": "Métodos de instância fazem sentido quando o comportamento depende dos atributos daquele objeto específico.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -4763,7 +4763,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase MÉTODOS DE CLASSE.",
-          "ex": "A resposta correta é: Respeita subclasses.",
+          "ex": "Retornar cls(...) em vez do nome fixo da classe garante que subclasses usem seu próprio construtor corretamente.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -4777,7 +4777,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase MÉTODOS DE CLASSE.",
-          "ex": "A resposta correta é: @staticmethod.",
+          "ex": "@staticmethod é o decorador que marca um método sem acesso implícito a self ou cls.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -4791,7 +4791,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase MÉTODOS DE CLASSE.",
-          "ex": "A resposta correta é: Em staticmethod ou função do módulo.",
+          "ex": "Uma validação sem estado ligada ao domínio cabe bem em um staticmethod ou em uma função do módulo.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -4834,7 +4834,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase COMPOSIÇÃO.",
-          "ex": "A resposta correta é: Tem-um.",
+          "ex": "Composição modela uma relação 'tem-um', em que um objeto contém outro como parte de sua estrutura.",
           "format": "CONCEITO"
         },
         {
@@ -4848,7 +4848,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase COMPOSIÇÃO.",
-          "ex": "A resposta correta é: É-um.",
+          "ex": "Herança expressa uma relação 'é-um', em que a subclasse é um tipo mais específico da classe base.",
           "format": "CONCEITO"
         },
         {
@@ -4862,7 +4862,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase COMPOSIÇÃO.",
-          "ex": "A resposta correta é: Evita duplicar a regra.",
+          "ex": "Delegar para item.subtotal() evita reescrever a mesma regra de cálculo em outro lugar.",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -4876,7 +4876,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase COMPOSIÇÃO.",
-          "ex": "A resposta correta é: Receber colaborador externamente.",
+          "ex": "Injeção de dependência é receber um colaborador de fora, em vez de criá-lo internamente.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -4890,7 +4890,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase COMPOSIÇÃO.",
-          "ex": "A resposta correta é: Trocar colaboradores por versões controladas.",
+          "ex": "Composição facilita testes porque colaboradores reais podem ser trocados por versões controladas durante o teste.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -4904,7 +4904,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase COMPOSIÇÃO.",
-          "ex": "A resposta correta é: Ao combinar capacidades sem relação é-um.",
+          "ex": "Composição é preferível quando as capacidades precisam ser combinadas, mas não existe uma relação de tipo 'é-um' entre elas.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -4918,7 +4918,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase COMPOSIÇÃO.",
-          "ex": "A resposta correta é: O próprio Item.",
+          "ex": "Cada objeto deve calcular seus próprios dados; é o Item quem sabe calcular seu subtotal.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -4932,7 +4932,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase COMPOSIÇÃO.",
-          "ex": "A resposta correta é: Serviço recebe repositório.",
+          "ex": "Receber o repositório de fora torna o serviço mais flexível, permitindo trocar a implementação sem alterar sua lógica.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -4975,7 +4975,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase DATACLASSES.",
-          "ex": "A resposta correta é: __init__, __repr__ e __eq__.",
+          "ex": "@dataclass gera automaticamente métodos como __init__, __repr__ e __eq__ a partir dos campos declarados.",
           "format": "CONCEITO"
         },
         {
@@ -4989,7 +4989,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase DATACLASSES.",
-          "ex": "A resposta correta é: Definem estrutura e documentam tipos.",
+          "ex": "As anotações de tipo definem a estrutura da classe e documentam o que cada campo deve armazenar.",
           "format": "CONCEITO"
         },
         {
@@ -5003,7 +5003,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase DATACLASSES.",
-          "ex": "A resposta correta é: field(default_factory=list).",
+          "ex": "field(default_factory=list) cria uma lista nova para cada instância, evitando compartilhar a mesma lista padrão.",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -5017,7 +5017,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase DATACLASSES.",
-          "ex": "A resposta correta é: Após o __init__ gerado.",
+          "ex": "__post_init__ roda logo depois do __init__ gerado, permitindo ajustes ou validações adicionais.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -5031,7 +5031,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase DATACLASSES.",
-          "ex": "A resposta correta é: Instâncias alteram a mesma coleção.",
+          "ex": "Um valor mutável usado como padrão compartilhado faz todas as instâncias apontarem para a mesma coleção.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -5045,7 +5045,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase DATACLASSES.",
-          "ex": "A resposta correta é: Impedir alterações normais após criação.",
+          "ex": "frozen=True torna a instância imutável após a criação, impedindo atribuições normais aos seus campos.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -5059,7 +5059,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase DATACLASSES.",
-          "ex": "A resposta correta é: Quando a classe representa principalmente dados.",
+          "ex": "Dataclasses são adequadas quando a classe existe principalmente para representar dados.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -5073,7 +5073,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase DATACLASSES.",
-          "ex": "A resposta correta é: Não.",
+          "ex": "Mesmo com dataclass, é possível e recomendável adicionar validação, por exemplo em __post_init__.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -5116,7 +5116,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase MÉTODOS ESPECIAIS.",
-          "ex": "A resposta correta é: __repr__.",
+          "ex": "__repr__ é o método chamado por repr(objeto) para gerar uma representação voltada para depuração.",
           "format": "CONCEITO"
         },
         {
@@ -5130,7 +5130,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase MÉTODOS ESPECIAIS.",
-          "ex": "A resposta correta é: __len__.",
+          "ex": "__len__ é o método que o Python chama internamente quando len(objeto) é usado.",
           "format": "CONCEITO"
         },
         {
@@ -5144,7 +5144,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase MÉTODOS ESPECIAIS.",
-          "ex": "A resposta correta é: Igualdade.",
+          "ex": "__eq__ define como dois objetos são comparados com ==.",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -5158,7 +5158,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase MÉTODOS ESPECIAIS.",
-          "ex": "A resposta correta é: Permite comparação complementar.",
+          "ex": "Retornar NotImplemented permite que o outro operando tente sua própria comparação, em vez de forçar uma resposta.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -5172,7 +5172,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase MÉTODOS ESPECIAIS.",
-          "ex": "A resposta correta é: Usa repr do valor.",
+          "ex": "!r em uma f-string aplica repr() ao valor formatado, útil para exibir o dado de forma inequívoca.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -5186,7 +5186,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase MÉTODOS ESPECIAIS.",
-          "ex": "A resposta correta é: Para representação amigável.",
+          "ex": "__str__ deve ser implementado quando se quer uma representação legível para o usuário final, diferente do __repr__ técnico.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -5200,7 +5200,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase MÉTODOS ESPECIAIS.",
-          "ex": "A resposta correta é: Usar atributos coerentes com a identidade.",
+          "ex": "Uma implementação de igualdade deve comparar atributos que realmente definem a identidade lógica do objeto.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -5214,7 +5214,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase MÉTODOS ESPECIAIS.",
-          "ex": "A resposta correta é: Métodos com underscores duplos.",
+          "ex": "Métodos dunder recebem esse nome por usarem underscores duplos no início e no fim do nome, como __init__.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -5257,7 +5257,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase CLASSES ABSTRATAS.",
-          "ex": "A resposta correta é: abc.",
+          "ex": "O módulo abc fornece as ferramentas para criar classes base abstratas em Python.",
           "format": "CONCEITO"
         },
         {
@@ -5271,7 +5271,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase CLASSES ABSTRATAS.",
-          "ex": "A resposta correta é: Implementação concreta.",
+          "ex": "@abstractmethod obriga que qualquer subclasse concreta forneça uma implementação real do método.",
           "format": "CONCEITO"
         },
         {
@@ -5285,7 +5285,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase CLASSES ABSTRATAS.",
-          "ex": "A resposta correta é: Não normalmente.",
+          "ex": "Uma classe abstrata com métodos não implementados normalmente não pode ser instanciada diretamente.",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -5299,7 +5299,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase CLASSES ABSTRATAS.",
-          "ex": "A resposta correta é: Usar implementações da mesma forma.",
+          "ex": "Um contrato comum garante que diferentes implementações possam ser usadas da mesma forma pelo código cliente.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -5313,7 +5313,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase CLASSES ABSTRATAS.",
-          "ex": "A resposta correta é: Implementa métodos abstratos.",
+          "ex": "É responsabilidade da subclasse concreta implementar os métodos marcados como abstratos na classe base.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -5327,7 +5327,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase CLASSES ABSTRATAS.",
-          "ex": "A resposta correta é: Várias implementações com interface obrigatória.",
+          "ex": "ABC é útil quando existem várias implementações que precisam seguir a mesma interface obrigatória.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -5341,7 +5341,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase CLASSES ABSTRATAS.",
-          "ex": "A resposta correta é: Usar método polimórfico.",
+          "ex": "Substituir vários if por tipo por um método polimórfico deixa cada classe responsável pelo seu próprio comportamento.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -5355,7 +5355,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase CLASSES ABSTRATAS.",
-          "ex": "A resposta correta é: Não.",
+          "ex": "Uma ABC define o contrato, mas pode deixar parte da lógica para ser implementada nas subclasses concretas.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -5398,7 +5398,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase ITERADORES.",
-          "ex": "A resposta correta é: __iter__.",
+          "ex": "iter(objeto) procura o método __iter__ para obter um iterador a partir do objeto.",
           "format": "CONCEITO"
         },
         {
@@ -5412,7 +5412,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase ITERADORES.",
-          "ex": "A resposta correta é: __next__.",
+          "ex": "next(iterador) chama o método __next__ para obter o próximo valor da sequência.",
           "format": "CONCEITO"
         },
         {
@@ -5426,7 +5426,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase ITERADORES.",
-          "ex": "A resposta correta é: StopIteration.",
+          "ex": "StopIteration é a exceção usada para sinalizar que não há mais itens a produzir.",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -5440,7 +5440,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase ITERADORES.",
-          "ex": "A resposta correta é: O próprio loop.",
+          "ex": "O próprio laço for captura o StopIteration internamente e encerra a iteração sem propagar o erro.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -5454,7 +5454,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase ITERADORES.",
-          "ex": "A resposta correta é: Um valor por vez preservando estado.",
+          "ex": "yield produz um valor de cada vez e preserva o estado da função entre as chamadas.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -5468,7 +5468,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase ITERADORES.",
-          "ex": "A resposta correta é: Menor memória em sequências grandes.",
+          "ex": "Produzir valores sob demanda evita manter toda a sequência na memória, economizando espaço em coleções grandes.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -5482,7 +5482,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase ITERADORES.",
-          "ex": "A resposta correta é: Não.",
+          "ex": "Um iterable não precisa ser seu próprio iterador; basta implementar __iter__ retornando um iterador separado.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -5496,7 +5496,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase ITERADORES.",
-          "ex": "A resposta correta é: for.",
+          "ex": "for é a construção padrão que consome um iterável, chamando iter() e next() internamente.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -5539,7 +5539,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase PROJETO ORIENTADO A OBJETOS.",
-          "ex": "A resposta correta é: Na entidade Tarefa.",
+          "ex": "A regra de negócio pertence à entidade Tarefa, que deve garantir suas próprias invariantes.",
           "format": "CONCEITO"
         },
         {
@@ -5553,7 +5553,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase PROJETO ORIENTADO A OBJETOS.",
-          "ex": "A resposta correta é: Coordenar caso de uso.",
+          "ex": "O serviço coordena o caso de uso, orquestrando entidades e repositórios sem conter a lógica de exibição.",
           "format": "CONCEITO"
         },
         {
@@ -5567,7 +5567,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase PROJETO ORIENTADO A OBJETOS.",
-          "ex": "A resposta correta é: Carregar e salvar entidades.",
+          "ex": "O repositório é responsável por carregar e salvar entidades, isolando o acesso a dados do restante do sistema.",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -5581,7 +5581,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase PROJETO ORIENTADO A OBJETOS.",
-          "ex": "A resposta correta é: Recebe entrada, chama caso e exibe saída.",
+          "ex": "A interface recebe entrada do usuário, aciona o caso de uso e exibe o resultado, sem conter regras de negócio.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -5595,7 +5595,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase PROJETO ORIENTADO A OBJETOS.",
-          "ex": "A resposta correta é: Comportamento e estado resultante.",
+          "ex": "Testes mais valiosos verificam comportamento e o estado resultante, não detalhes irrelevantes de implementação.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -5609,7 +5609,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase PROJETO ORIENTADO A OBJETOS.",
-          "ex": "A resposta correta é: Injetar outro repositório.",
+          "ex": "Injetar outro repositório permite trocar o SQLite por uma versão em memória sem alterar o serviço.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -5623,7 +5623,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase PROJETO ORIENTADO A OBJETOS.",
-          "ex": "A resposta correta é: Entidade, serviço e repositório separados.",
+          "ex": "Separar entidade, serviço e repositório reduz o acoplamento entre regras de negócio, coordenação e persistência.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -5637,7 +5637,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase PROJETO ORIENTADO A OBJETOS.",
-          "ex": "A resposta correta é: Fluxo principal funciona e está testado.",
+          "ex": "O projeto está concluído quando o fluxo principal funciona corretamente e está coberto por testes.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -6244,7 +6244,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase DEPURAÇÃO.",
-          "ex": "A resposta correta é: Reproduzir o problema.",
+          "ex": "Reproduzir o problema é o primeiro passo, pois sem isso não é possível confirmar se uma correção realmente funcionou.",
           "format": "CONCEITO"
         },
         {
@@ -6258,7 +6258,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase DEPURAÇÃO.",
-          "ex": "A resposta correta é: Entrada, esperado e obtido.",
+          "ex": "Uma boa reprodução registra a entrada usada, o resultado esperado e o resultado obtido de fato.",
           "format": "CONCEITO"
         },
         {
@@ -6272,7 +6272,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase DEPURAÇÃO.",
-          "ex": "A resposta correta é: Pausar e inspecionar estado.",
+          "ex": "breakpoint() pausa a execução no ponto indicado, permitindo inspecionar o estado do programa.",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -6286,7 +6286,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase DEPURAÇÃO.",
-          "ex": "A resposta correta é: Pequena e ligada a uma hipótese.",
+          "ex": "Mudanças pequenas e ligadas a uma hipótese facilitam identificar exatamente o que resolveu o problema.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -6300,7 +6300,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase DEPURAÇÃO.",
-          "ex": "A resposta correta é: Impedir retorno do bug.",
+          "ex": "Um teste de regressão existe para impedir que o mesmo bug volte a aparecer no futuro.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -6314,7 +6314,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase DEPURAÇÃO.",
-          "ex": "A resposta correta é: Condição que realmente produz a falha.",
+          "ex": "A causa raiz é a condição que realmente produz a falha, não apenas seu sintoma mais visível.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -6328,7 +6328,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase DEPURAÇÃO.",
-          "ex": "A resposta correta é: Para observar valores com objetivo definido.",
+          "ex": "print temporário é útil para observar valores com um objetivo específico durante a investigação.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -6342,7 +6342,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase DEPURAÇÃO.",
-          "ex": "A resposta correta é: Reproduzir cenário e executar testes.",
+          "ex": "Uma correção só é confirmada reproduzindo o cenário original e executando os testes relevantes.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -6385,7 +6385,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase PYTEST NA PRÁTICA.",
-          "ex": "A resposta correta é: Nome iniciado por test_.",
+          "ex": "Por padrão, o pytest reconhece como teste qualquer função cujo nome comece com test_.",
           "format": "CONCEITO"
         },
         {
@@ -6399,7 +6399,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase PYTEST NA PRÁTICA.",
-          "ex": "A resposta correta é: Uma condição esperada.",
+          "ex": "assert verifica se uma condição esperada é verdadeira, falhando o teste quando não é.",
           "format": "CONCEITO"
         },
         {
@@ -6413,7 +6413,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase PYTEST NA PRÁTICA.",
-          "ex": "A resposta correta é: Preparar cenário.",
+          "ex": "Arrange é a etapa de preparar o cenário antes de executar a ação testada.",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -6427,7 +6427,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase PYTEST NA PRÁTICA.",
-          "ex": "A resposta correta é: Executar comportamento.",
+          "ex": "Act é a etapa em que o comportamento sendo testado é efetivamente executado.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -6441,7 +6441,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase PYTEST NA PRÁTICA.",
-          "ex": "A resposta correta é: Verificar resultado.",
+          "ex": "Assert é a etapa que verifica se o resultado obtido corresponde ao esperado.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -6455,7 +6455,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase PYTEST NA PRÁTICA.",
-          "ex": "A resposta correta é: pytest.raises.",
+          "ex": "pytest.raises é usado para verificar que uma exceção específica é levantada durante o teste.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -6469,7 +6469,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase PYTEST NA PRÁTICA.",
-          "ex": "A resposta correta é: Um comportamento por teste.",
+          "ex": "Testar um único comportamento por teste facilita entender e manter cada teste isoladamente.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -6483,7 +6483,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase PYTEST NA PRÁTICA.",
-          "ex": "A resposta correta é: Comportamento esperado.",
+          "ex": "O nome do teste deve descrever o comportamento esperado, ajudando a entender o que quebrou quando ele falha.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -6526,7 +6526,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase FIXTURES E PARAMETRIZAÇÃO.",
-          "ex": "A resposta correta é: Preparar contexto reutilizável.",
+          "ex": "Uma fixture prepara um contexto reutilizável que vários testes podem usar sem repetir código.",
           "format": "CONCEITO"
         },
         {
@@ -6540,7 +6540,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase FIXTURES E PARAMETRIZAÇÃO.",
-          "ex": "A resposta correta é: Como parâmetro com o mesmo nome.",
+          "ex": "O teste recebe a fixture declarando um parâmetro com o mesmo nome da função decorada com @pytest.fixture.",
           "format": "CONCEITO"
         },
         {
@@ -6554,7 +6554,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase FIXTURES E PARAMETRIZAÇÃO.",
-          "ex": "A resposta correta é: Executa o teste com vários casos.",
+          "ex": "parametrize executa o mesmo teste várias vezes, uma para cada conjunto de valores informado.",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -6568,7 +6568,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase FIXTURES E PARAMETRIZAÇÃO.",
-          "ex": "A resposta correta é: Reduz duplicação mantendo casos explícitos.",
+          "ex": "A parametrização reduz a duplicação de código mantendo cada caso de teste explícito e visível.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -6582,7 +6582,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase FIXTURES E PARAMETRIZAÇÃO.",
-          "ex": "A resposta correta é: function.",
+          "ex": "O escopo function cria a fixture novamente para cada teste, oferecendo o maior isolamento entre eles.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -6596,7 +6596,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase FIXTURES E PARAMETRIZAÇÃO.",
-          "ex": "A resposta correta é: Recurso caro e seguro para compartilhar.",
+          "ex": "O escopo session é indicado para recursos caros de criar que podem ser compartilhados com segurança entre testes.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -6610,7 +6610,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase FIXTURES E PARAMETRIZAÇÃO.",
-          "ex": "A resposta correta é: Estado compartilhado inesperado.",
+          "ex": "Uma fixture deve evitar deixar estado compartilhado inesperado que afete outros testes.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -6624,7 +6624,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase FIXTURES E PARAMETRIZAÇÃO.",
-          "ex": "A resposta correta é: Usar ids claros quando necessário.",
+          "ex": "Usar ids claros ajuda a identificar qual caso parametrizado falhou na saída do pytest.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -6667,7 +6667,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase DUBLÊS E MOCKS.",
-          "ex": "A resposta correta é: Implementação simples funcional para teste.",
+          "ex": "Um fake é uma implementação simples e funcional usada no lugar da dependência real durante o teste.",
           "format": "CONCEITO"
         },
         {
@@ -6681,7 +6681,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase DUBLÊS E MOCKS.",
-          "ex": "A resposta correta é: Ao verificar interação com dependência.",
+          "ex": "Mock é útil quando o objetivo é verificar como o código interage com uma dependência, não apenas seu resultado.",
           "format": "CONCEITO"
         },
         {
@@ -6695,7 +6695,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase DUBLÊS E MOCKS.",
-          "ex": "A resposta correta é: Pode ser lenta e instável.",
+          "ex": "Chamar uma API real em teste unitário pode tornar o teste lento e instável, dependendo de fatores externos.",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -6709,7 +6709,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase DUBLÊS E MOCKS.",
-          "ex": "A resposta correta é: No nome usado pelo código testado.",
+          "ex": "O patch deve ser aplicado no nome usado pelo código testado, não necessariamente na biblioteca original.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -6723,7 +6723,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase DUBLÊS E MOCKS.",
-          "ex": "A resposta correta é: Valor devolvido pelo mock.",
+          "ex": "return_value define o valor que o mock devolve quando é chamado.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -6737,7 +6737,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase DUBLÊS E MOCKS.",
-          "ex": "A resposta correta é: Testar detalhes e tornar refatoração frágil.",
+          "ex": "Usar mocks em excesso pode acoplar o teste a detalhes de implementação, tornando refatorações mais frágeis.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -6751,7 +6751,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase DUBLÊS E MOCKS.",
-          "ex": "A resposta correta é: Uma chamada com argumentos específicos.",
+          "ex": "assert_called_once_with verifica se o mock foi chamado exatamente uma vez com os argumentos esperados.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -6765,7 +6765,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase DUBLÊS E MOCKS.",
-          "ex": "A resposta correta é: Quando um comportamento em memória deixa o teste mais realista.",
+          "ex": "Um fake é preferível quando um comportamento simples em memória deixa o teste mais próximo do real.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -6808,7 +6808,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase ESTILO E FORMATAÇÃO.",
-          "ex": "A resposta correta é: Convenções de estilo Python.",
+          "ex": "PEP 8 é o guia oficial de convenções de estilo para código Python.",
           "format": "CONCEITO"
         },
         {
@@ -6822,7 +6822,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase ESTILO E FORMATAÇÃO.",
-          "ex": "A resposta correta é: Consistência com pouco esforço.",
+          "ex": "Um formatador automático padroniza o código com pouco esforço manual, mantendo consistência entre arquivos.",
           "format": "CONCEITO"
         },
         {
@@ -6836,7 +6836,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase ESTILO E FORMATAÇÃO.",
-          "ex": "A resposta correta é: Problemas estáticos e padrões suspeitos.",
+          "ex": "Um linter analisa o código estaticamente em busca de problemas e padrões suspeitos antes da execução.",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -6850,7 +6850,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase ESTILO E FORMATAÇÃO.",
-          "ex": "A resposta correta é: Aplicar a mesma regra a todas as mudanças.",
+          "ex": "Rodar as ferramentas no CI garante que a mesma regra seja aplicada a todas as mudanças, não só localmente.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -6864,7 +6864,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase ESTILO E FORMATAÇÃO.",
-          "ex": "A resposta correta é: calcular_total.",
+          "ex": "calcular_total usa letras minúsculas separadas por underline, seguindo a convenção snake_case do Python.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -6878,7 +6878,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase ESTILO E FORMATAÇÃO.",
-          "ex": "A resposta correta é: Ser removido.",
+          "ex": "Um import não usado deve ser removido, pois só adiciona ruído ao código.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -6892,7 +6892,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase ESTILO E FORMATAÇÃO.",
-          "ex": "A resposta correta é: Não.",
+          "ex": "Formatação cuida apenas da aparência do código; ela não garante que a lógica esteja correta.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -6906,7 +6906,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase ESTILO E FORMATAÇÃO.",
-          "ex": "A resposta correta é: Formatar, analisar e testar.",
+          "ex": "Formatar, analisar e testar nessa ordem detecta problemas de estilo, riscos estáticos e falhas de comportamento antes do commit.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -6949,7 +6949,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase CONFIGURAÇÃO E SEGREDOS.",
-          "ex": "A resposta correta é: Em variável de ambiente ou cofre.",
+          "ex": "Tokens de API devem ficar em variáveis de ambiente ou em um cofre de segredos, nunca fixos no código.",
           "format": "CONCEITO"
         },
         {
@@ -6963,7 +6963,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase CONFIGURAÇÃO E SEGREDOS.",
-          "ex": "A resposta correta é: Falha se X não existir.",
+          "ex": "os.environ['X'] lança uma exceção se a variável X não existir, ao contrário de um acesso com valor padrão.",
           "format": "CONCEITO"
         },
         {
@@ -6977,7 +6977,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase CONFIGURAÇÃO E SEGREDOS.",
-          "ex": "A resposta correta é: Valor padrão.",
+          "ex": "os.getenv permite definir um valor padrão caso a variável de ambiente não esteja definida.",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -6991,7 +6991,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase CONFIGURAÇÃO E SEGREDOS.",
-          "ex": "A resposta correta é: `.env.example` sem segredos reais.",
+          "ex": "Um arquivo `.env.example` sem valores reais pode ser versionado, servindo de modelo para configurar o ambiente.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -7005,7 +7005,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase CONFIGURAÇÃO E SEGREDOS.",
-          "ex": "A resposta correta é: Arquivos locais com segredos.",
+          "ex": "Arquivos locais que contêm segredos devem entrar no .gitignore para não serem versionados por engano.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -7019,7 +7019,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase CONFIGURAÇÃO E SEGREDOS.",
-          "ex": "A resposta correta é: Facilita validar e mudar ambientes.",
+          "ex": "Centralizar a configuração facilita validar valores obrigatórios e trocar entre ambientes diferentes.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -7033,7 +7033,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase CONFIGURAÇÃO E SEGREDOS.",
-          "ex": "A resposta correta é: Revogar e substituir imediatamente.",
+          "ex": "Um segredo exposto deve ser revogado e substituído imediatamente, já que apagar o commit não desfaz a exposição.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -7047,7 +7047,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase CONFIGURAÇÃO E SEGREDOS.",
-          "ex": "A resposta correta é: Validada ao iniciar.",
+          "ex": "Validar a configuração obrigatória ao iniciar a aplicação evita falhas inesperadas mais tarde, longe da causa real.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -7090,7 +7090,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase ESTRUTURA DE PROJETO.",
-          "ex": "A resposta correta é: Dentro de src/nome_do_pacote.",
+          "ex": "No layout src, o código importável fica dentro de src/nome_do_pacote, separado dos testes e da raiz do projeto.",
           "format": "CONCEITO"
         },
         {
@@ -7104,7 +7104,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase ESTRUTURA DE PROJETO.",
-          "ex": "A resposta correta é: Metadados e configuração de ferramentas.",
+          "ex": "pyproject.toml centraliza metadados do projeto e a configuração de ferramentas em um único arquivo padrão.",
           "format": "CONCEITO"
         },
         {
@@ -7118,7 +7118,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase ESTRUTURA DE PROJETO.",
-          "ex": "A resposta correta é: Em tests.",
+          "ex": "Por convenção, os testes ficam na pasta tests, separados do código-fonte.",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -7132,7 +7132,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase ESTRUTURA DE PROJETO.",
-          "ex": "A resposta correta é: Executar entrada apenas quando o módulo é iniciado diretamente.",
+          "ex": "if __name__ == '__main__' garante que o bloco de entrada só execute quando o módulo é rodado diretamente, não quando é apenas importado.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -7146,7 +7146,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase ESTRUTURA DE PROJETO.",
-          "ex": "A resposta correta é: Um pacote Python.",
+          "ex": "Um arquivo __init__.py tradicionalmente marca um diretório como pacote Python.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -7160,7 +7160,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase ESTRUTURA DE PROJETO.",
-          "ex": "A resposta correta é: Clareza de responsabilidade.",
+          "ex": "Separar código e testes deixa clara a responsabilidade de cada parte do projeto.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -7174,7 +7174,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase ESTRUTURA DE PROJETO.",
-          "ex": "A resposta correta é: Como instalar, executar e testar.",
+          "ex": "O README deve explicar como instalar, executar e testar o projeto, orientando quem chega até ele.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -7188,7 +7188,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase ESTRUTURA DE PROJETO.",
-          "ex": "A resposta correta é: Módulos pequenos por responsabilidade.",
+          "ex": "Módulos pequenos organizados por responsabilidade facilitam o crescimento do projeto sem virar um emaranhado.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -7231,7 +7231,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase QUALIDADE CONTÍNUA.",
-          "ex": "A resposta correta é: Integração contínua.",
+          "ex": "CI é a sigla para integração contínua, prática de validar mudanças automaticamente a cada alteração.",
           "format": "CONCEITO"
         },
         {
@@ -7245,7 +7245,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase QUALIDADE CONTÍNUA.",
-          "ex": "A resposta correta é: Lint, tipos e testes.",
+          "ex": "Um bom gate de qualidade combina lint, checagem de tipos e testes automatizados.",
           "format": "CONCEITO"
         },
         {
@@ -7259,7 +7259,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase QUALIDADE CONTÍNUA.",
-          "ex": "A resposta correta é: Todos verificam da mesma forma.",
+          "ex": "Comandos reproduzíveis garantem que todos verifiquem o projeto exatamente da mesma forma, evitando 'funciona na minha máquina'.",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -7273,7 +7273,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase QUALIDADE CONTÍNUA.",
-          "ex": "A resposta correta é: Bloquear merge até correção.",
+          "ex": "Quando um teste essencial falha, o esperado é bloquear o merge até a causa ser corrigida.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -7287,7 +7287,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase QUALIDADE CONTÍNUA.",
-          "ex": "A resposta correta é: Em ambiente automatizado do repositório.",
+          "ex": "CI normalmente roda em um ambiente automatizado do próprio repositório, isolado da máquina de cada desenvolvedor.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -7301,7 +7301,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase QUALIDADE CONTÍNUA.",
-          "ex": "A resposta correta é: Corrigir problema perto da mudança.",
+          "ex": "Feedback rápido permite corrigir um problema logo após a mudança que o causou, quando o contexto ainda está fresco.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -7315,7 +7315,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase QUALIDADE CONTÍNUA.",
-          "ex": "A resposta correta é: Logs e contexto do comando.",
+          "ex": "Logs e o contexto do comando devem ser preservados quando algo falha, para facilitar o diagnóstico.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -7329,7 +7329,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase QUALIDADE CONTÍNUA.",
-          "ex": "A resposta correta é: Checks passam e mudança foi revisada.",
+          "ex": "Uma entrega está pronta quando os checks passam e a mudança foi revisada, não apenas quando compila.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -7795,7 +7795,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase CLI COM ARGPARSE.",
-          "ex": "A resposta correta é: argparse.",
+          "ex": "argparse é o módulo padrão do Python para construir interfaces de linha de comando.",
           "format": "CONCEITO"
         },
         {
@@ -7809,7 +7809,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase CLI COM ARGPARSE.",
-          "ex": "A resposta correta é: Exige o argumento.",
+          "ex": "required=True torna o argumento obrigatório, fazendo o argparse recusar a execução se ele faltar.",
           "format": "CONCEITO"
         },
         {
@@ -7823,7 +7823,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase CLI COM ARGPARSE.",
-          "ex": "A resposta correta é: Subcomandos.",
+          "ex": "Subcomandos permitem separar operações diferentes, como listar e adicionar, dentro da mesma CLI.",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -7837,7 +7837,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase CLI COM ARGPARSE.",
-          "ex": "A resposta correta é: Namespace com valores.",
+          "ex": "parse_args() retorna um objeto Namespace com os valores dos argumentos já processados.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -7851,7 +7851,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase CLI COM ARGPARSE.",
-          "ex": "A resposta correta é: 0.",
+          "ex": "Por convenção, um programa que terminou com sucesso retorna o código de saída 0.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -7865,7 +7865,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase CLI COM ARGPARSE.",
-          "ex": "A resposta correta é: Explicar o argumento ao usuário.",
+          "ex": "O parâmetro help define o texto explicativo mostrado ao usuário para aquele argumento.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -7879,7 +7879,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase CLI COM ARGPARSE.",
-          "ex": "A resposta correta é: raise SystemExit(main()).",
+          "ex": "raise SystemExit(main()) inicia o programa e usa o valor retornado por main() como código de saída.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -7893,7 +7893,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase CLI COM ARGPARSE.",
-          "ex": "A resposta correta é: Mensagem acionável com uso correto.",
+          "ex": "Uma mensagem de erro deve ser acionável, mostrando o uso correto para o usuário conseguir se corrigir.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -7936,7 +7936,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase HTTP NA PRÁTICA.",
-          "ex": "A resposta correta é: GET.",
+          "ex": "GET é o método convencional para consultar dados sem alterar o estado do servidor.",
           "format": "CONCEITO"
         },
         {
@@ -7950,7 +7950,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase HTTP NA PRÁTICA.",
-          "ex": "A resposta correta é: POST.",
+          "ex": "POST é o método convencional para criar um novo recurso no servidor.",
           "format": "CONCEITO"
         },
         {
@@ -7964,7 +7964,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase HTTP NA PRÁTICA.",
-          "ex": "A resposta correta é: Recurso não encontrado.",
+          "ex": "O status 404 indica que o recurso solicitado não foi encontrado.",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -7978,7 +7978,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase HTTP NA PRÁTICA.",
-          "ex": "A resposta correta é: Recurso criado.",
+          "ex": "O status 201 indica que um novo recurso foi criado com sucesso.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -7992,7 +7992,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase HTTP NA PRÁTICA.",
-          "ex": "A resposta correta é: 4xx.",
+          "ex": "Os códigos da faixa 4xx indicam erros causados pelo cliente, como uma requisição inválida.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -8006,7 +8006,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase HTTP NA PRÁTICA.",
-          "ex": "A resposta correta é: Informar formato do corpo.",
+          "ex": "O cabeçalho Content-Type informa o formato do corpo da requisição ou resposta.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -8020,7 +8020,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase HTTP NA PRÁTICA.",
-          "ex": "A resposta correta é: Authorization.",
+          "ex": "O token de autenticação costuma ser enviado no cabeçalho Authorization.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -8034,7 +8034,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase HTTP NA PRÁTICA.",
-          "ex": "A resposta correta é: Entradas, saídas e comportamentos.",
+          "ex": "O contrato da API define as entradas, saídas e comportamentos esperados de cada operação.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -8077,7 +8077,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase CLIENTE DE API RESILIENTE.",
-          "ex": "A resposta correta é: Evitar espera indefinida.",
+          "ex": "Definir um timeout evita que a aplicação fique esperando indefinidamente por uma resposta que pode nunca chegar.",
           "format": "CONCEITO"
         },
         {
@@ -8091,7 +8091,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase CLIENTE DE API RESILIENTE.",
-          "ex": "A resposta correta é: Não normalmente.",
+          "ex": "Um erro 400 indica um problema na própria requisição, então repeti-la automaticamente normalmente não resolve nada.",
           "format": "CONCEITO"
         },
         {
@@ -8105,7 +8105,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase CLIENTE DE API RESILIENTE.",
-          "ex": "A resposta correta é: Timeout temporário.",
+          "ex": "Um timeout temporário é o tipo de falha que costuma justificar uma nova tentativa, pois pode ser passageiro.",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -8119,7 +8119,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase CLIENTE DE API RESILIENTE.",
-          "ex": "A resposta correta é: Aumento do intervalo entre tentativas.",
+          "ex": "Backoff é o aumento progressivo do intervalo entre tentativas, evitando sobrecarregar um serviço já instável.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -8133,7 +8133,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase CLIENTE DE API RESILIENTE.",
-          "ex": "A resposta correta é: Evitar loop e sobrecarga.",
+          "ex": "Limitar o número de tentativas evita loops indefinidos e sobrecarga desnecessária no servidor.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -8147,7 +8147,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase CLIENTE DE API RESILIENTE.",
-          "ex": "A resposta correta é: Campos e tipos esperados.",
+          "ex": "Depois de decodificar o JSON, é preciso validar se os campos e tipos esperados realmente estão presentes.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -8161,7 +8161,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase CLIENTE DE API RESILIENTE.",
-          "ex": "A resposta correta é: Operação e causa relevante.",
+          "ex": "Uma mensagem de erro útil inclui a operação que falhou e a causa relevante, sem expor dados sensíveis.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -8175,7 +8175,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase CLIENTE DE API RESILIENTE.",
-          "ex": "A resposta correta é: Configuração.",
+          "ex": "Centralizar a URL base em uma configuração evita duplicar o mesmo valor em várias funções.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -8218,7 +8218,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase ASYNCIO E CONCORRÊNCIA.",
-          "ex": "A resposta correta é: Função de corrotina.",
+          "ex": "async def cria uma função de corrotina, que pode ser pausada e retomada durante operações assíncronas.",
           "format": "CONCEITO"
         },
         {
@@ -8232,7 +8232,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase ASYNCIO E CONCORRÊNCIA.",
-          "ex": "A resposta correta é: Aguardar operação assíncrona.",
+          "ex": "await pausa a corrotina atual até que a operação assíncrona termine, sem bloquear o restante do programa.",
           "format": "CONCEITO"
         },
         {
@@ -8246,7 +8246,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase ASYNCIO E CONCORRÊNCIA.",
-          "ex": "A resposta correta é: Coordena várias corrotinas.",
+          "ex": "asyncio.gather coordena a execução de várias corrotinas ao mesmo tempo.",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -8260,7 +8260,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase ASYNCIO E CONCORRÊNCIA.",
-          "ex": "A resposta correta é: Operações com espera de I/O.",
+          "ex": "asyncio é indicado principalmente para operações que passam tempo esperando I/O, como requisições de rede.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -8274,7 +8274,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase ASYNCIO E CONCORRÊNCIA.",
-          "ex": "A resposta correta é: asyncio.run(main()).",
+          "ex": "asyncio.run(main()) é a forma padrão de iniciar a corrotina principal de um programa assíncrono.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -8288,7 +8288,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase ASYNCIO E CONCORRÊNCIA.",
-          "ex": "A resposta correta é: A corrotina pode não ser executada como esperado.",
+          "ex": "Esquecer o await pode fazer a corrotina não ser executada como esperado, já que ela só roda de fato quando aguardada.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -8302,7 +8302,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase ASYNCIO E CONCORRÊNCIA.",
-          "ex": "A resposta correta é: Progresso intercalado de tarefas.",
+          "ex": "Concorrência significa progresso intercalado de várias tarefas, não necessariamente execução física simultânea.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -8316,7 +8316,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase ASYNCIO E CONCORRÊNCIA.",
-          "ex": "A resposta correta é: Operação bloqueante longa.",
+          "ex": "Uma operação bloqueante longa dentro do loop assíncrono impede que outras corrotinas progridam.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -8359,7 +8359,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase AUTOMAÇÃO DE PLANILHAS.",
-          "ex": "A resposta correta é: openpyxl.",
+          "ex": "openpyxl é a biblioteca usada para ler e escrever arquivos no formato XLSX.",
           "format": "CONCEITO"
         },
         {
@@ -8373,7 +8373,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase AUTOMAÇÃO DE PLANILHAS.",
-          "ex": "A resposta correta é: Pasta de trabalho.",
+          "ex": "load_workbook retorna a pasta de trabalho representando o arquivo Excel carregado.",
           "format": "CONCEITO"
         },
         {
@@ -8387,7 +8387,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase AUTOMAÇÃO DE PLANILHAS.",
-          "ex": "A resposta correta é: Resistir a mudanças de posição das colunas.",
+          "ex": "Mapear cabeçalhos torna o código resistente a mudanças na posição das colunas na planilha.",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -8401,7 +8401,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase AUTOMAÇÃO DE PLANILHAS.",
-          "ex": "A resposta correta é: Fórmulas como fórmulas.",
+          "ex": "data_only=False preserva as fórmulas como fórmulas, em vez de trazer apenas o último valor calculado.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -8415,7 +8415,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase AUTOMAÇÃO DE PLANILHAS.",
-          "ex": "A resposta correta é: Preservar a origem.",
+          "ex": "Salvar em um novo arquivo preserva o original, evitando perder os dados de origem em caso de erro.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -8429,7 +8429,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase AUTOMAÇÃO DE PLANILHAS.",
-          "ex": "A resposta correta é: Totais, linhas e campos críticos.",
+          "ex": "Antes de entregar, é importante conferir totais, quantidade de linhas e campos críticos da planilha.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -8443,7 +8443,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase AUTOMAÇÃO DE PLANILHAS.",
-          "ex": "A resposta correta é: wb['Dados'].",
+          "ex": "wb['Dados'] é a forma de acessar uma aba pelo nome dentro da pasta de trabalho.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -8457,7 +8457,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase AUTOMAÇÃO DE PLANILHAS.",
-          "ex": "A resposta correta é: Mudança de layout processa coluna errada.",
+          "ex": "Usar letras de coluna fixas sem validação faz com que uma mudança de layout processe a coluna errada silenciosamente.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -8500,7 +8500,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase INTERFACE COM TKINTER.",
-          "ex": "A resposta correta é: tkinter.",
+          "ex": "tkinter é o módulo padrão do Python para criar interfaces gráficas simples.",
           "format": "CONCEITO"
         },
         {
@@ -8514,7 +8514,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase INTERFACE COM TKINTER.",
-          "ex": "A resposta correta é: Janela principal.",
+          "ex": "tk.Tk() cria a janela principal da aplicação.",
           "format": "CONCEITO"
         },
         {
@@ -8528,7 +8528,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase INTERFACE COM TKINTER.",
-          "ex": "A resposta correta é: entrada.get().",
+          "ex": "entrada.get() é o método usado para ler o texto digitado em um campo Entry.",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -8542,7 +8542,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase INTERFACE COM TKINTER.",
-          "ex": "A resposta correta é: Passa a função para executar depois.",
+          "ex": "Passar command=salvar sem parênteses entrega a função em si, para ser chamada depois, e não seu resultado imediato.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -8556,7 +8556,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase INTERFACE COM TKINTER.",
-          "ex": "A resposta correta é: Em serviços independentes da interface.",
+          "ex": "Regras de negócio devem ficar em serviços independentes da interface, para poderem ser testadas sem a GUI.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -8570,7 +8570,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase INTERFACE COM TKINTER.",
-          "ex": "A resposta correta é: mainloop().",
+          "ex": "mainloop() inicia o loop de eventos que mantém a janela respondendo às ações do usuário.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -8584,7 +8584,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase INTERFACE COM TKINTER.",
-          "ex": "A resposta correta é: Capturar falha esperada e atualizar mensagem.",
+          "ex": "Erros esperados devem ser capturados e usados para atualizar a mensagem exibida ao usuário, sem travar a aplicação.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -8598,7 +8598,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase INTERFACE COM TKINTER.",
-          "ex": "A resposta correta é: Facilita testes e troca de interface.",
+          "ex": "Separar GUI e regras de negócio facilita os testes e permite trocar a interface sem reescrever a lógica.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -8641,7 +8641,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase EXECUTÁVEL COM PYINSTALLER.",
-          "ex": "A resposta correta é: Distribuição executável.",
+          "ex": "PyInstaller empacota a aplicação em uma distribuição executável que roda sem precisar do Python instalado.",
           "format": "CONCEITO"
         },
         {
@@ -8655,7 +8655,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase EXECUTÁVEL COM PYINSTALLER.",
-          "ex": "A resposta correta é: Não.",
+          "ex": "PyInstaller não faz parte da biblioteca padrão; é uma ferramenta externa instalada separadamente.",
           "format": "CONCEITO"
         },
         {
@@ -8669,7 +8669,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase EXECUTÁVEL COM PYINSTALLER.",
-          "ex": "A resposta correta é: Um executável principal único.",
+          "ex": "--onefile solicita que tudo seja empacotado em um único arquivo executável.",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -8683,7 +8683,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase EXECUTÁVEL COM PYINSTALLER.",
-          "ex": "A resposta correta é: dist.",
+          "ex": "Por padrão, o resultado gerado pelo PyInstaller aparece na pasta dist.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -8697,7 +8697,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase EXECUTÁVEL COM PYINSTALLER.",
-          "ex": "A resposta correta é: Podem não ser detectados como imports.",
+          "ex": "Arquivos de dados usados pela aplicação podem não ser detectados automaticamente como imports e precisam ser declarados.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -8711,7 +8711,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase EXECUTÁVEL COM PYINSTALLER.",
-          "ex": "A resposta correta é: Em ambiente limpo semelhante ao usuário.",
+          "ex": "O executável deve ser testado em um ambiente limpo, semelhante ao do usuário final, para revelar dependências faltantes.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -8725,7 +8725,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase EXECUTÁVEL COM PYINSTALLER.",
-          "ex": "A resposta correta é: Não.",
+          "ex": "PyInstaller não elimina todo falso positivo de antivírus, que pode ocorrer mesmo em executáveis legítimos.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -8739,7 +8739,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase EXECUTÁVEL COM PYINSTALLER.",
-          "ex": "A resposta correta é: Versão, sistema alvo e instruções.",
+          "ex": "É importante registrar a versão, o sistema alvo e as instruções de uso junto com a entrega.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -8782,7 +8782,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase ENTREGA DE UMA APLICAÇÃO.",
-          "ex": "A resposta correta é: Identificar precisamente a entrega.",
+          "ex": "A versão identifica precisamente qual entrega está sendo usada, facilitando rastrear mudanças e problemas.",
           "format": "CONCEITO"
         },
         {
@@ -8796,7 +8796,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase ENTREGA DE UMA APLICAÇÃO.",
-          "ex": "A resposta correta é: Mudanças entre versões.",
+          "ex": "O CHANGELOG registra as mudanças ocorridas entre versões da aplicação.",
           "format": "CONCEITO"
         },
         {
@@ -8824,7 +8824,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase ENTREGA DE UMA APLICAÇÃO.",
-          "ex": "A resposta correta é: Retornar à versão anterior.",
+          "ex": "Rollback é o processo de retornar a uma versão anterior quando a atual apresenta problemas.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -8838,7 +8838,7 @@
           ],
           "a": 0,
           "hint": "Revise a fase ENTREGA DE UMA APLICAÇÃO.",
-          "ex": "A resposta correta é: Permitir recuperação rápida.",
+          "ex": "Manter o artefato anterior permite uma recuperação rápida caso a nova versão precise ser revertida.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -8852,7 +8852,7 @@
           ],
           "a": 1,
           "hint": "Revise a fase ENTREGA DE UMA APLICAÇÃO.",
-          "ex": "A resposta correta é: Fluxo principal, erros e instalação limpa.",
+          "ex": "Antes de publicar, é preciso validar o fluxo principal, os erros e uma instalação limpa.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -8866,7 +8866,7 @@
           ],
           "a": 2,
           "hint": "Revise a fase ENTREGA DE UMA APLICAÇÃO.",
-          "ex": "A resposta correta é: `.env.example`.",
+          "ex": "Um arquivo `.env.example` documenta a configuração esperada sem expor segredos reais.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -8880,7 +8880,7 @@
           ],
           "a": 3,
           "hint": "Revise a fase ENTREGA DE UMA APLICAÇÃO.",
-          "ex": "A resposta correta é: Artefato testado, documentado e rastreável.",
+          "ex": "Uma release está pronta quando o artefato foi testado, documentado e pode ser rastreado até sua origem.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -8923,7 +8923,7 @@
           ],
           "a": 0,
           "hint": "Revise terminal e scripts.",
-          "ex": "A resposta correta é: Ambiente interativo que lê e executa comandos.",
+          "ex": "O REPL é o ambiente interativo do Python que lê, executa e mostra o resultado de cada comando digitado.",
           "format": "CONCEITO"
         },
         {
@@ -8937,7 +8937,7 @@
           ],
           "a": 1,
           "hint": "Revise terminal e scripts.",
-          "ex": "A resposta correta é: python app.py.",
+          "ex": "python app.py é o comando usado para executar um script Python a partir do terminal.",
           "format": "CONCEITO"
         },
         {
@@ -8951,7 +8951,7 @@
           ],
           "a": 2,
           "hint": "Revise terminal e scripts.",
-          "ex": "A resposta correta é: Nome do script e argumentos de linha de comando.",
+          "ex": "sys.argv contém o nome do script e os argumentos passados na linha de comando.",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -8965,7 +8965,7 @@
           ],
           "a": 3,
           "hint": "Revise terminal e scripts.",
-          "ex": "A resposta correta é: O nome do módulo.",
+          "ex": "Ao importar um módulo, __name__ recebe o nome do próprio módulo, não '__main__'.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -8979,7 +8979,7 @@
           ],
           "a": 0,
           "hint": "Revise terminal e scripts.",
-          "ex": "A resposta correta é: Ela roda também durante importações.",
+          "ex": "Lógica pesada no topo do módulo roda também quando ele é apenas importado, não só quando é executado diretamente.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -8993,7 +8993,7 @@
           ],
           "a": 1,
           "hint": "Revise terminal e scripts.",
-          "ex": "A resposta correta é: Usar if __name__ == '__main__'.",
+          "ex": "if __name__ == '__main__' protege a entrada principal, executando-a apenas quando o script roda diretamente.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -9007,7 +9007,7 @@
           ],
           "a": 2,
           "hint": "Revise terminal e scripts.",
-          "ex": "A resposta correta é: Para testar rapidamente uma expressão pequena.",
+          "ex": "O REPL é indicado para testar rapidamente uma expressão pequena, não para entregar uma aplicação completa.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -9021,7 +9021,7 @@
           ],
           "a": 3,
           "hint": "Revise terminal e scripts.",
-          "ex": "A resposta correta é: Salvar código em script e registrar os argumentos.",
+          "ex": "Salvar o código em um script e registrar os argumentos usados torna a execução reproduzível depois.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -9064,7 +9064,7 @@
           ],
           "a": 0,
           "hint": "Revise mutabilidade e cópias.",
-          "ex": "A resposta correta é: Listas e dicionários.",
+          "ex": "Listas e dicionários são objetos mutáveis, podendo ser alterados após sua criação.",
           "format": "CONCEITO"
         },
         {
@@ -9078,7 +9078,7 @@
           ],
           "a": 1,
           "hint": "Revise mutabilidade e cópias.",
-          "ex": "A resposta correta é: Cria outra referência para a mesma lista.",
+          "ex": "b = a não copia a lista; cria outra referência apontando para o mesmo objeto na memória.",
           "format": "CONCEITO"
         },
         {
@@ -9092,7 +9092,7 @@
           ],
           "a": 2,
           "hint": "Revise mutabilidade e cópias.",
-          "ex": "A resposta correta é: [1, 2].",
+          "ex": "Como a e b apontam para a mesma lista, alterar b também altera o que a enxerga: [1, 2].",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -9106,7 +9106,7 @@
           ],
           "a": 3,
           "hint": "Revise mutabilidade e cópias.",
-          "ex": "A resposta correta é: True.",
+          "ex": "Depois de b = a, ambas as variáveis referenciam o mesmo objeto, então a is b resulta em True.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -9120,7 +9120,7 @@
           ],
           "a": 0,
           "hint": "Revise mutabilidade e cópias.",
-          "ex": "A resposta correta é: As linhas internas são referências compartilhadas.",
+          "ex": "Em [[0] * 3] * 3, as três linhas internas são referências à mesma lista, então alterar uma afeta as demais.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -9134,7 +9134,7 @@
           ],
           "a": 1,
           "hint": "Revise mutabilidade e cópias.",
-          "ex": "A resposta correta é: [[0 for _ in range(3)] for _ in range(3)].",
+          "ex": "Uma list comprehension como [[0 for _ in range(3)] for _ in range(3)] cria listas internas independentes.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -9148,7 +9148,7 @@
           ],
           "a": 2,
           "hint": "Revise mutabilidade e cópias.",
-          "ex": "A resposta correta é: Quando os elementos internos são imutáveis ou não serão alterados.",
+          "ex": "Uma cópia rasa é suficiente quando os elementos internos são imutáveis ou não serão alterados depois.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -9162,7 +9162,7 @@
           ],
           "a": 3,
           "hint": "Revise mutabilidade e cópias.",
-          "ex": "A resposta correta é: Quando a estrutura aninhada precisa ser totalmente independente.",
+          "ex": "deepcopy é necessário quando a estrutura aninhada precisa ficar totalmente independente do original, nível a nível.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -9205,7 +9205,7 @@
           ],
           "a": 0,
           "hint": "Revise recursão.",
-          "ex": "A resposta correta é: Condição que encerra as chamadas recursivas.",
+          "ex": "O caso base é a condição que interrompe as chamadas recursivas, evitando que a função rode para sempre.",
           "format": "CONCEITO"
         },
         {
@@ -9219,7 +9219,7 @@
           ],
           "a": 1,
           "hint": "Revise recursão.",
-          "ex": "A resposta correta é: Reduzir o problema em direção ao caso base.",
+          "ex": "O passo recursivo precisa reduzir o problema em direção ao caso base, garantindo que ele será alcançado.",
           "format": "CONCEITO"
         },
         {
@@ -9233,7 +9233,7 @@
           ],
           "a": 2,
           "hint": "Revise recursão.",
-          "ex": "A resposta correta é: 24.",
+          "ex": "fatorial(4) multiplica 4 * 3 * 2 * 1, resultando em 24.",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -9247,7 +9247,7 @@
           ],
           "a": 3,
           "hint": "O laço testa n antes de cada repetição, inclusive na última vez, quando n já é 0.",
-          "ex": "A resposta correta é: 4 (testa com n=3, 2, 1 e 0).",
+          "ex": "A condição é testada com n valendo 3, 2, 1 e 0, totalizando 4 verificações até o laço encerrar.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -9261,7 +9261,7 @@
           ],
           "a": 0,
           "hint": "Revise recursão.",
-          "ex": "A resposta correta é: RecursionError.",
+          "ex": "RecursionError é a exceção levantada quando a profundidade de recursão excede o limite do Python.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -9275,7 +9275,7 @@
           ],
           "a": 1,
           "hint": "Revise recursão.",
-          "ex": "A resposta correta é: Alterar a entrada para aproximá-la do caso base.",
+          "ex": "Uma função recursiva sem progresso deve ter sua entrada alterada a cada chamada para se aproximar do caso base.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -9289,7 +9289,7 @@
           ],
           "a": 2,
           "hint": "Revise recursão.",
-          "ex": "A resposta correta é: Ao percorrer árvores e estruturas aninhadas.",
+          "ex": "Recursão é natural ao percorrer estruturas aninhadas, como árvores, onde cada nível se assemelha ao anterior.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -9303,7 +9303,7 @@
           ],
           "a": 3,
           "hint": "Revise recursão.",
-          "ex": "A resposta correta é: Um loop iterativo.",
+          "ex": "Para repetições lineares muito grandes, um loop iterativo costuma ser mais indicado que a recursão, que tem limite de profundidade.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -9346,7 +9346,7 @@
           ],
           "a": 0,
           "hint": "Revise algoritmos e complexidade.",
-          "ex": "A resposta correta é: Crescimento do custo conforme a entrada aumenta.",
+          "ex": "Big O descreve como o custo de um algoritmo cresce conforme o tamanho da entrada aumenta, não um tempo exato.",
           "format": "CONCEITO"
         },
         {
@@ -9360,7 +9360,7 @@
           ],
           "a": 1,
           "hint": "Revise algoritmos e complexidade.",
-          "ex": "A resposta correta é: O(1).",
+          "ex": "Acessar lista[indice] tem custo O(1) porque o Python calcula a posição diretamente, sem percorrer a lista.",
           "format": "CONCEITO"
         },
         {
@@ -9374,7 +9374,7 @@
           ],
           "a": 2,
           "hint": "Revise algoritmos e complexidade.",
-          "ex": "A resposta correta é: Usar um set.",
+          "ex": "Um set verifica pertencimento em tempo médio O(1), tornando a detecção de duplicados muito mais eficiente que comparar pares.",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -9388,7 +9388,7 @@
           ],
           "a": 3,
           "hint": "Revise algoritmos e complexidade.",
-          "ex": "A resposta correta é: O(n²).",
+          "ex": "Dois loops aninhados percorrendo n itens cada um tendem a um custo O(n²).",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -9402,7 +9402,7 @@
           ],
           "a": 0,
           "hint": "Revise algoritmos e complexidade.",
-          "ex": "A resposta correta é: Ruído do sistema pode distorcer o resultado.",
+          "ex": "Medir uma única execução muito rápida sofre ruído do sistema, que pode distorcer o resultado observado.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -9416,7 +9416,7 @@
           ],
           "a": 1,
           "hint": "Revise algoritmos e complexidade.",
-          "ex": "A resposta correta é: Usar timeit em cenário controlado.",
+          "ex": "timeit executa um trecho repetidamente em um cenário controlado, reduzindo o efeito do ruído nas medições.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -9430,7 +9430,7 @@
           ],
           "a": 2,
           "hint": "Revise algoritmos e complexidade.",
-          "ex": "A resposta correta é: Quando ordem e duplicatas fazem parte do problema.",
+          "ex": "Uma lista é melhor que um set quando a ordem dos elementos e a presença de duplicatas fazem parte do problema.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -9444,7 +9444,7 @@
           ],
           "a": 3,
           "hint": "Revise algoritmos e complexidade.",
-          "ex": "A resposta correta é: A mais simples que atende os limites reais de entrada.",
+          "ex": "Entre duas soluções corretas, vale escolher a mais simples que atenda aos limites reais de entrada, sem otimizar demais.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -9487,7 +9487,7 @@
           ],
           "a": 0,
           "hint": "Revise collections.",
-          "ex": "A resposta correta é: Counter.",
+          "ex": "Counter conta ocorrências de elementos hashable, como se fosse um dicionário especializado em contagem.",
           "format": "CONCEITO"
         },
         {
@@ -9501,7 +9501,7 @@
           ],
           "a": 1,
           "hint": "Revise collections.",
-          "ex": "A resposta correta é: deque.",
+          "ex": "deque permite inserir e remover eficientemente em ambas as extremidades, diferente de uma lista comum.",
           "format": "CONCEITO"
         },
         {
@@ -9515,7 +9515,7 @@
           ],
           "a": 2,
           "hint": "Revise collections.",
-          "ex": "A resposta correta é: 3.",
+          "ex": "Counter('arara') conta as letras da palavra, e 'a' aparece 3 vezes.",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -9529,7 +9529,7 @@
           ],
           "a": 3,
           "hint": "Revise collections.",
-          "ex": "A resposta correta é: Uma lista vazia.",
+          "ex": "defaultdict(list) cria automaticamente uma lista vazia para qualquer chave ainda não existente.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -9543,7 +9543,7 @@
           ],
           "a": 0,
           "hint": "Revise collections.",
-          "ex": "A resposta correta é: Os elementos restantes precisam ser deslocados.",
+          "ex": "list.pop(0) exige deslocar todos os elementos restantes, tornando remoções no início custosas em filas grandes.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -9557,7 +9557,7 @@
           ],
           "a": 1,
           "hint": "Revise collections.",
-          "ex": "A resposta correta é: Usar deque e popleft.",
+          "ex": "Trocar por deque e usar popleft resolve o problema, pois remove do início em tempo constante.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -9571,7 +9571,7 @@
           ],
           "a": 2,
           "hint": "Revise collections.",
-          "ex": "A resposta correta é: Ao contar ocorrências com clareza.",
+          "ex": "Counter é mais claro que um dict manual quando o objetivo é contar ocorrências de itens.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -9585,7 +9585,7 @@
           ],
           "a": 3,
           "hint": "Revise collections.",
-          "ex": "A resposta correta é: counter.most_common(n).",
+          "ex": "counter.most_common(n) retorna os n itens mais frequentes, já ordenados pela contagem.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -9628,7 +9628,7 @@
           ],
           "a": 0,
           "hint": "Revise itertools.",
-          "ex": "A resposta correta é: Ferramentas para combinar e transformar iteradores.",
+          "ex": "itertools reúne ferramentas para combinar e transformar iteradores de forma eficiente e preguiçosa.",
           "format": "CONCEITO"
         },
         {
@@ -9642,7 +9642,7 @@
           ],
           "a": 1,
           "hint": "Revise itertools.",
-          "ex": "A resposta correta é: Percorre iteráveis em sequência.",
+          "ex": "chain percorre vários iteráveis em sequência, como se fossem um só.",
           "format": "CONCEITO"
         },
         {
@@ -9656,7 +9656,7 @@
           ],
           "a": 2,
           "hint": "Revise itertools.",
-          "ex": "A resposta correta é: [0, 1, 2].",
+          "ex": "islice(range(10), 3) pega os três primeiros elementos, produzindo [0, 1, 2].",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -9670,7 +9670,7 @@
           ],
           "a": 3,
           "hint": "Revise itertools.",
-          "ex": "A resposta correta é: x três vezes.",
+          "ex": "repeat('x', 3) produz o valor 'x' três vezes, um de cada vez, não uma string concatenada.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -9684,7 +9684,7 @@
           ],
           "a": 0,
           "hint": "Revise itertools.",
-          "ex": "A resposta correta é: Ele agrupa apenas elementos consecutivos.",
+          "ex": "groupby agrupa apenas elementos consecutivos com a mesma chave, então repetições não adjacentes formam grupos separados.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -9698,7 +9698,7 @@
           ],
           "a": 1,
           "hint": "Revise itertools.",
-          "ex": "A resposta correta é: Ordenar pela mesma chave antes.",
+          "ex": "Ordenar os dados pela mesma chave antes de usar groupby garante que itens iguais fiquem juntos.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -9712,7 +9712,7 @@
           ],
           "a": 2,
           "hint": "Revise itertools.",
-          "ex": "A resposta correta é: Ao limitar um iterador sem criar tudo na memória.",
+          "ex": "islice é útil para limitar um iterador sem precisar materializar toda a sequência na memória.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -9726,7 +9726,7 @@
           ],
           "a": 3,
           "hint": "Revise itertools.",
-          "ex": "A resposta correta é: chain(a, b).",
+          "ex": "chain(a, b) preserva a avaliação preguiçosa, ao contrário de concatenar listas já construídas.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -9769,7 +9769,7 @@
           ],
           "a": 0,
           "hint": "Revise functools e cache.",
-          "ex": "A resposta correta é: Uma função com argumentos pré-configurados.",
+          "ex": "partial cria uma nova função com alguns argumentos já pré-configurados.",
           "format": "CONCEITO"
         },
         {
@@ -9783,7 +9783,7 @@
           ],
           "a": 1,
           "hint": "Revise functools e cache.",
-          "ex": "A resposta correta é: Memoriza resultados por argumentos.",
+          "ex": "lru_cache memoriza os resultados de uma função de acordo com seus argumentos, evitando recalcular.",
           "format": "CONCEITO"
         },
         {
@@ -9797,7 +9797,7 @@
           ],
           "a": 2,
           "hint": "Revise functools e cache.",
-          "ex": "A resposta correta é: 10.",
+          "ex": "dobro(5) aplica fator=2 e x=5, retornando 2*5 = 10.",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -9811,7 +9811,7 @@
           ],
           "a": 3,
           "hint": "Revise functools e cache.",
-          "ex": "A resposta correta é: Nenhuma após o primeiro resultado válido.",
+          "ex": "Depois do primeiro cálculo válido, uma função cacheada não recalcula novamente para o mesmo argumento.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -9825,7 +9825,7 @@
           ],
           "a": 0,
           "hint": "Revise functools e cache.",
-          "ex": "A resposta correta é: Crescimento de memória.",
+          "ex": "Um cache sem limite pode crescer indefinidamente em memória quando há muitos argumentos diferentes.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -9839,7 +9839,7 @@
           ],
           "a": 1,
           "hint": "Revise functools e cache.",
-          "ex": "A resposta correta é: Definir maxsize no lru_cache.",
+          "ex": "O parâmetro maxsize do lru_cache limita quantos resultados ficam guardados ao mesmo tempo.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -9853,7 +9853,7 @@
           ],
           "a": 2,
           "hint": "Revise functools e cache.",
-          "ex": "A resposta correta é: Ao somar números com intenção direta.",
+          "ex": "sum é preferível a reduce quando a intenção é simplesmente somar números, por ser mais direto e legível.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -9867,7 +9867,7 @@
           ],
           "a": 3,
           "hint": "Revise functools e cache.",
-          "ex": "A resposta correta é: Valores hashable como inteiros e strings.",
+          "ex": "Apenas valores hashable, como inteiros e strings, funcionam diretamente como chave de cache.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -9910,7 +9910,7 @@
           ],
           "a": 0,
           "hint": "Revise context managers.",
-          "ex": "A resposta correta é: __enter__.",
+          "ex": "__enter__ é o método executado ao entrar no bloco with.",
           "format": "CONCEITO"
         },
         {
@@ -9924,7 +9924,7 @@
           ],
           "a": 1,
           "hint": "Revise context managers.",
-          "ex": "A resposta correta é: __exit__.",
+          "ex": "__exit__ é o método executado ao sair do bloco with.",
           "format": "CONCEITO"
         },
         {
@@ -9938,7 +9938,7 @@
           ],
           "a": 2,
           "hint": "Revise context managers.",
-          "ex": "A resposta correta é: O objeto disponibilizado ao bloco.",
+          "ex": "__enter__ deve retornar o objeto que será disponibilizado à variável usada em as.",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -9952,7 +9952,7 @@
           ],
           "a": 3,
           "hint": "Revise context managers.",
-          "ex": "A resposta correta é: Ao sair do bloco, com ou sem exceção.",
+          "ex": "__exit__ é chamado ao sair do bloco, tenha ele terminado normalmente ou por causa de uma exceção.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -9966,7 +9966,7 @@
           ],
           "a": 0,
           "hint": "Revise context managers.",
-          "ex": "A resposta correta é: Uma exceção pode impedir a limpeza.",
+          "ex": "Sem um finally, uma exceção lançada antes do yield pode impedir que a limpeza do recurso aconteça.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -9980,7 +9980,7 @@
           ],
           "a": 1,
           "hint": "Revise context managers.",
-          "ex": "A resposta correta é: Colocar liberação em finally.",
+          "ex": "Colocar a liberação do recurso em um bloco finally garante que ela ocorra mesmo se algo falhar.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -9994,7 +9994,7 @@
           ],
           "a": 2,
           "hint": "Revise context managers.",
-          "ex": "A resposta correta é: Quando um recurso precisa de preparação e limpeza pareadas.",
+          "ex": "Vale criar um context manager quando um recurso precisa de preparação e limpeza sempre pareadas.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -10008,7 +10008,7 @@
           ],
           "a": 3,
           "hint": "Revise context managers.",
-          "ex": "A resposta correta é: Arquivo, conexão ou bloqueio.",
+          "ex": "Recursos como arquivos, conexões e bloqueios se beneficiam desse padrão, pois exigem abertura e fechamento correspondentes.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -10051,7 +10051,7 @@
           ],
           "a": 0,
           "hint": "Revise threads e futures.",
-          "ex": "A resposta correta é: Em tarefas com muita espera de I/O.",
+          "ex": "Threads ajudam especialmente em tarefas com muita espera de I/O, pois uma pode progredir enquanto outra aguarda.",
           "format": "CONCEITO"
         },
         {
@@ -10065,7 +10065,7 @@
           ],
           "a": 1,
           "hint": "Revise threads e futures.",
-          "ex": "A resposta correta é: O resultado pendente de uma tarefa.",
+          "ex": "Um Future representa o resultado ainda pendente de uma tarefa que está sendo executada.",
           "format": "CONCEITO"
         },
         {
@@ -10079,7 +10079,7 @@
           ],
           "a": 2,
           "hint": "Revise threads e futures.",
-          "ex": "A resposta correta é: Os resultados de f na ordem de entrada.",
+          "ex": "pool.map aplica a função a cada item e devolve os resultados na mesma ordem da entrada.",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -10093,7 +10093,7 @@
           ],
           "a": 3,
           "hint": "Revise threads e futures.",
-          "ex": "A resposta correta é: Obtém o resultado ou propaga a exceção.",
+          "ex": "future.result() obtém o resultado da tarefa ou relança a exceção que ocorreu durante sua execução.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -10107,7 +10107,7 @@
           ],
           "a": 0,
           "hint": "Revise threads e futures.",
-          "ex": "A resposta correta é: Condição de corrida.",
+          "ex": "Alterar estado compartilhado sem coordenação entre threads pode causar uma condição de corrida.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -10121,7 +10121,7 @@
           ],
           "a": 1,
           "hint": "Revise threads e futures.",
-          "ex": "A resposta correta é: Usar Lock com with.",
+          "ex": "Um Lock usado com with protege uma seção crítica, garantindo que só uma thread execute aquele trecho por vez.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -10135,7 +10135,7 @@
           ],
           "a": 2,
           "hint": "Revise threads e futures.",
-          "ex": "A resposta correta é: Processos separados.",
+          "ex": "Para cálculo pesado em Python puro, processos separados costumam escalar melhor que threads, por contornarem o GIL.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -10149,7 +10149,7 @@
           ],
           "a": 3,
           "hint": "Revise threads e futures.",
-          "ex": "A resposta correta é: Usar ThreadPoolExecutor em um with.",
+          "ex": "Usar o executor dentro de um with garante que ele seja encerrado corretamente ao final do bloco.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -10192,7 +10192,7 @@
           ],
           "a": 0,
           "hint": "Revise multiprocessing.",
-          "ex": "A resposta correta é: Cálculo pesado divisível.",
+          "ex": "Cálculo pesado e divisível se beneficia de múltiplos processos, pois pode ser distribuído entre núcleos diferentes.",
           "format": "CONCEITO"
         },
         {
@@ -10206,7 +10206,7 @@
           ],
           "a": 1,
           "hint": "Revise multiprocessing.",
-          "ex": "A resposta correta é: Possuem intérpretes separados.",
+          "ex": "Cada processo tem seu próprio interpretador Python, contornando o GIL e permitindo uso real de vários núcleos.",
           "format": "CONCEITO"
         },
         {
@@ -10220,7 +10220,7 @@
           ],
           "a": 2,
           "hint": "Revise multiprocessing.",
-          "ex": "A resposta correta é: if __name__ == '__main__':.",
+          "ex": "if __name__ == '__main__': protege a criação de processos, evitando que o código seja reexecutado ao ser importado pelos workers.",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -10234,7 +10234,7 @@
           ],
           "a": 3,
           "hint": "Revise multiprocessing.",
-          "ex": "A resposta correta é: Precisam ser serializados.",
+          "ex": "Argumentos enviados a um worker precisam ser serializados para atravessar o limite entre processos.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -10248,7 +10248,7 @@
           ],
           "a": 0,
           "hint": "Revise multiprocessing.",
-          "ex": "A resposta correta é: Uma função local não serializável.",
+          "ex": "Uma função local, definida dentro de outra função, geralmente não pode ser serializada e falha ao ser enviada ao pool.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -10262,7 +10262,7 @@
           ],
           "a": 1,
           "hint": "Revise multiprocessing.",
-          "ex": "A resposta correta é: Definir função no topo do módulo.",
+          "ex": "Definir a função no nível do módulo facilita sua serialização, pois ela pode ser referenciada pelo nome.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -10276,7 +10276,7 @@
           ],
           "a": 2,
           "hint": "Revise multiprocessing.",
-          "ex": "A resposta correta é: Quando tarefas minúsculas não compensam o overhead.",
+          "ex": "Um pool de processos deve ser evitado quando as tarefas são pequenas demais para compensar o overhead de criá-lo.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -10290,7 +10290,7 @@
           ],
           "a": 3,
           "hint": "Revise multiprocessing.",
-          "ex": "A resposta correta é: ProcessPoolExecutor.",
+          "ex": "ProcessPoolExecutor oferece uma API muito parecida com a de threads, facilitando a troca entre os dois modelos.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -10333,7 +10333,7 @@
           ],
           "a": 0,
           "hint": "Revise subprocess.",
-          "ex": "A resposta correta é: subprocess.run.",
+          "ex": "subprocess.run é a função indicada para executar um comando externo e aguardar sua conclusão.",
           "format": "CONCEITO"
         },
         {
@@ -10347,7 +10347,7 @@
           ],
           "a": 1,
           "hint": "Revise subprocess.",
-          "ex": "A resposta correta é: Lança exceção se o comando falhar.",
+          "ex": "check=True faz o subprocess lançar uma exceção automaticamente se o comando terminar com erro.",
           "format": "CONCEITO"
         },
         {
@@ -10361,7 +10361,7 @@
           ],
           "a": 2,
           "hint": "Revise subprocess.",
-          "ex": "A resposta correta é: ['git', '--version'].",
+          "ex": "Passar o comando como lista, como ['git', '--version'], evita problemas de interpretação do shell.",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -10375,7 +10375,7 @@
           ],
           "a": 3,
           "hint": "Revise subprocess.",
-          "ex": "A resposta correta é: Decodifica bytes para texto.",
+          "ex": "text=True faz a saída capturada ser decodificada como texto, em vez de retornada como bytes.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -10389,7 +10389,7 @@
           ],
           "a": 0,
           "hint": "Revise subprocess.",
-          "ex": "A resposta correta é: shell=True com texto externo concatenado.",
+          "ex": "Usar shell=True com texto externo concatenado abre espaço para injeção de comandos maliciosos.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -10403,7 +10403,7 @@
           ],
           "a": 1,
           "hint": "Revise subprocess.",
-          "ex": "A resposta correta é: Definir capture_output=True.",
+          "ex": "capture_output=True captura tanto a saída padrão quanto a de erro do comando executado.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -10417,7 +10417,7 @@
           ],
           "a": 2,
           "hint": "Revise subprocess.",
-          "ex": "A resposta correta é: Quando o comando não pode ficar preso indefinidamente.",
+          "ex": "timeout é importante quando o comando não pode ficar preso indefinidamente esperando uma resposta.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -10431,7 +10431,7 @@
           ],
           "a": 3,
           "hint": "Revise subprocess.",
-          "ex": "A resposta correta é: CalledProcessError.",
+          "ex": "CalledProcessError é a exceção levantada quando check=True e o comando termina com código de saída diferente de zero.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -10474,7 +10474,7 @@
           ],
           "a": 0,
           "hint": "Revise profiling e otimização.",
-          "ex": "A resposta correta é: Medir o comportamento atual.",
+          "ex": "O primeiro passo de uma otimização responsável é medir o comportamento atual, para saber onde está o gargalo real.",
           "format": "CONCEITO"
         },
         {
@@ -10488,7 +10488,7 @@
           ],
           "a": 1,
           "hint": "Revise profiling e otimização.",
-          "ex": "A resposta correta é: timeit.",
+          "ex": "timeit é a ferramenta indicada para medir pequenos trechos de código repetidamente.",
           "format": "CONCEITO"
         },
         {
@@ -10502,7 +10502,7 @@
           ],
           "a": 2,
           "hint": "Revise profiling e otimização.",
-          "ex": "A resposta correta é: Funções que consomem mais tempo.",
+          "ex": "cProfile ajuda a identificar quais funções consomem mais tempo durante a execução.",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -10516,7 +10516,7 @@
           ],
           "a": 3,
           "hint": "Revise profiling e otimização.",
-          "ex": "A resposta correta é: Tempo da função e das chamadas feitas por ela.",
+          "ex": "O tempo acumulado de uma função inclui tanto seu próprio tempo quanto o das chamadas que ela faz.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -10530,7 +10530,7 @@
           ],
           "a": 0,
           "hint": "Revise profiling e otimização.",
-          "ex": "A resposta correta é: Investir no trecho que não é o gargalo.",
+          "ex": "Otimizar sem medir antes é arriscado, pois é fácil investir esforço em um trecho que não é o verdadeiro gargalo.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -10544,7 +10544,7 @@
           ],
           "a": 1,
           "hint": "Revise profiling e otimização.",
-          "ex": "A resposta correta é: Comparar medições equivalentes antes e depois.",
+          "ex": "Uma melhoria só é confirmada comparando medições equivalentes feitas antes e depois da mudança.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -10558,7 +10558,7 @@
           ],
           "a": 2,
           "hint": "Revise profiling e otimização.",
-          "ex": "A resposta correta é: Um set.",
+          "ex": "Um set é adequado para muitos testes de pertencimento, pois verifica presença em tempo médio constante.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -10572,7 +10572,7 @@
           ],
           "a": 3,
           "hint": "Revise profiling e otimização.",
-          "ex": "A resposta correta é: Quando a meta é atingida e o ganho não compensa complexidade.",
+          "ex": "Vale parar de otimizar quando a meta já foi atingida e o ganho adicional não compensa a complexidade extra.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -10615,7 +10615,7 @@
           ],
           "a": 0,
           "hint": "Revise tipagem avançada.",
-          "ex": "A resposta correta é: Um contrato baseado em comportamento.",
+          "ex": "Protocol expressa um contrato baseado em comportamento, sem exigir herança explícita da classe que o implementa.",
           "format": "CONCEITO"
         },
         {
@@ -10629,7 +10629,7 @@
           ],
           "a": 1,
           "hint": "Revise tipagem avançada.",
-          "ex": "A resposta correta é: Relacionar tipos em uma assinatura.",
+          "ex": "TypeVar é usado para relacionar tipos dentro da mesma assinatura de função, preservando a relação entre entrada e saída.",
           "format": "CONCEITO"
         },
         {
@@ -10643,7 +10643,7 @@
           ],
           "a": 2,
           "hint": "Revise tipagem avançada.",
-          "ex": "A resposta correta é: list[T].",
+          "ex": "list[T] indica uma lista genérica de um tipo T que é preservado na assinatura.",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -10657,7 +10657,7 @@
           ],
           "a": 3,
           "hint": "Revise tipagem avançada.",
-          "ex": "A resposta correta é: Não, basta possuir o comportamento exigido.",
+          "ex": "Uma classe não precisa herdar de Protocol para atendê-lo; basta possuir o comportamento exigido pela interface.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -10671,7 +10671,7 @@
           ],
           "a": 0,
           "hint": "Revise tipagem avançada.",
-          "ex": "A resposta correta é: Usar Any em todos os limites.",
+          "ex": "Usar Any em todos os limites do sistema reduz o valor da tipagem, pois elimina as verificações que ela deveria oferecer.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -10685,7 +10685,7 @@
           ],
           "a": 1,
           "hint": "Revise tipagem avançada.",
-          "ex": "A resposta correta é: Caixa[int].",
+          "ex": "Caixa[int] indica uma instância genérica de Caixa especializada para guardar valores do tipo int.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -10699,7 +10699,7 @@
           ],
           "a": 2,
           "hint": "Revise tipagem avançada.",
-          "ex": "A resposta correta é: Quando diferentes objetos só precisam cumprir uma interface.",
+          "ex": "Um Protocol é preferível a uma classe base rígida quando diferentes objetos só precisam cumprir uma mesma interface.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -10713,7 +10713,7 @@
           ],
           "a": 3,
           "hint": "Revise tipagem avançada.",
-          "ex": "A resposta correta é: Detectar incompatibilidades antes da execução.",
+          "ex": "O principal benefício da tipagem estática é detectar incompatibilidades de tipo antes mesmo do código rodar.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -10756,7 +10756,7 @@
           ],
           "a": 0,
           "hint": "Revise empacotamento moderno.",
-          "ex": "A resposta correta é: pyproject.toml.",
+          "ex": "pyproject.toml é o arquivo padrão que centraliza os metadados modernos de um projeto Python.",
           "format": "CONCEITO"
         },
         {
@@ -10770,7 +10770,7 @@
           ],
           "a": 1,
           "hint": "Revise empacotamento moderno.",
-          "ex": "A resposta correta é: Ferramentas necessárias para construir o pacote.",
+          "ex": "A seção [build-system] declara as ferramentas necessárias para construir o pacote.",
           "format": "CONCEITO"
         },
         {
@@ -10784,7 +10784,7 @@
           ],
           "a": 2,
           "hint": "Revise empacotamento moderno.",
-          "ex": "A resposta correta é: src/pacote.",
+          "ex": "No layout src, o pacote fica dentro de src/pacote, separado da raiz e dos testes.",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -10798,7 +10798,7 @@
           ],
           "a": 3,
           "hint": "Revise empacotamento moderno.",
-          "ex": "A resposta correta é: Uma distribuição construída instalável.",
+          "ex": "Um wheel é uma distribuição já construída e pronta para ser instalada diretamente.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -10812,7 +10812,7 @@
           ],
           "a": 0,
           "hint": "Revise empacotamento moderno.",
-          "ex": "A resposta correta é: Imports podem funcionar sem validar o pacote instalado.",
+          "ex": "Testar apenas a pasta local pode deixar imports funcionarem sem validar de fato o pacote como ele será instalado.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -10826,7 +10826,7 @@
           ],
           "a": 1,
           "hint": "Revise empacotamento moderno.",
-          "ex": "A resposta correta é: Instalar o wheel em ambiente limpo.",
+          "ex": "Instalar o wheel em um ambiente limpo dá mais confiança de que a entrega funciona fora da máquina de desenvolvimento.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -10840,7 +10840,7 @@
           ],
           "a": 2,
           "hint": "Revise empacotamento moderno.",
-          "ex": "A resposta correta é: Na seção project.dependencies.",
+          "ex": "No padrão atual, as dependências de runtime são declaradas na seção project.dependencies do pyproject.toml.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -10854,7 +10854,7 @@
           ],
           "a": 3,
           "hint": "Revise empacotamento moderno.",
-          "ex": "A resposta correta é: python -m build.",
+          "ex": "python -m build é o comando padrão para construir tanto o sdist quanto o wheel do pacote.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -10897,7 +10897,7 @@
           ],
           "a": 0,
           "hint": "Revise segurança e validação.",
-          "ex": "A resposta correta é: Na fronteira do sistema.",
+          "ex": "Entradas externas devem ser validadas na fronteira do sistema, antes de alcançar o restante da aplicação.",
           "format": "CONCEITO"
         },
         {
@@ -10911,7 +10911,7 @@
           ],
           "a": 1,
           "hint": "Revise segurança e validação.",
-          "ex": "A resposta correta é: Usar consultas parametrizadas.",
+          "ex": "Consultas parametrizadas evitam injeção SQL, pois separam o código da consulta dos dados fornecidos pelo usuário.",
           "format": "CONCEITO"
         },
         {
@@ -10925,7 +10925,7 @@
           ],
           "a": 2,
           "hint": "Revise segurança e validação.",
-          "ex": "A resposta correta é: Variável de ambiente ou cofre de segredos.",
+          "ex": "Um segredo em produção deve vir de uma variável de ambiente ou de um cofre de segredos, nunca fixo no código.",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -10939,7 +10939,7 @@
           ],
           "a": 3,
           "hint": "Revise segurança e validação.",
-          "ex": "A resposta correta é: Conceder apenas permissões necessárias.",
+          "ex": "Menor privilégio significa conceder apenas as permissões estritamente necessárias para cada tarefa.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -10953,7 +10953,7 @@
           ],
           "a": 0,
           "hint": "Revise segurança e validação.",
-          "ex": "A resposta correta é: Executa código arbitrário.",
+          "ex": "eval(texto_do_usuario) executa código arbitrário, permitindo que uma entrada maliciosa comprometa o programa.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -10967,7 +10967,7 @@
           ],
           "a": 1,
           "hint": "Revise segurança e validação.",
-          "ex": "A resposta correta é: Converter e validar um intervalo.",
+          "ex": "Aceitar apenas idades plausíveis exige converter o valor e validar se ele está dentro de um intervalo razoável.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -10981,7 +10981,7 @@
           ],
           "a": 2,
           "hint": "Revise segurança e validação.",
-          "ex": "A resposta correta é: Tokens, senhas e dados sensíveis.",
+          "ex": "Tokens, senhas e outros dados sensíveis devem ser omitidos dos logs para evitar vazamentos.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -10995,7 +10995,7 @@
           ],
           "a": 3,
           "hint": "Revise segurança e validação.",
-          "ex": "A resposta correta é: Revisar e atualizar vulnerabilidades conhecidas.",
+          "ex": "Revisar e atualizar dependências com vulnerabilidades conhecidas ajuda a manter o projeto seguro ao longo do tempo.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -11038,7 +11038,7 @@
           ],
           "a": 0,
           "hint": "Revise arquitetura e entrega contínua.",
-          "ex": "A resposta correta é: Domínio separado de infraestrutura.",
+          "ex": "Separar domínio de infraestrutura facilita testar as regras de negócio isoladamente, sem depender de banco ou rede.",
           "format": "CONCEITO"
         },
         {
@@ -11052,7 +11052,7 @@
           ],
           "a": 1,
           "hint": "Revise arquitetura e entrega contínua.",
-          "ex": "A resposta correta é: Injetar a dependência.",
+          "ex": "Injetar a dependência é a forma de fornecer um repositório ao serviço sem acoplá-lo a uma implementação fixa.",
           "format": "CONCEITO"
         },
         {
@@ -11066,7 +11066,7 @@
           ],
           "a": 2,
           "hint": "Revise arquitetura e entrega contínua.",
-          "ex": "A resposta correta é: Em configuração externa validada.",
+          "ex": "Uma URL que muda por ambiente deve ficar em configuração externa validada, não espalhada pelo código.",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -11080,7 +11080,7 @@
           ],
           "a": 3,
           "hint": "Revise arquitetura e entrega contínua.",
-          "ex": "A resposta correta é: Interromper a entrega.",
+          "ex": "Uma esteira de entrega deve interromper o processo quando um teste falha, evitando publicar código quebrado.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -11094,7 +11094,7 @@
           ],
           "a": 0,
           "hint": "Revise arquitetura e entrega contínua.",
-          "ex": "A resposta correta é: Acoplamento dificulta teste e mudança.",
+          "ex": "Misturar regra de negócio e acesso a banco na mesma função gera acoplamento que dificulta testar e mudar cada parte.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -11108,7 +11108,7 @@
           ],
           "a": 1,
           "hint": "Revise arquitetura e entrega contínua.",
-          "ex": "A resposta correta é: Definir uma interface pequena e injetar implementação.",
+          "ex": "Definir uma interface pequena e injetar sua implementação reduz o acoplamento com serviços externos.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -11122,7 +11122,7 @@
           ],
           "a": 2,
           "hint": "Revise arquitetura e entrega contínua.",
-          "ex": "A resposta correta é: Verificar qualidade e testes antes de construir artefato.",
+          "ex": "Faz sentido verificar qualidade e testes antes de construir o artefato, evitando empacotar código que não passou nas checagens.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -11136,7 +11136,7 @@
           ],
           "a": 3,
           "hint": "Revise arquitetura e entrega contínua.",
-          "ex": "A resposta correta é: Pode ser construída e testada com passos documentados.",
+          "ex": "Uma entrega reproduzível pode ser construída e testada seguindo passos documentados, sem depender de ajustes manuais.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
@@ -11179,7 +11179,7 @@
           ],
           "a": 0,
           "hint": "Revise projeto final profissional.",
-          "ex": "A resposta correta é: Um problema e critérios de aceite claros.",
+          "ex": "O projeto deve ser orientado por um problema real e critérios de aceite claros, que definem quando ele está pronto.",
           "format": "CONCEITO"
         },
         {
@@ -11193,7 +11193,7 @@
           ],
           "a": 1,
           "hint": "Revise projeto final profissional.",
-          "ex": "A resposta correta é: Módulos com responsabilidades definidas.",
+          "ex": "Módulos com responsabilidades bem definidas facilitam a manutenção do projeto ao longo do tempo.",
           "format": "CONCEITO"
         },
         {
@@ -11207,7 +11207,7 @@
           ],
           "a": 2,
           "hint": "Revise projeto final profissional.",
-          "ex": "A resposta correta é: python -m pytest.",
+          "ex": "python -m pytest é o comando usado para rodar os testes automatizados do pacote.",
           "format": "LEITURA DE CÓDIGO"
         },
         {
@@ -11221,7 +11221,7 @@
           ],
           "a": 3,
           "hint": "Revise projeto final profissional.",
-          "ex": "A resposta correta é: Ser convertidas e validadas na fronteira.",
+          "ex": "Entradas externas devem ser convertidas e validadas na fronteira do sistema antes de serem usadas.",
           "format": "PREVISÃO DE RESULTADO"
         },
         {
@@ -11235,7 +11235,7 @@
           ],
           "a": 0,
           "hint": "Revise projeto final profissional.",
-          "ex": "A resposta correta é: Código sem instruções de execução e sem testes.",
+          "ex": "Uma entrega sem instruções de execução e sem testes está incompleta, mesmo que o código funcione.",
           "format": "ENCONTRE O ERRO"
         },
         {
@@ -11249,7 +11249,7 @@
           ],
           "a": 1,
           "hint": "Revise projeto final profissional.",
-          "ex": "A resposta correta é: Executar testes e critérios de aceite.",
+          "ex": "Executar os testes e verificar os critérios de aceite é a forma de comprovar a qualidade antes da entrega.",
           "format": "CORRIJA O ERRO"
         },
         {
@@ -11263,7 +11263,7 @@
           ],
           "a": 2,
           "hint": "Revise projeto final profissional.",
-          "ex": "A resposta correta é: Medições do gargalo relevante e decisão tomada.",
+          "ex": "O ideal é apresentar medições do gargalo relevante e a decisão tomada a partir delas, não apenas opiniões.",
           "format": "DECISÃO DE CÓDIGO"
         },
         {
@@ -11277,7 +11277,7 @@
           ],
           "a": 3,
           "hint": "Revise projeto final profissional.",
-          "ex": "A resposta correta é: Quando é reproduzível, testado, documentado e atende aos critérios.",
+          "ex": "O projeto pode ser considerado concluído quando é reproduzível, testado, documentado e atende aos critérios definidos.",
           "format": "APLICAÇÃO PRÁTICA"
         }
       ]
