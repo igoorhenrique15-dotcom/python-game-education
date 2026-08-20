@@ -242,6 +242,41 @@ const TRACK_CATALOG = [
 
 const JOURNEY_X = [50, 68, 76, 64, 43, 27, 22, 36];
 
+// Regra do roadmap: validar automaticamente cada questão antes de iniciar o
+// jogo. Toda questão precisa ter options, answer válido e explanation.
+function validateCourse(track) {
+  const problems = [];
+  const stages = track.course?.stages || [];
+  stages.forEach((stage) => {
+    if (!stage.id || !stage.name) {
+      problems.push(`[${track.id}] fase sem id/name: ${JSON.stringify(stage).slice(0, 60)}`);
+    }
+    (stage.questions || []).forEach((question, questionIndex) => {
+      const label = `[${track.id}] ${stage.id || '?'} #${questionIndex}`;
+      if (!Array.isArray(question.opts) || question.opts.length < 2) {
+        problems.push(`${label}: opts inválido`);
+      }
+      if (typeof question.a !== 'number' || question.a < 0 || question.a >= (question.opts || []).length) {
+        problems.push(`${label}: answer (a) inválido`);
+      }
+      if (!question.ex) problems.push(`${label}: sem explanation (ex)`);
+      if (!question.q) problems.push(`${label}: sem enunciado (q)`);
+    });
+  });
+  return problems;
+}
+
+if (typeof window !== 'undefined') {
+  TRACK_CATALOG.forEach((track) => {
+    if (!track.course) return;
+    const problems = validateCourse(track);
+    if (problems.length) {
+      // eslint-disable-next-line no-console
+      console.error(`[course-validation] ${problems.length} problema(s) encontrado(s) em "${track.id}":`, problems);
+    }
+  });
+}
+
 function useFonts() {
   useEffect(() => {
     if (document.getElementById(FONT_ID)) return;
