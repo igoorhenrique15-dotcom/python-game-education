@@ -1,0 +1,547 @@
+{
+  "title": "JavaScript",
+  "version": 1,
+  "stages": [
+    {
+      "id": "js-1",
+      "name": "VARIÁVEIS",
+      "difficulty": "INICIANTE",
+      "color": "#ff9600",
+      "icon": "◆",
+      "summary": "Aprenda a guardar valores em variáveis usando let e const.",
+      "lesson": [
+        { "title": "Guardando valores", "body": "Uma variável é um espaço com nome onde guardamos um valor para usar depois. Em JavaScript criamos variáveis com 'let' (valor pode mudar) ou 'const' (valor não pode ser reatribuído).", "code": "let idade = 20;\nconst nome = \"Ana\";" },
+        { "title": "let vs const", "body": "Use 'const' sempre que o valor não vai mudar durante o programa. Use 'let' quando precisar reatribuir a variável mais tarde, como em um contador.", "code": "let pontos = 0;\npontos = 10; // ok, let permite reatribuir\n\nconst PI = 3.14;\n// PI = 4; // erro! const não pode ser reatribuído" },
+        { "title": "Nomes de variáveis", "body": "Nomes de variáveis em JavaScript não podem começar com número e não podem ter espaços. Use camelCase, como 'nomeCompleto'.", "tip": "Prefira nomes que descrevam o conteúdo, como 'precoTotal' em vez de 'x'." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Qual palavra-chave é usada para criar uma variável cujo valor NÃO pode ser reatribuído depois?", "opts": ["let", "const", "var", "int"], "a": 1, "hint": "Pense na palavra que soa como 'constante'.", "ex": "'const' cria uma variável cujo valor não pode ser reatribuído após a criação.", "format": "CONCEITO" },
+        { "type": "code", "q": "O que acontece ao executar este código?\nconst idade = 18;\nidade = 19;", "opts": ["Funciona normalmente e idade vira 19", "Gera um erro, pois const não pode ser reatribuído", "Cria uma nova variável chamada idade", "Nada acontece, o valor continua 18"], "a": 1, "hint": "Lembre-se do que 'const' impede.", "ex": "Reatribuir uma variável declarada com const gera erro em tempo de execução.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "code", "q": "Qual das opções é um nome de variável VÁLIDO em JavaScript?", "opts": ["2nome", "nome completo", "nomeCompleto", "nome-completo"], "a": 2, "hint": "Nomes válidos não podem ter espaços, hífens ou começar com número.", "ex": "'nomeCompleto' segue o padrão camelCase e não usa espaços, hífens ou número inicial.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "mcq", "q": "Quando é mais indicado usar 'let' em vez de 'const'?", "opts": ["Quando o valor nunca vai mudar", "Quando o valor precisa ser reatribuído depois", "Quando o valor é um texto", "Quando o valor é um número"], "a": 1, "hint": "Pense em um contador que aumenta durante o programa.", "ex": "'let' é indicado quando a variável precisa receber novos valores ao longo da execução.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "js-2",
+      "name": "TIPOS PRIMITIVOS",
+      "difficulty": "INICIANTE",
+      "color": "#ff9600",
+      "icon": "▲",
+      "summary": "Conheça os tipos básicos de dados: string, number e boolean.",
+      "lesson": [
+        { "title": "Texto, número e verdadeiro/falso", "body": "String é texto, sempre entre aspas. Number é qualquer valor numérico, com ou sem decimais. Boolean é apenas 'true' ou 'false', usado para representar sim/não.", "code": "let cidade = \"São Paulo\"; // string\nlet preco = 29.90; // number\nlet ativo = true; // boolean" },
+        { "title": "Descobrindo o tipo", "body": "O operador 'typeof' mostra o tipo de um valor. É útil para investigar o que uma variável realmente guarda.", "code": "typeof \"olá\"; // \"string\"\ntypeof 10; // \"number\"\ntypeof true; // \"boolean\"" }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Qual é o tipo do valor true em JavaScript?", "opts": ["string", "number", "boolean", "text"], "a": 2, "hint": "É o tipo usado para representar verdadeiro ou falso.", "ex": "true e false são valores do tipo boolean.", "format": "CONCEITO" },
+        { "type": "code", "q": "Qual é o resultado de typeof \"42\"?", "opts": ["\"number\"", "\"string\"", "\"boolean\"", "\"42\""], "a": 1, "hint": "Repare que 42 está entre aspas no código.", "ex": "Como 42 está entre aspas, é tratado como texto (string), não como número.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "code", "q": "Encontre o erro no código abaixo:\nlet mensagem = Olá mundo;", "opts": ["Faltam aspas ao redor do texto", "A palavra 'let' está errada", "Faltou o ponto e vírgula no fim", "O nome da variável é inválido"], "a": 0, "hint": "Compare com como se escreve um texto (string) em JavaScript.", "ex": "Todo texto precisa estar entre aspas; sem elas, o JavaScript tenta interpretar como código.", "format": "ENCONTRE O ERRO" },
+        { "type": "mcq", "q": "Qual valor abaixo é do tipo number?", "opts": ["\"10\"", "10", "true", "\"dez\""], "a": 1, "hint": "Números não usam aspas.", "ex": "10 sem aspas é interpretado como um valor numérico (number).", "format": "DECISÃO DE CÓDIGO" }
+      ]
+    },
+    {
+      "id": "js-3",
+      "name": "TEMPLATE STRINGS",
+      "difficulty": "INICIANTE",
+      "color": "#ff9600",
+      "icon": "★",
+      "summary": "Combine texto e variáveis com template strings e concatenação.",
+      "lesson": [
+        { "title": "Juntando textos com +", "body": "Podemos unir strings usando o operador '+'. É a forma mais antiga de combinar texto com variáveis.", "code": "let nome = \"Ana\";\nlet saudacao = \"Olá, \" + nome + \"!\";\n// \"Olá, Ana!\"" },
+        { "title": "Template strings", "body": "Usando crases (`) podemos inserir variáveis diretamente no texto com ${}. Isso deixa o código mais legível que a concatenação com '+'.", "code": "let nome = \"Ana\";\nlet saudacao = `Olá, ${nome}!`;\n// \"Olá, Ana!\"" }
+      ],
+      "questions": [
+        { "type": "code", "q": "Qual é o resultado de `Idade: ${20 + 5}`?", "opts": ["\"Idade: 20 + 5\"", "\"Idade: 25\"", "Erro de sintaxe", "\"Idade: ${25}\""], "a": 1, "hint": "Dentro de ${} o JavaScript calcula a expressão antes de inserir no texto.", "ex": "O conteúdo dentro de ${} é calculado (20 + 5 = 25) e inserido no texto final.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Qual símbolo é usado para delimitar uma template string?", "opts": ["Aspas simples '", "Aspas duplas \"", "Crases `", "Colchetes []"], "a": 2, "hint": "É o caractere geralmente ao lado do número 1 no teclado.", "ex": "Template strings usam crases (`) em vez de aspas simples ou duplas.", "format": "CONCEITO" },
+        { "type": "code", "q": "Corrija o erro: o código deveria exibir 'Olá, Ana!' usando template string.\nlet nome = \"Ana\";\nlet texto = `Olá, nome!`;", "opts": ["Trocar as crases por aspas duplas", "Escrever ${nome} no lugar de nome", "Remover a vírgula do texto", "Trocar 'let' por 'const'"], "a": 1, "hint": "Uma variável dentro de uma template string precisa de uma sintaxe especial.", "ex": "Para inserir o valor de uma variável dentro de crases, é preciso usar ${nome}.", "format": "CORRIJA O ERRO" },
+        { "type": "mcq", "q": "Por que template strings costumam ser preferidas à concatenação com '+' em textos longos?", "opts": ["Porque são mais rápidas de executar", "Porque deixam o código mais legível ao misturar texto e variáveis", "Porque não aceitam números", "Porque não precisam de variáveis"], "a": 1, "hint": "Pense em como fica visualmente um texto longo cheio de sinais de '+'.", "ex": "Template strings tornam o código mais legível, pois evitam vários '+' espalhados no texto.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "js-4",
+      "name": "OPERADORES DE COMPARAÇÃO",
+      "difficulty": "INICIANTE",
+      "color": "#f6c445",
+      "icon": "◈",
+      "summary": "Entenda a diferença entre == e === ao comparar valores.",
+      "lesson": [
+        { "title": "Comparando valores", "body": "O operador '==' compara valores convertendo tipos diferentes quando necessário. Já o '===' compara valor E tipo, sem converter nada. Por isso '===' é considerado mais seguro e previsível.", "code": "5 == \"5\"; // true (converte tipos)\n5 === \"5\"; // false (tipos diferentes)" },
+        { "title": "Outros comparadores", "body": "Além de igualdade, temos diferença ('!==' e '!='), maior (>), menor (<), maior ou igual (>=) e menor ou igual (<=). Todos retornam um boolean (true ou false).", "code": "10 > 5; // true\n10 !== 10; // false" }
+      ],
+      "questions": [
+        { "type": "code", "q": "Qual é o resultado de 5 === \"5\"?", "opts": ["true", "false", "5", "\"5\""], "a": 1, "hint": "Lembre que '===' também compara o tipo do valor, não só o conteúdo.", "ex": "5 é number e \"5\" é string; como os tipos são diferentes, '===' retorna false.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Qual a principal diferença entre == e ===?", "opts": ["== compara tipo e valor, === só valor", "=== compara tipo e valor, == converte tipos antes de comparar", "Não há diferença, são sinônimos", "== só funciona com números"], "a": 1, "hint": "Pense em qual dos dois é mais rígido quanto ao tipo.", "ex": "=== exige que valor e tipo sejam iguais; == converte os tipos antes de comparar.", "format": "CONCEITO" },
+        { "type": "code", "q": "Qual é o resultado de 0 == false?", "opts": ["true", "false", "undefined", "Erro de sintaxe"], "a": 0, "hint": "Lembre que '==' converte tipos antes de comparar.", "ex": "'==' converte false para 0 antes de comparar, então 0 == false resulta em true.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "code", "q": "Qual comparação é geralmente recomendada para evitar resultados inesperados por conversão de tipo?", "opts": ["==", "===", "=", "!="], "a": 1, "hint": "Pense em qual operador não faz conversão automática de tipos.", "ex": "'===' evita conversões implícitas de tipo, tornando o resultado mais previsível.", "format": "DECISÃO DE CÓDIGO" }
+      ]
+    },
+    {
+      "id": "js-5",
+      "name": "IF E ELSE",
+      "difficulty": "INICIANTE",
+      "color": "#f6c445",
+      "icon": "▣",
+      "summary": "Tome decisões no código com if e else.",
+      "lesson": [
+        { "title": "Decisões no código", "body": "O 'if' executa um bloco de código apenas se a condição entre parênteses for verdadeira (true). O 'else' executa um bloco alternativo quando a condição é falsa.", "code": "let idade = 16;\nif (idade >= 18) {\n  console.log(\"Maior de idade\");\n} else {\n  console.log(\"Menor de idade\");\n}" },
+        { "title": "else if", "body": "Quando há mais de duas possibilidades, usamos 'else if' para verificar condições adicionais em sequência, até encontrar uma verdadeira.", "code": "let nota = 7;\nif (nota >= 9) {\n  console.log(\"Ótimo\");\n} else if (nota >= 6) {\n  console.log(\"Bom\");\n} else {\n  console.log(\"Precisa melhorar\");\n}" }
+      ],
+      "questions": [
+        { "type": "code", "q": "Qual será a saída deste código?\nlet idade = 20;\nif (idade >= 18) {\n  console.log(\"Adulto\");\n} else {\n  console.log(\"Jovem\");\n}", "opts": ["\"Adulto\"", "\"Jovem\"", "Nenhuma, gera erro", "\"20\""], "a": 0, "hint": "Verifique se 20 é maior ou igual a 18.", "ex": "Como 20 >= 18 é verdadeiro, o bloco do 'if' é executado e imprime 'Adulto'.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Quando o bloco dentro de 'else' é executado?", "opts": ["Sempre, junto com o if", "Somente quando a condição do if é falsa", "Somente quando a condição do if é verdadeira", "Nunca é executado"], "a": 1, "hint": "'else' é o caminho alternativo ao 'if'.", "ex": "O bloco do 'else' só roda quando a condição do 'if' correspondente é falsa.", "format": "CONCEITO" },
+        { "type": "code", "q": "Encontre o erro:\nlet nota = 8\nif nota >= 6 {\n  console.log(\"Aprovado\");\n}", "opts": ["Falta ponto e vírgula depois de 8", "Falta parênteses ao redor da condição do if", "console.log está escrito errado", "nota deveria ser string"], "a": 1, "hint": "Compare com a sintaxe correta de um if em JavaScript.", "ex": "A condição do if precisa estar entre parênteses: if (nota >= 6).", "format": "ENCONTRE O ERRO" },
+        { "type": "code", "q": "Qual será a saída?\nlet nota = 9;\nif (nota >= 9) {\n  console.log(\"Ótimo\");\n} else if (nota >= 6) {\n  console.log(\"Bom\");\n} else {\n  console.log(\"Ruim\");\n}", "opts": ["\"Ótimo\"", "\"Bom\"", "\"Ruim\"", "Nenhuma saída"], "a": 0, "hint": "O JavaScript verifica as condições em ordem e para na primeira verdadeira.", "ex": "Como 9 >= 9 é verdadeiro, o primeiro bloco já é executado e imprime 'Ótimo'.", "format": "PREVISÃO DE RESULTADO" }
+      ]
+    },
+    {
+      "id": "js-6",
+      "name": "OPERADOR TERNÁRIO",
+      "difficulty": "INICIANTE",
+      "color": "#f6c445",
+      "icon": "◐",
+      "summary": "Escreva decisões simples de forma compacta com o operador ternário.",
+      "lesson": [
+        { "title": "if/else em uma linha", "body": "O operador ternário substitui um if/else simples em uma única expressão, no formato: condição ? valorSeVerdadeiro : valorSeFalso.", "code": "let idade = 20;\nlet status = idade >= 18 ? \"Maior\" : \"Menor\";\n// \"Maior\"" },
+        { "title": "Quando usar", "body": "O ternário é útil para decisões curtas e diretas, geralmente ao atribuir um valor a uma variável. Para lógica mais complexa, é melhor usar if/else normal para manter a legibilidade.", "tip": "Evite encadear vários ternários seguidos: isso dificulta a leitura do código." }
+      ],
+      "questions": [
+        { "type": "code", "q": "Qual é o resultado deste código?\nlet nota = 5;\nlet resultado = nota >= 6 ? \"Aprovado\" : \"Reprovado\";", "opts": ["\"Aprovado\"", "\"Reprovado\"", "true", "false"], "a": 1, "hint": "Verifique se 5 é maior ou igual a 6.", "ex": "Como 5 >= 6 é falso, o ternário retorna o valor após os dois-pontos: 'Reprovado'.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Qual é a ordem correta da sintaxe do operador ternário?", "opts": ["valorSeVerdadeiro ? condição : valorSeFalso", "condição ? valorSeVerdadeiro : valorSeFalso", "condição : valorSeVerdadeiro ? valorSeFalso", "valorSeFalso ? condição : valorSeVerdadeiro"], "a": 1, "hint": "A condição sempre vem primeiro, antes do símbolo '?'.", "ex": "A sintaxe correta é: condição ? valorSeVerdadeiro : valorSeFalso.", "format": "CONCEITO" },
+        { "type": "code", "q": "Qual código abaixo é EQUIVALENTE a este if/else?\nif (saldo > 0) {\n  status = \"Positivo\";\n} else {\n  status = \"Negativo\";\n}", "opts": ["status = saldo > 0 ? \"Positivo\" : \"Negativo\";", "status = saldo > 0 : \"Positivo\" ? \"Negativo\";", "status = \"Positivo\" ? saldo > 0 : \"Negativo\";", "status = saldo > 0 ? \"Negativo\" : \"Positivo\";"], "a": 0, "hint": "A condição fica antes do '?', o valor verdadeiro logo depois, e o falso após os dois-pontos.", "ex": "A tradução direta mantém a condição primeiro, depois o valor verdadeiro e por fim o falso.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "mcq", "q": "Em qual situação o operador ternário é mais adequado que um if/else tradicional?", "opts": ["Quando há muitas condições complexas encadeadas", "Quando é uma decisão simples para atribuir um valor a uma variável", "Quando não existe nenhuma condição", "Quando o resultado não será usado em lugar nenhum"], "a": 1, "hint": "Pense em decisões curtas e diretas, não em lógicas complicadas.", "ex": "O ternário é ideal para decisões simples e diretas, geralmente na atribuição de um valor.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "js-7",
+      "name": "LAÇO FOR",
+      "difficulty": "INICIANTE",
+      "color": "#22c55e",
+      "icon": "⟳",
+      "summary": "Repita ações um número definido de vezes com o laço for.",
+      "lesson": [
+        { "title": "Repetindo com for", "body": "O laço 'for' tem três partes: início (valor inicial), condição (enquanto for verdadeira, repete) e incremento (o que muda a cada volta). É ideal quando sabemos quantas vezes repetir.", "code": "for (let i = 0; i < 3; i++) {\n  console.log(i);\n}\n// imprime 0, 1, 2" },
+        { "title": "Entendendo o incremento", "body": "'i++' é o mesmo que 'i = i + 1'. A cada repetição do laço, o valor de 'i' aumenta em 1 até que a condição se torne falsa.", "tip": "Se esquecer de incrementar a variável, o laço pode se repetir para sempre (loop infinito)." }
+      ],
+      "questions": [
+        { "type": "code", "q": "Quantas vezes o console.log será executado?\nfor (let i = 0; i < 4; i++) {\n  console.log(i);\n}", "opts": ["3 vezes", "4 vezes", "5 vezes", "Nenhuma vez"], "a": 1, "hint": "O laço roda enquanto i for menor que 4, começando em 0.", "ex": "i assume os valores 0, 1, 2 e 3 (quatro valores) antes de a condição i < 4 se tornar falsa.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "code", "q": "Encontre o erro que causaria um loop infinito:\nfor (let i = 0; i < 5;) {\n  console.log(i);\n}", "opts": ["Falta a condição do laço", "Falta o incremento de i (i++)", "O valor inicial de i está errado", "console.log está incorreto"], "a": 1, "hint": "Sem atualizar 'i', a condição 'i < 5' nunca muda.", "ex": "Sem 'i++', o valor de i nunca aumenta, então a condição i < 5 permanece sempre verdadeira.", "format": "ENCONTRE O ERRO" },
+        { "type": "mcq", "q": "Qual parte do 'for' define quando o laço deve parar de repetir?", "opts": ["O valor inicial", "A condição", "O incremento", "O corpo do laço"], "a": 1, "hint": "É a parte que é testada antes de cada repetição.", "ex": "A condição é avaliada a cada volta; quando se torna falsa, o laço para.", "format": "CONCEITO" },
+        { "type": "code", "q": "Qual será o último valor impresso?\nfor (let i = 1; i <= 3; i++) {\n  console.log(i);\n}", "opts": ["1", "2", "3", "4"], "a": 2, "hint": "O laço para quando i deixa de satisfazer 'i <= 3'.", "ex": "i vai de 1 até 3; quando i chega a 4, a condição i <= 3 é falsa e o laço para, então o último valor impresso é 3.", "format": "PREVISÃO DE RESULTADO" }
+      ]
+    },
+    {
+      "id": "js-8",
+      "name": "ARRAYS",
+      "difficulty": "INICIANTE",
+      "color": "#22c55e",
+      "icon": "▤",
+      "summary": "Crie e acesse listas de valores usando arrays.",
+      "lesson": [
+        { "title": "O que é um array", "body": "Um array é uma lista ordenada de valores, criada com colchetes []. Cada valor tem uma posição (índice), começando em 0.", "code": "let frutas = [\"maçã\", \"banana\", \"uva\"];\nfrutas[0]; // \"maçã\"\nfrutas[1]; // \"banana\"" },
+        { "title": "Tamanho do array", "body": "A propriedade 'length' informa quantos itens existem no array. O último índice válido é sempre length - 1.", "code": "let numeros = [10, 20, 30];\nnumeros.length; // 3\nnumeros[numeros.length - 1]; // 30" }
+      ],
+      "questions": [
+        { "type": "code", "q": "Dado o array abaixo, qual é o valor de cores[1]?\nlet cores = [\"vermelho\", \"azul\", \"verde\"];", "opts": ["\"vermelho\"", "\"azul\"", "\"verde\"", "undefined"], "a": 1, "hint": "Lembre que o índice começa em 0, não em 1.", "ex": "O índice 1 corresponde ao segundo item da lista, que é 'azul'.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "Qual é o índice do primeiro elemento de um array em JavaScript?", "opts": ["0", "1", "-1", "Depende do array"], "a": 0, "hint": "JavaScript começa a contar posições a partir de zero.", "ex": "Arrays em JavaScript são indexados a partir de 0.", "format": "CONCEITO" },
+        { "type": "code", "q": "Dado let lista = [5, 10, 15]; qual é o valor de lista.length?", "opts": ["2", "3", "15", "undefined"], "a": 1, "hint": "Conte quantos itens existem dentro dos colchetes.", "ex": "O array tem três elementos (5, 10 e 15), então lista.length é 3.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "code", "q": "Dado let itens = [\"a\", \"b\", \"c\"]; qual expressão acessa o ÚLTIMO item de forma genérica (sem saber o tamanho de antemão)?", "opts": ["itens[itens.length]", "itens[itens.length - 1]", "itens[-1]", "itens[itens.length + 1]"], "a": 1, "hint": "O último índice válido é sempre um a menos que o tamanho do array.", "ex": "Como os índices começam em 0, o último item está na posição length - 1.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "js-9",
+      "name": "MÉTODOS DE ARRAY",
+      "difficulty": "INICIANTE",
+      "color": "#22c55e",
+      "icon": "✦",
+      "summary": "Adicione itens e percorra arrays com while e métodos básicos.",
+      "lesson": [
+        { "title": "Adicionando itens", "body": "O método 'push' adiciona um novo item ao final do array, aumentando seu length em 1.", "code": "let tarefas = [\"estudar\"];\ntarefas.push(\"exercitar\");\n// tarefas = [\"estudar\", \"exercitar\"]" },
+        { "title": "Laço while", "body": "O 'while' repete um bloco enquanto a condição for verdadeira. É útil quando não sabemos exatamente quantas repetições serão necessárias.", "code": "let i = 0;\nwhile (i < 3) {\n  console.log(i);\n  i++;\n}" }
+      ],
+      "questions": [
+        { "type": "code", "q": "Qual será o conteúdo do array após executar este código?\nlet lista = [\"a\", \"b\"];\nlista.push(\"c\");", "opts": ["[\"a\", \"b\"]", "[\"a\", \"b\", \"c\"]", "[\"c\", \"a\", \"b\"]", "[\"c\"]"], "a": 1, "hint": "push adiciona o item ao final do array, sem remover nada.", "ex": "push adiciona 'c' ao final do array, resultando em [\"a\", \"b\", \"c\"].", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Qual a principal diferença entre 'for' e 'while'?", "opts": ["'for' nunca repete, 'while' sempre repete", "'for' é usado quando já se sabe o número de repetições; 'while' quando depende de uma condição que pode mudar", "Não existe diferença entre eles", "'while' só funciona com arrays"], "a": 1, "hint": "Pense em qual deles tem um contador embutido na própria estrutura.", "ex": "'for' é mais indicado quando o número de repetições é conhecido; 'while' quando depende de uma condição dinâmica.", "format": "CONCEITO" },
+        { "type": "code", "q": "Encontre o erro: este while deveria imprimir 0, 1 e 2, mas nunca para.\nlet i = 0;\nwhile (i < 3) {\n  console.log(i);\n}", "opts": ["Faltou inicializar i", "Faltou incrementar i dentro do laço", "A condição deveria ser i <= 3", "console.log está com erro de sintaxe"], "a": 1, "hint": "Compare com o laço for, que tem uma parte dedicada a atualizar a variável.", "ex": "Sem 'i++' dentro do while, i nunca muda e a condição i < 3 nunca se torna falsa.", "format": "ENCONTRE O ERRO" },
+        { "type": "code", "q": "Qual será o array final?\nlet numeros = [1, 2];\nnumeros.push(3);\nnumeros.push(4);", "opts": ["[1, 2]", "[1, 2, 3]", "[1, 2, 3, 4]", "[4, 3, 1, 2]"], "a": 2, "hint": "Cada push adiciona um item ao final, mantendo a ordem.", "ex": "Os dois push adicionam 3 e depois 4 ao final, resultando em [1, 2, 3, 4].", "format": "PREVISÃO DE RESULTADO" }
+      ]
+    },
+    {
+      "id": "js-10",
+      "name": "FUNÇÕES DECLARADAS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#34d399",
+      "icon": "◆",
+      "summary": "Organize código reutilizável com function declarations.",
+      "lesson": [
+        { "title": "O que é uma função", "body": "Uma função é um bloco de código reutilizável, que pode receber parâmetros e devolver um resultado com 'return'. É declarada com a palavra-chave 'function'.", "code": "function somar(a, b) {\n  return a + b;\n}\nsomar(2, 3); // 5" },
+        { "title": "Parâmetros e argumentos", "body": "Parâmetros são os nomes na definição da função (como 'a' e 'b'). Argumentos são os valores reais passados quando a função é chamada (como 2 e 3).", "tip": "Uma função pode ter zero, um ou vários parâmetros, separados por vírgula." }
+      ],
+      "questions": [
+        { "type": "code", "q": "Qual é o resultado de chamar esta função?\nfunction dobrar(n) {\n  return n * 2;\n}\ndobrar(5);", "opts": ["5", "10", "25", "undefined"], "a": 1, "hint": "A função multiplica o parâmetro recebido por 2.", "ex": "dobrar(5) executa 5 * 2, retornando 10.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Qual palavra-chave é usada para devolver um valor de dentro de uma função?", "opts": ["return", "give", "output", "end"], "a": 0, "hint": "É a palavra que interrompe a função e entrega um resultado.", "ex": "'return' finaliza a execução da função e devolve o valor especificado.", "format": "CONCEITO" },
+        { "type": "code", "q": "Encontre o erro: esta função deveria retornar a soma, mas sempre retorna undefined.\nfunction somar(a, b) {\n  a + b;\n}", "opts": ["Faltou a palavra-chave 'function'", "Faltou o 'return' antes de a + b", "Os parâmetros estão com nomes errados", "Faltaram as chaves {}"], "a": 1, "hint": "Sem essa palavra-chave, o resultado da expressão é calculado mas não é devolvido.", "ex": "Sem 'return', a função calcula a + b mas não devolve o valor, resultando em undefined.", "format": "ENCONTRE O ERRO" },
+        { "type": "code", "q": "Qual é o resultado de chamar saudacao() sem passar argumento?\nfunction saudacao(nome) {\n  return `Olá, ${nome}!`;\n}\nsaudacao();", "opts": ["\"Olá, !\"", "\"Olá, undefined!\"", "Erro obrigatório de execução", "\"Olá, nome!\""], "a": 1, "hint": "Quando um parâmetro não recebe argumento, ele assume um valor especial.", "ex": "Como nenhum argumento foi passado, 'nome' vale undefined, e a string resultante inclui esse valor.", "format": "PREVISÃO DE RESULTADO" }
+      ]
+    },
+    {
+      "id": "js-11",
+      "name": "ARROW FUNCTIONS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#34d399",
+      "icon": "↗",
+      "summary": "Escreva funções de forma mais curta com arrow functions.",
+      "lesson": [
+        { "title": "Sintaxe enxuta", "body": "Arrow functions são uma forma mais curta de escrever funções, usando '=>'. São muito comuns em JavaScript moderno.", "code": "const somar = (a, b) => {\n  return a + b;\n};\nsomar(2, 3); // 5" },
+        { "title": "Retorno implícito", "body": "Quando o corpo da arrow function é uma única expressão, podemos omitir as chaves e o 'return' — o valor é retornado automaticamente.", "code": "const dobrar = n => n * 2;\ndobrar(4); // 8" }
+      ],
+      "questions": [
+        { "type": "code", "q": "Qual é o resultado de chamar esta arrow function?\nconst triplo = n => n * 3;\ntriplo(4);", "opts": ["7", "12", "43", "undefined"], "a": 1, "hint": "O retorno implícito calcula n * 3 automaticamente.", "ex": "Como não há chaves, o valor de n * 3 é retornado diretamente: 4 * 3 = 12.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Qual símbolo caracteriza uma arrow function?", "opts": ["->", "=>", "::", "<>"], "a": 1, "hint": "É formado por um sinal de igual seguido de um sinal de maior.", "ex": "Arrow functions usam o símbolo '=>' entre os parâmetros e o corpo da função.", "format": "CONCEITO" },
+        { "type": "code", "q": "Qual das opções abaixo é EQUIVALENTE a esta função?\nfunction quadrado(n) {\n  return n * n;\n}", "opts": ["const quadrado = n => n * n;", "const quadrado = n => { n * n }", "const quadrado = (n) => return n * n;", "const quadrado => n * n;"], "a": 0, "hint": "Com retorno implícito não se usa chaves nem a palavra 'return'.", "ex": "'const quadrado = n => n * n;' usa retorno implícito, equivalente à função original.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "code", "q": "Qual é o resultado deste código?\nconst dobrar = n => { n * 2 };\nconsole.log(dobrar(5));", "opts": ["10", "undefined", "5", "Erro de sintaxe"], "a": 1, "hint": "Quando se usa chaves, o retorno deixa de ser automático.", "ex": "Como há chaves mas nenhum 'return' explícito, a função não retorna nada, resultando em undefined.", "format": "ENCONTRE O ERRO" }
+      ]
+    },
+    {
+      "id": "js-12",
+      "name": "PARÂMETROS E RETORNO",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#34d399",
+      "icon": "▶",
+      "summary": "Explore como funções recebem dados e devolvem resultados.",
+      "lesson": [
+        { "title": "Valores padrão", "body": "Podemos definir um valor padrão para um parâmetro, usado quando nenhum argumento é passado para aquela posição.", "code": "function saudacao(nome = \"visitante\") {\n  return `Olá, ${nome}!`;\n}\nsaudacao(); // \"Olá, visitante!\"" },
+        { "title": "Retorno encerra a função", "body": "Quando o 'return' é executado, a função para imediatamente, mesmo que haja código depois dele.", "code": "function checar(n) {\n  if (n < 0) {\n    return \"negativo\";\n  }\n  return \"positivo\";\n}" }
+      ],
+      "questions": [
+        { "type": "code", "q": "Qual é o resultado de chamar esta função?\nfunction saudacao(nome = \"visitante\") {\n  return `Olá, ${nome}!`;\n}\nsaudacao(\"Léo\");", "opts": ["\"Olá, visitante!\"", "\"Olá, Léo!\"", "\"Olá, undefined!\"", "Erro de execução"], "a": 1, "hint": "O valor padrão só é usado quando nenhum argumento é fornecido.", "ex": "Como \"Léo\" foi passado como argumento, ele substitui o valor padrão \"visitante\".", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "code", "q": "Qual é o resultado desta chamada?\nfunction checar(n) {\n  if (n < 0) {\n    return \"negativo\";\n  }\n  return \"positivo\";\n  console.log(\"fim\");\n}\nchecar(-5);", "opts": ["\"negativo\", depois imprime \"fim\"", "\"negativo\", sem imprimir \"fim\"", "\"positivo\"", "undefined"], "a": 1, "hint": "Lembre que 'return' interrompe a função imediatamente.", "ex": "Como n < 0 é verdadeiro, a função retorna \"negativo\" e encerra ali, nunca alcançando o console.log.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "O que acontece com o código escrito depois de um 'return' dentro de uma função?", "opts": ["É executado normalmente", "Nunca é executado, pois a função já encerrou", "Só é executado se houver erro", "Gera um erro de sintaxe"], "a": 1, "hint": "Pense no 'return' como uma saída imediata da função.", "ex": "Código após um 'return' alcançado nunca é executado, pois a função já terminou ali.", "format": "CONCEITO" },
+        { "type": "code", "q": "Qual chamada usará o valor padrão do parâmetro?\nfunction multiplicar(a, b = 2) {\n  return a * b;\n}", "opts": ["multiplicar(5, 3)", "multiplicar(5)", "multiplicar(5, 0)", "multiplicar(5, 10)"], "a": 1, "hint": "O valor padrão só entra em ação quando o argumento correspondente não é passado.", "ex": "Ao chamar multiplicar(5), nenhum valor é passado para 'b', então ele assume o padrão 2.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "js-13",
+      "name": "OBJETOS LITERAIS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#1cb0f6",
+      "icon": "◫",
+      "summary": "Represente dados estruturados com objetos.",
+      "lesson": [
+        { "title": "Chaves e valores", "body": "Um objeto agrupa dados relacionados em pares de chave e valor, usando chaves {}. Cada chave é uma propriedade que aponta para um valor.", "code": "let pessoa = {\n  nome: \"Carlos\",\n  idade: 30\n};" },
+        { "title": "Acessando propriedades", "body": "Podemos acessar uma propriedade com ponto (objeto.propriedade) ou com colchetes (objeto[\"propriedade\"]). A notação de ponto é a mais comum.", "code": "pessoa.nome; // \"Carlos\"\npessoa[\"idade\"]; // 30" }
+      ],
+      "questions": [
+        { "type": "code", "q": "Dado o objeto abaixo, qual é o valor de produto.preco?\nlet produto = {\n  nome: \"Caneta\",\n  preco: 2.5\n};", "opts": ["\"Caneta\"", "2.5", "undefined", "\"preco\""], "a": 1, "hint": "Use a notação de ponto para acessar a propriedade 'preco'.", "ex": "produto.preco acessa diretamente o valor associado à chave 'preco', que é 2.5.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "Como um objeto organiza seus dados?", "opts": ["Em uma lista ordenada por índice numérico", "Em pares de chave e valor", "Apenas como texto puro", "Em uma única variável sem estrutura"], "a": 1, "hint": "Pense na diferença entre array (índices) e objeto.", "ex": "Objetos organizam dados em pares de chave (nome da propriedade) e valor.", "format": "CONCEITO" },
+        { "type": "code", "q": "Dado let carro = { marca: \"Fiat\" }; qual expressão acessa o valor \"Fiat\" usando colchetes?", "opts": ["carro.marca", "carro[\"marca\"]", "carro(marca)", "carro{marca}"], "a": 1, "hint": "A notação com colchetes usa o nome da propriedade entre aspas.", "ex": "carro[\"marca\"] é a forma correta de acessar a propriedade usando colchetes.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "code", "q": "Qual é o resultado de acessar uma propriedade que não existe no objeto?\nlet livro = { titulo: \"Dom Casmurro\" };\nlivro.autor;", "opts": ["\"\" (string vazia)", "undefined", "null", "Erro de execução"], "a": 1, "hint": "JavaScript não gera erro ao acessar uma propriedade inexistente, apenas retorna um valor especial.", "ex": "Acessar uma propriedade que não existe retorna undefined, sem gerar erro.", "format": "PREVISÃO DE RESULTADO" }
+      ]
+    },
+    {
+      "id": "js-14",
+      "name": "ALTERANDO OBJETOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#1cb0f6",
+      "icon": "◧",
+      "summary": "Modifique e adicione propriedades a um objeto existente.",
+      "lesson": [
+        { "title": "Alterando valores", "body": "Podemos alterar o valor de uma propriedade existente simplesmente atribuindo um novo valor a ela, usando o operador de igual.", "code": "let pessoa = { nome: \"Ana\", idade: 25 };\npessoa.idade = 26;\n// { nome: \"Ana\", idade: 26 }" },
+        { "title": "Adicionando novas propriedades", "body": "Se atribuirmos um valor a uma propriedade que não existe, o JavaScript cria essa propriedade automaticamente no objeto.", "code": "let pessoa = { nome: \"Ana\" };\npessoa.cidade = \"Recife\";\n// { nome: \"Ana\", cidade: \"Recife\" }" }
+      ],
+      "questions": [
+        { "type": "code", "q": "Qual será o objeto final após esta execução?\nlet produto = { nome: \"Mouse\", preco: 50 };\nproduto.preco = 45;", "opts": ["{ nome: \"Mouse\", preco: 50 }", "{ nome: \"Mouse\", preco: 45 }", "{ preco: 45 }", "Erro, não é possível alterar um objeto"], "a": 1, "hint": "A atribuição direta substitui o valor antigo da propriedade.", "ex": "A atribuição produto.preco = 45 substitui o valor 50 por 45 na propriedade preco.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "code", "q": "Qual será o objeto final após esta execução?\nlet usuario = { nome: \"Léo\" };\nusuario.email = \"leo@exemplo.com\";", "opts": ["{ nome: \"Léo\" }", "{ email: \"leo@exemplo.com\" }", "{ nome: \"Léo\", email: \"leo@exemplo.com\" }", "Erro, propriedade não existe"], "a": 2, "hint": "Atribuir a uma propriedade inexistente a cria no objeto, sem apagar as outras.", "ex": "Como 'email' não existia, ela é criada e adicionada ao objeto, mantendo 'nome'.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "O que acontece ao atribuir um valor a uma propriedade que ainda não existe em um objeto?", "opts": ["Gera um erro de execução", "A propriedade é criada automaticamente", "Nada acontece, a atribuição é ignorada", "O objeto inteiro é apagado"], "a": 1, "hint": "Diferente de arrays com índice fora do alcance, objetos aceitam novas chaves livremente.", "ex": "JavaScript cria a propriedade automaticamente ao receber uma atribuição para uma chave nova.", "format": "CONCEITO" },
+        { "type": "code", "q": "Encontre o erro: o objetivo era mudar o nome do produto, mas não funcionou como esperado.\nlet produto = { nome: \"Teclado\" };\nproduto.nome == \"Teclado Mecânico\";", "opts": ["Faltou o 'const' antes de produto", "Foi usado '==' (comparação) em vez de '=' (atribuição)", "O nome da propriedade está errado", "Faltaram aspas no valor novo"], "a": 1, "hint": "Compare os símbolos usados para comparar valores e para atribuir valores.", "ex": "'==' apenas compara valores; para alterar a propriedade, é preciso usar '=' (atribuição).", "format": "CORRIJA O ERRO" }
+      ]
+    },
+    {
+      "id": "js-15",
+      "name": "MÉTODOS DE OBJETO",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#1cb0f6",
+      "icon": "◍",
+      "summary": "Adicione funções dentro de objetos para representar comportamentos.",
+      "lesson": [
+        { "title": "Funções dentro de objetos", "body": "Quando uma propriedade de um objeto é uma função, ela é chamada de método. Métodos representam ações que o objeto pode realizar.", "code": "let pessoa = {\n  nome: \"Ana\",\n  cumprimentar: function() {\n    return `Oi, eu sou ${this.nome}`;\n  }\n};\npessoa.cumprimentar(); // \"Oi, eu sou Ana\"" },
+        { "title": "A palavra 'this'", "body": "Dentro de um método, 'this' se refere ao próprio objeto que contém o método, permitindo acessar suas outras propriedades.", "tip": "'this' dentro de um método normal aponta para o objeto que chamou o método." }
+      ],
+      "questions": [
+        { "type": "code", "q": "Qual é o resultado de chamar este método?\nlet carro = {\n  modelo: \"Uno\",\n  descrever: function() {\n    return `Modelo: ${this.modelo}`;\n  }\n};\ncarro.descrever();", "opts": ["\"Modelo: Uno\"", "\"Modelo: undefined\"", "\"this.modelo\"", "Erro de execução"], "a": 0, "hint": "'this' dentro do método aponta para o próprio objeto 'carro'.", "ex": "'this.modelo' acessa a propriedade modelo do próprio objeto, resultando em 'Modelo: Uno'.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Como chamamos uma função que é uma propriedade de um objeto?", "opts": ["Variável", "Parâmetro", "Método", "Argumento"], "a": 2, "hint": "É um termo específico usado para funções dentro de objetos.", "ex": "Uma função armazenada como propriedade de um objeto é chamada de método.", "format": "CONCEITO" },
+        { "type": "code", "q": "Dentro de um método, a que 'this' se refere?", "opts": ["Sempre à variável global", "Ao objeto que contém o método", "A um número aleatório", "A outra função qualquer"], "a": 1, "hint": "Pense em 'this' como uma forma do objeto se referir a si mesmo.", "ex": "'this' dentro de um método aponta para o objeto ao qual o método pertence.", "format": "CONCEITO" },
+        { "type": "code", "q": "Qual é o resultado desta chamada?\nlet conta = {\n  saldo: 100,\n  depositar: function(valor) {\n    this.saldo = this.saldo + valor;\n    return this.saldo;\n  }\n};\nconta.depositar(50);", "opts": ["50", "100", "150", "undefined"], "a": 2, "hint": "O método soma o valor recebido ao saldo atual do objeto.", "ex": "this.saldo (100) + valor (50) resulta em 150, que também é atribuído de volta a this.saldo.", "format": "PREVISÃO DE RESULTADO" }
+      ]
+    },
+    {
+      "id": "js-16",
+      "name": "SELECIONANDO ELEMENTOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#0ea5e9",
+      "icon": "⌕",
+      "summary": "Use querySelector para encontrar elementos HTML a partir do JavaScript.",
+      "lesson": [
+        { "title": "O que é o DOM", "body": "O DOM (Document Object Model) é a representação da página HTML que o JavaScript pode ler e modificar. Cada tag HTML vira um elemento acessível pelo código.", "tip": "Pense no DOM como uma ponte entre o HTML da página e o JavaScript que a controla." },
+        { "title": "document.querySelector", "body": "'document.querySelector' encontra o PRIMEIRO elemento que corresponde a um seletor CSS (como '.classe', '#id' ou uma tag). Retorna 'null' se não encontrar nada.", "code": "const titulo = document.querySelector(\"h1\");\nconst botao = document.querySelector(\"#enviar\");\nconst item = document.querySelector(\".produto\");" }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "O que faz document.querySelector(\".card\")?", "opts": ["Seleciona todos os elementos com a classe 'card'", "Seleciona o primeiro elemento com a classe 'card'", "Cria um novo elemento com a classe 'card'", "Remove elementos com a classe 'card'"], "a": 1, "hint": "querySelector sempre retorna apenas UM elemento, o primeiro encontrado.", "ex": "querySelector busca e retorna apenas o primeiro elemento que corresponde ao seletor informado.", "format": "CONCEITO" },
+        { "type": "code", "q": "Qual seletor CSS busca um elemento pelo id \"titulo\"?", "opts": ["document.querySelector(\".titulo\")", "document.querySelector(\"#titulo\")", "document.querySelector(\"titulo\")", "document.querySelector(\"*titulo\")"], "a": 1, "hint": "IDs em CSS são referenciados com o símbolo #.", "ex": "O símbolo '#' antes do nome indica busca por id, então '#titulo' busca o elemento com id=\"titulo\".", "format": "LEITURA DE CÓDIGO" },
+        { "type": "code", "q": "O que document.querySelector retorna quando nenhum elemento corresponde ao seletor?", "opts": ["Uma string vazia", "0", "null", "Um erro é sempre lançado"], "a": 2, "hint": "Não é um erro, é um valor que representa 'nada encontrado'.", "ex": "Quando nenhum elemento é encontrado, querySelector retorna null, sem gerar erro.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "code", "q": "Considerando o HTML <button class=\"btn-enviar\">Enviar</button>, qual seletor encontra esse botão?", "opts": ["document.querySelector(\"#btn-enviar\")", "document.querySelector(\".btn-enviar\")", "document.querySelector(\"btn-enviar\")", "document.querySelector(\"Enviar\")"], "a": 1, "hint": "O botão usa 'class', não 'id'.", "ex": "Como o botão tem class=\"btn-enviar\", o seletor correto usa o ponto: '.btn-enviar'.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "js-17",
+      "name": "ALTERANDO ELEMENTOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#0ea5e9",
+      "icon": "◒",
+      "summary": "Modifique texto e estilo de elementos já existentes na página.",
+      "lesson": [
+        { "title": "Mudando o texto", "body": "A propriedade 'textContent' permite ler ou alterar o texto de um elemento. Ao atribuir um novo valor, o conteúdo exibido na página muda imediatamente.", "code": "const titulo = document.querySelector(\"h1\");\ntitulo.textContent = \"Novo título\";" },
+        { "title": "Mudando o estilo", "body": "A propriedade 'style' permite alterar o CSS de um elemento diretamente pelo JavaScript, usando nomes em camelCase (ex: backgroundColor em vez de background-color).", "code": "const caixa = document.querySelector(\".caixa\");\ncaixa.style.backgroundColor = \"blue\";\ncaixa.style.fontSize = \"20px\";" }
+      ],
+      "questions": [
+        { "type": "code", "q": "Depois de executar este código, o que aparece no elemento h1?\nconst titulo = document.querySelector(\"h1\");\ntitulo.textContent = \"Bem-vindo\";", "opts": ["O texto original do HTML", "\"Bem-vindo\"", "\"titulo\"", "Nada, o elemento é removido"], "a": 1, "hint": "textContent substitui o conteúdo de texto do elemento pelo novo valor atribuído.", "ex": "A atribuição substitui o texto do h1 pelo novo valor: 'Bem-vindo'.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "code", "q": "Qual é a forma correta de mudar a cor de fundo de um elemento pelo JavaScript?", "opts": ["elemento.style.background-color = \"red\";", "elemento.style.backgroundColor = \"red\";", "elemento.css.backgroundColor = \"red\";", "elemento.backgroundColor = \"red\";"], "a": 1, "hint": "Propriedades CSS com hífen viram camelCase em JavaScript.", "ex": "Em JavaScript, propriedades CSS com hífen (background-color) usam camelCase (backgroundColor).", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "mcq", "q": "O que a propriedade 'textContent' de um elemento representa?", "opts": ["O estilo CSS do elemento", "O conteúdo de texto do elemento", "O id do elemento", "A classe do elemento"], "a": 1, "hint": "O nome já indica: conteúdo de texto.", "ex": "textContent representa (e permite alterar) o conteúdo textual do elemento.", "format": "CONCEITO" },
+        { "type": "code", "q": "Encontre o erro: o código deveria deixar o texto do parágrafo vermelho.\nconst p = document.querySelector(\"p\");\np.style.color: \"red\";", "opts": ["Deveria usar '=' em vez de ':'", "Faltou usar textContent em vez de style", "querySelector está com sintaxe errada", "'red' deveria ser um número"], "a": 0, "hint": "Em JavaScript, atribuições usam o sinal de igual, não dois-pontos.", "ex": "A atribuição de uma propriedade em JavaScript usa '=', não ':' (que é usado em CSS).", "format": "ENCONTRE O ERRO" }
+      ]
+    },
+    {
+      "id": "js-18",
+      "name": "CRIANDO ELEMENTOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#0ea5e9",
+      "icon": "▦",
+      "summary": "Crie novos elementos HTML dinamicamente e adicione-os à página.",
+      "lesson": [
+        { "title": "Criando um elemento", "body": "'document.createElement' cria um novo elemento HTML em memória, que ainda não aparece na página até ser adicionado a ela.", "code": "const novoItem = document.createElement(\"li\");\nnovoItem.textContent = \"Novo item\";" },
+        { "title": "Adicionando à página", "body": "'appendChild' insere um elemento como o último filho de outro elemento já existente na página, fazendo-o aparecer visualmente.", "code": "const lista = document.querySelector(\"ul\");\nconst novoItem = document.createElement(\"li\");\nnovoItem.textContent = \"Novo item\";\nlista.appendChild(novoItem);" }
+      ],
+      "questions": [
+        { "type": "code", "q": "Depois deste código, o novo <li> aparece na página?\nconst item = document.createElement(\"li\");\nitem.textContent = \"Café\";", "opts": ["Sim, aparece automaticamente", "Não, pois ainda não foi adicionado a nenhum elemento da página", "Sim, mas sem o texto", "Não, pois createElement gera erro"], "a": 1, "hint": "createElement apenas cria o elemento na memória, não o insere na página.", "ex": "O elemento criado só existe em memória; ele só aparece na página após ser adicionado com um método como appendChild.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Qual método insere um elemento como o último filho de outro elemento na página?", "opts": ["createElement", "querySelector", "appendChild", "textContent"], "a": 2, "hint": "O nome do método sugere 'anexar um filho'.", "ex": "appendChild adiciona um elemento como o último filho de outro elemento já presente na página.", "format": "CONCEITO" },
+        { "type": "code", "q": "Coloque em ordem lógica os passos para criar um item de lista e exibi-lo na página.\n1. lista.appendChild(item)\n2. const item = document.createElement(\"li\")\n3. item.textContent = \"Novo\"", "opts": ["1, 2, 3", "2, 3, 1", "3, 1, 2", "2, 1, 3"], "a": 1, "hint": "Primeiro é preciso criar o elemento, depois definir seu conteúdo, e só então inseri-lo na página.", "ex": "A ordem correta é: criar o elemento, definir seu texto e por fim adicioná-lo à página com appendChild.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "code", "q": "Qual é o resultado final na página após executar este código, sabendo que <ul id=\"lista\"></ul> já existe vazia?\nconst lista = document.querySelector(\"#lista\");\nconst item = document.createElement(\"li\");\nitem.textContent = \"Pão\";\nlista.appendChild(item);", "opts": ["A lista continua vazia", "A lista passa a ter um item de texto \"Pão\"", "Um erro é gerado, pois a lista estava vazia", "O elemento <ul> é substituído pelo <li>"], "a": 1, "hint": "O item criado é adicionado como filho da lista já existente.", "ex": "O <li> com texto 'Pão' é criado e inserido dentro da <ul>, que passa a exibi-lo.", "format": "PREVISÃO DE RESULTADO" }
+      ]
+    },
+    {
+      "id": "js-19",
+      "name": "ADDEVENTLISTENER",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#38bdf8",
+      "icon": "⇄",
+      "summary": "Faça a página reagir a ações do usuário com addEventListener.",
+      "lesson": [
+        { "title": "Escutando eventos", "body": "'addEventListener' registra uma função que será executada quando um evento específico ocorrer em um elemento, como um clique.", "code": "const botao = document.querySelector(\"button\");\nbotao.addEventListener(\"click\", function() {\n  console.log(\"Botão clicado!\");\n});" },
+        { "title": "Usando arrow function", "body": "É comum usar arrow functions como a função de callback do addEventListener, pois o código fica mais compacto.", "code": "botao.addEventListener(\"click\", () => {\n  console.log(\"Clicado!\");\n});" }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Qual é a função de addEventListener?", "opts": ["Criar um novo elemento HTML", "Executar uma função quando um evento específico ocorre em um elemento", "Remover um elemento da página", "Alterar o estilo CSS de um elemento imediatamente"], "a": 1, "hint": "Pense na palavra 'listener' (ouvinte) de um evento.", "ex": "addEventListener registra uma função para ser executada quando o evento indicado acontecer.", "format": "CONCEITO" },
+        { "type": "code", "q": "Qual é o primeiro argumento passado para addEventListener neste código?\nbotao.addEventListener(\"click\", minhaFuncao);", "opts": ["botao", "\"click\"", "minhaFuncao", "addEventListener"], "a": 1, "hint": "O primeiro argumento indica QUAL evento será observado.", "ex": "\"click\" é o primeiro argumento, indicando o tipo de evento que deve disparar a função.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "code", "q": "Quando a função dentro do addEventListener é executada?", "opts": ["Assim que o código é carregado, uma única vez", "Toda vez que o evento especificado ocorre no elemento", "Nunca, apenas é declarada", "Somente quando a página é recarregada"], "a": 1, "hint": "A função fica esperando o evento acontecer, podendo rodar várias vezes.", "ex": "A função de callback roda toda vez que o evento especificado (como 'click') ocorre no elemento.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "code", "q": "Encontre o erro: o clique no botão deveria mudar o texto, mas nada acontece.\nconst botao = document.querySelector(\"button\");\nbotao.addEventListener(\"clique\", () => {\n  botao.textContent = \"Clicado\";\n});", "opts": ["O nome do evento deveria ser \"click\", não \"clique\"", "addEventListener não aceita arrow function", "Faltou usar 'return' na função", "querySelector deveria ser querySelectorAll"], "a": 0, "hint": "Os nomes dos eventos em JavaScript são padronizados, em inglês.", "ex": "O nome correto do evento é \"click\" (em inglês); \"clique\" não é reconhecido pelo navegador.", "format": "ENCONTRE O ERRO" }
+      ]
+    },
+    {
+      "id": "js-20",
+      "name": "EVENTOS DE FORMULÁRIO",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#38bdf8",
+      "icon": "⇆",
+      "summary": "Capture o envio de formulários e leia dados digitados pelo usuário.",
+      "lesson": [
+        { "title": "O evento submit", "body": "Formulários disparam o evento 'submit' quando são enviados, seja clicando em um botão do tipo submit ou pressionando Enter em um campo.", "code": "const form = document.querySelector(\"form\");\nform.addEventListener(\"submit\", (evento) => {\n  console.log(\"Formulário enviado\");\n});" },
+        { "title": "preventDefault", "body": "Por padrão, o envio de um formulário recarrega a página. 'evento.preventDefault()' cancela esse comportamento padrão, permitindo tratar os dados com JavaScript sem recarregar.", "code": "form.addEventListener(\"submit\", (evento) => {\n  evento.preventDefault();\n  console.log(\"Envio tratado sem recarregar\");\n});" }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "O que acontece por padrão quando um formulário HTML é enviado, sem nenhum JavaScript?", "opts": ["Nada acontece", "A página recarrega", "O navegador trava", "Os campos são apagados sem enviar nada"], "a": 1, "hint": "É esse comportamento padrão que 'preventDefault' costuma cancelar.", "ex": "Por padrão, o envio de um formulário recarrega a página (ou navega para a action definida).", "format": "CONCEITO" },
+        { "type": "code", "q": "Qual é a função de evento.preventDefault() dentro do listener de submit?", "opts": ["Envia o formulário mais rápido", "Impede o comportamento padrão de recarregar a página", "Apaga os dados do formulário", "Cria um novo formulário"], "a": 1, "hint": "O nome sugere 'prevenir o padrão'.", "ex": "preventDefault() cancela o comportamento padrão do evento, como o recarregamento da página no submit.", "format": "CONCEITO" },
+        { "type": "code", "q": "Encontre o erro: o formulário ainda recarrega a página ao ser enviado.\nform.addEventListener(\"submit\", (evento) => {\n  console.log(\"Enviado\");\n});", "opts": ["Faltou chamar evento.preventDefault()", "O nome do evento deveria ser \"send\"", "addEventListener precisa de 3 argumentos", "console.log não pode ser usado aqui"], "a": 0, "hint": "Falta a chamada que impede o comportamento padrão do navegador.", "ex": "Sem evento.preventDefault(), o navegador continua com o comportamento padrão de recarregar a página.", "format": "ENCONTRE O ERRO" },
+        { "type": "code", "q": "Qual é a ordem correta para tratar o envio de um formulário sem recarregar a página?", "opts": ["Chamar preventDefault() e depois adicionar o listener de submit", "Adicionar o listener de submit, e dentro dele chamar preventDefault() primeiro", "Não é possível evitar o recarregamento", "Chamar preventDefault() fora de qualquer listener"], "a": 1, "hint": "O preventDefault só faz sentido dentro da função que trata o evento.", "ex": "O correto é registrar o listener de submit e, dentro da função de callback, chamar preventDefault() para evitar o recarregamento.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "js-21",
+      "name": "FETCH BÁSICO",
+      "difficulty": "AVANÇADO",
+      "color": "#a78bfa",
+      "icon": "⌗",
+      "summary": "Busque dados de um servidor usando a função fetch.",
+      "lesson": [
+        { "title": "Buscando dados externos", "body": "'fetch' é a função usada para fazer requisições a servidores e buscar dados pela internet, como um endereço de API. Ela retorna uma Promise, um objeto que representa um valor que estará disponível no futuro.", "code": "fetch(\"https://api.exemplo.com/dados\")\n  .then(resposta => resposta.json())\n  .then(dados => console.log(dados));" },
+        { "title": "Encadeando .then", "body": "Como fetch retorna uma Promise, usamos '.then()' para executar código somente depois que a resposta chegar, sem travar o restante do programa.", "tip": "O primeiro .then geralmente converte a resposta para JSON antes de usar os dados." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "O que a função fetch é usada para fazer?", "opts": ["Criar elementos HTML", "Fazer requisições para buscar dados de um servidor", "Declarar variáveis globais", "Validar formulários"], "a": 1, "hint": "Pense em 'buscar dados' de fora da página, pela internet.", "ex": "fetch é usado para fazer requisições e buscar dados de servidores/APIs pela internet.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "O que fetch retorna, permitindo o uso de .then()?", "opts": ["Um array", "Um objeto comum", "Uma Promise", "Uma string"], "a": 2, "hint": "É um tipo de objeto que representa um valor disponível no futuro.", "ex": "fetch retorna uma Promise, que representa um resultado que ainda vai chegar.", "format": "CONCEITO" },
+        { "type": "code", "q": "Qual é a ordem correta de execução deste código?\nfetch(\"url\")\n  .then(resposta => resposta.json())\n  .then(dados => console.log(dados));", "opts": ["Os dados são exibidos antes da requisição ser feita", "A requisição é feita, a resposta é convertida para JSON e só depois os dados são exibidos", "console.log roda antes de fetch ser chamado", "resposta.json() é executado antes de fetch"], "a": 1, "hint": "Cada .then só roda depois que o passo anterior termina.", "ex": "fetch inicia a requisição; o primeiro .then converte a resposta para JSON; o segundo .then usa os dados já convertidos.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "code", "q": "Encontre o erro: este código não consegue exibir os dados corretamente.\nfetch(\"https://api.exemplo.com/dados\")\n  .then(dados => console.log(dados));", "opts": ["Faltou converter a resposta com .json() antes de usar os dados", "fetch não aceita URLs com https", "console.log não funciona dentro de .then", "Faltou usar 'await' obrigatoriamente"], "a": 0, "hint": "O primeiro valor recebido pelo .then é a resposta bruta, não os dados prontos.", "ex": "Sem converter com .json(), o .then recebe o objeto de resposta bruto, não os dados já utilizáveis.", "format": "ENCONTRE O ERRO" }
+      ]
+    },
+    {
+      "id": "js-22",
+      "name": "JSON",
+      "difficulty": "AVANÇADO",
+      "color": "#a78bfa",
+      "icon": "▧",
+      "summary": "Converta dados entre texto JSON e objetos JavaScript.",
+      "lesson": [
+        { "title": "O que é JSON", "body": "JSON (JavaScript Object Notation) é um formato de texto usado para trocar dados entre sistemas, muito parecido com a sintaxe de objetos do JavaScript.", "code": "// Texto JSON (string)\n'{\"nome\": \"Ana\", \"idade\": 25}'" },
+        { "title": "parse e stringify", "body": "'JSON.parse' converte um texto JSON em um objeto JavaScript. 'JSON.stringify' faz o caminho inverso: converte um objeto JavaScript em texto JSON.", "code": "let texto = '{\"nome\": \"Ana\"}';\nlet objeto = JSON.parse(texto);\nobjeto.nome; // \"Ana\"\n\nJSON.stringify(objeto); // '{\"nome\":\"Ana\"}'" }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "O que JSON.parse faz?", "opts": ["Converte um objeto JavaScript em texto JSON", "Converte um texto JSON em um objeto JavaScript", "Apaga um objeto", "Envia dados para um servidor"], "a": 1, "hint": "Pense na palavra 'parse' como 'interpretar/analisar' um texto.", "ex": "JSON.parse transforma uma string no formato JSON em um objeto JavaScript utilizável.", "format": "CONCEITO" },
+        { "type": "code", "q": "Qual é o resultado deste código?\nlet texto = '{\"nome\": \"Léo\"}';\nlet obj = JSON.parse(texto);\nconsole.log(obj.nome);", "opts": ["'{\"nome\": \"Léo\"}'", "\"Léo\"", "undefined", "Erro de execução"], "a": 1, "hint": "Depois do parse, obj é um objeto normal do JavaScript.", "ex": "Após JSON.parse, obj.nome acessa a propriedade normalmente, retornando \"Léo\".", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Qual função é usada para transformar um objeto JavaScript em uma string JSON, por exemplo para enviar a um servidor?", "opts": ["JSON.parse", "JSON.stringify", "JSON.convert", "JSON.toObject"], "a": 1, "hint": "Pense em transformar algo em 'string' de texto.", "ex": "JSON.stringify converte um objeto JavaScript em uma string no formato JSON.", "format": "CONCEITO" },
+        { "type": "code", "q": "Encontre o erro: o código deveria acessar a idade dentro do texto JSON.\nlet texto = '{\"idade\": 30}';\nconsole.log(texto.idade);", "opts": ["Faltou usar JSON.parse(texto) antes de acessar .idade", "A propriedade deveria se chamar 'age'", "console.log não aceita números", "Faltaram aspas na chave idade"], "a": 0, "hint": "'texto' ainda é uma string, não um objeto — não tem a propriedade idade diretamente.", "ex": "Como 'texto' é apenas uma string, é preciso convertê-la com JSON.parse antes de acessar suas propriedades.", "format": "ENCONTRE O ERRO" }
+      ]
+    },
+    {
+      "id": "js-23",
+      "name": "ASYNC/AWAIT",
+      "difficulty": "AVANÇADO",
+      "color": "#a78bfa",
+      "icon": "⏱",
+      "summary": "Entenda o conceito de código assíncrono com async/await.",
+      "lesson": [
+        { "title": "Esperando resultados", "body": "'async/await' é uma forma mais legível de trabalhar com Promises. A palavra 'await' pausa a função até que a Promise seja resolvida, sem travar o restante da página.", "code": "async function buscarDados() {\n  const resposta = await fetch(\"https://api.exemplo.com/dados\");\n  const dados = await resposta.json();\n  console.log(dados);\n}" },
+        { "title": "Função async", "body": "Só é possível usar 'await' dentro de uma função marcada como 'async'. Isso avisa ao JavaScript que essa função pode conter pausas assíncronas.", "tip": "Pense em 'async/await' como uma forma mais direta de escrever o mesmo comportamento do .then()." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Dentro de qual tipo de função é permitido usar a palavra 'await'?", "opts": ["Qualquer função normal", "Somente dentro de uma função marcada como 'async'", "Somente dentro do escopo global", "Await não pode ser usado em nenhuma função"], "a": 1, "hint": "A palavra que marca a função dá o nome à dupla 'async/await'.", "ex": "'await' só é válido dentro de uma função declarada com 'async'.", "format": "CONCEITO" },
+        { "type": "code", "q": "O que a palavra 'await' faz na linha abaixo?\nconst resposta = await fetch(\"url\");", "opts": ["Cancela a requisição imediatamente", "Pausa a execução da função até a Promise do fetch ser resolvida", "Converte a resposta em JSON automaticamente", "Faz a requisição duas vezes"], "a": 1, "hint": "Pense em 'await' como 'esperar' o resultado antes de continuar.", "ex": "'await' pausa a execução daquela função até que a Promise seja resolvida, entregando o valor final.", "format": "CONCEITO" },
+        { "type": "code", "q": "Encontre o erro neste código:\nfunction buscarDados() {\n  const resposta = await fetch(\"url\");\n}", "opts": ["Faltou o 'async' antes de 'function'", "fetch não pode ser usado com await", "await deveria vir depois de resposta", "Faltou o ponto e vírgula"], "a": 0, "hint": "'await' exige que a função onde está seja declarada de um jeito especial.", "ex": "Como a função não está marcada como 'async', usar 'await' dentro dela gera um erro de sintaxe.", "format": "ENCONTRE O ERRO" },
+        { "type": "code", "q": "Qual das opções abaixo é EQUIVALENTE, em comportamento, a este código com .then?\nfetch(\"url\").then(r => r.json()).then(d => console.log(d));", "opts": ["async function f() { await fetch(\"url\"); }", "async function f() { const r = await fetch(\"url\"); const d = await r.json(); console.log(d); }", "function f() { const r = fetch(\"url\"); console.log(r); }", "async function f() { console.log(fetch(\"url\")); }"], "a": 1, "hint": "É preciso aguardar tanto o fetch quanto a conversão para JSON antes de usar os dados.", "ex": "A versão equivalente aguarda o fetch, depois aguarda a conversão .json(), e só então usa os dados, igual ao encadeamento de .then.", "format": "DECISÃO DE CÓDIGO" }
+      ]
+    },
+    {
+      "id": "js-24",
+      "name": "CONSOLE.LOG NA PRÁTICA",
+      "difficulty": "AVANÇADO",
+      "color": "#f472b6",
+      "icon": "◉",
+      "summary": "Use console.log estrategicamente para investigar o comportamento do código.",
+      "lesson": [
+        { "title": "Console como ferramenta de investigação", "body": "'console.log' imprime valores no console do navegador, ajudando a entender o que uma variável contém em um determinado momento do programa, sem interromper a execução.", "code": "let total = 10 + 5;\nconsole.log(total); // ajuda a verificar o valor antes de continuar" },
+        { "title": "Investigando passo a passo", "body": "Colocar vários console.log em pontos diferentes do código ajuda a descobrir exatamente onde um valor deixou de ser o esperado, isolando o problema.", "tip": "Dar um rótulo ao log, como console.log('total:', total), facilita identificar qual valor é qual." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Qual é a principal utilidade de espalhar console.log pelo código durante o desenvolvimento?", "opts": ["Deixar o código mais rápido", "Investigar o valor de variáveis em diferentes pontos da execução", "Substituir os testes automatizados por completo", "Impedir que o código gere erros"], "a": 1, "hint": "Pense em console.log como uma forma de 'espiar' o que está acontecendo.", "ex": "console.log é usado principalmente para investigar valores de variáveis durante o desenvolvimento.", "format": "CONCEITO" },
+        { "type": "code", "q": "Ao rodar este código, o que aparece no console?\nlet preco = 10;\nlet desconto = 2;\nconsole.log(\"total:\", preco - desconto);", "opts": ["\"total:\" 8", "\"total: 8\"", "8", "\"preco - desconto\""], "a": 0, "hint": "console.log pode receber vários argumentos separados por vírgula, exibindo todos juntos.", "ex": "console.log com vírgula exibe os dois valores lado a lado: o texto \"total:\" e o resultado 8.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "code", "q": "Um desenvolvedor quer descobrir por que 'resultado' está undefined. Qual é a estratégia mais indicada?", "opts": ["Apagar a variável e torcer para funcionar", "Colocar console.log antes e depois da atribuição de 'resultado' para ver em qual ponto o valor muda", "Reescrever todo o programa do zero", "Ignorar o problema, pois undefined é sempre normal"], "a": 1, "hint": "A ideia é isolar o ponto exato onde o valor deixa de ser o esperado.", "ex": "Colocar logs antes e depois de pontos-chave ajuda a identificar exatamente onde o valor se torna undefined.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "code", "q": "Qual é o resultado deste código?\nfunction calcular(a, b) {\n  console.log(\"a:\", a, \"b:\", b);\n  return a + b;\n}\ncalcular(3, 4);", "opts": ["Só imprime 7, sem os logs", "Imprime \"a: 3 b: 4\" no console e retorna 7", "Imprime \"a: 3 b: 4\" mas não retorna nada", "Gera um erro, pois há console.log dentro da função"], "a": 1, "hint": "O console.log dentro da função executa normalmente antes do return.", "ex": "A função primeiro imprime os valores recebidos e depois retorna a soma, 7, sem nenhum conflito entre as duas ações.", "format": "PREVISÃO DE RESULTADO" }
+      ]
+    },
+    {
+      "id": "js-25",
+      "name": "ERROS COMUNS",
+      "difficulty": "AVANÇADO",
+      "color": "#f472b6",
+      "icon": "⬡",
+      "summary": "Reconheça erros frequentes envolvendo undefined e escopo de variáveis.",
+      "lesson": [
+        { "title": "undefined não é um erro", "body": "'undefined' aparece quando uma variável foi declarada mas não recebeu valor, ou ao acessar uma propriedade/índice que não existe. Não é um erro, mas costuma indicar que algo não saiu como esperado.", "code": "let x;\nconsole.log(x); // undefined\n\nlet obj = {};\nconsole.log(obj.nome); // undefined" },
+        { "title": "Escopo de variáveis", "body": "Uma variável declarada com 'let' ou 'const' dentro de um bloco {} (como um if ou for) só existe dentro daquele bloco. Tentar usá-la fora dele gera um erro.", "code": "if (true) {\n  let mensagem = \"oi\";\n}\nconsole.log(mensagem); // Erro: mensagem não existe aqui fora" }
+      ],
+      "questions": [
+        { "type": "code", "q": "Qual é o resultado deste código?\nlet nome;\nconsole.log(nome);", "opts": ["\"\" (string vazia)", "undefined", "null", "Erro de execução"], "a": 1, "hint": "A variável foi declarada, mas nunca recebeu um valor.", "ex": "Uma variável declarada sem valor atribuído tem o valor undefined por padrão.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "code", "q": "Encontre o erro que vai acontecer ao executar este código:\nif (true) {\n  let total = 100;\n}\nconsole.log(total);", "opts": ["'total' não existe fora do bloco if, pois foi declarada com let dentro dele", "console.log não aceita números", "'if (true)' é uma sintaxe inválida", "Faltou usar var em vez de let"], "a": 0, "hint": "Pense no que significa uma variável ser declarada 'dentro' de um bloco com chaves.", "ex": "Variáveis declaradas com let dentro de um bloco {} só existem dentro dele; fora, geram erro de referência.", "format": "ENCONTRE O ERRO" },
+        { "type": "mcq", "q": "O que costuma indicar quando um console.log mostra 'undefined' inesperadamente?", "opts": ["Que o programa travou por completo", "Que uma variável não recebeu o valor esperado ou uma propriedade/índice não existe", "Que o navegador está desatualizado", "Que o valor é necessariamente um erro de digitação de aspas"], "a": 1, "hint": "Pense nas situações do card anterior: variável sem valor, ou propriedade inexistente.", "ex": "undefined normalmente aparece quando algo não recebeu o valor esperado, como uma variável não inicializada ou uma propriedade ausente.", "format": "CONCEITO" },
+        { "type": "code", "q": "Qual das opções corrige o problema de escopo abaixo, mantendo o valor acessível fora do bloco?\nif (true) {\n  let resultado = 10;\n}\nconsole.log(resultado);", "opts": ["Declarar 'let resultado;' antes do if, e apenas atribuir o valor dentro dele", "Trocar 'if (true)' por 'if (false)'", "Remover o console.log", "Colocar console.log dentro de outro bloco if"], "a": 0, "hint": "Para acessar a variável fora do bloco, ela precisa ser declarada em um escopo mais externo.", "ex": "Declarando 'resultado' fora do bloco e apenas atribuindo o valor dentro dele, a variável continua acessível depois.", "format": "CORRIJA O ERRO" }
+      ]
+    },
+    {
+      "id": "js-26",
+      "name": "NOMES CLAROS",
+      "difficulty": "AVANÇADO",
+      "color": "#f472b6",
+      "icon": "●",
+      "summary": "Escreva código mais fácil de entender escolhendo bons nomes de variáveis.",
+      "lesson": [
+        { "title": "Por que nomes importam", "body": "Nomes de variáveis claros tornam o código mais fácil de ler e manter, tanto para outras pessoas quanto para você mesmo no futuro. Um nome como 'x' não diz nada sobre o que a variável representa.", "code": "// Difícil de entender\nlet x = 19.90;\n\n// Fácil de entender\nlet precoProduto = 19.90;" },
+        { "title": "Boas práticas de nomenclatura", "body": "Prefira nomes que descrevam o propósito da variável, evite abreviações confusas, e use booleans com nomes que soem como pergunta, como 'estaAtivo' ou 'temDesconto'.", "tip": "Um bom teste: se alguém ler apenas o nome da variável, deveria entender o que ela representa." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Por que é recomendado usar nomes de variáveis descritivos, como 'idadeUsuario' em vez de 'x'?", "opts": ["Porque o código roda mais rápido com nomes longos", "Porque facilita o entendimento do código por quem for lê-lo depois", "Porque nomes curtos são proibidos em JavaScript", "Porque nomes descritivos evitam qualquer tipo de erro de sintaxe"], "a": 1, "hint": "Pense em legibilidade, não em desempenho.", "ex": "Nomes descritivos tornam o código mais legível e fácil de entender, sem afetar a performance.", "format": "CONCEITO" },
+        { "type": "code", "q": "Qual das opções é o nome MAIS claro para uma variável booleana que indica se um usuário está logado?", "opts": ["let l = true;", "let login = true;", "let estaLogado = true;", "let dados = true;"], "a": 2, "hint": "Nomes de booleanos costumam soar como uma pergunta de sim/não.", "ex": "'estaLogado' deixa claro, só pelo nome, que representa um valor verdadeiro/falso sobre o estado de login.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "code", "q": "Encontre o problema de legibilidade neste trecho:\nlet a = 10;\nlet b = 2;\nlet c = a * b;", "opts": ["Os nomes a, b e c não indicam o que representam", "A multiplicação está com erro de sintaxe", "As variáveis deveriam ser const", "Faltam aspas nos números"], "a": 0, "hint": "Pense se alguém conseguiria entender o propósito de 'a', 'b' e 'c' sem mais contexto.", "ex": "Nomes genéricos como a, b e c não comunicam o que cada variável representa, dificultando a leitura.", "format": "ENCONTRE O ERRO" },
+        { "type": "code", "q": "Qual reescrita do código abaixo melhora a legibilidade sem mudar o comportamento?\nlet q = 5;\nlet p = 3.5;\nlet t = q * p;", "opts": ["let quantidade = 5; let precoUnitario = 3.5; let total = quantidade * precoUnitario;", "let q1 = 5; let p1 = 3.5; let t1 = q1 * p1;", "const q = 5; const p = 3.5; const t = q * p;", "let 5 = q; let 3.5 = p; let total = q * p;"], "a": 0, "hint": "Busque a opção que dá nomes descritivos, sem mudar a lógica do cálculo.", "ex": "Trocar q, p e t por quantidade, precoUnitario e total mantém a mesma lógica, mas com nomes muito mais claros.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "js-27",
+      "name": "PLANEJANDO O PROJETO",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "◎",
+      "summary": "Planeje a estrutura de uma lista de tarefas combinando DOM, eventos e dados.",
+      "lesson": [
+        { "title": "Juntando tudo", "body": "Uma lista de tarefas simples precisa de: um array para guardar as tarefas, um formulário para adicionar novas tarefas, e código para exibir cada tarefa na tela usando o DOM.", "code": "let tarefas = [];\n\nfunction adicionarTarefa(texto) {\n  tarefas.push(texto);\n}" },
+        { "title": "O fluxo de dados", "body": "O fluxo típico é: o usuário digita e envia o formulário → o evento 'submit' é capturado com preventDefault → o texto é adicionado ao array → a lista na tela é atualizada criando elementos no DOM.", "tip": "Pensar no fluxo de dados antes de escrever o código ajuda a organizar melhor cada etapa." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Em uma lista de tarefas, qual estrutura de dados é mais adequada para guardar todas as tarefas?", "opts": ["Uma única string", "Um array", "Um number", "Um boolean"], "a": 1, "hint": "Pense em uma coleção ordenada de vários itens.", "ex": "Um array é ideal para guardar uma coleção ordenada de itens, como as tarefas de uma lista.", "format": "CONCEITO" },
+        { "type": "code", "q": "Qual é a ordem correta das etapas para adicionar uma tarefa a partir de um formulário?\n1. Adicionar o texto ao array de tarefas\n2. Capturar o evento submit e chamar preventDefault\n3. Atualizar a lista exibida na tela\n4. Usuário digita o texto e envia o formulário", "opts": ["4, 2, 1, 3", "1, 2, 3, 4", "2, 4, 1, 3", "4, 1, 2, 3"], "a": 0, "hint": "O usuário sempre age primeiro; a tela só é atualizada depois que os dados foram salvos.", "ex": "A ordem correta é: o usuário envia o formulário, o evento é capturado com preventDefault, o dado é salvo no array, e só então a tela é atualizada.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "code", "q": "No trecho abaixo, o que a função adicionarTarefa faz?\nlet tarefas = [];\nfunction adicionarTarefa(texto) {\n  tarefas.push(texto);\n}", "opts": ["Remove uma tarefa do array", "Adiciona um novo texto ao final do array de tarefas", "Exibe as tarefas na tela", "Cria um novo array vazio toda vez que é chamada"], "a": 1, "hint": "push adiciona um item ao final do array, sem apagar os anteriores.", "ex": "A função usa push para adicionar o texto recebido ao final do array 'tarefas', mantendo as tarefas anteriores.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "Por que é importante chamar preventDefault() ao capturar o envio do formulário de uma lista de tarefas?", "opts": ["Para impedir que a página recarregue e perca o estado da lista", "Para impedir que o texto seja salvo no array", "Para deixar o formulário mais bonito", "Para criar um novo formulário automaticamente"], "a": 0, "hint": "Pense no que aconteceria com a lista de tarefas se a página recarregasse a cada envio.", "ex": "Sem preventDefault, a página recarregaria a cada envio, perdendo todo o estado da lista de tarefas em memória.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "js-28",
+      "name": "EXIBINDO TAREFAS",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "◑",
+      "summary": "Renderize a lista de tarefas na tela criando elementos a partir do array.",
+      "lesson": [
+        { "title": "Renderizando a lista", "body": "Para exibir todas as tarefas do array na tela, percorremos o array com um laço e, para cada item, criamos um elemento HTML e o adicionamos à lista visível.", "code": "function renderizarTarefas() {\n  const lista = document.querySelector(\"#lista-tarefas\");\n  lista.textContent = \"\";\n  for (let i = 0; i < tarefas.length; i++) {\n    const item = document.createElement(\"li\");\n    item.textContent = tarefas[i];\n    lista.appendChild(item);\n  }\n}" },
+        { "title": "Limpando antes de redesenhar", "body": "Antes de adicionar os itens atualizados, é comum limpar o conteúdo anterior da lista (por exemplo com textContent = \"\") para evitar duplicar itens já exibidos.", "tip": "Sempre que os dados mudam, a tela precisa ser atualizada novamente para refletir o novo estado." }
+      ],
+      "questions": [
+        { "type": "code", "q": "Neste código, por que a linha 'lista.textContent = \"\";' é executada antes do laço for?", "opts": ["Para deixar a lista mais rápida de carregar", "Para evitar que os itens antigos fiquem duplicados junto com os novos", "Porque é obrigatório em todo laço for", "Para impedir que o array seja alterado"], "a": 1, "hint": "Pense no que aconteceria se a função rodasse duas vezes sem limpar a lista.", "ex": "Limpar a lista antes evita que itens antigos permaneçam na tela ao lado dos novos, causando duplicação.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "code", "q": "Dado let tarefas = [\"Estudar\", \"Correr\"]; quantos elementos <li> serão criados ao executar a função renderizarTarefas do card anterior?", "opts": ["0", "1", "2", "4"], "a": 2, "hint": "O laço for percorre o array inteiro, criando um item para cada posição.", "ex": "Como o array tem 2 itens, o laço executa 2 vezes, criando 2 elementos <li>.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Qual é o papel do document.createElement dentro da função de renderização da lista?", "opts": ["Buscar um elemento já existente na página", "Criar um novo elemento HTML para representar cada tarefa", "Remover elementos da lista", "Validar se o array está vazio"], "a": 1, "hint": "Pense em como cada item do array vira um elemento visível na tela.", "ex": "createElement cria um novo elemento (como um <li>) para representar visualmente cada tarefa do array.", "format": "CONCEITO" },
+        { "type": "code", "q": "Encontre o erro: os itens não aparecem na lista da tela.\nfunction renderizarTarefas() {\n  const lista = document.querySelector(\"#lista-tarefas\");\n  for (let i = 0; i < tarefas.length; i++) {\n    const item = document.createElement(\"li\");\n    item.textContent = tarefas[i];\n  }\n}", "opts": ["Faltou chamar lista.appendChild(item) dentro do laço", "O for está com a condição errada", "createElement não aceita \"li\"", "textContent não pode receber tarefas[i]"], "a": 0, "hint": "O item é criado e recebe texto, mas nunca é inserido na página.", "ex": "Sem appendChild, o elemento criado fica apenas em memória e nunca aparece de fato na lista da página.", "format": "ENCONTRE O ERRO" }
+      ]
+    },
+    {
+      "id": "js-29",
+      "name": "REMOVENDO TAREFAS",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "◓",
+      "summary": "Adicione a funcionalidade de remover tarefas da lista.",
+      "lesson": [
+        { "title": "Removendo do array", "body": "'splice' remove itens de um array em uma posição específica. splice(indice, 1) remove exatamente 1 item na posição indicada.", "code": "let tarefas = [\"Estudar\", \"Correr\", \"Ler\"];\ntarefas.splice(1, 1);\n// tarefas = [\"Estudar\", \"Ler\"]" },
+        { "title": "Conectando clique e remoção", "body": "Para remover uma tarefa ao clicar em um botão, associamos um addEventListener a cada botão de remover, que chama a função de remoção com o índice correto e depois atualiza a tela novamente.", "tip": "Depois de alterar o array (adicionar ou remover), é preciso chamar a função de renderização de novo para atualizar a tela." }
+      ],
+      "questions": [
+        { "type": "code", "q": "Qual será o array resultante após esta execução?\nlet tarefas = [\"A\", \"B\", \"C\"];\ntarefas.splice(0, 1);", "opts": ["[\"A\", \"B\", \"C\"]", "[\"B\", \"C\"]", "[\"A\"]", "[]"], "a": 1, "hint": "splice(0, 1) remove 1 item a partir do índice 0.", "ex": "splice(0, 1) remove o item no índice 0 (\"A\"), restando [\"B\", \"C\"].", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Qual é o papel do segundo argumento em tarefas.splice(2, 1)?", "opts": ["A posição onde a remoção começa", "Quantos itens serão removidos a partir daquela posição", "O novo valor a ser inserido", "O tamanho final do array"], "a": 1, "hint": "O primeiro argumento já define a posição inicial.", "ex": "O segundo argumento de splice define quantos itens serão removidos a partir da posição indicada pelo primeiro argumento.", "format": "CONCEITO" },
+        { "type": "code", "q": "Depois de remover uma tarefa do array com splice, o que ainda é necessário fazer para a mudança aparecer na tela?", "opts": ["Nada, a tela atualiza sozinha automaticamente", "Chamar novamente a função que renderiza a lista na tela", "Recarregar a página manualmente", "Criar um novo array do zero"], "a": 1, "hint": "Lembre que o DOM só muda quando o código explicitamente atualiza os elementos.", "ex": "Alterar o array não muda a tela sozinho; é preciso chamar novamente a função de renderização para refletir a mudança.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "code", "q": "Encontre o erro: a função deveria remover a tarefa do índice indicado, mas remove a tarefa errada.\nfunction removerTarefa(indice) {\n  tarefas.splice(indice, 2);\n  renderizarTarefas();\n}", "opts": ["O segundo argumento deveria ser 1, não 2, para remover só uma tarefa", "splice não existe em arrays", "renderizarTarefas não deveria ser chamada aqui", "O parâmetro indice está com nome inválido"], "a": 0, "hint": "Repare quantos itens a função está removendo em vez de apenas um.", "ex": "Com o segundo argumento 2, a função remove duas tarefas em vez de apenas a desejada; o correto é usar 1.", "format": "CORRIJA O ERRO" }
+      ]
+    },
+    {
+      "id": "js-30",
+      "name": "REVISÃO DO PROJETO",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "Ω",
+      "summary": "Revise como DOM, eventos e dados se conectam em uma lista de tarefas completa.",
+      "lesson": [
+        { "title": "Visão geral do mini app", "body": "Uma lista de tarefas completa combina: um array de dados, um formulário com evento 'submit' (usando preventDefault), uma função que adiciona ao array, e uma função que renderiza tudo no DOM sempre que os dados mudam.", "code": "let tarefas = [];\n\nform.addEventListener(\"submit\", (evento) => {\n  evento.preventDefault();\n  tarefas.push(input.value);\n  renderizarTarefas();\n});" },
+        { "title": "Onde cada conceito entra", "body": "Variáveis e arrays guardam o estado da aplicação. Funções organizam a lógica. O DOM exibe esse estado na tela. Eventos conectam a ação do usuário às mudanças de estado.", "tip": "Sempre que o estado (o array) muda, a tela deve ser atualizada chamando a função de renderização novamente." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Em uma lista de tarefas construída com JavaScript puro, qual elemento representa o 'estado' da aplicação?", "opts": ["O HTML da página", "O array que guarda as tarefas", "O CSS da lista", "O botão de enviar"], "a": 1, "hint": "Pense em onde os dados reais (as tarefas) ficam armazenados.", "ex": "O array de tarefas é o estado da aplicação: é ele que guarda os dados reais que a tela deve refletir.", "format": "CONCEITO" },
+        { "type": "code", "q": "Neste trecho do projeto final, o que acontece quando o formulário é enviado?\nform.addEventListener(\"submit\", (evento) => {\n  evento.preventDefault();\n  tarefas.push(input.value);\n  renderizarTarefas();\n});", "opts": ["A página recarrega e nada é salvo", "O texto digitado é adicionado ao array e a lista na tela é atualizada", "Apenas o array é atualizado, sem mudar a tela", "Apenas a tela é atualizada, sem alterar o array"], "a": 1, "hint": "Siga a ordem das três ações dentro da função: preventDefault, push e renderizarTarefas.", "ex": "A função evita o recarregamento, adiciona o valor digitado ao array e depois atualiza a tela chamando renderizarTarefas.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "code", "q": "Encontre o problema neste código de um app de tarefas, sabendo que a nova tarefa nunca aparece na tela mesmo sendo adicionada ao array.\nform.addEventListener(\"submit\", (evento) => {\n  evento.preventDefault();\n  tarefas.push(input.value);\n});", "opts": ["Faltou chamar renderizarTarefas() depois de atualizar o array", "preventDefault não deveria ser usado aqui", "push está sendo usado de forma errada", "input.value está com sintaxe inválida"], "a": 0, "hint": "O array é atualizado, mas a tela não é avisada dessa mudança.", "ex": "Sem chamar a função de renderização após o push, a tela nunca é atualizada para refletir a nova tarefa no array.", "format": "ENCONTRE O ERRO" },
+        { "type": "mcq", "q": "Qual é a sequência correta e completa de conceitos aplicados em uma lista de tarefas: do clique do usuário até a tarefa aparecer na tela?", "opts": ["Evento de submit → atualização do array → renderização no DOM", "Renderização no DOM → evento de submit → atualização do array", "Atualização do array → renderização no DOM → evento de submit", "Nenhuma ordem é necessária, tudo acontece ao mesmo tempo automaticamente"], "a": 0, "hint": "O evento sempre é o gatilho inicial; a tela é sempre atualizada por último, refletindo o novo estado.", "ex": "O fluxo correto é: o evento de submit dispara a ação, o array de dados é atualizado, e só então o DOM é renderizado novamente para mostrar a mudança.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    }
+  ]
+}

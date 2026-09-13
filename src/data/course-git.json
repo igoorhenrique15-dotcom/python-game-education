@@ -1,0 +1,546 @@
+{
+  "title": "Git & GitHub",
+  "version": 1,
+  "stages": [
+    {
+      "id": "git-1",
+      "name": "O PROBLEMA QUE O GIT RESOLVE",
+      "difficulty": "INICIANTE",
+      "color": "#ff9600",
+      "icon": "◆",
+      "summary": "Entenda por que precisamos de controle de versão ao trabalhar com código.",
+      "lesson": [
+        { "title": "Sem controle de versão", "body": "Sem uma ferramenta de controle de versão, é comum salvar arquivos como 'projeto_final.zip', 'projeto_final2.zip' ou 'projeto_final_definitivo.zip'. Fica difícil saber o que mudou entre versões, quem alterou o quê e como voltar para uma versão antiga que funcionava.", "tip": "Controle de versão registra o histórico de mudanças de um projeto ao longo do tempo." },
+        { "title": "O que o Git resolve", "body": "O Git guarda um histórico organizado de todas as alterações feitas nos arquivos de um projeto. Isso permite voltar a qualquer ponto anterior, comparar versões e entender exatamente o que mudou, quando e por quê." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Qual é o principal problema que um sistema de controle de versão resolve?", "opts": ["Deixar o código mais rápido de executar", "Perder o histórico de alterações e não saber o que mudou entre versões", "Reduzir o tamanho dos arquivos do projeto", "Traduzir o código para outra linguagem"], "a": 1, "hint": "Pense no exemplo dos arquivos 'final', 'final2', 'final_definitivo'.", "ex": "Controle de versão existe justamente para organizar e registrar as mudanças ao longo do tempo, evitando a confusão de múltiplas cópias.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Uma equipe salva arquivos como 'app_v1', 'app_v2_correcao', 'app_v2_final'. Qual dificuldade essa prática cria?", "opts": ["O código fica mais seguro contra hackers", "Fica difícil saber exatamente o que mudou entre cada versão", "O projeto fica mais rápido de compilar", "Os arquivos ocupam menos espaço em disco"], "a": 1, "hint": "Sem um histórico estruturado, comparar versões manualmente é confuso.", "ex": "Nomear arquivos manualmente não registra o que mudou, só cria cópias soltas sem contexto.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "O que significa dizer que o Git mantém um 'histórico' do projeto?", "opts": ["Ele apaga versões antigas automaticamente", "Ele guarda registros de cada alteração, permitindo voltar a pontos anteriores", "Ele impede que o código seja modificado", "Ele só funciona com um arquivo por vez"], "a": 1, "hint": "Histórico é sobre acumular registros ao longo do tempo, não apagar nada.", "ex": "O histórico do Git é uma sequência de registros de mudanças que podem ser consultados ou restaurados quando necessário.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Por que voltar a uma versão anterior do código é útil?", "opts": ["Para deixar o projeto maior", "Porque uma versão anterior pode estar funcionando corretamente enquanto a atual tem um erro novo", "Porque isso é obrigatório antes de qualquer commit", "Porque apaga o histórico de mudanças"], "a": 1, "hint": "Pense em um cenário onde uma mudança recente quebrou algo que funcionava.", "ex": "Poder voltar a uma versão anterior é útil justamente para recuperar um estado funcional quando um erro é introduzido depois.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "git-2",
+      "name": "HISTÓRICO DE MUDANÇAS",
+      "difficulty": "INICIANTE",
+      "color": "#ff9600",
+      "icon": "▤",
+      "summary": "Veja como o Git organiza cada alteração em registros chamados commits.",
+      "lesson": [
+        { "title": "O que é um commit", "body": "Um commit é um 'retrato' (snapshot) do projeto em um determinado momento, junto com uma mensagem descrevendo o que foi feito. Cada commit fica registrado no histórico, formando uma linha do tempo do projeto." },
+        { "title": "Por que mensagens importam", "body": "Uma boa mensagem de commit explica o que mudou e por quê, ajudando qualquer pessoa (inclusive você no futuro) a entender o histórico sem precisar reler todo o código.", "tip": "Mensagens claras como 'corrige cálculo de frete' são mais úteis que 'ajustes'." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "O que é um commit no Git?", "opts": ["Um arquivo de configuração do projeto", "Um registro de uma alteração no projeto, com uma mensagem descrevendo o que mudou", "Um comando para apagar o histórico", "Uma cópia do projeto em outro servidor"], "a": 1, "hint": "Pense em um 'retrato' do projeto em um momento específico.", "ex": "Um commit registra o estado do projeto em um momento junto com uma mensagem explicativa.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Por que a mensagem de um commit é importante?", "opts": ["Porque o Git não funciona sem mensagem", "Porque ela ajuda a entender o que e por que algo foi alterado, no futuro", "Porque ela define o tamanho do arquivo", "Porque ela substitui a necessidade de testar o código"], "a": 1, "hint": "Pense em alguém lendo o histórico meses depois.", "ex": "Mensagens descritivas tornam o histórico compreensível para qualquer pessoa que revisitar o projeto depois.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Qual das mensagens de commit abaixo é mais útil para o histórico do projeto?", "opts": ["'mudanças'", "'asdasd'", "'corrige erro de validação no formulário de login'", "'commit 15'"], "a": 2, "hint": "Escolha a que explica claramente o que foi feito.", "ex": "Mensagens específicas descrevem exatamente o que mudou, facilitando entender o histórico depois.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "mcq", "q": "Um projeto tem 20 commits registrados. O que isso representa?", "opts": ["20 arquivos diferentes no projeto", "20 pontos registrados na linha do tempo de alterações do projeto", "20 erros que ainda precisam ser corrigidos", "20 pessoas trabalhando no projeto"], "a": 1, "hint": "Cada commit é um ponto no histórico, não um arquivo ou uma pessoa.", "ex": "Cada commit é um marco na linha do tempo de mudanças, independentemente de quantos arquivos ou pessoas estejam envolvidos.", "format": "PREVISÃO DE RESULTADO" }
+      ]
+    },
+    {
+      "id": "git-3",
+      "name": "GIT VS GITHUB",
+      "difficulty": "INICIANTE",
+      "color": "#ff9600",
+      "icon": "⇄",
+      "summary": "Entenda a diferença entre a ferramenta Git e a plataforma GitHub.",
+      "lesson": [
+        { "title": "Git é a ferramenta", "body": "Git é um programa que roda no seu computador e controla o histórico de versões de um projeto localmente, mesmo sem internet." },
+        { "title": "GitHub é a plataforma", "body": "GitHub é um serviço online que hospeda repositórios Git na nuvem, permitindo compartilhar código, colaborar com outras pessoas e usar recursos como pull requests e issues. Existem outras plataformas parecidas, como GitLab e Bitbucket." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Qual é a diferença fundamental entre Git e GitHub?", "opts": ["Git e GitHub são exatamente a mesma coisa", "Git é a ferramenta de controle de versão; GitHub é uma plataforma online que hospeda repositórios Git", "GitHub substitui totalmente o Git", "Git só funciona dentro do GitHub"], "a": 1, "hint": "Um funciona no seu computador, o outro é um serviço na internet.", "ex": "Git é o sistema de controle de versão em si; GitHub é uma plataforma que hospeda repositórios Git e adiciona recursos de colaboração.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "É possível usar o Git sem ter conta no GitHub?", "opts": ["Não, o Git exige GitHub para funcionar", "Sim, o Git funciona localmente no computador sem precisar de nenhuma plataforma online", "Não, toda instalação do Git já vem conectada ao GitHub", "Sim, mas só se usar Windows"], "a": 1, "hint": "Pense em onde o Git realmente roda.", "ex": "O Git funciona de forma independente, controlando versões localmente; o GitHub é opcional para hospedar e compartilhar esse histórico.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Qual recurso é oferecido pelo GitHub, mas não é uma função do Git em si?", "opts": ["Registrar commits", "Comparar diferenças entre versões de arquivos", "Pull requests para revisão de código entre colaboradores", "Criar branches"], "a": 2, "hint": "Pense no que depende de uma plataforma online com vários usuários.", "ex": "Pull requests são um recurso de colaboração oferecido por plataformas como o GitHub, e não fazem parte do Git em si.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "mcq", "q": "Além do GitHub, quais outras plataformas cumprem um papel parecido de hospedar repositórios Git?", "opts": ["Word e Excel", "GitLab e Bitbucket", "Windows e Linux", "Chrome e Firefox"], "a": 1, "hint": "Pense em concorrentes do GitHub no mesmo mercado de hospedagem de código.", "ex": "GitLab e Bitbucket são plataformas alternativas que também hospedam repositórios Git e oferecem recursos de colaboração.", "format": "CONCEITO" }
+      ]
+    },
+    {
+      "id": "git-4",
+      "name": "GIT INIT",
+      "difficulty": "INICIANTE",
+      "color": "#f6c445",
+      "icon": "▲",
+      "summary": "Aprenda a criar um repositório Git em uma pasta do seu computador.",
+      "lesson": [
+        { "title": "Criando um repositório", "body": "O comando 'git init' transforma uma pasta comum em um repositório Git, criando uma subpasta oculta chamada '.git' que armazena todo o histórico de versões.", "code": "cd meu-projeto\ngit init" },
+        { "title": "Onde rodar o comando", "body": "O comando deve ser executado dentro da pasta do projeto que você quer versionar. Depois disso, o Git passa a monitorar as mudanças feitas ali dentro.", "tip": "Rodar 'git init' uma segunda vez na mesma pasta apenas reinicializa o repositório existente, sem apagar o histórico." }
+      ],
+      "questions": [
+        { "type": "code", "q": "O que o comando abaixo faz?\ngit init", "opts": ["Envia o projeto para o GitHub", "Cria um novo repositório Git na pasta atual", "Apaga todos os arquivos da pasta", "Lista o histórico de commits"], "a": 1, "hint": "Pense no significado da palavra 'init' (inicializar).", "ex": "'git init' inicializa um novo repositório Git na pasta atual, criando a pasta oculta '.git'.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "Onde deve ser executado o comando 'git init'?", "opts": ["Em qualquer pasta do sistema, o local não importa", "Dentro da pasta do projeto que você deseja versionar", "Apenas na pasta raiz do sistema operacional", "Somente depois de criar uma conta no GitHub"], "a": 1, "hint": "O Git passa a monitorar a pasta onde o comando foi executado.", "ex": "O comando deve ser rodado dentro da pasta do projeto, pois é ali que o Git criará a estrutura de controle de versão.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "O que é criado dentro da pasta após rodar 'git init'?", "opts": ["Um arquivo executável chamado 'git.exe'", "Uma subpasta oculta chamada '.git' que guarda o histórico do repositório", "Uma conexão automática com o GitHub", "Um arquivo compactado com todo o projeto"], "a": 1, "hint": "Essa subpasta é oculta e guarda os dados internos do Git.", "ex": "A pasta '.git' armazena toda a estrutura interna do repositório, incluindo o histórico de commits.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Um desenvolvedor precisa é necessário ter conexão com a internet para rodar 'git init'?", "opts": ["Sim, sempre", "Não, 'git init' funciona totalmente offline, pois cria um repositório local", "Sim, mas apenas no Windows", "Não, mas apaga os arquivos existentes na pasta"], "a": 1, "hint": "Pense se essa operação depende de algum servidor remoto.", "ex": "'git init' é uma operação totalmente local, não precisa de internet nem de uma conta no GitHub.", "format": "PREVISÃO DE RESULTADO" }
+      ]
+    },
+    {
+      "id": "git-5",
+      "name": "GIT ADD",
+      "difficulty": "INICIANTE",
+      "color": "#f6c445",
+      "icon": "★",
+      "summary": "Entenda como preparar arquivos para serem registrados em um commit.",
+      "lesson": [
+        { "title": "A área de staging", "body": "Antes de virar um commit, um arquivo alterado precisa ser 'adicionado' à área de staging (área de preparação). Isso é feito com 'git add', que sinaliza quais mudanças farão parte do próximo commit.", "code": "git add index.html\ngit add ." },
+        { "title": "Adicionar tudo de uma vez", "body": "Usar 'git add .' adiciona todas as mudanças da pasta atual (e subpastas) para a área de staging de uma só vez.", "tip": "Você pode escolher adicionar apenas alguns arquivos específicos, sem incluir todos." }
+      ],
+      "questions": [
+        { "type": "code", "q": "O que faz o comando abaixo?\ngit add relatorio.txt", "opts": ["Cria o arquivo relatorio.txt", "Envia relatorio.txt para o GitHub", "Adiciona as mudanças de relatorio.txt à área de staging para o próximo commit", "Apaga relatorio.txt do repositório"], "a": 2, "hint": "'git add' prepara arquivos, não os envia nem os cria.", "ex": "'git add' coloca as mudanças de um arquivo na área de staging, preparando-as para o próximo commit.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "O que representa a área de staging no Git?", "opts": ["Uma cópia de segurança do projeto no GitHub", "Uma área intermediária onde ficam as mudanças escolhidas para o próximo commit", "O histórico completo de commits", "Uma pasta que guarda arquivos apagados"], "a": 1, "hint": "Pense em um espaço 'de preparação' antes do commit acontecer.", "ex": "A área de staging guarda as mudanças que serão incluídas no próximo commit, permitindo escolher o que registrar.", "format": "CONCEITO" },
+        { "type": "code", "q": "Qual comando adiciona TODAS as mudanças da pasta atual para a área de staging?", "opts": ["git add all", "git add .", "git add *commit*", "git commit ."], "a": 1, "hint": "O símbolo usado representa 'a pasta atual e tudo dentro dela'.", "ex": "'git add .' adiciona todas as mudanças da pasta atual e de suas subpastas de uma vez.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "mcq", "q": "Um arquivo foi modificado, mas o desenvolvedor não rodou 'git add' nele antes de fazer o commit. O que acontece com essa mudança?", "opts": ["Ela é incluída no commit automaticamente", "Ela não é incluída no commit, pois não estava na área de staging", "O Git apaga a modificação", "O comando de commit falha com erro"], "a": 1, "hint": "Só entra no commit o que foi preparado com 'git add'.", "ex": "Sem passar por 'git add', a mudança não está na área de staging e por isso não é registrada no commit.", "format": "PREVISÃO DE RESULTADO" }
+      ]
+    },
+    {
+      "id": "git-6",
+      "name": "GIT COMMIT E STATUS",
+      "difficulty": "INICIANTE",
+      "color": "#f6c445",
+      "icon": "✓",
+      "summary": "Aprenda a registrar mudanças com commit e a checar o estado do repositório.",
+      "lesson": [
+        { "title": "Registrando um commit", "body": "Depois de usar 'git add', o comando 'git commit -m \"mensagem\"' registra as mudanças preparadas como um novo ponto no histórico, junto com a mensagem descritiva.", "code": "git add .\ngit commit -m \"adiciona validação de formulário\"" },
+        { "title": "Verificando o status", "body": "O comando 'git status' mostra quais arquivos foram modificados, quais estão na área de staging e quais ainda não foram adicionados. É útil para saber o estado atual do repositório antes de commitar.", "code": "git status" }
+      ],
+      "questions": [
+        { "type": "code", "q": "O que acontece ao rodar os comandos abaixo, em sequência?\ngit add app.js\ngit commit -m \"corrige bug de login\"", "opts": ["O arquivo app.js é apagado do projeto", "A mudança em app.js é registrada no histórico com a mensagem informada", "O arquivo app.js é enviado para o GitHub", "Nada acontece, pois falta o comando 'git push'"], "a": 1, "hint": "'add' prepara, 'commit' registra no histórico local.", "ex": "Esses comandos preparam e depois registram a mudança de app.js como um novo commit no histórico local.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "Para que serve o comando 'git status'?", "opts": ["Para enviar o projeto para o GitHub", "Para mostrar o estado atual dos arquivos: modificados, em staging ou não rastreados", "Para apagar o histórico de commits", "Para criar uma nova branch"], "a": 1, "hint": "Pense em um comando de 'diagnóstico' do repositório.", "ex": "'git status' exibe um resumo do estado dos arquivos, ajudando a saber o que ainda precisa ser adicionado ou commitado.", "format": "CONCEITO" },
+        { "type": "code", "q": "Um desenvolvedor roda apenas 'git commit -m \"mensagem\"' sem antes rodar 'git add' em um arquivo recém-modificado. O que acontece?", "opts": ["O arquivo é commitado normalmente", "As mudanças desse arquivo não são incluídas no commit, pois não estavam na área de staging", "O Git cria a área de staging automaticamente para esse arquivo", "O comando falha com erro fatal"], "a": 1, "hint": "Lembre-se: só entra no commit o que foi preparado com 'git add'.", "ex": "Sem 'git add', as mudanças do arquivo continuam fora da área de staging e não entram no commit.", "format": "ENCONTRE O ERRO" },
+        { "type": "mcq", "q": "Por que é uma boa prática rodar 'git status' antes de fazer um commit?", "opts": ["Porque é obrigatório para o Git funcionar", "Para conferir quais mudanças serão incluídas e evitar esquecer ou incluir arquivos por engano", "Porque ele apaga arquivos desnecessários automaticamente", "Porque ele substitui a necessidade de 'git add'"], "a": 1, "hint": "Pense em conferir antes de confirmar uma ação importante.", "ex": "Checar o status evita surpresas, mostrando exatamente o que será registrado no próximo commit.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "git-7",
+      "name": "GIT LOG",
+      "difficulty": "INICIANTE",
+      "color": "#22c55e",
+      "icon": "▦",
+      "summary": "Aprenda a consultar o histórico de commits de um repositório.",
+      "lesson": [
+        { "title": "Consultando o histórico", "body": "O comando 'git log' lista todos os commits do repositório, do mais recente para o mais antigo, mostrando autor, data, hash e mensagem de cada um.", "code": "git log" },
+        { "title": "Versão resumida", "body": "'git log --oneline' mostra uma versão resumida, com uma linha por commit, facilitando visualizar o histórico rapidamente.", "code": "git log --oneline" }
+      ],
+      "questions": [
+        { "type": "code", "q": "O que o comando abaixo exibe?\ngit log", "opts": ["A lista de arquivos modificados que ainda não foram commitados", "O histórico de commits do repositório, do mais recente para o mais antigo", "A lista de branches existentes", "O conteúdo de um arquivo específico"], "a": 1, "hint": "'log' remete a um registro histórico de eventos.", "ex": "'git log' mostra o histórico completo de commits já registrados no repositório.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "Qual informação NÃO costuma aparecer em cada entrada padrão de 'git log'?", "opts": ["O autor do commit", "A mensagem do commit", "A senha da conta do GitHub", "O identificador (hash) do commit"], "a": 2, "hint": "Pense em qual dessas informações não faz sentido guardar num histórico de commits.", "ex": "O Git nunca registra senhas de contas; ele registra autor, data, hash e mensagem de cada commit.", "format": "CONCEITO" },
+        { "type": "code", "q": "Qual comando exibe o histórico de commits de forma resumida, com uma linha por commit?", "opts": ["git log --oneline", "git log --resumo", "git status --short", "git commit --oneline"], "a": 0, "hint": "Existe uma opção específica que abrevia cada entrada para uma única linha.", "ex": "'git log --oneline' condensa cada commit em uma única linha, facilitando a leitura do histórico.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "mcq", "q": "Em 'git log', qual commit aparece primeiro na lista, por padrão?", "opts": ["O commit mais antigo do repositório", "O commit mais recente do repositório", "Um commit escolhido aleatoriamente", "Sempre o primeiro commit ('git init')"], "a": 1, "hint": "Pense na ordem cronológica em que o histórico costuma ser exibido.", "ex": "Por padrão, 'git log' lista os commits em ordem cronológica decrescente, do mais recente para o mais antigo.", "format": "PREVISÃO DE RESULTADO" }
+      ]
+    },
+    {
+      "id": "git-8",
+      "name": "GIT DIFF",
+      "difficulty": "INICIANTE",
+      "color": "#22c55e",
+      "icon": "◧",
+      "summary": "Aprenda a comparar diferenças entre versões de arquivos.",
+      "lesson": [
+        { "title": "Comparando mudanças", "body": "O comando 'git diff' mostra as diferenças linha a linha entre o conteúdo atual de um arquivo e a última versão registrada, destacando o que foi adicionado (com '+') e removido (com '-').", "code": "git diff" },
+        { "title": "Diff antes do add", "body": "'git diff' mostra as mudanças que ainda não foram adicionadas à área de staging. Depois de rodar 'git add', essas mudanças deixam de aparecer no 'git diff' comum, pois já estão preparadas para o commit.", "tip": "Use 'git diff' para revisar exatamente o que vai mudar antes de preparar o commit." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Para que serve o comando 'git diff'?", "opts": ["Para apagar diferenças entre dois arquivos", "Para mostrar as diferenças entre o conteúdo atual de um arquivo e sua última versão registrada", "Para criar uma nova branch de comparação", "Para enviar arquivos modificados ao GitHub"], "a": 1, "hint": "Pense na palavra 'diff', de 'difference' (diferença).", "ex": "'git diff' exibe exatamente o que mudou, linha por linha, entre versões de um arquivo.", "format": "CONCEITO" },
+        { "type": "code", "q": "Na saída de um 'git diff', uma linha aparece assim:\n+ console.log(\"novo log\");\nO que esse sinal '+' indica?", "opts": ["Que a linha foi removida do arquivo", "Que a linha foi adicionada ao arquivo", "Que a linha contém um erro de sintaxe", "Que a linha foi comentada"], "a": 1, "hint": "Pense no significado usual do símbolo de adição.", "ex": "O sinal '+' no 'git diff' indica uma linha que foi adicionada em relação à versão anterior.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "code", "q": "Na saída de um 'git diff', uma linha aparece assim:\n- return valor * 2;\nO que esse sinal '-' indica?", "opts": ["Que a linha foi adicionada", "Que a linha foi removida em relação à versão anterior", "Que a linha está comentada", "Que a linha não sofreu alteração"], "a": 1, "hint": "Pense no oposto do sinal de adição.", "ex": "O sinal '-' indica uma linha que existia antes e foi removida na versão atual.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "Depois de rodar 'git add' em um arquivo modificado, o que acontece ao rodar 'git diff' (sem outras opções) em seguida?", "opts": ["Ele mostra um erro, pois o arquivo já foi adicionado", "As mudanças já adicionadas à staging deixam de aparecer no 'git diff' comum", "Ele apaga as mudanças feitas", "Ele mostra o histórico completo de commits"], "a": 1, "hint": "'git diff' comum compara o que ainda não está na área de staging.", "ex": "Depois do 'git add', as mudanças passam para a área de staging e não aparecem mais no 'git diff' padrão, que compara mudanças não preparadas.", "format": "PREVISÃO DE RESULTADO" }
+      ]
+    },
+    {
+      "id": "git-9",
+      "name": "DESCARTANDO MUDANÇAS",
+      "difficulty": "INICIANTE",
+      "color": "#22c55e",
+      "icon": "⌗",
+      "summary": "Aprenda a desfazer alterações em um arquivo que ainda não foram commitadas.",
+      "lesson": [
+        { "title": "Descartar mudanças locais", "body": "Se você alterou um arquivo e quer voltar à última versão registrada (descartando a modificação), pode usar 'git checkout -- nome-do-arquivo' ou, em versões mais novas do Git, 'git restore nome-do-arquivo'.", "code": "git restore index.html" },
+        { "title": "Cuidado: é irreversível", "body": "Descartar mudanças com esses comandos apaga permanentemente as alterações não commitadas naquele arquivo. Não há como recuperá-las depois, já que elas nunca foram registradas em um commit.", "tip": "Só descarte mudanças que você tem certeza de que não quer manter." }
+      ],
+      "questions": [
+        { "type": "code", "q": "O que faz o comando abaixo?\ngit restore config.txt", "opts": ["Apaga o arquivo config.txt do disco", "Descarta as mudanças não commitadas em config.txt, voltando à última versão registrada", "Envia config.txt para o GitHub", "Renomeia o arquivo config.txt"], "a": 1, "hint": "'restore' significa 'restaurar' para um estado anterior.", "ex": "'git restore' descarta as alterações locais não commitadas de um arquivo, restaurando-o à última versão salva no histórico.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "Um arquivo foi alterado, mas essas mudanças nunca foram adicionadas com 'git add' nem commitadas. O desenvolvedor roda 'git restore' nesse arquivo. O que acontece com as mudanças feitas?", "opts": ["Elas são enviadas automaticamente para o GitHub", "Elas são perdidas permanentemente, pois nunca foram registradas em um commit", "Elas ficam guardadas em uma área temporária para recuperação futura", "Nada acontece, pois o arquivo não tinha sido commitado"], "a": 1, "hint": "Pense se existe algum registro dessa mudança em algum lugar do histórico.", "ex": "Como a mudança nunca foi commitada, não existe nenhum registro dela no histórico, então descartá-la a apaga de forma definitiva.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Por que é importante ter cuidado ao usar comandos que descartam mudanças locais?", "opts": ["Porque eles corrompem o repositório inteiro", "Porque a ação é irreversível quando as mudanças nunca foram commitadas", "Porque eles exigem conexão com a internet", "Porque eles apagam o histórico de commits também"], "a": 1, "hint": "Pense no que acontece com mudanças que nunca foram salvas em nenhum commit.", "ex": "Descartar mudanças não commitadas é uma operação irreversível, por isso é importante ter certeza antes de executá-la.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Um desenvolvedor quer manter uma alteração importante mas ainda assim vai rodar 'git restore' no arquivo por engano. Qual seria a forma correta de evitar perder o trabalho antes disso?", "opts": ["Rodar 'git restore' mesmo assim, pois é sempre seguro", "Fazer o commit da alteração antes, garantindo que ela fique registrada no histórico", "Fechar o editor de texto sem salvar", "Renomear o arquivo antes de restaurar"], "a": 1, "hint": "Pense em como garantir que uma mudança fique protegida no histórico do Git.", "ex": "Registrar a mudança com um commit garante que ela fique salva no histórico, protegendo-a de ser descartada por engano.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "git-10",
+      "name": "CRIANDO BRANCHES",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#34d399",
+      "icon": "⇆",
+      "summary": "Aprenda a criar e trocar entre branches (ramificações) no Git.",
+      "lesson": [
+        { "title": "O que é uma branch", "body": "Uma branch é uma linha de desenvolvimento independente dentro do repositório. A branch principal costuma se chamar 'main' (ou 'master'). Criar uma nova branch permite trabalhar em algo sem afetar a branch principal.", "code": "git branch nova-funcionalidade" },
+        { "title": "Trocando de branch", "body": "O comando 'git checkout nome-da-branch' (ou 'git switch nome-da-branch', em versões mais novas) muda para outra branch já existente. É possível criar e trocar ao mesmo tempo com 'git checkout -b nome-da-branch'.", "code": "git checkout -b nova-funcionalidade" }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "O que é uma branch no Git?", "opts": ["Um arquivo especial que guarda senhas", "Uma linha de desenvolvimento independente dentro do repositório", "Um tipo de commit sem mensagem", "Uma cópia do repositório em outro computador"], "a": 1, "hint": "Pense em 'ramificações' do histórico do projeto.", "ex": "Uma branch representa uma linha de desenvolvimento separada, permitindo trabalhar em algo sem afetar outras partes do projeto.", "format": "CONCEITO" },
+        { "type": "code", "q": "O que faz o comando abaixo?\ngit checkout -b feature-login", "opts": ["Apaga a branch feature-login", "Cria a branch feature-login e já muda para ela", "Apenas lista as branches existentes", "Envia a branch feature-login para o GitHub"], "a": 1, "hint": "A opção '-b' indica a criação de uma nova branch.", "ex": "'git checkout -b' cria uma nova branch e imediatamente troca para ela, tudo em um único comando.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "code", "q": "Qual comando lista todas as branches existentes no repositório local?", "opts": ["git branch", "git list", "git status --branches", "git log --branch"], "a": 0, "hint": "O comando usado para criar branches, sem argumentos, também serve para listá-las.", "ex": "'git branch', sem argumentos, exibe a lista de branches existentes, destacando a branch atual.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "mcq", "q": "Por que é útil isolar o trabalho em desenvolvimento em uma branch separada da 'main'?", "opts": ["Porque cada branch usa uma linguagem de programação diferente", "Porque permite testar e desenvolver algo novo sem arriscar quebrar a versão estável do projeto", "Porque branches ocupam menos espaço em disco", "Porque o GitHub exige pelo menos duas branches para funcionar"], "a": 1, "hint": "Pense em manter a versão principal do projeto sempre funcionando.", "ex": "Isolar o trabalho em uma branch protege a 'main' de mudanças incompletas ou instáveis até que estejam prontas.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "git-11",
+      "name": "TROCANDO DE BRANCH",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#34d399",
+      "icon": "◈",
+      "summary": "Pratique a troca entre branches e entenda o que acontece com os arquivos.",
+      "lesson": [
+        { "title": "Mudando o conteúdo dos arquivos", "body": "Ao trocar de branch, o Git atualiza os arquivos da pasta de trabalho para refletir o estado daquela branch. Mudanças commitadas em uma branch não aparecem automaticamente em outra branch." },
+        { "title": "Cuidado com mudanças não commitadas", "body": "Se houver mudanças não commitadas ao tentar trocar de branch, o Git pode impedir a troca ou levar essas mudanças junto, dependendo do caso. Por isso é comum commitar (ou descartar) antes de trocar de branch.", "code": "git switch main" }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Ao trocar de uma branch 'feature-x' para a branch 'main', o que acontece com os arquivos na pasta de trabalho?", "opts": ["Eles são apagados completamente", "Eles são atualizados para refletir o estado da branch 'main'", "Nada muda, os arquivos continuam iguais aos da 'feature-x'", "O Git pede para reinstalar o projeto"], "a": 1, "hint": "Pense em cada branch tendo seu próprio 'estado' do projeto.", "ex": "O Git atualiza os arquivos da pasta de trabalho para corresponder ao último commit da branch para a qual você trocou.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Um commit feito na branch 'feature-relatorio' aparece automaticamente na branch 'main' sem nenhuma outra ação?", "opts": ["Sim, todo commit aparece em todas as branches automaticamente", "Não, cada branch tem seu próprio histórico até que as mudanças sejam unidas de alguma forma", "Sim, mas só se o commit tiver uma mensagem específica", "Não, commits nunca podem ser compartilhados entre branches"], "a": 1, "hint": "Pense em branches como linhas separadas de desenvolvimento.", "ex": "Commits ficam isolados na branch onde foram feitos até que sejam unidos a outra branch por meio de um merge.", "format": "CONCEITO" },
+        { "type": "code", "q": "Qual comando troca para uma branch chamada 'desenvolvimento' que já existe?", "opts": ["git switch desenvolvimento", "git branch -delete desenvolvimento", "git commit desenvolvimento", "git init desenvolvimento"], "a": 0, "hint": "Pense no comando moderno usado apenas para trocar de branch, sem criar uma nova.", "ex": "'git switch' (ou 'git checkout') muda para uma branch já existente sem criar uma nova.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "mcq", "q": "Um desenvolvedor tenta trocar de branch com mudanças não commitadas em arquivos que também existem na outra branch. Qual é uma boa prática antes de trocar de branch nessa situação?", "opts": ["Ignorar o aviso e trocar mesmo assim sempre", "Commitar ou descartar as mudanças pendentes antes de trocar de branch", "Apagar a branch atual antes de trocar", "Reinstalar o Git"], "a": 1, "hint": "Pense em deixar o estado da branch atual 'limpo' antes de sair dela.", "ex": "Commitar ou descartar mudanças pendentes evita conflitos e comportamento inesperado ao trocar de branch.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "git-12",
+      "name": "POR QUE ISOLAR TRABALHO",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#34d399",
+      "icon": "◍",
+      "summary": "Entenda o valor estratégico de usar branches em equipes e projetos reais.",
+      "lesson": [
+        { "title": "Trabalho em paralelo", "body": "Branches permitem que várias pessoas (ou você mesmo) trabalhem em funcionalidades diferentes ao mesmo tempo, sem que o trabalho de uma interfira no da outra até que estejam prontas para serem unidas." },
+        { "title": "Uma branch estável", "body": "Manter a branch 'main' sempre estável (funcionando) é uma prática comum. Novas funcionalidades são desenvolvidas em branches separadas e só voltam para a 'main' depois de testadas e revisadas.", "tip": "Nomes de branch descritivos, como 'feature-carrinho' ou 'fix-login', ajudam a entender o propósito de cada uma." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Em uma equipe, dois desenvolvedores precisam trabalhar em funcionalidades diferentes ao mesmo tempo. Como as branches ajudam nesse cenário?", "opts": ["Elas obrigam os dois a trabalharem na mesma branch, evitando conflitos", "Elas permitem que cada um trabalhe isoladamente na sua funcionalidade, sem interferir no trabalho do outro até integrarem os resultados", "Elas impedem que mais de uma pessoa acesse o repositório", "Elas apagam automaticamente o trabalho mais antigo"], "a": 1, "hint": "Pense em linhas de desenvolvimento paralelas e independentes.", "ex": "Branches isolam o trabalho de cada pessoa, permitindo desenvolvimento paralelo sem conflitos até a integração.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "Por que é uma boa prática manter a branch 'main' sempre estável (funcionando)?", "opts": ["Porque o Git obriga a 'main' a nunca ser modificada", "Porque é a branch usada como referência confiável do projeto, e novas mudanças arriscadas ficam isoladas em outras branches", "Porque a 'main' não pode receber nenhum commit", "Porque isso reduz o tamanho do repositório"], "a": 1, "hint": "Pense na 'main' como a versão de referência do projeto.", "ex": "Manter a 'main' estável garante que sempre haja uma versão confiável do projeto, enquanto experimentos ficam em branches separadas.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Qual nome de branch comunica melhor o propósito do trabalho sendo feito nela?", "opts": ["branch1", "teste", "feature-recuperacao-senha", "asdf"], "a": 2, "hint": "Escolha o nome que descreve claramente a funcionalidade em desenvolvimento.", "ex": "Nomes descritivos como 'feature-recuperacao-senha' deixam claro o propósito da branch para qualquer pessoa da equipe.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "mcq", "q": "Um desenvolvedor cria uma funcionalidade experimental diretamente na branch 'main', sem criar uma branch separada. Qual é o principal risco dessa decisão?", "opts": ["Nenhum, pois a 'main' é feita para experimentos", "Se algo der errado, a versão estável do projeto pode ficar comprometida", "O Git impede esse tipo de commit automaticamente", "O código ficará mais rápido de executar"], "a": 1, "hint": "Pense no que acontece se essa funcionalidade tiver um erro grave.", "ex": "Trabalhar direto na 'main' expõe a versão estável do projeto a erros de funcionalidades ainda incompletas.", "format": "ENCONTRE O ERRO" }
+      ]
+    },
+    {
+      "id": "git-13",
+      "name": "GIT MERGE",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#1cb0f6",
+      "icon": "⇄",
+      "summary": "Aprenda a unir o histórico de duas branches com o comando merge.",
+      "lesson": [
+        { "title": "Unindo branches", "body": "O comando 'git merge' une as mudanças de uma branch a outra. Normalmente, você troca para a branch que vai 'receber' as mudanças (como a 'main') e roda o merge trazendo a outra branch para dentro dela.", "code": "git switch main\ngit merge feature-login" },
+        { "title": "Merge automático", "body": "Quando as mudanças das duas branches não afetam as mesmas linhas dos mesmos arquivos, o Git consegue unir tudo automaticamente, criando um novo commit de merge.", "tip": "Um merge bem-sucedido não exige nenhuma ação manual quando não há conflitos." }
+      ],
+      "questions": [
+        { "type": "code", "q": "O que fazem os comandos abaixo, em sequência?\ngit switch main\ngit merge feature-carrinho", "opts": ["Apagam a branch feature-carrinho", "Trazem as mudanças da branch feature-carrinho para dentro da branch main", "Criam uma nova branch chamada feature-carrinho", "Enviam a branch main para o GitHub"], "a": 1, "hint": "Primeiro troca-se para quem vai 'receber' as mudanças, depois se faz o merge da outra branch.", "ex": "Esses comandos trocam para a branch main e depois unem (merge) as mudanças da feature-carrinho a ela.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "Quando um 'git merge' consegue ser feito automaticamente, sem intervenção manual?", "opts": ["Sempre, não importa o que tenha mudado", "Quando as mudanças das duas branches não afetam as mesmas linhas dos mesmos arquivos", "Apenas quando as branches têm o mesmo nome", "Nunca, todo merge precisa de ação manual"], "a": 1, "hint": "Pense em quando não há sobreposição entre as mudanças.", "ex": "O Git consegue unir automaticamente quando não há sobreposição de alterações nas mesmas linhas dos mesmos arquivos.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Antes de fazer merge de 'feature-x' na 'main', em qual branch o desenvolvedor deve estar?", "opts": ["Não importa, o Git detecta automaticamente", "Na branch main, que vai receber as mudanças de feature-x", "Na branch feature-x", "Em uma terceira branch criada só para isso"], "a": 1, "hint": "Pense em quem 'recebe' as mudanças no comando de merge.", "ex": "É preciso estar na branch de destino (que recebe as mudanças) antes de rodar 'git merge nome-da-outra-branch'.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "O que é criado no histórico quando um merge é concluído com sucesso (e há mudanças distintas nas duas branches)?", "opts": ["Um arquivo de configuração novo", "Um commit de merge que une o histórico das duas branches", "Uma nova branch automaticamente", "Nada, o histórico permanece inalterado"], "a": 1, "hint": "Pense em como o Git registra que duas linhas de histórico se uniram.", "ex": "O merge geralmente gera um commit de merge, que representa a união dos históricos das duas branches.", "format": "CONCEITO" }
+      ]
+    },
+    {
+      "id": "git-14",
+      "name": "COMO SURGE UM CONFLITO",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#1cb0f6",
+      "icon": "◐",
+      "summary": "Entenda por que e quando um conflito de merge acontece.",
+      "lesson": [
+        { "title": "Quando há conflito", "body": "Um conflito de merge acontece quando duas branches alteram a mesma linha do mesmo arquivo de formas diferentes. Nesse caso, o Git não sabe automaticamente qual versão manter e pede intervenção manual." },
+        { "title": "Marcações de conflito", "body": "Quando um conflito ocorre, o Git insere marcações no arquivo mostrando as duas versões conflitantes, delimitadas por '<<<<<<<', '=======' e '>>>>>>>'.", "code": "<<<<<<< HEAD\ncor: azul\n=======\ncor: verde\n>>>>>>> feature-cores" }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Em quais circunstâncias um conflito de merge normalmente acontece?", "opts": ["Sempre que duas branches são unidas", "Quando duas branches alteram a mesma linha do mesmo arquivo de formas diferentes", "Quando o repositório tem mais de 10 commits", "Quando o merge é feito no GitHub em vez do terminal"], "a": 1, "hint": "Pense em sobreposição de mudanças exatamente no mesmo trecho.", "ex": "Conflitos surgem quando o Git não consegue decidir sozinho qual mudança manter, porque ambas alteram o mesmo trecho de forma diferente.", "format": "CONCEITO" },
+        { "type": "code", "q": "Ao abrir um arquivo em conflito, aparece o seguinte trecho:\n<<<<<<< HEAD\npreco = 100\n=======\npreco = 150\n>>>>>>> feature-preco\nO que essas marcações representam?", "opts": ["Um erro de sintaxe no código", "As duas versões conflitantes da mesma linha, vindas de branches diferentes", "Um comentário deixado por outro desenvolvedor", "O histórico completo de commits do arquivo"], "a": 1, "hint": "Cada bloco entre os marcadores representa a versão de uma branch.", "ex": "As marcações delimitam a versão da branch atual (HEAD) e a versão da outra branch, mostrando exatamente onde está o conflito.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "Duas branches alteram arquivos completamente diferentes, sem nenhuma linha em comum. Ao fazer o merge, é esperado um conflito?", "opts": ["Sim, sempre que há um merge acontece conflito", "Não, conflitos só ocorrem quando há sobreposição nas mesmas linhas dos mesmos arquivos", "Sim, mas apenas se os arquivos tiverem o mesmo nome", "Não, mas o merge será automaticamente cancelado"], "a": 1, "hint": "Pense se existe alguma sobreposição real entre as mudanças.", "ex": "Sem sobreposição de mudanças nas mesmas linhas dos mesmos arquivos, o Git consegue unir tudo automaticamente sem conflito.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "O símbolo '=======' dentro das marcações de conflito serve para quê?", "opts": ["Indicar o fim do arquivo", "Separar a versão da branch atual da versão da outra branch envolvida no conflito", "Comentar uma linha de código", "Apagar o conteúdo do arquivo"], "a": 1, "hint": "Pense na posição desse símbolo entre os dois blocos de código conflitantes.", "ex": "O '=======' funciona como um divisor visual entre as duas versões conflitantes apresentadas nas marcações.", "format": "CONCEITO" }
+      ]
+    },
+    {
+      "id": "git-15",
+      "name": "RESOLVENDO CONFLITOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#1cb0f6",
+      "icon": "◒",
+      "summary": "Aprenda o passo a passo para resolver um conflito de merge.",
+      "lesson": [
+        { "title": "Editando o arquivo", "body": "Para resolver um conflito, é preciso abrir o arquivo, decidir qual versão manter (ou combinar as duas) e remover manualmente as marcações '<<<<<<<', '=======' e '>>>>>>>'." },
+        { "title": "Finalizando a resolução", "body": "Depois de editar o arquivo e remover as marcações, é preciso adicionar o arquivo resolvido com 'git add' e concluir o merge com 'git commit'.", "code": "git add arquivo-com-conflito.txt\ngit commit -m \"resolve conflito de merge\"" }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Qual é o primeiro passo prático para resolver um conflito de merge em um arquivo?", "opts": ["Apagar o repositório e começar de novo", "Editar o arquivo, escolher o conteúdo correto e remover as marcações de conflito", "Rodar 'git init' novamente", "Trocar de branch imediatamente sem editar nada"], "a": 1, "hint": "Pense em decidir manualmente o que deve permanecer no arquivo.", "ex": "Resolver um conflito começa por editar o arquivo, decidindo o conteúdo final e removendo as marcações inseridas pelo Git.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "code", "q": "Depois de editar e resolver o conflito em 'config.txt', quais comandos concluem o processo?", "opts": ["git merge config.txt", "git add config.txt\ngit commit -m \"resolve conflito\"", "git init config.txt", "git diff config.txt"], "a": 1, "hint": "Depois de editar, o arquivo precisa ser preparado e o merge finalizado com um commit.", "ex": "Depois de resolver o conflito manualmente, é preciso adicionar o arquivo com 'git add' e concluir com 'git commit'.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "code", "q": "Um desenvolvedor resolveu o conflito removendo apenas a marcação '=======', mas deixou '<<<<<<< HEAD' e '>>>>>>> feature-x' no arquivo. Qual é o problema com essa resolução?", "opts": ["Nenhum, o arquivo está pronto para commit", "As marcações restantes ainda fazem parte do conteúdo do arquivo e devem ser todas removidas", "O Git remove essas marcações automaticamente no commit", "O problema é que faltou rodar 'git init'"], "a": 1, "hint": "Todas as marcações de conflito precisam ser removidas, não só uma delas.", "ex": "Todas as marcações ('<<<<<<<', '=======' e '>>>>>>>') precisam ser removidas manualmente; deixar qualquer uma delas corrompe o conteúdo do arquivo.", "format": "ENCONTRE O ERRO" },
+        { "type": "mcq", "q": "Depois de resolver um conflito e commitar, o que acontece com o merge?", "opts": ["Ele precisa ser refeito do zero", "O merge é concluído e um novo commit de merge é registrado no histórico", "O Git cancela automaticamente o merge", "As duas branches são apagadas"], "a": 1, "hint": "Pense no commit feito após a resolução como a finalização do processo de merge.", "ex": "O commit feito após resolver o conflito conclui o merge, unindo definitivamente o histórico das duas branches.", "format": "PREVISÃO DE RESULTADO" }
+      ]
+    },
+    {
+      "id": "git-16",
+      "name": "REPOSITÓRIO REMOTO",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#0ea5e9",
+      "icon": "▣",
+      "summary": "Entenda o que é um repositório remoto e como ele se relaciona com o local.",
+      "lesson": [
+        { "title": "Local vs remoto", "body": "Um repositório local vive no seu computador. Um repositório remoto vive em um servidor, como o GitHub, permitindo que outras pessoas (ou você, de outro computador) acessem o mesmo histórico." },
+        { "title": "Conectando ao remoto", "body": "Um repositório local pode ser conectado a um repositório remoto no GitHub, permitindo sincronizar o histórico entre os dois com comandos como 'push' e 'pull'.", "tip": "Um mesmo repositório local pode, teoricamente, se conectar a mais de um remoto." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Qual é a diferença entre um repositório local e um repositório remoto?", "opts": ["Não há diferença, são a mesma coisa", "O local fica no seu computador; o remoto fica hospedado em um servidor, como o GitHub", "O remoto só pode ser acessado sem internet", "O local não guarda histórico de commits"], "a": 1, "hint": "Pense em onde cada um está fisicamente armazenado.", "ex": "O repositório local vive na sua máquina; o remoto vive em um servidor, permitindo acesso de outros lugares e pessoas.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Para que serve conectar um repositório local a um repositório remoto no GitHub?", "opts": ["Para apagar o histórico local", "Para sincronizar o histórico entre o computador local e o servidor, possibilitando colaboração", "Para transformar commits em branches", "Para desinstalar o Git do computador"], "a": 1, "hint": "Pense em compartilhar e manter o histórico atualizado em mais de um lugar.", "ex": "Conectar ao remoto permite sincronizar o trabalho entre diferentes máquinas e pessoas através do mesmo histórico.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "Um projeto existe apenas como repositório local, sem nenhum remoto configurado. Isso significa que o Git não pode ser usado?", "opts": ["Correto, o Git exige um repositório remoto para funcionar", "Incorreto, o Git funciona perfeitamente sem repositório remoto, apenas sem sincronização com outros lugares", "Correto, mas apenas em sistemas Windows", "Incorreto, mas apenas se usar o GitHub Desktop"], "a": 1, "hint": "Lembre-se de que 'git init' já cria um repositório funcional, sem depender de nenhum servidor.", "ex": "O Git funciona de forma totalmente local; um repositório remoto só é necessário quando se deseja sincronizar ou compartilhar o histórico.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Qual seria um bom motivo para criar um repositório remoto no GitHub para um projeto?", "opts": ["Para deixar o código mais rápido de executar", "Para ter um backup na nuvem e permitir colaboração com outras pessoas", "Porque é obrigatório para usar 'git commit'", "Para reduzir o número de branches necessárias"], "a": 1, "hint": "Pense nos benefícios de ter uma cópia do histórico acessível de qualquer lugar.", "ex": "Um repositório remoto oferece backup na nuvem e viabiliza a colaboração entre múltiplas pessoas e dispositivos.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "git-17",
+      "name": "PUSH, PULL E CLONE",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#0ea5e9",
+      "icon": "▶",
+      "summary": "Aprenda os três comandos principais para sincronizar com o GitHub.",
+      "lesson": [
+        { "title": "Enviando e recebendo mudanças", "body": "'git push' envia os commits locais para o repositório remoto. 'git pull' traz as mudanças do repositório remoto para o repositório local, atualizando-o.", "code": "git push\ngit pull" },
+        { "title": "Copiando um repositório existente", "body": "'git clone' cria uma cópia local completa de um repositório remoto já existente, incluindo todo o histórico de commits.", "code": "git clone https://github.com/usuario/projeto.git" }
+      ],
+      "questions": [
+        { "type": "code", "q": "O que faz o comando abaixo?\ngit push", "opts": ["Traz as mudanças do repositório remoto para o local", "Envia os commits do repositório local para o repositório remoto", "Cria uma cópia local de um repositório remoto", "Apaga o histórico do repositório remoto"], "a": 1, "hint": "Pense em 'empurrar' o trabalho local para fora.", "ex": "'git push' envia os commits registrados localmente para o repositório remoto, atualizando-o.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "code", "q": "O que faz o comando abaixo?\ngit pull", "opts": ["Envia commits locais para o remoto", "Traz as mudanças do repositório remoto e as atualiza no repositório local", "Cria uma nova branch", "Apaga arquivos não commitados"], "a": 1, "hint": "Pense em 'puxar' mudanças de fora para dentro.", "ex": "'git pull' busca e integra as mudanças que estão no repositório remoto para o repositório local.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "code", "q": "Um desenvolvedor quer obter, pela primeira vez, uma cópia completa de um projeto que já existe no GitHub. Qual comando ele deve usar?", "opts": ["git pull", "git push", "git clone https://github.com/usuario/projeto.git", "git init https://github.com/usuario/projeto.git"], "a": 2, "hint": "Pense no comando usado para copiar um repositório remoto pela primeira vez.", "ex": "'git clone' cria uma cópia local completa de um repositório remoto existente, incluindo todo o histórico.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "mcq", "q": "Um desenvolvedor faz commits localmente, mas esquece de rodar 'git push'. O que acontece com esses commits em relação ao repositório remoto?", "opts": ["Eles são enviados automaticamente depois de um tempo", "Eles permanecem apenas no repositório local até que 'git push' seja executado", "Eles são apagados após 24 horas", "O GitHub bloqueia novos commits até que o push seja feito"], "a": 1, "hint": "Sem o push, as mudanças não saem do computador local.", "ex": "Commits locais só chegam ao repositório remoto quando 'git push' é executado; até lá, ficam apenas na máquina local.", "format": "PREVISÃO DE RESULTADO" }
+      ]
+    },
+    {
+      "id": "git-18",
+      "name": "O QUE É ORIGIN",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#0ea5e9",
+      "icon": "◎",
+      "summary": "Entenda o papel do apelido 'origin' na relação entre local e remoto.",
+      "lesson": [
+        { "title": "Um apelido para o remoto", "body": "'origin' é o nome padrão dado ao repositório remoto principal ao qual um repositório local está conectado. É apenas um apelido, não uma palavra especial obrigatória — poderia ter outro nome." },
+        { "title": "Vendo o remoto configurado", "body": "O comando 'git remote -v' mostra os endereços dos repositórios remotos configurados, geralmente listando 'origin' com sua URL.", "code": "git remote -v" }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "O que representa 'origin' na maioria dos repositórios Git conectados ao GitHub?", "opts": ["O nome da branch principal", "Um apelido padrão para o repositório remoto ao qual o repositório local está conectado", "Um tipo especial de commit", "O nome do primeiro arquivo criado no projeto"], "a": 1, "hint": "Pense em 'origin' como um nome dado a um endereço remoto, não como uma branch.", "ex": "'origin' é o apelido convencional usado para se referir ao repositório remoto principal de um projeto.", "format": "CONCEITO" },
+        { "type": "code", "q": "O que o comando abaixo mostra?\ngit remote -v", "opts": ["A lista de branches locais", "Os endereços dos repositórios remotos configurados, como 'origin'", "O histórico de commits", "As diferenças entre dois arquivos"], "a": 1, "hint": "'remote' indica que a informação é sobre conexões remotas.", "ex": "'git remote -v' lista os repositórios remotos conectados ao repositório local, junto com suas URLs.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "É obrigatório que o nome do repositório remoto seja exatamente 'origin'?", "opts": ["Sim, o Git não funciona com outro nome", "Não, 'origin' é apenas uma convenção; tecnicamente o remoto poderia ter outro nome", "Sim, mas apenas em repositórios privados", "Não, mas apenas se o projeto usar GitLab em vez de GitHub"], "a": 1, "hint": "Pense se 'origin' é uma regra do Git ou apenas um costume amplamente adotado.", "ex": "'origin' é apenas o nome padrão usado por convenção; é possível nomear um remoto de forma diferente, embora isso seja incomum.", "format": "CONCEITO" },
+        { "type": "code", "q": "O comando 'git push origin main' envia commits para onde?", "opts": ["Para uma branch local chamada origin", "Para a branch 'main' do repositório remoto identificado como 'origin'", "Para o repositório local apenas", "Para todos os repositórios remotos configurados ao mesmo tempo"], "a": 1, "hint": "Pense em 'origin' como o destino remoto e 'main' como a branch dentro dele.", "ex": "Esse comando envia os commits da branch local para a branch 'main' do repositório remoto chamado 'origin'.", "format": "LEITURA DE CÓDIGO" }
+      ]
+    },
+    {
+      "id": "git-19",
+      "name": "FORK",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#38bdf8",
+      "icon": "◫",
+      "summary": "Entenda o que é um fork e quando ele é usado no GitHub.",
+      "lesson": [
+        { "title": "Uma cópia própria", "body": "Um fork é uma cópia completa de um repositório de outra pessoa, criada na sua própria conta do GitHub. Ele permite fazer alterações livremente sem afetar o repositório original." },
+        { "title": "Quando usar fork", "body": "É comum usar fork para contribuir com projetos de código aberto (open source) nos quais você não tem permissão direta de escrita, ou para experimentar mudanças em um projeto sem comprometer o original.", "tip": "Depois de um fork, é possível propor as mudanças ao projeto original através de um pull request." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "O que é um fork no GitHub?", "opts": ["Uma branch dentro do mesmo repositório", "Uma cópia completa de um repositório de outra pessoa, feita na sua própria conta", "Um comando para apagar um repositório remoto", "Um tipo de commit especial"], "a": 1, "hint": "Pense em criar sua própria versão independente de um projeto existente.", "ex": "Um fork cria uma cópia independente do repositório original na sua conta, permitindo modificá-la livremente.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Em qual situação fazer um fork costuma ser necessário?", "opts": ["Quando você já tem permissão total de escrita no repositório original", "Quando você quer contribuir com um projeto no qual não tem permissão direta de escrita", "Quando você quer apagar o repositório original", "Sempre que for fazer um commit"], "a": 1, "hint": "Pense em projetos de código aberto mantidos por outras pessoas.", "ex": "O fork é útil justamente quando não se tem acesso de escrita ao repositório original, permitindo trabalhar em uma cópia própria.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "Mudanças feitas no fork de um projeto afetam automaticamente o repositório original?", "opts": ["Sim, qualquer commit no fork já altera o original", "Não, o fork é independente; as mudanças só chegam ao original através de uma proposta, como um pull request", "Sim, mas apenas se o fork tiver o mesmo nome do original", "Não, forks nunca podem ser relacionados ao repositório original"], "a": 1, "hint": "Pense no fork como uma cópia separada até que algo explícito conecte as mudanças de volta.", "ex": "O fork funciona como um repositório independente; só uma ação explícita, como um pull request, propõe as mudanças de volta ao original.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Qual é a relação entre fork e pull request?", "opts": ["São a mesma coisa com nomes diferentes", "O fork cria a cópia do projeto; o pull request é usado depois para propor que as mudanças feitas no fork sejam incorporadas ao projeto original", "O pull request cria o fork automaticamente", "Fork e pull request não têm nenhuma relação"], "a": 1, "hint": "Pense na ordem: primeiro se cria a cópia, depois se propõe a integração das mudanças.", "ex": "Normalmente, o fluxo é: criar o fork, fazer as mudanças e então abrir um pull request propondo essas mudanças ao repositório original.", "format": "CONCEITO" }
+      ]
+    },
+    {
+      "id": "git-20",
+      "name": "PULL REQUEST",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#38bdf8",
+      "icon": "⌕",
+      "summary": "Aprenda o que é um pull request e para que ele serve na colaboração.",
+      "lesson": [
+        { "title": "Propondo mudanças", "body": "Um pull request (PR) é uma proposta formal para que as mudanças de uma branch (ou de um fork) sejam incorporadas a outra branch, geralmente a 'main' do projeto principal. Ele é criado e discutido diretamente na interface do GitHub." },
+        { "title": "Discussão antes da integração", "body": "Um pull request permite que outras pessoas revisem o código proposto, deixem comentários e sugiram mudanças antes que ele seja efetivamente unido (merge) ao projeto.", "tip": "Um PR pode ser atualizado com novos commits enquanto ainda está aberto para revisão." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "O que é um pull request?", "opts": ["Um comando de terminal do Git", "Uma proposta, feita através do GitHub, para incorporar mudanças de uma branch a outra", "Um tipo de commit sem mensagem", "Uma forma de apagar uma branch remota"], "a": 1, "hint": "Pense em algo criado pela interface do GitHub, não pelo terminal do Git.", "ex": "Um pull request é a proposta formal de integrar mudanças de uma branch (ou fork) a outra, geralmente feita pela interface do GitHub.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Por que um pull request costuma passar por uma etapa de discussão antes de ser aceito?", "opts": ["Porque o GitHub exige um número mínimo de comentários", "Porque permite que outras pessoas revisem o código, sugiram melhorias e evitem problemas antes da integração", "Porque isso reduz o tamanho do repositório", "Porque é obrigatório para o Git funcionar"], "a": 1, "hint": "Pense no valor de uma revisão feita por outra pessoa antes de aceitar uma mudança.", "ex": "A discussão em um pull request serve para revisar a qualidade e a correção do código antes de ele ser integrado ao projeto.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "Um pull request está aberto e alguém pede uma correção antes de aceitar a mudança. O que o autor pode fazer?", "opts": ["Fechar o pull request e nunca mais poder reabri-lo", "Fazer novos commits na mesma branch, que são automaticamente refletidos no pull request aberto", "Criar um repositório totalmente novo", "Nada, o pull request não pode ser alterado depois de criado"], "a": 1, "hint": "Pense em um pull request como algo vinculado à branch, que continua acompanhando novos commits.", "ex": "Novos commits enviados para a mesma branch aparecem automaticamente no pull request já aberto, permitindo ajustes solicitados na revisão.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "Depois que um pull request é aprovado e aceito, o que geralmente acontece com as mudanças propostas?", "opts": ["Elas são descartadas automaticamente", "Elas são unidas (merge) à branch de destino, como a 'main'", "Elas viram um novo repositório", "Elas ficam bloqueadas até serem revisadas de novo"], "a": 1, "hint": "Pense no propósito final de um pull request: integrar as mudanças.", "ex": "Ao ser aceito, o pull request resulta em um merge das mudanças propostas na branch de destino do projeto.", "format": "PREVISÃO DE RESULTADO" }
+      ]
+    },
+    {
+      "id": "git-21",
+      "name": "REVISÃO DE CÓDIGO",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#38bdf8",
+      "icon": "◉",
+      "summary": "Entenda a prática de code review e seu papel na qualidade do projeto.",
+      "lesson": [
+        { "title": "O que é code review", "body": "Code review (revisão de código) é a prática de outra pessoa analisar as mudanças propostas em um pull request antes de aceitá-las, buscando erros, melhorias de legibilidade ou problemas de design." },
+        { "title": "Comentários e aprovação", "body": "Durante a revisão, é comum deixar comentários em linhas específicas do código, pedir mudanças ou aprovar o pull request quando tudo estiver adequado.", "tip": "Revisão de código não é sobre criticar a pessoa, mas melhorar o código coletivamente." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Qual é o principal objetivo de um code review em um pull request?", "opts": ["Aumentar o número de commits do repositório", "Identificar erros, sugerir melhorias e garantir a qualidade do código antes de integrá-lo", "Apagar branches antigas automaticamente", "Substituir a necessidade de testar o código"], "a": 1, "hint": "Pense na revisão como uma etapa de controle de qualidade colaborativo.", "ex": "O code review existe para revisar a qualidade, correção e legibilidade do código antes de ele ser integrado ao projeto.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Durante um code review, um revisor comenta em uma linha específica sugerindo uma melhoria. O que o autor do pull request pode fazer com essa sugestão?", "opts": ["É obrigado a aceitar exatamente como sugerido", "Pode considerar a sugestão, aplicar a mudança (ou discutir) e atualizar o pull request", "Precisa fechar o pull request imediatamente", "Não pode responder ao comentário"], "a": 1, "hint": "Pense na revisão como parte de uma conversa colaborativa, não uma imposição.", "ex": "Comentários de revisão costumam gerar discussão; o autor pode ajustar o código, explicar a decisão ou negociar a melhor solução.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "Por que revisar código em equipe costuma reduzir a quantidade de erros que chegam à versão final do projeto?", "opts": ["Porque o GitHub corrige erros automaticamente durante a revisão", "Porque mais de uma pessoa analisa o código antes de ele ser integrado, aumentando a chance de identificar problemas", "Porque revisão de código apaga commits com erro", "Porque revisão de código substitui a necessidade de escrever testes automatizados"], "a": 1, "hint": "Pense no valor de ter mais de um olhar sobre o mesmo código.", "ex": "Ter mais pessoas analisando o mesmo código aumenta a chance de detectar erros ou problemas que passariam despercebidos por uma única pessoa.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Um pull request recebe comentários pedindo mudanças, mas o autor ignora todos e força a integração sem revisão. Qual é o risco dessa atitude?", "opts": ["Nenhum, pois comentários são apenas sugestões sem importância", "Problemas identificados pelos revisores podem chegar ao projeto sem serem corrigidos", "O GitHub bloqueia automaticamente esse tipo de ação", "O código fica mais rápido de executar"], "a": 1, "hint": "Pense no propósito da revisão: detectar problemas antes da integração.", "ex": "Ignorar os comentários de revisão anula o propósito do processo, permitindo que problemas identificados cheguem ao projeto sem correção.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "git-22",
+      "name": "ISSUES E LABELS",
+      "difficulty": "AVANÇADO",
+      "color": "#a78bfa",
+      "icon": "⬡",
+      "summary": "Aprenda a organizar tarefas e problemas usando issues e labels no GitHub.",
+      "lesson": [
+        { "title": "O que é uma issue", "body": "Uma issue é um registro criado no GitHub para descrever uma tarefa, um bug ou uma ideia relacionada ao projeto. Ela funciona como um item de acompanhamento, podendo ser discutida e vinculada a um pull request." },
+        { "title": "Organizando com labels", "body": "Labels (etiquetas) são marcações coloridas aplicadas às issues para categorizá-las, como 'bug', 'melhoria' ou 'documentação', facilitando filtrar e priorizar o trabalho.", "tip": "Uma issue pode ter mais de uma label ao mesmo tempo." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Para que serve uma issue no GitHub?", "opts": ["Para armazenar arquivos binários grandes", "Para registrar e acompanhar tarefas, bugs ou ideias relacionadas ao projeto", "Para substituir o histórico de commits", "Para criar automaticamente uma nova branch"], "a": 1, "hint": "Pense em um quadro de tarefas ou problemas a resolver.", "ex": "Issues servem para registrar e discutir tarefas, bugs e ideias, funcionando como itens de acompanhamento do projeto.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Qual é a função das labels aplicadas a uma issue?", "opts": ["Apagar a issue automaticamente após um tempo", "Categorizar e organizar as issues, facilitando filtrar e priorizar o trabalho", "Transformar a issue em um pull request", "Impedir que outras pessoas comentem na issue"], "a": 1, "hint": "Pense em etiquetas coloridas usadas para classificar itens.", "ex": "Labels categorizam issues (como 'bug' ou 'melhoria'), tornando mais fácil filtrar e organizar o trabalho do projeto.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Uma equipe quer identificar rapidamente todas as issues relacionadas a falhas no sistema. Qual prática ajuda nesse cenário?", "opts": ["Fechar todas as issues antigas", "Aplicar uma label como 'bug' às issues relevantes, permitindo filtrá-las facilmente", "Renomear o repositório", "Criar uma nova branch para cada issue"], "a": 1, "hint": "Pense em uma forma de marcar e depois filtrar itens semelhantes.", "ex": "Usar uma label consistente, como 'bug', permite filtrar rapidamente todas as issues daquele tipo entre muitas outras.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "Uma issue pode receber mais de uma label ao mesmo tempo?", "opts": ["Não, cada issue aceita apenas uma label", "Sim, uma issue pode ter várias labels, como 'bug' e 'prioridade-alta' juntas", "Não, labels só podem ser usadas em pull requests", "Sim, mas apenas se o repositório for privado"], "a": 1, "hint": "Pense se seria útil combinar categorias, como tipo e prioridade.", "ex": "É possível aplicar múltiplas labels a uma mesma issue, combinando informações como tipo do problema e prioridade.", "format": "CONCEITO" }
+      ]
+    },
+    {
+      "id": "git-23",
+      "name": "README",
+      "difficulty": "AVANÇADO",
+      "color": "#a78bfa",
+      "icon": "⬢",
+      "summary": "Entenda o papel do arquivo README na apresentação de um projeto.",
+      "lesson": [
+        { "title": "A porta de entrada do projeto", "body": "O arquivo 'README.md' é exibido automaticamente na página principal de um repositório no GitHub. Ele costuma explicar o que o projeto faz, como instalá-lo e como usá-lo.", "code": "# Meu Projeto\n\nDescrição breve do projeto e como executá-lo." },
+        { "title": "Formato Markdown", "body": "O README geralmente é escrito em Markdown (extensão '.md'), uma linguagem simples de formatação de texto que permite títulos, listas e links sem precisar de HTML.", "tip": "Um bom README ajuda outras pessoas a entenderem o projeto rapidamente, sem precisar ler todo o código." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Qual é o principal propósito do arquivo README em um repositório?", "opts": ["Armazenar o histórico de commits", "Apresentar e explicar o projeto para quem acessa o repositório", "Substituir a necessidade de um arquivo de configuração", "Guardar variáveis de ambiente sensíveis"], "a": 1, "hint": "Pense no arquivo que aparece automaticamente na página do repositório no GitHub.", "ex": "O README serve como apresentação do projeto, explicando do que se trata e como utilizá-lo.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Em qual formato o README costuma ser escrito?", "opts": ["JSON", "Markdown", "HTML puro obrigatoriamente", "XML"], "a": 1, "hint": "Pense na extensão de arquivo mais comum: '.md'.", "ex": "O README normalmente usa Markdown, um formato simples de texto que permite formatação básica como títulos e listas.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Uma pessoa acessa um repositório no GitHub pela primeira vez e não sabe do que se trata o projeto. O que ajudaria mais rapidamente a esclarecer isso?", "opts": ["Ler todo o histórico de commits um por um", "Ler o arquivo README, que costuma descrever o propósito e uso do projeto", "Abrir todas as issues do repositório", "Clonar o repositório e executar todos os arquivos"], "a": 1, "hint": "Pense no arquivo pensado justamente para uma primeira leitura rápida.", "ex": "O README é feito exatamente para dar uma visão rápida do projeto a quem chega pela primeira vez.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "Onde o conteúdo do README.md é automaticamente exibido no GitHub?", "opts": ["Apenas dentro das configurações da conta", "Na página principal do repositório correspondente", "Somente dentro de pull requests", "Em nenhum lugar visível, apenas no código-fonte"], "a": 1, "hint": "Pense no local onde qualquer visitante do repositório vê primeiro.", "ex": "O GitHub renderiza automaticamente o conteúdo do README.md na página principal do repositório.", "format": "PREVISÃO DE RESULTADO" }
+      ]
+    },
+    {
+      "id": "git-24",
+      "name": "GITIGNORE",
+      "difficulty": "AVANÇADO",
+      "color": "#a78bfa",
+      "icon": "⬡",
+      "summary": "Aprenda a evitar que arquivos indesejados sejam versionados com o .gitignore.",
+      "lesson": [
+        { "title": "Ignorando arquivos", "body": "O arquivo '.gitignore' lista padrões de arquivos e pastas que o Git deve ignorar, ou seja, nunca incluir no controle de versão. É útil para arquivos temporários, senhas ou pastas geradas automaticamente.", "code": "node_modules/\n.env\n*.log" },
+        { "title": "Exemplos comuns", "body": "É comum ignorar pastas como 'node_modules' (dependências instaladas), arquivos '.env' (variáveis de ambiente sensíveis) e arquivos de log gerados automaticamente pelo sistema.", "tip": "Arquivos que já foram commitados antes de entrar no .gitignore continuam sendo rastreados, a menos que sejam removidos manualmente do controle de versão." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Para que serve o arquivo '.gitignore'?", "opts": ["Para listar os arquivos que fazem parte do próximo commit", "Para listar arquivos e pastas que o Git deve ignorar e nunca versionar", "Para armazenar o histórico de commits", "Para configurar o nome do repositório remoto"], "a": 1, "hint": "Pense na palavra 'ignore' (ignorar).", "ex": "O '.gitignore' define quais arquivos e pastas não devem ser rastreados nem versionados pelo Git.", "format": "CONCEITO" },
+        { "type": "code", "q": "O arquivo .gitignore de um projeto contém a linha abaixo:\nnode_modules/\nO que isso significa?", "opts": ["A pasta node_modules será commitada obrigatoriamente", "A pasta node_modules será ignorada pelo Git e não entrará no controle de versão", "O Git vai apagar a pasta node_modules", "A pasta node_modules será enviada automaticamente ao GitHub"], "a": 1, "hint": "Pense no propósito do .gitignore: listar o que deve ser ignorado.", "ex": "Essa linha instrui o Git a ignorar completamente a pasta node_modules, não a incluindo no controle de versão.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "Por que é uma boa prática incluir arquivos '.env' (variáveis de ambiente sensíveis) no '.gitignore'?", "opts": ["Porque arquivos .env deixam o projeto mais lento", "Porque evita que informações sensíveis, como senhas e chaves de API, sejam expostas no histórico do repositório", "Porque o Git não consegue ler arquivos .env", "Porque isso é exigido para rodar 'git init'"], "a": 1, "hint": "Pense no risco de compartilhar informações sensíveis publicamente.", "ex": "Ignorar arquivos com dados sensíveis evita que eles fiquem expostos no histórico do repositório, especialmente em repositórios públicos.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "Um arquivo 'senha.txt' já foi commitado antes de ser adicionado ao '.gitignore'. O que acontece depois de adicioná-lo ao '.gitignore'?", "opts": ["O arquivo é removido automaticamente de todo o histórico", "O arquivo continua rastreado normalmente, pois o '.gitignore' só afeta arquivos ainda não commitados", "O Git apaga o arquivo do disco imediatamente", "O repositório para de funcionar"], "a": 1, "hint": "Pense se o '.gitignore' age retroativamente sobre o que já está no histórico.", "ex": "O '.gitignore' só evita que novos arquivos sejam rastreados; arquivos já commitados continuam no histórico até serem removidos manualmente.", "format": "PREVISÃO DE RESULTADO" }
+      ]
+    },
+    {
+      "id": "git-25",
+      "name": "O QUE É CI/CD",
+      "difficulty": "AVANÇADO",
+      "color": "#f472b6",
+      "icon": "⟳",
+      "summary": "Entenda o conceito de integração e entrega contínuas.",
+      "lesson": [
+        { "title": "Integração contínua (CI)", "body": "CI (Continuous Integration) é a prática de integrar e testar mudanças de código com frequência, de forma automatizada, detectando problemas o quanto antes ao invés de acumular grandes mudanças sem verificação." },
+        { "title": "Entrega contínua (CD)", "body": "CD (Continuous Delivery/Deployment) é a prática de automatizar o processo de disponibilizar novas versões do projeto, seja em um ambiente de testes ou em produção, reduzindo trabalho manual repetitivo." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "O que significa a sigla CI em CI/CD?", "opts": ["Código Isolado", "Integração Contínua (Continuous Integration)", "Comando Interno", "Configuração Individual"], "a": 1, "hint": "Pense em 'Continuous Integration' traduzido.", "ex": "CI significa Integração Contínua: integrar e testar mudanças de código com frequência de forma automatizada.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Qual é o principal benefício de praticar integração contínua (CI)?", "opts": ["Reduzir o número de commits necessários", "Detectar problemas no código o mais cedo possível, através de testes automatizados frequentes", "Eliminar a necessidade de revisão de código", "Apagar branches antigas automaticamente"], "a": 1, "hint": "Pense em identificar erros rapidamente, antes que se acumulem.", "ex": "A CI busca detectar problemas rapidamente, testando o código com frequência ao invés de esperar até o final do desenvolvimento.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "O que a entrega contínua (CD) busca automatizar?", "opts": ["A criação de novas linguagens de programação", "O processo de disponibilizar novas versões do projeto em um ambiente de testes ou produção", "A escrita de mensagens de commit", "A criação de contas no GitHub"], "a": 1, "hint": "Pense na etapa que acontece depois que o código já passou pelos testes.", "ex": "A entrega contínua automatiza a disponibilização de novas versões do software, reduzindo trabalho manual no processo de deploy.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Uma equipe integra e testa manualmente o código apenas uma vez por mês, acumulando muitas mudanças de uma vez. Isso está alinhado com a prática de CI?", "opts": ["Sim, CI recomenda integrações espaçadas para reduzir o trabalho", "Não, CI recomenda integrar e testar mudanças com frequência, não acumular grandes lotes de mudanças", "Sim, desde que use o GitHub", "Não, mas apenas porque falta usar branches"], "a": 1, "hint": "Pense no significado de 'contínua' na sigla CI.", "ex": "CI recomenda integrações frequentes e automatizadas, exatamente o oposto de acumular grandes mudanças sem testar por muito tempo.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "git-26",
+      "name": "GITHUB ACTIONS",
+      "difficulty": "AVANÇADO",
+      "color": "#f472b6",
+      "icon": "⏱",
+      "summary": "Entenda a ideia geral de um workflow automatizado no GitHub Actions.",
+      "lesson": [
+        { "title": "Automatizando tarefas", "body": "GitHub Actions é um recurso do GitHub que permite criar workflows (fluxos de trabalho) automatizados, que rodam em resposta a eventos do repositório, como um push ou a abertura de um pull request." },
+        { "title": "Gatilhos de eventos", "body": "Um workflow pode ser configurado para rodar automaticamente, por exemplo, toda vez que alguém faz push na branch 'main', executando testes automaticamente sem intervenção manual.", "tip": "Um workflow típico é descrito em um arquivo de configuração dentro da pasta '.github/workflows' do repositório." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "O que é o GitHub Actions?", "opts": ["Um editor de código integrado ao GitHub", "Um recurso do GitHub para criar workflows automatizados que rodam em resposta a eventos do repositório", "Um comando do Git para criar branches", "Uma extensão para editar arquivos Markdown"], "a": 1, "hint": "Pense em automação disparada por eventos do repositório.", "ex": "GitHub Actions permite configurar workflows automatizados que executam ações em resposta a eventos, como um push ou pull request.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Qual é um exemplo de evento que pode disparar um workflow do GitHub Actions?", "opts": ["Um usuário abrindo o repositório no navegador sem fazer nada", "Um push feito em uma branch do repositório", "Alguém digitando um comentário em um arquivo local", "A troca de tema visual do editor de código"], "a": 1, "hint": "Pense em uma ação registrada no repositório que o GitHub consegue detectar.", "ex": "Um push (ou a abertura de um pull request, entre outros) é um evento típico que pode disparar automaticamente um workflow.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "Qual é uma vantagem prática de configurar testes automatizados via GitHub Actions a cada push?", "opts": ["O código fica automaticamente mais rápido de executar", "Erros podem ser detectados automaticamente logo após cada mudança, sem depender de execução manual", "O repositório fica invisível para outras pessoas", "Isso substitui a necessidade de fazer commits"], "a": 1, "hint": "Pense na diferença entre testar manualmente toda vez e ter isso automatizado.", "ex": "Rodar testes automaticamente a cada push permite identificar problemas rapidamente, sem depender de alguém lembrar de testar manualmente.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "Onde normalmente ficam armazenados os arquivos que definem os workflows do GitHub Actions em um repositório?", "opts": ["Na pasta '.github/workflows'", "No arquivo '.gitignore'", "No arquivo README.md", "Dentro da pasta 'node_modules'"], "a": 0, "hint": "Pense em uma pasta oculta específica reconhecida pelo GitHub para configurações de automação.", "ex": "Os workflows do GitHub Actions são definidos por arquivos de configuração dentro da pasta '.github/workflows'.", "format": "CONCEITO" }
+      ]
+    },
+    {
+      "id": "git-27",
+      "name": "FLUXO FORK E BRANCH",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "●",
+      "summary": "Revise o início do fluxo de colaboração: do fork até a criação de uma branch.",
+      "lesson": [
+        { "title": "Passo 1: fork", "body": "Para contribuir com um projeto de outra pessoa, o primeiro passo costuma ser criar um fork dele na sua própria conta do GitHub, obtendo uma cópia independente para trabalhar." },
+        { "title": "Passo 2: clone e branch", "body": "Depois do fork, você clona o repositório para o seu computador e cria uma branch específica para a mudança que pretende fazer, mantendo a 'main' intacta.", "code": "git clone https://github.com/seu-usuario/projeto.git\ngit checkout -b corrige-typo" }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Em um fluxo típico de contribuição em projeto de terceiros, o que costuma ser feito primeiro: o fork ou a criação de uma branch?", "opts": ["Primeiro a branch, depois o fork", "Primeiro o fork do repositório original, depois a criação de uma branch no repositório copiado", "Ambos acontecem ao mesmo tempo automaticamente", "Nenhum dos dois é necessário para contribuir"], "a": 1, "hint": "Pense em obter a cópia própria antes de organizar o trabalho dentro dela.", "ex": "O fluxo comum começa pelo fork, criando a cópia própria do projeto, e só depois cria-se uma branch para a mudança específica.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "code", "q": "Depois de clonar seu fork, quais comandos criam e trocam para uma nova branch chamada 'ajusta-layout'?", "opts": ["git fork ajusta-layout", "git checkout -b ajusta-layout", "git clone ajusta-layout", "git push ajusta-layout"], "a": 1, "hint": "Lembre do comando que cria e troca de branch em uma única ação.", "ex": "'git checkout -b ajusta-layout' cria a nova branch e já muda para ela, pronta para receber as mudanças.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "Por que é recomendado criar uma branch específica para a mudança, em vez de trabalhar direto na 'main' do fork?", "opts": ["Porque a 'main' do fork não pode receber nenhum commit", "Porque isolar a mudança em uma branch facilita organizar e depois propor exatamente aquela alteração via pull request", "Porque isso é exigido pelo GitHub para permitir fork", "Porque branches deixam o clone mais rápido"], "a": 1, "hint": "Pense em manter cada contribuição organizada e fácil de revisar separadamente.", "ex": "Uma branch dedicada mantém a mudança isolada e organizada, facilitando a revisão e a futura abertura de um pull request focado.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Depois de clonar o fork para o computador local, o repositório remoto 'origin' aponta para qual repositório, por padrão?", "opts": ["Para o repositório original do projeto, nunca o fork", "Para o fork que foi clonado (a cópia na sua própria conta)", "Para nenhum repositório até ser configurado manualmente", "Sempre para o GitLab, independente do fork"], "a": 1, "hint": "Pense em qual repositório foi efetivamente clonado.", "ex": "Ao clonar o fork, 'origin' aponta por padrão para essa cópia na sua conta, e não diretamente para o repositório original.", "format": "PREVISÃO DE RESULTADO" }
+      ]
+    },
+    {
+      "id": "git-28",
+      "name": "FLUXO COMMIT E PUSH",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "◑",
+      "summary": "Revise a etapa de registrar e enviar as mudanças feitas na branch.",
+      "lesson": [
+        { "title": "Registrando o trabalho", "body": "Depois de fazer as alterações necessárias, o próximo passo é adicionar os arquivos com 'git add', registrar as mudanças com 'git commit' e depois enviar tudo para o seu fork remoto com 'git push'.", "code": "git add .\ngit commit -m \"corrige typo na documentação\"\ngit push origin corrige-typo" },
+        { "title": "Enviando a branch específica", "body": "É importante enviar (push) a branch específica onde a mudança foi feita, e não a 'main', para que o GitHub disponibilize a opção de abrir um pull request a partir dela.", "tip": "Depois do push, o próprio GitHub costuma sugerir a criação de um pull request automaticamente." }
+      ],
+      "questions": [
+        { "type": "code", "q": "Depois de editar arquivos na branch 'corrige-typo', quais comandos, na ordem correta, registram e enviam essa mudança para o fork remoto?", "opts": ["git commit -m \"mensagem\"\ngit add .\ngit push", "git add .\ngit commit -m \"mensagem\"\ngit push origin corrige-typo", "git push origin corrige-typo\ngit add .\ngit commit -m \"mensagem\"", "git init\ngit commit -m \"mensagem\""], "a": 1, "hint": "Lembre da ordem: preparar, registrar e só então enviar.", "ex": "A ordem correta é: 'git add' prepara as mudanças, 'git commit' registra no histórico local e 'git push' envia ao remoto.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "mcq", "q": "Por que é importante enviar (push) a branch específica da mudança, e não a 'main', nesse fluxo de contribuição?", "opts": ["Porque a 'main' não pode receber push nunca", "Porque enviar a branch específica é o que permite ao GitHub oferecer a opção de abrir um pull request a partir dela", "Porque isso reduz o tamanho do repositório remoto", "Porque a 'main' já está sempre sincronizada automaticamente"], "a": 1, "hint": "Pense em qual branch precisa existir no remoto para virar a origem de um pull request.", "ex": "O pull request é aberto a partir de uma branch específica; por isso é ela que precisa ser enviada ao remoto, não a 'main'.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "code", "q": "Um desenvolvedor roda 'git push origin corrige-typo', mas antes esqueceu de rodar 'git commit'. O que é enviado ao remoto?", "opts": ["Todas as mudanças feitas, mesmo sem commit", "Nada de novo é enviado, pois não há commits novos para enviar", "Apenas os arquivos modificados, sem o histórico", "O Git cria um commit automático antes do push"], "a": 1, "hint": "Push envia commits já registrados; sem commit, não há nada novo para enviar.", "ex": "'git push' só envia commits já existentes no histórico local; sem um commit registrado, não há nada novo a ser enviado.", "format": "ENCONTRE O ERRO" },
+        { "type": "mcq", "q": "Depois do push bem-sucedido da branch 'corrige-typo' para o fork, qual é o próximo passo lógico do fluxo de colaboração?", "opts": ["Apagar o fork imediatamente", "Abrir um pull request propondo a integração dessa branch ao repositório original", "Rodar 'git init' novamente", "Fazer outro fork do mesmo projeto"], "a": 1, "hint": "Pense no próximo passo depois de garantir que a mudança já está no fork remoto.", "ex": "Com a branch já enviada ao fork, o próximo passo é abrir um pull request propondo a integração dessa mudança ao projeto original.", "format": "PREVISÃO DE RESULTADO" }
+      ]
+    },
+    {
+      "id": "git-29",
+      "name": "FLUXO PULL REQUEST E MERGE",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "◓",
+      "summary": "Revise a etapa final: abertura do pull request, revisão e merge.",
+      "lesson": [
+        { "title": "Abrindo o pull request", "body": "Com a branch já enviada ao fork, o pull request é aberto pela interface do GitHub, indicando qual branch do fork deve ser integrada a qual branch do repositório original." },
+        { "title": "Revisão e integração final", "body": "O mantenedor do projeto original (ou outros colaboradores) revisa o pull request, pode pedir ajustes e, quando estiver tudo certo, aceita e faz o merge, integrando definitivamente a contribuição ao projeto." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Depois que a branch com a mudança já foi enviada ao fork, onde o pull request é efetivamente criado?", "opts": ["No terminal, com o comando 'git pull-request'", "Na interface do GitHub, indicando as branches de origem e destino", "Automaticamente, sem nenhuma ação do desenvolvedor", "No arquivo README do projeto"], "a": 1, "hint": "Pull request é um recurso da plataforma, não um comando do Git.", "ex": "O pull request é criado pela interface do GitHub, onde se define a branch de origem (do fork) e a branch de destino (do projeto original).", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Durante a revisão de um pull request, o mantenedor do projeto pede uma correção antes de aceitar. Qual é a forma correta de atender a esse pedido, dentro do fluxo já iniciado?", "opts": ["Abrir um novo fork e recomeçar tudo do zero", "Fazer a correção na mesma branch local, commitar e dar push novamente na mesma branch", "Fechar o pull request e nunca mais contribuir", "Ignorar o pedido, pois pull requests não podem ser alterados"], "a": 1, "hint": "Pense em continuar trabalhando na mesma branch já vinculada ao pull request.", "ex": "Fazer novos commits na mesma branch e enviá-los com push atualiza automaticamente o pull request já aberto, sem precisar recomeçar o processo.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "Depois que um pull request é aceito e o merge é feito no repositório original, o que acontece com a mudança proposta?", "opts": ["Ela é descartada, pois pull requests nunca resultam em merge de fato", "Ela passa a fazer parte oficial do histórico do repositório original", "Ela precisa ser commitada novamente pelo mantenedor", "Ela é movida para um repositório separado"], "a": 1, "hint": "Pense no merge como a etapa final que incorpora de fato a contribuição.", "ex": "Após o merge, a mudança proposta passa a integrar oficialmente o histórico do repositório original.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Qual é a ordem correta e completa do fluxo típico de contribuição em um projeto de terceiros no GitHub?", "opts": ["Merge, pull request, commit, branch, fork", "Fork, branch, commit, pull request, merge", "Commit, fork, merge, branch, pull request", "Branch, merge, fork, commit, pull request"], "a": 1, "hint": "Pense na sequência lógica: primeiro obter a cópia, depois organizar e registrar o trabalho, depois propor e integrar.", "ex": "O fluxo completo segue essa ordem: criar o fork, criar uma branch, fazer commits, abrir o pull request e, por fim, o merge da contribuição.", "format": "CONCEITO" }
+      ]
+    },
+    {
+      "id": "git-30",
+      "name": "PROJETO FINAL INTEGRADO",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "✦",
+      "summary": "Revise o fluxo completo de colaboração no Git e no GitHub, do início ao fim.",
+      "lesson": [
+        { "title": "Juntando tudo", "body": "Um fluxo completo de colaboração envolve: criar um fork do projeto, cloná-lo, criar uma branch específica, fazer commits organizados, enviar (push) a branch, abrir um pull request, passar pela revisão de código e, por fim, o merge no projeto original." },
+        { "title": "Boas práticas ao longo do processo", "body": "Ao longo de todo o fluxo, vale manter mensagens de commit claras, um README bem escrito, um '.gitignore' adequado e, quando aplicável, testes automatizados rodando via GitHub Actions a cada mudança proposta." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Um desenvolvedor quer contribuir para um projeto open source. Ele faz o fork, clona o repositório, mas começa a trabalhar direto na branch 'main' do fork em vez de criar uma nova branch. Qual problema essa escolha pode causar mais adiante?", "opts": ["Nenhum problema, pois o fork já isola tudo automaticamente", "Fica mais difícil isolar exatamente a mudança proposta, dificultando abrir um pull request focado apenas naquela contribuição", "O GitHub impede push na 'main' de um fork", "O commit não será registrado corretamente"], "a": 1, "hint": "Pense em como fica a organização quando várias mudanças diferentes se misturam na mesma branch.", "ex": "Trabalhar direto na 'main' do fork mistura mudanças, dificultando manter o pull request focado e organizado em torno de uma única contribuição.", "format": "ENCONTRE O ERRO" },
+        { "type": "mcq", "q": "Depois de abrir um pull request, o revisor pede uma mudança em uma função específica. Qual é o caminho correto para atualizar a contribuição sem recomeçar o processo?", "opts": ["Fazer a alteração na mesma branch local, commitar e enviar (push) novamente para a mesma branch remota", "Criar um fork totalmente novo", "Apagar o pull request e abrir outro do zero", "Editar o arquivo apenas na interface do GitHub sem nenhum commit"], "a": 0, "hint": "Pense em continuar o trabalho na mesma branch já vinculada ao pull request aberto.", "ex": "Novos commits enviados à mesma branch atualizam automaticamente o pull request já existente, sem precisar recriá-lo.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "Um projeto tem testes automatizados configurados via GitHub Actions, disparados a cada pull request. Qual é o benefício direto disso durante a revisão?", "opts": ["Os testes substituem totalmente a necessidade de um revisor humano", "Os revisores podem ver rapidamente se os testes automatizados passaram, ajudando a identificar problemas antes mesmo da leitura manual do código", "Isso impede que qualquer pull request seja aceito", "Isso apaga automaticamente pull requests com erros"], "a": 1, "hint": "Pense em como testes automáticos complementam, e não substituem, a revisão humana.", "ex": "Os testes automatizados dão um sinal rápido sobre problemas óbvios, complementando (não substituindo) a análise humana feita na revisão.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Considerando o fluxo completo (fork, branch, commit, pull request, merge), em qual etapa é mais apropriado corrigir um problema apontado na revisão de código, sem reiniciar todo o processo?", "opts": ["Voltando à etapa de fork e recomeçando tudo", "Fazendo um novo commit na mesma branch já usada no pull request", "Apagando o repositório original", "Criando um novo repositório do zero"], "a": 1, "hint": "Pense em qual etapa permite ajustes incrementais sem descartar o trabalho já feito.", "ex": "Correções apontadas na revisão são resolvidas com novos commits na mesma branch, que atualizam o pull request já em andamento, sem necessidade de recomeçar o fluxo.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    }
+  ]
+}

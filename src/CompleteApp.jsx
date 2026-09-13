@@ -3,6 +3,13 @@ import pythonCourse from './data/course.json';
 import htmlCourse from './data/course-html.json';
 import javaCourse from './data/course-java.json';
 import iaCourse from './data/course-ia.json';
+import jsCourse from './data/course-js.json';
+import sqlCourse from './data/course-sql.json';
+import gitCourse from './data/course-git.json';
+import supabaseCourse from './data/course-supabase.json';
+import vercelCourse from './data/course-vercel.json';
+import securityCourse from './data/course-security.json';
+import iaDevCourse from './data/course-ia-dev.json';
 import mascotReady from './assets/mascot/guia-py-ready.webp';
 import mascotFocus from './assets/mascot/guia-py-focus.webp';
 import mascotCelebrate from './assets/mascot/guia-py-celebrate.webp';
@@ -13,17 +20,13 @@ import './minimal-theme.css';
 const LEGACY_STORAGE_KEY = 'black-buster-progress-v5';
 const ACCOUNT_STORAGE_KEY = 'black-buster-account-v1';
 const trackStorageKey = (trackId) => `black-buster-track-${trackId}-v1`;
-const ACCOUNT_FIELDS = ['entitlements', 'hearts', 'xp', 'gems', 'streak', 'lastStudyDate', 'dailyXp', 'dailyXpDate'];
+const ACCOUNT_FIELDS = ['xp', 'streak', 'lastStudyDate', 'dailyXp', 'dailyXpDate'];
 const TRACK_FIELDS = ['completed', 'attempts', 'correct', 'wrong', 'lastStage', 'questionStats', 'reviewSessions', 'unitReviews'];
 const SETTINGS_KEY = 'black-buster-settings-v2';
 const FONT_ID = 'black-buster-fonts';
-const MAX_HEARTS = 5;
-const HEART_REFILL_COST = 50;
 const DAILY_GOAL_XP = 20;
-// Sem backend/banco de dados por enquanto: paywall e bloqueio por vidas
-// ficam desligados e a trilha inteira permanece aberta. O código de
-// monetização continua aqui pronto para religar quando houver back-end.
-const MONETIZATION_ENABLED = false;
+// Curso 100% gratuito e sem backend: sem vidas, sem moedas, sem paywall.
+// O único progresso relevante é lições concluídas, XP e ofensiva diária.
 
 function localDayKey(date = new Date()) {
   const year = date.getFullYear();
@@ -46,12 +49,7 @@ function pickFields(obj, fields) {
 
 function emptyAccount() {
   return {
-    entitlements: {
-      infiniteHearts: false,
-    },
-    hearts: MAX_HEARTS,
     xp: 0,
-    gems: 100,
     streak: 0,
     lastStudyDate: null,
     dailyXp: 0,
@@ -76,7 +74,7 @@ function emptyProgress() {
   return { ...emptyAccount(), ...emptyTrackProgress() };
 }
 
-function withStudyReward(progress, { xp = 0, gems = 0, hearts = 0 }) {
+function withStudyReward(progress, { xp = 0 }) {
   const today = localDayKey();
   const alreadyStudiedToday = progress.lastStudyDate === today;
   const continuedStreak = progress.lastStudyDate === yesterdayKey();
@@ -89,11 +87,7 @@ function withStudyReward(progress, { xp = 0, gems = 0, hearts = 0 }) {
 
   return {
     ...progress,
-    hearts: progress.entitlements?.infiniteHearts
-      ? MAX_HEARTS
-      : Math.min(MAX_HEARTS, Math.max(0, (progress.hearts ?? MAX_HEARTS) + hearts)),
     xp: (progress.xp || 0) + xp,
-    gems: (progress.gems || 0) + gems,
     streak,
     lastStudyDate: today,
     dailyXp: currentDailyXp + xp,
@@ -193,6 +187,97 @@ const IA_UNIT_META = [
   { title: 'Projeto final', goal: 'Monte seu próprio fluxo de trabalho com IA.', color: '#facc15' },
 ];
 
+const JS_UNIT_META = [
+  { title: 'Fundamentos do JavaScript', goal: 'Variáveis, tipos e template strings.', color: '#ff9600' },
+  { title: 'Operadores e decisões', goal: 'Comparações, if/else e operador ternário.', color: '#f6c445' },
+  { title: 'Repetição e arrays', goal: 'for, while e métodos básicos de array.', color: '#22c55e' },
+  { title: 'Funções', goal: 'Declaração, arrow functions e retorno.', color: '#34d399' },
+  { title: 'Objetos', goal: 'Propriedades e métodos de um objeto.', color: '#1cb0f6' },
+  { title: 'O DOM', goal: 'Selecionar e alterar elementos da página.', color: '#0ea5e9' },
+  { title: 'Eventos', goal: 'Cliques, formulários e preventDefault.', color: '#38bdf8' },
+  { title: 'Requisições e dados', goal: 'fetch, JSON e async/await.', color: '#a78bfa' },
+  { title: 'Depuração e boas práticas', goal: 'console.log, erros comuns e clareza.', color: '#f472b6' },
+  { title: 'Projeto final', goal: 'Monte um mini app interativo.', color: '#facc15' },
+];
+
+const SQL_UNIT_META = [
+  { title: 'O que é um banco de dados', goal: 'Tabelas, linhas, colunas e por que usar um SGBD.', color: '#ff9600' },
+  { title: 'Modelagem de dados', goal: 'Entidades, atributos e chave primária.', color: '#f6c445' },
+  { title: 'Relacionamentos', goal: 'Chave estrangeira e relações 1:N e N:N.', color: '#22c55e' },
+  { title: 'Criando tabelas', goal: 'CREATE TABLE, tipos e restrições.', color: '#34d399' },
+  { title: 'Inserindo e consultando', goal: 'INSERT, SELECT e WHERE.', color: '#1cb0f6' },
+  { title: 'Ordenando e filtrando', goal: 'ORDER BY, LIMIT e operadores lógicos.', color: '#0ea5e9' },
+  { title: 'Junções (JOIN)', goal: 'INNER JOIN e LEFT JOIN.', color: '#38bdf8' },
+  { title: 'Agregações', goal: 'COUNT, SUM, AVG e GROUP BY.', color: '#a78bfa' },
+  { title: 'Atualizando e normalizando', goal: 'UPDATE, DELETE e normalização.', color: '#f472b6' },
+  { title: 'Projeto final', goal: 'Modele o banco de uma loja simples.', color: '#facc15' },
+];
+
+const GIT_UNIT_META = [
+  { title: 'O que é controle de versão', goal: 'Por que usar Git, e Git vs GitHub.', color: '#ff9600' },
+  { title: 'Primeiros comandos', goal: 'init, add, commit e status.', color: '#f6c445' },
+  { title: 'Histórico e comparação', goal: 'log, diff e descartar mudanças.', color: '#22c55e' },
+  { title: 'Branches', goal: 'Criar, trocar e isolar trabalho.', color: '#34d399' },
+  { title: 'Merge e conflitos', goal: 'Como surgem e como resolver.', color: '#1cb0f6' },
+  { title: 'GitHub na prática', goal: 'Repositório remoto, push, pull, clone.', color: '#0ea5e9' },
+  { title: 'Colaboração', goal: 'Fork, pull request e code review.', color: '#38bdf8' },
+  { title: 'Organização do projeto', goal: 'Issues, labels, README e .gitignore.', color: '#a78bfa' },
+  { title: 'Automação com Actions', goal: 'CI/CD e workflows automáticos.', color: '#f472b6' },
+  { title: 'Projeto final', goal: 'Fluxo completo fork → PR → merge.', color: '#facc15' },
+];
+
+const SUPABASE_UNIT_META = [
+  { title: 'O que é Backend as a Service', goal: 'O que o Supabase entrega pronto.', color: '#ff9600' },
+  { title: 'Banco de dados gerenciado', goal: 'Postgres e tabelas pelo painel.', color: '#f6c445' },
+  { title: 'API instantânea', goal: 'Cada tabela vira um endpoint REST.', color: '#22c55e' },
+  { title: 'Autenticação', goal: 'Signup, login e sessão do usuário.', color: '#34d399' },
+  { title: 'Row Level Security', goal: 'Políticas de acesso aos dados.', color: '#1cb0f6' },
+  { title: 'Storage de arquivos', goal: 'Buckets e upload de arquivos.', color: '#0ea5e9' },
+  { title: 'Realtime', goal: 'Assinar mudanças em tempo real.', color: '#38bdf8' },
+  { title: 'Client SDK', goal: 'Ler e escrever dados com o SDK.', color: '#a78bfa' },
+  { title: 'Edge Functions', goal: 'Funções serverless sob demanda.', color: '#f472b6' },
+  { title: 'Projeto final', goal: 'Planeje o backend de um app.', color: '#facc15' },
+];
+
+const VERCEL_UNIT_META = [
+  { title: 'O que é deploy', goal: 'Do código local ao público.', color: '#ff9600' },
+  { title: 'Estático vs dinâmico', goal: 'Site estático, servidor e serverless.', color: '#f6c445' },
+  { title: 'Vercel na prática', goal: 'Conectar o GitHub e publicar.', color: '#22c55e' },
+  { title: 'Preview deployments', goal: 'Deploy por branch e por PR.', color: '#34d399' },
+  { title: 'Domínio e HTTPS', goal: 'Domínio próprio e certificado automático.', color: '#1cb0f6' },
+  { title: 'Variáveis de ambiente', goal: 'Segredos fora do código-fonte.', color: '#0ea5e9' },
+  { title: 'Build e frameworks', goal: 'Comando de build e detecção automática.', color: '#38bdf8' },
+  { title: 'Performance e CDN', goal: 'Edge network e cache.', color: '#a78bfa' },
+  { title: 'Monitoramento', goal: 'Logs e erros em produção.', color: '#f472b6' },
+  { title: 'Projeto final', goal: 'Publique um projeto do zero ao ar.', color: '#facc15' },
+];
+
+const SECURITY_UNIT_META = [
+  { title: 'Por que segurança importa', goal: 'O que pode dar errado e mentalidade defensiva.', color: '#ff9600' },
+  { title: 'Senhas e hashing', goal: 'Nunca guardar senha em texto puro.', color: '#f6c445' },
+  { title: 'HTTPS e criptografia', goal: 'O que o cadeado garante.', color: '#22c55e' },
+  { title: 'Autenticação vs autorização', goal: 'Quem você é vs o que pode fazer.', color: '#34d399' },
+  { title: 'Injeção de SQL', goal: 'Como ocorre e como prevenir.', color: '#1cb0f6' },
+  { title: 'XSS e CSRF', goal: 'O que são e como mitigar.', color: '#0ea5e9' },
+  { title: 'Segredos e variáveis sensíveis', goal: 'Nunca commitar chaves e senhas.', color: '#38bdf8' },
+  { title: 'Boas práticas de API', goal: 'Validação, rate limit e CORS.', color: '#a78bfa' },
+  { title: 'Privacidade e LGPD', goal: 'Dado pessoal e proteção de dados.', color: '#f472b6' },
+  { title: 'Projeto final', goal: 'Checklist de segurança para lançar um site.', color: '#facc15' },
+];
+
+const IA_DEV_UNIT_META = [
+  { title: 'IA no ciclo de desenvolvimento', goal: 'Onde a IA ajuda hoje.', color: '#ff9600' },
+  { title: 'Prompt engineering para código', goal: 'Contexto claro e específico.', color: '#f6c445' },
+  { title: 'Assistentes de código', goal: 'Autocomplete vs agente que executa.', color: '#22c55e' },
+  { title: 'Revisão assistida por IA', goal: 'Encontrar bugs e explicar código.', color: '#34d399' },
+  { title: 'Gerando testes com IA', goal: 'Testes que cobrem casos de borda.', color: '#1cb0f6' },
+  { title: 'Depurando com IA', goal: 'Descrever o erro e avaliar a sugestão.', color: '#0ea5e9' },
+  { title: 'Limites e riscos', goal: 'Alucinação de código e excesso de confiança.', color: '#38bdf8' },
+  { title: 'Segurança ao usar IA', goal: 'Nunca colar segredos em um prompt.', color: '#a78bfa' },
+  { title: 'Ética e autoria', goal: 'A responsabilidade continua sendo sua.', color: '#f472b6' },
+  { title: 'Projeto final', goal: 'Monte seu fluxo pessoal com IA.', color: '#facc15' },
+];
+
 const TRACK_CATALOG = [
   {
     id: 'python',
@@ -238,6 +323,83 @@ const TRACK_CATALOG = [
     stagesPerUnit: 3,
     fileExt: 'py',
   },
+  {
+    id: 'js',
+    title: 'JavaScript',
+    subtitle: 'Interatividade para páginas vivas.',
+    icon: '◉',
+    color: '#f7df1e',
+    course: jsCourse,
+    unitMeta: JS_UNIT_META,
+    stagesPerUnit: 3,
+    fileExt: 'js',
+  },
+  {
+    id: 'sql',
+    title: 'Banco de Dados',
+    subtitle: 'Modele, consulte e organize dados.',
+    icon: '⛁',
+    color: '#336791',
+    course: sqlCourse,
+    unitMeta: SQL_UNIT_META,
+    stagesPerUnit: 3,
+    fileExt: 'sql',
+  },
+  {
+    id: 'git',
+    title: 'Git & GitHub',
+    subtitle: 'Controle de versão e colaboração.',
+    icon: '⎇',
+    color: '#f05033',
+    course: gitCourse,
+    unitMeta: GIT_UNIT_META,
+    stagesPerUnit: 3,
+    fileExt: 'sh',
+  },
+  {
+    id: 'supabase',
+    title: 'Supabase',
+    subtitle: 'Backend completo sem servidor próprio.',
+    icon: '◈',
+    color: '#3ecf8e',
+    course: supabaseCourse,
+    unitMeta: SUPABASE_UNIT_META,
+    stagesPerUnit: 3,
+    fileExt: 'js',
+  },
+  {
+    id: 'vercel',
+    title: 'Deploy & Vercel',
+    subtitle: 'Do código ao ar em produção.',
+    icon: '▲',
+    color: '#a3a3a3',
+    course: vercelCourse,
+    unitMeta: VERCEL_UNIT_META,
+    stagesPerUnit: 3,
+    fileExt: 'bash',
+  },
+  {
+    id: 'security',
+    title: 'Segurança da Informação',
+    subtitle: 'Proteja dados, senhas e aplicações.',
+    icon: '⛨',
+    color: '#ef4444',
+    course: securityCourse,
+    unitMeta: SECURITY_UNIT_META,
+    stagesPerUnit: 3,
+    fileExt: 'txt',
+  },
+  {
+    id: 'ia-dev',
+    title: 'IA para Desenvolvedores',
+    subtitle: 'Use IA com técnica e responsabilidade.',
+    icon: '✧',
+    color: '#8b5cf6',
+    course: iaDevCourse,
+    unitMeta: IA_DEV_UNIT_META,
+    stagesPerUnit: 3,
+    fileExt: 'txt',
+  },
 ];
 
 const JOURNEY_X = [50, 68, 76, 64, 43, 27, 22, 36];
@@ -261,21 +423,16 @@ function readLegacyRaw() {
   }
 }
 
-// Account-wide stats (hearts, xp, gems, streak) are shared across every
-// trilha, like a single learner profile. Only completion/answer history is
-// tracked per track — see readTrackProgress.
+// Account-wide stats (xp, streak) are shared across every trilha, like a
+// single learner profile. Only completion/answer history is tracked per
+// track — see readTrackProgress.
 function readAccount() {
   try {
     const saved = JSON.parse(localStorage.getItem(ACCOUNT_STORAGE_KEY) || 'null') || readLegacyRaw() || {};
     const lastStudyDate = saved.lastStudyDate || null;
     const streakIsActive = lastStudyDate === localDayKey() || lastStudyDate === yesterdayKey();
     return {
-      entitlements: {
-        infiniteHearts: Boolean(saved.entitlements?.infiniteHearts),
-      },
-      hearts: Number.isFinite(saved.hearts) ? Math.min(MAX_HEARTS, Math.max(0, saved.hearts)) : MAX_HEARTS,
       xp: Number.isFinite(saved.xp) ? Math.max(0, saved.xp) : 0,
-      gems: Number.isFinite(saved.gems) ? Math.max(0, saved.gems) : 100,
       streak: streakIsActive && Number.isFinite(saved.streak) ? Math.max(0, saved.streak) : 0,
       lastStudyDate,
       dailyXp: Number.isFinite(saved.dailyXp) ? Math.max(0, saved.dailyXp) : 0,
@@ -535,7 +692,7 @@ function FlameIcon() {
   );
 }
 
-function AppHeader({ stats, settings, active = 'map', trackTitle, onHome, onTracks, onHearts, onToggleSound, onToggleScanlines }) {
+function AppHeader({ stats, settings, active = 'map', trackTitle, onHome, onTracks, onToggleSound, onToggleScanlines }) {
   return (
     <header className="app-header">
       <button type="button" className="brand" onClick={onHome} aria-label="Voltar para a trilha">
@@ -551,16 +708,6 @@ function AppHeader({ stats, settings, active = 'map', trackTitle, onHome, onTrac
       <div className="header-stats">
         <div className="stat-streak" title="Ofensiva diária"><span><FlameIcon /></span><b>{stats.streak}</b></div>
         <div className="stat-xp" title="Experiência total"><span>⚡</span><b>{stats.xp}</b></div>
-        <div className="stat-gems" title="Gemas"><span>◆</span><b>{stats.gems}</b></div>
-        <button
-          type="button"
-          className={`stat-hearts ${stats.infiniteHearts ? 'infinite' : ''}`}
-          onClick={onHearts}
-          title={stats.infiniteHearts ? 'Vidas infinitas ativas' : 'Vidas disponíveis'}
-          aria-label={stats.infiniteHearts ? 'Vidas infinitas ativas' : `${stats.hearts} de ${MAX_HEARTS} vidas`}
-        >
-          <span>♥</span><b>{stats.infiniteHearts ? '∞' : stats.hearts}</b>
-        </button>
         <button type="button" className="header-utility" onClick={onToggleSound} title="Ativar ou desativar som" aria-label="Som">
           {settings.sound ? '♪' : '×'}
         </button>
@@ -570,26 +717,12 @@ function AppHeader({ stats, settings, active = 'map', trackTitle, onHome, onTrac
   );
 }
 
-function MobileNav({ active = 'map', onHome, onTracks, onHearts, hearts, infiniteHearts = false }) {
+function MobileNav({ active = 'map', onHome, onTracks }) {
   return (
     <nav className="mobile-nav" aria-label="Navegação para celular">
       <button type="button" className={active === 'map' ? 'active' : ''} onClick={onHome}><span>⌁</span><small>TRILHA</small></button>
       <button type="button" className={active === 'tracks' ? 'active' : ''} onClick={onTracks}><span>▦</span><small>CURSOS</small></button>
-      <button type="button" className={`mobile-hearts ${infiniteHearts ? 'infinite' : ''}`} onClick={onHearts}><span>♥</span><small>{infiniteHearts ? '∞ VIDAS' : `${hearts}/${MAX_HEARTS} VIDAS`}</small></button>
     </nav>
-  );
-}
-
-function PremiumOfferBar({ onPurchase }) {
-  return (
-    <section className="premium-offer-shell" aria-label="Oferta de vidas infinitas">
-      <div className="premium-offer-copy">
-        <span className="premium-offer-icon">★</span>
-        <div><small>PACOTE COMPLETO</small><b>Vidas infinitas</b></div>
-      </div>
-      <div className="premium-offer-price"><strong>R$ 25</strong><small>PAGAMENTO ÚNICO</small></div>
-      <button type="button" className="premium-offer-button" onClick={onPurchase}>VER OFERTA</button>
-    </section>
   );
 }
 
@@ -729,7 +862,7 @@ function UnitPath({ unit, progress, currentIndex, selectedId, onSelect, onUnitRe
         <div>
           <small>REVISÃO DA UNIDADE {unit.number}</small>
           <h3>{progress.unitReviews?.[unit.number] ? 'Revisão concluída' : completedInUnit === unit.stages.length ? 'Misture o que aprendeu' : 'Conclua as fases da unidade'}</h3>
-          <p>8 questões das fases desta unidade · prática segura, sem perder vidas.</p>
+          <p>8 questões das fases desta unidade · prática livre, sem penalidades.</p>
         </div>
         <PixelButton
           color={unit.color}
@@ -901,20 +1034,17 @@ function CourseMap({ stages, unitMeta, stagesPerUnit, trackTitle, progress, onEn
   );
 }
 
-function FocusHeader({ stage, step, total, onExit, hearts = MAX_HEARTS, safePractice = false, heartReward = false, infiniteHearts = false }) {
+function FocusHeader({ stage, step, total, onExit }) {
   const percent = total ? (step / total) * 100 : 0;
   return (
     <div className="focus-header" style={{ '--stage-color': stage.color }}>
       <button type="button" onClick={onExit} aria-label="Sair e voltar para a trilha">×</button>
       <LinearProgress value={percent} color={stage.color} label={`${Math.round(percent)}% da fase`} />
-      <span className={`focus-heart-count ${safePractice || infiniteHearts ? 'safe' : ''}`} title={safePractice ? 'Prática sem perda de vidas' : infiniteHearts ? 'Vidas infinitas ativas' : `${hearts} vidas restantes`}>
-        <i>♥</i><b>{heartReward ? '+1' : safePractice || infiniteHearts ? '∞' : hearts}</b>
-      </span>
     </div>
   );
 }
 
-function LessonScreen({ stage, stageIndex, fileExt, hearts, infiniteHearts = false, onExit, onBattle, sfx }) {
+function LessonScreen({ stage, stageIndex, fileExt, onExit, onBattle, sfx }) {
   const [index, setIndex] = useState(0);
   const card = stage.lesson[index];
   const last = index === stage.lesson.length - 1;
@@ -922,7 +1052,7 @@ function LessonScreen({ stage, stageIndex, fileExt, hearts, infiniteHearts = fal
 
   return (
     <main className="focus-screen lesson-screen" style={{ '--stage-color': stage.color }}>
-      <FocusHeader stage={stage} step={index + 1} total={stage.lesson.length + 1} hearts={hearts} infiniteHearts={infiniteHearts} onExit={onExit} />
+      <FocusHeader stage={stage} step={index + 1} total={stage.lesson.length + 1} onExit={onExit} />
       <div className="focus-shell">
         <div className="lesson-heading">
           <span className="lesson-stage-icon">{stage.icon}</span>
@@ -1001,15 +1131,13 @@ const QUESTION_FORMAT_LABELS = {
   'APLICAÇÃO PRÁTICA': 'APLIQUE O QUE APRENDEU',
 };
 
-function QuestionCard({ question, stageColor, selected, wrong, correct, onSelect, hearts, safePractice = false, fileExt = 'py' }) {
+function QuestionCard({ question, stageColor, selected, wrong, correct, onSelect, fileExt = 'py' }) {
   return (
     <section className="question-card">
       <div className="question-card-header">
         <span className="card-kicker">{QUESTION_FORMAT_LABELS[question.format] || 'ESCOLHA A RESPOSTA CORRETA'}</span>
-        <span className={`question-attempts ${safePractice ? 'safe' : ''} ${wrong.length ? 'has-errors' : ''}`}>
-          {safePractice
-            ? 'PRÁTICA SEM CUSTO'
-            : `♥ ${hearts} ${hearts === 1 ? 'VIDA' : 'VIDAS'}`}
+        <span className={`question-attempts ${wrong.length ? 'has-errors' : ''}`}>
+          TENTATIVAS ILIMITADAS
         </span>
       </div>
       {question.type === 'code' ? <CodeBlock text={question.q} filename={`desafio.${fileExt}`} label="ANALISE O CÓDIGO" compact /> : <h2>{question.q}</h2>}
@@ -1043,13 +1171,13 @@ function QuestionCard({ question, stageColor, selected, wrong, correct, onSelect
   );
 }
 
-function QuestionFeedback({ question, selected, wrong, correct, color, nextLabel, onCheck, onNext, usesHearts = false, hearts = MAX_HEARTS }) {
+function QuestionFeedback({ question, selected, wrong, correct, color, nextLabel, onCheck, onNext }) {
   const state = correct ? 'success' : wrong.length ? 'error' : 'neutral';
-  const title = correct ? 'MANDOU BEM!' : wrong.length ? usesHearts ? 'VOCÊ PERDEU UMA VIDA' : 'QUASE LÁ' : 'CONFIRME SUA ESCOLHA';
+  const title = correct ? 'MANDOU BEM!' : wrong.length ? 'QUASE LÁ' : 'CONFIRME SUA ESCOLHA';
   const message = correct
     ? question.ex
     : wrong.length
-      ? usesHearts ? `${question.hint} Restam ${hearts} ${hearts === 1 ? 'vida' : 'vidas'}.` : question.hint
+      ? question.hint
       : 'Selecione uma das opções acima. Você pode tentar novamente quantas vezes precisar.';
   const checkLabel = wrong.length
     ? selected === null ? 'ESCOLHA OUTRA OPÇÃO' : 'VERIFICAR NOVAMENTE'
@@ -1070,12 +1198,11 @@ function QuestionFeedback({ question, selected, wrong, correct, color, nextLabel
   );
 }
 
-function BattleScreen({ stage, fileExt, hearts, infiniteHearts = false, progress, onExit, onWin, onStat, onHeartPractice, onRefillHearts, onPurchasePremium, sfx }) {
+function BattleScreen({ stage, fileExt, onExit, onWin, onStat, sfx }) {
   const [index, setIndex] = useState(0);
   const [selected, setSelected] = useState(null);
   const [wrong, setWrong] = useState([]);
   const [correct, setCorrect] = useState(false);
-  const [heartGate, setHeartGate] = useState(false);
   const question = stage.questions[index];
   const last = index === stage.questions.length - 1;
 
@@ -1096,9 +1223,8 @@ function BattleScreen({ stage, fileExt, hearts, infiniteHearts = false, progress
       setSelected(null);
       onStat('wrong', { stageId: stage.id, questionIndex: index, mode: 'battle', firstTry: false });
       sfx('bad');
-      if (MONETIZATION_ENABLED && !infiniteHearts && hearts <= 1) setHeartGate(true);
     }
-  }, [correct, hearts, index, infiniteHearts, onStat, question.a, selected, sfx, stage.id, wrong.length]);
+  }, [correct, index, onStat, question.a, selected, sfx, stage.id, wrong.length]);
 
   const next = useCallback(() => {
     if (last) {
@@ -1123,23 +1249,9 @@ function BattleScreen({ stage, fileExt, hearts, infiniteHearts = false, progress
     return () => window.removeEventListener('keydown', keyboard);
   }, [check, correct, next, select]);
 
-  if (heartGate) {
-    return (
-      <HeartsScreen
-        progress={progress}
-        onExit={onExit}
-        onPractice={onHeartPractice}
-        onRefill={() => { onRefillHearts(); setHeartGate(false); }}
-        onPurchasePremium={() => {
-          if (onPurchasePremium?.()) setHeartGate(false);
-        }}
-      />
-    );
-  }
-
   return (
     <main className="focus-screen battle-screen" style={{ '--stage-color': stage.color }}>
-      <FocusHeader stage={stage} step={index + 1} total={stage.questions.length} hearts={hearts} infiniteHearts={infiniteHearts} onExit={onExit} />
+      <FocusHeader stage={stage} step={index + 1} total={stage.questions.length} onExit={onExit} />
       <div className="focus-shell challenge-shell">
         <div className="challenge-heading">
           <div><small>DESAFIO · {stage.name}</small><h1>Questão {index + 1} de {stage.questions.length}</h1></div>
@@ -1153,8 +1265,6 @@ function BattleScreen({ stage, fileExt, hearts, infiniteHearts = false, progress
           wrong={wrong}
           correct={correct}
           onSelect={select}
-          hearts={hearts}
-          safePractice={infiniteHearts}
           fileExt={fileExt}
         />
         <QuestionFeedback
@@ -1166,8 +1276,6 @@ function BattleScreen({ stage, fileExt, hearts, infiniteHearts = false, progress
           nextLabel={last ? 'CONCLUIR FASE' : 'CONTINUAR'}
           onCheck={check}
           onNext={next}
-          usesHearts={!infiniteHearts}
-          hearts={hearts}
         />
         <p className="keyboard-help">ATALHOS: 1–4 SELECIONA · ENTER VERIFICA OU CONTINUA</p>
       </div>
@@ -1186,7 +1294,6 @@ function WinScreen({ stage, nextStage, reward, streak, onMap, onReplay, onContin
         <p>Conteúdo estudado e desafio finalizado. A fase continua aberta para revisão quando quiser.</p>
         <div className="win-summary">
           <span className="reward-xp"><b>+{reward.xp}</b>XP</span>
-          <span className="reward-gems"><b>+{reward.gems}</b>GEMAS</span>
           <span className="reward-streak"><b><FlameIcon /> {streak}</b>OFENSIVA</span>
         </div>
         <div className="win-actions">
@@ -1199,42 +1306,6 @@ function WinScreen({ stage, nextStage, reward, streak, onMap, onReplay, onContin
   );
 }
 
-function HeartsScreen({ progress, onExit, onPractice, onRefill, onPurchasePremium }) {
-  const infinite = Boolean(progress.entitlements?.infiniteHearts);
-  const full = infinite || progress.hearts >= MAX_HEARTS;
-  const canBuy = !infinite && !full && progress.gems >= HEART_REFILL_COST;
-  return (
-    <main className="hearts-screen">
-      <section className="hearts-card">
-        <button type="button" className="hearts-close" onClick={onExit} aria-label="Voltar para a trilha">×</button>
-        <div className="hearts-avatar"><PinscherMascot size="large" mood={full ? 'celebrate' : 'focus'} /><span>{infinite ? '∞' : '♥'}</span></div>
-        <small>CENTRAL DE VIDAS</small>
-        <h1>{infinite ? 'Vidas infinitas ativas!' : full ? 'Suas vidas estão cheias!' : progress.hearts ? 'Recupere suas vidas' : 'Suas vidas acabaram'}</h1>
-        <p>{infinite ? 'Você pode errar e continuar estudando sem perder vidas.' : 'Erros nas fases custam uma vida. Faça uma prática curta para recuperar uma ou use gemas para completar todas.'}</p>
-        <div className={`heart-meter ${infinite ? 'infinite' : ''}`} aria-label={infinite ? 'Vidas infinitas ativas' : `${progress.hearts} de ${MAX_HEARTS} vidas`}>
-          {infinite ? <strong>∞</strong> : Array.from({ length: MAX_HEARTS }, (_, index) => <span className={index < progress.hearts ? 'full' : ''} key={index}>♥</span>)}
-        </div>
-        <div className="hearts-actions">
-          <PixelButton color="#58cc02" disabled={full} onClick={onPractice}>
-            {infinite ? 'VIDAS INFINITAS ✓' : full ? 'VIDAS CHEIAS ✓' : 'PRATICAR PARA GANHAR 1 VIDA'}
-          </PixelButton>
-          <PixelButton color="#1cb0f6" variant="outline" disabled={!canBuy} onClick={onRefill}>
-            {infinite ? 'RECURSO PREMIUM ATIVO' : full ? 'NÃO PRECISA RECARREGAR' : `COMPLETAR VIDAS · ◆ ${HEART_REFILL_COST}`}
-          </PixelButton>
-          {MONETIZATION_ENABLED && !infinite && (
-            <PixelButton color="#ce82ff" variant="outline" onClick={onPurchasePremium}>
-              VIDAS INFINITAS · R$ 25,00
-            </PixelButton>
-          )}
-          {!infinite && !full && !canBuy && <small className="not-enough-gems">Você tem ◆ {progress.gems}. São necessárias {HEART_REFILL_COST} gemas.</small>}
-          <button type="button" className="text-action" onClick={onExit}>VOLTAR À TRILHA</button>
-        </div>
-      </section>
-    </main>
-  );
-}
-
-
 function ReviewScreen({ stages, fileExt, progress, mode, unitStageIds = [], onExit, onStat, onComplete, sfx }) {
   const pool = useMemo(() => questionPool(stages), [stages]);
   const [queue] = useState(() => {
@@ -1243,7 +1314,7 @@ function ReviewScreen({ stages, fileExt, progress, mode, unitStageIds = [], onEx
       : mode === 'unit' && unitStageIds.length
         ? pool.filter((question) => unitStageIds.includes(question.stageId))
         : pool;
-    const limit = mode === 'hearts' ? 5 : mode === 'unit' ? 8 : 10;
+    const limit = mode === 'unit' ? 8 : 10;
     return [...source].sort(() => Math.random() - 0.5).slice(0, limit);
   });
   const [index, setIndex] = useState(0);
@@ -1309,15 +1380,13 @@ function ReviewScreen({ stages, fileExt, progress, mode, unitStageIds = [], onEx
       <main className="review-finish-screen">
         <section className="review-finish-card">
           <div className="review-avatar"><PinscherMascot size="large" mood="celebrate" /><span>◎</span></div>
-          <small>{mode === 'hearts' ? 'VIDA RECUPERADA' : mode === 'unit' ? 'UNIDADE REVISADA' : mode === 'mistakes' ? 'REVISÃO FINALIZADA' : 'TREINO FINALIZADO'} · GUIA PY</small><h1>{mode === 'hearts' ? '+1 ♥' : `${score}/${queue.length}`}</h1>
-          <p>{mode === 'hearts'
-            ? `Prática concluída. Agora você tem ${progress.hearts}/${MAX_HEARTS} vidas para continuar a trilha.`
-            : mode === 'unit'
+          <small>{mode === 'unit' ? 'UNIDADE REVISADA' : mode === 'mistakes' ? 'REVISÃO FINALIZADA' : 'TREINO FINALIZADO'} · GUIA PY</small><h1>{`${score}/${queue.length}`}</h1>
+          <p>{mode === 'unit'
               ? 'Você misturou os conceitos desta unidade. Qualquer dificuldade encontrada entrou na revisão personalizada.'
               : mode === 'mistakes'
                 ? 'Acertos de primeira neste bloco. Os pontos que ainda precisam de prática continuam na sua fila.'
                 : 'Acertos de primeira. Qualquer dificuldade encontrada já foi adicionada à sua revisão.'}</p>
-          <PixelButton color={mode === 'hearts' ? '#ff4b4b' : '#1cb0f6'} onClick={onExit}>{mode === 'hearts' ? 'CONTINUAR NA TRILHA' : 'VOLTAR À CENTRAL'}</PixelButton>
+          <PixelButton color="#1cb0f6" onClick={onExit}>VOLTAR À CENTRAL</PixelButton>
         </section>
       </main>
     );
@@ -1326,10 +1395,10 @@ function ReviewScreen({ stages, fileExt, progress, mode, unitStageIds = [], onEx
   const reviewStage = { color: question.color, icon: '◎' };
   return (
     <main className="focus-screen review-screen" style={{ '--stage-color': question.color }}>
-      <FocusHeader stage={reviewStage} step={index + 1} total={queue.length} hearts={progress.hearts} safePractice heartReward={mode === 'hearts'} onExit={onExit} />
+      <FocusHeader stage={reviewStage} step={index + 1} total={queue.length} onExit={onExit} />
       <div className="focus-shell challenge-shell">
         <div className="challenge-heading">
-          <div><small>{mode === 'hearts' ? 'RECUPERAÇÃO DE VIDA' : mode === 'unit' ? 'REVISÃO DA UNIDADE' : mode === 'mistakes' ? 'REVISÃO DOS ERROS' : 'TREINO MISTO'} · {question.stageName}</small><h1>Questão {index + 1} de {queue.length}</h1></div>
+          <div><small>{mode === 'unit' ? 'REVISÃO DA UNIDADE' : mode === 'mistakes' ? 'REVISÃO DOS ERROS' : 'TREINO MISTO'} · {question.stageName}</small><h1>Questão {index + 1} de {queue.length}</h1></div>
           <span>◎</span>
         </div>
         <QuestionCard
@@ -1339,8 +1408,6 @@ function ReviewScreen({ stages, fileExt, progress, mode, unitStageIds = [], onEx
           wrong={wrong}
           correct={correct}
           onSelect={select}
-          hearts={progress.hearts}
-          safePractice
           fileExt={fileExt}
         />
         <QuestionFeedback
@@ -1375,7 +1442,7 @@ export default function CompleteApp() {
   const [reviewKey, setReviewKey] = useState(0);
   const [reviewMode, setReviewMode] = useState('mixed');
   const [reviewUnit, setReviewUnit] = useState(null);
-  const [lastReward, setLastReward] = useState({ xp: 10, gems: 10 });
+  const [lastReward, setLastReward] = useState({ xp: 10 });
   const sfx = useSfx(settings.sound);
 
   useEffect(() => {
@@ -1391,13 +1458,10 @@ export default function CompleteApp() {
     total: stages.length,
     completed: Object.keys(progress.completed).length,
     accuracy: answered ? Math.round((progress.correct / answered) * 100) : 0,
-    hearts: progress.hearts,
-    infiniteHearts: Boolean(progress.entitlements?.infiniteHearts),
     xp: progress.xp,
-    gems: progress.gems,
     streak: progress.streak,
     todayXp,
-  }), [answered, progress.completed, progress.correct, progress.entitlements?.infiniteHearts, progress.gems, progress.hearts, progress.streak, progress.xp, stages.length, todayXp]);
+  }), [answered, progress.completed, progress.correct, progress.streak, progress.xp, stages.length, todayXp]);
 
   const updateProgress = useCallback((updater) => {
     setProgress((current) => {
@@ -1438,12 +1502,6 @@ export default function CompleteApp() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  const openHearts = () => {
-    setScreen('hearts');
-    sfx('click');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
   const startReview = (mode, unit = null) => {
     setReviewMode(mode);
     setReviewUnit(unit);
@@ -1454,10 +1512,6 @@ export default function CompleteApp() {
   };
 
   const enterStage = (stage) => {
-    if (MONETIZATION_ENABLED && !progress.entitlements?.infiniteHearts && progress.hearts <= 0) {
-      openHearts();
-      return;
-    }
     setActiveStage(stage);
     updateProgress((current) => ({ ...current, lastStage: stage.id }));
     setScreen('lesson');
@@ -1466,10 +1520,6 @@ export default function CompleteApp() {
   };
 
   const startBattle = () => {
-    if (!progress.entitlements?.infiniteHearts && progress.hearts <= 0) {
-      openHearts();
-      return;
-    }
     setBattleKey((key) => key + 1);
     setScreen('battle');
     window.scrollTo(0, 0);
@@ -1477,7 +1527,7 @@ export default function CompleteApp() {
 
   const finishStage = () => {
     const firstCompletion = !progress.completed[activeStage.id];
-    const reward = firstCompletion ? { xp: 10, gems: 10 } : { xp: 5, gems: 0 };
+    const reward = firstCompletion ? { xp: 10 } : { xp: 5 };
     setLastReward(reward);
     updateProgress((current) => withStudyReward({
       ...current,
@@ -1511,20 +1561,13 @@ export default function CompleteApp() {
       return {
         ...current,
         [counter]: current[counter] + 1,
-        hearts: kind === 'wrong' && context.mode === 'battle' && !current.entitlements?.infiniteHearts
-          ? Math.max(0, (current.hearts ?? MAX_HEARTS) - 1)
-          : current.entitlements?.infiniteHearts ? MAX_HEARTS : current.hearts ?? MAX_HEARTS,
         questionStats: { ...(current.questionStats || {}), [key]: nextQuestion },
       };
     });
   }, [updateProgress]);
 
   const finishReview = useCallback((mode) => {
-    const reward = mode === 'hearts'
-      ? { xp: 5, gems: 0, hearts: 1 }
-      : mode === 'unit'
-        ? { xp: 10, gems: 10, hearts: 0 }
-        : { xp: 5, gems: 5, hearts: 0 };
+    const reward = mode === 'unit' ? { xp: 10 } : { xp: 5 };
     updateProgress((current) => withStudyReward({
       ...current,
       reviewSessions: (current.reviewSessions || 0) + 1,
@@ -1533,32 +1576,6 @@ export default function CompleteApp() {
         : current.unitReviews || {},
     }, reward));
   }, [reviewUnit, updateProgress]);
-
-  const purchasePremiumBundle = () => {
-    if (progress.entitlements?.infiniteHearts) return false;
-    const confirmed = window.confirm('Ativar vidas infinitas por R$ 25,00?\n\nCompra ilustrativa: nenhuma cobrança real será feita.');
-    if (!confirmed) return false;
-    updateProgress((current) => ({
-      ...current,
-      entitlements: {
-        ...(current.entitlements || {}),
-        infiniteHearts: true,
-      },
-      hearts: MAX_HEARTS,
-    }));
-    sfx('win');
-    return true;
-  };
-
-  const refillHearts = () => {
-    if (progress.entitlements?.infiniteHearts || progress.hearts >= MAX_HEARTS || progress.gems < HEART_REFILL_COST) return;
-    updateProgress((current) => current.hearts >= MAX_HEARTS || current.gems < HEART_REFILL_COST ? current : ({
-      ...current,
-      hearts: MAX_HEARTS,
-      gems: current.gems - HEART_REFILL_COST,
-    }));
-    sfx('ok');
-  };
 
   const reset = () => {
     if (!window.confirm('Zerar apenas o progresso e as estatísticas do game?')) return;
@@ -1585,14 +1602,9 @@ export default function CompleteApp() {
           trackTitle={activeTrack.title}
           onHome={goMap}
           onTracks={openTracks}
-          onHearts={openHearts}
           onToggleSound={() => updateSetting('sound')}
           onToggleScanlines={() => updateSetting('scanlines')}
         />
-      )}
-
-      {MONETIZATION_ENABLED && screen === 'map' && !progress.entitlements?.infiniteHearts && (
-        <PremiumOfferBar onPurchase={purchasePremiumBundle} />
       )}
 
       {screen === 'tracks' && (
@@ -1611,26 +1623,17 @@ export default function CompleteApp() {
           onReset={reset}
         />
       )}
-      {screen === 'hearts' && (
-        <HeartsScreen progress={progress} onExit={goMap} onPractice={() => startReview('hearts')} onRefill={refillHearts} onPurchasePremium={purchasePremiumBundle} />
-      )}
       {screen === 'lesson' && (
-        <LessonScreen stage={activeStage} stageIndex={activeIndex} fileExt={activeTrack.fileExt} hearts={progress.hearts} infiniteHearts={Boolean(progress.entitlements?.infiniteHearts)} onExit={goMap} onBattle={startBattle} sfx={sfx} />
+        <LessonScreen stage={activeStage} stageIndex={activeIndex} fileExt={activeTrack.fileExt} onExit={goMap} onBattle={startBattle} sfx={sfx} />
       )}
       {screen === 'battle' && (
         <BattleScreen
           key={battleKey}
           stage={activeStage}
           fileExt={activeTrack.fileExt}
-          hearts={progress.hearts}
-          infiniteHearts={Boolean(progress.entitlements?.infiniteHearts)}
-          progress={progress}
           onExit={goMap}
           onWin={finishStage}
           onStat={recordAnswer}
-          onHeartPractice={() => startReview('hearts')}
-          onRefillHearts={refillHearts}
-          onPurchasePremium={purchasePremiumBundle}
           sfx={sfx}
         />
       )}
@@ -1661,7 +1664,7 @@ export default function CompleteApp() {
       )}
 
       {showMainNavigation && (
-        <MobileNav active={screen} onHome={goMap} onTracks={openTracks} onHearts={openHearts} hearts={progress.hearts} infiniteHearts={Boolean(progress.entitlements?.infiniteHearts)} />
+        <MobileNav active={screen} onHome={goMap} onTracks={openTracks} />
       )}
     </div>
   );
