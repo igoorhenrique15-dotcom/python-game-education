@@ -1,0 +1,546 @@
+{
+  "title": "Banco de Dados",
+  "version": 1,
+  "stages": [
+    {
+      "id": "sql-1",
+      "name": "DADOS SEM ORGANIZAÇÃO",
+      "difficulty": "INICIANTE",
+      "color": "#ff9600",
+      "icon": "◆",
+      "summary": "Veja por que guardar dados em arquivos soltos causa problemas e o que muda com um banco de dados.",
+      "lesson": [
+        { "title": "O problema dos arquivos soltos", "body": "Imagine uma loja guardando pedidos em arquivos de texto ou planilhas separadas. Achar um cliente específico, evitar informações repetidas ou garantir que dois vendedores não sobrescrevam o mesmo arquivo ao mesmo tempo vira um pesadelo conforme a quantidade de dados cresce.", "tip": "Planilhas funcionam bem para poucas dezenas de linhas, mas não escalam para sistemas com muitos usuários acessando ao mesmo tempo." },
+        { "title": "O que é um banco de dados", "body": "Um banco de dados é um sistema organizado para guardar, buscar e atualizar dados de forma confiável e rápida, mesmo com muitos acessos simultâneos. Ele resolve problemas de duplicação, inconsistência e falta de controle que arquivos soltos têm.", "tip": "Pense no banco de dados como um arquivo físico bem organizado, com gavetas e etiquetas, em vez de uma pilha de papéis soltos." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Qual é uma desvantagem de guardar dados de uma loja em vários arquivos de texto separados?", "opts": ["Os arquivos ficam automaticamente sincronizados", "É difícil evitar duplicação e inconsistência entre os arquivos", "Fica mais rápido buscar informações", "Não há vantagem em usar banco de dados nesse caso"], "a": 1, "hint": "Pense no que acontece quando a mesma informação precisa ser atualizada em vários lugares.", "ex": "Sem um sistema central, a mesma informação pode ficar diferente em arquivos diferentes, gerando inconsistência.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "O que é um banco de dados, de forma geral?", "opts": ["Um programa apenas para desenhar gráficos", "Um sistema organizado para guardar, buscar e atualizar dados de forma confiável", "Um tipo de arquivo de imagem", "Uma linguagem de programação para criar sites"], "a": 1, "hint": "Foque na função: organizar e gerenciar dados.", "ex": "Banco de dados é o sistema que organiza e gerencia o acesso aos dados de uma aplicação.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Duas pessoas editam ao mesmo tempo a mesma planilha de estoque salva em um arquivo compartilhado. Qual problema é mais provável?", "opts": ["Nenhum, planilhas resolvem isso automaticamente", "Uma edição pode sobrescrever a outra, perdendo informação", "O arquivo dobra de tamanho sozinho", "A planilha vira um banco de dados automaticamente"], "a": 1, "hint": "Pense em acesso simultâneo sem controle central.", "ex": "Sem controle de acesso simultâneo, uma gravação pode apagar o trabalho da outra pessoa.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Uma pequena lista de 5 contatos pessoais, usada só por você, provavelmente:", "opts": ["Exige obrigatoriamente um SGBD completo", "Pode ser mantida em uma lista simples sem grandes problemas", "É impossível de organizar sem banco de dados", "Só funciona se for convertida em tabela SQL"], "a": 1, "hint": "Nem toda necessidade de organizar dados exige a complexidade de um banco de dados completo.", "ex": "Para poucos dados e uso pessoal, uma lista simples resolve; o banco de dados se torna importante quando o volume e a concorrência de acesso crescem.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "sql-2",
+      "name": "TABELAS, LINHAS E COLUNAS",
+      "difficulty": "INICIANTE",
+      "color": "#ff9600",
+      "icon": "▤",
+      "summary": "Conheça a estrutura básica de um banco relacional: tabelas organizadas em linhas e colunas.",
+      "lesson": [
+        { "title": "Tudo vira tabela", "body": "Em um banco de dados relacional, os dados ficam organizados em tabelas, parecidas com planilhas. Cada tabela representa um tipo de coisa, como 'clientes' ou 'produtos'.", "tip": "Pense em cada tabela como uma planilha com um nome específico, dedicada a um único assunto." },
+        { "title": "Linhas e colunas", "body": "Cada coluna representa um tipo de informação (como nome, e-mail ou preço) e é a mesma para todos os registros da tabela. Cada linha representa um registro individual, como um cliente específico ou um produto específico.", "code": "Tabela: clientes\n---------------------------\nid | nome    | email\n1  | Ana     | ana@mail.com\n2  | Bruno   | bruno@mail.com" }
+      ],
+      "questions": [
+        { "type": "code", "q": "Na tabela abaixo, o que representa a coluna 'email'?\nid | nome    | email\n1  | Ana     | ana@mail.com\n2  | Bruno   | bruno@mail.com", "opts": ["Um registro específico de um cliente", "Um tipo de informação presente em todos os registros", "O nome da tabela", "Uma tabela separada"], "a": 1, "hint": "Colunas descrevem 'tipos' de dado, não um cliente específico.", "ex": "Cada coluna define um tipo de informação (atributo) compartilhado por todas as linhas da tabela.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "code", "q": "Na mesma tabela de clientes, o que representa a linha '2 | Bruno | bruno@mail.com'?", "opts": ["O nome da coluna", "Um registro individual, o cliente Bruno", "O nome da tabela inteira", "Um tipo de dado"], "a": 1, "hint": "Uma linha completa corresponde a um único item cadastrado.", "ex": "Cada linha é um registro individual — nesse caso, os dados do cliente Bruno.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "Por que é uma boa prática ter uma tabela 'clientes' separada de uma tabela 'produtos'?", "opts": ["Porque tabelas só podem ter uma coluna", "Porque cada tabela deve representar um único tipo de coisa/assunto", "Porque o banco de dados exige no mínimo duas tabelas", "Não há motivo, poderia ser tudo em uma tabela só"], "a": 1, "hint": "Pense em organização: misturar assuntos diferentes numa mesma tabela dificulta a manutenção.", "ex": "Separar por assunto (clientes, produtos) deixa o modelo mais organizado e fácil de manter.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Uma tabela 'produtos' tem colunas id, nome e preco. Qual das opções abaixo é um exemplo válido de uma LINHA dessa tabela?", "opts": ["'id', 'nome', 'preco' (os nomes das colunas)", "1, 'Caneta', 2.50", "'produtos'", "'preco'"], "a": 1, "hint": "Uma linha traz valores reais, não os nomes das colunas.", "ex": "1, 'Caneta', 2.50 são valores concretos de um registro — isso é uma linha.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "sql-3",
+      "name": "POR QUE USAR UM SGBD",
+      "difficulty": "INICIANTE",
+      "color": "#ff9600",
+      "icon": "★",
+      "summary": "Entenda o papel do Sistema Gerenciador de Banco de Dados (SGBD) e o que é SQL.",
+      "lesson": [
+        { "title": "O que é um SGBD", "body": "Um SGBD (Sistema Gerenciador de Banco de Dados) é o software que organiza, guarda e controla o acesso aos dados — exemplos incluem PostgreSQL, MySQL e SQLite. Ele cuida de tarefas como controle de acesso simultâneo, integridade dos dados e busca eficiente.", "tip": "O SGBD é o 'motor' por trás do banco: você não mexe direto nos arquivos, e sim pede as coisas a ele." },
+        { "title": "SQL é a linguagem", "body": "SQL (Structured Query Language) é a linguagem usada para conversar com o SGBD: criar tabelas, inserir dados, consultar e atualizar informações. A maioria dos bancos relacionais usa SQL, com pequenas variações entre eles.", "code": "SELECT nome FROM clientes;" }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "O que é um SGBD?", "opts": ["Uma linguagem de programação para sites", "O software que gerencia o armazenamento e o acesso aos dados de um banco", "Um tipo de arquivo de texto", "Um editor de imagens"], "a": 1, "hint": "Pense na sigla: Sistema Gerenciador de Banco de Dados.", "ex": "SGBD é o sistema (software) responsável por organizar e controlar o banco de dados.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Qual é o papel do SQL nesse contexto?", "opts": ["É um SGBD, como o PostgreSQL", "É a linguagem usada para interagir com um SGBD relacional", "É um tipo de tabela especial", "É um formato de imagem"], "a": 1, "hint": "SQL é uma linguagem, não um programa completo de gerenciamento.", "ex": "SQL é a linguagem padrão para consultar e manipular dados em bancos relacionais.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "PostgreSQL, MySQL e SQLite têm em comum o fato de serem:", "opts": ["Linguagens de programação diferentes de SQL", "Exemplos de SGBDs relacionais", "Formatos de planilha", "Editores de texto"], "a": 1, "hint": "São softwares que gerenciam bancos de dados.", "ex": "Todos são exemplos de Sistemas Gerenciadores de Banco de Dados relacionais.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Uma equipe precisa que 50 vendedores consultem e atualizem o estoque ao mesmo tempo, sem perder dados. O que é mais indicado?", "opts": ["Um arquivo de texto compartilhado por e-mail", "Um SGBD, que controla acesso simultâneo e mantém a integridade dos dados", "Uma pilha de papéis impressos", "Nenhuma ferramenta, cada um anota separadamente"], "a": 1, "hint": "Pense em qual ferramenta foi criada justamente para lidar com acesso concorrente e consistência.", "ex": "Um SGBD é feito para lidar com múltiplos acessos simultâneos mantendo os dados consistentes.", "format": "DECISÃO DE CÓDIGO" }
+      ]
+    },
+    {
+      "id": "sql-4",
+      "name": "ENTIDADES E ATRIBUTOS",
+      "difficulty": "INICIANTE",
+      "color": "#f6c445",
+      "icon": "▲",
+      "summary": "Aprenda a identificar entidades (coisas do mundo real) e seus atributos ao modelar um banco.",
+      "lesson": [
+        { "title": "O que é uma entidade", "body": "Uma entidade representa algo do mundo real que queremos guardar informações, como 'Cliente', 'Produto' ou 'Pedido'. No banco de dados, cada entidade normalmente vira uma tabela.", "tip": "Pergunte-se: 'sobre quais coisas eu preciso guardar dados?' — cada resposta tende a virar uma entidade." },
+        { "title": "O que é um atributo", "body": "Um atributo é uma característica de uma entidade, como o 'nome' e o 'email' de um Cliente, ou o 'preço' de um Produto. Cada atributo vira uma coluna dentro da tabela que representa a entidade.", "code": "Entidade: Produto\nAtributos: nome, preco, quantidade_estoque" }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Em um sistema de loja, qual das opções abaixo é um exemplo de ENTIDADE?", "opts": ["preço", "Produto", "email", "quantidade"], "a": 1, "hint": "Entidade é uma 'coisa' do mundo real, não uma característica dela.", "ex": "'Produto' representa uma coisa do mundo real que guarda dados — é uma entidade.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Para a entidade 'Cliente', qual das opções é um ATRIBUTO adequado?", "opts": ["Cliente", "Pedido", "email", "Loja"], "a": 2, "hint": "Atributo é uma característica da entidade, não outra entidade.", "ex": "'email' é uma característica (atributo) da entidade Cliente.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Um sistema de biblioteca precisa guardar dados de livros e de leitores. Quais seriam as entidades principais?", "opts": ["titulo e nome", "Livro e Leitor", "emprestimo_data e autor", "Biblioteca e titulo"], "a": 1, "hint": "Pense em quais 'coisas' do mundo real precisam de suas próprias tabelas.", "ex": "Livro e Leitor são as 'coisas' principais do sistema — cada uma vira uma entidade/tabela.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "Alguém sugeriu criar a entidade 'Produto' com o atributo 'Cliente' dentro dela, misturando os dois conceitos. Qual é o problema?", "opts": ["Não há problema, tudo pode ficar junto", "Cliente é outra entidade, não uma característica simples de Produto", "Produto não pode ter atributos", "Atributos não podem ter nomes com letra maiúscula"], "a": 1, "hint": "Pense se 'Cliente' descreve uma característica de Produto ou se é uma coisa independente com seus próprios dados.", "ex": "Cliente é uma entidade própria (com vários atributos e registros), não um simples atributo de Produto.", "format": "ENCONTRE O ERRO" }
+      ]
+    },
+    {
+      "id": "sql-5",
+      "name": "CHAVE PRIMÁRIA",
+      "difficulty": "INICIANTE",
+      "color": "#f6c445",
+      "icon": "◈",
+      "summary": "Entenda o conceito de chave primária: o identificador único de cada linha em uma tabela.",
+      "lesson": [
+        { "title": "Identificando cada linha", "body": "Uma chave primária (primary key) é uma coluna (ou conjunto de colunas) cujo valor identifica de forma única cada linha da tabela. Não pode haver dois registros com o mesmo valor de chave primária, e ela não pode ser vazia (nula).", "code": "Tabela: clientes\nid (chave primária) | nome\n1                    | Ana\n2                    | Bruno" },
+        { "title": "Por que não usar o nome como chave", "body": "Usar 'nome' como identificador é arriscado, pois duas pessoas podem se chamar 'Ana Silva'. Por isso costuma-se usar um número (como 'id') gerado automaticamente pelo banco, garantindo que cada valor seja único.", "tip": "Um id numérico autoincrementado é a escolha mais comum de chave primária em tabelas simples." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "O que caracteriza uma chave primária?", "opts": ["É uma coluna que pode se repetir livremente", "É uma coluna (ou conjunto delas) que identifica cada linha de forma única", "É sempre o nome da tabela", "É uma coluna que só existe em tabelas grandes"], "a": 1, "hint": "Pense na palavra 'única' e em 'identificar' cada linha.", "ex": "A chave primária identifica cada linha de forma única e não se repete.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Por que usar 'nome' como chave primária de uma tabela de clientes costuma ser uma má ideia?", "opts": ["Porque nomes não podem ser armazenados em bancos de dados", "Porque duas pessoas podem ter o mesmo nome, quebrando a unicidade", "Porque nomes ocupam pouco espaço", "Não é má ideia, é a prática recomendada"], "a": 1, "hint": "Pense se é possível haver duplicidade de nomes entre pessoas diferentes.", "ex": "Nomes podem se repetir entre pessoas diferentes, violando a exigência de unicidade da chave primária.", "format": "CONCEITO" },
+        { "type": "code", "q": "Nesta tabela, alguém tentou inserir um segundo cliente com id = 1. O que deve acontecer?\nid (chave primária) | nome\n1                    | Ana\n1                    | Bruno  <- nova linha", "opts": ["A inserção deve ser permitida normalmente", "O banco deve rejeitar a inserção, pois o id já existe", "O banco troca automaticamente o id de Ana", "Isso apaga a linha de Ana"], "a": 1, "hint": "Chave primária não pode se repetir.", "ex": "Como o id é chave primária, valores duplicados são rejeitados pelo banco.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Em uma tabela de produtos, qual seria a escolha mais adequada de chave primária?", "opts": ["nome do produto", "um id numérico único gerado automaticamente", "preco", "quantidade_estoque"], "a": 1, "hint": "Pense em qual coluna garante unicidade mesmo se produtos tiverem nomes e preços iguais.", "ex": "Um id numérico único evita conflitos, mesmo que produtos diferentes tenham nomes ou preços iguais.", "format": "DECISÃO DE CÓDIGO" }
+      ]
+    },
+    {
+      "id": "sql-6",
+      "name": "TIPOS DE DADOS COMUNS",
+      "difficulty": "INICIANTE",
+      "color": "#f6c445",
+      "icon": "↗",
+      "summary": "Conheça os tipos de dados básicos usados para descrever colunas: INTEGER, TEXT e DATE.",
+      "lesson": [
+        { "title": "Por que definir tipos", "body": "Cada coluna de uma tabela tem um tipo de dado, que define que tipo de valor ela pode guardar. Isso evita erros, como guardar texto onde deveria haver um número, e ajuda o banco a organizar e comparar os dados corretamente.", "code": "Coluna       | Tipo\nid           | INTEGER\nnome         | TEXT\ndata_cadastro| DATE" },
+        { "title": "Tipos comuns", "body": "INTEGER guarda números inteiros, como idade ou quantidade. TEXT guarda cadeias de caracteres, como nomes e descrições. DATE guarda datas, como '2024-05-10', permitindo comparações como 'antes de' ou 'depois de'.", "tip": "Existem outros tipos, como valores decimais (para preços) e booleanos (verdadeiro/falso), mas INTEGER, TEXT e DATE cobrem os casos mais comuns iniciais." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Qual tipo de dado é mais adequado para a coluna 'quantidade_estoque' de um produto?", "opts": ["TEXT", "DATE", "INTEGER", "Nenhum tipo é necessário"], "a": 2, "hint": "Quantidade é um número inteiro contável.", "ex": "Quantidades são números inteiros, então INTEGER é o tipo adequado.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "Qual tipo de dado é mais adequado para a coluna 'nome' de um cliente?", "opts": ["INTEGER", "TEXT", "DATE", "BOOLEAN"], "a": 1, "hint": "Nomes são compostos por letras e formam texto.", "ex": "Nomes são sequências de caracteres, portanto o tipo TEXT é o correto.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "Para a coluna 'data_nascimento' de um cliente, qual tipo permite comparar quem nasceu antes ou depois de determinada data?", "opts": ["TEXT", "DATE", "INTEGER", "Não é possível fazer esse tipo de comparação em bancos de dados"], "a": 1, "hint": "Pense no tipo criado especificamente para representar datas.", "ex": "O tipo DATE foi feito justamente para representar datas e permitir comparações cronológicas.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "mcq", "q": "Alguém definiu a coluna 'idade' como TEXT em vez de INTEGER. Qual problema isso pode causar?", "opts": ["Nenhum, TEXT funciona igual a INTEGER para cálculos", "Fica mais difícil fazer comparações numéricas e cálculos com a idade", "O banco de dados rejeita a criação da tabela", "TEXT é sempre mais eficiente que INTEGER"], "a": 1, "hint": "Pense se comparar textos como '9' e '10' funciona da mesma forma que comparar números.", "ex": "Guardar números como TEXT dificulta operações e comparações numéricas corretas (ex.: ordenar '9' e '10' como texto pode dar resultado inesperado).", "format": "ENCONTRE O ERRO" }
+      ]
+    },
+    {
+      "id": "sql-7",
+      "name": "CHAVE ESTRANGEIRA",
+      "difficulty": "INICIANTE",
+      "color": "#22c55e",
+      "icon": "⇄",
+      "summary": "Descubra como conectar tabelas usando chave estrangeira (foreign key).",
+      "lesson": [
+        { "title": "Conectando tabelas", "body": "Uma chave estrangeira (foreign key) é uma coluna em uma tabela que referencia a chave primária de outra tabela, criando uma ligação entre elas. Por exemplo, um pedido pode ter uma coluna 'cliente_id' que aponta para o id de um cliente.", "code": "Tabela: pedidos\nid | cliente_id (chave estrangeira) | total\n1  | 2                              | 150.00" },
+        { "title": "Garantindo integridade", "body": "A chave estrangeira garante que o valor referenciado realmente exista na outra tabela — não é possível criar um pedido apontando para um cliente_id que não existe na tabela de clientes.", "tip": "Pense na chave estrangeira como uma 'ponte' que conecta um registro de uma tabela a um registro específico de outra." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "O que é uma chave estrangeira (foreign key)?", "opts": ["Uma coluna que nunca pode repetir valores", "Uma coluna que referencia a chave primária de outra tabela", "Um tipo de dado, como INTEGER ou TEXT", "O nome de uma tabela"], "a": 1, "hint": "Pense em 'conexão entre tabelas'.", "ex": "A chave estrangeira aponta para a chave primária de outra tabela, criando um relacionamento.", "format": "CONCEITO" },
+        { "type": "code", "q": "Na tabela pedidos abaixo, o que a coluna 'cliente_id' representa?\nid | cliente_id | total\n1  | 2          | 150.00", "opts": ["O id do próprio pedido", "Uma referência ao cliente (na tabela clientes) dono do pedido", "O total do pedido", "Um erro de digitação"], "a": 1, "hint": "O nome da coluna sugere a que tabela ela se refere.", "ex": "'cliente_id' é uma chave estrangeira que aponta para o id do cliente correspondente na tabela clientes.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "Uma tabela 'pedidos' tem uma chave estrangeira 'cliente_id' apontando para 'clientes.id'. O que deve acontecer se tentarmos inserir um pedido com cliente_id = 999, e não existe cliente com id 999?", "opts": ["O banco insere normalmente, sem restrição", "O banco deve rejeitar a inserção, pois viola a integridade referencial", "O banco cria automaticamente um cliente com id 999", "Isso é permitido apenas aos finais de semana"], "a": 1, "hint": "A chave estrangeira existe justamente para impedir referências a registros inexistentes.", "ex": "A integridade referencial impede que uma chave estrangeira aponte para um registro que não existe.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Em um sistema com tabelas 'autores' e 'livros', onde cada livro tem um autor, qual seria a chave estrangeira?", "opts": ["autores.id", "livros.titulo", "uma coluna em livros, como autor_id, apontando para autores.id", "livros.preco"], "a": 2, "hint": "A chave estrangeira fica na tabela 'muitos' (livros), apontando para a tabela 'um' (autores).", "ex": "autor_id em livros referenciando autores.id é a chave estrangeira que conecta as duas tabelas.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "sql-8",
+      "name": "RELAÇÃO UM-PARA-MUITOS",
+      "difficulty": "INICIANTE",
+      "color": "#22c55e",
+      "icon": "▣",
+      "summary": "Compreenda o relacionamento mais comum entre tabelas: um-para-muitos.",
+      "lesson": [
+        { "title": "O que é um-para-muitos", "body": "Na relação um-para-muitos, um registro de uma tabela pode se relacionar com vários registros de outra tabela, mas cada registro da segunda tabela se relaciona com apenas um da primeira. Exemplo: um cliente pode ter vários pedidos, mas cada pedido pertence a um único cliente.", "code": "clientes (1) ----< pedidos (muitos)\n\nid | nome     pedido_id | cliente_id\n1  | Ana      101        | 1\n           102        | 1" },
+        { "title": "Onde fica a chave estrangeira", "body": "Nesse tipo de relação, a chave estrangeira sempre fica do lado 'muitos'. Aqui, é a tabela 'pedidos' que guarda o cliente_id, e não o contrário, pois um cliente pode ter vários pedidos, mas não faria sentido um pedido ter vários clientes_id.", "tip": "Pergunte: 'de qual lado pode haver várias ocorrências?' — a chave estrangeira vai nesse lado." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Em uma relação um-para-muitos entre 'clientes' e 'pedidos', o que é verdadeiro?", "opts": ["Um pedido pode pertencer a vários clientes", "Um cliente pode ter vários pedidos, mas cada pedido pertence a um único cliente", "Um cliente só pode ter um pedido", "Não existe relação entre as duas tabelas"], "a": 1, "hint": "Pense em qual lado pode 'ter vários' e qual lado é único.", "ex": "Um cliente pode fazer vários pedidos, mas cada pedido está ligado a apenas um cliente.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Em uma relação um-para-muitos entre 'autores' e 'livros' (um autor escreve vários livros), em qual tabela deve ficar a chave estrangeira?", "opts": ["Em autores, apontando para livros", "Em livros, apontando para autores", "Em ambas as tabelas ao mesmo tempo", "Não é necessária chave estrangeira nesse caso"], "a": 1, "hint": "A chave estrangeira fica do lado que pode ter 'muitos' registros associados a um só do outro lado.", "ex": "Como um autor pode ter vários livros, a chave estrangeira (autor_id) fica na tabela livros.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "code", "q": "Observe as tabelas. Isso representa uma relação um-para-muitos correta?\nclientes: id, nome\npedidos: id, cliente_id, total\n(cliente_id em pedidos aponta para clientes.id)", "opts": ["Sim, um cliente pode ter vários pedidos e cada pedido tem um cliente", "Não, pois pedidos não deveria ter cliente_id", "Não, pois clientes deveria ter uma lista de pedidos_id", "Não é possível saber sem ver os dados"], "a": 0, "hint": "Verifique onde está a chave estrangeira e se faz sentido com o significado do negócio.", "ex": "A estrutura está correta: a chave estrangeira está na tabela do lado 'muitos' (pedidos).", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "Uma escola tem 'turmas' e 'alunos', onde cada aluno pertence a exatamente uma turma, mas uma turma tem vários alunos. Isso é um exemplo de:", "opts": ["Relação muitos-para-muitos", "Relação um-para-muitos", "Não é uma relação, são tabelas independentes", "Relação um-para-um obrigatória"], "a": 1, "hint": "Veja se 'muitos' alunos apontam para 'um' registro de turma.", "ex": "Cada turma tem muitos alunos, mas cada aluno pertence a apenas uma turma — clássico um-para-muitos.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "sql-9",
+      "name": "RELAÇÃO MUITOS-PARA-MUITOS",
+      "difficulty": "INICIANTE",
+      "color": "#22c55e",
+      "icon": "⇆",
+      "summary": "Entenda como representar relações muitos-para-muitos usando uma tabela associativa.",
+      "lesson": [
+        { "title": "Quando um-para-muitos não basta", "body": "Às vezes, um registro de uma tabela pode se relacionar com vários registros de outra, e vice-versa. Exemplo: um aluno pode se matricular em vários cursos, e um curso pode ter vários alunos. Isso é chamado de relação muitos-para-muitos.", "tip": "Se você pensar 'dos dois lados pode haver vários', provavelmente é muitos-para-muitos." },
+        { "title": "A tabela associativa", "body": "Para representar muitos-para-muitos, criamos uma terceira tabela (tabela associativa ou tabela de junção) que guarda pares de chaves estrangeiras, uma para cada lado da relação.", "code": "alunos: id, nome\ncursos: id, titulo\nmatriculas: aluno_id, curso_id  (tabela associativa)" }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Por que não é possível representar uma relação muitos-para-muitos com uma simples chave estrangeira em uma das duas tabelas?", "opts": ["Porque chaves estrangeiras não existem em SQL", "Porque uma única coluna de chave estrangeira só guarda um valor, não permitindo múltiplas ligações dos dois lados", "Porque isso é proibido por lei", "Na verdade é possível, sem necessidade de tabela extra"], "a": 1, "hint": "Pense se uma coluna simples de chave estrangeira conseguiria guardar 'vários' relacionamentos ao mesmo tempo.", "ex": "Uma coluna de chave estrangeira guarda apenas um valor por linha, insuficiente para expressar múltiplas ligações dos dois lados.", "format": "CONCEITO" },
+        { "type": "code", "q": "Veja a tabela associativa abaixo. O que a linha 'aluno_id=1, curso_id=2' representa?\nmatriculas: aluno_id, curso_id\n1, 2\n1, 3\n2, 2", "opts": ["O aluno 1 está matriculado no curso 2", "O curso 1 tem o aluno 2", "Um erro de dados", "O aluno 2 está matriculado no curso 1"], "a": 0, "hint": "Cada linha da tabela associativa liga um aluno específico a um curso específico.", "ex": "A linha (1, 2) indica que o aluno de id 1 está matriculado no curso de id 2.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "code", "q": "Com base na mesma tabela de matrículas, quantos cursos o aluno de id 1 está fazendo?\nmatriculas: aluno_id, curso_id\n1, 2\n1, 3\n2, 2", "opts": ["1", "2", "3", "0"], "a": 1, "hint": "Conte quantas linhas têm aluno_id = 1.", "ex": "Existem duas linhas com aluno_id = 1 (cursos 2 e 3), então o aluno está em 2 cursos.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Em uma rede social, 'usuarios' podem seguir vários outros 'usuarios', e cada usuário pode ser seguido por vários outros. Como modelar essa relação?", "opts": ["Colocando uma coluna 'seguidor_id' direto na tabela usuarios", "Criando uma tabela associativa, como 'seguidores', com duas colunas referenciando usuarios", "Não é possível modelar esse tipo de relação em bancos relacionais", "Duplicando a tabela usuarios"], "a": 1, "hint": "Pense se essa é uma relação onde 'muitos' se conectam a 'muitos' do mesmo tipo de entidade.", "ex": "Uma tabela associativa (ex.: seguidor_id, seguido_id) resolve relações muitos-para-muitos, mesmo entre a mesma entidade.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "sql-10",
+      "name": "CREATE TABLE",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#34d399",
+      "icon": "◫",
+      "summary": "Aprenda a estrutura do comando CREATE TABLE para criar tabelas em SQL.",
+      "lesson": [
+        { "title": "Criando uma tabela", "body": "O comando CREATE TABLE define uma nova tabela, especificando seu nome e as colunas, cada uma com seu tipo de dado. A sintaxe básica lista o nome de cada coluna seguido do seu tipo, separados por vírgula.", "code": "CREATE TABLE clientes (\n  id INTEGER,\n  nome TEXT,\n  email TEXT\n);" },
+        { "title": "Lendo o comando", "body": "No exemplo, 'clientes' é o nome da tabela criada. 'id' é uma coluna do tipo INTEGER, 'nome' e 'email' são colunas do tipo TEXT. Os parênteses envolvem a lista de colunas, e o ponto e vírgula encerra o comando.", "tip": "Cada linha dentro dos parênteses geralmente representa uma coluna diferente." }
+      ],
+      "questions": [
+        { "type": "code", "q": "Quantas colunas a tabela abaixo terá?\nCREATE TABLE produtos (\n  id INTEGER,\n  nome TEXT,\n  preco INTEGER\n);", "opts": ["1", "2", "3", "4"], "a": 2, "hint": "Conte quantos nomes de coluna (com seus tipos) aparecem entre os parênteses.", "ex": "Há três colunas definidas: id, nome e preco.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "code", "q": "Qual é o tipo de dado da coluna 'nome' nesta criação de tabela?\nCREATE TABLE clientes (\n  id INTEGER,\n  nome TEXT,\n  email TEXT\n);", "opts": ["INTEGER", "TEXT", "DATE", "Não tem tipo definido"], "a": 1, "hint": "Observe a palavra logo depois de 'nome'.", "ex": "A coluna 'nome' foi declarada com o tipo TEXT.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "code", "q": "O comando abaixo tem um erro de sintaxe. Qual é?\nCREATE TABLE produtos (\n  id INTEGER\n  nome TEXT\n);", "opts": ["Falta o tipo da coluna id", "Falta uma vírgula entre as colunas id e nome", "TEXT não é um tipo válido", "CREATE TABLE está escrito errado"], "a": 1, "hint": "Compare com um exemplo correto: como as colunas são separadas entre si?", "ex": "As colunas precisam ser separadas por vírgula; falta a vírgula após 'INTEGER'.", "format": "ENCONTRE O ERRO" },
+        { "type": "mcq", "q": "Você precisa criar uma tabela 'pedidos' com colunas id (número) e data_pedido (data). Qual comando está correto?", "opts": ["CREATE TABLE pedidos (id INTEGER, data_pedido DATE);", "CREATE pedidos TABLE (id, data_pedido);", "TABLE CREATE pedidos (id INTEGER, data_pedido DATE);", "CREATE TABLE pedidos id INTEGER, data_pedido DATE;"], "a": 0, "hint": "A sintaxe correta começa com CREATE TABLE nome (colunas com tipos entre parênteses);", "ex": "A forma correta é CREATE TABLE nome (coluna tipo, coluna tipo);.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "sql-11",
+      "name": "TIPOS DE COLUNA",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#34d399",
+      "icon": "◍",
+      "summary": "Pratique a escolha de tipos de coluna adequados ao criar tabelas.",
+      "lesson": [
+        { "title": "Revisando tipos ao criar tabelas", "body": "Ao usar CREATE TABLE, cada coluna precisa de um tipo compatível com o dado que ela vai guardar. Escolher o tipo errado pode causar erros ou comportamento inesperado nas consultas futuras.", "code": "CREATE TABLE produtos (\n  id INTEGER,\n  nome TEXT,\n  preco INTEGER,\n  data_cadastro DATE\n);" },
+        { "title": "Pensando no uso futuro", "body": "Antes de escolher o tipo, pense em como a coluna será usada: um preço será somado e comparado numericamente, uma data será comparada cronologicamente, e um nome nunca precisa de operações matemáticas.", "tip": "Se você for somar, multiplicar ou comparar como número, use um tipo numérico; se for comparar como texto, use TEXT." }
+      ],
+      "questions": [
+        { "type": "code", "q": "Veja a definição da tabela. Algo parece inadequado?\nCREATE TABLE pedidos (\n  id INTEGER,\n  data_pedido TEXT,\n  total INTEGER\n);", "opts": ["Está tudo correto", "data_pedido deveria ser do tipo DATE, não TEXT", "id não pode ser INTEGER", "total deveria ser TEXT"], "a": 1, "hint": "Pense no tipo mais adequado para representar uma data.", "ex": "Usar DATE para data_pedido permite comparações cronológicas corretas; TEXT dificulta isso.", "format": "ENCONTRE O ERRO" },
+        { "type": "mcq", "q": "Qual tipo de coluna é mais adequado para 'quantidade_em_estoque' de um produto?", "opts": ["TEXT", "DATE", "INTEGER", "Nenhum tipo específico é necessário"], "a": 2, "hint": "É uma contagem de itens, um valor numérico inteiro.", "ex": "Quantidade em estoque é um número inteiro, então INTEGER é o tipo correto.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "Qual tipo de coluna é mais adequado para 'descricao' de um produto, um texto livre com várias palavras?", "opts": ["INTEGER", "DATE", "TEXT", "Nenhuma opção serve para texto"], "a": 2, "hint": "Pense em qual tipo guarda cadeias de caracteres.", "ex": "TEXT é o tipo adequado para armazenar textos livres, como descrições.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "code", "q": "Corrija o erro: a coluna 'data_nascimento' foi criada como INTEGER. Qual tipo deveria ser usado?\nCREATE TABLE clientes (\n  id INTEGER,\n  data_nascimento INTEGER\n);", "opts": ["TEXT", "DATE", "Deve continuar INTEGER", "Nenhum tipo, remover a coluna"], "a": 1, "hint": "Datas de nascimento representam datas, não quantidades numéricas.", "ex": "DATE é o tipo apropriado para representar datas, como data_nascimento.", "format": "CORRIJA O ERRO" }
+      ]
+    },
+    {
+      "id": "sql-12",
+      "name": "RESTRIÇÕES DE TABELA",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#34d399",
+      "icon": "▦",
+      "summary": "Conheça as restrições NOT NULL, UNIQUE e PRIMARY KEY ao criar tabelas.",
+      "lesson": [
+        { "title": "Restringindo valores", "body": "Restrições (constraints) são regras aplicadas às colunas para garantir a qualidade dos dados. NOT NULL impede que a coluna fique vazia. UNIQUE impede valores repetidos naquela coluna. PRIMARY KEY marca a coluna como identificador único da linha (implica única e não nula).", "code": "CREATE TABLE clientes (\n  id INTEGER PRIMARY KEY,\n  email TEXT UNIQUE NOT NULL,\n  nome TEXT NOT NULL\n);" },
+        { "title": "Diferença entre UNIQUE e PRIMARY KEY", "body": "Uma tabela pode ter várias colunas com UNIQUE (por exemplo, email e CPF), mas só pode ter uma PRIMARY KEY (às vezes composta por mais de uma coluna). PRIMARY KEY é o identificador oficial da tabela; UNIQUE apenas evita duplicidade naquela coluna.", "tip": "PRIMARY KEY sempre implica NOT NULL e UNIQUE ao mesmo tempo." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "O que a restrição NOT NULL garante em uma coluna?", "opts": ["Que os valores sejam sempre únicos", "Que a coluna nunca fique vazia (sem valor)", "Que a coluna seja do tipo INTEGER", "Que a coluna seja a chave primária"], "a": 1, "hint": "Pense no significado literal: 'não nulo'.", "ex": "NOT NULL exige que todo registro tenha um valor naquela coluna, proibindo campos vazios.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Qual é a diferença principal entre UNIQUE e PRIMARY KEY?", "opts": ["Não há diferença, são sinônimos", "UNIQUE pode existir em várias colunas da tabela; PRIMARY KEY é o identificador único da linha e só existe uma por tabela", "PRIMARY KEY permite valores repetidos, UNIQUE não", "UNIQUE só funciona com números"], "a": 1, "hint": "Pense em quantas colunas podem ter cada restrição em uma mesma tabela.", "ex": "Uma tabela pode ter várias colunas UNIQUE, mas apenas uma PRIMARY KEY (identificador oficial da linha).", "format": "CONCEITO" },
+        { "type": "code", "q": "Com a tabela abaixo, o que acontece ao tentar inserir um cliente sem informar o email?\nCREATE TABLE clientes (\n  id INTEGER PRIMARY KEY,\n  email TEXT UNIQUE NOT NULL\n);", "opts": ["A inserção funciona normalmente, o email fica vazio", "O banco rejeita a inserção, pois email é NOT NULL", "O banco preenche o email com um valor aleatório", "id passa a ser opcional"], "a": 1, "hint": "NOT NULL exige um valor obrigatório na coluna.", "ex": "Como email é NOT NULL, inserir um registro sem valor de email é rejeitado pelo banco.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "code", "q": "A tabela abaixo permite dois clientes com o mesmo email?\nCREATE TABLE clientes (\n  id INTEGER PRIMARY KEY,\n  email TEXT UNIQUE\n);", "opts": ["Sim, sem problema", "Não, pois email tem restrição UNIQUE", "Sim, mas só se o id for igual", "Não é possível saber sem mais informações"], "a": 1, "hint": "Verifique a restrição aplicada à coluna email.", "ex": "A restrição UNIQUE em email impede que dois registros tenham o mesmo valor nessa coluna.", "format": "LEITURA DE CÓDIGO" }
+      ]
+    },
+    {
+      "id": "sql-13",
+      "name": "INSERT INTO",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#1cb0f6",
+      "icon": "▶",
+      "summary": "Aprenda a estrutura do comando INSERT INTO para adicionar dados a uma tabela.",
+      "lesson": [
+        { "title": "Inserindo dados", "body": "O comando INSERT INTO adiciona uma nova linha a uma tabela existente. É preciso informar o nome da tabela, as colunas que serão preenchidas e os valores correspondentes, na mesma ordem.", "code": "INSERT INTO clientes (id, nome, email)\nVALUES (1, 'Ana', 'ana@mail.com');" },
+        { "title": "A ordem dos valores importa", "body": "Os valores em VALUES devem seguir exatamente a mesma ordem das colunas listadas antes. Se a ordem das colunas for (id, nome, email), o primeiro valor corresponde a id, o segundo a nome, e o terceiro a email.", "tip": "Textos e datas em SQL geralmente ficam entre aspas simples, como 'Ana'; números não precisam de aspas." }
+      ],
+      "questions": [
+        { "type": "code", "q": "Após executar o comando abaixo, qual será o valor da coluna 'nome' na nova linha?\nINSERT INTO clientes (id, nome, email)\nVALUES (1, 'Ana', 'ana@mail.com');", "opts": ["1", "'Ana'", "'ana@mail.com'", "Nenhum valor será inserido"], "a": 1, "hint": "Combine a ordem das colunas com a ordem dos valores.", "ex": "A segunda coluna listada é 'nome', e o segundo valor é 'Ana'.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "code", "q": "O comando abaixo tem um problema. Qual é?\nINSERT INTO clientes (id, nome, email)\nVALUES (2, 'Bruno');", "opts": ["Faltou um valor: há 3 colunas listadas, mas só 2 valores", "O id não pode ser 2", "Faltam aspas em 2", "Não há nenhum problema"], "a": 0, "hint": "Compare a quantidade de colunas com a quantidade de valores fornecidos.", "ex": "Foram listadas 3 colunas (id, nome, email), mas apenas 2 valores foram fornecidos — falta o valor de email.", "format": "ENCONTRE O ERRO" },
+        { "type": "mcq", "q": "Qual comando insere corretamente um produto com id 5, nome 'Caneta' e preço 2 na tabela produtos (id, nome, preco)?", "opts": ["INSERT INTO produtos (id, nome, preco) VALUES (5, Caneta, 2);", "INSERT INTO produtos (id, nome, preco) VALUES (5, 'Caneta', 2);", "INSERT produtos VALUES id=5, nome='Caneta', preco=2;", "INSERT INTO produtos VALUES ('Caneta', 5, 2);"], "a": 1, "hint": "Textos precisam de aspas simples; a ordem dos valores deve bater com a ordem das colunas.", "ex": "A sintaxe correta usa aspas em textos e mantém a mesma ordem entre colunas e valores.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "code", "q": "Considerando a tabela produtos (id, nome, preco), o que este comando faz?\nINSERT INTO produtos (id, nome, preco)\nVALUES (10, 'Mouse', 50);", "opts": ["Atualiza o produto de id 10 já existente", "Remove o produto de id 10", "Adiciona um novo produto com id 10, nome 'Mouse' e preço 50", "Cria uma nova tabela chamada produtos"], "a": 2, "hint": "INSERT INTO sempre adiciona uma nova linha, não modifica linhas existentes.", "ex": "INSERT INTO adiciona uma nova linha à tabela com os valores especificados.", "format": "LEITURA DE CÓDIGO" }
+      ]
+    },
+    {
+      "id": "sql-14",
+      "name": "SELECT BÁSICO",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#1cb0f6",
+      "icon": "◐",
+      "summary": "Aprenda a consultar dados de uma tabela com o comando SELECT.",
+      "lesson": [
+        { "title": "Buscando dados", "body": "O comando SELECT é usado para consultar dados de uma tabela. Depois de SELECT, listamos as colunas desejadas (ou * para todas), e depois de FROM indicamos a tabela de onde os dados virão.", "code": "SELECT nome, email FROM clientes;" },
+        { "title": "Selecionando todas as colunas", "body": "O asterisco (*) é um atalho para 'todas as colunas'. SELECT * FROM clientes; retorna todas as colunas de todos os registros da tabela clientes.", "tip": "Usar * é prático para explorar dados rapidamente, mas em sistemas reais é comum listar apenas as colunas necessárias." }
+      ],
+      "questions": [
+        { "type": "code", "q": "O que o comando abaixo retorna?\nSELECT nome, email FROM clientes;", "opts": ["Todas as colunas da tabela clientes", "Apenas as colunas nome e email de todos os clientes", "Apenas a tabela clientes vazia", "Um erro de sintaxe"], "a": 1, "hint": "Observe quais colunas foram explicitamente listadas depois de SELECT.", "ex": "O comando retorna apenas as colunas nome e email de cada cliente.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "code", "q": "O que o asterisco faz neste comando?\nSELECT * FROM produtos;", "opts": ["Seleciona apenas a primeira coluna", "Seleciona todas as colunas da tabela produtos", "Causa um erro de sintaxe", "Seleciona apenas linhas com valores nulos"], "a": 1, "hint": "O asterisco é um atalho amplamente usado em SQL.", "ex": "O * é um curinga que representa 'todas as colunas' da tabela.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "code", "q": "Qual comando está correto para buscar apenas a coluna 'preco' da tabela 'produtos'?", "opts": ["SELECT preco FROM produtos;", "SELECT FROM produtos preco;", "GET preco FROM produtos;", "SELECT produtos FROM preco;"], "a": 0, "hint": "A ordem correta é SELECT coluna FROM tabela;", "ex": "A sintaxe correta é SELECT coluna FROM tabela;, então SELECT preco FROM produtos; está certo.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "Para que serve a palavra-chave FROM em um comando SELECT?", "opts": ["Define quais colunas serão exibidas", "Define de qual tabela os dados serão buscados", "Filtra as linhas retornadas", "Ordena o resultado"], "a": 1, "hint": "Pense na tradução: 'de onde' os dados vêm.", "ex": "FROM indica a tabela de onde os dados da consulta serão obtidos.", "format": "CONCEITO" }
+      ]
+    },
+    {
+      "id": "sql-15",
+      "name": "CLÁUSULA WHERE",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#1cb0f6",
+      "icon": "⌕",
+      "summary": "Filtre resultados de uma consulta usando a cláusula WHERE.",
+      "lesson": [
+        { "title": "Filtrando linhas", "body": "A cláusula WHERE filtra quais linhas serão retornadas por um SELECT, com base em uma condição. Apenas as linhas que satisfazem a condição aparecem no resultado.", "code": "SELECT nome FROM clientes\nWHERE id = 2;" },
+        { "title": "Operadores de comparação", "body": "WHERE aceita operadores como = (igual), > (maior que), < (menor que), >= , <= e <> ou != (diferente). Textos comparados em WHERE geralmente ficam entre aspas simples, como WHERE nome = 'Ana'.", "tip": "Sem WHERE, o SELECT retorna todas as linhas da tabela; com WHERE, apenas as que combinam com a condição." }
+      ],
+      "questions": [
+        { "type": "code", "q": "Considere a tabela clientes: (1, 'Ana'), (2, 'Bruno'), (3, 'Carlos'). O que retorna o comando abaixo?\nSELECT nome FROM clientes WHERE id = 2;", "opts": ["Ana", "Bruno", "Carlos", "Todos os nomes"], "a": 1, "hint": "Encontre a linha cujo id é igual a 2.", "ex": "Apenas o cliente com id = 2 (Bruno) satisfaz a condição do WHERE.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "code", "q": "Considere produtos: (1, 'Caneta', 2), (2, 'Caderno', 15), (3, 'Mochila', 80). Quantas linhas o comando abaixo retorna?\nSELECT * FROM produtos WHERE preco > 10;", "opts": ["0", "1", "2", "3"], "a": 2, "hint": "Verifique quais preços são maiores que 10.", "ex": "Caderno (15) e Mochila (80) têm preço maior que 10, totalizando 2 linhas.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "code", "q": "Qual comando busca todos os clientes cujo nome NÃO é 'Ana'?", "opts": ["SELECT * FROM clientes WHERE nome = 'Ana';", "SELECT * FROM clientes WHERE nome <> 'Ana';", "SELECT * FROM clientes WHERE nome > 'Ana';", "SELECT * FROM clientes;"], "a": 1, "hint": "Pense no operador que representa 'diferente de'.", "ex": "<> (ou !=) representa 'diferente de', retornando todos os clientes que não se chamam Ana.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "O que acontece com um SELECT que não tem cláusula WHERE?", "opts": ["Nenhuma linha é retornada", "Todas as linhas da tabela são retornadas, sem filtro", "Ocorre um erro de sintaxe", "Apenas a primeira linha é retornada"], "a": 1, "hint": "WHERE é opcional; pense no que acontece na ausência de um filtro.", "ex": "Sem WHERE, o SELECT retorna todas as linhas da tabela consultada.", "format": "CONCEITO" }
+      ]
+    },
+    {
+      "id": "sql-16",
+      "name": "ORDER BY",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#0ea5e9",
+      "icon": "◧",
+      "summary": "Aprenda a ordenar os resultados de uma consulta com ORDER BY.",
+      "lesson": [
+        { "title": "Ordenando resultados", "body": "ORDER BY organiza as linhas retornadas por uma consulta, com base em uma ou mais colunas. Por padrão, a ordenação é crescente (ASC); para decrescente, usa-se DESC.", "code": "SELECT nome, preco FROM produtos\nORDER BY preco DESC;" },
+        { "title": "ASC e DESC", "body": "ASC (ascending) ordena do menor para o maior (ou de A a Z), e é o padrão quando nada é especificado. DESC (descending) ordena do maior para o menor (ou de Z a A).", "tip": "Se você não escrever ASC nem DESC, o banco assume ASC automaticamente." }
+      ],
+      "questions": [
+        { "type": "code", "q": "Considere produtos: (Caneta, 2), (Caderno, 15), (Mochila, 80). Qual é a ordem de retorno deste comando?\nSELECT nome FROM produtos ORDER BY preco DESC;", "opts": ["Caneta, Caderno, Mochila", "Mochila, Caderno, Caneta", "Caderno, Caneta, Mochila", "A ordem original da tabela"], "a": 1, "hint": "DESC ordena do maior valor para o menor.", "ex": "Do maior preço para o menor: Mochila (80), Caderno (15), Caneta (2).", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "code", "q": "Considere clientes: (Bruno), (Ana), (Carlos). O que retorna este comando?\nSELECT nome FROM clientes ORDER BY nome;", "opts": ["Ana, Bruno, Carlos", "Bruno, Ana, Carlos (ordem original)", "Carlos, Bruno, Ana", "Erro, pois falta especificar ASC ou DESC"], "a": 0, "hint": "Sem DESC, a ordenação padrão é crescente (alfabética, no caso de texto).", "ex": "Sem especificar DESC, o padrão é ASC, ordenando alfabeticamente: Ana, Bruno, Carlos.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Qual comando lista os clientes do mais recente para o mais antigo cadastro, considerando a coluna data_cadastro?", "opts": ["SELECT * FROM clientes ORDER BY data_cadastro ASC;", "SELECT * FROM clientes ORDER BY data_cadastro DESC;", "SELECT * FROM clientes WHERE data_cadastro DESC;", "SELECT * FROM clientes SORT data_cadastro;"], "a": 1, "hint": "'Mais recente para mais antigo' significa datas maiores primeiro.", "ex": "ORDER BY data_cadastro DESC coloca as datas mais recentes (maiores) primeiro.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "code", "q": "O comando abaixo tem um erro. Qual é?\nSELECT nome FROM clientes ORDER nome;", "opts": ["Falta a palavra-chave BY entre ORDER e nome", "ORDER não pode ser usado com SELECT", "Falta o FROM", "Não há erro"], "a": 0, "hint": "Compare com a sintaxe correta: ORDER BY coluna.", "ex": "A sintaxe correta é ORDER BY coluna; faltou a palavra BY.", "format": "ENCONTRE O ERRO" }
+      ]
+    },
+    {
+      "id": "sql-17",
+      "name": "LIMIT",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#0ea5e9",
+      "icon": "◒",
+      "summary": "Restrinja a quantidade de linhas retornadas por uma consulta usando LIMIT.",
+      "lesson": [
+        { "title": "Limitando resultados", "body": "LIMIT restringe o número máximo de linhas retornadas por uma consulta. É útil, por exemplo, para pegar apenas os 5 produtos mais caros, combinando com ORDER BY.", "code": "SELECT nome, preco FROM produtos\nORDER BY preco DESC\nLIMIT 3;" },
+        { "title": "Combinando com ORDER BY", "body": "LIMIT costuma ser usado junto com ORDER BY, pois sem ordenação não há garantia de quais linhas específicas serão retornadas primeiro — apenas a quantidade é limitada.", "tip": "LIMIT geralmente vem depois de ORDER BY no comando, no final da consulta." }
+      ],
+      "questions": [
+        { "type": "code", "q": "Considere produtos ordenados por preço decrescente: Mochila(80), Caderno(15), Caneta(2), Lapis(1). Quantas linhas retorna?\nSELECT nome FROM produtos\nORDER BY preco DESC\nLIMIT 2;", "opts": ["1", "2", "3", "4"], "a": 1, "hint": "LIMIT 2 restringe o resultado a no máximo 2 linhas.", "ex": "LIMIT 2 retorna apenas as 2 primeiras linhas do resultado ordenado: Mochila e Caderno.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "code", "q": "Com a mesma tabela do exercício anterior, qual produto aparece no resultado deste comando?\nSELECT nome FROM produtos\nORDER BY preco DESC\nLIMIT 1;", "opts": ["Mochila (o mais caro)", "Lapis (o mais barato)", "Caderno", "Todos os produtos"], "a": 0, "hint": "LIMIT 1 combinado com DESC pega o valor mais alto.", "ex": "Ordenando do maior preço para o menor e limitando a 1, o resultado é o produto mais caro: Mochila.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Qual comando busca os 5 clientes cadastrados mais recentemente, assumindo a coluna data_cadastro?", "opts": ["SELECT * FROM clientes LIMIT 5;", "SELECT * FROM clientes ORDER BY data_cadastro DESC LIMIT 5;", "SELECT * FROM clientes ORDER BY data_cadastro ASC LIMIT 5;", "SELECT TOP 5 FROM clientes;"], "a": 1, "hint": "É preciso ordenar do mais recente para o mais antigo antes de limitar.", "ex": "ORDER BY data_cadastro DESC LIMIT 5 traz os 5 registros com as datas mais recentes.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "Sem usar ORDER BY, o que se pode afirmar sobre quais linhas um LIMIT 3 vai retornar?", "opts": ["Sempre as 3 linhas com maior valor em alguma coluna", "Sempre as 3 primeiras linhas em ordem alfabética", "Apenas que serão no máximo 3 linhas, sem garantia de quais especificamente", "Sempre as 3 últimas linhas inseridas"], "a": 2, "hint": "Sem ordenação explícita, não há uma regra garantida sobre qual linha vem primeiro.", "ex": "Sem ORDER BY, o banco não garante uma ordem específica; LIMIT apenas restringe a quantidade.", "format": "CONCEITO" }
+      ]
+    },
+    {
+      "id": "sql-18",
+      "name": "AND, OR E IN",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#0ea5e9",
+      "icon": "⌗",
+      "summary": "Combine condições em uma consulta usando os operadores lógicos AND, OR e IN.",
+      "lesson": [
+        { "title": "Combinando condições", "body": "AND exige que todas as condições sejam verdadeiras para a linha ser retornada. OR exige que ao menos uma das condições seja verdadeira. É possível combinar várias condições dentro de um mesmo WHERE.", "code": "SELECT * FROM produtos\nWHERE preco > 10 AND preco < 100;" },
+        { "title": "O operador IN", "body": "IN permite verificar se um valor está dentro de uma lista de opções, evitando escrever vários OR seguidos. WHERE categoria IN ('Eletrônicos', 'Livros') equivale a categoria = 'Eletrônicos' OR categoria = 'Livros'.", "code": "SELECT * FROM produtos\nWHERE categoria IN ('Eletrônicos', 'Livros');" }
+      ],
+      "questions": [
+        { "type": "code", "q": "Considere produtos: (Caneta, 2), (Caderno, 15), (Mochila, 80), (Notebook, 3000). Quantos produtos satisfazem esta condição?\nSELECT * FROM produtos\nWHERE preco > 10 AND preco < 100;", "opts": ["1", "2", "3", "4"], "a": 1, "hint": "Encontre os preços que estão simultaneamente acima de 10 e abaixo de 100.", "ex": "Apenas Caderno (15) e Mochila (80) satisfazem as duas condições ao mesmo tempo (AND).", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "code", "q": "Considere clientes com cidade: Ana(SP), Bruno(RJ), Carlos(MG). Quantos são retornados?\nSELECT * FROM clientes\nWHERE cidade = 'SP' OR cidade = 'RJ';", "opts": ["0", "1", "2", "3"], "a": 2, "hint": "OR retorna a linha se pelo menos uma das condições for verdadeira.", "ex": "Ana (SP) e Bruno (RJ) satisfazem uma das condições do OR, totalizando 2 linhas.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Qual comando é equivalente a 'WHERE categoria = 'Livros' OR categoria = 'Eletrônicos' OR categoria = 'Brinquedos'' usando IN?", "opts": ["WHERE categoria IN ('Livros', 'Eletrônicos', 'Brinquedos')", "WHERE categoria AND ('Livros', 'Eletrônicos', 'Brinquedos')", "WHERE categoria = IN ('Livros', 'Eletrônicos', 'Brinquedos')", "WHERE categoria NOT IN ('Livros', 'Eletrônicos', 'Brinquedos')"], "a": 0, "hint": "IN substitui uma sequência de comparações de igualdade combinadas com OR.", "ex": "IN ('Livros', 'Eletrônicos', 'Brinquedos') é o equivalente direto aos três OR encadeados.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "code", "q": "Este comando tem um erro conceitual: ele nunca retornará nenhuma linha, mesmo que existam produtos. Por quê?\nSELECT * FROM produtos\nWHERE preco > 100 AND preco < 10;", "opts": ["Não há erro, o comando está correto e pode retornar linhas", "Nenhum valor pode ser, ao mesmo tempo, maior que 100 e menor que 10", "Faltou usar OR em vez de AND, mas por acaso ainda funcionaria", "A sintaxe do WHERE está incorreta"], "a": 1, "hint": "Pense se existe algum número que seja maior que 100 e, ao mesmo tempo, menor que 10.", "ex": "É logicamente impossível um número ser maior que 100 e menor que 10 simultaneamente — a condição AND nunca é satisfeita.", "format": "ENCONTRE O ERRO" }
+      ]
+    },
+    {
+      "id": "sql-19",
+      "name": "INNER JOIN",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#38bdf8",
+      "icon": "▧",
+      "summary": "Combine dados de duas tabelas relacionadas usando INNER JOIN.",
+      "lesson": [
+        { "title": "Juntando tabelas", "body": "JOIN combina linhas de duas tabelas com base em uma condição de relacionamento, geralmente comparando uma chave estrangeira com a chave primária correspondente. INNER JOIN retorna apenas as linhas que têm correspondência em ambas as tabelas.", "code": "SELECT clientes.nome, pedidos.total\nFROM clientes\nINNER JOIN pedidos ON clientes.id = pedidos.cliente_id;" },
+        { "title": "Só aparece quem casa dos dois lados", "body": "Se um cliente não tem nenhum pedido, ele não aparecerá no resultado de um INNER JOIN entre clientes e pedidos, pois não há linha correspondente na tabela pedidos para ele.", "tip": "Pense em INNER JOIN como a interseção: só o que existe nos dois lados aparece." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "O que o INNER JOIN retorna, de forma geral?", "opts": ["Todas as linhas de ambas as tabelas, mesmo sem correspondência", "Apenas as linhas que têm correspondência em ambas as tabelas envolvidas", "Apenas as linhas da primeira tabela", "Apenas as linhas da segunda tabela"], "a": 1, "hint": "Pense na ideia de 'interseção' entre duas tabelas.", "ex": "INNER JOIN retorna somente as linhas que possuem correspondência nas duas tabelas.", "format": "CONCEITO" },
+        { "type": "code", "q": "Considere clientes: Ana(id 1), Bruno(id 2) — sem pedidos. E pedidos: (cliente_id 1, total 50). O que retorna?\nSELECT clientes.nome, pedidos.total\nFROM clientes\nINNER JOIN pedidos ON clientes.id = pedidos.cliente_id;", "opts": ["Ana e Bruno aparecem, com total de Bruno vazio", "Apenas Ana aparece, pois só ela tem pedido correspondente", "Nenhuma linha é retornada", "Um erro de sintaxe ocorre"], "a": 1, "hint": "Bruno não tem nenhum pedido correspondente; lembre que INNER JOIN exige correspondência dos dois lados.", "ex": "Como Bruno não tem pedido, ele não aparece no INNER JOIN — apenas Ana, que tem correspondência.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "code", "q": "Nesta consulta, o que a condição depois do ON representa?\nSELECT * FROM clientes\nINNER JOIN pedidos ON clientes.id = pedidos.cliente_id;", "opts": ["Um filtro de valores mínimos", "A regra que diz como as linhas das duas tabelas devem ser combinadas", "O nome da nova tabela criada", "Uma ordenação dos resultados"], "a": 1, "hint": "ON define como conectar as linhas de uma tabela com as da outra.", "ex": "A condição do ON define o critério de correspondência entre as tabelas (chave estrangeira = chave primária).", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "Você quer listar apenas os pedidos junto com o nome do cliente que os fez, exibindo somente pedidos que realmente têm cliente cadastrado. Qual tipo de junção é mais adequado?", "opts": ["Nenhuma junção é necessária", "INNER JOIN", "Apenas um SELECT sem JOIN", "Duas tabelas não podem ser combinadas em SQL"], "a": 1, "hint": "A exigência é que só apareçam pedidos com cliente correspondente — isso é interseção.", "ex": "INNER JOIN é apropriado quando só interessam os registros com correspondência garantida nas duas tabelas.", "format": "DECISÃO DE CÓDIGO" }
+      ]
+    },
+    {
+      "id": "sql-20",
+      "name": "LEFT JOIN",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#38bdf8",
+      "icon": "◔",
+      "summary": "Entenda quando usar LEFT JOIN para manter registros mesmo sem correspondência.",
+      "lesson": [
+        { "title": "Mantendo tudo do lado esquerdo", "body": "LEFT JOIN retorna todas as linhas da tabela à esquerda (a primeira mencionada), mesmo que não haja correspondência na tabela à direita. Quando não há correspondência, as colunas da tabela direita aparecem como nulas (vazias).", "code": "SELECT clientes.nome, pedidos.total\nFROM clientes\nLEFT JOIN pedidos ON clientes.id = pedidos.cliente_id;" },
+        { "title": "Quando usar LEFT JOIN em vez de INNER JOIN", "body": "Use LEFT JOIN quando você precisa ver todos os registros de uma tabela principal, mesmo os que não têm relação na outra tabela — por exemplo, listar todos os clientes, incluindo os que nunca fizeram pedido.", "tip": "Se a pergunta for 'quero ver todos de A, tendo ou não relação com B', a resposta é LEFT JOIN." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Qual a principal diferença entre INNER JOIN e LEFT JOIN?", "opts": ["Não há diferença, são idênticos", "LEFT JOIN mantém todas as linhas da tabela à esquerda, mesmo sem correspondência; INNER JOIN só mantém quem tem correspondência nos dois lados", "INNER JOIN é mais rápido, mas retorna os mesmos dados", "LEFT JOIN só funciona com números"], "a": 1, "hint": "Pense em qual junção 'perde' registros sem correspondência e qual 'preserva' um dos lados.", "ex": "LEFT JOIN preserva todas as linhas da tabela à esquerda, preenchendo com nulo quando não há correspondência; INNER JOIN descarta quem não casa.", "format": "CONCEITO" },
+        { "type": "code", "q": "Considere clientes: Ana(id1), Bruno(id2) — sem pedidos. E pedidos: (cliente_id 1, total 50). O que retorna?\nSELECT clientes.nome, pedidos.total\nFROM clientes\nLEFT JOIN pedidos ON clientes.id = pedidos.cliente_id;", "opts": ["Apenas Ana aparece", "Ana com total 50, e Bruno com total nulo/vazio", "Nenhuma linha é retornada", "Apenas Bruno aparece"], "a": 1, "hint": "LEFT JOIN mantém todos os clientes, mesmo sem pedido correspondente.", "ex": "Ana aparece com seu pedido (50), e Bruno aparece mesmo sem pedido, com o total vazio (nulo).", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Você quer uma lista de TODOS os produtos, mostrando o nome da categoria quando houver, mesmo que o produto não tenha categoria cadastrada. Qual junção usar entre produtos e categorias?", "opts": ["INNER JOIN", "LEFT JOIN, com produtos como tabela à esquerda", "Não é possível fazer essa consulta", "RIGHT JOIN, com categorias como tabela à esquerda obrigatoriamente"], "a": 1, "hint": "Você quer manter todos os produtos, mesmo os sem categoria correspondente.", "ex": "LEFT JOIN com produtos à esquerda garante que todos os produtos apareçam, com ou sem categoria.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "code", "q": "Um desenvolvedor usou INNER JOIN quando precisava listar todos os clientes, mesmo os sem pedidos, e reclamou que clientes sem pedido sumiram do resultado. Qual é o problema?", "opts": ["Não há problema, o comportamento está correto", "Ele deveria ter usado LEFT JOIN para manter clientes sem pedidos correspondentes", "O erro está na tabela clientes, que está mal modelada", "INNER JOIN nunca deveria ser usado em nenhum caso"], "a": 1, "hint": "Pense em qual tipo de junção preserva registros sem correspondência.", "ex": "INNER JOIN descarta quem não tem correspondência; para manter todos os clientes, o correto é LEFT JOIN.", "format": "CORRIJA O ERRO" }
+      ]
+    },
+    {
+      "id": "sql-21",
+      "name": "PROJETO: LOJA SIMPLES",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "⬡",
+      "summary": "Comece a modelar o banco de dados de uma loja simples: produtos, clientes e pedidos.",
+      "lesson": [
+        { "title": "Definindo as entidades da loja", "body": "Para modelar uma loja simples, identificamos as entidades principais: Cliente (quem compra), Produto (o que é vendido) e Pedido (a compra realizada). Cada uma vira uma tabela.", "code": "clientes: id, nome, email\nprodutos: id, nome, preco\npedidos: id, cliente_id, data_pedido" },
+        { "title": "Relacionando pedido e cliente", "body": "Um pedido pertence a um único cliente, mas um cliente pode ter vários pedidos — uma relação um-para-muitos. Por isso, a tabela pedidos tem uma chave estrangeira cliente_id apontando para clientes.id.", "tip": "Esse é o mesmo padrão de relacionamento um-para-muitos que você já viu entre clientes e pedidos anteriormente." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Ao modelar a loja, qual é a relação entre 'clientes' e 'pedidos'?", "opts": ["Muitos-para-muitos", "Um-para-muitos: um cliente pode ter vários pedidos", "Um-para-um obrigatório", "Não existe relação entre eles"], "a": 1, "hint": "Pense se um cliente pode fazer mais de uma compra ao longo do tempo.", "ex": "Um cliente pode ter vários pedidos ao longo do tempo, mas cada pedido pertence a um único cliente — um-para-muitos.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "Onde deve ficar a chave estrangeira que conecta pedidos a clientes?", "opts": ["Em clientes, apontando para pedidos", "Em pedidos, como cliente_id, apontando para clientes.id", "Em ambas as tabelas simultaneamente", "Não é necessária chave estrangeira"], "a": 1, "hint": "A chave estrangeira sempre fica do lado 'muitos' da relação.", "ex": "Como um cliente pode ter vários pedidos, a chave estrangeira cliente_id fica na tabela pedidos.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "mcq", "q": "Qual coluna da tabela produtos seria mais adequada como chave primária?", "opts": ["nome", "preco", "um id numérico único", "Nenhuma coluna, produtos não precisa de chave primária"], "a": 2, "hint": "Nomes de produtos podem se repetir; um id garante unicidade.", "ex": "Um id numérico único evita problemas de duplicidade, mesmo que produtos tenham nomes ou preços iguais.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "code", "q": "Veja a estrutura proposta. Existe algum problema de modelagem evidente?\nclientes: id, nome, email\nprodutos: id, nome, preco\npedidos: id, cliente_id, data_pedido", "opts": ["Sim, pedidos deveria ter uma coluna nome_cliente em vez de cliente_id", "Não há problema evidente até aqui; essa é uma base razoável para começar", "Sim, produtos não deveria ter preco", "Sim, clientes não deveria ter email"], "a": 1, "hint": "Compare com os conceitos de entidade, atributo e chave estrangeira já vistos.", "ex": "A estrutura segue os princípios vistos: cada entidade é uma tabela, com chave primária e a chave estrangeira no lado 'muitos'.", "format": "LEITURA DE CÓDIGO" }
+      ]
+    },
+    {
+      "id": "sql-22",
+      "name": "COUNT, SUM E AVG",
+      "difficulty": "AVANÇADO",
+      "color": "#a78bfa",
+      "icon": "Ω",
+      "summary": "Use funções de agregação para calcular contagens, somas e médias.",
+      "lesson": [
+        { "title": "Resumindo dados com funções de agregação", "body": "Funções de agregação calculam um único valor resumido a partir de várias linhas. COUNT conta quantas linhas existem, SUM soma os valores de uma coluna numérica, e AVG calcula a média dos valores.", "code": "SELECT COUNT(*) FROM pedidos;\nSELECT SUM(total) FROM pedidos;\nSELECT AVG(total) FROM pedidos;" },
+        { "title": "COUNT(*) vs COUNT(coluna)", "body": "COUNT(*) conta todas as linhas, independentemente de valores nulos. COUNT(coluna) conta apenas as linhas em que aquela coluna específica não é nula.", "tip": "Para simplesmente saber 'quantos registros existem', COUNT(*) é a forma mais comum." }
+      ],
+      "questions": [
+        { "type": "code", "q": "Considere pedidos com totais: 50, 100, 150. O que retorna este comando?\nSELECT SUM(total) FROM pedidos;", "opts": ["3", "150", "300", "100"], "a": 2, "hint": "SUM soma todos os valores da coluna.", "ex": "A soma de 50 + 100 + 150 é igual a 300.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "code", "q": "Com os mesmos pedidos (50, 100, 150), o que retorna este comando?\nSELECT AVG(total) FROM pedidos;", "opts": ["300", "3", "100", "50"], "a": 2, "hint": "AVG calcula a média: soma dividida pela quantidade de valores.", "ex": "(50 + 100 + 150) / 3 = 300 / 3 = 100.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "code", "q": "Se a tabela pedidos tem 5 linhas no total, o que retorna este comando?\nSELECT COUNT(*) FROM pedidos;", "opts": ["1", "5", "0", "Depende dos valores de cada coluna"], "a": 1, "hint": "COUNT(*) conta todas as linhas da tabela, sem exceção.", "ex": "COUNT(*) retorna o número total de linhas, que é 5.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Você quer saber quantos clientes distintos já fizeram algum pedido. Qual função de agregação é mais indicada, junto com a estrutura correta?", "opts": ["SUM(cliente_id)", "COUNT(*), contando linhas da tabela pedidos", "AVG(cliente_id)", "COUNT(DISTINCT cliente_id), contando clientes únicos na tabela pedidos"], "a": 3, "hint": "A pergunta pede clientes distintos, não o total de pedidos.", "ex": "COUNT(DISTINCT cliente_id) conta quantos clientes diferentes aparecem, evitando contar o mesmo cliente várias vezes.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "sql-23",
+      "name": "GROUP BY",
+      "difficulty": "AVANÇADO",
+      "color": "#a78bfa",
+      "icon": "✦",
+      "summary": "Agrupe linhas com valores em comum usando GROUP BY, combinando com funções de agregação.",
+      "lesson": [
+        { "title": "Agrupando linhas", "body": "GROUP BY agrupa linhas que têm o mesmo valor em uma ou mais colunas, permitindo aplicar funções de agregação a cada grupo separadamente. Por exemplo, somar o total de pedidos por cliente.", "code": "SELECT cliente_id, SUM(total) AS total_gasto\nFROM pedidos\nGROUP BY cliente_id;" },
+        { "title": "Uma linha por grupo", "body": "O resultado de uma consulta com GROUP BY tem uma linha para cada valor distinto da coluna agrupada. Se há 3 clientes diferentes com pedidos, o resultado terá 3 linhas, uma para cada cliente.", "tip": "Colunas no SELECT que não estão no GROUP BY geralmente precisam estar dentro de uma função de agregação." }
+      ],
+      "questions": [
+        { "type": "code", "q": "Considere pedidos: (cliente_id 1, total 50), (cliente_id 1, total 30), (cliente_id 2, total 100). Quantas linhas o resultado terá?\nSELECT cliente_id, SUM(total)\nFROM pedidos\nGROUP BY cliente_id;", "opts": ["1", "2", "3", "0"], "a": 1, "hint": "Conte quantos valores distintos de cliente_id existem.", "ex": "Existem 2 clientes distintos (1 e 2), então o resultado agrupado terá 2 linhas.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "code", "q": "Com os mesmos dados do exercício anterior, qual será o SUM(total) para cliente_id = 1?\nPedidos: (1, 50), (1, 30), (2, 100)", "opts": ["50", "30", "80", "100"], "a": 2, "hint": "Some os totais de todas as linhas com cliente_id igual a 1.", "ex": "50 + 30 = 80, a soma dos pedidos do cliente 1.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Você quer saber quantos pedidos cada cliente fez. Qual consulta é mais adequada?", "opts": ["SELECT cliente_id, COUNT(*) FROM pedidos GROUP BY cliente_id;", "SELECT cliente_id FROM pedidos WHERE COUNT(*) > 1;", "SELECT COUNT(cliente_id) FROM pedidos;", "SELECT cliente_id, SUM(cliente_id) FROM pedidos;"], "a": 0, "hint": "Você precisa agrupar por cliente e contar as linhas de cada grupo.", "ex": "Agrupar por cliente_id e usar COUNT(*) dá exatamente o número de pedidos de cada cliente.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "code", "q": "Este comando tem um problema comum de GROUP BY. Qual é?\nSELECT cliente_id, nome, SUM(total)\nFROM pedidos\nGROUP BY cliente_id;", "opts": ["Não há problema", "A coluna 'nome' não está no GROUP BY nem dentro de uma função de agregação, o que é ambíguo/inválido em muitos SGBDs", "SUM não pode ser usado com GROUP BY", "cliente_id não pode aparecer no SELECT"], "a": 1, "hint": "Compare as colunas do SELECT com as colunas do GROUP BY.", "ex": "Colunas fora de funções de agregação devem constar no GROUP BY; 'nome' não está nem agrupado nem agregado, causando erro ou ambiguidade em vários SGBDs.", "format": "ENCONTRE O ERRO" }
+      ]
+    },
+    {
+      "id": "sql-24",
+      "name": "HAVING",
+      "difficulty": "AVANÇADO",
+      "color": "#a78bfa",
+      "icon": "◎",
+      "summary": "Filtre grupos já agregados usando a cláusula HAVING.",
+      "lesson": [
+        { "title": "Filtrando depois de agrupar", "body": "HAVING filtra os grupos formados por GROUP BY, com base em uma condição sobre valores agregados, como SUM ou COUNT. É diferente do WHERE, que filtra linhas individuais antes do agrupamento.", "code": "SELECT cliente_id, SUM(total) AS total_gasto\nFROM pedidos\nGROUP BY cliente_id\nHAVING SUM(total) > 100;" },
+        { "title": "WHERE vs HAVING", "body": "WHERE age antes do agrupamento, filtrando linhas individuais. HAVING age depois do agrupamento, filtrando grupos já calculados. Por isso, WHERE não pode usar diretamente funções de agregação como SUM ou COUNT, mas HAVING pode.", "tip": "Pense assim: primeiro filtra linhas com WHERE, depois agrupa com GROUP BY, e por fim filtra os grupos com HAVING." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Qual é a principal diferença entre WHERE e HAVING?", "opts": ["Não há diferença, são sinônimos", "WHERE filtra linhas antes de agrupar; HAVING filtra grupos já agregados", "HAVING só pode ser usado sem GROUP BY", "WHERE só funciona com números"], "a": 1, "hint": "Pense na ordem: filtrar linhas cru versus filtrar resultados já somados/agrupados.", "ex": "WHERE filtra linhas individuais antes do agrupamento; HAVING filtra os grupos já formados por GROUP BY.", "format": "CONCEITO" },
+        { "type": "code", "q": "Considere clientes agrupados com totais: cliente 1 (soma 80), cliente 2 (soma 150), cliente 3 (soma 200). Quantos aparecem no resultado?\nSELECT cliente_id, SUM(total)\nFROM pedidos\nGROUP BY cliente_id\nHAVING SUM(total) > 100;", "opts": ["1", "2", "3", "0"], "a": 1, "hint": "Verifique quais somas são maiores que 100.", "ex": "Cliente 2 (150) e cliente 3 (200) têm soma maior que 100; cliente 1 (80) não passa no filtro.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "code", "q": "Este comando tem um erro. Qual é?\nSELECT cliente_id\nFROM pedidos\nWHERE SUM(total) > 100\nGROUP BY cliente_id;", "opts": ["Não há erro", "SUM não pode ser usado dentro de WHERE; deveria estar em HAVING", "GROUP BY deveria vir antes do SELECT", "cliente_id não pode ser selecionado"], "a": 1, "hint": "Lembre que funções de agregação não podem ser usadas diretamente em WHERE.", "ex": "Funções de agregação como SUM não são permitidas em WHERE; a condição deveria estar em HAVING, depois do GROUP BY.", "format": "CORRIJA O ERRO" },
+        { "type": "mcq", "q": "Você quer listar apenas os clientes que fizeram mais de 3 pedidos. Qual estrutura de consulta é adequada?", "opts": ["SELECT cliente_id FROM pedidos WHERE COUNT(*) > 3;", "SELECT cliente_id, COUNT(*) FROM pedidos GROUP BY cliente_id HAVING COUNT(*) > 3;", "SELECT cliente_id FROM pedidos HAVING COUNT(*) > 3;", "SELECT cliente_id FROM pedidos GROUP BY cliente_id WHERE COUNT(*) > 3;"], "a": 1, "hint": "É preciso agrupar por cliente antes de poder filtrar pela contagem de pedidos de cada um.", "ex": "GROUP BY agrupa por cliente e HAVING COUNT(*) > 3 filtra os grupos com mais de 3 pedidos.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "sql-25",
+      "name": "UPDATE E DELETE",
+      "difficulty": "AVANÇADO",
+      "color": "#f472b6",
+      "icon": "⟳",
+      "summary": "Aprenda a modificar e remover dados existentes com UPDATE e DELETE, sempre usando WHERE.",
+      "lesson": [
+        { "title": "Atualizando dados", "body": "UPDATE modifica valores de colunas em linhas já existentes. É essencial usar WHERE para especificar quais linhas devem ser alteradas — sem WHERE, todas as linhas da tabela seriam atualizadas.", "code": "UPDATE produtos\nSET preco = 12\nWHERE id = 3;" },
+        { "title": "Removendo dados", "body": "DELETE remove linhas inteiras de uma tabela. Assim como no UPDATE, o WHERE é fundamental: sem ele, DELETE FROM tabela; apaga todas as linhas da tabela.", "code": "DELETE FROM pedidos\nWHERE id = 10;" }
+      ],
+      "questions": [
+        { "type": "code", "q": "O que este comando faz?\nUPDATE produtos\nSET preco = 12\nWHERE id = 3;", "opts": ["Apaga o produto de id 3", "Atualiza o preço do produto de id 3 para 12", "Cria um novo produto com id 3", "Consulta o preço do produto de id 3"], "a": 1, "hint": "UPDATE modifica valores existentes; observe SET e WHERE.", "ex": "O comando atualiza apenas o produto com id = 3, definindo seu preço como 12.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "code", "q": "Qual é o risco deste comando?\nUPDATE produtos\nSET preco = 0;", "opts": ["Nenhum risco, é seguro", "Como falta WHERE, TODOS os produtos terão o preço alterado para 0", "O comando não é válido em SQL", "Apenas o primeiro produto será afetado"], "a": 1, "hint": "Pense no que acontece quando não há uma cláusula que restrinja quais linhas são afetadas.", "ex": "Sem WHERE, o UPDATE afeta todas as linhas da tabela, zerando o preço de todos os produtos.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "code", "q": "Qual comando remove apenas o pedido de id 10, sem afetar os demais?", "opts": ["DELETE FROM pedidos;", "DELETE FROM pedidos WHERE id = 10;", "UPDATE pedidos SET id = 10;", "DELETE pedidos WHERE id = 10 FROM;"], "a": 1, "hint": "É necessário um WHERE para restringir a remoção a um único registro.", "ex": "DELETE FROM pedidos WHERE id = 10; remove apenas a linha com id igual a 10.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "Antes de rodar um UPDATE ou DELETE em produção, qual é a prática mais recomendada?", "opts": ["Executar direto, sem verificar nada", "Testar antes com um SELECT usando a mesma condição do WHERE, para conferir quais linhas seriam afetadas", "Nunca usar WHERE, para simplificar o comando", "Sempre rodar sem WHERE, para garantir que tudo seja atualizado"], "a": 1, "hint": "Pense em como confirmar, antes de alterar dados, quais linhas exatamente serão afetadas.", "ex": "Rodar um SELECT com a mesma condição do WHERE antes do UPDATE/DELETE ajuda a confirmar que apenas as linhas certas serão afetadas.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "sql-26",
+      "name": "NORMALIZAÇÃO",
+      "difficulty": "AVANÇADO",
+      "color": "#f472b6",
+      "icon": "◑",
+      "summary": "Entenda por que normalizar dados evita duplicação e inconsistências.",
+      "lesson": [
+        { "title": "O problema da duplicação", "body": "Imagine uma tabela de pedidos que guarda, em cada linha, o nome e o email do cliente repetidos. Se o cliente mudar de email, seria preciso atualizar várias linhas, e um esquecimento gera dados inconsistentes.", "code": "-- Tabela não normalizada (ruim):\npedidos: id, cliente_nome, cliente_email, produto, total" },
+        { "title": "Normalizando com relacionamentos", "body": "Normalizar significa separar os dados em tabelas distintas, ligadas por chaves estrangeiras, para que cada informação exista em um único lugar. Assim, o email do cliente fica só na tabela clientes, e pedidos apenas referencia cliente_id.", "code": "-- Normalizado (melhor):\nclientes: id, nome, email\npedidos: id, cliente_id, total" }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Qual é o principal objetivo da normalização de dados?", "opts": ["Deixar o banco de dados mais lento de propósito", "Evitar duplicação de dados e reduzir inconsistências", "Reduzir o número de tabelas ao mínimo possível", "Eliminar completamente o uso de chaves estrangeiras"], "a": 1, "hint": "Pense no problema que aparece quando a mesma informação é repetida em vários lugares.", "ex": "Normalizar evita repetir a mesma informação em múltiplos lugares, reduzindo o risco de inconsistência.", "format": "CONCEITO" },
+        { "type": "code", "q": "Veja esta tabela não normalizada. Qual é o problema principal?\npedidos: id, cliente_nome, cliente_email, produto, total", "opts": ["Não há problema, está tudo certo", "Se um cliente fizer vários pedidos, seu nome e email ficarão repetidos em várias linhas", "A tabela tem colunas demais", "Falta a coluna preco"], "a": 1, "hint": "Pense no que acontece quando o mesmo cliente aparece em múltiplos pedidos.", "ex": "Repetir nome e email em cada pedido do mesmo cliente causa duplicação e risco de dados desatualizados/inconsistentes.", "format": "ENCONTRE O ERRO" },
+        { "type": "mcq", "q": "Como normalizar a tabela 'pedidos: id, cliente_nome, cliente_email, produto, total'?", "opts": ["Manter tudo em uma única tabela, sem mudanças", "Criar uma tabela clientes separada (id, nome, email) e referenciar cliente_id em pedidos", "Remover a coluna produto", "Duplicar ainda mais os dados do cliente em outras tabelas"], "a": 1, "hint": "Pense em separar as informações do cliente em sua própria tabela.", "ex": "Separar os dados do cliente em uma tabela própria e referenciá-la por chave estrangeira elimina a duplicação.", "format": "CORRIJA O ERRO" },
+        { "type": "mcq", "q": "Depois de normalizar clientes e pedidos em tabelas separadas, se um cliente mudar de email, quantos lugares precisam ser atualizados?", "opts": ["Um lugar apenas: a linha do cliente na tabela clientes", "Um lugar para cada pedido feito pelo cliente", "Nenhum lugar, o email é fixo para sempre", "Toda a tabela pedidos precisa ser recriada"], "a": 0, "hint": "Pense em onde o email está armazenado depois da normalização.", "ex": "Como o email agora existe só na tabela clientes, basta atualizar essa única linha para refletir a mudança em todo o sistema.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "sql-27",
+      "name": "PROJETO: PRODUTOS E PEDIDOS",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "⬢",
+      "summary": "Modele a relação muitos-para-muitos entre pedidos e produtos na loja simples.",
+      "lesson": [
+        { "title": "Um pedido pode ter vários produtos", "body": "Na prática, um pedido de loja geralmente inclui vários produtos, e um mesmo produto pode aparecer em vários pedidos diferentes. Essa é uma relação muitos-para-muitos entre pedidos e produtos.", "tip": "Lembre-se: sempre que 'dos dois lados pode haver vários', é hora de pensar em uma tabela associativa." },
+        { "title": "Criando a tabela associativa", "body": "Para resolver isso, criamos uma tabela associativa, como itens_pedido, com pedido_id, produto_id e a quantidade daquele produto naquele pedido.", "code": "pedidos: id, cliente_id, data_pedido\nprodutos: id, nome, preco\nitens_pedido: pedido_id, produto_id, quantidade" }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Por que a relação entre pedidos e produtos costuma ser muitos-para-muitos?", "opts": ["Porque um pedido só pode ter um produto", "Porque um pedido pode ter vários produtos, e um produto pode estar em vários pedidos diferentes", "Porque produtos nunca se repetem em pedidos diferentes", "Não existe relação entre pedidos e produtos"], "a": 1, "hint": "Pense se, dos dois lados (pedido e produto), pode haver múltiplas ocorrências relacionadas.", "ex": "Um pedido pode conter vários produtos e um produto pode aparecer em vários pedidos — por isso é muitos-para-muitos.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "code", "q": "Veja a tabela itens_pedido. O que a linha 'pedido_id=1, produto_id=3, quantidade=2' representa?\nitens_pedido: pedido_id, produto_id, quantidade\n1, 3, 2\n1, 5, 1", "opts": ["O pedido 1 tem 2 unidades do produto 3", "O produto 1 tem 2 unidades do pedido 3", "Um erro de dados", "O pedido 3 tem 2 unidades do produto 1"], "a": 0, "hint": "A ordem das colunas é pedido_id, produto_id, quantidade.", "ex": "A linha indica que, no pedido de id 1, há 2 unidades do produto de id 3.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "Por que a coluna 'quantidade' fica na tabela associativa itens_pedido, e não em produtos ou pedidos?", "opts": ["Porque quantidade é uma característica específica da combinação de um produto dentro de um pedido específico", "Porque produtos e pedidos não podem ter colunas numéricas", "Não faz diferença onde a quantidade fica", "Porque quantidade deveria ficar apenas na tabela produtos"], "a": 0, "hint": "Pense que a mesma quantidade de 2 unidades só faz sentido junto de 'qual produto' e 'qual pedido'.", "ex": "A quantidade depende da combinação específica pedido+produto, por isso pertence à tabela associativa.", "format": "CONCEITO" },
+        { "type": "code", "q": "Com base nesta estrutura, qual consulta lista o nome dos produtos do pedido de id 1?\npedidos: id, cliente_id\nprodutos: id, nome, preco\nitens_pedido: pedido_id, produto_id, quantidade", "opts": ["SELECT nome FROM produtos WHERE id = 1;", "SELECT produtos.nome FROM produtos INNER JOIN itens_pedido ON produtos.id = itens_pedido.produto_id WHERE itens_pedido.pedido_id = 1;", "SELECT nome FROM pedidos WHERE id = 1;", "SELECT * FROM itens_pedido;"], "a": 1, "hint": "É necessário unir produtos com itens_pedido e filtrar pelo pedido desejado.", "ex": "É preciso fazer JOIN entre produtos e itens_pedido, filtrando por pedido_id = 1, para obter os nomes dos produtos daquele pedido.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "sql-28",
+      "name": "PROJETO: CONSULTAS DA LOJA",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "◈",
+      "summary": "Combine JOIN, GROUP BY e HAVING para responder perguntas de negócio sobre a loja.",
+      "lesson": [
+        { "title": "Perguntas de negócio viram consultas", "body": "Um dono de loja pode querer saber, por exemplo, 'qual cliente mais gastou' ou 'quantos pedidos cada cliente fez'. Essas perguntas são respondidas combinando JOIN (para juntar tabelas), GROUP BY (para agrupar por cliente) e funções de agregação.", "code": "SELECT clientes.nome, SUM(pedidos.total) AS total_gasto\nFROM clientes\nINNER JOIN pedidos ON clientes.id = pedidos.cliente_id\nGROUP BY clientes.nome;" },
+        { "title": "Refinando com HAVING", "body": "Se quisermos apenas os clientes que gastaram mais de determinado valor, adicionamos HAVING depois do GROUP BY, aplicando a condição sobre o valor já agregado (SUM).", "code": "...\nGROUP BY clientes.nome\nHAVING SUM(pedidos.total) > 200;" }
+      ],
+      "questions": [
+        { "type": "code", "q": "O que esta consulta calcula, por cliente?\nSELECT clientes.nome, SUM(pedidos.total) AS total_gasto\nFROM clientes\nINNER JOIN pedidos ON clientes.id = pedidos.cliente_id\nGROUP BY clientes.nome;", "opts": ["A quantidade de produtos cadastrados", "O total gasto por cada cliente, somando todos os seus pedidos", "O preço médio dos produtos", "A lista de emails dos clientes"], "a": 1, "hint": "Observe o SUM aplicado à coluna total dos pedidos, agrupado por cliente.", "ex": "A consulta soma o total de todos os pedidos de cada cliente, mostrando o total gasto por pessoa.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "Como adaptar a consulta anterior para mostrar apenas clientes que gastaram mais de 200 no total?", "opts": ["Adicionar WHERE SUM(pedidos.total) > 200 antes do GROUP BY", "Adicionar HAVING SUM(pedidos.total) > 200 depois do GROUP BY", "Trocar SUM por COUNT", "Não é possível fazer esse filtro"], "a": 1, "hint": "Lembre que filtros sobre valores agregados (como SUM) vão em HAVING, não em WHERE.", "ex": "HAVING SUM(pedidos.total) > 200, colocado depois do GROUP BY, filtra os clientes cujo total agregado passa de 200.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "code", "q": "Considere clientes com total gasto: Ana (300), Bruno (150), Carlos (250). Quantos aparecem com este filtro?\n... GROUP BY clientes.nome\nHAVING SUM(pedidos.total) > 200;", "opts": ["1", "2", "3", "0"], "a": 1, "hint": "Veja quais totais são maiores que 200.", "ex": "Ana (300) e Carlos (250) têm total maior que 200; Bruno (150) fica de fora.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Você quer saber quantos pedidos distintos cada produto apareceu, usando a tabela itens_pedido (pedido_id, produto_id, quantidade). Qual abordagem é correta?", "opts": ["SELECT produto_id, COUNT(*) FROM itens_pedido GROUP BY produto_id;", "SELECT produto_id FROM itens_pedido WHERE COUNT(*) > 1;", "SELECT SUM(produto_id) FROM itens_pedido;", "SELECT produto_id, quantidade FROM itens_pedido ORDER BY produto_id;"], "a": 0, "hint": "É preciso agrupar por produto e contar quantas linhas (pedidos) cada um aparece.", "ex": "Agrupar por produto_id e contar as linhas com COUNT(*) mostra em quantos pedidos cada produto apareceu.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "sql-29",
+      "name": "PROJETO: REVISANDO O MODELO",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "●",
+      "summary": "Revise o modelo completo da loja e identifique melhorias e possíveis erros de modelagem.",
+      "lesson": [
+        { "title": "O modelo completo da loja", "body": "Reunindo tudo, o modelo da loja tem: clientes, produtos, pedidos e itens_pedido (a tabela associativa entre pedidos e produtos). Cada tabela tem sua chave primária, e as relações são feitas por chaves estrangeiras.", "code": "clientes: id (PK), nome, email\nprodutos: id (PK), nome, preco\npedidos: id (PK), cliente_id (FK), data_pedido\nitens_pedido: pedido_id (FK), produto_id (FK), quantidade" },
+        { "title": "Revisando decisões", "body": "Antes de finalizar um modelo, vale revisar: toda entidade tem uma chave primária? As relações um-para-muitos e muitos-para-muitos estão corretas? Há dados duplicados que poderiam ser normalizados?", "tip": "Revisar o modelo antes de implementar evita retrabalho e problemas de integridade no futuro." }
+      ],
+      "questions": [
+        { "type": "code", "q": "Neste modelo, qual é a chave estrangeira que liga um pedido ao seu cliente?\nclientes: id (PK), nome, email\npedidos: id (PK), cliente_id (FK), data_pedido", "opts": ["clientes.id", "pedidos.id", "pedidos.cliente_id", "clientes.nome"], "a": 2, "hint": "Procure a coluna marcada como FK (foreign key) na tabela pedidos.", "ex": "pedidos.cliente_id é a chave estrangeira que referencia clientes.id.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "Por que a tabela itens_pedido não tem uma coluna 'id' própria como chave primária simples nesse modelo, usando pedido_id + produto_id como identificação da linha?", "opts": ["Porque tabelas associativas nunca podem ter chave primária", "Porque a combinação de pedido_id e produto_id já identifica de forma única cada item de um pedido específico", "Porque isso é sempre proibido em SQL", "Porque produto_id sozinho já basta como chave primária"], "a": 1, "hint": "Pense se a combinação dos dois valores (pedido + produto) já é suficiente para não haver duplicidade.", "ex": "A combinação (pedido_id, produto_id) identifica unicamente cada item de um pedido, podendo servir como chave primária composta.", "format": "CONCEITO" },
+        { "type": "code", "q": "Alguém sugeriu adicionar a coluna 'nome_cliente' também na tabela pedidos, além de cliente_id. Por que isso seria um problema de modelagem?", "opts": ["Não seria problema, ajudaria nas consultas", "Duplicaria informação que já existe em clientes, reintroduzindo o risco de inconsistência que a normalização evita", "pedidos não pode ter nenhuma coluna de texto", "cliente_id se tornaria desnecessário"], "a": 1, "hint": "Pense no que foi discutido sobre normalização e duplicação de dados.", "ex": "Duplicar nome_cliente em pedidos reintroduz o problema de inconsistência que a normalização (via cliente_id) já resolve.", "format": "ENCONTRE O ERRO" },
+        { "type": "mcq", "q": "Nesse modelo de loja, qual consulta lista o nome do cliente e a data de cada pedido feito por ele?", "opts": ["SELECT clientes.nome, pedidos.data_pedido FROM clientes INNER JOIN pedidos ON clientes.id = pedidos.cliente_id;", "SELECT nome, data_pedido FROM clientes;", "SELECT * FROM pedidos WHERE nome = clientes.nome;", "SELECT clientes.nome FROM pedidos;"], "a": 0, "hint": "É preciso unir clientes e pedidos pela chave que os conecta.", "ex": "O JOIN entre clientes e pedidos, usando clientes.id = pedidos.cliente_id, permite combinar nome do cliente com a data do pedido.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "sql-30",
+      "name": "PROJETO: FECHAMENTO",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "✓",
+      "summary": "Feche o projeto da loja simples aplicando tudo o que foi aprendido sobre modelagem e SQL.",
+      "lesson": [
+        { "title": "Do problema ao modelo", "body": "Você percorreu todo o caminho: identificar entidades e atributos, definir chaves primárias e estrangeiras, criar tabelas com CREATE TABLE, inserir e consultar dados, filtrar e ordenar resultados, combinar tabelas com JOIN, agregar com GROUP BY e HAVING, e manter tudo consistente evitando duplicação.", "code": "clientes: id (PK), nome, email\nprodutos: id (PK), nome, preco\npedidos: id (PK), cliente_id (FK), data_pedido\nitens_pedido: pedido_id (FK), produto_id (FK), quantidade" },
+        { "title": "Pensando como um profissional", "body": "Diante de um novo sistema, um profissional de banco de dados sempre parte das perguntas de negócio ('o que precisamos guardar? quem se relaciona com quem?') antes de escrever qualquer comando SQL. O modelo bem pensado facilita todas as consultas futuras.", "tip": "Modelar bem antes de programar economiza muito retrabalho depois." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Ao começar a modelar um novo sistema, qual deve ser o primeiro passo?", "opts": ["Escrever comandos INSERT imediatamente", "Identificar as entidades principais e como elas se relacionam entre si", "Definir cores para as tabelas", "Escolher o SGBD antes de entender os dados"], "a": 1, "hint": "Pense na ordem lógica: entender o problema antes de implementar.", "ex": "Identificar entidades e relacionamentos é o ponto de partida antes de criar tabelas ou escrever consultas.", "format": "CONCEITO" },
+        { "type": "code", "q": "No modelo final da loja, quantas tabelas são necessárias para representar clientes, produtos, pedidos e a relação entre pedidos e produtos?", "opts": ["2", "3", "4", "5"], "a": 2, "hint": "Conte: clientes, produtos, pedidos e a tabela associativa.", "ex": "São 4 tabelas: clientes, produtos, pedidos e itens_pedido (a tabela associativa).", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "Qual consulta retorna, para cada produto, quantas unidades no total já foram vendidas (some as quantidades em itens_pedido)?", "opts": ["SELECT produto_id, SUM(quantidade) FROM itens_pedido GROUP BY produto_id;", "SELECT produto_id, quantidade FROM itens_pedido;", "SELECT SUM(produto_id) FROM itens_pedido;", "SELECT produto_id FROM itens_pedido HAVING SUM(quantidade);"], "a": 0, "hint": "Você precisa agrupar por produto e somar a coluna quantidade de cada grupo.", "ex": "Agrupar por produto_id e usar SUM(quantidade) dá o total de unidades vendidas de cada produto.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "Depois de modelar clientes, produtos, pedidos e itens_pedido com chaves primárias e estrangeiras bem definidas, o principal benefício alcançado é:", "opts": ["Dados duplicados em várias tabelas para maior segurança", "Um modelo consistente, sem duplicação desnecessária, onde cada informação tem um único lugar de origem", "A eliminação total da necessidade de usar SQL", "Um banco de dados que não precisa mais de chave primária"], "a": 1, "hint": "Pense no objetivo final de todo o processo de modelagem e normalização visto na trilha.", "ex": "O objetivo é um modelo consistente e organizado, onde cada dado vive em um único lugar, evitando duplicação e inconsistência.", "format": "CONCEITO" }
+      ]
+    }
+  ]
+}

@@ -3,6 +3,13 @@ import pythonCourse from './data/course.json';
 import htmlCourse from './data/course-html.json';
 import javaCourse from './data/course-java.json';
 import iaCourse from './data/course-ia.json';
+import jsCourse from './data/course-js.json';
+import sqlCourse from './data/course-sql.json';
+import gitCourse from './data/course-git.json';
+import supabaseCourse from './data/course-supabase.json';
+import vercelCourse from './data/course-vercel.json';
+import securityCourse from './data/course-security.json';
+import iaDevCourse from './data/course-ia-dev.json';
 import mascotReady from './assets/mascot/guia-py-ready.webp';
 import mascotFocus from './assets/mascot/guia-py-focus.webp';
 import mascotCelebrate from './assets/mascot/guia-py-celebrate.webp';
@@ -180,6 +187,97 @@ const IA_UNIT_META = [
   { title: 'Projeto final', goal: 'Monte seu próprio fluxo de trabalho com IA.', color: '#facc15' },
 ];
 
+const JS_UNIT_META = [
+  { title: 'Fundamentos do JavaScript', goal: 'Variáveis, tipos e template strings.', color: '#ff9600' },
+  { title: 'Operadores e decisões', goal: 'Comparações, if/else e operador ternário.', color: '#f6c445' },
+  { title: 'Repetição e arrays', goal: 'for, while e métodos básicos de array.', color: '#22c55e' },
+  { title: 'Funções', goal: 'Declaração, arrow functions e retorno.', color: '#34d399' },
+  { title: 'Objetos', goal: 'Propriedades e métodos de um objeto.', color: '#1cb0f6' },
+  { title: 'O DOM', goal: 'Selecionar e alterar elementos da página.', color: '#0ea5e9' },
+  { title: 'Eventos', goal: 'Cliques, formulários e preventDefault.', color: '#38bdf8' },
+  { title: 'Requisições e dados', goal: 'fetch, JSON e async/await.', color: '#a78bfa' },
+  { title: 'Depuração e boas práticas', goal: 'console.log, erros comuns e clareza.', color: '#f472b6' },
+  { title: 'Projeto final', goal: 'Monte um mini app interativo.', color: '#facc15' },
+];
+
+const SQL_UNIT_META = [
+  { title: 'O que é um banco de dados', goal: 'Tabelas, linhas, colunas e por que usar um SGBD.', color: '#ff9600' },
+  { title: 'Modelagem de dados', goal: 'Entidades, atributos e chave primária.', color: '#f6c445' },
+  { title: 'Relacionamentos', goal: 'Chave estrangeira e relações 1:N e N:N.', color: '#22c55e' },
+  { title: 'Criando tabelas', goal: 'CREATE TABLE, tipos e restrições.', color: '#34d399' },
+  { title: 'Inserindo e consultando', goal: 'INSERT, SELECT e WHERE.', color: '#1cb0f6' },
+  { title: 'Ordenando e filtrando', goal: 'ORDER BY, LIMIT e operadores lógicos.', color: '#0ea5e9' },
+  { title: 'Junções (JOIN)', goal: 'INNER JOIN e LEFT JOIN.', color: '#38bdf8' },
+  { title: 'Agregações', goal: 'COUNT, SUM, AVG e GROUP BY.', color: '#a78bfa' },
+  { title: 'Atualizando e normalizando', goal: 'UPDATE, DELETE e normalização.', color: '#f472b6' },
+  { title: 'Projeto final', goal: 'Modele o banco de uma loja simples.', color: '#facc15' },
+];
+
+const GIT_UNIT_META = [
+  { title: 'O que é controle de versão', goal: 'Por que usar Git, e Git vs GitHub.', color: '#ff9600' },
+  { title: 'Primeiros comandos', goal: 'init, add, commit e status.', color: '#f6c445' },
+  { title: 'Histórico e comparação', goal: 'log, diff e descartar mudanças.', color: '#22c55e' },
+  { title: 'Branches', goal: 'Criar, trocar e isolar trabalho.', color: '#34d399' },
+  { title: 'Merge e conflitos', goal: 'Como surgem e como resolver.', color: '#1cb0f6' },
+  { title: 'GitHub na prática', goal: 'Repositório remoto, push, pull, clone.', color: '#0ea5e9' },
+  { title: 'Colaboração', goal: 'Fork, pull request e code review.', color: '#38bdf8' },
+  { title: 'Organização do projeto', goal: 'Issues, labels, README e .gitignore.', color: '#a78bfa' },
+  { title: 'Automação com Actions', goal: 'CI/CD e workflows automáticos.', color: '#f472b6' },
+  { title: 'Projeto final', goal: 'Fluxo completo fork → PR → merge.', color: '#facc15' },
+];
+
+const SUPABASE_UNIT_META = [
+  { title: 'O que é Backend as a Service', goal: 'O que o Supabase entrega pronto.', color: '#ff9600' },
+  { title: 'Banco de dados gerenciado', goal: 'Postgres e tabelas pelo painel.', color: '#f6c445' },
+  { title: 'API instantânea', goal: 'Cada tabela vira um endpoint REST.', color: '#22c55e' },
+  { title: 'Autenticação', goal: 'Signup, login e sessão do usuário.', color: '#34d399' },
+  { title: 'Row Level Security', goal: 'Políticas de acesso aos dados.', color: '#1cb0f6' },
+  { title: 'Storage de arquivos', goal: 'Buckets e upload de arquivos.', color: '#0ea5e9' },
+  { title: 'Realtime', goal: 'Assinar mudanças em tempo real.', color: '#38bdf8' },
+  { title: 'Client SDK', goal: 'Ler e escrever dados com o SDK.', color: '#a78bfa' },
+  { title: 'Edge Functions', goal: 'Funções serverless sob demanda.', color: '#f472b6' },
+  { title: 'Projeto final', goal: 'Planeje o backend de um app.', color: '#facc15' },
+];
+
+const VERCEL_UNIT_META = [
+  { title: 'O que é deploy', goal: 'Do código local ao público.', color: '#ff9600' },
+  { title: 'Estático vs dinâmico', goal: 'Site estático, servidor e serverless.', color: '#f6c445' },
+  { title: 'Vercel na prática', goal: 'Conectar o GitHub e publicar.', color: '#22c55e' },
+  { title: 'Preview deployments', goal: 'Deploy por branch e por PR.', color: '#34d399' },
+  { title: 'Domínio e HTTPS', goal: 'Domínio próprio e certificado automático.', color: '#1cb0f6' },
+  { title: 'Variáveis de ambiente', goal: 'Segredos fora do código-fonte.', color: '#0ea5e9' },
+  { title: 'Build e frameworks', goal: 'Comando de build e detecção automática.', color: '#38bdf8' },
+  { title: 'Performance e CDN', goal: 'Edge network e cache.', color: '#a78bfa' },
+  { title: 'Monitoramento', goal: 'Logs e erros em produção.', color: '#f472b6' },
+  { title: 'Projeto final', goal: 'Publique um projeto do zero ao ar.', color: '#facc15' },
+];
+
+const SECURITY_UNIT_META = [
+  { title: 'Por que segurança importa', goal: 'O que pode dar errado e mentalidade defensiva.', color: '#ff9600' },
+  { title: 'Senhas e hashing', goal: 'Nunca guardar senha em texto puro.', color: '#f6c445' },
+  { title: 'HTTPS e criptografia', goal: 'O que o cadeado garante.', color: '#22c55e' },
+  { title: 'Autenticação vs autorização', goal: 'Quem você é vs o que pode fazer.', color: '#34d399' },
+  { title: 'Injeção de SQL', goal: 'Como ocorre e como prevenir.', color: '#1cb0f6' },
+  { title: 'XSS e CSRF', goal: 'O que são e como mitigar.', color: '#0ea5e9' },
+  { title: 'Segredos e variáveis sensíveis', goal: 'Nunca commitar chaves e senhas.', color: '#38bdf8' },
+  { title: 'Boas práticas de API', goal: 'Validação, rate limit e CORS.', color: '#a78bfa' },
+  { title: 'Privacidade e LGPD', goal: 'Dado pessoal e proteção de dados.', color: '#f472b6' },
+  { title: 'Projeto final', goal: 'Checklist de segurança para lançar um site.', color: '#facc15' },
+];
+
+const IA_DEV_UNIT_META = [
+  { title: 'IA no ciclo de desenvolvimento', goal: 'Onde a IA ajuda hoje.', color: '#ff9600' },
+  { title: 'Prompt engineering para código', goal: 'Contexto claro e específico.', color: '#f6c445' },
+  { title: 'Assistentes de código', goal: 'Autocomplete vs agente que executa.', color: '#22c55e' },
+  { title: 'Revisão assistida por IA', goal: 'Encontrar bugs e explicar código.', color: '#34d399' },
+  { title: 'Gerando testes com IA', goal: 'Testes que cobrem casos de borda.', color: '#1cb0f6' },
+  { title: 'Depurando com IA', goal: 'Descrever o erro e avaliar a sugestão.', color: '#0ea5e9' },
+  { title: 'Limites e riscos', goal: 'Alucinação de código e excesso de confiança.', color: '#38bdf8' },
+  { title: 'Segurança ao usar IA', goal: 'Nunca colar segredos em um prompt.', color: '#a78bfa' },
+  { title: 'Ética e autoria', goal: 'A responsabilidade continua sendo sua.', color: '#f472b6' },
+  { title: 'Projeto final', goal: 'Monte seu fluxo pessoal com IA.', color: '#facc15' },
+];
+
 const TRACK_CATALOG = [
   {
     id: 'python',
@@ -224,6 +322,83 @@ const TRACK_CATALOG = [
     unitMeta: IA_UNIT_META,
     stagesPerUnit: 3,
     fileExt: 'py',
+  },
+  {
+    id: 'js',
+    title: 'JavaScript',
+    subtitle: 'Interatividade para páginas vivas.',
+    icon: '◉',
+    color: '#f7df1e',
+    course: jsCourse,
+    unitMeta: JS_UNIT_META,
+    stagesPerUnit: 3,
+    fileExt: 'js',
+  },
+  {
+    id: 'sql',
+    title: 'Banco de Dados',
+    subtitle: 'Modele, consulte e organize dados.',
+    icon: '⛁',
+    color: '#336791',
+    course: sqlCourse,
+    unitMeta: SQL_UNIT_META,
+    stagesPerUnit: 3,
+    fileExt: 'sql',
+  },
+  {
+    id: 'git',
+    title: 'Git & GitHub',
+    subtitle: 'Controle de versão e colaboração.',
+    icon: '⎇',
+    color: '#f05033',
+    course: gitCourse,
+    unitMeta: GIT_UNIT_META,
+    stagesPerUnit: 3,
+    fileExt: 'sh',
+  },
+  {
+    id: 'supabase',
+    title: 'Supabase',
+    subtitle: 'Backend completo sem servidor próprio.',
+    icon: '◈',
+    color: '#3ecf8e',
+    course: supabaseCourse,
+    unitMeta: SUPABASE_UNIT_META,
+    stagesPerUnit: 3,
+    fileExt: 'js',
+  },
+  {
+    id: 'vercel',
+    title: 'Deploy & Vercel',
+    subtitle: 'Do código ao ar em produção.',
+    icon: '▲',
+    color: '#a3a3a3',
+    course: vercelCourse,
+    unitMeta: VERCEL_UNIT_META,
+    stagesPerUnit: 3,
+    fileExt: 'bash',
+  },
+  {
+    id: 'security',
+    title: 'Segurança da Informação',
+    subtitle: 'Proteja dados, senhas e aplicações.',
+    icon: '⛨',
+    color: '#ef4444',
+    course: securityCourse,
+    unitMeta: SECURITY_UNIT_META,
+    stagesPerUnit: 3,
+    fileExt: 'txt',
+  },
+  {
+    id: 'ia-dev',
+    title: 'IA para Desenvolvedores',
+    subtitle: 'Use IA com técnica e responsabilidade.',
+    icon: '✧',
+    color: '#8b5cf6',
+    course: iaDevCourse,
+    unitMeta: IA_DEV_UNIT_META,
+    stagesPerUnit: 3,
+    fileExt: 'txt',
   },
 ];
 

@@ -1,0 +1,576 @@
+{
+  "title": "IA para Desenvolvedores",
+  "version": 1,
+  "stages": [
+    {
+      "id": "ia-dev-1",
+      "name": "ONDE A IA AJUDA HOJE",
+      "difficulty": "INICIANTE",
+      "color": "#ff9600",
+      "icon": "◆",
+      "summary": "Panorama das formas como a IA já participa do dia a dia de quem programa.",
+      "lesson": [
+        { "title": "Três formas comuns de usar IA ao programar", "body": "Hoje a IA aparece de três jeitos principais no desenvolvimento: autocomplete (sugere a próxima linha enquanto você digita), chat (você conversa para tirar dúvidas ou pedir trechos de código) e agentes (executam tarefas de várias etapas, como editar arquivos e rodar comandos)." },
+        { "title": "Autocomplete: sugestões em tempo real", "body": "Ferramentas como GitHub Copilot analisam o código ao redor do cursor e sugerem a continuação. Você aceita, ignora ou edita a sugestão. É útil para tarefas repetitivas, mas ainda exige que você leia o que foi sugerido." },
+        { "title": "Agentes: além de sugerir, executam", "body": "Um agente de IA pode ler vários arquivos do projeto, propor mudanças em múltiplos lugares e até rodar testes, tudo com supervisão do desenvolvedor. Isso é diferente de apenas completar uma linha de código." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Qual das opções descreve melhor o que é 'autocomplete de código com IA'?", "opts": ["Uma IA que decide sozinha o que o projeto deve fazer", "Uma sugestão de continuação de código enquanto você digita", "Um sistema que substitui o compilador", "Uma ferramenta que só funciona offline"], "hint": "Pense no que acontece enquanto você está digitando em um editor.", "a": 1, "ex": "Autocomplete sugere a próxima linha ou trecho de código com base no contexto, mas quem decide aceitar é o desenvolvedor.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "O que diferencia um 'agente de IA' de um simples autocomplete?", "opts": ["O agente é mais lento", "O agente pode executar múltiplas etapas, como editar vários arquivos e rodar comandos", "O agente só funciona em linguagens compiladas", "Não há diferença real"], "hint": "Pense em 'uma sugestão' versus 'uma sequência de ações'.", "a": 1, "ex": "Agentes conseguem planejar e executar tarefas de várias etapas, não apenas sugerir uma linha.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Um desenvolvedor pede a um chat de IA para explicar um trecho de código legado. Isso é um exemplo de uso de IA em qual modalidade?", "opts": ["Autocomplete", "Chat/conversa", "Agente executando comandos no terminal", "Compilador"], "hint": "Ele está fazendo uma pergunta e recebendo uma resposta em texto.", "a": 1, "ex": "Pedir explicações por meio de perguntas e respostas é o uso via chat.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "Por que ainda é importante revisar sugestões de autocomplete antes de aceitá-las?", "opts": ["Porque o autocomplete nunca funciona corretamente", "Porque a sugestão pode não se encaixar no contexto real do projeto ou conter erros", "Porque autocomplete é proibido em empresas", "Porque isso deixa o código mais lento"], "hint": "Pense se a IA conhece 100% das regras de negócio do seu projeto.", "a": 1, "ex": "A IA sugere com base em padrões, mas não conhece todo o contexto do projeto, por isso a revisão humana continua necessária.", "format": "CONCEITO" }
+      ]
+    },
+    {
+      "id": "ia-dev-2",
+      "name": "AUTOCOMPLETE VS CHAT VS AGENTE",
+      "difficulty": "INICIANTE",
+      "color": "#ff9600",
+      "icon": "▲",
+      "summary": "Compare as três modalidades e saiba escolher a certa para cada situação.",
+      "lesson": [
+        { "title": "Cada modalidade serve para um momento diferente", "body": "Autocomplete é ótimo para tarefas pequenas e repetitivas enquanto você digita. Chat é melhor para tirar dúvidas, pedir explicações ou gerar um trecho isolado. Agentes são indicados para tarefas maiores, que envolvem várias etapas ou arquivos." },
+        { "title": "Exemplo prático", "code": "Tarefa: 'Adicionar validação de e-mail em 5 formulários do projeto'\n\nAutocomplete: sugere linha a linha, mas você repete a ação 5 vezes.\nChat: você pede um trecho de validação e cola manualmente em cada lugar.\nAgente: pode localizar os 5 formulários e aplicar a mudança em todos." },
+        { "title": "Escolher a ferramenta certa economiza tempo", "body": "Usar um agente para uma tarefa de uma linha é exagero. Usar apenas autocomplete para uma refatoração grande em vários arquivos é ineficiente. Avaliar o tamanho da tarefa ajuda a escolher a abordagem." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Para qual situação o autocomplete costuma ser mais adequado?", "opts": ["Reorganizar a arquitetura inteira do projeto", "Completar uma linha repetitiva enquanto você digita", "Substituir a necessidade de testes", "Decidir qual banco de dados usar"], "hint": "Pense em uma tarefa pequena e local, não em algo estrutural.", "a": 1, "ex": "Autocomplete é indicado para sugestões pontuais e locais durante a digitação.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "mcq", "q": "Uma tarefa envolve alterar uma mesma validação em 8 arquivos diferentes do projeto. Qual abordagem tende a ser mais eficiente?", "opts": ["Autocomplete, repetindo a digitação 8 vezes", "Um agente que localiza e aplica a mudança nos 8 arquivos com supervisão", "Não usar IA em nenhuma etapa", "Reescrever o projeto do zero"], "hint": "Pense em qual ferramenta lida melhor com múltiplos arquivos ao mesmo tempo.", "a": 1, "ex": "Agentes são projetados para tarefas de múltiplas etapas e múltiplos arquivos, o que se encaixa nesse cenário.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "mcq", "q": "Qual é uma boa razão para usar o chat de IA em vez de um agente?", "opts": ["Quando você só quer entender um conceito ou revisar um trecho isolado, sem alterar arquivos do projeto", "Quando você quer que o código seja alterado automaticamente sem revisão", "Porque o chat é sempre mais rápido em qualquer tarefa", "Porque agentes não existem"], "hint": "Pense em pedir uma explicação versus pedir uma execução de tarefa.", "a": 0, "ex": "O chat é indicado quando o objetivo é conversar, entender ou gerar um trecho pontual, sem necessidade de execução automatizada.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "Um desenvolvedor usa um agente de IA para 'ajustar o texto de um comentário em uma única linha'. O que se pode dizer sobre essa escolha?", "opts": ["É a escolha ideal, pois agentes sempre são melhores", "É provavelmente um uso desproporcional da ferramenta para uma tarefa tão pequena", "É impossível fazer isso com um agente", "Agentes não conseguem editar comentários"], "hint": "Compare o tamanho da tarefa com a complexidade da ferramenta escolhida.", "a": 1, "ex": "Para uma tarefa tão simples, um autocomplete ou edição manual resolveria com menos complexidade do que acionar um agente.", "format": "DECISÃO DE CÓDIGO" }
+      ]
+    },
+    {
+      "id": "ia-dev-3",
+      "name": "SEU PAPEL COM A IA",
+      "difficulty": "INICIANTE",
+      "color": "#ff9600",
+      "icon": "★",
+      "summary": "Entenda que a IA é uma ferramenta de apoio, não uma substituta do julgamento humano.",
+      "lesson": [
+        { "title": "A IA acelera, mas não decide por você", "body": "Mesmo os agentes mais avançados precisam de alguém para definir o objetivo, revisar o resultado e aprovar mudanças. A IA é uma ferramenta de produtividade, e a responsabilidade final continua sendo do desenvolvedor." },
+        { "title": "O ciclo saudável de uso", "code": "1. Você define a tarefa com clareza\n2. A IA propõe uma solução (sugestão, resposta ou ação)\n3. Você revisa o resultado\n4. Você aprova, ajusta ou rejeita" },
+        { "title": "Nem toda sugestão deve ser aceita", "tip": "Se uma sugestão parecer estranha, complexa demais ou usar algo que você não reconhece, vale a pena investigar antes de aceitar. Aceitar sem entender é um risco comum de quem está começando a usar essas ferramentas." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Qual afirmação descreve corretamente o papel do desenvolvedor ao usar IA no código?", "opts": ["O desenvolvedor só observa, a IA decide tudo", "O desenvolvedor define a tarefa, revisa e aprova o que a IA propõe", "O desenvolvedor deve aceitar toda sugestão sem revisar", "A IA substitui completamente a necessidade de programadores"], "hint": "Pense em quem tem a palavra final sobre o que entra no projeto.", "a": 1, "ex": "O desenvolvedor mantém o controle: define objetivos, revisa as propostas da IA e decide o que aceitar.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Um desenvolvedor recebe uma sugestão de código que ele não entende completamente. O que é mais recomendado?", "opts": ["Aceitar imediatamente, já que a IA 'sabe mais'", "Investigar e entender a sugestão antes de aceitar", "Ignorar a IA para sempre", "Aceitar e nunca mais revisar aquele trecho"], "hint": "Pense no risco de colocar em produção algo que ninguém da equipe entende.", "a": 1, "ex": "Entender o que está sendo aceito é essencial para manter a qualidade e a segurança do código.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "No ciclo saudável de uso de IA (definir tarefa, propor, revisar, aprovar), qual etapa é responsabilidade do desenvolvedor?", "opts": ["Somente 'propor'", "'Definir a tarefa' e 'revisar/aprovar'", "Nenhuma etapa, tudo é automático", "Somente escolher a cor do editor"], "hint": "Veja quais etapas exigem julgamento humano no ciclo apresentado.", "a": 1, "ex": "Definir o que se quer e revisar/aprovar o resultado são etapas que exigem julgamento humano.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Por que dizer que 'a IA substitui o programador' é uma afirmação enganosa no contexto atual dessas ferramentas?", "opts": ["Porque a IA nunca gera código útil", "Porque ainda é necessário definir objetivos, revisar e assumir responsabilidade pelo resultado", "Porque IA só funciona em jogos", "Porque não existem ferramentas de IA para código"], "hint": "Pense no que ainda falta para um sistema de IA funcionar sozinho, sem qualquer supervisão.", "a": 1, "ex": "Mesmo com IA avançada, alguém precisa direcionar, revisar e responder pelo código final — por isso não é uma substituição completa.", "format": "CONCEITO" }
+      ]
+    },
+    {
+      "id": "ia-dev-4",
+      "name": "DANDO CONTEXTO CLARO",
+      "difficulty": "INICIANTE",
+      "color": "#f6c445",
+      "icon": "▤",
+      "summary": "Aprenda por que contexto insuficiente gera respostas ruins da IA.",
+      "lesson": [
+        { "title": "A IA responde com base no que você fornece", "body": "Um modelo de IA não conhece automaticamente as regras do seu projeto, a linguagem usada, nem convenções internas. Quanto mais contexto relevante você fornecer, melhor tende a ser a resposta." },
+        { "title": "Comparando dois pedidos", "code": "Pedido fraco:\n'Escreva uma função de login'\n\nPedido com contexto:\n'Escreva uma função de login em JavaScript, usando o padrão do projeto: recebe email e senha, retorna um objeto { sucesso, mensagem }, e não deve usar bibliotecas externas.'" },
+        { "title": "Informações que costumam ajudar", "tip": "Linguagem/framework usado, formato de entrada e saída esperado, restrições (por exemplo, 'sem bibliotecas externas') e um exemplo de uso real tornam a resposta da IA muito mais próxima do que você precisa." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Por que um pedido como 'escreva uma função de login' tende a gerar respostas genéricas?", "opts": ["Porque a IA está sempre com defeito", "Porque falta contexto sobre linguagem, formato de retorno e regras do projeto", "Porque login é um tema proibido", "Porque a IA só entende português"], "hint": "Pense no que falta informar sobre o projeto específico.", "a": 1, "ex": "Sem detalhes como linguagem e formato esperado, a IA precisa 'adivinhar', gerando uma resposta genérica.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Qual das opções é um exemplo de contexto útil para incluir em um pedido de código?", "opts": ["'Faça rápido'", "'Use a linguagem Python 3 e retorne uma lista de dicionários'", "'Não me importa como funciona'", "'Escreva algo bonito'"], "hint": "Procure a opção que traz uma informação técnica concreta e verificável.", "a": 1, "ex": "Especificar linguagem e formato de retorno é um contexto concreto que orienta a resposta da IA.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "Um desenvolvedor pede: 'Corrija meu código'. O que provavelmente falta nesse pedido?", "opts": ["Nada, está completo", "O próprio código, a mensagem de erro e o comportamento esperado", "O nome do desenvolvedor", "A cor do editor de código"], "hint": "Pense no que a IA precisaria ver para saber o que está errado.", "a": 1, "ex": "Sem o código, o erro e o comportamento esperado, a IA não tem como identificar o problema real.", "format": "ENCONTRE O ERRO" },
+        { "type": "mcq", "q": "Qual das reformulações abaixo melhora um pedido vago de 'crie uma tabela'?", "opts": ["'Crie uma tabela'", "'Crie uma tabela SQL chamada usuarios, com colunas id (inteiro, chave primária), nome (texto) e email (texto único)'", "'Crie uma tabela bem feita'", "'Crie uma tabela para o meu projeto'"], "hint": "Procure a versão que especifica nome, colunas e tipos.", "a": 1, "ex": "Detalhar nome da tabela, colunas e tipos elimina ambiguidade e aproxima o resultado do que é necessário.", "format": "CORRIJA O ERRO" }
+      ]
+    },
+    {
+      "id": "ia-dev-5",
+      "name": "SEJA ESPECÍFICO",
+      "difficulty": "INICIANTE",
+      "color": "#f6c445",
+      "icon": "◈",
+      "summary": "Como pedidos específicos reduzem ambiguidade e retrabalho.",
+      "lesson": [
+        { "title": "Ambiguidade gera resultado errado", "body": "Se um pedido pode ser interpretado de mais de uma forma, a IA pode escolher uma interpretação diferente da que você tinha em mente. Ser específico sobre entradas, saídas e comportamento esperado reduz esse risco." },
+        { "title": "Especificidade não é sobre tamanho, é sobre precisão", "code": "Vago: 'Valide o campo de idade'\n\nEspecífico: 'Valide se o campo idade é um número inteiro entre 0 e 120. Se não for, retorne a mensagem \"Idade inválida\".'" },
+        { "title": "Perguntas que ajudam a ser específico", "tip": "Antes de pedir algo, pergunte-se: qual é a entrada exata? Qual é a saída exata? O que deve acontecer em casos inválidos? Responder isso mentalmente já melhora o pedido." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Por que o pedido 'valide o campo de idade' é considerado ambíguo?", "opts": ["Porque não menciona os limites válidos nem o que fazer em caso de erro", "Porque idade não pode ser validada", "Porque é muito longo", "Porque usa a palavra 'campo'"], "hint": "Pense no que falta definir: intervalo aceito e comportamento de erro.", "a": 0, "ex": "Sem definir os limites aceitáveis e o comportamento em caso inválido, há várias formas possíveis de implementar a validação.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Qual pedido é mais específico para gerar uma função de desconto?", "opts": ["'Crie uma função de desconto'", "'Crie uma função que recebe um valor e um percentual, e retorna o valor com o desconto aplicado, arredondado para duas casas decimais'", "'Crie algo para desconto'", "'Faça uma função útil'"], "hint": "Procure a opção que define entradas, cálculo e formato de saída.", "a": 1, "ex": "Definir entradas, o cálculo exato e o formato de saída elimina múltiplas interpretações possíveis.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "Um pedido diz: 'Ordene a lista'. Sem mais informações, qual ambiguidade permanece?", "opts": ["Nenhuma, está claro", "Não está definido se é ordem crescente, decrescente, nem qual critério de ordenação usar", "O tipo da variável 'lista' é sempre óbvio", "IA não consegue ordenar listas"], "hint": "Pense em quantas formas diferentes existem de 'ordenar' algo.", "a": 1, "ex": "Sem especificar o critério e a direção da ordenação, há várias implementações válidas possíveis.", "format": "ENCONTRE O ERRO" },
+        { "type": "mcq", "q": "Qual das opções abaixo é a MELHOR forma de pedir uma função que filtra uma lista de produtos?", "opts": ["'Filtre os produtos'", "'A partir de uma lista de produtos (cada um com nome e preço), retorne apenas os produtos com preço maior que um valor informado como parâmetro'", "'Faça um filtro qualquer'", "'Preciso de algo com produtos'"], "hint": "Procure a opção que descreve a estrutura dos dados de entrada e a regra exata do filtro.", "a": 1, "ex": "Descrever a estrutura dos dados e a regra exata do filtro remove ambiguidade sobre o que deve ser retornado.", "format": "DECISÃO DE CÓDIGO" }
+      ]
+    },
+    {
+      "id": "ia-dev-6",
+      "name": "O PODER DOS EXEMPLOS",
+      "difficulty": "INICIANTE",
+      "color": "#f6c445",
+      "icon": "▦",
+      "summary": "Por que mostrar um exemplo concreto melhora muito a resposta da IA.",
+      "lesson": [
+        { "title": "Um exemplo vale mais que uma descrição longa", "body": "Mostrar um exemplo de entrada e saída esperada costuma comunicar a intenção de forma mais precisa do que apenas descrever em palavras. Isso é especialmente útil para formatos de dados e estilos de código específicos." },
+        { "title": "Exemplo de pedido com exemplo incluído", "code": "'Escreva uma função que converte uma string de data.\n\nExemplo:\nEntrada: \"15/03/2024\"\nSaída: \"2024-03-15\"'" },
+        { "title": "Exemplos também ajudam a manter o padrão do projeto", "tip": "Se você já tem um trecho de código no estilo do projeto, colar esse trecho como exemplo ajuda a IA a seguir o mesmo padrão de nomenclatura e formatação nas próximas sugestões." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Qual é a principal vantagem de incluir um exemplo de entrada/saída em um pedido para a IA?", "opts": ["Deixa o pedido mais longo sem motivo", "Reduz a ambiguidade sobre o formato exato esperado", "Impede que a IA responda", "Não faz diferença nenhuma"], "hint": "Pense em como um exemplo concreto elimina interpretações erradas de formato.", "a": 1, "ex": "Um exemplo concreto mostra exatamente o formato esperado, reduzindo a chance de interpretação incorreta.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Um desenvolvedor quer que a IA gere respostas de erro sempre no formato { \"erro\": \"mensagem\" }. Qual é a melhor forma de garantir isso?", "opts": ["Não mencionar o formato e torcer para acertar", "Incluir um exemplo concreto desse formato no pedido", "Pedir para a IA 'ser criativa'", "Enviar o pedido em outro idioma"], "hint": "Pense em como comunicar um formato exato de forma inequívoca.", "a": 1, "ex": "Fornecer um exemplo concreto do formato desejado é a forma mais direta de garantir consistência.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "Colar um trecho de código já existente do projeto como exemplo antes de pedir uma nova função ajuda principalmente a:", "opts": ["Deixar a IA mais lenta", "Manter a nova função no mesmo estilo e padrão do restante do código", "Impedir que a IA gere qualquer código", "Aumentar o número de bugs"], "hint": "Pense em consistência de estilo entre partes do mesmo projeto.", "a": 1, "ex": "Mostrar o padrão existente ajuda a IA a manter consistência de nomenclatura e formatação com o restante do projeto.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Pedido: 'Formate os nomes das pessoas'. Exemplo dado: entrada \"joão silva\" → saída \"João Silva\". O que esse exemplo esclarece?", "opts": ["Nada, o exemplo é irrelevante", "Que o resultado deve ter a primeira letra de cada palavra em maiúscula", "Que os nomes devem ser traduzidos", "Que os nomes devem virar números"], "hint": "Compare a entrada e a saída do exemplo com atenção às letras maiúsculas.", "a": 1, "ex": "O exemplo mostra claramente a regra de capitalização esperada, algo que a descrição sozinha não deixava claro.", "format": "LEITURA DE CÓDIGO" }
+      ]
+    },
+    {
+      "id": "ia-dev-7",
+      "name": "AUTOCOMPLETE SIMPLES",
+      "difficulty": "INICIANTE",
+      "color": "#22c55e",
+      "icon": "▣",
+      "summary": "Como funcionam ferramentas de autocomplete e quais são seus limites.",
+      "lesson": [
+        { "title": "Autocomplete olha apenas o contexto local", "body": "Ferramentas de autocomplete costumam considerar o arquivo atual e, às vezes, arquivos próximos. Elas sugerem a continuação mais provável com base em padrões, mas não têm uma visão ampla de todo o projeto ou de suas regras de negócio." },
+        { "title": "Exemplo típico de sugestão", "code": "// Você digita:\nfunction somar(a, b) {\n\n// Autocomplete sugere:\n  return a + b;\n}" },
+        { "title": "Limite importante", "tip": "Autocomplete não executa código nem roda testes. Ele apenas sugere texto. Cabe ao desenvolvedor aceitar, editar ou rejeitar a sugestão." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "O que um autocomplete de código tipicamente NÃO faz?", "opts": ["Sugerir a continuação de uma linha", "Executar comandos no terminal ou rodar testes automaticamente", "Analisar o contexto do arquivo atual", "Ser aceito ou rejeitado pelo desenvolvedor"], "hint": "Pense na diferença entre 'sugerir texto' e 'executar ações'.", "a": 1, "ex": "Autocomplete se limita a sugerir texto; executar comandos é característica de agentes, não de autocomplete simples.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Um autocomplete costuma basear sua sugestão principalmente em:", "opts": ["Regras de negócio da empresa que nunca foram escritas em lugar nenhum", "Padrões do código próximo ao cursor", "Uma reunião prévia com a equipe", "O humor do desenvolvedor"], "hint": "Pense no que a ferramenta consegue efetivamente 'ver' no editor.", "a": 1, "ex": "O autocomplete analisa o contexto textual próximo (o arquivo atual, às vezes arquivos relacionados) para sugerir a continuação.", "format": "CONCEITO" },
+        { "type": "code", "q": "Um desenvolvedor digita 'function calcularMedia(notas) {' e o autocomplete sugere 'return notas.reduce((a,b)=>a+b)/notas.length;'. O que pode dar errado se 'notas' for uma lista vazia?", "opts": ["Nada, sempre funciona perfeitamente", "Pode ocorrer divisão por zero ou erro, pois notas.length seria 0", "O autocomplete impede listas vazias automaticamente", "JavaScript não permite listas vazias"], "hint": "Pense no que acontece ao dividir por 'notas.length' quando a lista está vazia.", "a": 1, "ex": "Se a lista estiver vazia, a divisão por length (0) causa um resultado inválido (NaN), mostrando por que revisar a sugestão importa.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Por que é importante revisar cada sugestão do autocomplete antes de aceitar, mesmo em trechos curtos?", "opts": ["Porque sugestões curtas nunca têm problemas", "Porque a sugestão pode não cobrir casos especiais, como listas vazias ou valores nulos", "Porque autocomplete é ilegal em alguns países", "Porque isso deixa o editor mais bonito"], "hint": "Pense em casos de borda que a sugestão pode não ter considerado.", "a": 1, "ex": "Mesmo sugestões curtas podem ignorar casos de borda, por isso a revisão continua sendo necessária.", "format": "CONCEITO" }
+      ]
+    },
+    {
+      "id": "ia-dev-8",
+      "name": "O QUE UM AGENTE FAZ",
+      "difficulty": "INICIANTE",
+      "color": "#22c55e",
+      "icon": "◐",
+      "summary": "Entenda as capacidades e etapas típicas de um agente de codificação.",
+      "lesson": [
+        { "title": "Um agente planeja e age", "body": "Um agente de IA pode receber um objetivo maior (por exemplo, 'adicione um filtro de busca nesta tela'), planejar as etapas necessárias, editar múltiplos arquivos, rodar comandos como testes, e reportar o resultado, tudo isso com pontos de aprovação humana ao longo do caminho." },
+        { "title": "Etapas comuns de um agente", "code": "1. Ler os arquivos relevantes do projeto\n2. Propor um plano de mudanças\n3. Aplicar as edições nos arquivos\n4. Rodar testes ou verificações\n5. Relatar o resultado ao desenvolvedor" },
+        { "title": "Supervisão continua essencial", "tip": "Mesmo um agente autônomo deve ter pontos em que o desenvolvedor revisa o que foi feito, principalmente antes de aplicar mudanças em produção." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Qual das capacidades abaixo é típica de um agente de codificação, mas não de um autocomplete simples?", "opts": ["Sugerir uma palavra", "Ler múltiplos arquivos, planejar etapas e executar comandos", "Colorir o código no editor", "Verificar ortografia em comentários"], "hint": "Pense em ações que envolvem múltiplas etapas e execução, não apenas sugestão de texto.", "a": 1, "ex": "Agentes conseguem planejar e executar tarefas de múltiplas etapas, incluindo rodar comandos, o que vai além de uma simples sugestão.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Mesmo usando um agente autônomo, por que a supervisão humana continua sendo recomendada?", "opts": ["Porque agentes nunca funcionam corretamente", "Porque decisões importantes, como aplicar mudanças em produção, ainda merecem revisão humana", "Porque a lei proíbe o uso de agentes", "Porque agentes só funcionam com supervisão em finais de semana"], "hint": "Pense no risco de erros se ninguém revisar antes de mudanças chegarem à produção.", "a": 1, "ex": "Revisar antes de aplicar mudanças críticas reduz o risco de erros passarem despercebidos para produção.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Um agente recebe a tarefa: 'adicionar um filtro de busca na tela de produtos'. Qual seria uma primeira etapa esperada do agente?", "opts": ["Deletar todo o projeto imediatamente", "Ler os arquivos relevantes da tela de produtos para entender a estrutura atual", "Publicar direto em produção sem revisão", "Ignorar a tarefa"], "hint": "Pense em qual etapa lógica vem antes de qualquer edição de código.", "a": 1, "ex": "Entender a estrutura existente antes de editar é uma etapa lógica inicial de planejamento.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "Qual situação representa um uso responsável de um agente de codificação?", "opts": ["Deixar o agente aplicar mudanças diretamente em produção sem qualquer revisão", "Pedir ao agente um plano de mudanças, revisar esse plano e depois aprovar a execução", "Nunca revisar nada que o agente produzir", "Usar o agente apenas para deletar arquivos aleatoriamente"], "hint": "Pense no fluxo que inclui revisão antes da aprovação final.", "a": 1, "ex": "Revisar o plano antes de aprovar a execução é a forma responsável de usar um agente.", "format": "DECISÃO DE CÓDIGO" }
+      ]
+    },
+    {
+      "id": "ia-dev-9",
+      "name": "ESCOLHENDO A FERRAMENTA CERTA",
+      "difficulty": "INICIANTE",
+      "color": "#22c55e",
+      "icon": "◫",
+      "summary": "Combine o que você aprendeu para escolher entre autocomplete, chat e agente em cenários reais.",
+      "lesson": [
+        { "title": "Recapitulando as três modalidades", "body": "Autocomplete: sugestões locais durante a digitação. Chat: perguntas, explicações e trechos pontuais. Agente: tarefas de múltiplas etapas, com edição de vários arquivos e execução de comandos, sempre com supervisão." },
+        { "title": "Perguntas para decidir", "tip": "A tarefa envolve mais de um arquivo? Considere um agente. É uma dúvida ou um trecho pontual? Considere o chat. É uma continuação natural do que você está digitando agora? Considere o autocomplete." },
+        { "title": "Erro comum: usar sempre a mesma ferramenta", "body": "Alguns desenvolvedores usam sempre chat, mesmo para tarefas grandes que um agente resolveria com mais eficiência, ou usam sempre agente, mesmo para ajustes triviais. Avaliar o contexto de cada tarefa evita desperdício de tempo." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Uma desenvolvedora quer apenas entender o que uma função de terceiros faz, sem alterar nenhum arquivo. Qual ferramenta é mais adequada?", "opts": ["Um agente que edita arquivos", "O chat, para pedir uma explicação", "Autocomplete", "Nenhuma ferramenta de IA"], "hint": "Pense em qual modalidade é feita para perguntas e explicações.", "a": 1, "ex": "Como o objetivo é apenas entender, sem alterar código, o chat é a ferramenta mais direta.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "mcq", "q": "Uma tarefa exige renomear uma função em 12 arquivos diferentes e ajustar suas chamadas. Qual abordagem tende a ser mais eficiente?", "opts": ["Chat, pedindo o novo nome em cada conversa separadamente", "Um agente que localiza e aplica a renomeação de forma consistente nos 12 arquivos", "Autocomplete, arquivo por arquivo", "Não fazer a mudança"], "hint": "Pense em qual ferramenta lida melhor com mudanças coordenadas em muitos arquivos.", "a": 1, "ex": "Um agente é mais indicado para mudanças coordenadas em muitos arquivos, mantendo consistência.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "mcq", "q": "Por que usar sempre a mesma ferramenta de IA para todas as tarefas pode ser ineficiente?", "opts": ["Porque só existe uma ferramenta de IA no mundo", "Porque cada modalidade é mais adequada a um tipo de tarefa, e ignorar isso pode gerar retrabalho", "Porque usar sempre a mesma ferramenta é proibido", "Porque isso nunca causa problema"], "hint": "Pense em usar um agente para uma tarefa trivial, ou autocomplete para uma tarefa grande.", "a": 1, "ex": "Escolher a ferramenta errada para o tamanho da tarefa pode gerar mais trabalho do que economizar.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Um desenvolvedor está digitando uma função e quer apenas completar a próxima linha óbvia (fechar um parêntese e um ponto e vírgula). Qual ferramenta faz mais sentido nesse momento?", "opts": ["Um agente completo com plano de várias etapas", "Autocomplete", "Abrir uma nova conversa de chat detalhada", "Reescrever o projeto inteiro"], "hint": "Pense na escala da tarefa: é mínima e local.", "a": 1, "ex": "Para uma continuação mínima e local durante a digitação, o autocomplete é a ferramenta proporcional à tarefa.", "format": "DECISÃO DE CÓDIGO" }
+      ]
+    },
+    {
+      "id": "ia-dev-10",
+      "name": "PEDINDO REVISÃO DE CÓDIGO",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#34d399",
+      "icon": "✓",
+      "summary": "Aprenda a estruturar pedidos de revisão de código para a IA.",
+      "lesson": [
+        { "title": "Revisão de código não é só 'está certo?'", "body": "Uma boa revisão pedida à IA pode focar em pontos específicos: legibilidade, possíveis bugs, performance, ou aderência a boas práticas. Pedir 'revise meu código' de forma genérica tende a gerar uma resposta superficial." },
+        { "title": "Exemplo de pedido de revisão bem estruturado", "code": "'Revise esta função focando em:\n1. Possíveis bugs em casos de borda\n2. Legibilidade dos nomes de variáveis\n3. Se há alguma repetição que poderia ser evitada\n\n[colar o código aqui]'" },
+        { "title": "Trate a resposta como uma sugestão, não uma verdade absoluta", "tip": "A IA pode apontar um 'problema' que na verdade é intencional no seu projeto, ou sugerir uma mudança que não se aplica ao seu contexto. Avalie cada ponto antes de aplicar." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Por que pedir 'revise meu código, focando em bugs de casos de borda' tende a ser mais útil do que apenas 'revise meu código'?", "opts": ["Porque é um pedido mais longo, e pedidos longos são sempre melhores", "Porque direciona a atenção da IA para um aspecto específico e relevante", "Porque a IA só entende pedidos com a palavra 'bug'", "Não há diferença nenhuma"], "hint": "Pense em como direcionar o foco da análise muda a qualidade da resposta.", "a": 1, "ex": "Direcionar o foco da revisão (por exemplo, para casos de borda) ajuda a IA a concentrar a análise no que realmente importa.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "A IA aponta que uma variável chamada 'temp' deveria ter um nome mais descritivo, mas no contexto do projeto essa variável é mesmo temporária e o nome é intencional. O que fazer?", "opts": ["Aplicar a sugestão automaticamente, sem pensar", "Avaliar o contexto e decidir manter o nome, já que a sugestão não se aplica aqui", "Ignorar todas as sugestões da IA para sempre", "Deletar a variável"], "hint": "Pense em como avaliar criticamente uma sugestão antes de aplicá-la.", "a": 1, "ex": "Nem toda sugestão se aplica ao contexto real; cabe ao desenvolvedor avaliar antes de aceitar.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "code", "q": "Ao pedir revisão do trecho abaixo, a IA aponta um possível bug. Qual é o problema mais provável?\nfunction dividir(a, b) {\n  return a / b;\n}", "opts": ["A função está perfeita, sem nenhum problema", "Não há tratamento para o caso em que b é igual a zero", "A função usa muitas linhas de código", "O nome da função está errado"], "hint": "Pense no que acontece matematicamente quando o segundo parâmetro é zero.", "a": 1, "ex": "Dividir por zero é um caso de borda comum que uma boa revisão deveria identificar.", "format": "ENCONTRE O ERRO" },
+        { "type": "mcq", "q": "Qual é uma limitação importante ao confiar em uma revisão de código feita apenas pela IA?", "opts": ["A IA nunca comete erros de avaliação", "A IA pode não conhecer decisões de arquitetura ou contexto de negócio específicos do projeto", "Revisões de IA são sempre mais completas que revisões humanas", "Não existe limitação alguma"], "hint": "Pense no que a IA não tem acesso: decisões de negócio não documentadas no código.", "a": 1, "ex": "A IA analisa apenas o que está visível para ela; decisões de contexto não documentadas podem levar a sugestões equivocadas.", "format": "CONCEITO" }
+      ]
+    },
+    {
+      "id": "ia-dev-11",
+      "name": "ENCONTRANDO BUGS COM IA",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#34d399",
+      "icon": "⌗",
+      "summary": "Use a IA como uma segunda opinião para localizar bugs sutis.",
+      "lesson": [
+        { "title": "A IA pode notar padrões que passam despercebidos", "body": "Depois de muito tempo olhando para o mesmo código, é fácil deixar passar um erro sutil. A IA pode servir como uma 'segunda opinião', apontando possíveis inconsistências entre o que o código faz e o que parece ser a intenção." },
+        { "title": "Exemplo: comparação de igualdade", "code": "function ehMaiorDeIdade(idade) {\n  if (idade = 18) {\n    return true;\n  }\n  return false;\n}\n\n// Bug: usa atribuição (=) em vez de comparação (===)" },
+        { "title": "Peça para a IA explicar o motivo do bug", "tip": "Além de apontar 'isso está errado', peça para a IA explicar por que é um bug e em quais situações ele causaria problema. Isso ajuda a aprender, e não só corrigir." }
+      ],
+      "questions": [
+        { "type": "code", "q": "No trecho abaixo, qual é o bug mais provável que uma IA apontaria?\nfunction ehMaiorDeIdade(idade) {\n  if (idade = 18) {\n    return true;\n  }\n  return false;\n}", "opts": ["A função está correta", "Usa atribuição (=) em vez de comparação (== ou ===), fazendo idade sempre virar 18", "O nome da função está errado", "Falta um ponto e vírgula"], "hint": "Observe o operador dentro do 'if': é de atribuição ou de comparação?", "a": 1, "ex": "O operador '=' atribui o valor 18 à variável idade em vez de compará-la, um bug clássico e sutil.", "format": "ENCONTRE O ERRO" },
+        { "type": "mcq", "q": "Por que pedir para a IA 'explicar por que algo é um bug', e não só apontar o erro, é uma boa prática?", "opts": ["Porque isso deixa a resposta mais longa sem motivo", "Porque entender a causa ajuda a evitar o mesmo erro no futuro", "Porque a IA se recusa a apontar erros sem explicação", "Não faz diferença nenhuma"], "hint": "Pense no valor de aprender a causa, não apenas aplicar a correção.", "a": 1, "ex": "Entender a causa raiz ajuda o desenvolvedor a reconhecer e evitar o mesmo tipo de erro em situações futuras.", "format": "CONCEITO" },
+        { "type": "code", "q": "Uma IA analisa este trecho e aponta um possível bug de índice:\nfor (let i = 0; i <= lista.length; i++) {\n  console.log(lista[i]);\n}\nQual é o problema?", "opts": ["Não há problema, o código está correto", "A condição 'i <= lista.length' acessa um índice além do último elemento válido", "A variável 'i' deveria começar em 1", "console.log não funciona em loops"], "hint": "Compare o índice máximo alcançado com o último índice válido de uma lista de tamanho 'length'.", "a": 1, "ex": "Como os índices vão de 0 até length-1, usar '<=' faz o loop tentar acessar um índice inexistente na última iteração.", "format": "ENCONTRE O ERRO" },
+        { "type": "mcq", "q": "A IA aponta um 'possível bug' em um trecho de código, mas o desenvolvedor sabe que aquele comportamento é intencional (definido em uma regra de negócio específica). Qual é a atitude mais adequada?", "opts": ["Aplicar a correção sugerida mesmo sabendo que não se aplica", "Descartar a sugestão nesse caso específico, já que o contexto de negócio a torna incorreta", "Nunca mais usar IA para revisão", "Deletar a regra de negócio"], "hint": "Pense em como o conhecimento de negócio do desenvolvedor complementa a análise da IA.", "a": 1, "ex": "Quando o desenvolvedor tem contexto que a IA não tem, é apropriado descartar a sugestão que não se aplica.", "format": "DECISÃO DE CÓDIGO" }
+      ]
+    },
+    {
+      "id": "ia-dev-12",
+      "name": "EXPLICANDO CÓDIGO LEGADO",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#34d399",
+      "icon": "◧",
+      "summary": "Use a IA para entender trechos de código antigos ou de terceiros.",
+      "lesson": [
+        { "title": "Código legado costuma faltar documentação", "body": "Um código antigo, sem comentários e escrito por outra pessoa, pode ser difícil de entender rapidamente. Pedir para a IA explicar o que um trecho faz, passo a passo, pode acelerar esse entendimento inicial." },
+        { "title": "Exemplo de pedido", "code": "'Explique o que esta função faz, passo a passo, e destaque se você identifica algum comportamento não óbvio:\n\n[colar a função legada aqui]'" },
+        { "title": "Cuidado ao confiar cegamente na explicação", "tip": "A explicação da IA é uma interpretação do código, não uma garantia de que reflete a intenção original de quem escreveu. Sempre que possível, valide com testes ou com quem conhece o histórico do sistema." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Qual é uma boa forma de usar a IA para entender um trecho de código legado?", "opts": ["Pedir para reescrever tudo do zero sem entender o original", "Pedir uma explicação passo a passo do que o trecho faz atualmente", "Ignorar o código e supor o que ele faz", "Deletar o trecho sem analisar"], "hint": "Pense no objetivo real: compreender o comportamento atual antes de qualquer mudança.", "a": 1, "ex": "Pedir uma explicação passo a passo ajuda a entender o comportamento atual antes de decidir o que fazer com o código.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "Por que a explicação da IA sobre um código legado não deve ser tratada como garantia absoluta da intenção original?", "opts": ["Porque a IA está interpretando o código como está escrito, que pode não refletir a intenção original de quem o escreveu", "Porque a IA nunca consegue ler código antigo", "Porque código legado não pode ser analisado", "Porque a explicação sempre estará errada"], "hint": "Pense na diferença entre 'o que o código faz' e 'o que a pessoa quis dizer ao escrevê-lo'.", "a": 0, "ex": "A IA interpreta o comportamento do código como ele está, o que pode divergir da intenção original caso haja bugs não percebidos.", "format": "CONCEITO" },
+        { "type": "code", "q": "A IA explica esta função legada dizendo que ela 'retorna o dobro do valor, exceto quando o valor é negativo, caso em que retorna zero':\nfunction processar(v) {\n  if (v < 0) return 0;\n  return v * 2;\n}\nA explicação está correta?", "opts": ["Sim, a explicação corresponde exatamente ao comportamento do código", "Não, o código na verdade triplica o valor", "Não, o código sempre retorna zero", "Não é possível saber sem executar o código"], "hint": "Leia o código linha a linha e compare com a explicação dada.", "a": 0, "ex": "A leitura do código confirma exatamente o que a explicação descreve: retorna 0 se negativo, senão o dobro.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "Depois de receber a explicação da IA sobre um trecho legado importante, qual é uma boa prática antes de confiar totalmente nela?", "opts": ["Nenhuma, a explicação da IA é sempre suficiente", "Validar com testes existentes ou com alguém que conheça o histórico do sistema", "Reescrever o sistema inteiro imediatamente", "Ignorar a explicação e nunca usá-la"], "hint": "Pense em formas de confirmar a explicação com uma fonte independente da IA.", "a": 1, "ex": "Validar com testes ou pessoas que conhecem o histórico do sistema reduz o risco de confiar em uma interpretação equivocada.", "format": "CONCEITO" }
+      ]
+    },
+    {
+      "id": "ia-dev-13",
+      "name": "TESTES QUE COBREM O BÁSICO",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#1cb0f6",
+      "icon": "⇄",
+      "summary": "Peça testes que cubram o comportamento esperado, não só o caminho feliz.",
+      "lesson": [
+        { "title": "O que é 'caminho feliz'?", "body": "O 'caminho feliz' é o cenário em que tudo funciona como esperado, com entradas válidas e sem erros. É importante, mas testar apenas isso deixa muitos problemas sem cobertura." },
+        { "title": "Exemplo de pedido só de caminho feliz", "code": "'Escreva um teste para a função dividir(a, b)'\n\nResultado provável: só testa dividir(10, 2) === 5\n(não cobre divisão por zero, números negativos, etc.)" },
+        { "title": "Como pedir cobertura mais ampla", "tip": "Peça explicitamente por 'casos de borda' e 'entradas inválidas', como valores nulos, negativos, vazios ou no limite (zero, muito grandes). Isso força a IA a considerar mais cenários." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "O que significa testar apenas o 'caminho feliz' de uma função?", "opts": ["Testar apenas o cenário em que tudo funciona com entradas válidas", "Testar todos os cenários possíveis, incluindo erros", "Não testar nada", "Testar apenas em produção"], "hint": "Pense no significado da palavra 'feliz': tudo dá certo.", "a": 0, "ex": "O caminho feliz é o cenário ideal, sem erros, mas ele sozinho não garante robustez.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Pedido: 'Escreva um teste para dividir(a, b)'. Qual cenário provavelmente NÃO seria coberto sem instruções adicionais?", "opts": ["dividir(10, 2)", "dividir(20, 4)", "dividir(10, 0), o caso de divisão por zero", "dividir(6, 3)"], "hint": "Procure o cenário que não é uma divisão 'normal' e comum.", "a": 2, "ex": "Divisão por zero é um caso de borda, que tende a ficar de fora se não for pedido explicitamente.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "Qual reformulação de pedido tem mais chance de gerar testes que cobrem casos de borda?", "opts": ["'Teste a função'", "'Teste a função, incluindo casos de entrada inválida, valores nulos e valores no limite (zero, negativo, muito grande)'", "'Teste rápido, por favor'", "'Só teste o básico'"], "hint": "Procure a opção que menciona explicitamente tipos de casos extremos.", "a": 1, "ex": "Pedir explicitamente por casos de borda direciona a IA a considerar cenários além do caminho feliz.", "format": "CORRIJA O ERRO" },
+        { "type": "code", "q": "Para a função abaixo, qual teste representa um caso de borda relevante, além do caminho feliz?\nfunction primeiroElemento(lista) {\n  return lista[0];\n}", "opts": ["primeiroElemento([1,2,3]) deve retornar 1", "primeiroElemento([]) — lista vazia, para ver o comportamento nesse caso", "primeiroElemento([5]) deve retornar 5", "Nenhuma das opções testa algo relevante"], "hint": "Pense em qual entrada foge do caso 'normal' de uma lista com elementos.", "a": 1, "ex": "Testar uma lista vazia verifica um caso de borda que o caminho feliz normalmente não cobre.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "ia-dev-14",
+      "name": "IDENTIFICANDO CASOS DE BORDA",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#1cb0f6",
+      "icon": "⇆",
+      "summary": "Pratique reconhecer quais entradas costumam gerar comportamento inesperado.",
+      "lesson": [
+        { "title": "Categorias comuns de casos de borda", "body": "Valores nulos ou ausentes, listas ou strings vazias, números negativos ou zero, valores muito grandes, e entradas com tipo inesperado (por exemplo, texto onde se espera número) são categorias frequentes de casos de borda a testar." },
+        { "title": "Exemplo aplicado", "code": "function calcularDesconto(preco, percentual) {\n  return preco - (preco * percentual / 100);\n}\n\nCasos de borda a considerar:\n- percentual = 0\n- percentual = 100\n- percentual negativo\n- preco negativo" },
+        { "title": "Peça à IA uma lista de casos antes dos testes", "tip": "Uma técnica útil é primeiro pedir: 'liste os casos de borda relevantes para esta função', revisar a lista, e só depois pedir os testes propriamente ditos." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Qual das opções abaixo é um exemplo típico de caso de borda?", "opts": ["Somar 2 + 2", "Uma lista vazia sendo passada para uma função que espera uma lista com elementos", "Chamar uma função com os parâmetros corretos e esperados", "Rodar o programa em um computador novo"], "hint": "Pense em qual situação foge do uso 'normal' esperado.", "a": 1, "ex": "Uma lista vazia é um caso de borda clássico, pois muitas funções assumem implicitamente que há ao menos um elemento.", "format": "CONCEITO" },
+        { "type": "code", "q": "Para a função calcularDesconto(preco, percentual) = preco - (preco * percentual / 100), qual entrada representa um caso de borda importante de se testar?", "opts": ["calcularDesconto(100, 10)", "calcularDesconto(100, 100), onde o desconto é de 100%", "calcularDesconto(50, 5)", "calcularDesconto(200, 20)"], "hint": "Pense em qual valor de percentual leva a um resultado no limite (preço final igual a zero).", "a": 1, "ex": "Um desconto de 100% é um valor limite que merece verificação, pois o resultado esperado é preço final igual a zero.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "Qual é a vantagem de pedir primeiro 'liste os casos de borda relevantes' antes de pedir os testes propriamente ditos?", "opts": ["Não há vantagem, é um passo desnecessário", "Permite revisar e complementar a lista de cenários antes de gerar os testes, aumentando a cobertura", "Isso impede que a IA gere qualquer teste depois", "Deixa o processo mais lento sem benefício"], "hint": "Pense no valor de revisar a lista de cenários antes de gerar código de teste.", "a": 1, "ex": "Revisar a lista de casos de borda antes de gerar os testes ajuda a garantir que cenários importantes não sejam esquecidos.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Uma função recebe um texto e retorna sua primeira letra em maiúscula. Qual entrada é um caso de borda relevante?", "opts": ["'casa' (palavra comum)", "'' (string vazia)", "'python' (palavra comum)", "'teste' (palavra comum)"], "hint": "Pense em qual entrada não tem 'primeira letra' para transformar.", "a": 1, "ex": "Uma string vazia não possui primeira letra, o que pode causar erro ou comportamento inesperado se não for tratado.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "ia-dev-15",
+      "name": "AVALIANDO TESTES GERADOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#1cb0f6",
+      "icon": "▧",
+      "summary": "Como revisar criticamente os testes que a IA sugere, antes de aceitá-los.",
+      "lesson": [
+        { "title": "Nem todo teste gerado é um bom teste", "body": "A IA pode gerar testes redundantes (que testam a mesma coisa de formas diferentes), testes que não verificam de fato o comportamento importante, ou até testes com a asserção errada. Revisar cada teste evita uma falsa sensação de segurança." },
+        { "title": "Exemplo de teste com problema", "code": "test('soma dois números', () => {\n  expect(somar(2, 2)).toBe(5); // Bug: deveria ser toBe(4)\n});\n\n// Um teste com asserção errada pode 'passar' mesmo com um bug na função real, dependendo do caso" },
+        { "title": "Perguntas para avaliar um teste gerado", "tip": "Esse teste realmente verifica o comportamento que importa? A asserção está correta? Esse teste falharia se a função tivesse um bug real? Se a resposta a alguma dessas for 'não', o teste precisa de ajuste." }
+      ],
+      "questions": [
+        { "type": "code", "q": "No teste abaixo, qual é o problema?\ntest('soma dois números', () => {\n  expect(somar(2, 2)).toBe(5);\n});", "opts": ["Não há problema, o teste está correto", "A asserção está errada: somar(2, 2) deveria ser comparado a 4, não a 5", "O nome do teste está errado", "Testes não podem usar a função expect"], "hint": "Calcule manualmente 2 + 2 e compare com o valor esperado no teste.", "a": 1, "ex": "2 + 2 é 4, então a asserção 'toBe(5)' está incorreta e faria o teste falhar mesmo com a função correta (ou pior, mascarar um bug se a função também estivesse errada).", "format": "ENCONTRE O ERRO" },
+        { "type": "mcq", "q": "Por que é importante revisar se um teste gerado pela IA 'realmente falharia' caso a função tivesse um bug?", "opts": ["Não é importante, todo teste gerado é confiável", "Porque um teste que sempre passa, mesmo com bugs, dá uma falsa sensação de segurança", "Porque isso deixa o código mais bonito", "Porque testes não podem falhar nunca"], "hint": "Pense no propósito real de um teste: detectar quando algo está errado.", "a": 1, "ex": "Um teste que não é capaz de detectar um bug real não cumpre sua função, mesmo que 'passe' na execução.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "A IA gera dois testes muito parecidos, que verificam exatamente a mesma condição de formas diferentes, sem cobrir nenhum caso novo. O que se pode dizer sobre isso?", "opts": ["É ideal, quanto mais testes, melhor sempre", "Esses testes são redundantes e não aumentam a cobertura real dos casos", "Isso é obrigatório em todo projeto", "É impossível isso acontecer"], "hint": "Pense na diferença entre 'ter mais testes' e 'cobrir mais cenários diferentes'.", "a": 1, "ex": "Testes redundantes não agregam cobertura nova; o foco deve ser cobrir cenários diferentes, não apenas ter mais testes.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Qual pergunta é mais útil para avaliar criticamente um teste gerado pela IA?", "opts": ["'O teste é longo?'", "'Esse teste verifica o comportamento que realmente importa para essa função?'", "'O teste usa muitas cores no editor?'", "'A IA demorou para gerar o teste?'"], "hint": "Pense em qual pergunta avalia a utilidade real do teste, não sua aparência.", "a": 1, "ex": "Avaliar se o teste verifica o comportamento relevante é o critério central para julgar sua utilidade.", "format": "CONCEITO" }
+      ]
+    },
+    {
+      "id": "ia-dev-16",
+      "name": "DESCREVENDO O ERRO",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#0ea5e9",
+      "icon": "◉",
+      "summary": "Aprenda a fornecer contexto suficiente para que a IA ajude a depurar um erro.",
+      "lesson": [
+        { "title": "Um erro precisa de contexto para ser depurado", "body": "Dizer apenas 'deu erro' não ajuda. É importante incluir a mensagem de erro completa, o trecho de código relevante, o que você esperava que acontecesse e o que de fato aconteceu." },
+        { "title": "Estrutura útil para descrever um erro", "code": "1. O que eu esperava: 'a função deveria retornar a lista ordenada'\n2. O que aconteceu: 'retornou undefined'\n3. Mensagem de erro (se houver): 'TypeError: Cannot read property...'\n4. O código relevante" },
+        { "title": "Menos é mais, mas nem tão pouco", "tip": "Não é preciso colar o projeto inteiro, mas cole o suficiente: a função com problema e, se relevante, onde ela é chamada. Contexto demais também pode distrair a IA do ponto central." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Qual das descrições abaixo dá mais contexto útil para depurar um erro?", "opts": ["'Meu código não funciona'", "'Esperava que a função retornasse a lista ordenada, mas ela retorna undefined; aqui está o código e a mensagem de erro'", "'Deu erro'", "'Ajuda, por favor'"], "hint": "Procure a opção que descreve expectativa, resultado real e evidências (código/erro).", "a": 1, "ex": "Descrever a expectativa, o resultado real e fornecer código e mensagem de erro dá contexto suficiente para investigar.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "Por que incluir a mensagem de erro completa (e não um resumo) costuma ajudar na depuração?", "opts": ["Porque mensagens de erro nunca têm informação útil", "Porque a mensagem completa costuma indicar o tipo de erro e, às vezes, a linha exata do problema", "Porque isso deixa a pergunta mais bonita", "Porque resumos são sempre proibidos"], "hint": "Pense no que uma mensagem de erro normalmente contém: tipo de erro e localização.", "a": 1, "ex": "A mensagem completa costuma trazer detalhes técnicos, como tipo do erro e localização, que ajudam a identificar a causa.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Um desenvolvedor descreve um erro colando o projeto inteiro (50 arquivos) sem indicar qual parte é relevante. Qual é o problema dessa abordagem?", "opts": ["Nenhum, quanto mais contexto, sempre melhor", "Contexto excessivo e não filtrado pode dificultar encontrar a informação realmente relevante para o problema", "Isso é sempre a melhor prática", "Arquivos demais impedem qualquer análise, mesmo humana"], "hint": "Pense na diferença entre 'contexto suficiente' e 'contexto excessivo e disperso'.", "a": 1, "ex": "Contexto relevante e bem direcionado é mais útil do que uma quantidade excessiva de informação não filtrada.", "format": "ENCONTRE O ERRO" },
+        { "type": "code", "q": "Ao pedir ajuda com este erro, qual informação adicional seria MAIS útil incluir?\nErro: 'Cannot read properties of undefined (reading 'nome')'\nfunction mostrarNome(usuario) {\n  return usuario.nome;\n}", "opts": ["A cor do editor de código utilizado", "Como a função mostrarNome está sendo chamada, e o que está sendo passado como 'usuario'", "O número de linhas do arquivo", "O nome do desenvolvedor"], "hint": "Pense no que causaria 'usuario' ser undefined: como a função é chamada.", "a": 1, "ex": "O erro indica que 'usuario' está undefined; ver como a função é chamada ajuda a identificar por que isso ocorre.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "ia-dev-17",
+      "name": "AVALIANDO A SUGESTÃO DE CORREÇÃO",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#0ea5e9",
+      "icon": "⟳",
+      "summary": "Antes de aplicar uma correção sugerida, entenda o porquê dela.",
+      "lesson": [
+        { "title": "Aceitar sem entender pode criar novos problemas", "body": "Quando a IA sugere uma correção, é importante entender por que ela resolve o problema, e não apenas copiar e colar. Isso evita introduzir uma correção que 'esconde' o sintoma sem resolver a causa real." },
+        { "title": "Exemplo: corrigir o sintoma vs a causa", "code": "// Erro: 'Cannot read properties of undefined'\n// Correção 'rápida' que só esconde o problema:\nfunction mostrarNome(usuario) {\n  return usuario?.nome || 'Nome desconhecido';\n}\n// Isso evita o erro, mas não investiga POR QUE usuario está undefined" },
+        { "title": "Pergunte 'por quê' antes de aplicar", "tip": "Peça para a IA explicar a causa raiz do erro, não só a correção. Às vezes o problema real está em outro lugar do código, e tratar apenas o sintoma pode mascarar um bug maior." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Qual é o risco de aplicar uma correção sugerida pela IA sem entender por que ela resolve o problema?", "opts": ["Não há risco algum", "A correção pode apenas esconder o sintoma, sem resolver a causa raiz do bug", "Correções da IA nunca funcionam", "O código ficará sempre mais lento"], "hint": "Pense na diferença entre tratar o sintoma e tratar a causa do problema.", "a": 1, "ex": "Uma correção que só evita o erro aparente, sem entender a causa, pode deixar um problema real escondido no sistema.", "format": "CONCEITO" },
+        { "type": "code", "q": "Erro original: 'Cannot read properties of undefined (reading nome)'. Correção sugerida: usuario?.nome || 'Nome desconhecido'. Essa correção resolve a causa raiz do problema?", "opts": ["Sim, sempre resolve totalmente qualquer causa possível", "Não necessariamente: ela evita o erro visível, mas não explica por que 'usuario' estava undefined em primeiro lugar", "Não, essa correção não compila", "Sim, porque usa o operador ternário"], "hint": "Pense se a correção investiga a origem do valor undefined ou apenas evita o sintoma.", "a": 1, "ex": "A correção evita o erro na tela, mas não investiga por que 'usuario' chegou undefined, que pode indicar um bug maior em outro lugar.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Qual pergunta ajuda a avaliar melhor uma sugestão de correção antes de aplicá-la?", "opts": ["'Essa correção é curta?'", "'Por que esse erro está acontecendo, e essa correção trata a causa ou só o sintoma?'", "'Essa correção usa muitas variáveis?'", "'A correção tem comentários?'"], "hint": "Pense em qual pergunta investiga a causa do problema, não a aparência da correção.", "a": 1, "ex": "Entender se a correção trata a causa raiz ou apenas o sintoma é essencial para avaliar sua real efetividade.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Depois de aplicar uma correção sugerida pela IA para um bug, qual é uma boa prática antes de considerar o problema resolvido?", "opts": ["Nenhuma, aplicar já é suficiente", "Testar o cenário que causava o erro original e confirmar que ele não ocorre mais, e que nada mais quebrou", "Deletar todos os testes existentes", "Nunca mais tocar naquele código"], "hint": "Pense em como confirmar que a correção realmente funcionou, sem quebrar outra coisa.", "a": 1, "ex": "Testar o cenário original e verificar que nada mais foi afetado é a forma de confirmar que a correção realmente funcionou.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "ia-dev-18",
+      "name": "ALUCINAÇÃO DE CÓDIGO",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#38bdf8",
+      "icon": "⏱",
+      "summary": "Entenda o que é 'alucinação' de IA aplicada a código e como reconhecê-la.",
+      "lesson": [
+        { "title": "O que é alucinação de IA", "body": "Alucinação é quando um modelo de IA gera uma informação que parece plausível, mas é falsa ou não existe de fato. No contexto de código, isso pode significar inventar uma função, um método ou até uma biblioteca que não existe." },
+        { "title": "Exemplo de alucinação de código", "code": "// A IA sugere:\nimport { formatarMoedaBR } from 'js-utils-brasil';\n\n// Mas essa biblioteca específica pode simplesmente não existir\n// com esse nome, mesmo parecendo plausível" },
+        { "title": "Por que isso acontece", "tip": "A IA gera texto com base em padrões estatísticos de linguagem, e nomes de bibliotecas 'parecidos' com outras reais podem ser produzidos mesmo sem existirem de verdade. Por isso, sempre vale checar se algo sugerido realmente existe." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "O que é 'alucinação' no contexto de IA gerando código?", "opts": ["Quando o código gerado é muito rápido", "Quando a IA gera uma informação (como uma função ou biblioteca) que parece real, mas não existe", "Quando o computador trava", "Quando o código tem muitos comentários"], "hint": "Pense em 'inventar algo que parece real, mas não é'.", "a": 1, "ex": "Alucinação é gerar informação plausível, porém falsa ou inexistente, como uma biblioteca ou método inventado.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "A IA sugere usar uma biblioteca chamada 'js-utils-brasil' para formatar moeda. Qual é a atitude mais segura antes de instalar essa biblioteca?", "opts": ["Instalar imediatamente, confiando na sugestão", "Verificar se essa biblioteca realmente existe em um repositório oficial (como npm) antes de instalar", "Nunca mais usar bibliotecas externas", "Ignorar a sugestão sem verificar nada"], "hint": "Pense em como confirmar a existência real de algo mencionado pela IA.", "a": 1, "ex": "Verificar a existência da biblioteca em uma fonte oficial evita instalar algo inexistente ou, pior, um pacote malicioso com nome parecido.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "mcq", "q": "Por que a IA pode 'inventar' o nome de uma função que parece real, mas não existe na linguagem ou biblioteca mencionada?", "opts": ["Porque ela copia sempre de um banco de dados de funções reais e nunca erra", "Porque ela gera texto com base em padrões, e um nome plausível pode ser produzido mesmo sem corresponder a algo real", "Porque isso é impossível de acontecer", "Porque a IA sempre testa o código antes de responder"], "hint": "Pense em como um modelo de linguagem gera texto: por padrões prováveis, não por consulta garantida a uma fonte real.", "a": 1, "ex": "Modelos de linguagem geram texto por padrões prováveis, o que pode produzir nomes plausíveis, mas inexistentes.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Qual é uma consequência real de instalar uma biblioteca 'alucinada' pela IA sem verificar, caso alguém registre esse nome inexistente no repositório com código malicioso?", "opts": ["Nenhuma consequência, isso nunca acontece", "O projeto pode acabar executando código malicioso vindo de um pacote não confiável", "O código sempre ficará mais rápido", "A IA impede automaticamente esse risco"], "hint": "Pense no risco de segurança de instalar pacotes de origem não verificada.", "a": 1, "ex": "Esse é um risco de segurança real conhecido: nomes de pacotes 'alucinados' podem ser registrados por atacantes com código malicioso.", "format": "CONCEITO" }
+      ]
+    },
+    {
+      "id": "ia-dev-19",
+      "name": "EXCESSO DE CONFIANÇA",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#38bdf8",
+      "icon": "Ω",
+      "summary": "Por que respostas de IA seguras em tom nem sempre são corretas.",
+      "lesson": [
+        { "title": "Confiança no tom não é garantia de correção", "body": "Uma IA pode apresentar uma resposta errada com o mesmo tom seguro de uma resposta correta. Não existe, no texto gerado, um sinal confiável de 'isso pode estar errado' — cabe ao desenvolvedor avaliar o conteúdo." },
+        { "title": "Exemplo de afirmação incorreta com tom seguro", "code": "'A função Array.prototype.sortBy() ordena arrays automaticamente por qualquer propriedade.'\n\n// Isso pode soar convincente, mas 'sortBy' não é um método nativo\n// de arrays em JavaScript" },
+        { "title": "Estratégias contra o excesso de confiança", "tip": "Verifique informações importantes em documentação oficial, teste o código antes de assumir que funciona, e desconfie de afirmações muito categóricas sobre comportamento de linguagens ou bibliotecas que você não consegue confirmar." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Por que o tom seguro de uma resposta da IA não deve ser usado como critério para julgar se ela está correta?", "opts": ["Porque a IA nunca tem tom seguro", "Porque o modelo pode apresentar informações erradas com o mesmo tom de informações corretas", "Porque respostas seguras são sempre erradas", "Porque isso não tem relação com a qualidade da resposta"], "hint": "Pense se existe alguma diferença perceptível de tom entre uma resposta certa e uma errada.", "a": 1, "ex": "O tom da resposta não indica corretude; respostas erradas podem soar tão convincentes quanto as corretas.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "A IA afirma com convicção: 'Array.prototype.sortBy() ordena arrays por qualquer propriedade automaticamente'. Qual é a atitude correta diante dessa afirmação?", "opts": ["Aceitar sem checar, já que a IA parece confiante", "Verificar na documentação oficial da linguagem se esse método realmente existe", "Assumir que é verdade porque soa técnico", "Reescrever todo o projeto com base nisso"], "hint": "Pense em como confirmar uma afirmação técnica específica sobre uma linguagem.", "a": 1, "ex": "Consultar a documentação oficial é a forma correta de verificar afirmações técnicas específicas antes de confiar nelas.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "mcq", "q": "Qual prática ajuda a mitigar o risco de excesso de confiança em respostas de IA sobre comportamento de código?", "opts": ["Nunca testar o código sugerido", "Testar o código sugerido antes de assumir que ele funciona como descrito", "Confiar sempre no primeiro parágrafo da resposta", "Evitar ler a resposta por completo"], "hint": "Pense em uma forma prática e concreta de validar uma afirmação sobre comportamento de código.", "a": 1, "ex": "Testar o código na prática é uma forma direta de confirmar se ele realmente se comporta como a IA descreveu.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Um desenvolvedor nota que duas respostas da IA, uma correta e uma com um erro técnico, tinham exatamente o mesmo nível de tom afirmativo. O que essa observação reforça?", "opts": ["Que a IA sempre erra", "Que o tom da resposta não é um indicador confiável de corretude, reforçando a necessidade de verificação", "Que a IA nunca deve ser usada", "Que respostas afirmativas são sempre corretas"], "hint": "Pense na conclusão prática dessa observação sobre como avaliar respostas de IA.", "a": 1, "ex": "Essa observação reforça que a verificação independente é necessária, já que o tom não diferencia respostas certas de erradas.", "format": "CONCEITO" }
+      ]
+    },
+    {
+      "id": "ia-dev-20",
+      "name": "BIBLIOTECAS E APIS INVENTADAS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#38bdf8",
+      "icon": "✦",
+      "summary": "Pratique identificar quando uma sugestão de biblioteca ou API pode ser inventada.",
+      "lesson": [
+        { "title": "Sinais de alerta comuns", "body": "Nomes de bibliotecas muito 'perfeitos' para a necessidade exata, métodos que você nunca viu mencionados em nenhuma documentação, ou combinações estranhas de nomes conhecidos (como misturar duas bibliotecas famosas em uma só) são sinais para investigar antes de usar." },
+        { "title": "Exemplo de combinação suspeita", "code": "// Sugestão da IA:\nimport { validate } from 'lodash-validator-pro';\n\n// 'lodash' é real, mas 'lodash-validator-pro' pode ser\n// uma combinação inventada que nunca existiu de fato" },
+        { "title": "Checklist rápido antes de instalar algo sugerido", "tip": "1) Busque o nome exato em um repositório oficial (npm, PyPI, etc). 2) Veja se tem uma quantidade razoável de downloads/uso. 3) Confira se a documentação realmente descreve o que a IA disse que a biblioteca faz." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Qual das opções é um sinal de alerta de que uma biblioteca sugerida pode ser 'alucinada' (inventada)?", "opts": ["O nome é exatamente igual a uma biblioteca amplamente conhecida e documentada", "O nome combina de forma estranha duas bibliotecas famosas, como se fosse uma junção das duas", "A biblioteca tem muitos anos de uso comprovado", "A biblioteca aparece na documentação oficial da linguagem"], "hint": "Pense em qual opção soa como uma 'mistura' pouco natural de nomes conhecidos.", "a": 1, "ex": "Combinações estranhas de nomes conhecidos são um padrão comum de nomes inventados por modelos de IA.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Antes de instalar uma biblioteca sugerida pela IA, qual passo do checklist é mais importante?", "opts": ["Verificar a cor do logotipo da biblioteca", "Buscar o nome exato em um repositório oficial e confirmar que ela realmente existe e é usada", "Perguntar a opinião de um amigo aleatório", "Instalar direto e ver o que acontece em produção"], "hint": "Pense na forma mais direta de confirmar a existência real de um pacote.", "a": 1, "ex": "Confirmar a existência e o uso real do pacote em um repositório oficial é o passo mais direto e seguro.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "A IA sugere um método chamado 'Array.prototype.groupByDeep()' que você nunca viu antes, mesmo tendo experiência com a linguagem. Qual é a atitude mais prudente?", "opts": ["Assumir que existe, já que você pode não conhecer tudo", "Verificar na documentação oficial da linguagem antes de usar esse método", "Usar sem verificar, pois a IA raramente erra", "Ignorar completamente qualquer sugestão de método novo"], "hint": "Pense em como confirmar a existência de um método específico de forma confiável.", "a": 1, "ex": "Consultar a documentação oficial é a forma confiável de confirmar se um método realmente existe antes de utilizá-lo.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "mcq", "q": "Por que instalar um pacote com nome parecido, mas inexistente ou inventado, pode ser um risco de segurança e não apenas um erro de compilação?", "opts": ["Porque nomes parecidos nunca causam problema", "Porque alguém mal-intencionado pode registrar esse nome inexistente com código malicioso, esperando que desenvolvedores o instalem por engano", "Porque pacotes sempre são revisados manualmente antes de existir", "Porque não há relação entre nomes de pacotes e segurança"], "hint": "Pense no que acontece se um atacante perceber esse padrão de 'nomes alucinados' e os registrar de propósito.", "a": 1, "ex": "Esse é um risco de segurança documentado: atacantes podem registrar nomes de pacotes 'alucinados' com código malicioso.", "format": "CONCEITO" }
+      ]
+    },
+    {
+      "id": "ia-dev-21",
+      "name": "NUNCA COLE SEGREDOS",
+      "difficulty": "AVANÇADO",
+      "color": "#a78bfa",
+      "icon": "●",
+      "summary": "Entenda por que chaves, senhas e tokens nunca devem ser enviados em um prompt.",
+      "lesson": [
+        { "title": "O que conta como 'segredo'", "body": "Chaves de API, senhas, tokens de acesso, strings de conexão com bancos de dados e certificados são exemplos de segredos. Colá-los em uma conversa com uma IA (especialmente serviços de terceiros) expõe essas credenciais fora do seu controle direto." },
+        { "title": "Exemplo do que NÃO fazer", "code": "// NÃO faça isso em um prompt:\n'Aqui está minha configuração, me ajude a debugar:\nAPI_KEY=sk_live_51H8xJ2KZ...\nDB_PASSWORD=SenhaSuperSecreta123'" },
+        { "title": "Alternativa segura", "tip": "Substitua valores sensíveis por marcadores genéricos antes de colar código em um prompt, como API_KEY=\"SUA_CHAVE_AQUI\". O comportamento do código para fins de depuração geralmente não depende do valor real do segredo." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Qual das opções abaixo é considerada um 'segredo' que nunca deve ser colado em um prompt de IA?", "opts": ["O nome de uma função pública", "Uma chave de API de produção", "Um comentário explicativo no código", "O nome de uma variável comum, como 'contador'"], "hint": "Pense no que dá acesso a sistemas ou dados sensíveis se vazar.", "a": 1, "ex": "Uma chave de API de produção dá acesso a serviços e dados, por isso é um segredo que nunca deve ser exposto em um prompt.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Um desenvolvedor precisa de ajuda para depurar um erro de conexão com banco de dados. Qual é a forma segura de compartilhar o trecho de configuração?", "opts": ["Colar a string de conexão completa, incluindo usuário e senha reais", "Substituir usuário e senha por marcadores genéricos, como 'usuario' e 'SUA_SENHA_AQUI', mantendo apenas a estrutura relevante", "Não pedir ajuda de forma alguma", "Enviar a senha em uma mensagem separada, mas mesmo assim real"], "hint": "Pense em como manter a estrutura do problema sem expor o valor sensível real.", "a": 1, "ex": "Substituir valores sensíveis por marcadores genéricos preserva o contexto necessário sem expor credenciais reais.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "code", "q": "No trecho abaixo, colado em um prompt para pedir ajuda, o que está errado do ponto de vista de segurança?\nconst config = {\n  apiKey: 'sk_live_51H8xJ2KZ9pQr...',\n  ambiente: 'producao'\n};", "opts": ["Nada está errado, é só um objeto de configuração", "A chave de API real de produção está exposta no prompt, o que é um risco de segurança", "A variável 'ambiente' não deveria existir", "O código tem um erro de sintaxe"], "hint": "Observe o valor da propriedade 'apiKey' e o que ele representa.", "a": 1, "ex": "Uma chave de API real de produção nunca deveria ser colada em um prompt, pois isso a expõe fora do controle da equipe.", "format": "ENCONTRE O ERRO" },
+        { "type": "mcq", "q": "Por que substituir o valor real de um segredo por um marcador genérico (como 'SUA_CHAVE_AQUI') geralmente não prejudica a ajuda que a IA pode dar na depuração?", "opts": ["Porque a IA nunca ajuda de qualquer forma", "Porque, na maioria dos casos de depuração, o que importa é a estrutura do código, não o valor exato do segredo", "Porque marcadores genéricos sempre causam erro de sintaxe", "Porque isso é uma prática proibida"], "hint": "Pense se o problema de depuração normalmente depende do valor exato da chave, ou da estrutura do código ao redor dela.", "a": 1, "ex": "Na maioria dos casos de depuração, a lógica e estrutura do código são o que importa, não o valor exato da credencial.", "format": "CONCEITO" }
+      ]
+    },
+    {
+      "id": "ia-dev-22",
+      "name": "REVISAR ANTES DE EXECUTAR",
+      "difficulty": "AVANÇADO",
+      "color": "#a78bfa",
+      "icon": "◍",
+      "summary": "Por que nunca se deve rodar código sugerido por IA sem entender o que ele faz.",
+      "lesson": [
+        { "title": "Rodar sem entender é um risco real", "body": "Um comando ou trecho de código sugerido por uma IA pode, por engano ou má interpretação do pedido, apagar arquivos, alterar dados de forma destrutiva ou executar ações não intencionadas. Entender o que um comando faz antes de rodá-lo é uma prática essencial de segurança." },
+        { "title": "Exemplo de comando arriscado", "code": "# Comando sugerido para 'limpar arquivos temporários':\nrm -rf /*\n\n# Esse comando, se mal compreendido ou mal copiado,\n# pode apagar arquivos essenciais do sistema" },
+        { "title": "Boas práticas antes de executar algo sugerido", "tip": "Leia o comando/código linha por linha. Se envolver exclusão, sobrescrita ou alteração de dados, teste primeiro em um ambiente seguro (não em produção). Pergunte à própria IA o que cada parte do comando faz, se não tiver certeza." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Por que é arriscado copiar e executar um comando de terminal sugerido pela IA sem entender o que ele faz?", "opts": ["Nunca é arriscado, comandos de IA são sempre seguros", "O comando pode ter um efeito destrutivo não intencional, como apagar arquivos importantes", "Comandos de terminal nunca causam efeitos reais", "Isso deixa o computador mais rápido sempre"], "hint": "Pense em comandos que alteram ou removem dados do sistema.", "a": 1, "ex": "Comandos de exclusão ou alteração de dados podem ter efeitos destrutivos não intencionais, por isso a compreensão prévia é essencial.", "format": "CONCEITO" },
+        { "type": "code", "q": "Qual é o risco do comando abaixo, se executado sem revisão cuidadosa?\nrm -rf /*", "opts": ["Nenhum risco, é um comando seguro e comum", "Pode apagar arquivos e diretórios essenciais do sistema, de forma irreversível", "Apenas limpa arquivos temporários com segurança", "Esse comando não existe em nenhum sistema"], "hint": "Pense no que 'rm -rf' faz e no que o caminho '/*' abrange.", "a": 1, "ex": "Esse comando remove arquivos recursivamente a partir da raiz do sistema, podendo causar danos irreversíveis se executado sem cuidado.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Qual é uma boa prática antes de executar um comando ou script sugerido pela IA que altera dados de um banco de dados?", "opts": ["Executar direto em produção, sem testar antes", "Testar primeiro em um ambiente seguro, como um banco de dados de teste, antes de aplicar em produção", "Nunca revisar o comando, apenas confiar", "Deletar o banco de dados de teste antes de usar"], "hint": "Pense em como isolar o risco antes de aplicar algo em um ambiente crítico.", "a": 1, "ex": "Testar em um ambiente seguro isola o risco antes de qualquer aplicação em produção, reduzindo a chance de dano real.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "Se um desenvolvedor não tem certeza do que um comando sugerido pela IA realmente faz, qual é uma atitude razoável antes de executá-lo?", "opts": ["Executar mesmo assim, para 'ver o que acontece'", "Perguntar à própria IA (ou pesquisar) o que cada parte do comando faz, até ter certeza do efeito", "Ignorar a tarefa completamente", "Compartilhar o comando com pessoas aleatórias na internet"], "hint": "Pense em como buscar entendimento antes de assumir o risco de executar algo desconhecido.", "a": 1, "ex": "Buscar entendimento completo do comando antes de executá-lo é a atitude prudente diante de incerteza sobre seus efeitos.", "format": "DECISÃO DE CÓDIGO" }
+      ]
+    },
+    {
+      "id": "ia-dev-23",
+      "name": "DADOS SENSÍVEIS EM PROMPTS",
+      "difficulty": "AVANÇADO",
+      "color": "#a78bfa",
+      "icon": "◎",
+      "summary": "Além de segredos técnicos, cuidado com dados pessoais e informações confidenciais.",
+      "lesson": [
+        { "title": "Segredos técnicos não são a única preocupação", "body": "Dados pessoais de usuários reais (CPF, e-mail, endereço), informações confidenciais de negócio (contratos, dados financeiros não públicos) e dados de clientes também não devem ser colados em prompts de ferramentas de IA de terceiros sem uma política clara da empresa que permita isso." },
+        { "title": "Exemplo de uso inadequado", "code": "'Aqui está uma lista real de clientes para você me ajudar a filtrar:\nMaria Silva, CPF 123.456.789-00, maria@email.com\nJoão Souza, CPF 987.654.321-00, joao@email.com'\n\n// Esses dados reais de pessoas não deveriam ser colados assim" },
+        { "title": "Como resolver sem expor dados reais", "tip": "Use dados fictícios ou anonimizados que representem a mesma estrutura (por exemplo, 'Nome, CPF, Email' com valores inventados) para pedir ajuda sobre lógica de código, sem expor informações reais de pessoas." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Além de chaves de API, qual outro tipo de informação não deveria ser colada em um prompt sem cuidado?", "opts": ["Nomes de variáveis genéricas, como 'total'", "Dados pessoais reais de clientes, como CPF e e-mail", "Comentários explicando o código", "O nome de uma função pública qualquer"], "hint": "Pense em informações que identificam pessoas reais.", "a": 1, "ex": "Dados pessoais reais, como CPF e e-mail de clientes, são informações sensíveis que não devem ser expostas sem necessidade.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Um desenvolvedor precisa de ajuda para escrever uma função que filtra uma lista de clientes por CPF. Qual é a forma mais segura de exemplificar o problema?", "opts": ["Usar uma lista real de clientes da empresa", "Usar dados fictícios com a mesma estrutura, como 'Nome Exemplo, CPF 000.000.000-00'", "Não explicar o problema de forma alguma", "Enviar os dados reais, mas pedindo para a IA 'não guardar'"], "hint": "Pense em como manter a estrutura do problema sem usar dados reais de pessoas.", "a": 1, "ex": "Usar dados fictícios com a mesma estrutura permite pedir ajuda sobre a lógica sem expor informações reais de clientes.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "Por que dados de clientes reais não deveriam ser colados em ferramentas de IA de terceiros sem uma política clara da empresa que permita isso?", "opts": ["Porque isso nunca traz nenhum risco", "Porque pode violar políticas de privacidade e proteção de dados dos clientes", "Porque a IA sempre rejeita esses dados automaticamente", "Porque isso deixa o código mais lento"], "hint": "Pense em regras de privacidade e proteção de dados que empresas precisam seguir.", "a": 1, "ex": "Expor dados pessoais sem base legal ou política clara pode violar normas de proteção de dados dos clientes.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Uma empresa possui uma política interna explícita autorizando o uso de uma ferramenta de IA corporativa aprovada para processar dados de clientes. Isso muda a análise de risco em relação a colar esses dados nessa ferramenta específica?", "opts": ["Não, o risco é sempre o mesmo em qualquer situação", "Sim, uma política formal e uma ferramenta aprovada mudam o contexto de risco em relação ao uso de uma ferramenta pública qualquer", "Sim, mas isso torna a prática ainda mais arriscada", "Não, políticas internas nunca têm relevância"], "hint": "Pense na diferença entre usar uma ferramenta pública qualquer e uma ferramenta corporativa formalmente aprovada e contratada para esse fim.", "a": 1, "ex": "Uma política formal com ferramenta aprovada estabelece um contexto de responsabilidade e controle diferente do uso de uma ferramenta pública sem qualquer acordo.", "format": "DECISÃO DE CÓDIGO" }
+      ]
+    },
+    {
+      "id": "ia-dev-24",
+      "name": "A RESPONSABILIDADE É SUA",
+      "difficulty": "AVANÇADO",
+      "color": "#f472b6",
+      "icon": "⬡",
+      "summary": "Mesmo usando IA, quem assina e mantém o código é o desenvolvedor.",
+      "lesson": [
+        { "title": "A IA não assume responsabilidade", "body": "Independentemente de quanto código foi gerado com ajuda de IA, é o desenvolvedor (ou a equipe) que assina o commit, faz o code review e é responsável pelas consequências do código em produção, incluindo bugs e falhas de segurança." },
+        { "title": "Um paralelo útil", "body": "Pense em uma calculadora: ela ajuda a calcular, mas quem assina um relatório financeiro é o contador, não a calculadora. Da mesma forma, uma IA ajuda a escrever código, mas quem é responsável pelo sistema continua sendo a pessoa (ou equipe) que o publica." },
+        { "title": "Isso muda a forma de trabalhar?", "tip": "Sim: significa que 'a IA gerou assim' nunca é uma justificativa suficiente para um bug em produção. A expectativa continua sendo a mesma de sempre: entender, revisar e validar o que se está entregando." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Se um bug gerado por uma sugestão de IA chega à produção, quem é considerado responsável por essa falha?", "opts": ["Somente a empresa que criou a ferramenta de IA", "O desenvolvedor ou a equipe que revisou e aprovou o código antes de publicá-lo", "Ninguém é responsável nesse caso", "O usuário final do sistema"], "hint": "Pense em quem tomou a decisão final de aprovar e publicar aquele código.", "a": 1, "ex": "A responsabilidade continua com quem revisou e aprovou o código para produção, independentemente de ter sido gerado com ajuda de IA.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Qual das frases abaixo reflete corretamente a relação entre IA e responsabilidade no desenvolvimento de software?", "opts": ["'A IA gerou, então a culpa é da IA'", "'A IA ajuda a gerar código, mas a responsabilidade pela revisão e pelo resultado continua do desenvolvedor'", "'Usar IA elimina a necessidade de responsabilidade humana'", "'Só é responsável quem nunca usa IA'"], "hint": "Pense em qual frase mantém o desenvolvedor como responsável final, independentemente da ferramenta usada.", "a": 1, "ex": "A ferramenta usada não muda o fato de que a responsabilidade pela qualidade e segurança do código é de quem o revisa e publica.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Em um code review, um colega justifica um trecho problemático dizendo apenas 'foi a IA que gerou assim'. Essa justificativa é suficiente para aprovar o código sem mais análise?", "opts": ["Sim, se a IA gerou, está automaticamente correto", "Não, o código ainda precisa ser avaliado pelos mesmos critérios de qualidade de qualquer outro código", "Sim, porque IA nunca comete erros", "Não é possível avaliar código gerado por IA"], "hint": "Pense se a origem do código (humano ou IA) muda os critérios de avaliação de qualidade.", "a": 1, "ex": "A origem do código não isenta da necessidade de avaliação com os mesmos critérios de qualidade aplicados a qualquer código.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "Por que a analogia 'a IA é como uma calculadora, mas quem assina o relatório é o contador' é útil para pensar sobre responsabilidade em código gerado com IA?", "opts": ["Porque calculadoras e IA são exatamente a mesma coisa", "Porque ilustra que uma ferramenta de apoio não assume a responsabilidade final por decisões e resultados entregues por uma pessoa", "Porque contadores nunca cometem erros", "Porque essa analogia não tem relação com o tema"], "hint": "Pense no papel de uma ferramenta de apoio versus o papel de quem assina e entrega o resultado final.", "a": 1, "ex": "A analogia mostra que ferramentas de apoio auxiliam no processo, mas a responsabilidade pelo resultado final continua sendo de quem o assina e entrega.", "format": "CONCEITO" }
+      ]
+    },
+    {
+      "id": "ia-dev-25",
+      "name": "PROPRIEDADE E ORIGEM DO CÓDIGO",
+      "difficulty": "AVANÇADO",
+      "color": "#f472b6",
+      "icon": "⬢",
+      "summary": "Questões éticas sobre transparência ao usar código gerado por IA.",
+      "lesson": [
+        { "title": "Transparência sobre o uso de IA", "body": "Algumas equipes e projetos têm políticas específicas sobre declarar quando um trecho de código foi gerado com apoio de IA, especialmente em contextos como contribuições open source ou entregas contratuais. Conhecer e seguir a política do seu contexto de trabalho é parte de um uso ético." },
+        { "title": "Exemplo de situação", "body": "Um projeto open source pode exigir que contribuições geradas com apoio significativo de IA sejam declaradas na descrição do pull request, para que os mantenedores revisem com atenção redobrada a possíveis problemas de licenciamento ou qualidade." },
+        { "title": "Não existe uma regra universal única", "tip": "Diferentes empresas, projetos e países podem ter regras distintas sobre esse tema, que também está evoluindo. O importante é buscar e seguir a política do contexto específico em que você está trabalhando." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Por que pode ser importante, em alguns projetos, declarar que um trecho de código foi gerado com apoio significativo de IA?", "opts": ["Porque isso é sempre proibido em qualquer lugar", "Porque algumas políticas de projeto ou contrato exigem essa transparência para fins de revisão e licenciamento", "Porque isso nunca é relevante em nenhum contexto", "Porque a IA proíbe que seu uso seja mencionado"], "hint": "Pense em contextos como open source, em que a origem do código pode ter implicações de revisão e licenciamento.", "a": 1, "ex": "Certas políticas de projeto exigem essa transparência para permitir revisão adequada e evitar problemas de licenciamento.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Um desenvolvedor vai contribuir para um projeto open source que tem uma política explícita pedindo para declarar uso relevante de IA em pull requests. O que ele deve fazer?", "opts": ["Ignorar a política, já que é opcional na prática", "Seguir a política do projeto e declarar o uso conforme solicitado", "Nunca mais contribuir para esse projeto", "Usar IA de forma escondida para não precisar declarar"], "hint": "Pense no que significa seguir as regras estabelecidas por um projeto específico.", "a": 1, "ex": "Seguir as políticas explícitas do projeto em que se contribui é uma prática ética e respeitosa com a comunidade.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "mcq", "q": "Por que não existe uma 'regra universal única' sobre declarar uso de IA na geração de código?", "opts": ["Porque o tema não importa para ninguém", "Porque diferentes empresas, projetos e contextos legais podem ter políticas distintas e o tema ainda está em evolução", "Porque só existe uma política no mundo todo", "Porque a IA decide isso automaticamente"], "hint": "Pense na diversidade de contextos: empresas, projetos open source, países diferentes.", "a": 1, "ex": "A diversidade de contextos legais e institucionais faz com que as políticas sobre esse tema variem e ainda estejam em evolução.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Qual atitude reflete um comportamento ético em relação à origem do código, independentemente da política específica do projeto?", "opts": ["Buscar entender e seguir as regras de transparência do contexto em que se está trabalhando", "Nunca mencionar o uso de IA em nenhuma circunstância", "Assumir automaticamente que nenhuma regra se aplica", "Copiar código de outros lugares sem verificar licença, já que 'a IA gerou'"], "hint": "Pense em qual atitude é adaptável a diferentes contextos e políticas.", "a": 0, "ex": "Buscar e seguir as regras específicas do contexto de trabalho é a atitude ética mais consistente diante da diversidade de políticas existentes.", "format": "CONCEITO" }
+      ]
+    },
+    {
+      "id": "ia-dev-26",
+      "name": "LICENCIAMENTO E CÓDIGO GERADO",
+      "difficulty": "AVANÇADO",
+      "color": "#f472b6",
+      "icon": "▶",
+      "summary": "Considerações sobre origem, licença e verificação de código sugerido por IA.",
+      "lesson": [
+        { "title": "Código gerado pode se assemelhar a código existente", "body": "Modelos de IA são treinados com grandes quantidades de código público, e ocasionalmente uma sugestão pode se assemelhar bastante a um trecho específico já existente em algum lugar, o que levanta questões sobre licenciamento em alguns cenários, especialmente para trechos maiores e distintivos." },
+        { "title": "Isso não significa evitar totalmente o uso de IA", "body": "Para a grande maioria dos casos, principalmente trechos pequenos e genéricos (como um loop comum ou uma validação simples), essa preocupação é mínima. A atenção deve crescer para trechos grandes, muito específicos ou centrais ao valor do produto." },
+        { "title": "Boas práticas gerais", "tip": "Em projetos comerciais sensíveis, verifique se a empresa possui uma política sobre uso de IA para geração de código, e siga as diretrizes de revisão estabelecidas. Em caso de dúvida sobre um trecho muito específico e extenso, vale considerar uma revisão adicional." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Por que ocasionalmente uma sugestão de IA pode se assemelhar a um trecho de código já existente em algum lugar?", "opts": ["Porque isso nunca acontece", "Porque modelos de IA são treinados com grandes quantidades de código público, o que pode gerar semelhanças", "Porque a IA sempre copia diretamente sem gerar nada novo", "Porque isso só ocorre em linguagens muito raras"], "hint": "Pense na origem dos dados usados para treinar modelos de IA de código.", "a": 1, "ex": "Modelos de IA aprendem padrões a partir de grandes volumes de código público, o que pode ocasionalmente gerar semelhanças com trechos existentes.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Para qual tipo de trecho de código a preocupação com licenciamento tende a ser maior?", "opts": ["Um loop simples e genérico usado em qualquer linguagem", "Um trecho grande, muito específico e central ao valor do produto", "Uma validação básica de campo vazio", "Um comentário explicativo qualquer"], "hint": "Pense em qual tipo de trecho seria mais fácil de identificar como 'igual' a uma fonte específica.", "a": 1, "ex": "Trechos grandes e muito específicos têm maior chance de serem identificáveis e distintivos, aumentando a relevância de considerações de licenciamento.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Um desenvolvedor está trabalhando em um projeto comercial sensível e recebe uma sugestão de IA de um trecho grande e muito específico. Qual é uma atitude prudente?", "opts": ["Usar sem qualquer verificação adicional", "Considerar uma revisão adicional e verificar as políticas da empresa sobre uso de código gerado por IA", "Ignorar completamente a sugestão sem entender o motivo", "Publicar imediatamente em produção sem revisão"], "hint": "Pense em como equilibrar o uso da ferramenta com o cuidado necessário em contextos sensíveis.", "a": 1, "ex": "Considerar uma revisão adicional e seguir políticas internas é uma abordagem equilibrada para lidar com esse tipo de situação.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "mcq", "q": "Para a maioria dos usos cotidianos de IA no código (como um loop comum ou uma validação simples), qual é o nível de preocupação esperado com licenciamento?", "opts": ["Extremamente alto, exigindo revisão jurídica para cada linha", "Mínimo, já que são trechos pequenos e genéricos, comuns em qualquer código", "Não existe preocupação alguma em nenhum caso", "É proibido usar IA para qualquer trecho, por menor que seja"], "hint": "Pense na diferença entre trechos genéricos e trechos grandes e muito específicos.", "a": 1, "ex": "Trechos pequenos e genéricos apresentam risco mínimo, sendo a preocupação maior reservada para casos grandes e muito específicos.", "format": "CONCEITO" }
+      ]
+    },
+    {
+      "id": "ia-dev-27",
+      "name": "MONTANDO SEU FLUXO PESSOAL",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "◒",
+      "summary": "Combine tudo que aprendeu em um fluxo de trabalho pessoal com IA.",
+      "lesson": [
+        { "title": "Um fluxo de trabalho não é uma regra rígida", "body": "É um conjunto de hábitos que ajudam a usar IA de forma produtiva e responsável: quando usar cada modalidade, como escrever bons pedidos, e em que pontos parar para revisar antes de seguir em frente." },
+        { "title": "Exemplo de fluxo pessoal", "code": "1. Definir a tarefa com clareza (contexto + exemplo, se possível)\n2. Escolher a ferramenta certa (autocomplete, chat ou agente)\n3. Revisar toda sugestão antes de aceitar\n4. Testar o resultado, incluindo casos de borda\n5. Nunca expor segredos ou dados sensíveis no processo" },
+        { "title": "Adapte ao seu contexto", "tip": "Times diferentes podem ter políticas diferentes sobre uso de IA. Seu fluxo pessoal deve respeitar as regras da equipe ou empresa em que você está, além dos princípios gerais de boas práticas." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Qual é o propósito de montar um 'fluxo pessoal' de uso de IA no desenvolvimento?", "opts": ["Impor uma regra rígida e idêntica para todos os desenvolvedores do mundo", "Criar hábitos consistentes que ajudem a usar IA de forma produtiva e responsável", "Eliminar totalmente a necessidade de revisão humana", "Garantir que a IA nunca seja usada"], "hint": "Pense no objetivo de ter hábitos consistentes, não regras universais rígidas.", "a": 1, "ex": "Um fluxo pessoal serve para criar hábitos consistentes de uso produtivo e responsável, adaptáveis ao contexto de cada pessoa.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "No fluxo de exemplo (definir tarefa, escolher ferramenta, revisar, testar, nunca expor segredos), qual etapa está relacionada ao tema de segurança abordado anteriormente na trilha?", "opts": ["'Definir a tarefa com clareza'", "'Nunca expor segredos ou dados sensíveis no processo'", "'Escolher a ferramenta certa'", "Nenhuma etapa tem relação com segurança"], "hint": "Releia as etapas do fluxo e identifique a que menciona diretamente segredos e dados sensíveis.", "a": 1, "ex": "A etapa sobre nunca expor segredos está diretamente ligada às boas práticas de segurança discutidas anteriormente.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "Por que o fluxo pessoal de uso de IA deve ser adaptado às políticas específicas da equipe ou empresa em que o desenvolvedor trabalha?", "opts": ["Porque políticas de equipe nunca têm relação com o uso de ferramentas", "Porque diferentes contextos podem ter regras próprias sobre uso de dados, ferramentas aprovadas e revisão de código", "Porque isso é sempre irrelevante", "Porque um fluxo pessoal deve ignorar completamente o contexto de trabalho"], "hint": "Pense em como diferentes ambientes de trabalho podem ter regras próprias sobre uso de ferramentas.", "a": 1, "ex": "Cada ambiente de trabalho pode ter regras específicas sobre dados, ferramentas e revisão, que devem ser respeitadas no fluxo pessoal.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Um desenvolvedor testa uma sugestão de IA apenas no 'caminho feliz', sem considerar casos de borda, e a leva direto para produção. Em qual etapa do fluxo pessoal ele falhou?", "opts": ["'Definir a tarefa com clareza'", "'Testar o resultado, incluindo casos de borda'", "'Escolher a ferramenta certa'", "Nenhuma etapa foi negligenciada"], "hint": "Releia as etapas do fluxo e veja qual delas menciona explicitamente casos de borda.", "a": 1, "ex": "A etapa de testar incluindo casos de borda foi negligenciada, já que apenas o caminho feliz foi verificado.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "ia-dev-28",
+      "name": "CHECAGEM HUMANA NA PRÁTICA",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "◓",
+      "summary": "Aplique pontos de checagem humana em um cenário realista de ponta a ponta.",
+      "lesson": [
+        { "title": "Cenário integrador", "body": "Imagine que você pediu a um agente de IA para implementar uma funcionalidade de 'recuperação de senha' em um sistema. Essa tarefa envolve segurança, dados sensíveis (e-mails de usuários) e lógica importante, então múltiplos pontos de checagem humana são recomendados ao longo do processo." },
+        { "title": "Pontos de checagem sugeridos", "code": "1. Revisar o plano do agente antes de aplicar mudanças\n2. Verificar se nenhum dado sensível foi exposto na conversa com a IA\n3. Revisar o código gerado quanto a bugs e casos de borda (ex: e-mail inexistente)\n4. Rodar testes cobrindo cenários de erro (token inválido, expirado, etc.)\n5. Só então aprovar a mudança para produção" },
+        { "title": "Isso é mais lento, mas mais seguro", "tip": "Adicionar pontos de checagem consome tempo, mas para funcionalidades sensíveis (segurança, dados pessoais, dinheiro), esse tempo extra é um investimento que reduz o risco de problemas graves depois." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Ao usar um agente de IA para implementar 'recuperação de senha', por que pontos extras de checagem humana são especialmente recomendados nesse caso?", "opts": ["Porque essa funcionalidade não tem nenhuma particularidade", "Porque a funcionalidade envolve segurança e dados sensíveis, aumentando o impacto de possíveis erros", "Porque agentes nunca conseguem implementar isso", "Porque recuperação de senha é uma funcionalidade rara"], "hint": "Pense no impacto de um erro nessa funcionalidade específica, comparado a uma funcionalidade simples e sem dados sensíveis.", "a": 1, "ex": "Funcionalidades que envolvem segurança e dados sensíveis têm maior impacto em caso de erro, justificando checagens adicionais.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "No fluxo sugerido para a funcionalidade de recuperação de senha, qual etapa está relacionada especificamente ao tema de 'dados sensíveis em prompts' visto anteriormente?", "opts": ["'Rodar testes cobrindo cenários de erro'", "'Verificar se nenhum dado sensível foi exposto na conversa com a IA'", "'Revisar o plano do agente antes de aplicar mudanças'", "Nenhuma etapa tem relação com esse tema"], "hint": "Procure a etapa que menciona diretamente 'dado sensível' no fluxo apresentado.", "a": 1, "ex": "Essa etapa está diretamente relacionada ao cuidado com dados sensíveis ao usar ferramentas de IA, tema abordado anteriormente na trilha.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "Para a funcionalidade de recuperação de senha, qual cenário de teste seria importante além do caminho feliz (usuário existente pedindo recuperação com sucesso)?", "opts": ["Apenas testar com um e-mail válido e existente", "Testar com um token de recuperação expirado ou inválido", "Não testar nada além do caminho feliz, por ser suficiente", "Testar apenas a aparência visual da tela"], "hint": "Pense em um cenário de erro relevante para um fluxo de segurança como esse.", "a": 1, "ex": "Testar tokens expirados ou inválidos é essencial em um fluxo de segurança como recuperação de senha, cobrindo casos de borda relevantes.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "Um desenvolvedor decide pular a etapa de 'revisar o plano do agente antes de aplicar mudanças' para economizar tempo em uma funcionalidade sensível de segurança. Qual é o risco dessa decisão?", "opts": ["Nenhum risco, essa etapa é sempre dispensável", "O agente pode aplicar mudanças não previstas ou incorretas sem que ninguém tenha validado o plano antes", "Isso torna o processo mais seguro", "Essa etapa nunca existiu no fluxo original"], "hint": "Pense no que a revisão prévia do plano evita: mudanças aplicadas sem validação humana antes da execução.", "a": 1, "ex": "Pular a revisão do plano remove uma camada de validação antes da execução, aumentando o risco de mudanças incorretas ou não previstas.", "format": "DECISÃO DE CÓDIGO" }
+      ]
+    },
+    {
+      "id": "ia-dev-29",
+      "name": "IDENTIFICANDO ERROS COMUNS",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "◆",
+      "summary": "Revise, em cenários mistos, os principais erros de uso de IA vistos na trilha.",
+      "lesson": [
+        { "title": "Recapitulando riscos e erros comuns", "body": "Ao longo da trilha, vimos: pedidos vagos gerando respostas ruins, confiar cegamente em sugestões sem revisar, alucinação de bibliotecas e métodos, colar segredos e dados sensíveis em prompts, executar comandos sem entender, e tratar 'a IA gerou' como desculpa para bugs." },
+        { "title": "Objetivo desta fase", "body": "Você verá cenários mistos e precisará identificar qual princípio da trilha está sendo violado ou seguido corretamente em cada um. Isso ajuda a consolidar o aprendizado antes do projeto final." },
+        { "title": "Dica para os próximos exercícios", "tip": "Para cada cenário, pergunte-se: isso envolve contexto insuficiente, confiança excessiva, um risco de segurança, ou uma questão de responsabilidade?" }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Um desenvolvedor cola uma chave de API de produção real em um prompt para pedir ajuda com um bug de conexão. Qual princípio da trilha está sendo violado?", "opts": ["Ser específico no pedido", "Nunca colar segredos ou chaves em um prompt", "Testar casos de borda", "Escolher a ferramenta certa"], "hint": "Pense no tema específico sobre chaves e segredos visto na unidade de segurança.", "a": 1, "ex": "Colar uma chave de API real viola diretamente o princípio de nunca expor segredos em prompts.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Uma equipe instala, sem verificar, uma biblioteca sugerida pela IA com um nome que combina de forma estranha duas bibliotecas famosas. Qual risco da trilha se aplica aqui?", "opts": ["Excesso de testes", "Alucinação de biblioteca inexistente ou potencialmente maliciosa", "Contexto excessivo no prompt", "Uso correto de agentes"], "hint": "Pense na unidade sobre limites e riscos, especificamente bibliotecas inventadas.", "a": 1, "ex": "Instalar uma biblioteca sem verificar sua existência real é um risco clássico de alucinação de IA discutido na trilha.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "Um desenvolvedor justifica um bug em produção dizendo apenas 'a IA gerou esse código, não fui eu'. Qual princípio ele está ignorando?", "opts": ["Que autocomplete é diferente de agente", "Que a responsabilidade pelo código final continua sendo do desenvolvedor, independentemente da ferramenta usada", "Que exemplos ajudam a IA a gerar melhores respostas", "Que testes devem cobrir casos de borda"], "hint": "Pense na unidade sobre ética e autoria, especificamente sobre quem assume a responsabilidade final.", "a": 1, "ex": "Esse princípio afirma que a responsabilidade final é sempre do desenvolvedor, independentemente da origem do código.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Um desenvolvedor pede testes para uma função e recebe apenas testes do caminho feliz, mas os aceita sem pedir cobertura adicional. Qual princípio ele deixou de aplicar?", "opts": ["Nunca expor dados sensíveis", "Pedir explicitamente por cobertura de casos de borda, além do caminho feliz", "Usar sempre um agente para qualquer tarefa", "Revisar comandos de terminal antes de executar"], "hint": "Pense na unidade sobre gerar testes com IA e a diferença entre caminho feliz e casos de borda.", "a": 1, "ex": "Deixar de pedir cobertura de casos de borda é um erro comum discutido na unidade sobre geração de testes com IA.", "format": "ENCONTRE O ERRO" }
+      ]
+    },
+    {
+      "id": "ia-dev-30",
+      "name": "PROJETO FINAL: MEU FLUXO",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "▲",
+      "summary": "Fase final: consolide toda a trilha em um cenário completo de ponta a ponta.",
+      "lesson": [
+        { "title": "Cenário final integrador", "body": "Você vai analisar um cenário completo, do pedido inicial de uma tarefa até a entrega em produção, passando por prompt, revisão, testes, segurança e responsabilidade — todos os temas vistos na trilha 'IA para Desenvolvedores'." },
+        { "title": "O que se espera de um fluxo maduro", "body": "Um bom fluxo de uso de IA não elimina a necessidade de conhecimento técnico do desenvolvedor: ele soma a velocidade da IA à responsabilidade e ao julgamento humano em cada etapa importante do processo." },
+        { "title": "Parabéns por chegar até aqui", "tip": "Essa trilha não termina o aprendizado sobre IA no desenvolvimento — as ferramentas evoluem rapidamente. Os princípios de contexto claro, revisão cuidadosa e responsabilidade continuam válidos, seja qual for a ferramenta específica do momento." }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Uma desenvolvedora pede a um agente para 'implementar pagamento com cartão', sem detalhar formato de dados, biblioteca ou tratamento de erros. O agente devolve um plano genérico. Qual é o próximo passo mais alinhado com a trilha?", "opts": ["Aprovar o plano imediatamente, sem revisar", "Refinar o pedido com mais contexto específico (formato de dados, biblioteca aprovada pela empresa, casos de erro) antes de aprovar qualquer execução", "Cancelar o uso de IA para sempre", "Pedir para o agente executar sem nenhum plano"], "hint": "Pense na unidade sobre dar contexto claro e ser específico, aplicada a uma tarefa sensível como pagamentos.", "a": 1, "ex": "Refinar o pedido com contexto específico antes de aprovar a execução é a aplicação direta dos princípios de prompt engineering vistos na trilha.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "Durante a implementação de pagamento, o agente sugere colar as credenciais reais do gateway de pagamento em um arquivo de exemplo enviado à IA para depuração. Qual é a atitude correta?", "opts": ["Colar as credenciais reais, já que é 'só para depurar'", "Substituir as credenciais por valores fictícios/marcadores antes de compartilhar qualquer trecho com a IA", "Cancelar todo o projeto", "Compartilhar as credenciais apenas por e-mail, mas do mesmo jeito"], "hint": "Pense no princípio sobre nunca colar segredos e chaves em um prompt.", "a": 1, "ex": "Substituir credenciais reais por marcadores fictícios antes de compartilhar contexto é a prática segura reforçada ao longo da trilha.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "mcq", "q": "Os testes gerados pela IA para a função de pagamento cobrem apenas o cenário de cartão válido e aprovado. O que falta, considerando os princípios da trilha?", "opts": ["Nada, o caminho feliz já é suficiente para pagamentos", "Testes de casos de borda, como cartão inválido, saldo insuficiente e erro de conexão com o gateway", "Mais comentários explicando o código", "Trocar a linguagem de programação usada"], "hint": "Pense na unidade sobre gerar testes com IA e a importância de cobrir casos além do caminho feliz.", "a": 1, "ex": "Para uma funcionalidade de pagamento, cobrir casos de borda como cartão inválido e falhas de conexão é essencial, não apenas o cenário de sucesso.", "format": "ENCONTRE O ERRO" },
+        { "type": "mcq", "q": "Depois de todo o processo (contexto claro, revisão, testes de borda, sem segredos expostos), a funcionalidade de pagamento vai para produção e mais tarde apresenta um bug raro. Quem é responsável por investigar e corrigir esse bug?", "opts": ["Ninguém, já que o processo foi bem feito", "A equipe de desenvolvimento, que continua responsável pela manutenção do sistema mesmo após um processo cuidadoso", "Apenas a empresa que fez a ferramenta de IA", "O usuário que encontrou o bug"], "hint": "Pense no princípio de que a responsabilidade pelo código é sempre do desenvolvedor/equipe, independentemente de quão cuidadoso foi o processo.", "a": 1, "ex": "Mesmo com um processo cuidadoso, a responsabilidade pela manutenção contínua do sistema permanece com a equipe de desenvolvimento, pois nenhum processo elimina totalmente o risco de bugs.", "format": "CONCEITO" }
+      ]
+    }
+  ]
+}
