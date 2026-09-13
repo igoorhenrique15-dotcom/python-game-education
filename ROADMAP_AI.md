@@ -48,10 +48,15 @@ Tudo client-side, progresso em `localStorage`, sem chamadas de rede.
   `course-ia.json`, `course-js.json`, `course-sql.json`, `course-git.json`,
   `course-supabase.json`, `course-vercel.json`, `course-security.json`,
   `course-ia-dev.json` — conteúdo de cada trilha;
-- `TRACK_CATALOG` (em `CompleteApp.jsx`) registra cada trilha: `id`,
-  `title`, `subtitle`, `icon`, `color`, `course` (import do JSON),
-  `unitMeta` (títulos/cor por unidade, hardcoded no JSX), `stagesPerUnit`,
-  `fileExt` (extensão usada nos blocos de código de exemplo);
+- `TRACK_CATALOG` (em `CompleteApp.jsx`) é **construído automaticamente em
+  runtime** por `buildTrackCatalog`, a partir de
+  `import.meta.glob('./data/course*.json', { eager: true })`. Qualquer
+  `course-*.json` presente em `src/data/` com um bloco `meta` válido vira
+  uma trilha navegável sozinho — não é preciso importar nada nem editar
+  `CompleteApp.jsx`. Um JSON sem `meta`, ou com `meta`/`stages` incompletos,
+  é ignorado com um `console.warn` (não derruba as outras trilhas). A ordem
+  das trilhas é definida por `meta.order` (numérico, menor primeiro); sem
+  `order`, a trilha entra depois, ordenada por título;
 - `src/*.css` — três camadas em cascata: `style.css` (base/tokens
   originais) → `rounded-theme.css` (tema atual, dark + Nunito) →
   `minimal-theme.css` (flatten por cima, remove sombra/glow).
@@ -59,8 +64,31 @@ Tudo client-side, progresso em `localStorage`, sem chamadas de rede.
 ## Schema de uma trilha (`src/data/course-*.json`)
 
 ```json
-{ "title": "...", "version": 1, "stages": [ /* 30 fases (10 unidades × 3) */ ] }
+{
+  "meta": {
+    "id": "html",
+    "title": "HTML & CSS",
+    "subtitle": "Estrutura e estilo para a web.",
+    "icon": "◇",
+    "color": "#ff9600",
+    "fileExt": "html",
+    "stagesPerUnit": 3,
+    "order": 1,
+    "units": [
+      { "title": "Fundamentos do HTML", "goal": "Estrutura, tags e atributos.", "color": "#ff9600" }
+      /* ... 10 no total, um por unidade ... */
+    ]
+  },
+  "title": "...",
+  "version": 1,
+  "stages": [ /* 30 fases (10 unidades × 3, ou 10 × stagesPerUnit) */ ]
+}
 ```
+
+O bloco `meta` é a única fonte de verdade sobre como a trilha aparece no
+app (cartão em "Trilhas", cores por unidade, extensão de arquivo dos
+blocos de código). `id` deve ser único e igual ao usado nas chaves de
+`localStorage` (`black-buster-track-<id>-v1`).
 
 Cada fase (`stage`): `id`, `name`, `difficulty`
 (`INICIANTE`/`INTERMEDIÁRIO`/`AVANÇADO`), `color` (hex, igual para as 3
@@ -80,12 +108,19 @@ fases da mesma unidade), `icon` (glifo unicode), `summary`, `lesson`
 
 ## Adicionando uma trilha nova
 
-1. Criar `src/data/course-<id>.json` seguindo o schema acima (30 fases).
-2. Criar um `<ID>_UNIT_META` em `CompleteApp.jsx` com 10 entradas
-   `{ title, goal, color }`.
-3. Importar o JSON no topo de `CompleteApp.jsx` e adicionar uma entrada em
-   `TRACK_CATALOG`.
-4. Rodar `npm run build` para validar.
+Fluxo simplificado — **não é preciso tocar em `CompleteApp.jsx`**:
+
+1. Criar `src/data/course-<id>.json` seguindo o schema acima, com o bloco
+   `meta` completo (`id`, `title`, `subtitle`, `icon`, `color`, `fileExt`,
+   `stagesPerUnit`, `order`, `units` com 10 entradas
+   `{ title, goal, color }`) e `stages` (30 fases, ou `10 × stagesPerUnit`).
+2. Rodar `npm run build` para validar.
+
+A trilha aparece sozinha, em qualquer ordem/momento em que o arquivo for
+criado — isso permite que vários agentes gerem trilhas em paralelo sem
+disputar edições no mesmo arquivo JSX. Se o `meta` estiver ausente ou
+incompleto, a trilha é apenas ignorada (com aviso no console), sem quebrar
+as demais.
 
 ## Evolução pedagógica (ideias futuras, não implementadas)
 
@@ -98,8 +133,8 @@ fases da mesma unidade), `icon` (glifo unicode), `summary`, `lesson`
 
 ## Regras visuais
 
-- Tema escuro, cores por trilha/unidade definidas em `TRACK_CATALOG` e nos
-  `*_UNIT_META`;
+- Tema escuro, cores por trilha/unidade definidas no bloco `meta` de cada
+  `course-*.json` (campo `color` da trilha e `units[].color`);
 - verde para sucesso/progresso, vermelho só para erro;
 - desktop aproveita a largura disponível, celular reorganiza em uma coluna
   (sem versão separada);
