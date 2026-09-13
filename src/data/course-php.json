@@ -1,0 +1,2168 @@
+{
+  "meta": {
+    "id": "php",
+    "title": "PHP",
+    "subtitle": "Back-end web tradicional e altamente presente no mercado.",
+    "icon": "◆",
+    "color": "#777BB4",
+    "fileExt": "php",
+    "stagesPerUnit": 3,
+    "order": 14,
+    "units": [
+      { "title": "Fundamentos de PHP", "goal": "Variáveis, tipos e echo/print.", "color": "#777BB4" },
+      { "title": "Estruturas de Controle", "goal": "Condicionais, loops e arrays.", "color": "#ff9600" },
+      { "title": "Funções em PHP", "goal": "Declaração, parâmetros e escopo.", "color": "#f6c445" },
+      { "title": "Arrays Associativos", "goal": "Manipulação e funções nativas de array.", "color": "#22c55e" },
+      { "title": "Orientação a Objetos", "goal": "Classes, herança e interfaces.", "color": "#34d399" },
+      { "title": "PHP e Formulários", "goal": "$_GET, $_POST e validação de dados.", "color": "#1cb0f6" },
+      { "title": "PHP e Banco de Dados", "goal": "PDO e consultas preparadas.", "color": "#0ea5e9" },
+      { "title": "Sessões e Segurança", "goal": "Sessions, cookies e boas práticas.", "color": "#38bdf8" },
+      { "title": "Ecossistema Moderno", "goal": "Composer e noções de Laravel.", "color": "#a78bfa" },
+      { "title": "Projeto final", "goal": "Revisão integrada com um mini CRUD web.", "color": "#facc15" }
+    ]
+  },
+  "title": "PHP",
+  "version": 1,
+  "stages": [
+    {
+      "id": "php-1",
+      "name": "TAGS E ECHO",
+      "difficulty": "INICIANTE",
+      "color": "#777BB4",
+      "icon": "◆",
+      "summary": "Aprenda a abrir blocos de código PHP e exibir texto na tela com echo e print.",
+      "lesson": [
+        {
+          "title": "A tag de abertura",
+          "body": "Todo código PHP fica dentro da tag <?php e é fechado com ?>. O interpretador PHP só executa o que estiver dentro dessas tags; o resto do arquivo é tratado como HTML puro.",
+          "code": "<?php\n  echo \"Olá, mundo!\";\n?>"
+        },
+        {
+          "title": "echo e print",
+          "body": "echo e print exibem texto na saída da página. echo é mais usado, aceita múltiplos valores separados por vírgula e não retorna valor. print aceita apenas um valor e retorna 1.",
+          "code": "<?php\n  echo \"PHP\", \" \", \"é divertido!\";\n  print \"Uma linha só.\";\n?>"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual tag é usada para iniciar um bloco de código PHP?",
+          "opts": ["<script php>", "<?php", "<php>", "#php"],
+          "a": 1,
+          "hint": "É a abertura padrão reconhecida pelo interpretador PHP.",
+          "ex": "Todo código PHP começa com <?php e termina com ?>.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que a linha abaixo exibe?\n<?php\n  echo \"Bem-vindo\", \" \", \"ao PHP\";\n?>",
+          "opts": ["Bem-vindo ao PHP", "Bem-vindo,ao PHP", "Erro de sintaxe", "Nada é exibido"],
+          "a": 0,
+          "hint": "echo pode receber vários valores separados por vírgula, exibidos em sequência.",
+          "ex": "echo concatena na saída todos os valores passados, separados por vírgula.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual das afirmações sobre print está correta?",
+          "opts": [
+            "print aceita múltiplos valores separados por vírgula",
+            "print sempre retorna o valor 1",
+            "print é mais rápido que echo em qualquer caso",
+            "print não pode ser usado dentro de PHP"
+          ],
+          "a": 1,
+          "hint": "Pense na diferença de comportamento entre uma instrução e uma expressão com valor de retorno.",
+          "ex": "print é uma expressão que sempre retorna 1, diferente de echo, que não retorna valor.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual linha corrige o erro de sintaxe abaixo?\n<?php\n  echo \"Total: \" 100;\n?>",
+          "opts": [
+            "echo \"Total: \" . 100;",
+            "echo \"Total: \", , 100;",
+            "echo \"Total: \" + 100",
+            "echo \"Total: \" 100;"
+          ],
+          "a": 0,
+          "hint": "Para juntar texto e número numa mesma string, é preciso um operador de concatenação.",
+          "ex": "O ponto (.) é o operador de concatenação de strings em PHP.",
+          "format": "CORRIJA O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "php-2",
+      "name": "VARIÁVEIS E TIPOS",
+      "difficulty": "INICIANTE",
+      "color": "#777BB4",
+      "icon": "▲",
+      "summary": "Entenda como declarar variáveis com $ e os principais tipos de dados do PHP.",
+      "lesson": [
+        {
+          "title": "Declarando variáveis",
+          "body": "Em PHP, toda variável começa com o cifrão ($). Não é preciso declarar o tipo: o PHP é uma linguagem de tipagem dinâmica, então o tipo é definido pelo valor atribuído.",
+          "code": "<?php\n  $nome = \"Maria\";\n  $idade = 28;\n  $altura = 1.65;\n  $ativo = true;\n?>"
+        },
+        {
+          "title": "Tipos principais",
+          "body": "Os tipos básicos são string (texto), int (inteiro), float (decimal) e bool (verdadeiro/falso). A função gettype() mostra o tipo atual de uma variável.",
+          "code": "<?php\n  $preco = 19.90;\n  echo gettype($preco); // double\n?>"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Como uma variável é identificada em PHP?",
+          "opts": ["Por um prefixo var", "Pelo símbolo $ antes do nome", "Por letras maiúsculas", "Não precisa de identificação"],
+          "a": 1,
+          "hint": "É o mesmo símbolo usado em todos os exemplos da lição.",
+          "ex": "Toda variável PHP é escrita com o cifrão ($) antes do nome.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual o tipo da variável $ativo abaixo?\n<?php\n  $ativo = true;\n?>",
+          "opts": ["string", "int", "bool", "float"],
+          "a": 2,
+          "hint": "O valor representa verdadeiro ou falso.",
+          "ex": "true e false são valores do tipo booleano (bool).",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que o PHP é chamado de linguagem de tipagem dinâmica?",
+          "opts": [
+            "Porque as variáveis nunca mudam de tipo",
+            "Porque o tipo é definido automaticamente pelo valor atribuído",
+            "Porque exige declaração explícita de tipos",
+            "Porque só aceita números"
+          ],
+          "a": 1,
+          "hint": "Pense em como você não precisou escrever 'int' ou 'string' antes do nome da variável.",
+          "ex": "Na tipagem dinâmica, o tipo da variável é inferido a partir do valor atribuído, podendo mudar ao longo do script.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que gettype($preco) retorna no código abaixo?\n<?php\n  $preco = 19.90;\n  echo gettype($preco);\n?>",
+          "opts": ["integer", "string", "double", "boolean"],
+          "a": 2,
+          "hint": "Historicamente, o PHP usa esse nome interno para números com casas decimais.",
+          "ex": "Internamente, o PHP chama o tipo float de 'double'.",
+          "format": "PREVISÃO DE RESULTADO"
+        }
+      ]
+    },
+    {
+      "id": "php-3",
+      "name": "OPERADORES E CONCATENAÇÃO",
+      "difficulty": "INICIANTE",
+      "color": "#777BB4",
+      "icon": "★",
+      "summary": "Use operadores aritméticos, de comparação e o ponto de concatenação de strings.",
+      "lesson": [
+        {
+          "title": "Operadores aritméticos",
+          "body": "PHP tem os operadores básicos +, -, *, / e %, além de ** para potência. Eles funcionam com int e float, gerando resultados numéricos.",
+          "code": "<?php\n  $total = 10 + 5 * 2; // 20\n  $resto = 10 % 3;     // 1\n?>"
+        },
+        {
+          "title": "Concatenando strings",
+          "body": "Para juntar strings, PHP usa o ponto (.), diferente de outras linguagens que usam +. O operador .= também é usado para concatenar e reatribuir.",
+          "code": "<?php\n  $saudacao = \"Olá\" . \", \" . \"mundo!\";\n  $saudacao .= \" Tudo bem?\";\n  echo $saudacao;\n?>"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "Qual o valor de $total?\n<?php\n  $total = 10 + 5 * 2;\n?>",
+          "opts": ["30", "20", "25", "15"],
+          "a": 1,
+          "hint": "Lembre-se da ordem de precedência: multiplicação antes de soma.",
+          "ex": "5 * 2 é calculado primeiro (10), depois somado a 10, resultando em 20.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual operador é usado para concatenar strings em PHP?",
+          "opts": ["+", ".", "&", "concat()"],
+          "a": 1,
+          "hint": "É diferente do operador usado em JavaScript ou Python para o mesmo fim.",
+          "ex": "O ponto (.) é o operador de concatenação de strings em PHP.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro no código abaixo, que deveria exibir 'Nota: 10':\n<?php\n  $nota = 10;\n  echo \"Nota: \" + $nota;\n?>",
+          "opts": [
+            "O operador + deveria ser .",
+            "A variável deveria se chamar $Nota",
+            "Falta ponto e vírgula",
+            "echo não aceita variáveis"
+          ],
+          "a": 0,
+          "hint": "Em PHP, + soma números; ele não junta texto com número.",
+          "ex": "Usar + entre string e número tenta somar numericamente; o correto para concatenar é o ponto (.).",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "code",
+          "q": "O que o código abaixo exibe?\n<?php\n  $frase = \"PHP\";\n  $frase .= \" é ótimo\";\n  echo $frase;\n?>",
+          "opts": ["PHP", "PHP é ótimo", "é ótimo", "Erro de sintaxe"],
+          "a": 1,
+          "hint": ".= concatena o novo texto ao valor que já existia na variável.",
+          "ex": "O operador .= concatena e reatribui, resultando em 'PHP é ótimo'.",
+          "format": "PREVISÃO DE RESULTADO"
+        }
+      ]
+    },
+    {
+      "id": "php-4",
+      "name": "CONDICIONAIS IF/ELSE",
+      "difficulty": "INICIANTE",
+      "color": "#ff9600",
+      "icon": "↗",
+      "summary": "Controle o fluxo do programa com if, else e else if.",
+      "lesson": [
+        {
+          "title": "Testando condições",
+          "body": "A estrutura if executa um bloco de código apenas se a condição entre parênteses for verdadeira. else define o que acontece quando a condição é falsa.",
+          "code": "<?php\n  $idade = 20;\n  if ($idade >= 18) {\n    echo \"Maior de idade\";\n  } else {\n    echo \"Menor de idade\";\n  }\n?>"
+        },
+        {
+          "title": "Múltiplas condições",
+          "body": "Quando há mais de duas possibilidades, usamos elseif (ou else if) para encadear novas verificações antes do else final.",
+          "code": "<?php\n  $nota = 7;\n  if ($nota >= 9) {\n    echo \"Excelente\";\n  } elseif ($nota >= 6) {\n    echo \"Aprovado\";\n  } else {\n    echo \"Reprovado\";\n  }\n?>"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "O que o código abaixo exibe?\n<?php\n  $idade = 16;\n  if ($idade >= 18) {\n    echo \"Maior de idade\";\n  } else {\n    echo \"Menor de idade\";\n  }\n?>",
+          "opts": ["Maior de idade", "Menor de idade", "Nada é exibido", "Erro de sintaxe"],
+          "a": 1,
+          "hint": "Verifique se 16 satisfaz a condição >= 18.",
+          "ex": "Como 16 é menor que 18, a condição é falsa e o bloco else é executado.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual palavra-chave é usada para testar uma nova condição depois de um if, antes do else final?",
+          "opts": ["elseif", "orelse", "elif", "otherwise"],
+          "a": 0,
+          "hint": "PHP aceita duas grafias parecidas para essa mesma ideia; escolha a nativa do PHP.",
+          "ex": "PHP usa elseif (ou 'else if') para encadear novas condições.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual é o resultado ao rodar o código com $nota = 7?\n<?php\n  $nota = 7;\n  if ($nota >= 9) {\n    echo \"Excelente\";\n  } elseif ($nota >= 6) {\n    echo \"Aprovado\";\n  } else {\n    echo \"Reprovado\";\n  }\n?>",
+          "opts": ["Excelente", "Aprovado", "Reprovado", "Excelente e Aprovado"],
+          "a": 1,
+          "hint": "PHP para na primeira condição verdadeira e ignora as seguintes.",
+          "ex": "7 não é >= 9, mas é >= 6, então 'Aprovado' é exibido e o else é ignorado.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro de sintaxe:\n<?php\n  $x = 5;\n  if ($x > 3)\n    echo \"Maior\";\n  else if ($x == 3)\n    echo \"Igual\"\n  else\n    echo \"Menor\";\n?>",
+          "opts": [
+            "Falta ponto e vírgula após echo \"Igual\"",
+            "if não pode ter apenas uma linha",
+            "else if deveria ser elseif obrigatoriamente",
+            "$x precisa ser declarado com var"
+          ],
+          "a": 0,
+          "hint": "Toda instrução em PHP precisa terminar com ponto e vírgula, mesmo dentro de blocos sem chaves.",
+          "ex": "A linha echo \"Igual\" está sem o ponto e vírgula final, causando erro de sintaxe.",
+          "format": "ENCONTRE O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "php-5",
+      "name": "SWITCH E TERNÁRIO",
+      "difficulty": "INICIANTE",
+      "color": "#ff9600",
+      "icon": "▤",
+      "summary": "Simplifique múltiplas comparações com switch e escreva condições curtas com o operador ternário.",
+      "lesson": [
+        {
+          "title": "A estrutura switch",
+          "body": "switch compara uma variável com vários valores possíveis usando case. É preciso usar break para evitar que a execução 'caia' para o próximo case, e default trata os casos não previstos.",
+          "code": "<?php\n  $dia = 3;\n  switch ($dia) {\n    case 1:\n      echo \"Segunda\";\n      break;\n    case 2:\n      echo \"Terça\";\n      break;\n    default:\n      echo \"Outro dia\";\n  }\n?>"
+        },
+        {
+          "title": "Operador ternário",
+          "body": "O ternário condição ? valorSeVerdadeiro : valorSeFalso é uma forma curta de escrever um if/else simples, muito usado para atribuições rápidas.",
+          "code": "<?php\n  $idade = 20;\n  $status = ($idade >= 18) ? \"Adulto\" : \"Menor\";\n  echo $status;\n?>"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "O que acontece se o break for removido do case 1 abaixo, com $dia = 1?\n<?php\n  switch ($dia) {\n    case 1:\n      echo \"Segunda\";\n    case 2:\n      echo \"Terça\";\n      break;\n    default:\n      echo \"Outro\";\n  }\n?>",
+          "opts": [
+            "Exibe apenas 'Segunda'",
+            "Exibe 'SegundaTerça'",
+            "Exibe apenas 'Terça'",
+            "Gera erro de sintaxe"
+          ],
+          "a": 1,
+          "hint": "Sem break, a execução continua para os cases seguintes até encontrar um break.",
+          "ex": "Sem break, o fluxo 'cai' para o próximo case, executando também o código de 'Terça'.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Para que serve a cláusula default dentro de um switch?",
+          "opts": [
+            "Define o primeiro case a ser testado",
+            "Executa quando nenhum case corresponde ao valor",
+            "É obrigatória em todo switch",
+            "Substitui o uso de break"
+          ],
+          "a": 1,
+          "hint": "Pense no equivalente do 'else' dentro de um switch.",
+          "ex": "default funciona como um 'else', executado quando nenhum case bate com o valor testado.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual o valor de $status?\n<?php\n  $idade = 15;\n  $status = ($idade >= 18) ? \"Adulto\" : \"Menor\";\n?>",
+          "opts": ["Adulto", "Menor", "15", "true"],
+          "a": 1,
+          "hint": "Verifique se 15 satisfaz a condição antes da interrogação.",
+          "ex": "Como 15 não é >= 18, a condição é falsa e o valor após os dois-pontos é usado.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "code",
+          "q": "Reescreva de forma equivalente usando ternário:\n<?php\n  if ($preco > 100) {\n    $frete = \"Grátis\";\n  } else {\n    $frete = \"Pago\";\n  }\n?>",
+          "opts": [
+            "$frete = $preco > 100 ? \"Grátis\" : \"Pago\";",
+            "$frete = $preco > 100 : \"Grátis\" ? \"Pago\";",
+            "$frete = if($preco > 100) \"Grátis\" else \"Pago\";",
+            "$frete = ($preco > 100) then \"Grátis\" else \"Pago\";"
+          ],
+          "a": 0,
+          "hint": "A ordem correta é condição, depois interrogação, depois os dois valores separados por dois-pontos.",
+          "ex": "O formato correto do ternário é condição ? valorVerdadeiro : valorFalso.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "php-6",
+      "name": "LOOPS FOR E WHILE",
+      "difficulty": "INICIANTE",
+      "color": "#ff9600",
+      "icon": "◈",
+      "summary": "Repita blocos de código com os laços for e while.",
+      "lesson": [
+        {
+          "title": "O laço for",
+          "body": "for é ideal quando sabemos quantas vezes repetir. Ele tem três partes: inicialização, condição e incremento, separadas por ponto e vírgula.",
+          "code": "<?php\n  for ($i = 1; $i <= 5; $i++) {\n    echo $i . \" \";\n  }\n  // 1 2 3 4 5\n?>"
+        },
+        {
+          "title": "O laço while",
+          "body": "while repete enquanto a condição for verdadeira. É útil quando não sabemos de antemão quantas repetições serão necessárias. Cuidado para sempre atualizar a variável de controle, evitando loop infinito.",
+          "code": "<?php\n  $contador = 0;\n  while ($contador < 3) {\n    echo $contador;\n    $contador++;\n  }\n?>"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "Quantas vezes o laço abaixo executa?\n<?php\n  for ($i = 0; $i < 4; $i++) {\n    echo \"*\";\n  }\n?>",
+          "opts": ["3 vezes", "4 vezes", "5 vezes", "Infinitas vezes"],
+          "a": 1,
+          "hint": "Conte os valores de $i que satisfazem $i < 4, começando em 0.",
+          "ex": "$i assume 0, 1, 2 e 3 — quatro valores que satisfazem a condição.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o problema no código abaixo:\n<?php\n  $contador = 0;\n  while ($contador < 3) {\n    echo $contador;\n  }\n?>",
+          "opts": [
+            "Falta incrementar $contador dentro do laço, causando loop infinito",
+            "while não aceita a condição <",
+            "$contador deveria começar em 1",
+            "echo não pode ser usado dentro de while"
+          ],
+          "a": 0,
+          "hint": "Observe se algo dentro das chaves altera o valor testado na condição.",
+          "ex": "Sem $contador++ dentro do laço, a condição nunca muda e o loop nunca termina.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual das três partes do for é executada apenas uma vez, no início?",
+          "opts": ["A condição", "A inicialização", "O incremento", "O corpo do laço"],
+          "a": 1,
+          "hint": "É a primeira parte, separada por ponto e vírgula, dentro dos parênteses do for.",
+          "ex": "A inicialização (como $i = 1) roda apenas uma vez, antes da primeira verificação da condição.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual código exibe os números pares de 2 a 10?",
+          "opts": [
+            "for ($i = 2; $i <= 10; $i += 2) { echo $i . \" \"; }",
+            "for ($i = 2; $i <= 10; $i++) { echo $i . \" \"; }",
+            "while ($i <= 10) { echo $i; }",
+            "for ($i = 1; $i < 10; $i--) { echo $i; }"
+          ],
+          "a": 0,
+          "hint": "Pense em qual incremento salta de dois em dois números, partindo de um número par.",
+          "ex": "Começando em 2 e incrementando 2 a cada volta, o laço passa exatamente pelos pares até 10.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "php-7",
+      "name": "DECLARANDO FUNÇÕES",
+      "difficulty": "INICIANTE",
+      "color": "#f6c445",
+      "icon": "▦",
+      "summary": "Organize código reutilizável criando funções com a palavra-chave function.",
+      "lesson": [
+        {
+          "title": "Criando uma função",
+          "body": "Funções em PHP são declaradas com function, seguida de um nome e parênteses. O código dentro das chaves só executa quando a função é chamada pelo nome.",
+          "code": "<?php\n  function saudacao() {\n    echo \"Olá, visitante!\";\n  }\n\n  saudacao(); // chama a função\n?>"
+        },
+        {
+          "title": "Reutilização",
+          "body": "A grande vantagem de funções é evitar repetição de código. Uma vez definida, a função pode ser chamada quantas vezes forem necessárias em qualquer parte do script.",
+          "code": "<?php\n  function linha() {\n    echo \"------\\n\";\n  }\n  linha();\n  echo \"Título\\n\";\n  linha();\n?>"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual palavra-chave é usada para declarar uma função em PHP?",
+          "opts": ["def", "func", "function", "fn"],
+          "a": 2,
+          "hint": "É a mesma palavra usada em todos os exemplos da lição.",
+          "ex": "Funções em PHP começam sempre com a palavra-chave function.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que acontece se a função for apenas declarada, sem ser chamada?\n<?php\n  function saudacao() {\n    echo \"Olá!\";\n  }\n?>",
+          "opts": [
+            "'Olá!' é exibido automaticamente",
+            "Nada é exibido, pois a função não foi chamada",
+            "Gera erro de sintaxe",
+            "A função é executada ao final do script"
+          ],
+          "a": 1,
+          "hint": "Declarar uma função só define o que ela faz; é preciso chamá-la para executar.",
+          "ex": "O código dentro da função só roda quando ela é chamada com saudacao().",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro ao chamar a função abaixo:\n<?php\n  function linha() {\n    echo \"------\";\n  }\n  linha;\n?>",
+          "opts": [
+            "Faltam os parênteses ao chamar a função: linha();",
+            "function deveria ser func",
+            "echo não pode estar dentro de função",
+            "Falta um return na função"
+          ],
+          "a": 0,
+          "hint": "Para executar uma função, é preciso indicar que ela está sendo invocada, não apenas citar seu nome.",
+          "ex": "Chamar uma função exige parênteses após o nome, mesmo sem parâmetros: linha().",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual a principal vantagem de organizar código em funções?",
+          "opts": [
+            "O código fica mais lento",
+            "Evita repetição e facilita reutilização",
+            "É a única forma de usar variáveis em PHP",
+            "Funções não têm vantagem real"
+          ],
+          "a": 1,
+          "hint": "Pense no exemplo da função linha(), usada duas vezes no mesmo script.",
+          "ex": "Funções evitam duplicar código e tornam o programa mais organizado e reutilizável.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "php-8",
+      "name": "PARÂMETROS E RETORNO",
+      "difficulty": "INICIANTE",
+      "color": "#f6c445",
+      "icon": "▣",
+      "summary": "Passe valores para funções com parâmetros e devolva resultados com return.",
+      "lesson": [
+        {
+          "title": "Parâmetros",
+          "body": "Parâmetros são variáveis declaradas entre os parênteses da função, permitindo que ela receba valores diferentes a cada chamada. É possível definir valores padrão.",
+          "code": "<?php\n  function saudacao($nome = \"visitante\") {\n    echo \"Olá, $nome!\";\n  }\n  saudacao(\"Ana\"); // Olá, Ana!\n  saudacao();      // Olá, visitante!\n?>"
+        },
+        {
+          "title": "Retornando valores",
+          "body": "return devolve um valor da função para quem a chamou, encerrando a execução da função naquele ponto. Diferente de echo, return não exibe nada na tela sozinho.",
+          "code": "<?php\n  function somar($a, $b) {\n    return $a + $b;\n  }\n  $resultado = somar(3, 4);\n  echo $resultado; // 7\n?>"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "O que é exibido ao chamar saudacao() sem argumentos?\n<?php\n  function saudacao($nome = \"visitante\") {\n    echo \"Olá, $nome!\";\n  }\n  saudacao();\n?>",
+          "opts": ["Olá, !", "Olá, visitante!", "Erro: parâmetro obrigatório", "Nada é exibido"],
+          "a": 1,
+          "hint": "O parâmetro tem um valor padrão definido na declaração da função.",
+          "ex": "Como nenhum argumento foi passado, PHP usa o valor padrão \"visitante\".",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual a diferença entre echo e return dentro de uma função?",
+          "opts": [
+            "São idênticos, apenas nomes diferentes",
+            "echo exibe algo na tela; return devolve um valor para quem chamou a função",
+            "return sempre exibe na tela e encerra o script",
+            "echo só funciona fora de funções"
+          ],
+          "a": 1,
+          "hint": "Pense em qual dos dois permite guardar o resultado em uma variável, como em $resultado = somar(3,4).",
+          "ex": "return entrega um valor de volta ao código que chamou a função, sem exibi-lo automaticamente na tela.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual o valor de $resultado?\n<?php\n  function somar($a, $b) {\n    return $a + $b;\n  }\n  $resultado = somar(3, 4);\n?>",
+          "opts": ["\"3\"+\"4\"", "34", "7", "null"],
+          "a": 2,
+          "hint": "A função soma os dois parâmetros numéricos recebidos.",
+          "ex": "somar(3, 4) retorna 3 + 4, ou seja, 7.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "code",
+          "q": "Corrija a função para que ela realmente devolva o dobro do número recebido:\n<?php\n  function dobro($n) {\n    echo $n * 2;\n  }\n  $valor = dobro(5) + 1;\n?>",
+          "opts": [
+            "function dobro($n) { return $n * 2; }",
+            "function dobro($n) { echo $n * 2; return; }",
+            "function dobro(n) { return n * 2; }",
+            "function dobro($n) { print $n * 2; }"
+          ],
+          "a": 0,
+          "hint": "Para usar o resultado numa expressão fora da função, ela precisa devolver o valor, não apenas exibi-lo.",
+          "ex": "Usar return em vez de echo permite que o valor seja aproveitado em cálculos, como dobro(5) + 1.",
+          "format": "CORRIJA O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "php-9",
+      "name": "ESCOPO DE VARIÁVEIS",
+      "difficulty": "INICIANTE",
+      "color": "#f6c445",
+      "icon": "◐",
+      "summary": "Compreenda a diferença entre variáveis locais e globais e o uso da palavra-chave global.",
+      "lesson": [
+        {
+          "title": "Escopo local",
+          "body": "Variáveis criadas dentro de uma função são locais: só existem enquanto a função executa e não são visíveis fora dela. Cada chamada da função cria novas variáveis locais.",
+          "code": "<?php\n  function teste() {\n    $x = 10;\n    echo $x;\n  }\n  teste();\n  echo $x; // erro: $x não existe aqui\n?>"
+        },
+        {
+          "title": "Acessando variáveis globais",
+          "body": "Variáveis declaradas fora de qualquer função são globais, mas por padrão não são visíveis dentro de funções. A palavra-chave global permite acessar uma variável global de dentro de uma função.",
+          "code": "<?php\n  $contador = 0;\n  function incrementar() {\n    global $contador;\n    $contador++;\n  }\n  incrementar();\n  echo $contador; // 1\n?>"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que acontece com uma variável criada dentro de uma função, após a função terminar?",
+          "opts": [
+            "Ela continua acessível em todo o script",
+            "Ela é destruída, pois seu escopo é local à função",
+            "Ela se torna automaticamente global",
+            "Ela é convertida em constante"
+          ],
+          "a": 1,
+          "hint": "Pense no exemplo em que $x, criada dentro de teste(), não pode ser usada fora dela.",
+          "ex": "Variáveis locais existem apenas durante a execução da função onde foram criadas.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que o código abaixo exibe?\n<?php\n  $contador = 0;\n  function incrementar() {\n    global $contador;\n    $contador++;\n  }\n  incrementar();\n  incrementar();\n  echo $contador;\n?>",
+          "opts": ["0", "1", "2", "Erro de sintaxe"],
+          "a": 2,
+          "hint": "A função é chamada duas vezes, e global permite alterar a variável externa a cada chamada.",
+          "ex": "Com global, cada chamada de incrementar() soma 1 à mesma variável $contador, chegando a 2.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Por que o código abaixo não incrementa $total como esperado?\n<?php\n  $total = 0;\n  function somarUm() {\n    $total++;\n  }\n  somarUm();\n  echo $total;\n?>",
+          "opts": [
+            "Porque falta a palavra-chave global $total; dentro da função",
+            "Porque somarUm() precisa de um parâmetro obrigatório",
+            "Porque $total deveria ser declarado com const",
+            "Porque echo não funciona após chamar uma função"
+          ],
+          "a": 0,
+          "hint": "Sem indicar explicitamente, a função cria uma variável local $total diferente da externa.",
+          "ex": "Sem global, a função cria e altera sua própria cópia local de $total, sem afetar a variável externa.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é uma boa prática ao lidar com escopo em PHP?",
+          "opts": [
+            "Usar global sempre que possível para simplificar o código",
+            "Preferir passar valores por parâmetro e devolver com return, em vez de depender de global",
+            "Nunca usar funções, apenas variáveis globais",
+            "Declarar todas as variáveis fora de funções"
+          ],
+          "a": 1,
+          "hint": "Pense em como parâmetros e retorno tornam o comportamento da função mais previsível que depender de estado externo.",
+          "ex": "Passar dados via parâmetros e devolver com return deixa o código mais previsível e fácil de testar do que usar global.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "php-10",
+      "name": "ARRAYS INDEXADOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#22c55e",
+      "icon": "✓",
+      "summary": "Armazene listas de valores usando arrays indexados numericamente.",
+      "lesson": [
+        {
+          "title": "Criando um array",
+          "body": "Arrays em PHP podem ser criados com array() ou a sintaxe curta []. Por padrão, os índices começam em 0 e são numéricos, na ordem em que os itens são adicionados.",
+          "code": "<?php\n  $frutas = [\"maçã\", \"banana\", \"uva\"];\n  echo $frutas[0]; // maçã\n  echo $frutas[2]; // uva\n?>"
+        },
+        {
+          "title": "Adicionando e contando itens",
+          "body": "É possível adicionar um item ao final do array com $array[] = valor. A função count() retorna quantos elementos o array possui.",
+          "code": "<?php\n  $frutas[] = \"pera\";\n  echo count($frutas); // 4\n?>"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "Qual valor está em $frutas[1]?\n<?php\n  $frutas = [\"maçã\", \"banana\", \"uva\"];\n?>",
+          "opts": ["maçã", "banana", "uva", "Não existe índice 1"],
+          "a": 1,
+          "hint": "Lembre-se que a contagem de índices começa em 0, não em 1.",
+          "ex": "Índice 0 é 'maçã', índice 1 é 'banana', índice 2 é 'uva'.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "code",
+          "q": "Quantos elementos count($frutas) retorna após o código abaixo?\n<?php\n  $frutas = [\"maçã\", \"banana\"];\n  $frutas[] = \"uva\";\n  echo count($frutas);\n?>",
+          "opts": ["2", "3", "0", "Erro de sintaxe"],
+          "a": 1,
+          "hint": "$array[] = valor adiciona um novo item ao final da lista.",
+          "ex": "O array começa com 2 itens e recebe mais um com $frutas[] = \"uva\", totalizando 3.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Em um array indexado padrão, a partir de qual número os índices começam?",
+          "opts": ["1", "0", "-1", "Depende da versão do PHP"],
+          "a": 1,
+          "hint": "É o mesmo padrão usado na maioria das linguagens de programação.",
+          "ex": "Por padrão, os índices numéricos de um array em PHP começam em 0.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual código acessa o último item de $frutas = [\"maçã\", \"banana\", \"uva\"] sem usar um número fixo?",
+          "opts": [
+            "$frutas[count($frutas) - 1]",
+            "$frutas[count($frutas)]",
+            "$frutas[-1]",
+            "$frutas[last]"
+          ],
+          "a": 0,
+          "hint": "Pense em como o índice do último item se relaciona com a quantidade total de elementos.",
+          "ex": "Como os índices começam em 0, o último índice válido é sempre count($array) - 1.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "php-11",
+      "name": "ARRAYS ASSOCIATIVOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#22c55e",
+      "icon": "⌗",
+      "summary": "Use chaves nomeadas em vez de índices numéricos com a sintaxe de array associativo.",
+      "lesson": [
+        {
+          "title": "Chave e valor",
+          "body": "Arrays associativos usam texto como chave em vez de números, ligando cada chave a um valor com o operador =>. Isso torna o código mais legível quando os dados têm nomes semânticos.",
+          "code": "<?php\n  $usuario = [\n    \"nome\" => \"Carlos\",\n    \"idade\" => 32,\n    \"email\" => \"carlos@email.com\"\n  ];\n  echo $usuario[\"nome\"]; // Carlos\n?>"
+        },
+        {
+          "title": "Alterando e verificando chaves",
+          "body": "É possível alterar o valor de uma chave existente ou adicionar uma nova diretamente. A função array_key_exists() verifica se uma chave existe no array.",
+          "code": "<?php\n  $usuario[\"idade\"] = 33;\n  if (array_key_exists(\"email\", $usuario)) {\n    echo \"Tem e-mail cadastrado\";\n  }\n?>"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual operador liga uma chave ao seu valor em um array associativo?",
+          "opts": ["->", "=>", "==", ":="],
+          "a": 1,
+          "hint": "É diferente do operador usado para acessar propriedades de objetos.",
+          "ex": "Em arrays associativos, o operador => associa cada chave ao seu respectivo valor.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que o código abaixo exibe?\n<?php\n  $usuario = [\"nome\" => \"Carlos\", \"idade\" => 32];\n  echo $usuario[\"nome\"];\n?>",
+          "opts": ["nome", "Carlos", "0", "Erro de sintaxe"],
+          "a": 1,
+          "hint": "Acessar pela chave retorna o valor associado a ela, não o nome da chave.",
+          "ex": "$usuario[\"nome\"] acessa o valor associado à chave \"nome\", que é \"Carlos\".",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro no código abaixo:\n<?php\n  $usuario = [\"nome\" -> \"Ana\", \"idade\" -> 25];\n?>",
+          "opts": [
+            "-> deveria ser => para associar chave e valor",
+            "Arrays associativos não podem ter texto como chave",
+            "Falta usar array() em vez de []",
+            "As aspas em \"nome\" estão incorretas"
+          ],
+          "a": 0,
+          "hint": "-> é usado para acessar propriedades de objetos, não para montar arrays associativos.",
+          "ex": "O operador correto para associar chave e valor em um array é =>, não ->.",
+          "format": "CORRIJA O ERRO"
+        },
+        {
+          "type": "code",
+          "q": "Qual código verifica com segurança se a chave 'telefone' existe em $usuario antes de usá-la?",
+          "opts": [
+            "if (array_key_exists(\"telefone\", $usuario)) { ... }",
+            "if ($usuario[\"telefone\"] == true) { ... }",
+            "if ($usuario->telefone) { ... }",
+            "if (\"telefone\" == $usuario) { ... }"
+          ],
+          "a": 0,
+          "hint": "Acessar uma chave inexistente diretamente pode gerar aviso; existe uma função específica para checar antes.",
+          "ex": "array_key_exists() verifica com segurança se uma chave está presente no array, evitando avisos.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "php-12",
+      "name": "FUNÇÕES DE ARRAY E FOREACH",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#22c55e",
+      "icon": "◫",
+      "summary": "Percorra arrays com foreach e transforme dados com funções nativas como array_map e array_filter.",
+      "lesson": [
+        {
+          "title": "Percorrendo com foreach",
+          "body": "foreach percorre cada elemento de um array automaticamente, sem precisar controlar um índice manualmente. Em arrays associativos, é possível capturar chave e valor ao mesmo tempo.",
+          "code": "<?php\n  $usuario = [\"nome\" => \"Ana\", \"idade\" => 25];\n  foreach ($usuario as $chave => $valor) {\n    echo \"$chave: $valor\\n\";\n  }\n?>"
+        },
+        {
+          "title": "Transformando arrays",
+          "body": "array_map() aplica uma função a cada elemento e retorna um novo array com os resultados. array_filter() retorna apenas os elementos que satisfazem uma condição.",
+          "code": "<?php\n  $numeros = [1, 2, 3, 4];\n  $dobrados = array_map(fn($n) => $n * 2, $numeros);\n  $pares = array_filter($numeros, fn($n) => $n % 2 === 0);\n?>"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "O que o código abaixo exibe?\n<?php\n  $cores = [\"vermelho\", \"azul\"];\n  foreach ($cores as $cor) {\n    echo $cor . \" \";\n  }\n?>",
+          "opts": ["vermelho azul", "0 1", "vermelho", "Erro de sintaxe"],
+          "a": 0,
+          "hint": "foreach percorre cada valor do array em ordem, sem exibir os índices.",
+          "ex": "foreach sem chave => valor percorre apenas os valores, na ordem em que aparecem: vermelho, depois azul.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Qual o conteúdo de $dobrados?\n<?php\n  $numeros = [1, 2, 3];\n  $dobrados = array_map(fn($n) => $n * 2, $numeros);\n?>",
+          "opts": ["[1, 2, 3]", "[2, 4, 6]", "6", "[2, 3, 4]"],
+          "a": 1,
+          "hint": "array_map aplica a função a cada item individualmente, gerando um novo array do mesmo tamanho.",
+          "ex": "Cada número é multiplicado por 2: 1→2, 2→4, 3→6, resultando em [2, 4, 6].",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual função retorna apenas os elementos de um array que atendem a uma condição?",
+          "opts": ["array_map()", "array_filter()", "array_merge()", "array_sum()"],
+          "a": 1,
+          "hint": "Pense na palavra que sugere 'filtrar' itens de uma lista.",
+          "ex": "array_filter() percorre o array e mantém apenas os elementos para os quais a função de callback retorna verdadeiro.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro no código, que deveria exibir chave e valor:\n<?php\n  $dados = [\"a\" => 1, \"b\" => 2];\n  foreach ($dados as $chave, $valor) {\n    echo \"$chave = $valor\\n\";\n  }\n?>",
+          "opts": [
+            "A vírgula deveria ser =>: foreach ($dados as $chave => $valor)",
+            "foreach não aceita arrays associativos",
+            "Faltam colchetes em $dados",
+            "$chave e $valor precisam ser declarados antes"
+          ],
+          "a": 0,
+          "hint": "O símbolo usado para separar chave e valor dentro do foreach é o mesmo usado ao criar o array associativo.",
+          "ex": "A sintaxe correta usa => entre a variável de chave e a de valor: foreach ($dados as $chave => $valor).",
+          "format": "ENCONTRE O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "php-13",
+      "name": "CLASSES E OBJETOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#34d399",
+      "icon": "⌕",
+      "summary": "Modele dados e comportamentos com classes, propriedades, métodos e o construtor.",
+      "lesson": [
+        {
+          "title": "Definindo uma classe",
+          "body": "Uma classe é um molde para criar objetos. Ela agrupa propriedades (dados) e métodos (funções). Objetos são criados com a palavra-chave new.",
+          "code": "<?php\n  class Produto {\n    public $nome;\n    public $preco;\n\n    public function exibir() {\n      echo \"$this->nome: R$ $this->preco\";\n    }\n  }\n\n  $item = new Produto();\n  $item->nome = \"Caneta\";\n  $item->preco = 2.50;\n  $item->exibir();\n?>"
+        },
+        {
+          "title": "O construtor",
+          "body": "O método __construct() é chamado automaticamente ao criar um objeto com new, permitindo inicializar propriedades logo na criação, sem precisar atribuí-las uma a uma depois.",
+          "code": "<?php\n  class Produto {\n    public $nome;\n    public $preco;\n\n    public function __construct($nome, $preco) {\n      $this->nome = $nome;\n      $this->preco = $preco;\n    }\n  }\n\n  $item = new Produto(\"Caneta\", 2.50);\n?>"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que é usado para criar um novo objeto a partir de uma classe?",
+          "opts": ["create Classe()", "new Classe()", "Classe.new()", "make Classe()"],
+          "a": 1,
+          "hint": "É a mesma palavra-chave usada nos dois exemplos da lição.",
+          "ex": "A palavra-chave new instancia um objeto a partir de uma classe.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Dentro de um método, o que $this representa?",
+          "opts": [
+            "A classe em si, de forma abstrata",
+            "A instância atual do objeto",
+            "Uma variável global",
+            "O nome do arquivo PHP"
+          ],
+          "a": 1,
+          "hint": "Observe como $this->nome acessa a propriedade do objeto específico que chamou o método.",
+          "ex": "$this refere-se ao próprio objeto que está executando o método no momento.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que o código abaixo exibe?\n<?php\n  class Produto {\n    public $nome;\n    public function __construct($nome) {\n      $this->nome = $nome;\n    }\n  }\n  $item = new Produto(\"Mouse\");\n  echo $item->nome;\n?>",
+          "opts": ["nome", "Mouse", "Produto", "Erro de sintaxe"],
+          "a": 1,
+          "hint": "O construtor recebe o valor \"Mouse\" e o atribui à propriedade $nome do objeto.",
+          "ex": "O construtor atribui \"Mouse\" a $this->nome, então $item->nome vale \"Mouse\".",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro no código abaixo:\n<?php\n  class Produto {\n    public $preco;\n    public function exibir() {\n      echo $preco;\n    }\n  }\n?>",
+          "opts": [
+            "Faltou usar $this->preco em vez de apenas $preco",
+            "class deveria se chamar Classe",
+            "public não pode ser usado em propriedades",
+            "exibir() precisa de parâmetros"
+          ],
+          "a": 0,
+          "hint": "Dentro de um método, o acesso a uma propriedade da própria classe exige uma referência ao objeto atual.",
+          "ex": "Para acessar uma propriedade da classe dentro de um método, é necessário usar $this->preco, não apenas $preco.",
+          "format": "ENCONTRE O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "php-14",
+      "name": "HERANÇA",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#34d399",
+      "icon": "◧",
+      "summary": "Reaproveite código entre classes com herança e a palavra-chave extends.",
+      "lesson": [
+        {
+          "title": "Estendendo uma classe",
+          "body": "Uma classe filha pode herdar propriedades e métodos de uma classe pai usando extends. Isso evita duplicar código entre classes parecidas.",
+          "code": "<?php\n  class Animal {\n    public $nome;\n    public function fazerSom() {\n      echo \"Som genérico\";\n    }\n  }\n\n  class Cachorro extends Animal {\n    public function fazerSom() {\n      echo \"Au au!\";\n    }\n  }\n\n  $rex = new Cachorro();\n  $rex->fazerSom(); // Au au!\n?>"
+        },
+        {
+          "title": "Chamando o pai com parent",
+          "body": "Dentro de uma classe filha, parent::metodo() chama a versão do método definida na classe pai, útil quando queremos complementar em vez de substituir totalmente o comportamento.",
+          "code": "<?php\n  class Cachorro extends Animal {\n    public function fazerSom() {\n      parent::fazerSom();\n      echo \" e também Au au!\";\n    }\n  }\n?>"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual palavra-chave é usada para uma classe herdar de outra?",
+          "opts": ["implements", "extends", "inherits", "uses"],
+          "a": 1,
+          "hint": "É a mesma palavra usada no exemplo class Cachorro ... Animal.",
+          "ex": "extends é usado para uma classe herdar propriedades e métodos de outra.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que o código abaixo exibe?\n<?php\n  class Animal {\n    public function fazerSom() { echo \"Som genérico\"; }\n  }\n  class Cachorro extends Animal {\n    public function fazerSom() { echo \"Au au!\"; }\n  }\n  $rex = new Cachorro();\n  $rex->fazerSom();\n?>",
+          "opts": ["Som genérico", "Au au!", "Som genéricoAu au!", "Erro de sintaxe"],
+          "a": 1,
+          "hint": "Quando a classe filha redefine um método, sua versão é a que passa a ser usada.",
+          "ex": "Cachorro sobrescreve fazerSom(), então o método da classe filha é executado, exibindo 'Au au!'.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "O que parent::fazerSom() faz dentro do método sobrescrito da classe filha?",
+          "opts": [
+            "Chama a versão do método definida na classe pai",
+            "Cria uma nova instância da classe pai",
+            "Impede que a classe filha tenha esse método",
+            "É apenas um comentário, não executa nada"
+          ],
+          "a": 0,
+          "hint": "Pense em como acessar explicitamente o comportamento original antes de adicionar algo novo.",
+          "ex": "parent::metodo() executa a implementação do método definida na classe pai, mesmo dentro da classe filha.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Escolha a opção que cria corretamente uma classe Gato que herda de Animal:",
+          "opts": [
+            "class Gato extends Animal { }",
+            "class Gato implements Animal { }",
+            "class Gato: Animal { }",
+            "class Animal extends Gato { }"
+          ],
+          "a": 0,
+          "hint": "A classe que herda vem antes de extends, e a classe pai vem depois.",
+          "ex": "class Gato extends Animal faz Gato herdar tudo o que Animal define, sendo a classe filha.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "php-15",
+      "name": "INTERFACES E ABSTRAÇÃO",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#34d399",
+      "icon": "⇄",
+      "summary": "Defina contratos entre classes com interfaces e métodos abstratos.",
+      "lesson": [
+        {
+          "title": "Interfaces",
+          "body": "Uma interface define quais métodos uma classe deve implementar, sem dizer como. Uma classe usa implements para cumprir o contrato de uma interface, sendo obrigada a definir todos os métodos declarados.",
+          "code": "<?php\n  interface Pagavel {\n    public function calcularTotal(): float;\n  }\n\n  class Pedido implements Pagavel {\n    public function calcularTotal(): float {\n      return 150.0;\n    }\n  }\n?>"
+        },
+        {
+          "title": "Classes abstratas",
+          "body": "Uma classe abstract não pode ser instanciada diretamente; ela serve de base para outras classes. Métodos declarados como abstract não têm corpo e devem ser implementados pelas classes filhas.",
+          "code": "<?php\n  abstract class Forma {\n    abstract public function area(): float;\n  }\n\n  class Quadrado extends Forma {\n    public $lado;\n    public function area(): float {\n      return $this->lado ** 2;\n    }\n  }\n?>"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que uma interface define para uma classe?",
+          "opts": [
+            "A implementação completa dos métodos",
+            "Apenas quais métodos a classe deve ter, sem implementá-los",
+            "As propriedades privadas da classe",
+            "O construtor obrigatório"
+          ],
+          "a": 1,
+          "hint": "Pense em interface como um contrato: ela diz 'o que' fazer, não 'como' fazer.",
+          "ex": "Uma interface declara a assinatura dos métodos, deixando a implementação para as classes que a adotam.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "É possível criar um objeto diretamente de uma classe abstract?",
+          "opts": [
+            "Sim, normalmente com new",
+            "Não, classes abstratas não podem ser instanciadas diretamente",
+            "Sim, mas apenas dentro de outra classe",
+            "Só se ela não tiver métodos abstratos"
+          ],
+          "a": 1,
+          "hint": "Classes abstratas servem como base para outras classes, não como modelo final pronto para uso direto.",
+          "ex": "Classes abstract não podem ser instanciadas com new; apenas suas subclasses concretas podem.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que acontece se Pedido implementar Pagavel mas não definir calcularTotal()?\n<?php\n  interface Pagavel {\n    public function calcularTotal(): float;\n  }\n  class Pedido implements Pagavel {\n  }\n?>",
+          "opts": [
+            "O PHP gera um erro fatal, pois o contrato não foi cumprido",
+            "PHP cria o método automaticamente retornando 0",
+            "Funciona normalmente, o método é opcional",
+            "A interface é ignorada silenciosamente"
+          ],
+          "a": 0,
+          "hint": "Implementar uma interface é um compromisso: todos os métodos declarados nela devem ser definidos.",
+          "ex": "Ao usar implements, a classe é obrigada a definir todos os métodos da interface, sob pena de erro fatal.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Complete corretamente a classe Quadrado, que deve implementar area() vinda de Forma:\n<?php\n  abstract class Forma {\n    abstract public function area(): float;\n  }\n  class Quadrado extends Forma {\n    public $lado = 4;\n    ____\n  }\n?>",
+          "opts": [
+            "public function area(): float { return $this->lado ** 2; }",
+            "abstract public function area(): float;",
+            "function area() { }",
+            "public $area = $this->lado ** 2;"
+          ],
+          "a": 0,
+          "hint": "A classe concreta precisa fornecer um corpo real para o método declarado como abstrato na classe pai.",
+          "ex": "Quadrado, sendo uma classe concreta, deve implementar area() com um corpo de código funcional.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "php-16",
+      "name": "$_GET E $_POST",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#1cb0f6",
+      "icon": "▶",
+      "summary": "Receba dados enviados por formulários e URLs usando as superglobais $_GET e $_POST.",
+      "lesson": [
+        {
+          "title": "Dados via URL com $_GET",
+          "body": "$_GET captura dados enviados na própria URL, como em pagina.php?nome=Ana. É útil para filtros e buscas, mas não deve ser usado para dados sensíveis, pois fica visível na barra de endereço.",
+          "code": "<?php\n  // URL: pagina.php?nome=Ana&idade=25\n  echo $_GET[\"nome\"];  // Ana\n  echo $_GET[\"idade\"]; // 25\n?>"
+        },
+        {
+          "title": "Dados de formulário com $_POST",
+          "body": "$_POST recebe dados enviados por um formulário HTML com method=\"post\". Diferente do GET, os dados não aparecem na URL, sendo mais adequado para senhas e informações sensíveis.",
+          "code": "<!-- formulario.html -->\n<form action=\"processa.php\" method=\"post\">\n  <input type=\"text\" name=\"email\">\n  <button type=\"submit\">Enviar</button>\n</form>\n\n<?php\n  // processa.php\n  echo $_POST[\"email\"];\n?>"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Onde os dados enviados por $_GET ficam visíveis?",
+          "opts": ["Apenas no banco de dados", "Na própria URL da requisição", "Em um cookie criptografado", "Em nenhum lugar visível"],
+          "a": 1,
+          "hint": "Pense no exemplo pagina.php?nome=Ana&idade=25.",
+          "ex": "Os dados enviados via GET aparecem diretamente na URL como parâmetros de consulta.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Considerando a URL pagina.php?produto=teclado&preco=150, o que $_GET[\"produto\"] retorna?",
+          "opts": ["preco", "150", "teclado", "produto"],
+          "a": 2,
+          "hint": "O valor associado à chave 'produto' é o que vem depois do sinal de igual correspondente.",
+          "ex": "$_GET[\"produto\"] acessa o valor associado ao parâmetro produto na URL, que é 'teclado'.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que $_POST é geralmente preferido para enviar senhas em vez de $_GET?",
+          "opts": [
+            "Porque $_POST é mais rápido para processar",
+            "Porque os dados de $_POST não ficam visíveis na URL",
+            "Porque $_GET não aceita textos",
+            "Não há diferença real entre os dois"
+          ],
+          "a": 1,
+          "hint": "Pense em qual dos dois expõe os dados diretamente na barra de endereço do navegador.",
+          "ex": "Como o $_POST envia os dados no corpo da requisição, eles não aparecem na URL, sendo mais adequado para dados sensíveis.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Um formulário usa method=\"get\" mas o script tenta ler $_POST[\"email\"]. O que ocorre?",
+          "opts": [
+            "$_POST[\"email\"] não existirá, pois os dados foram enviados via GET",
+            "PHP converte automaticamente GET em POST",
+            "Os dados aparecerão normalmente em $_POST",
+            "O formulário não pode ser enviado"
+          ],
+          "a": 0,
+          "hint": "O método do formulário precisa corresponder à superglobal usada para ler os dados no PHP.",
+          "ex": "Se o formulário usa method=\"get\", os dados vão para $_GET, não para $_POST, então $_POST[\"email\"] ficará indefinido.",
+          "format": "ENCONTRE O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "php-17",
+      "name": "VALIDAÇÃO DE DADOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#1cb0f6",
+      "icon": "◒",
+      "summary": "Verifique e limpe dados recebidos do usuário antes de usá-los no sistema.",
+      "lesson": [
+        {
+          "title": "Verificando a existência dos dados",
+          "body": "Antes de usar um valor de $_POST ou $_GET, é importante verificar se ele foi enviado, usando isset() ou empty(), evitando avisos de índice indefinido.",
+          "code": "<?php\n  if (isset($_POST[\"email\"]) && !empty($_POST[\"email\"])) {\n    $email = $_POST[\"email\"];\n  } else {\n    echo \"E-mail é obrigatório\";\n  }\n?>"
+        },
+        {
+          "title": "Filtrando e validando",
+          "body": "A função filter_var() valida e sanitiza dados, como verificar se um e-mail é válido com FILTER_VALIDATE_EMAIL, evitando processar dados malformados.",
+          "code": "<?php\n  $email = $_POST[\"email\"] ?? \"\";\n  if (filter_var($email, FILTER_VALIDATE_EMAIL)) {\n    echo \"E-mail válido\";\n  } else {\n    echo \"E-mail inválido\";\n  }\n?>"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Para que serve a função isset() ao lidar com dados de formulário?",
+          "opts": [
+            "Para converter texto em número",
+            "Para verificar se uma variável foi definida e não é nula",
+            "Para exibir dados na tela",
+            "Para apagar uma variável"
+          ],
+          "a": 1,
+          "hint": "Pense em por que checamos isset($_POST[\"email\"]) antes de usar o valor.",
+          "ex": "isset() verifica se uma variável existe e tem valor diferente de null, evitando erros ao acessar dados não enviados.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que o código abaixo faz com um e-mail inválido como 'abc'?\n<?php\n  $email = \"abc\";\n  if (filter_var($email, FILTER_VALIDATE_EMAIL)) {\n    echo \"Válido\";\n  } else {\n    echo \"Inválido\";\n  }\n?>",
+          "opts": ["Válido", "Inválido", "Erro fatal", "abc"],
+          "a": 1,
+          "hint": "'abc' não tem o formato de um endereço de e-mail (usuário@domínio).",
+          "ex": "filter_var com FILTER_VALIDATE_EMAIL retorna false para 'abc', pois não é um formato de e-mail válido, então o else é executado.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o problema no código abaixo, que pode gerar aviso de índice indefinido:\n<?php\n  $nome = $_POST[\"nome\"];\n  echo $nome;\n?>",
+          "opts": [
+            "Falta verificar isset($_POST[\"nome\"]) antes de acessá-lo",
+            "$_POST deveria ser $_GET",
+            "echo não pode exibir variáveis de formulário",
+            "Falta usar array() antes de $_POST"
+          ],
+          "a": 0,
+          "hint": "Se o campo 'nome' não for enviado no formulário, acessar $_POST[\"nome\"] diretamente gera um aviso.",
+          "ex": "Verificar isset() antes de acessar o índice evita avisos quando o campo não foi enviado pelo formulário.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "code",
+          "q": "Qual código valida corretamente se uma idade enviada por formulário é um número inteiro positivo?",
+          "opts": [
+            "if (filter_var($_POST[\"idade\"], FILTER_VALIDATE_INT) !== false && $_POST[\"idade\"] > 0) { ... }",
+            "if ($_POST[\"idade\"] == \"numero\") { ... }",
+            "if (is_string($_POST[\"idade\"])) { ... }",
+            "if ($_POST[\"idade\"]) { echo \"válido\"; }"
+          ],
+          "a": 0,
+          "hint": "Existe uma constante de filter_var específica para validar números inteiros.",
+          "ex": "FILTER_VALIDATE_INT verifica se o valor é um número inteiro válido, e comparar com > 0 garante que seja positivo.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "php-18",
+      "name": "SUPERGLOBAIS E MÉTODOS HTTP",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#1cb0f6",
+      "icon": "◓",
+      "summary": "Conheça outras superglobais importantes e como identificar o método HTTP da requisição.",
+      "lesson": [
+        {
+          "title": "Outras superglobais",
+          "body": "Além de $_GET e $_POST, o PHP oferece $_SERVER (informações do servidor e requisição), $_REQUEST (combina GET, POST e cookies) e $_FILES (uploads de arquivos). Elas estão disponíveis em qualquer escopo, sem precisar de global.",
+          "code": "<?php\n  echo $_SERVER[\"REQUEST_METHOD\"]; // GET ou POST\n  echo $_SERVER[\"PHP_SELF\"];       // nome do script atual\n?>"
+        },
+        {
+          "title": "Identificando o método da requisição",
+          "body": "$_SERVER[\"REQUEST_METHOD\"] informa se a requisição foi feita via GET, POST, entre outros, permitindo que o mesmo script trate diferentes tipos de requisição de forma apropriada.",
+          "code": "<?php\n  if ($_SERVER[\"REQUEST_METHOD\"] === \"POST\") {\n    echo \"Formulário enviado\";\n  } else {\n    echo \"Apenas visualizando a página\";\n  }\n?>"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual superglobal informa o método HTTP usado na requisição atual?",
+          "opts": ["$_METHOD", "$_SERVER", "$_ENV", "$_REQUEST_TYPE"],
+          "a": 1,
+          "hint": "É a mesma superglobal usada no exemplo com REQUEST_METHOD.",
+          "ex": "$_SERVER[\"REQUEST_METHOD\"] contém o método HTTP (GET, POST, etc.) da requisição atual.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que o código abaixo exibe quando um formulário é enviado com method=\"post\"?\n<?php\n  if ($_SERVER[\"REQUEST_METHOD\"] === \"POST\") {\n    echo \"Formulário enviado\";\n  } else {\n    echo \"Apenas visualizando\";\n  }\n?>",
+          "opts": ["Formulário enviado", "Apenas visualizando", "POST", "Erro de sintaxe"],
+          "a": 0,
+          "hint": "Compare o valor de REQUEST_METHOD com a string \"POST\" usada na condição.",
+          "ex": "Como o formulário foi enviado via POST, a condição é verdadeira e 'Formulário enviado' é exibido.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que $_FILES é usado para representar?",
+          "opts": [
+            "Cookies armazenados no navegador",
+            "Arquivos enviados por upload em um formulário",
+            "Variáveis de ambiente do servidor",
+            "O histórico de requisições anteriores"
+          ],
+          "a": 1,
+          "hint": "Pense no nome da superglobal e sua relação com envio de arquivos, como fotos ou documentos.",
+          "ex": "$_FILES armazena informações sobre arquivos enviados via formulário com enctype=\"multipart/form-data\".",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual é a diferença central entre $_REQUEST e $_POST?",
+          "opts": [
+            "$_REQUEST combina dados de GET, POST e cookies; $_POST só traz dados enviados via POST",
+            "Não há diferença nenhuma entre eles",
+            "$_REQUEST só funciona em servidores Apache",
+            "$_POST inclui cookies e $_REQUEST não"
+          ],
+          "a": 0,
+          "hint": "Pense em qual das duas superglobais é mais abrangente, reunindo múltiplas fontes de dados.",
+          "ex": "$_REQUEST reúne dados de $_GET, $_POST e $_COOKIE, enquanto $_POST traz apenas os dados enviados por POST.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "php-19",
+      "name": "CONECTANDO COM PDO",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#0ea5e9",
+      "icon": "Ω",
+      "summary": "Estabeleça conexão com um banco de dados relacional usando a extensão PDO.",
+      "lesson": [
+        {
+          "title": "O que é PDO",
+          "body": "PDO (PHP Data Objects) é uma interface que permite acessar diferentes bancos de dados (MySQL, PostgreSQL, SQLite) de forma padronizada, usando a mesma sintaxe de código independentemente do banco.",
+          "code": "<?php\n  try {\n    $pdo = new PDO(\n      \"mysql:host=localhost;dbname=loja\",\n      \"root\",\n      \"senha123\"\n    );\n    echo \"Conectado com sucesso!\";\n  } catch (PDOException $e) {\n    echo \"Erro: \" . $e->getMessage();\n  }\n?>"
+        },
+        {
+          "title": "Tratando erros de conexão",
+          "body": "A conexão com PDO deve sempre ser feita dentro de um bloco try/catch, pois falhas de conexão lançam uma exceção PDOException, que precisa ser tratada para evitar que o script quebre de forma abrupta.",
+          "code": "<?php\n  $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);\n?>"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que é o PDO em PHP?",
+          "opts": [
+            "Uma linguagem de consulta exclusiva do MySQL",
+            "Uma interface padronizada para acessar diferentes bancos de dados",
+            "Um framework para criar formulários",
+            "Um tipo de variável do PHP"
+          ],
+          "a": 1,
+          "hint": "Pense na sigla: PHP Data Objects.",
+          "ex": "PDO fornece uma camada de acesso padronizada a bancos de dados como MySQL, PostgreSQL e SQLite.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Por que a criação da conexão PDO é colocada dentro de um bloco try/catch?",
+          "opts": [
+            "Porque PDO exige laços de repetição",
+            "Porque falhas de conexão lançam uma exceção PDOException que precisa ser tratada",
+            "É apenas uma formatação opcional sem função real",
+            "Porque try/catch acelera a conexão"
+          ],
+          "a": 1,
+          "hint": "Pense no que aconteceria se a conexão falhasse (senha errada, banco fora do ar) sem tratamento de erro.",
+          "ex": "Sem try/catch, uma falha de conexão geraria uma exceção não tratada, interrompendo o script de forma abrupta.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro na string de conexão abaixo:\n<?php\n  $pdo = new PDO(\"host=localhost;dbname=loja\", \"root\", \"\");\n?>",
+          "opts": [
+            "Falta o prefixo do driver, como mysql:, antes de host=",
+            "PDO não aceita dbname como parâmetro",
+            "A senha não pode ser uma string vazia",
+            "new PDO() não existe em PHP"
+          ],
+          "a": 0,
+          "hint": "A string de conexão (DSN) precisa indicar qual driver de banco será usado antes dos demais parâmetros.",
+          "ex": "O DSN correto começa com o driver, como \"mysql:host=localhost;dbname=loja\", indicando qual banco será usado.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual das opções abaixo é uma vantagem real de usar PDO em vez de funções específicas de um banco (como mysqli exclusivo)?",
+          "opts": [
+            "PDO só funciona com MySQL",
+            "PDO permite trocar de banco de dados com menos alterações no código",
+            "PDO elimina a necessidade de tratar erros",
+            "PDO não precisa de usuário e senha"
+          ],
+          "a": 1,
+          "hint": "Pense na ideia de 'interface padronizada' apresentada na lição.",
+          "ex": "Como o PDO abstrai o driver do banco, trocar de MySQL para outro banco exige menos mudanças no código de acesso a dados.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "php-20",
+      "name": "CONSULTAS PREPARADAS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#0ea5e9",
+      "icon": "✦",
+      "summary": "Use prepared statements com PDO para consultar dados de forma segura, evitando SQL Injection.",
+      "lesson": [
+        {
+          "title": "Por que preparar consultas",
+          "body": "Inserir valores diretamente numa query SQL (concatenando strings) abre brecha para SQL Injection. Consultas preparadas separam o SQL dos dados, usando marcadores como ? ou :nome, tornando o código mais seguro.",
+          "code": "<?php\n  $stmt = $pdo->prepare(\"SELECT * FROM usuarios WHERE email = ?\");\n  $stmt->execute([$email]);\n  $usuario = $stmt->fetch();\n?>"
+        },
+        {
+          "title": "Marcadores nomeados",
+          "body": "Além de ?, é possível usar marcadores nomeados como :email, tornando a consulta mais legível quando há vários parâmetros.",
+          "code": "<?php\n  $stmt = $pdo->prepare(\"SELECT * FROM usuarios WHERE email = :email AND ativo = :ativo\");\n  $stmt->execute([\"email\" => $email, \"ativo\" => 1]);\n?>"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é o principal risco de concatenar diretamente valores de usuário numa query SQL?",
+          "opts": [
+            "A consulta fica mais rápida, mas menos legível",
+            "Abre brecha para ataques de SQL Injection",
+            "O PHP recusa executar a consulta",
+            "Não existe nenhum risco real"
+          ],
+          "a": 1,
+          "hint": "Pense em como um usuário mal-intencionado poderia inserir código SQL dentro de um campo de formulário.",
+          "ex": "Concatenar dados do usuário diretamente na query permite que um invasor injete comandos SQL maliciosos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que o código abaixo faz?\n<?php\n  $stmt = $pdo->prepare(\"SELECT * FROM usuarios WHERE email = ?\");\n  $stmt->execute([$email]);\n  $usuario = $stmt->fetch();\n?>",
+          "opts": [
+            "Executa uma consulta preparada, buscando o usuário pelo e-mail informado com segurança",
+            "Insere um novo usuário no banco",
+            "Apaga o usuário com o e-mail informado",
+            "Cria a tabela usuarios automaticamente"
+          ],
+          "a": 0,
+          "hint": "prepare() monta a consulta, execute() passa os valores e fetch() busca o resultado.",
+          "ex": "O código prepara uma consulta SELECT com marcador, executa passando o e-mail e busca o registro correspondente.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro no código abaixo, vulnerável a SQL Injection:\n<?php\n  $email = $_POST[\"email\"];\n  $sql = \"SELECT * FROM usuarios WHERE email = '$email'\";\n  $resultado = $pdo->query($sql);\n?>",
+          "opts": [
+            "O valor $email foi concatenado diretamente na query, em vez de usar uma consulta preparada",
+            "$pdo->query() não existe em PDO",
+            "Faltou usar echo antes da variável $sql",
+            "A tabela usuarios precisa ser maiúscula"
+          ],
+          "a": 0,
+          "hint": "O valor vindo diretamente do usuário está sendo inserido no SQL sem nenhum tratamento ou separação.",
+          "ex": "Concatenar $email diretamente na string SQL permite injeção; o correto é usar prepare() e execute() com marcadores.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "code",
+          "q": "Qual código busca um usuário por email e status usando marcadores nomeados corretamente?",
+          "opts": [
+            "$stmt = $pdo->prepare(\"SELECT * FROM usuarios WHERE email = :email AND ativo = :ativo\"); $stmt->execute([\"email\" => $email, \"ativo\" => 1]);",
+            "$stmt = $pdo->prepare(\"SELECT * FROM usuarios WHERE email = '$email'\");",
+            "$stmt = $pdo->query(\"SELECT * FROM usuarios WHERE email = :email\");",
+            "$pdo->execute(\"SELECT * FROM usuarios WHERE email = :email\", $email);"
+          ],
+          "a": 0,
+          "hint": "A consulta deve usar marcadores nomeados e o array de execute deve associar cada nome ao seu valor.",
+          "ex": "prepare() define os marcadores :email e :ativo, e execute() associa cada um ao seu valor correspondente em um array.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "php-21",
+      "name": "INSERINDO E ATUALIZANDO DADOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#0ea5e9",
+      "icon": "●",
+      "summary": "Use PDO para inserir, atualizar e excluir registros em um banco de dados.",
+      "lesson": [
+        {
+          "title": "Inserindo registros",
+          "body": "Comandos INSERT também devem usar consultas preparadas, passando os valores separadamente do SQL. lastInsertId() retorna o ID gerado pelo último INSERT.",
+          "code": "<?php\n  $stmt = $pdo->prepare(\"INSERT INTO produtos (nome, preco) VALUES (?, ?)\");\n  $stmt->execute([\"Teclado\", 89.90]);\n  echo $pdo->lastInsertId();\n?>"
+        },
+        {
+          "title": "Atualizando e excluindo",
+          "body": "UPDATE e DELETE seguem o mesmo padrão de consultas preparadas. rowCount() informa quantas linhas foram afetadas pela última operação.",
+          "code": "<?php\n  $stmt = $pdo->prepare(\"UPDATE produtos SET preco = ? WHERE id = ?\");\n  $stmt->execute([99.90, 5]);\n  echo $stmt->rowCount(); // linhas afetadas\n?>"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que lastInsertId() retorna após um INSERT bem-sucedido?",
+          "opts": [
+            "O total de registros da tabela",
+            "O ID gerado automaticamente para o registro inserido",
+            "O nome da tabela usada",
+            "O tempo de execução da consulta"
+          ],
+          "a": 1,
+          "hint": "Pense em quando uma tabela tem uma coluna de ID com auto-incremento.",
+          "ex": "lastInsertId() retorna o valor do ID (geralmente auto-incremento) gerado pelo último INSERT executado na conexão.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que o código abaixo faz?\n<?php\n  $stmt = $pdo->prepare(\"UPDATE produtos SET preco = ? WHERE id = ?\");\n  $stmt->execute([99.90, 5]);\n?>",
+          "opts": [
+            "Insere um novo produto com id 5",
+            "Atualiza o preço do produto de id 5 para 99.90",
+            "Exclui o produto de id 5",
+            "Consulta o preço do produto de id 5"
+          ],
+          "a": 1,
+          "hint": "O comando é UPDATE, que altera valores de um registro já existente.",
+          "ex": "A consulta atualiza a coluna preco para 99.90 no registro cujo id é 5.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "code",
+          "q": "Qual código verifica quantas linhas foram realmente afetadas por um DELETE?",
+          "opts": [
+            "$stmt->execute(); echo $stmt->rowCount();",
+            "$stmt->execute(); echo $stmt->fetch();",
+            "$pdo->count();",
+            "$stmt->rowCount; (sem parênteses)"
+          ],
+          "a": 0,
+          "hint": "Existe um método específico de PDOStatement para contar linhas afetadas por INSERT, UPDATE ou DELETE.",
+          "ex": "rowCount() retorna o número de linhas afetadas pela última consulta de modificação (INSERT, UPDATE, DELETE).",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro no código abaixo, que deveria inserir um novo produto:\n<?php\n  $stmt = $pdo->prepare(\"INSERT INTO produtos (nome, preco) VALUES (?, ?)\");\n  $stmt->execute(\"Mouse\", 45.00);\n?>",
+          "opts": [
+            "execute() deveria receber um array: $stmt->execute([\"Mouse\", 45.00]);",
+            "INSERT não aceita marcadores ?",
+            "Faltou usar $pdo->query() em vez de prepare()",
+            "A tabela produtos precisa ter apenas uma coluna"
+          ],
+          "a": 0,
+          "hint": "O método execute() de uma consulta preparada espera receber os valores agrupados em uma única estrutura.",
+          "ex": "execute() deve receber um array com os valores na ordem dos marcadores, como [\"Mouse\", 45.00].",
+          "format": "CORRIJA O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "php-22",
+      "name": "SESSIONS",
+      "difficulty": "AVANÇADO",
+      "color": "#38bdf8",
+      "icon": "◍",
+      "summary": "Mantenha dados do usuário entre páginas usando sessões PHP.",
+      "lesson": [
+        {
+          "title": "Iniciando uma sessão",
+          "body": "session_start() deve ser chamada antes de qualquer saída HTML, no início de cada página que usa sessão. Ela cria ou retoma a sessão do usuário, associada a um cookie de sessão no navegador.",
+          "code": "<?php\n  session_start();\n  $_SESSION[\"usuario\"] = \"Ana\";\n  echo $_SESSION[\"usuario\"];\n?>"
+        },
+        {
+          "title": "Encerrando uma sessão",
+          "body": "Para remover uma variável específica, usa-se unset($_SESSION[\"chave\"]). Para destruir toda a sessão (como no logout), usa-se session_destroy() após session_start().",
+          "code": "<?php\n  session_start();\n  session_destroy(); // encerra toda a sessão\n?>"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Onde session_start() deve ser chamada em relação à saída HTML da página?",
+          "opts": [
+            "Depois de qualquer HTML já enviado",
+            "Antes de qualquer saída HTML",
+            "Não importa a posição",
+            "Apenas no final do script"
+          ],
+          "a": 1,
+          "hint": "session_start() manipula cabeçalhos HTTP, que precisam ser enviados antes do conteúdo da página.",
+          "ex": "session_start() precisa ser chamada antes de qualquer saída, pois ela envia cabeçalhos HTTP relacionados ao cookie de sessão.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que o código abaixo faz?\n<?php\n  session_start();\n  $_SESSION[\"usuario\"] = \"Ana\";\n?>",
+          "opts": [
+            "Cria um cookie permanente no navegador chamado usuario",
+            "Armazena o valor 'Ana' na sessão, disponível em outras páginas do mesmo domínio",
+            "Exibe 'Ana' na tela imediatamente",
+            "Apaga todos os dados de sessão anteriores"
+          ],
+          "a": 1,
+          "hint": "$_SESSION guarda dados no servidor, associados ao visitante, acessíveis em requisições futuras da mesma sessão.",
+          "ex": "O valor é armazenado em $_SESSION, ficando disponível para outras páginas do site durante a mesma sessão do usuário.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual a diferença entre unset($_SESSION[\"chave\"]) e session_destroy()?",
+          "opts": [
+            "São idênticos em efeito",
+            "unset remove apenas uma variável da sessão; session_destroy() encerra toda a sessão",
+            "unset apaga o banco de dados; session_destroy() só um cookie",
+            "session_destroy() não existe em PHP"
+          ],
+          "a": 1,
+          "hint": "Pense na diferença entre remover um item específico e encerrar toda a sessão de uma vez, como no logout.",
+          "ex": "unset() remove apenas uma chave específica da sessão, enquanto session_destroy() apaga todos os dados da sessão atual.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro no código abaixo:\n<?php\n  echo \"Bem-vindo!\";\n  session_start();\n  $_SESSION[\"usuario\"] = \"Carlos\";\n?>",
+          "opts": [
+            "session_start() foi chamada depois de um echo, o que pode causar erro",
+            "$_SESSION precisa ser declarado com global",
+            "session_start() só pode ser usada uma vez por site",
+            "Falta fechar a sessão com session_close()"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da ordem correta entre session_start() e qualquer saída de conteúdo.",
+          "ex": "session_start() deve vir antes de qualquer saída como echo, pois ela envia cabeçalhos HTTP relacionados ao cookie de sessão.",
+          "format": "ENCONTRE O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "php-23",
+      "name": "COOKIES",
+      "difficulty": "AVANÇADO",
+      "color": "#38bdf8",
+      "icon": "⬡",
+      "summary": "Armazene pequenas informações no navegador do usuário com cookies.",
+      "lesson": [
+        {
+          "title": "Criando um cookie",
+          "body": "setcookie() cria um cookie no navegador do usuário, definindo nome, valor e tempo de expiração. Assim como session_start(), precisa ser chamada antes de qualquer saída HTML.",
+          "code": "<?php\n  setcookie(\"tema\", \"escuro\", time() + 3600); // expira em 1 hora\n?>"
+        },
+        {
+          "title": "Lendo e removendo cookies",
+          "body": "Cookies enviados pelo navegador ficam disponíveis em $_COOKIE. Para remover um cookie, basta chamar setcookie() novamente com o mesmo nome e um tempo de expiração no passado.",
+          "code": "<?php\n  if (isset($_COOKIE[\"tema\"])) {\n    echo $_COOKIE[\"tema\"];\n  }\n  setcookie(\"tema\", \"\", time() - 3600); // remove o cookie\n?>"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Onde um cookie criado com setcookie() fica armazenado?",
+          "opts": ["No banco de dados do servidor", "No navegador do usuário", "Apenas na memória do PHP", "Em um arquivo temporário no servidor"],
+          "a": 1,
+          "hint": "Diferente de $_SESSION, que guarda dados no servidor, cookies ficam do lado do cliente.",
+          "ex": "Cookies são armazenados no navegador do usuário e enviados ao servidor a cada requisição subsequente.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que o terceiro argumento de setcookie(\"tema\", \"escuro\", time() + 3600) representa?",
+          "opts": [
+            "O domínio do site",
+            "O tempo de expiração do cookie",
+            "O tamanho máximo do valor",
+            "Se o cookie é seguro (HTTPS)"
+          ],
+          "a": 1,
+          "hint": "time() + 3600 representa um instante no futuro, uma hora a partir de agora.",
+          "ex": "O terceiro parâmetro de setcookie() define o timestamp de expiração do cookie; time() + 3600 é uma hora no futuro.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "code",
+          "q": "Qual código remove corretamente um cookie chamado 'tema' já existente?",
+          "opts": [
+            "setcookie(\"tema\", \"\", time() - 3600);",
+            "unset($_COOKIE[\"tema\"]);",
+            "delete $_COOKIE[\"tema\"];",
+            "session_destroy();"
+          ],
+          "a": 0,
+          "hint": "Para remover um cookie do navegador, é preciso recriá-lo com uma data de expiração já vencida.",
+          "ex": "Definir um tempo de expiração no passado com setcookie() faz o navegador descartar o cookie.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro no código abaixo:\n<?php\n  if ($_COOKIE[\"tema\"] == \"escuro\") {\n    echo \"Modo escuro ativado\";\n  }\n?>",
+          "opts": [
+            "Falta verificar isset($_COOKIE[\"tema\"]) antes de comparar, evitando aviso se o cookie não existir",
+            "Cookies não podem ser comparados com ==",
+            "$_COOKIE deveria ser $_SESSION",
+            "setcookie() precisa ser chamada antes do if"
+          ],
+          "a": 0,
+          "hint": "Se o cookie nunca foi definido, acessar $_COOKIE[\"tema\"] diretamente pode gerar um aviso de índice indefinido.",
+          "ex": "Verificar isset($_COOKIE[\"tema\"]) antes de comparar evita avisos quando o cookie ainda não existe.",
+          "format": "ENCONTRE O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "php-24",
+      "name": "BOAS PRÁTICAS DE SEGURANÇA",
+      "difficulty": "AVANÇADO",
+      "color": "#38bdf8",
+      "icon": "⬢",
+      "summary": "Proteja senhas e dados sensíveis com password_hash e boas práticas de sanitização.",
+      "lesson": [
+        {
+          "title": "Armazenando senhas com segurança",
+          "body": "Senhas nunca devem ser guardadas em texto puro no banco. password_hash() gera um hash seguro e único, e password_verify() compara uma senha digitada com o hash armazenado.",
+          "code": "<?php\n  $hash = password_hash(\"minhaSenha123\", PASSWORD_DEFAULT);\n  // salvar $hash no banco\n\n  if (password_verify(\"minhaSenha123\", $hash)) {\n    echo \"Senha correta!\";\n  }\n?>"
+        },
+        {
+          "title": "Sanitizando saída HTML",
+          "body": "Ao exibir dados fornecidos pelo usuário em HTML, htmlspecialchars() converte caracteres especiais em entidades HTML, prevenindo ataques de XSS (injeção de scripts maliciosos).",
+          "code": "<?php\n  $comentario = $_POST[\"comentario\"]; // pode conter <script>\n  echo htmlspecialchars($comentario);\n?>"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Por que senhas não devem ser armazenadas em texto puro no banco de dados?",
+          "opts": [
+            "Porque ocupam mais espaço em texto puro",
+            "Porque, em caso de vazamento, as senhas ficariam expostas diretamente",
+            "Porque o PHP não permite salvar texto puro",
+            "Não há problema real nisso"
+          ],
+          "a": 1,
+          "hint": "Pense no que aconteceria se o banco de dados fosse invadido e as senhas estivessem legíveis.",
+          "ex": "Se o banco vazar, senhas em texto puro ficam imediatamente expostas; um hash protege o valor original mesmo em vazamentos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que password_verify(\"minhaSenha123\", $hash) faz?",
+          "opts": [
+            "Cria um novo hash para a senha informada",
+            "Compara a senha informada com o hash armazenado e retorna true ou false",
+            "Apaga a senha do banco",
+            "Converte o hash de volta na senha original"
+          ],
+          "a": 1,
+          "hint": "Hashes não podem ser revertidos; a verificação recalcula e compara resultados.",
+          "ex": "password_verify() checa se a senha em texto puro corresponde ao hash armazenado, sem nunca reverter o hash.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual é o risco do código abaixo ao exibir um comentário enviado pelo usuário?\n<?php\n  $comentario = $_POST[\"comentario\"];\n  echo $comentario;\n?>",
+          "opts": [
+            "Nenhum risco, pois echo é sempre seguro",
+            "Risco de XSS, pois um script malicioso enviado pelo usuário seria executado no navegador de outros visitantes",
+            "O código gera erro de sintaxe",
+            "O comentário nunca seria exibido"
+          ],
+          "a": 1,
+          "hint": "Pense no que aconteceria se alguém enviasse <script>alert('hack')</script> como comentário.",
+          "ex": "Exibir dados do usuário sem escapar permite XSS; htmlspecialchars() deveria ser usado antes de exibir o comentário.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "code",
+          "q": "Qual código gera corretamente um hash seguro para a senha de um novo usuário?",
+          "opts": [
+            "$hash = password_hash($senha, PASSWORD_DEFAULT);",
+            "$hash = md5($senha);",
+            "$hash = $senha;",
+            "$hash = base64_encode($senha);"
+          ],
+          "a": 0,
+          "hint": "PHP possui uma função moderna específica para gerar hashes seguros de senha, recomendada sobre algoritmos antigos.",
+          "ex": "password_hash() com PASSWORD_DEFAULT usa um algoritmo seguro e atualizado, recomendado para armazenar senhas.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "php-25",
+      "name": "COMPOSER E AUTOLOAD",
+      "difficulty": "AVANÇADO",
+      "color": "#a78bfa",
+      "icon": "⏱",
+      "summary": "Gerencie dependências de projetos PHP com o Composer e entenda o autoload de classes.",
+      "lesson": [
+        {
+          "title": "O que é o Composer",
+          "body": "Composer é o gerenciador de dependências padrão do PHP. Ele permite instalar bibliotecas de terceiros e organizar as dependências do projeto em um arquivo composer.json.",
+          "code": "{\n  \"require\": {\n    \"monolog/monolog\": \"^3.0\"\n  }\n}"
+        },
+        {
+          "title": "Autoload de classes",
+          "body": "Em vez de usar require para cada arquivo de classe manualmente, o Composer gera um autoloader (vendor/autoload.php) que carrega as classes automaticamente quando são usadas, seguindo o padrão PSR-4.",
+          "code": "<?php\n  require \"vendor/autoload.php\";\n\n  use Monolog\\Logger;\n\n  $log = new Logger(\"app\");\n?>"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é a principal função do Composer em um projeto PHP?",
+          "opts": [
+            "Compilar o código PHP em binário",
+            "Gerenciar dependências e bibliotecas externas do projeto",
+            "Substituir o servidor web",
+            "Validar formulários automaticamente"
+          ],
+          "a": 1,
+          "hint": "Pense em ferramentas parecidas de outras linguagens, como npm para JavaScript.",
+          "ex": "O Composer gerencia as dependências (bibliotecas) de um projeto PHP, listadas no composer.json.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Para que serve o arquivo vendor/autoload.php gerado pelo Composer?",
+          "opts": [
+            "Ele carrega automaticamente as classes das dependências instaladas, sem precisar de require manual para cada uma",
+            "Ele armazena as senhas do banco de dados",
+            "Ele substitui o arquivo composer.json",
+            "Ele é usado apenas em ambiente de produção"
+          ],
+          "a": 0,
+          "hint": "Pense em como o exemplo usa apenas um require, mesmo usando uma classe de biblioteca externa.",
+          "ex": "O autoloader do Composer carrega automaticamente as classes necessárias, evitando múltiplos require manuais.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que a linha use Monolog\\Logger; faz no código abaixo?\n<?php\n  require \"vendor/autoload.php\";\n  use Monolog\\Logger;\n  $log = new Logger(\"app\");\n?>",
+          "opts": [
+            "Importa a classe Logger do namespace Monolog, permitindo usá-la apenas como Logger",
+            "Executa a classe Logger imediatamente",
+            "Cria uma nova pasta chamada Monolog",
+            "Remove a necessidade do autoload"
+          ],
+          "a": 0,
+          "hint": "use é usado para trazer uma classe de outro namespace para o escopo atual, evitando escrever o caminho completo toda vez.",
+          "ex": "use importa a classe Logger do namespace Monolog, permitindo referenciá-la apenas pelo nome curto Logger.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual arquivo lista as dependências de um projeto que usa Composer?",
+          "opts": ["package.json", "composer.json", "dependencies.php", "autoload.json"],
+          "a": 1,
+          "hint": "É o mesmo arquivo mostrado no primeiro exemplo da lição.",
+          "ex": "composer.json é o arquivo de configuração onde as dependências do projeto PHP são declaradas.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "php-26",
+      "name": "NAMESPACES",
+      "difficulty": "AVANÇADO",
+      "color": "#a78bfa",
+      "icon": "◎",
+      "summary": "Organize classes e evite conflitos de nomes usando namespaces.",
+      "lesson": [
+        {
+          "title": "Declarando um namespace",
+          "body": "namespace agrupa classes relacionadas sob um mesmo 'nome de pacote', evitando conflitos quando duas bibliotecas diferentes têm classes com o mesmo nome, como Logger.",
+          "code": "<?php\n  namespace App\\Models;\n\n  class Usuario {\n    public $nome;\n  }\n?>"
+        },
+        {
+          "title": "Usando classes de outros namespaces",
+          "body": "Para usar uma classe de outro namespace, referenciamos o caminho completo ou importamos com use. Isso permite que duas classes chamadas Usuario, em namespaces diferentes, coexistam sem conflito.",
+          "code": "<?php\n  use App\\Models\\Usuario;\n\n  $u = new Usuario();\n  // ou sem 'use':\n  $u2 = new \\App\\Models\\Usuario();\n?>"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual problema os namespaces ajudam a resolver?",
+          "opts": [
+            "Lentidão na execução do PHP",
+            "Conflitos entre classes de mesmo nome vindas de diferentes bibliotecas",
+            "Erros de digitação em variáveis",
+            "Falta de suporte a arrays associativos"
+          ],
+          "a": 1,
+          "hint": "Pense em duas bibliotecas diferentes que definem uma classe chamada Logger, por exemplo.",
+          "ex": "Namespaces permitem que classes com o mesmo nome coexistam, desde que estejam em namespaces diferentes.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual é o nome completo (fully qualified) da classe Usuario declarada abaixo?\n<?php\n  namespace App\\Models;\n  class Usuario {\n  }\n?>",
+          "opts": ["Usuario", "App\\Usuario", "App\\Models\\Usuario", "Models\\App\\Usuario"],
+          "a": 2,
+          "hint": "O nome completo junta o namespace declarado com o nome da classe, na ordem em que aparecem.",
+          "ex": "O namespace App\\Models combinado com a classe Usuario forma o nome completo App\\Models\\Usuario.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "code",
+          "q": "O que a linha use App\\Models\\Usuario; permite fazer depois no código?",
+          "opts": [
+            "Usar apenas new Usuario() em vez do caminho completo",
+            "Excluir a classe Usuario do namespace App\\Models",
+            "Criar automaticamente uma nova classe",
+            "Renomear a classe para App"
+          ],
+          "a": 0,
+          "hint": "use serve para importar, permitindo referenciar a classe por um nome mais curto no restante do arquivo.",
+          "ex": "Depois do use, basta escrever new Usuario() em vez de repetir o caminho completo App\\Models\\Usuario.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro no código abaixo, que tenta declarar um namespace:\n<?php\n  class Usuario {\n  }\n  namespace App\\Models;\n?>",
+          "opts": [
+            "A declaração namespace deve ser a primeira instrução do arquivo, antes de qualquer classe",
+            "namespace não pode conter barra invertida",
+            "class Usuario deveria vir depois de use",
+            "Namespaces só funcionam com Composer instalado"
+          ],
+          "a": 0,
+          "hint": "PHP exige que a declaração de namespace apareça antes de qualquer outro código no arquivo.",
+          "ex": "A instrução namespace precisa ser a primeira linha de código do arquivo (depois de <?php), antes de qualquer classe ou função.",
+          "format": "ENCONTRE O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "php-27",
+      "name": "NOÇÕES DE LARAVEL",
+      "difficulty": "AVANÇADO",
+      "color": "#a78bfa",
+      "icon": "⌗",
+      "summary": "Conheça os conceitos básicos do framework Laravel: MVC, rotas e o mercado de trabalho.",
+      "lesson": [
+        {
+          "title": "O padrão MVC",
+          "body": "Laravel é o framework PHP mais popular do mercado e organiza o código no padrão MVC: Model (dados e regras de negócio), View (interface visível ao usuário) e Controller (recebe requisições e coordena Model e View).",
+          "code": "// app/Http/Controllers/ProdutoController.php\nclass ProdutoController extends Controller {\n  public function index() {\n    $produtos = Produto::all();\n    return view(\"produtos.index\", [\"produtos\" => $produtos]);\n  }\n}"
+        },
+        {
+          "title": "Rotas",
+          "body": "Em Laravel, rotas ligam uma URL a uma ação de um Controller, definidas no arquivo routes/web.php. Isso centraliza e organiza todos os caminhos aceitos pela aplicação.",
+          "code": "// routes/web.php\nRoute::get(\"/produtos\", [ProdutoController::class, \"index\"]);"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "No padrão MVC, qual componente é responsável por receber a requisição e coordenar Model e View?",
+          "opts": ["Model", "View", "Controller", "Route"],
+          "a": 2,
+          "hint": "É a peça que 'controla' o fluxo entre os dados e o que é exibido ao usuário.",
+          "ex": "O Controller recebe a requisição, interage com o Model para buscar dados e escolhe qual View retornar.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que a linha Route::get(\"/produtos\", [ProdutoController::class, \"index\"]); faz?",
+          "opts": [
+            "Cria a tabela produtos no banco de dados",
+            "Associa a URL /produtos, quando acessada via GET, ao método index() do ProdutoController",
+            "Exclui a rota /produtos existente",
+            "Declara uma nova variável de sessão"
+          ],
+          "a": 1,
+          "hint": "Route::get liga um caminho de URL a uma ação específica de um Controller.",
+          "ex": "Essa linha define que requisições GET para /produtos serão tratadas pelo método index() de ProdutoController.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que o Laravel é considerado relevante para quem busca vagas de back-end PHP no mercado?",
+          "opts": [
+            "Porque é a única forma de escrever PHP válido",
+            "Porque é o framework PHP mais adotado no mercado, muito exigido em vagas de back-end",
+            "Porque substitui completamente o HTML",
+            "Porque não precisa de banco de dados"
+          ],
+          "a": 1,
+          "hint": "Pense na popularidade do Laravel mencionada na lição em relação ao mercado de trabalho.",
+          "ex": "Laravel é amplamente adotado por empresas, sendo um dos frameworks PHP mais procurados em processos seletivos.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "No exemplo do ProdutoController, o que a linha Produto::all() representa dentro do padrão MVC?",
+          "opts": [
+            "Uma chamada de View",
+            "Uma interação com o Model para buscar todos os produtos",
+            "A definição de uma nova rota",
+            "Um comando para apagar produtos"
+          ],
+          "a": 1,
+          "hint": "Produto é o Model; all() é um método típico para buscar todos os registros dessa entidade.",
+          "ex": "Produto::all() consulta o Model Produto para trazer todos os registros da tabela correspondente.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "php-28",
+      "name": "MINI CRUD: ESTRUTURA",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "◆",
+      "summary": "Planeje a estrutura de um mini CRUD web em PHP puro, unindo formulário, PDO e boas práticas.",
+      "lesson": [
+        {
+          "title": "Planejando o CRUD",
+          "body": "Um CRUD (Create, Read, Update, Delete) de tarefas precisa de: uma tabela no banco, um formulário para criar/editar, uma listagem para ler os dados e ações para excluir. Cada operação deve usar consultas preparadas com PDO.",
+          "code": "-- Estrutura da tabela\nCREATE TABLE tarefas (\n  id INT AUTO_INCREMENT PRIMARY KEY,\n  titulo VARCHAR(100) NOT NULL,\n  concluida BOOLEAN DEFAULT FALSE\n);"
+        },
+        {
+          "title": "Listando registros (Read)",
+          "body": "Para exibir todas as tarefas, fazemos um SELECT e percorremos o resultado com foreach, escapando a saída com htmlspecialchars() para evitar XSS.",
+          "code": "<?php\n  $stmt = $pdo->query(\"SELECT * FROM tarefas\");\n  $tarefas = $stmt->fetchAll();\n  foreach ($tarefas as $tarefa) {\n    echo htmlspecialchars($tarefa[\"titulo\"]);\n  }\n?>"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que a sigla CRUD representa?",
+          "opts": [
+            "Create, Read, Update, Delete",
+            "Connect, Run, Update, Debug",
+            "Create, Route, Use, Deploy",
+            "Copy, Read, Undo, Delete"
+          ],
+          "a": 0,
+          "hint": "São as quatro operações básicas feitas sobre dados persistidos.",
+          "ex": "CRUD representa as quatro operações fundamentais sobre dados: Create, Read, Update e Delete.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Por que htmlspecialchars() é usado ao exibir $tarefa[\"titulo\"] na listagem?",
+          "opts": [
+            "Para formatar números com casas decimais",
+            "Para evitar que um título malicioso contendo HTML/JS seja executado no navegador (XSS)",
+            "Para ordenar a lista de tarefas",
+            "Para converter o texto em maiúsculas"
+          ],
+          "a": 1,
+          "hint": "Pense no risco de exibir diretamente dados que vieram originalmente de um formulário preenchido por usuários.",
+          "ex": "Como o título de uma tarefa pode ter sido digitado por um usuário, htmlspecialchars() previne XSS ao exibir esse dado.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual comando SQL da estrutura da tabela garante que toda tarefa tenha um identificador único automático?",
+          "opts": [
+            "titulo VARCHAR(100) NOT NULL",
+            "id INT AUTO_INCREMENT PRIMARY KEY",
+            "concluida BOOLEAN DEFAULT FALSE",
+            "CREATE TABLE tarefas"
+          ],
+          "a": 1,
+          "hint": "Procure a coluna que combina chave primária com incremento automático.",
+          "ex": "AUTO_INCREMENT PRIMARY KEY faz o banco gerar automaticamente um id único e crescente para cada nova tarefa.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "code",
+          "q": "Qual seria o próximo passo lógico depois de listar as tarefas (Read), para completar o CRUD?",
+          "opts": [
+            "Criar um formulário para adicionar novas tarefas (Create) usando INSERT com prepare/execute",
+            "Apagar a tabela tarefas do banco",
+            "Remover o PDO e usar apenas arrays em memória",
+            "Repetir a listagem em outra página sem alterações"
+          ],
+          "a": 0,
+          "hint": "Pense na ordem natural do CRUD: depois de conseguir ler os dados, falta permitir criar novos registros.",
+          "ex": "Depois de implementar a leitura (Read), o próximo passo é permitir a criação (Create) de novas tarefas via formulário e INSERT.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "php-29",
+      "name": "MINI CRUD: LÓGICA",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "▲",
+      "summary": "Implemente a lógica de criação, atualização e exclusão de tarefas no mini CRUD.",
+      "lesson": [
+        {
+          "title": "Criando uma tarefa (Create)",
+          "body": "Ao receber o formulário via POST, validamos o título e inserimos no banco com uma consulta preparada, redirecionando o usuário de volta à listagem após o sucesso.",
+          "code": "<?php\n  if ($_SERVER[\"REQUEST_METHOD\"] === \"POST\") {\n    $titulo = trim($_POST[\"titulo\"] ?? \"\");\n    if (!empty($titulo)) {\n      $stmt = $pdo->prepare(\"INSERT INTO tarefas (titulo) VALUES (?)\");\n      $stmt->execute([$titulo]);\n    }\n  }\n?>"
+        },
+        {
+          "title": "Atualizando e excluindo",
+          "body": "Para marcar uma tarefa como concluída (Update) ou removê-la (Delete), usamos o id recebido via GET ou POST em uma consulta preparada, sempre filtrando pelo id específico.",
+          "code": "<?php\n  // marcar como concluída\n  $stmt = $pdo->prepare(\"UPDATE tarefas SET concluida = 1 WHERE id = ?\");\n  $stmt->execute([$id]);\n\n  // excluir\n  $stmt = $pdo->prepare(\"DELETE FROM tarefas WHERE id = ?\");\n  $stmt->execute([$id]);\n?>"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "Por que o código verifica !empty($titulo) antes de inserir a tarefa?",
+          "opts": [
+            "Para evitar salvar tarefas com título vazio no banco",
+            "Para converter o título em maiúsculas",
+            "Porque PDO exige títulos com mais de 100 caracteres",
+            "Para contar quantos caracteres o título tem"
+          ],
+          "a": 0,
+          "hint": "Pense no que aconteceria se o usuário enviasse o formulário sem preencher o campo título.",
+          "ex": "A verificação !empty($titulo) impede que tarefas sem conteúdo relevante sejam salvas no banco.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que o código abaixo faz?\n<?php\n  $stmt = $pdo->prepare(\"UPDATE tarefas SET concluida = 1 WHERE id = ?\");\n  $stmt->execute([$id]);\n?>",
+          "opts": [
+            "Exclui a tarefa com o id informado",
+            "Marca a tarefa com o id informado como concluída",
+            "Cria uma nova tarefa concluída",
+            "Lista todas as tarefas concluídas"
+          ],
+          "a": 1,
+          "hint": "O comando é um UPDATE que altera o valor da coluna concluida.",
+          "ex": "O UPDATE altera a coluna concluida para 1 (verdadeiro) apenas na tarefa cujo id corresponde ao informado.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro no código abaixo, que deveria excluir uma tarefa específica:\n<?php\n  $stmt = $pdo->prepare(\"DELETE FROM tarefas\");\n  $stmt->execute([$id]);\n?>",
+          "opts": [
+            "Falta a cláusula WHERE id = ? na consulta, o que apagaria todas as tarefas",
+            "DELETE não pode ser usado com prepare()",
+            "$id deveria ser passado fora de um array",
+            "A tabela tarefas não pode ter DELETE"
+          ],
+          "a": 0,
+          "hint": "Sem uma condição para filtrar, um DELETE afeta todas as linhas da tabela, não apenas uma.",
+          "ex": "Sem WHERE id = ?, o comando apagaria todas as tarefas da tabela, não apenas a desejada.",
+          "format": "CORRIJA O ERRO"
+        },
+        {
+          "type": "code",
+          "q": "Qual verificação evita que o script processe o formulário quando a página é apenas carregada (GET), e não enviada (POST)?",
+          "opts": [
+            "if ($_SERVER[\"REQUEST_METHOD\"] === \"POST\") { ... }",
+            "if ($_GET[\"metodo\"] === \"POST\") { ... }",
+            "if (isset($_POST)) { ... } (sem comparar o método)",
+            "Não é necessário verificar nada"
+          ],
+          "a": 0,
+          "hint": "É preciso comparar o método HTTP real da requisição antes de processar dados de inserção.",
+          "ex": "Checar $_SERVER[\"REQUEST_METHOD\"] === \"POST\" garante que o processamento só ocorra quando o formulário for realmente enviado.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "php-30",
+      "name": "REVISÃO GERAL",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "★",
+      "summary": "Revise os principais conceitos da trilha de PHP, do echo básico ao mini CRUD com banco de dados.",
+      "lesson": [
+        {
+          "title": "Do básico ao back-end completo",
+          "body": "A trilha percorreu variáveis, estruturas de controle, funções, arrays, orientação a objetos, formulários, banco de dados com PDO, sessões, segurança e o ecossistema moderno com Composer e Laravel — a base para atuar profissionalmente com PHP.",
+          "code": "<?php\n  // Um resumo prático: buscar e exibir tarefas com segurança\n  $stmt = $pdo->prepare(\"SELECT * FROM tarefas WHERE concluida = ?\");\n  $stmt->execute([0]);\n  foreach ($stmt->fetchAll() as $tarefa) {\n    echo htmlspecialchars($tarefa[\"titulo\"]) . \"\\n\";\n  }\n?>"
+        },
+        {
+          "title": "Segurança como hábito",
+          "body": "Consultas preparadas, htmlspecialchars() e password_hash() não são opcionais em um sistema real: são práticas que devem se tornar automáticas em qualquer código PHP que lida com dados de usuários.",
+          "code": "<?php\n  // Sempre: prepare + execute, nunca concatenar SQL diretamente\n  $stmt = $pdo->prepare(\"SELECT * FROM usuarios WHERE email = ?\");\n  $stmt->execute([$email]);\n?>"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual extensão do PHP foi usada ao longo da trilha para acessar bancos de dados de forma segura e padronizada?",
+          "opts": ["mysqli exclusivo", "PDO", "cURL", "SimpleXML"],
+          "a": 1,
+          "hint": "É a interface que permite trocar de banco de dados com poucas mudanças no código.",
+          "ex": "PDO foi a extensão usada para conectar e consultar o banco de dados de forma padronizada e segura.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "No código de revisão abaixo, por que o valor 0 é passado dentro de um array para execute()?\n<?php\n  $stmt = $pdo->prepare(\"SELECT * FROM tarefas WHERE concluida = ?\");\n  $stmt->execute([0]);\n?>",
+          "opts": [
+            "Porque execute() sempre recebe os valores dos marcadores dentro de um array",
+            "Porque 0 precisa ser convertido em texto antes",
+            "Porque array é obrigatório apenas em comandos SELECT",
+            "É um erro; deveria ser execute(0)"
+          ],
+          "a": 0,
+          "hint": "Lembre-se do padrão usado em todas as consultas preparadas da trilha: os valores vão sempre agrupados.",
+          "ex": "O método execute() de uma consulta preparada sempre recebe os valores dos marcadores agrupados em um array.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual das opções resume corretamente uma boa prática de segurança vista na trilha?",
+          "opts": [
+            "Concatenar dados do usuário diretamente em comandos SQL",
+            "Usar consultas preparadas, escapar saída com htmlspecialchars() e armazenar senhas com password_hash()",
+            "Guardar senhas em texto puro para facilitar consultas",
+            "Confiar sempre nos dados enviados por $_GET e $_POST sem validação"
+          ],
+          "a": 1,
+          "hint": "Pense nas três técnicas de segurança repetidas ao longo das últimas unidades da trilha.",
+          "ex": "Consultas preparadas, htmlspecialchars() e password_hash() formam a base de segurança aprendida na trilha.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Depois de dominar PHP puro com PDO, qual é o próximo passo natural mencionado na trilha para o mercado de trabalho?",
+          "opts": [
+            "Abandonar PHP e aprender apenas HTML",
+            "Aprofundar-se em um framework como Laravel, que organiza o código em MVC e é muito exigido em vagas",
+            "Parar de usar banco de dados",
+            "Reescrever tudo sem usar funções"
+          ],
+          "a": 1,
+          "hint": "Pense na unidade sobre o ecossistema moderno e a popularidade desse framework no mercado.",
+          "ex": "Laravel é o framework PHP mais adotado no mercado, sendo um passo natural após dominar os fundamentos da linguagem.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    }
+  ]
+}
