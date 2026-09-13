@@ -1,0 +1,2228 @@
+{
+  "meta": {
+    "id": "cpp",
+    "title": "C++",
+    "subtitle": "Programação de baixo nível e alta performance.",
+    "icon": "◆",
+    "color": "#00599C",
+    "fileExt": "cpp",
+    "stagesPerUnit": 3,
+    "order": 17,
+    "units": [
+      { "title": "Fundamentos de C++", "goal": "Variáveis, tipos e cout/cin.", "color": "#00599C" },
+      { "title": "Controle de Fluxo", "goal": "Condicionais e loops.", "color": "#ff9600" },
+      { "title": "Funções", "goal": "Declaração, sobrecarga e passagem por referência.", "color": "#f6c445" },
+      { "title": "Ponteiros e Memória", "goal": "Ponteiros, referências e alocação dinâmica.", "color": "#22c55e" },
+      { "title": "Orientação a Objetos", "goal": "Classes, construtores e destrutores.", "color": "#34d399" },
+      { "title": "Herança e Polimorfismo", "goal": "Herança, virtual e classes abstratas.", "color": "#1cb0f6" },
+      { "title": "Estruturas de Dados", "goal": "Arrays, vectors e STL básica.", "color": "#0ea5e9" },
+      { "title": "Gerenciamento de Recursos", "goal": "RAII e smart pointers (conceitual).", "color": "#38bdf8" },
+      { "title": "Boas Práticas", "goal": "const correctness, compilação e headers.", "color": "#a78bfa" },
+      { "title": "Projeto final", "goal": "Revisão integrada com um mini sistema em C++.", "color": "#facc15" }
+    ]
+  },
+  "title": "C++",
+  "version": 1,
+  "stages": [
+    {
+      "id": "cpp-1",
+      "name": "PRIMEIRO PROGRAMA",
+      "difficulty": "INICIANTE",
+      "color": "#00599C",
+      "icon": "◆",
+      "summary": "Conheça a estrutura mínima de um programa em C++ e o comando cout.",
+      "lesson": [
+        {
+          "title": "A estrutura básica",
+          "body": "Todo programa em C++ precisa de uma função main(), que é o ponto de entrada executado pelo sistema. O #include <iostream> traz recursos de entrada e saída, como cout, usado para imprimir texto no console.",
+          "code": "#include <iostream>\nusing namespace std;\n\nint main() {\n    cout << \"Ola, mundo!\" << endl;\n    return 0;\n}"
+        },
+        {
+          "title": "Ponto e vírgula e blocos",
+          "body": "Cada instrução em C++ termina com ponto e vírgula (;). Blocos de código, como o corpo de uma função, ficam entre chaves { }. Esquecer o ; é um dos erros mais comuns para quem está começando.",
+          "code": "int main() {\n    cout << \"Linha 1\" << endl;\n    cout << \"Linha 2\" << endl;\n    return 0;\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual função é obrigatória em todo programa C++ e serve como ponto de entrada?",
+          "opts": ["start()", "main()", "run()", "init()"],
+          "a": 1,
+          "hint": "É a função que o sistema operacional chama primeiro.",
+          "ex": "main() é o ponto de entrada padrão de um programa C++.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que a seguinte linha faz?\ncout << \"Ola, mundo!\" << endl;",
+          "opts": [
+            "Lê um texto digitado pelo usuário",
+            "Imprime o texto no console e pula uma linha",
+            "Declara uma variável de texto",
+            "Compara duas strings"
+          ],
+          "a": 1,
+          "hint": "cout é usado para saída de dados; endl tem relação com quebra de linha.",
+          "ex": "cout envia dados para a tela e endl insere uma nova linha.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro no trecho:\nint main() {\n    cout << \"Teste\" << endl\n    return 0;\n}",
+          "opts": [
+            "Falta o #include <iostream>",
+            "Falta o ponto e vírgula após endl",
+            "cout não existe em C++",
+            "return 0 está errado"
+          ],
+          "a": 1,
+          "hint": "Reveja cada linha procurando por um símbolo de finalização ausente.",
+          "ex": "A instrução com cout precisa terminar com ; antes de return.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que 'return 0;' ao final de main() geralmente indica?",
+          "opts": [
+            "Que o programa terminou com erro",
+            "Que o programa terminou com sucesso",
+            "Que a variável 0 foi criada",
+            "É apenas um comentário"
+          ],
+          "a": 1,
+          "hint": "Por convenção, um código de saída indica se algo deu certo ou não.",
+          "ex": "O valor 0 retornado ao sistema operacional convencionalmente indica sucesso.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "cpp-2",
+      "name": "VARIÁVEIS E TIPOS",
+      "difficulty": "INICIANTE",
+      "color": "#00599C",
+      "icon": "▲",
+      "summary": "Aprenda a declarar variáveis e conheça os tipos básicos de C++.",
+      "lesson": [
+        {
+          "title": "Tipos primitivos",
+          "body": "C++ é uma linguagem de tipagem estática: toda variável precisa de um tipo declarado antes de ser usada. Os tipos mais comuns são int (inteiros), double (números com casas decimais), char (um único caractere) e bool (verdadeiro ou falso).",
+          "code": "int idade = 20;\ndouble altura = 1.75;\nchar inicial = 'A';\nbool aprovado = true;"
+        },
+        {
+          "title": "Declaração e atribuição",
+          "body": "Uma variável pode ser declarada e inicializada na mesma linha, ou declarada primeiro e receber um valor depois com o operador =. Sem inicialização, uma variável local contém lixo de memória, ou seja, um valor indefinido.",
+          "code": "int total;\ntotal = 10;\ntotal = total + 5;"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual tipo é mais adequado para armazenar o preço 19.90?",
+          "opts": ["int", "char", "double", "bool"],
+          "a": 2,
+          "hint": "Pense em qual tipo suporta casas decimais.",
+          "ex": "double armazena números de ponto flutuante, como 19.90.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que C++ é chamada de linguagem de tipagem estática?",
+          "opts": [
+            "Porque as variáveis nunca podem mudar de valor",
+            "Porque o tipo de cada variável é definido em tempo de compilação e não muda",
+            "Porque só existe o tipo int",
+            "Porque não é possível usar double"
+          ],
+          "a": 1,
+          "hint": "Pense no momento em que o compilador verifica os tipos.",
+          "ex": "O tipo de uma variável é fixado na compilação e não muda durante a execução.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual o valor final de 'total' após esse código?\nint total = 10;\ntotal = total + 5;",
+          "opts": ["10", "5", "15", "Erro de compilação"],
+          "a": 2,
+          "hint": "Siga o valor de total passo a passo.",
+          "ex": "total recebe 10, depois soma 5, resultando em 15.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Corrija o erro de tipo neste trecho:\nchar letra = \"A\";",
+          "opts": [
+            "char letra = 'A';",
+            "char letra = A;",
+            "string letra = 'A';",
+            "int letra = \"A\";"
+          ],
+          "a": 0,
+          "hint": "char armazena um único caractere; observe o tipo de aspas usado.",
+          "ex": "Um char usa aspas simples ('A'), aspas duplas são usadas para strings.",
+          "format": "CORRIJA O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "cpp-3",
+      "name": "ENTRADA COM CIN",
+      "difficulty": "INICIANTE",
+      "color": "#00599C",
+      "icon": "★",
+      "summary": "Use cin para ler dados digitados pelo usuário e operadores aritméticos básicos.",
+      "lesson": [
+        {
+          "title": "Lendo dados do usuário",
+          "body": "O objeto cin, do mesmo <iostream>, lê valores digitados no console e os armazena em uma variável usando o operador >>. É importante que o tipo da variável combine com o que se espera digitar.",
+          "code": "int idade;\ncout << \"Digite sua idade: \";\ncin >> idade;\ncout << \"Voce tem \" << idade << \" anos.\" << endl;"
+        },
+        {
+          "title": "Operadores aritméticos",
+          "body": "C++ oferece os operadores +, -, *, / e % (resto da divisão). Ao dividir dois inteiros, o resultado é truncado (sem casas decimais); para obter decimais, pelo menos um dos operandos deve ser double.",
+          "code": "int a = 7, b = 2;\ncout << a / b << endl;   // 3\ncout << a % b << endl;   // 1\ncout << (double)a / b;   // 3.5"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual operador é usado com cin para armazenar um valor digitado em uma variável?",
+          "opts": ["<<", ">>", "==", "::"],
+          "a": 1,
+          "hint": "É o oposto do operador usado com cout.",
+          "ex": "cin >> variavel lê um valor do teclado e o guarda na variável.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual o resultado de 'a / b' se a = 7 e b = 2, ambos int?",
+          "opts": ["3.5", "3", "1", "4"],
+          "a": 1,
+          "hint": "Divisão entre dois inteiros em C++ descarta a parte decimal.",
+          "ex": "A divisão inteira trunca o resultado, então 7 / 2 vale 3.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Qual o resultado de 'a % 2' se a = 7?",
+          "opts": ["3", "0", "1", "3.5"],
+          "a": 2,
+          "hint": "% retorna o resto de uma divisão, não o quociente.",
+          "ex": "7 dividido por 2 dá quociente 3 e resto 1, então a % 2 vale 1.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Como obter o resultado decimal correto de uma divisão entre dois inteiros a e b?",
+          "opts": [
+            "cout << a / b;",
+            "cout << (double)a / b;",
+            "cout << a % b;",
+            "cout << int(a / b);"
+          ],
+          "a": 1,
+          "hint": "É preciso converter pelo menos um dos operandos antes da divisão.",
+          "ex": "Converter a para double faz a divisão ser feita em ponto flutuante.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "cpp-4",
+      "name": "CONDICIONAIS",
+      "difficulty": "INICIANTE",
+      "color": "#ff9600",
+      "icon": "↗",
+      "summary": "Tome decisões no código com if, else if e else.",
+      "lesson": [
+        {
+          "title": "if e else",
+          "body": "A instrução if executa um bloco de código somente se uma condição for verdadeira. O else executa um bloco alternativo quando a condição é falsa. Condições usam operadores relacionais como ==, !=, <, >, <= e >=.",
+          "code": "int nota = 7;\nif (nota >= 6) {\n    cout << \"Aprovado\" << endl;\n} else {\n    cout << \"Reprovado\" << endl;\n}"
+        },
+        {
+          "title": "else if e operadores lógicos",
+          "body": "Vários cenários podem ser encadeados com else if. Operadores lógicos && (e), || (ou) e ! (não) combinam múltiplas condições em uma só expressão booleana.",
+          "code": "int idade = 17;\nif (idade >= 18) {\n    cout << \"Maior de idade\" << endl;\n} else if (idade >= 12) {\n    cout << \"Adolescente\" << endl;\n} else {\n    cout << \"Crianca\" << endl;\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "O que este código imprime?\nint nota = 5;\nif (nota >= 6) {\n    cout << \"Aprovado\";\n} else {\n    cout << \"Reprovado\";\n}",
+          "opts": ["Aprovado", "Reprovado", "Nada é impresso", "Erro de compilação"],
+          "a": 1,
+          "hint": "Verifique se 5 satisfaz a condição nota >= 6.",
+          "ex": "Como 5 é menor que 6, a condição é falsa e o bloco else executa.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual operador representa 'igual a' em uma comparação, diferente de atribuição?",
+          "opts": ["=", "==", "!=", "==="],
+          "a": 1,
+          "hint": "Um único sinal de igual é usado para atribuir valores, não comparar.",
+          "ex": "== compara dois valores; = apenas atribui um valor a uma variável.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nint x = 10;\nif (x = 5) {\n    cout << \"Igual a cinco\";\n}",
+          "opts": [
+            "Falta o else",
+            "Deveria usar == em vez de =",
+            "x deveria ser double",
+            "if não aceita parênteses"
+          ],
+          "a": 1,
+          "hint": "Dentro do parêntese do if deveria haver uma comparação, não uma atribuição.",
+          "ex": "Usar = atribui 5 a x e sempre é verdadeiro; o correto é comparar com ==.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual expressão verifica se 'idade' está entre 12 (inclusive) e 18 (exclusive)?",
+          "opts": [
+            "idade >= 12 || idade < 18",
+            "idade >= 12 && idade < 18",
+            "idade > 12 && idade > 18",
+            "idade == 12 && idade == 18"
+          ],
+          "a": 1,
+          "hint": "Ambas as condições precisam ser verdadeiras ao mesmo tempo.",
+          "ex": "&& exige que as duas condições sejam verdadeiras simultaneamente.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "cpp-5",
+      "name": "LAÇO FOR",
+      "difficulty": "INICIANTE",
+      "color": "#ff9600",
+      "icon": "▤",
+      "summary": "Repita blocos de código com o laço for e entenda sua estrutura de três partes.",
+      "lesson": [
+        {
+          "title": "Estrutura do for",
+          "body": "O laço for tem três partes separadas por ponto e vírgula: inicialização, condição e incremento. Ele repete o bloco enquanto a condição for verdadeira, executando o incremento a cada volta.",
+          "code": "for (int i = 0; i < 5; i++) {\n    cout << i << \" \";\n}\n// imprime: 0 1 2 3 4"
+        },
+        {
+          "title": "Variações comuns",
+          "body": "O incremento pode ser diferente de 1, e o laço pode contar em ordem decrescente. O operador ++ soma 1 à variável, e -- subtrai 1.",
+          "code": "for (int i = 10; i > 0; i--) {\n    cout << i << \" \";\n}\n// imprime: 10 9 8 7 6 5 4 3 2 1"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "Quantas vezes o bloco é executado neste laço?\nfor (int i = 0; i < 5; i++) {\n    cout << i;\n}",
+          "opts": ["4", "5", "6", "Infinitas vezes"],
+          "a": 1,
+          "hint": "Conte os valores de i que satisfazem i < 5, começando em 0.",
+          "ex": "i assume os valores 0, 1, 2, 3 e 4, totalizando 5 execuções.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual parte do for é responsável por atualizar a variável de controle a cada iteração?",
+          "opts": ["A inicialização", "A condição", "O incremento", "O corpo do laço"],
+          "a": 2,
+          "hint": "É a terceira parte, separada por ponto e vírgula, dentro dos parênteses do for.",
+          "ex": "O incremento (como i++) é executado ao final de cada volta do laço.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro que causa um laço infinito:\nfor (int i = 0; i < 5; i--) {\n    cout << i;\n}",
+          "opts": [
+            "A condição deveria ser i > 5",
+            "i deveria começar em 5",
+            "O incremento deveria ser i++, não i--",
+            "Falta declarar i antes do laço"
+          ],
+          "a": 2,
+          "hint": "Observe se a variável i está se aproximando ou se afastando do limite da condição.",
+          "ex": "Com i-- e condição i < 5, i nunca deixa de ser menor que 5, gerando loop infinito.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "code",
+          "q": "Como escrever um for que imprime os números pares de 0 a 10 (inclusive)?",
+          "opts": [
+            "for (int i = 0; i <= 10; i++)",
+            "for (int i = 0; i <= 10; i += 2)",
+            "for (int i = 0; i < 10; i--)",
+            "for (int i = 10; i <= 0; i++)"
+          ],
+          "a": 1,
+          "hint": "Pense em como incrementar de 2 em 2 a partir de 0.",
+          "ex": "Começando em 0 e somando 2 a cada volta, obtêm-se apenas números pares.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "cpp-6",
+      "name": "LAÇOS WHILE E DO-WHILE",
+      "difficulty": "INICIANTE",
+      "color": "#ff9600",
+      "icon": "▦",
+      "summary": "Compare while e do-while e saiba quando usar cada um.",
+      "lesson": [
+        {
+          "title": "while: testa antes",
+          "body": "O laço while verifica a condição antes de cada execução do bloco. Se a condição já começar falsa, o bloco nunca é executado.",
+          "code": "int contador = 0;\nwhile (contador < 3) {\n    cout << contador << \" \";\n    contador++;\n}\n// imprime: 0 1 2"
+        },
+        {
+          "title": "do-while: testa depois",
+          "body": "O laço do-while executa o bloco pelo menos uma vez, pois a condição só é verificada ao final. É útil quando é necessário executar uma ação antes de saber se deve repetir, como validar uma entrada do usuário.",
+          "code": "int opcao;\ndo {\n    cout << \"Digite 1 para sair: \";\n    cin >> opcao;\n} while (opcao != 1);"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual a principal diferença entre while e do-while?",
+          "opts": [
+            "while sempre executa pelo menos uma vez, do-while não",
+            "do-while sempre executa pelo menos uma vez, while não",
+            "Não há diferença nenhuma",
+            "do-while não aceita condições"
+          ],
+          "a": 1,
+          "hint": "Pense em qual dos dois testa a condição somente depois de executar o bloco.",
+          "ex": "No do-while a condição é checada após a execução, garantindo ao menos uma volta.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que este código imprime?\nint c = 5;\nwhile (c < 3) {\n    cout << c;\n    c++;\n}\ncout << \"Fim\";",
+          "opts": ["5Fim", "Fim", "Erro de compilação", "5"],
+          "a": 1,
+          "hint": "Verifique se a condição do while já é verdadeira quando c vale 5.",
+          "ex": "Como 5 não é menor que 3, o bloco nunca executa e só 'Fim' é impresso.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Corrija o laço infinito abaixo:\nint c = 0;\nwhile (c < 5) {\n    cout << c;\n}",
+          "opts": [
+            "Trocar while por do-while",
+            "Adicionar c++; dentro do bloco",
+            "Trocar < por >",
+            "Remover a condição"
+          ],
+          "a": 1,
+          "hint": "A variável de controle nunca muda dentro do bloco atual.",
+          "ex": "Sem incrementar c, a condição c < 5 nunca se torna falsa.",
+          "format": "CORRIJA O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual situação combina melhor com o uso de do-while?",
+          "opts": [
+            "Percorrer um array de tamanho fixo conhecido",
+            "Pedir uma senha ao usuário até que ele digite corretamente, exibindo o prompt ao menos uma vez",
+            "Somar todos os elementos de um vetor vazio",
+            "Executar um bloco exatamente zero vezes"
+          ],
+          "a": 1,
+          "hint": "Pense em qual cenário exige executar a ação antes de checar a condição.",
+          "ex": "O prompt de senha precisa aparecer pelo menos uma vez, o que combina com do-while.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "cpp-7",
+      "name": "SWITCH E BREAK",
+      "difficulty": "INICIANTE",
+      "color": "#ff9600",
+      "icon": "▣",
+      "summary": "Use switch para tratar múltiplos valores possíveis de uma variável e entenda o papel do break.",
+      "lesson": [
+        {
+          "title": "Estrutura do switch",
+          "body": "O switch compara uma variável com vários valores possíveis definidos em case. Cada case deve terminar com break, senão a execução 'cai' para o próximo case (fall-through), o que raramente é o desejado.",
+          "code": "int dia = 3;\nswitch (dia) {\n    case 1: cout << \"Segunda\"; break;\n    case 2: cout << \"Terca\"; break;\n    case 3: cout << \"Quarta\"; break;\n    default: cout << \"Invalido\";\n}"
+        },
+        {
+          "title": "default",
+          "body": "O caso default é executado quando nenhum case corresponde ao valor da variável. É equivalente ao else de um if-else e é opcional, mas recomendado para tratar valores inesperados.",
+          "code": "char nota = 'B';\nswitch (nota) {\n    case 'A': cout << \"Excelente\"; break;\n    case 'B': cout << \"Bom\"; break;\n    default: cout << \"Nota desconhecida\";\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que acontece se um case dentro de um switch não tiver break?",
+          "opts": [
+            "O programa não compila",
+            "A execução passa automaticamente para o próximo case (fall-through)",
+            "O switch é ignorado inteiramente",
+            "Um erro em tempo de execução ocorre"
+          ],
+          "a": 1,
+          "hint": "Pense no comportamento chamado 'fall-through'.",
+          "ex": "Sem break, a execução continua no case seguinte até encontrar um break ou o fim do switch.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que este código imprime?\nint x = 2;\nswitch (x) {\n    case 1: cout << \"um\"; break;\n    case 2: cout << \"dois\";\n    case 3: cout << \"tres\"; break;\n    default: cout << \"outro\";\n}",
+          "opts": ["dois", "doistres", "outro", "um"],
+          "a": 1,
+          "hint": "Verifique se o case 2 tem um break antes do próximo case.",
+          "ex": "Como o case 2 não tem break, a execução também roda o case 3, imprimindo 'dois' e 'tres'.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o problema no switch abaixo:\nswitch (nota) {\n    case 'A':\n        cout << \"Otimo\";\n    case 'B':\n        cout << \"Bom\";\n        break;\n}",
+          "opts": [
+            "Falta o default",
+            "O case 'A' não tem break, causando fall-through indesejado",
+            "switch não aceita char",
+            "Os dois cases estão na ordem errada"
+          ],
+          "a": 1,
+          "hint": "Compare os dois cases: um deles não termina com break.",
+          "ex": "Sem break no case 'A', o programa também executaria o case 'B' quando nota fosse 'A'.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Quando faz mais sentido usar switch em vez de vários if/else if?",
+          "opts": [
+            "Quando se compara a mesma variável com vários valores discretos específicos",
+            "Quando a condição envolve intervalos de valores, como x > 10",
+            "Quando não se sabe o tipo da variável",
+            "switch nunca deve ser usado em C++"
+          ],
+          "a": 0,
+          "hint": "switch compara igualdade com valores fixos, não faz comparações de intervalo.",
+          "ex": "switch é ideal quando uma variável é testada contra valores exatos, como dias da semana.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "cpp-8",
+      "name": "DECLARANDO FUNÇÕES",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#f6c445",
+      "icon": "◐",
+      "summary": "Organize código em funções reutilizáveis com parâmetros e retorno.",
+      "lesson": [
+        {
+          "title": "Assinatura de uma função",
+          "body": "Uma função tem um tipo de retorno, um nome, uma lista de parâmetros entre parênteses e um corpo entre chaves. Se a função não retorna valor, seu tipo de retorno é void.",
+          "code": "int somar(int a, int b) {\n    return a + b;\n}\n\nint main() {\n    int resultado = somar(3, 4);\n    cout << resultado;\n}"
+        },
+        {
+          "title": "Protótipos",
+          "body": "Em C++, uma função precisa ser declarada (ou definida) antes de ser usada. Quando a definição completa vem depois de main(), costuma-se declarar um protótipo no topo do arquivo, terminando com ponto e vírgula.",
+          "code": "int somar(int a, int b); // protótipo\n\nint main() {\n    cout << somar(2, 5);\n}\n\nint somar(int a, int b) {\n    return a + b;\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que indica o tipo 'void' como retorno de uma função?",
+          "opts": [
+            "A função retorna um número inteiro",
+            "A função não retorna nenhum valor",
+            "A função sempre retorna um erro",
+            "A função retorna um ponteiro"
+          ],
+          "a": 1,
+          "hint": "Pense no significado da palavra 'void' (vazio).",
+          "ex": "void indica que a função executa uma ação, mas não devolve um valor ao chamador.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual o valor de 'resultado' após este código?\nint dobrar(int x) {\n    return x * 2;\n}\nint resultado = dobrar(5);",
+          "opts": ["5", "10", "0", "Erro de compilação"],
+          "a": 1,
+          "hint": "Substitua x por 5 na expressão x * 2.",
+          "ex": "dobrar(5) calcula 5 * 2, retornando 10.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nint main() {\n    cout << somar(2, 3);\n}\n\nint somar(int a, int b) {\n    return a + b;\n}",
+          "opts": [
+            "somar está sendo usada antes de ser declarada ou definida",
+            "return a + b; está com sintaxe errada",
+            "main() não pode chamar outra função",
+            "Falta um terceiro parâmetro em somar"
+          ],
+          "a": 0,
+          "hint": "Pense na ordem em que o compilador lê o arquivo de cima para baixo.",
+          "ex": "Sem um protótipo antes de main(), o compilador não conhece somar() no momento da chamada.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "code",
+          "q": "Qual assinatura está correta para uma função que recebe dois doubles e retorna a média deles?",
+          "opts": [
+            "void media(double a, double b)",
+            "double media(double a, double b) { return (a + b) / 2; }",
+            "double media() { return a + b; }",
+            "media(double a, double b) { return (a + b) / 2; }"
+          ],
+          "a": 1,
+          "hint": "A função precisa de um tipo de retorno double e usar os dois parâmetros no corpo.",
+          "ex": "O tipo de retorno double combina com o cálculo (a + b) / 2, que pode ter casas decimais.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "cpp-9",
+      "name": "SOBRECARGA DE FUNÇÕES",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#f6c445",
+      "icon": "✓",
+      "summary": "Crie múltiplas versões de uma mesma função com parâmetros diferentes.",
+      "lesson": [
+        {
+          "title": "O que é sobrecarga",
+          "body": "Sobrecarga (overloading) permite que várias funções tenham o mesmo nome, desde que a lista de parâmetros seja diferente em quantidade ou tipo. O compilador escolhe a versão correta com base nos argumentos passados na chamada.",
+          "code": "int somar(int a, int b) {\n    return a + b;\n}\n\ndouble somar(double a, double b) {\n    return a + b;\n}\n\nint somar(int a, int b, int c) {\n    return a + b + c;\n}"
+        },
+        {
+          "title": "Ambiguidade",
+          "body": "Duas funções não podem ter exatamente os mesmos parâmetros diferindo apenas no tipo de retorno; isso gera erro de compilação. Se o compilador não conseguir decidir qual versão usar, ocorre um erro de chamada ambígua.",
+          "code": "// Erro: mesma assinatura, retornos diferentes\n// int calcular(int a);\n// double calcular(int a);"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que permite que duas funções tenham o mesmo nome em C++?",
+          "opts": [
+            "Terem corpos diferentes, mesmo com parâmetros idênticos",
+            "Terem listas de parâmetros diferentes em tipo ou quantidade",
+            "Terem tipos de retorno diferentes, com os mesmos parâmetros",
+            "Não é possível ter funções com o mesmo nome em C++"
+          ],
+          "a": 1,
+          "hint": "O compilador diferencia as funções pelos parâmetros, não pelo retorno.",
+          "ex": "A sobrecarga exige que a assinatura (parâmetros) seja distinta entre as versões.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Dadas as funções abaixo, qual delas é chamada por somar(2, 3)?\nint somar(int a, int b) { return a + b; }\ndouble somar(double a, double b) { return a + b; }",
+          "opts": [
+            "A versão com int, pois os argumentos são inteiros",
+            "A versão com double, sempre",
+            "Nenhuma, gera erro de compilação",
+            "As duas são chamadas ao mesmo tempo"
+          ],
+          "a": 0,
+          "hint": "Observe o tipo dos literais 2 e 3 passados na chamada.",
+          "ex": "Como 2 e 3 são inteiros, o compilador escolhe a sobrecarga que recebe dois int.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o problema neste código:\nint calcular(int a) { return a * 2; }\ndouble calcular(int a) { return a * 2.0; }",
+          "opts": [
+            "As duas funções têm exatamente os mesmos parâmetros, diferindo só no retorno, o que é inválido",
+            "int não pode ser multiplicado por 2",
+            "double não pode ser usado como retorno",
+            "Não existe erro, o código está correto"
+          ],
+          "a": 0,
+          "hint": "Compare cuidadosamente os parâmetros das duas funções, ignorando o tipo de retorno.",
+          "ex": "Sobrecarga válida exige parâmetros diferentes; aqui ambas recebem (int a), causando erro.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que sobrecarga de funções é útil na prática?",
+          "opts": [
+            "Permite usar um nome mais curto e memorável para operações semelhantes com tipos diferentes",
+            "Torna o programa mais lento de propósito",
+            "Substitui completamente a necessidade de parâmetros",
+            "É obrigatória em todo programa C++"
+          ],
+          "a": 0,
+          "hint": "Pense em como isso simplifica o uso de operações como 'somar' para int, double, etc.",
+          "ex": "Sobrecarga evita nomes como somarInt, somarDouble, mantendo uma interface única e clara.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "cpp-10",
+      "name": "PASSAGEM POR REFERÊNCIA",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#f6c445",
+      "icon": "⌗",
+      "summary": "Compare passagem por valor e por referência e entenda o impacto de cada uma.",
+      "lesson": [
+        {
+          "title": "Passagem por valor",
+          "body": "Por padrão, C++ passa argumentos por valor: a função recebe uma cópia do dado. Alterações feitas dentro da função não afetam a variável original do chamador.",
+          "code": "void incrementar(int x) {\n    x = x + 1; // só altera a cópia local\n}\n\nint main() {\n    int n = 5;\n    incrementar(n);\n    cout << n; // ainda imprime 5\n}"
+        },
+        {
+          "title": "Passagem por referência",
+          "body": "Usando & no parâmetro, a função recebe uma referência para a variável original, ou seja, um 'apelido' para o mesmo espaço de memória. Alterações dentro da função afetam diretamente a variável do chamador.",
+          "code": "void incrementar(int &x) {\n    x = x + 1; // altera a variável original\n}\n\nint main() {\n    int n = 5;\n    incrementar(n);\n    cout << n; // imprime 6\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "O que este código imprime?\nvoid dobrar(int x) {\n    x = x * 2;\n}\nint main() {\n    int n = 4;\n    dobrar(n);\n    cout << n;\n}",
+          "opts": ["4", "8", "0", "Erro de compilação"],
+          "a": 0,
+          "hint": "O parâmetro x é passado por valor, sem &.",
+          "ex": "Como x é uma cópia de n, alterar x dentro da função não muda o n de main().",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que o símbolo & antes do nome de um parâmetro indica?",
+          "opts": [
+            "Que o parâmetro é um endereço de memória em hexadecimal",
+            "Que o parâmetro é uma referência à variável original",
+            "Que o parâmetro é opcional",
+            "Que o parâmetro será sempre constante"
+          ],
+          "a": 1,
+          "hint": "Pense em 'apelido' para a mesma variável, não uma cópia.",
+          "ex": "& em um parâmetro cria uma referência, permitindo modificar a variável original do chamador.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Corrija a função para que ela realmente troque os valores de a e b no chamador:\nvoid trocar(int a, int b) {\n    int temp = a;\n    a = b;\n    b = temp;\n}",
+          "opts": [
+            "void trocar(int &a, int &b) { ... }",
+            "void trocar(int a, int b, int temp) { ... }",
+            "int trocar(int a, int b) { ... }",
+            "O código já está correto"
+          ],
+          "a": 0,
+          "hint": "Sem referência, a e b são cópias e a troca não afeta as variáveis originais.",
+          "ex": "Adicionando & aos parâmetros, a e b passam a se referir às variáveis do chamador.",
+          "format": "CORRIJA O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que usar passagem por referência ao passar uma struct grande para uma função?",
+          "opts": [
+            "Para evitar copiar toda a estrutura, economizando tempo e memória",
+            "Porque referências sempre tornam o código mais lento",
+            "Porque structs não podem ser passadas por valor",
+            "Não há vantagem nenhuma"
+          ],
+          "a": 0,
+          "hint": "Pense no custo de copiar uma estrutura de dados grande a cada chamada de função.",
+          "ex": "Passar por referência evita a cópia completa da estrutura, sendo mais eficiente.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "cpp-11",
+      "name": "PARÂMETROS PADRÃO",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#f6c445",
+      "icon": "◫",
+      "summary": "Defina valores padrão para parâmetros e simplifique chamadas de função.",
+      "lesson": [
+        {
+          "title": "Valores padrão",
+          "body": "Um parâmetro pode ter um valor padrão, usado quando o chamador não fornece esse argumento. Parâmetros com valor padrão devem vir depois dos parâmetros obrigatórios na lista.",
+          "code": "void saudar(string nome, string saudacao = \"Ola\") {\n    cout << saudacao << \", \" << nome << \"!\" << endl;\n}\n\nint main() {\n    saudar(\"Ana\");           // Ola, Ana!\n    saudar(\"Joao\", \"Oi\");    // Oi, Joao!\n}"
+        },
+        {
+          "title": "Regra de ordem",
+          "body": "Não é possível colocar um parâmetro obrigatório depois de um parâmetro com valor padrão, pois o compilador não saberia identificar quais argumentos foram omitidos.",
+          "code": "// Inválido:\n// void f(int a = 1, int b);\n\n// Válido:\nvoid f(int a, int b = 1);"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Quando um parâmetro com valor padrão é utilizado?",
+          "opts": [
+            "Sempre, mesmo que outro valor seja passado",
+            "Somente quando o chamador não fornece um valor para aquele argumento",
+            "Somente em funções void",
+            "Nunca, é apenas documentação"
+          ],
+          "a": 1,
+          "hint": "Pense em quando o programador decide omitir um argumento na chamada.",
+          "ex": "O valor padrão só é usado quando o argumento correspondente é omitido na chamada.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que este código imprime?\nvoid mostrar(int x, int y = 10) {\n    cout << x + y;\n}\nint main() {\n    mostrar(5);\n}",
+          "opts": ["5", "10", "15", "Erro de compilação"],
+          "a": 2,
+          "hint": "Como y não foi informado, ele assume o valor padrão 10.",
+          "ex": "x recebe 5 e y usa o padrão 10, então x + y resulta em 15.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro de declaração:\nvoid configurar(int nivel = 1, string modo) {\n    cout << modo << nivel;\n}",
+          "opts": [
+            "string não pode ser parâmetro",
+            "Um parâmetro sem valor padrão (modo) vem depois de um com valor padrão (nivel)",
+            "Faltam parênteses na declaração",
+            "void não pode ter parâmetros"
+          ],
+          "a": 1,
+          "hint": "Releia a ordem dos parâmetros e compare com a regra sobre valores padrão.",
+          "ex": "Parâmetros obrigatórios devem vir antes dos que têm valor padrão, nunca depois.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "code",
+          "q": "Como declarar corretamente uma função que calcula potência, com expoente padrão 2 (quadrado)?",
+          "opts": [
+            "double potencia(double base, int expoente = 2)",
+            "double potencia(int expoente = 2, double base)",
+            "double potencia(double base = 2, int expoente)",
+            "double potencia(double base, int expoente = 2, double extra)"
+          ],
+          "a": 0,
+          "hint": "O parâmetro obrigatório deve vir primeiro, o opcional por último.",
+          "ex": "base é obrigatório e vem primeiro; expoente tem valor padrão 2 e vem depois.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "cpp-12",
+      "name": "INTRODUÇÃO A PONTEIROS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#22c55e",
+      "icon": "⌕",
+      "summary": "Entenda o que é um ponteiro, o operador de endereço & e o operador de desreferência *.",
+      "lesson": [
+        {
+          "title": "O que é um ponteiro",
+          "body": "Um ponteiro é uma variável que armazena o endereço de memória de outra variável, em vez de armazenar um valor diretamente. Ele é declarado com um asterisco (*) após o tipo.",
+          "code": "int idade = 25;\nint *ptr = &idade; // ptr guarda o endereço de idade\n\ncout << idade;  // 25\ncout << &idade; // endereço de memória, ex: 0x7ffee...\ncout << ptr;    // o mesmo endereço"
+        },
+        {
+          "title": "Desreferenciando um ponteiro",
+          "body": "O operador * também é usado para 'desreferenciar' um ponteiro, ou seja, acessar o valor armazenado no endereço para o qual ele aponta. Isso é diferente de acessar o próprio ponteiro.",
+          "code": "int idade = 25;\nint *ptr = &idade;\n\ncout << *ptr;   // 25 (o valor apontado)\n*ptr = 30;      // altera idade através do ponteiro\ncout << idade;  // 30"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que um ponteiro armazena?",
+          "opts": [
+            "Um valor booleano",
+            "O endereço de memória de outra variável",
+            "Uma cópia exata de outra variável",
+            "Sempre o valor zero"
+          ],
+          "a": 1,
+          "hint": "Pense no nome: um ponteiro 'aponta' para um lugar na memória.",
+          "ex": "Um ponteiro guarda um endereço de memória, não um valor comum diretamente.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que este código imprime?\nint x = 10;\nint *p = &x;\n*p = 20;\ncout << x;",
+          "opts": ["10", "20", "O endereço de x", "Erro de compilação"],
+          "a": 1,
+          "hint": "*p = 20 altera o valor no endereço apontado, que é o próprio x.",
+          "ex": "Como p aponta para x, alterar *p também altera o valor de x para 20.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Qual a diferença entre & e * no contexto de ponteiros?",
+          "opts": [
+            "& obtém o endereço de uma variável; * desreferencia um ponteiro para obter o valor apontado",
+            "& e * fazem exatamente a mesma coisa",
+            "& desreferencia; * obtém o endereço",
+            "Ambos servem apenas para multiplicação"
+          ],
+          "a": 0,
+          "hint": "Pense em um operador que 'aponta para fora' (obtém endereço) e outro que 'aponta para dentro' (acessa o valor).",
+          "ex": "& retorna o endereço de uma variável; * acessa o valor guardado nesse endereço.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nint x = 5;\nint p = &x;\ncout << *p;",
+          "opts": [
+            "x deveria ser double",
+            "p deveria ser declarado como int* p, pois vai guardar um endereço",
+            "&x está errado, deveria ser *x",
+            "cout não pode imprimir ponteiros"
+          ],
+          "a": 1,
+          "hint": "Observe o tipo declarado para p e compare com o que &x retorna.",
+          "ex": "&x é um endereço (ponteiro para int), então p precisa ser declarado como int*.",
+          "format": "ENCONTRE O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "cpp-13",
+      "name": "REFERÊNCIAS VS PONTEIROS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#22c55e",
+      "icon": "◧",
+      "summary": "Compare referências e ponteiros e saiba quando cada um é mais indicado.",
+      "lesson": [
+        {
+          "title": "Semelhanças e diferenças",
+          "body": "Referências e ponteiros permitem acessar/alterar uma variável indiretamente. Porém, uma referência deve ser inicializada no momento da declaração e não pode ser reatribuída a outra variável depois; um ponteiro pode ser reatribuído e pode não apontar para nada (nullptr).",
+          "code": "int x = 10;\nint &ref = x;   // referência: precisa iniciar já ligada a x\nint *ptr = &x;  // ponteiro: pode ser reatribuído depois\n\nint y = 20;\nptr = &y;       // válido: ptr agora aponta para y\n// ref = y;      // isso apenas atribuiria o VALOR de y a x, não religaria ref"
+        },
+        {
+          "title": "nullptr",
+          "body": "Um ponteiro pode não apontar para nenhum endereço válido; nesse caso, ele deve ser inicializado com nullptr para indicar isso explicitamente. Uma referência sempre precisa estar ligada a uma variável válida, não existe 'referência nula'.",
+          "code": "int *ptr = nullptr;\nif (ptr == nullptr) {\n    cout << \"Ponteiro nao aponta para nada.\";\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual afirmação sobre referências é verdadeira?",
+          "opts": [
+            "Uma referência pode ser reatribuída a outra variável depois de criada",
+            "Uma referência precisa ser inicializada na declaração e não pode 'apontar' para outra variável depois",
+            "Uma referência pode ser nula, como um ponteiro",
+            "Referências não existem em C++"
+          ],
+          "a": 1,
+          "hint": "Pense em uma referência como um segundo nome permanente para a mesma variável.",
+          "ex": "Diferente de um ponteiro, uma referência é vinculada a uma variável desde a criação e não muda.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que este código faz?\nint x = 10, y = 20;\nint *p = &x;\np = &y;\ncout << *p;",
+          "opts": ["10", "20", "Erro de compilação", "O endereço de x"],
+          "a": 1,
+          "hint": "Ponteiros podem ser reatribuídos para apontar para outra variável.",
+          "ex": "Depois de p = &y, *p acessa o valor de y, que é 20.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Para que serve o valor nullptr em um ponteiro?",
+          "opts": [
+            "Indica que o ponteiro aponta para o valor 0",
+            "Indica explicitamente que o ponteiro não aponta para nenhum endereço válido",
+            "Faz o ponteiro apontar automaticamente para a primeira variável criada",
+            "É um erro de sintaxe"
+          ],
+          "a": 1,
+          "hint": "Pense em um estado seguro para um ponteiro que ainda não deve ser usado.",
+          "ex": "nullptr sinaliza que o ponteiro não referencia nenhuma variável válida no momento.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Você precisa de uma variável que sempre aponte para o mesmo dado, sem possibilidade de ficar nula, apenas para alterar seu valor dentro de uma função. O que escolher?",
+          "opts": [
+            "Um ponteiro int*",
+            "Uma referência int&",
+            "Um ponteiro void*",
+            "Um ponteiro para ponteiro int**"
+          ],
+          "a": 1,
+          "hint": "A necessidade descrita é exatamente o caso de uso típico das referências.",
+          "ex": "Referências são mais simples e seguras quando não é preciso reatribuir ou permitir nulo.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "cpp-14",
+      "name": "ALOCAÇÃO DINÂMICA",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#22c55e",
+      "icon": "⇄",
+      "summary": "Use new e delete para alocar e liberar memória manualmente na heap.",
+      "lesson": [
+        {
+          "title": "new e delete",
+          "body": "O operador new aloca memória na heap (memória dinâmica) e retorna um ponteiro para ela. Diferente de variáveis locais, essa memória continua existindo até ser explicitamente liberada com delete. Esquecer o delete causa vazamento de memória (memory leak).",
+          "code": "int *p = new int;\n*p = 42;\ncout << *p;\ndelete p;   // libera a memória\np = nullptr; // boa prática: evita usar um ponteiro 'pendurado'"
+        },
+        {
+          "title": "Arrays dinâmicos",
+          "body": "Para alocar um array na heap, usa-se new[] e o correspondente delete[] para liberar. Usar delete simples (sem colchetes) em um array alocado com new[] é um erro que causa comportamento indefinido.",
+          "code": "int *vetor = new int[5];\nfor (int i = 0; i < 5; i++) {\n    vetor[i] = i * 10;\n}\ndelete[] vetor; // libera o array inteiro"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual operador é usado para alocar memória dinamicamente em C++?",
+          "opts": ["alloc", "new", "malloc", "create"],
+          "a": 1,
+          "hint": "É a forma idiomática de C++, diferente da função de C.",
+          "ex": "new aloca memória na heap e retorna um ponteiro para o espaço alocado.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que acontece se você usar new para alocar memória e nunca chamar delete?",
+          "opts": [
+            "A memória é liberada automaticamente ao fim do programa, sem problema algum durante a execução",
+            "Ocorre um vazamento de memória (memory leak): a memória fica ocupada até o fim do programa sem necessidade",
+            "O programa não compila",
+            "O valor apontado se torna nullptr automaticamente"
+          ],
+          "a": 1,
+          "hint": "Pense no que acontece com a memória da heap que nunca é devolvida ao sistema.",
+          "ex": "Memória alocada com new e nunca liberada com delete permanece reservada, causando um vazamento.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nint *v = new int[10];\n// uso do array\ndelete v;",
+          "opts": [
+            "new[] deveria ser apenas new",
+            "delete v; deveria ser delete[] v; pois foi alocado como array",
+            "int não pode ser alocado dinamicamente",
+            "v deveria ser um int, não int*"
+          ],
+          "a": 1,
+          "hint": "Compare a forma de alocação (com colchetes) com a forma de liberação usada.",
+          "ex": "Arrays alocados com new[] devem ser liberados com delete[], não delete simples.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "code",
+          "q": "Depois de dar delete em um ponteiro, qual é a boa prática recomendada?",
+          "opts": [
+            "Usar o ponteiro normalmente, como se nada tivesse acontecido",
+            "Atribuir nullptr ao ponteiro, evitando um 'ponteiro pendurado' (dangling pointer)",
+            "Chamar delete novamente no mesmo ponteiro para garantir",
+            "Transformar o ponteiro em uma referência"
+          ],
+          "a": 1,
+          "hint": "Pense em como evitar acessar memória que já foi liberada por engano.",
+          "ex": "Atribuir nullptr após delete evita usos acidentais de um ponteiro que já não é válido.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "cpp-15",
+      "name": "PONTEIROS E ARRAYS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#22c55e",
+      "icon": "⇆",
+      "summary": "Explore a relação entre ponteiros e arrays estáticos em C++.",
+      "lesson": [
+        {
+          "title": "Arrays decaem em ponteiros",
+          "body": "O nome de um array estático, quando usado em uma expressão, se comporta como um ponteiro para seu primeiro elemento. Por isso é possível percorrer um array usando aritmética de ponteiros.",
+          "code": "int numeros[3] = {10, 20, 30};\nint *p = numeros; // equivalente a &numeros[0]\n\ncout << *p;       // 10\ncout << *(p + 1); // 20\ncout << p[2];     // 30 (mesma sintaxe de array!)"
+        },
+        {
+          "title": "Aritmética de ponteiros",
+          "body": "Somar 1 a um ponteiro não soma 1 byte, e sim avança o tamanho de um elemento do tipo apontado. Por exemplo, em um ponteiro para int, p + 1 avança 4 bytes (tamanho típico de int), não 1 byte.",
+          "code": "int arr[4] = {1, 2, 3, 4};\nint *p = arr;\nfor (int i = 0; i < 4; i++) {\n    cout << *(p + i) << \" \";\n}\n// imprime: 1 2 3 4"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que acontece quando o nome de um array é usado em uma expressão?",
+          "opts": [
+            "É copiado inteiro para uma nova variável",
+            "Ele se comporta como um ponteiro para seu primeiro elemento",
+            "Gera erro de compilação",
+            "É convertido automaticamente para string"
+          ],
+          "a": 1,
+          "hint": "Pense em o que 'numeros' representa quando atribuído a um ponteiro int*.",
+          "ex": "O array decai para um ponteiro apontando para o endereço do elemento de índice 0.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que este código imprime?\nint arr[3] = {5, 15, 25};\nint *p = arr;\ncout << *(p + 2);",
+          "opts": ["5", "15", "25", "O endereço de arr[2]"],
+          "a": 2,
+          "hint": "p + 2 avança dois elementos a partir do início do array.",
+          "ex": "*(p + 2) acessa o terceiro elemento do array, arr[2], que vale 25.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Ao somar 1 a um ponteiro do tipo int*, quantos bytes ele avança (supondo int de 4 bytes)?",
+          "opts": [
+            "1 byte, sempre",
+            "4 bytes, o tamanho de um int",
+            "8 bytes, sempre",
+            "Depende apenas do sistema operacional, nunca do tipo"
+          ],
+          "a": 1,
+          "hint": "A aritmética de ponteiros considera o tamanho do tipo apontado, não bytes fixos.",
+          "ex": "p + 1 avança o tamanho de um elemento do tipo apontado, 4 bytes para int.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nint arr[3] = {1, 2, 3};\nint *p = arr;\ncout << *(p + 5);",
+          "opts": [
+            "A sintaxe *(p + 5) é inválida em C++",
+            "O acesso está fora dos limites do array, causando comportamento indefinido",
+            "arr não pode ser atribuído a um ponteiro",
+            "p deveria ser um array, não um ponteiro"
+          ],
+          "a": 1,
+          "hint": "O array tem apenas 3 elementos; pense no índice máximo válido.",
+          "ex": "Acessar p + 5 ultrapassa os 3 elementos válidos do array, um erro perigoso em C++.",
+          "format": "ENCONTRE O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "cpp-16",
+      "name": "CLASSES E OBJETOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#34d399",
+      "icon": "▧",
+      "summary": "Crie sua primeira classe em C++ com atributos e métodos.",
+      "lesson": [
+        {
+          "title": "Definindo uma classe",
+          "body": "Uma classe agrupa dados (atributos) e comportamentos (métodos) relacionados. Por padrão, membros de uma classe são private, ou seja, só acessíveis dentro dela; a seção public expõe o que pode ser usado de fora.",
+          "code": "class Carro {\npublic:\n    string modelo;\n    int velocidade;\n\n    void acelerar() {\n        velocidade += 10;\n    }\n};\n\nint main() {\n    Carro meuCarro;\n    meuCarro.modelo = \"Fusca\";\n    meuCarro.acelerar();\n    cout << meuCarro.velocidade; // 10\n}"
+        },
+        {
+          "title": "private e encapsulamento",
+          "body": "Atributos private não podem ser acessados diretamente de fora da classe, apenas através de métodos public. Isso é chamado de encapsulamento e protege o estado interno do objeto contra alterações inválidas.",
+          "code": "class ContaBancaria {\nprivate:\n    double saldo;\npublic:\n    void depositar(double valor) {\n        if (valor > 0) saldo += valor;\n    }\n    double getSaldo() {\n        return saldo;\n    }\n};"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Por padrão, qual é o nível de acesso dos membros de uma classe em C++, se nada for especificado?",
+          "opts": ["public", "private", "protected", "global"],
+          "a": 1,
+          "hint": "Diferente de struct, cuja visibilidade padrão é public.",
+          "ex": "Em uma class, os membros são private por padrão, exigindo a seção public para expô-los.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que este código imprime?\nclass Carro {\npublic:\n    int velocidade = 0;\n    void acelerar() { velocidade += 10; }\n};\nint main() {\n    Carro c;\n    c.acelerar();\n    c.acelerar();\n    cout << c.velocidade;\n}",
+          "opts": ["0", "10", "20", "Erro de compilação"],
+          "a": 2,
+          "hint": "acelerar() é chamado duas vezes, cada uma somando 10.",
+          "ex": "Cada chamada de acelerar() soma 10 a velocidade, totalizando 20 após duas chamadas.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nclass ContaBancaria {\nprivate:\n    double saldo;\n};\nint main() {\n    ContaBancaria c;\n    c.saldo = 100; // erro aqui\n}",
+          "opts": [
+            "double não pode ser usado em classes",
+            "saldo é private e não pode ser acessado diretamente de fora da classe",
+            "ContaBancaria precisa de um método main() próprio",
+            "Faltam parênteses em c.saldo"
+          ],
+          "a": 1,
+          "hint": "Pense no nível de acesso declarado para o atributo saldo.",
+          "ex": "Como saldo está na seção private, só métodos da própria classe podem acessá-lo diretamente.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é a principal vantagem de manter atributos como private e expor apenas métodos public?",
+          "opts": [
+            "O programa fica mais lento, mas mais bonito",
+            "Protege o estado interno do objeto, permitindo validar alterações através de métodos",
+            "Não há nenhuma vantagem prática",
+            "Reduz o tamanho do arquivo fonte"
+          ],
+          "a": 1,
+          "hint": "Pense em como um método pode validar um valor antes de alterar o atributo (como valor > 0).",
+          "ex": "Encapsulamento evita que o estado do objeto seja alterado de forma inválida diretamente de fora.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "cpp-17",
+      "name": "CONSTRUTORES",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#34d399",
+      "icon": "◉",
+      "summary": "Use construtores para inicializar objetos automaticamente ao criá-los.",
+      "lesson": [
+        {
+          "title": "O que é um construtor",
+          "body": "Um construtor é um método especial com o mesmo nome da classe, sem tipo de retorno, chamado automaticamente quando um objeto é criado. Ele é usado para inicializar os atributos do objeto com valores válidos desde o início.",
+          "code": "class Pessoa {\npublic:\n    string nome;\n    int idade;\n\n    Pessoa(string n, int i) {\n        nome = n;\n        idade = i;\n    }\n};\n\nint main() {\n    Pessoa p(\"Ana\", 30);\n    cout << p.nome << \", \" << p.idade;\n}"
+        },
+        {
+          "title": "Construtor padrão e sobrecarga",
+          "body": "Se nenhum construtor for definido, o compilador gera um construtor padrão vazio automaticamente. Também é possível ter vários construtores sobrecarregados, com listas de parâmetros diferentes, para permitir formas variadas de criar objetos.",
+          "code": "class Ponto {\npublic:\n    int x, y;\n    Ponto() {\n        x = 0;\n        y = 0;\n    }\n    Ponto(int px, int py) {\n        x = px;\n        y = py;\n    }\n};\n\nPonto origem;        // usa o construtor sem argumentos\nPonto p2(3, 4);       // usa o construtor com dois argumentos"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Quando o construtor de uma classe é executado?",
+          "opts": [
+            "Somente quando chamado manualmente pelo programador",
+            "Automaticamente, no momento em que um objeto da classe é criado",
+            "Somente ao final do programa",
+            "Nunca, é apenas uma declaração"
+          ],
+          "a": 1,
+          "hint": "Pense no momento exato em que uma variável do tipo da classe é declarada.",
+          "ex": "O construtor roda automaticamente assim que o objeto é instanciado.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que este código imprime?\nclass Ponto {\npublic:\n    int x, y;\n    Ponto(int px, int py) { x = px; y = py; }\n};\nint main() {\n    Ponto p(3, 4);\n    cout << p.x + p.y;\n}",
+          "opts": ["3", "4", "7", "Erro de compilação"],
+          "a": 2,
+          "hint": "p.x recebe 3 e p.y recebe 4; some os dois.",
+          "ex": "O construtor define x = 3 e y = 4, então x + y resulta em 7.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nclass Ponto {\npublic:\n    int x, y;\n    Ponto(int px, int py) { x = px; y = py; }\n};\nint main() {\n    Ponto origem; // erro aqui\n}",
+          "opts": [
+            "Ponto não pode ter atributos int",
+            "Não existe construtor sem argumentos (padrão) disponível, pois um construtor com parâmetros foi definido",
+            "origem precisa ser um ponteiro",
+            "main() não pode criar objetos"
+          ],
+          "a": 1,
+          "hint": "Uma vez que você define qualquer construtor, o compilador deixa de gerar o construtor padrão automaticamente.",
+          "ex": "Como só existe um construtor com dois parâmetros, criar 'Ponto origem;' sem argumentos falha.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que é útil ter vários construtores sobrecarregados em uma classe?",
+          "opts": [
+            "Para permitir diferentes formas de criar um objeto, com ou sem valores iniciais específicos",
+            "Porque o compilador exige exatamente dois construtores por classe",
+            "Para tornar o programa mais lento",
+            "Não há nenhuma utilidade real"
+          ],
+          "a": 0,
+          "hint": "Pense em cenários onde às vezes você sabe os valores iniciais e às vezes não.",
+          "ex": "Sobrecarga de construtores oferece flexibilidade para inicializar objetos de formas diferentes.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "cpp-18",
+      "name": "DESTRUTORES",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#34d399",
+      "icon": "⟳",
+      "summary": "Entenda o papel do destrutor na liberação de recursos de um objeto.",
+      "lesson": [
+        {
+          "title": "O que é um destrutor",
+          "body": "Um destrutor é um método especial chamado automaticamente quando um objeto deixa de existir, seja porque saiu de escopo, seja porque foi destruído com delete. Ele tem o mesmo nome da classe precedido de til (~) e não recebe parâmetros nem retorna valor.",
+          "code": "class Arquivo {\npublic:\n    Arquivo() {\n        cout << \"Arquivo aberto\" << endl;\n    }\n    ~Arquivo() {\n        cout << \"Arquivo fechado\" << endl;\n    }\n};\n\nint main() {\n    Arquivo a; // construtor executa aqui\n} // destrutor executa aqui, ao sair do escopo"
+        },
+        {
+          "title": "Destrutores e recursos dinâmicos",
+          "body": "Destrutores são muito usados para liberar recursos alocados pelo construtor, como memória obtida com new. Se a classe aloca memória dinamicamente, o destrutor deve chamar delete para evitar vazamentos.",
+          "code": "class Buffer {\nprivate:\n    int *dados;\npublic:\n    Buffer(int tamanho) {\n        dados = new int[tamanho];\n    }\n    ~Buffer() {\n        delete[] dados; // libera a memória alocada\n    }\n};"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Como um destrutor é identificado em uma classe C++?",
+          "opts": [
+            "Pelo nome da classe seguido de dois parênteses vazios",
+            "Pelo nome da classe precedido de til (~), sem parâmetros nem retorno",
+            "Por uma palavra-chave chamada 'destroy'",
+            "Não existe destrutor em C++"
+          ],
+          "a": 1,
+          "hint": "Procure pelo símbolo que aparece antes do nome da classe em ~NomeDaClasse().",
+          "ex": "O destrutor usa ~ antes do nome da classe, como ~Arquivo(), e não tem parâmetros.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Em que momento o destrutor de um objeto local é chamado?",
+          "opts": [
+            "Assim que o objeto é declarado",
+            "Quando o objeto sai de escopo (por exemplo, ao final do bloco onde foi criado)",
+            "Nunca, apenas com delete explícito",
+            "Somente quando o programa termina"
+          ],
+          "a": 1,
+          "hint": "Pense no ciclo de vida de um objeto declarado dentro de uma função.",
+          "ex": "Objetos locais (não alocados com new) têm seu destrutor chamado automaticamente ao sair de escopo.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o problema nesta classe que usa memória dinâmica:\nclass Buffer {\nprivate:\n    int *dados;\npublic:\n    Buffer(int n) { dados = new int[n]; }\n};",
+          "opts": [
+            "Falta um destrutor que dê delete[] em dados, causando vazamento de memória",
+            "new int[n] está com sintaxe errada",
+            "dados deveria ser public",
+            "O construtor não pode receber parâmetros"
+          ],
+          "a": 0,
+          "hint": "Pense no que acontece com a memória alocada quando o objeto Buffer é destruído.",
+          "ex": "Sem um destrutor que libere dados, a memória alocada com new nunca é devolvida, gerando vazamento.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "code",
+          "q": "Qual destrutor está corretamente escrito para a classe Buffer, que aloca um array com new[]?",
+          "opts": [
+            "Buffer() { delete dados; }",
+            "~Buffer() { delete[] dados; }",
+            "~Buffer(int n) { delete[] dados; }",
+            "delete ~Buffer() { dados; }"
+          ],
+          "a": 1,
+          "hint": "O destrutor não recebe parâmetros e deve usar delete[] para um array alocado com new[].",
+          "ex": "~Buffer() sem parâmetros, usando delete[] dados, libera corretamente o array alocado.",
+          "format": "CORRIJA O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "cpp-19",
+      "name": "HERANÇA BÁSICA",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#1cb0f6",
+      "icon": "⏱",
+      "summary": "Reutilize código criando classes derivadas a partir de uma classe base.",
+      "lesson": [
+        {
+          "title": "Classe base e derivada",
+          "body": "Herança permite que uma classe (derivada) reutilize atributos e métodos de outra (base), usando dois pontos seguidos do nome da base. Isso evita duplicar código entre classes que compartilham características.",
+          "code": "class Animal {\npublic:\n    string nome;\n    void comer() {\n        cout << nome << \" esta comendo.\" << endl;\n    }\n};\n\nclass Cachorro : public Animal {\npublic:\n    void latir() {\n        cout << nome << \" esta latindo.\" << endl;\n    }\n};\n\nint main() {\n    Cachorro d;\n    d.nome = \"Rex\";\n    d.comer(); // herdado de Animal\n    d.latir();\n}"
+        },
+        {
+          "title": "public, protected e private na herança",
+          "body": "Herdar com 'public' mantém a visibilidade original dos membros da base na derivada. Membros protected da base são acessíveis pela classe derivada, mas não por código externo, diferente dos membros private da base, que a derivada não acessa diretamente.",
+          "code": "class Base {\nprotected:\n    int valor;\npublic:\n    void definir(int v) { valor = v; }\n};\n\nclass Derivada : public Base {\npublic:\n    void mostrar() {\n        cout << valor; // ok, protected é acessível na derivada\n    }\n};"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que a herança permite em C++?",
+          "opts": [
+            "Que uma classe copie manualmente o código de outra",
+            "Que uma classe derivada reutilize atributos e métodos de uma classe base",
+            "Que duas classes tenham o mesmo nome",
+            "Que uma função vire uma classe"
+          ],
+          "a": 1,
+          "hint": "Pense em reaproveitamento de código entre classes relacionadas.",
+          "ex": "Herança evita duplicação, permitindo que a classe derivada reutilize o que já existe na base.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Dado o código do exemplo (Animal e Cachorro), o que acontece ao chamar d.comer()?",
+          "opts": [
+            "Erro de compilação, pois comer() não existe em Cachorro",
+            "Funciona normalmente, pois comer() foi herdado de Animal",
+            "Imprime apenas o nome da classe",
+            "Precisa reescrever comer() em Cachorro para funcionar"
+          ],
+          "a": 1,
+          "hint": "comer() está definido na classe base Animal, da qual Cachorro herda publicamente.",
+          "ex": "Como Cachorro herda de Animal publicamente, comer() fica disponível para objetos Cachorro.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nclass Base {\nprivate:\n    int valor;\n};\nclass Derivada : public Base {\npublic:\n    void mostrar() { cout << valor; } // erro aqui\n};",
+          "opts": [
+            "valor é private na base, então a classe derivada não pode acessá-lo diretamente",
+            "Derivada não pode herdar de Base",
+            "mostrar() precisa de um parâmetro",
+            "public: está no lugar errado"
+          ],
+          "a": 0,
+          "hint": "Compare com o exemplo que usa protected em vez de private.",
+          "ex": "Membros private da base nunca são acessíveis diretamente pela classe derivada, apenas protected ou public.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Quando é mais adequado usar herança entre duas classes?",
+          "opts": [
+            "Quando existe uma relação clara do tipo 'é um' (por exemplo, Cachorro é um Animal)",
+            "Sempre que duas classes têm qualquer atributo com o mesmo nome",
+            "Quando as classes não têm nenhuma relação entre si",
+            "Herança nunca deve ser usada em C++"
+          ],
+          "a": 0,
+          "hint": "Pense na relação semântica entre a classe base e a derivada.",
+          "ex": "Herança faz sentido quando a classe derivada realmente representa um tipo mais específico da base.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "cpp-20",
+      "name": "FUNÇÕES VIRTUAIS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#1cb0f6",
+      "icon": "Ω",
+      "summary": "Use a palavra-chave virtual para permitir polimorfismo em tempo de execução.",
+      "lesson": [
+        {
+          "title": "O problema sem virtual",
+          "body": "Quando uma classe base declara um método normal (não virtual) e a derivada o redefine, chamar esse método através de um ponteiro para a base sempre executa a versão da base, mesmo que o objeto real seja da classe derivada.",
+          "code": "class Animal {\npublic:\n    void falar() { cout << \"Som generico\"; }\n};\nclass Gato : public Animal {\npublic:\n    void falar() { cout << \"Miau\"; }\n};\n\nAnimal *a = new Gato();\na->falar(); // imprime \"Som generico\", sem virtual"
+        },
+        {
+          "title": "Resolvendo com virtual",
+          "body": "Ao marcar o método da classe base como virtual, o C++ passa a decidir qual versão chamar em tempo de execução, com base no tipo real do objeto apontado, não no tipo do ponteiro. Isso é chamado de polimorfismo em tempo de execução.",
+          "code": "class Animal {\npublic:\n    virtual void falar() { cout << \"Som generico\"; }\n};\nclass Gato : public Animal {\npublic:\n    void falar() override { cout << \"Miau\"; }\n};\n\nAnimal *a = new Gato();\na->falar(); // imprime \"Miau\", graças ao virtual"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que a palavra-chave 'virtual' possibilita em um método de uma classe base?",
+          "opts": [
+            "Que o método nunca possa ser redefinido pela derivada",
+            "Que a versão correta do método seja escolhida em tempo de execução, com base no tipo real do objeto",
+            "Que o método seja executado duas vezes",
+            "Que a classe base não possa mais ser instanciada"
+          ],
+          "a": 1,
+          "hint": "Pense no comportamento chamado polimorfismo em tempo de execução.",
+          "ex": "virtual permite que a chamada através de um ponteiro de base use a versão do objeto derivado real.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "No exemplo sem virtual, o que 'a->falar();' imprime, sendo a um Animal* apontando para um Gato?",
+          "opts": ["Miau", "Som generico", "Erro de compilação", "Nada é impresso"],
+          "a": 1,
+          "hint": "Sem virtual, a chamada é resolvida com base no tipo do ponteiro (Animal), não no objeto real.",
+          "ex": "Sem virtual, o compilador usa o tipo estático do ponteiro (Animal), chamando a versão da base.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Corrija a classe Animal para que o polimorfismo funcione corretamente:\nclass Animal {\npublic:\n    void falar() { cout << \"Som generico\"; }\n};",
+          "opts": [
+            "class Animal { public: static void falar() { ... } };",
+            "class Animal { public: virtual void falar() { ... } };",
+            "class Animal { private: void falar() { ... } };",
+            "O código já funciona corretamente sem alterações"
+          ],
+          "a": 1,
+          "hint": "Adicione a palavra-chave que habilita a resolução em tempo de execução.",
+          "ex": "Adicionar virtual antes de void falar() permite que a versão derivada seja chamada corretamente.",
+          "format": "CORRIJA O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Para que serve a palavra-chave 'override' usada em Gato::falar()?",
+          "opts": [
+            "É obrigatória para o programa compilar",
+            "Indica ao compilador a intenção de sobrescrever um método virtual da base, ajudando a detectar erros",
+            "Faz o método rodar mais rápido",
+            "Transforma o método em virtual automaticamente sem precisar da base"
+          ],
+          "a": 1,
+          "hint": "override é uma verificação de segurança, não uma exigência estrita do compilador.",
+          "ex": "override documenta a intenção e gera erro de compilação se a assinatura não corresponder a um virtual da base.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "cpp-21",
+      "name": "CLASSES ABSTRATAS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#1cb0f6",
+      "icon": "✦",
+      "summary": "Defina contratos com funções virtuais puras e classes abstratas.",
+      "lesson": [
+        {
+          "title": "Função virtual pura",
+          "body": "Uma função virtual pura é declarada com '= 0' no lugar do corpo e não tem implementação na classe base. Uma classe que possui pelo menos uma função virtual pura é chamada de classe abstrata e não pode ser instanciada diretamente.",
+          "code": "class Forma {\npublic:\n    virtual double area() = 0; // função virtual pura\n};\n\n// Forma f; // erro: não é possível instanciar classe abstrata"
+        },
+        {
+          "title": "Implementando o contrato",
+          "body": "Uma classe derivada só pode ser instanciada se implementar todas as funções virtuais puras herdadas. Isso cria um 'contrato': toda forma concreta é obrigada a fornecer sua própria versão de area().",
+          "code": "class Circulo : public Forma {\nprivate:\n    double raio;\npublic:\n    Circulo(double r) { raio = r; }\n    double area() override {\n        return 3.14159 * raio * raio;\n    }\n};\n\nCirculo c(2.0);\ncout << c.area();"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que caracteriza uma função virtual pura?",
+          "opts": [
+            "Ela é escrita com '= 0' no lugar do corpo, sem implementação na classe base",
+            "Ela é uma função que não pode ser chamada nunca",
+            "Ela precisa retornar sempre 0",
+            "Ela é o mesmo que uma função static"
+          ],
+          "a": 0,
+          "hint": "Procure a sintaxe específica usada na declaração dessa função.",
+          "ex": "A sintaxe virtual tipo nome(...) = 0; define uma função virtual pura, sem corpo na base.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que acontece se você tentar instanciar diretamente uma classe abstrata (com função virtual pura)?",
+          "opts": [
+            "Funciona normalmente, criando um objeto vazio",
+            "Ocorre um erro de compilação, pois classes abstratas não podem ser instanciadas",
+            "O programa compila, mas trava em tempo de execução",
+            "A função virtual pura é ignorada"
+          ],
+          "a": 1,
+          "hint": "Pense no propósito de uma classe abstrata: servir de contrato, não de objeto concreto.",
+          "ex": "Classes abstratas existem para serem herdadas, não para gerar objetos diretamente; instanciar gera erro.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nclass Retangulo : public Forma {\nprivate:\n    double b, h;\npublic:\n    Retangulo(double base, double altura) { b = base; h = altura; }\n};\n// Forma tem virtual double area() = 0;",
+          "opts": [
+            "Retangulo não implementou area(), então continua abstrata e não pode ser instanciada",
+            "O construtor de Retangulo está errado",
+            "Retangulo não pode herdar de Forma",
+            "b e h deveriam ser public"
+          ],
+          "a": 0,
+          "hint": "Verifique se todas as funções virtuais puras da base foram implementadas na derivada.",
+          "ex": "Sem implementar area(), Retangulo herda a obrigação pendente e continua sendo abstrata.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que usar uma classe abstrata como Forma, em vez de deixar cada forma geométrica totalmente independente?",
+          "opts": [
+            "Para garantir que todas as formas concretas ofereçam a mesma interface (como area()), permitindo tratá-las de forma genérica",
+            "Porque classes abstratas tornam o programa mais rápido",
+            "Porque C++ exige pelo menos uma classe abstrata por programa",
+            "Não há vantagem prática nenhuma"
+          ],
+          "a": 0,
+          "hint": "Pense em como um vetor de Forma* poderia guardar Circulo e Retangulo ao mesmo tempo.",
+          "ex": "A classe abstrata define um contrato comum, permitindo polimorfismo entre diferentes formas concretas.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "cpp-22",
+      "name": "ARRAYS E VECTORS",
+      "difficulty": "AVANÇADO",
+      "color": "#0ea5e9",
+      "icon": "●",
+      "summary": "Compare arrays de tamanho fixo com vector, o container dinâmico da STL.",
+      "lesson": [
+        {
+          "title": "Limitações do array estático",
+          "body": "Um array declarado com tamanho fixo, como int arr[5], não pode crescer ou diminuir depois de criado. Se for necessário um número variável de elementos, um array simples não é a melhor escolha.",
+          "code": "int arr[5] = {1, 2, 3, 4, 5};\n// arr não pode ganhar um sexto elemento depois de declarado"
+        },
+        {
+          "title": "vector: array dinâmico da STL",
+          "body": "std::vector, disponível em <vector>, é um container que gerencia automaticamente a memória e pode crescer conforme necessário, usando métodos como push_back para adicionar elementos e size() para saber quantos existem.",
+          "code": "#include <vector>\nvector<int> numeros;\nnumeros.push_back(10);\nnumeros.push_back(20);\ncout << numeros.size();     // 2\ncout << numeros[0];         // 10\nfor (int n : numeros) {\n    cout << n << \" \";\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual a principal vantagem de um vector em relação a um array de tamanho fixo?",
+          "opts": [
+            "vector é sempre mais rápido em qualquer situação",
+            "vector pode crescer ou diminuir de tamanho dinamicamente durante a execução",
+            "vector não ocupa memória",
+            "vector só pode armazenar números inteiros"
+          ],
+          "a": 1,
+          "hint": "Pense na limitação principal de um array declarado com tamanho fixo.",
+          "ex": "vector gerencia sua própria memória e pode crescer com push_back, algo que um array fixo não faz.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que este código imprime?\nvector<int> v;\nv.push_back(5);\nv.push_back(8);\nv.push_back(1);\ncout << v.size() << \" \" << v[1];",
+          "opts": ["3 8", "2 8", "3 1", "3 5"],
+          "a": 0,
+          "hint": "size() conta os elementos; v[1] acessa o segundo elemento (índice 1).",
+          "ex": "O vector tem 3 elementos e v[1] é o segundo valor inserido, 8.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nvector<int> notas;\nnotas.push_back(7);\ncout << notas[5];",
+          "opts": [
+            "push_back não existe em vector",
+            "O índice 5 está fora dos limites, já que o vector tem apenas 1 elemento",
+            "vector não pode armazenar int",
+            "cout não imprime elementos de vector"
+          ],
+          "a": 1,
+          "hint": "Conte quantos elementos realmente existem no vector antes de acessar o índice 5.",
+          "ex": "Com apenas 1 elemento (índice 0), acessar notas[5] é um acesso fora dos limites.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "code",
+          "q": "Você precisa armazenar uma lista de nomes de usuários que crescerá conforme novos cadastros chegam, sem saber o total com antecedência. O que escolher?",
+          "opts": [
+            "Um array de tamanho fixo, como string nomes[100]",
+            "Um vector<string>, usando push_back para cada novo nome",
+            "Um único char",
+            "Um int representando a quantidade de nomes"
+          ],
+          "a": 1,
+          "hint": "A necessidade de crescer dinamicamente aponta para o container mais flexível.",
+          "ex": "vector<string> se adapta ao número de cadastros, sem exigir um limite fixo definido antecipadamente.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "cpp-23",
+      "name": "ITERANDO COM STL",
+      "difficulty": "AVANÇADO",
+      "color": "#0ea5e9",
+      "icon": "◍",
+      "summary": "Percorra containers da STL com range-based for e iteradores.",
+      "lesson": [
+        {
+          "title": "Range-based for",
+          "body": "O laço 'for baseado em intervalo' (range-based for) percorre todos os elementos de um container, como vector, sem precisar controlar índices manualmente. Usar & no tipo evita copiar cada elemento, o que é importante para tipos grandes.",
+          "code": "vector<string> nomes = {\"Ana\", \"Bruno\", \"Carla\"};\nfor (const string &nome : nomes) {\n    cout << nome << endl;\n}"
+        },
+        {
+          "title": "Iteradores",
+          "body": "Um iterador é um objeto que aponta para uma posição dentro de um container e permite avançar com ++. begin() retorna um iterador para o primeiro elemento e end() para a posição após o último, usada como limite.",
+          "code": "vector<int> v = {10, 20, 30};\nfor (vector<int>::iterator it = v.begin(); it != v.end(); ++it) {\n    cout << *it << \" \";\n}\n// imprime: 10 20 30"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual a vantagem de usar 'for (const string &nome : nomes)' em vez de 'for (string nome : nomes)'?",
+          "opts": [
+            "Não há diferença nenhuma entre as duas formas",
+            "Evita copiar cada string, referenciando o elemento original diretamente",
+            "Faz o laço rodar em ordem reversa",
+            "Permite modificar o vector durante o laço automaticamente"
+          ],
+          "a": 1,
+          "hint": "Pense no custo de copiar cada elemento do container a cada iteração.",
+          "ex": "Usar referência (&) evita a cópia de cada string, tornando o laço mais eficiente.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que 'v.end()' representa em um vector v?",
+          "opts": [
+            "Um iterador para o último elemento válido",
+            "Uma posição imediatamente após o último elemento, usada como limite de parada",
+            "O tamanho total do vector",
+            "O primeiro elemento do vector"
+          ],
+          "a": 1,
+          "hint": "end() não aponta para um elemento válido, apenas indica onde o container termina.",
+          "ex": "end() é usado como referência de parada; desreferenciá-lo diretamente seria um erro.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que este código imprime?\nvector<int> v = {1, 2, 3};\nint soma = 0;\nfor (int n : v) {\n    soma += n;\n}\ncout << soma;",
+          "opts": ["3", "6", "0", "123"],
+          "a": 1,
+          "hint": "Some todos os elementos do vector: 1 + 2 + 3.",
+          "ex": "O laço soma cada elemento do vector, resultando em 1 + 2 + 3 = 6.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nvector<int> v = {1, 2, 3};\nfor (vector<int>::iterator it = v.begin(); it != v.end(); it) {\n    cout << *it;\n}",
+          "opts": [
+            "v.begin() está incorreto, deveria ser v.first()",
+            "O iterador 'it' nunca é incrementado, causando um laço infinito",
+            "vector não suporta iteradores",
+            "*it está com sintaxe errada"
+          ],
+          "a": 1,
+          "hint": "Compare a terceira parte do for com o exemplo da lição, que usa ++it.",
+          "ex": "Sem ++it, o iterador nunca avança e nunca alcança v.end(), gerando loop infinito.",
+          "format": "ENCONTRE O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "cpp-24",
+      "name": "MAP E ESTRUTURAS ASSOCIATIVAS",
+      "difficulty": "AVANÇADO",
+      "color": "#0ea5e9",
+      "icon": "◎",
+      "summary": "Use std::map para armazenar pares chave-valor de forma organizada.",
+      "lesson": [
+        {
+          "title": "O que é um map",
+          "body": "std::map, de <map>, armazena pares chave-valor, onde cada chave é única e mapeia para um valor associado. As chaves ficam automaticamente ordenadas internamente pelo container.",
+          "code": "#include <map>\nmap<string, int> idades;\nidades[\"Ana\"] = 30;\nidades[\"Bruno\"] = 25;\n\ncout << idades[\"Ana\"]; // 30"
+        },
+        {
+          "title": "Verificando existência de uma chave",
+          "body": "Acessar uma chave inexistente com [] cria automaticamente essa chave com um valor padrão, o que pode ser indesejado. Por isso, para apenas verificar se uma chave existe, usa-se o método find(), comparando o resultado com end().",
+          "code": "map<string, int> idades = {{\"Ana\", 30}};\nif (idades.find(\"Bruno\") == idades.end()) {\n    cout << \"Bruno nao esta no mapa.\";\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que um std::map armazena?",
+          "opts": [
+            "Apenas uma lista de valores sem nenhuma chave",
+            "Pares chave-valor, onde cada chave é única",
+            "Apenas números inteiros",
+            "Uma sequência ordenada de caracteres"
+          ],
+          "a": 1,
+          "hint": "Pense em como acessamos idades[\"Ana\"] usando um nome como chave.",
+          "ex": "map guarda associações chave-valor, permitindo buscar um valor a partir de sua chave.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que este código imprime?\nmap<string, int> pontos;\npontos[\"time1\"] = 3;\npontos[\"time2\"] = 5;\ncout << pontos[\"time2\"];",
+          "opts": ["3", "5", "0", "Erro de compilação"],
+          "a": 1,
+          "hint": "Localize a chave \"time2\" e veja o valor associado a ela.",
+          "ex": "A chave \"time2\" foi associada ao valor 5, então pontos[\"time2\"] retorna 5.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o problema:\nmap<string, int> m = {{\"x\", 1}};\nif (m[\"y\"] > 0) {\n    cout << \"y existe e é positivo\";\n} else {\n    cout << \"y nao existe\";\n}",
+          "opts": [
+            "A sintaxe do map está errada",
+            "Acessar m[\"y\"] cria a chave \"y\" com valor padrão 0, então a lógica de existência está incorreta",
+            "map não aceita a chave \"y\"",
+            "O if está com sintaxe inválida"
+          ],
+          "a": 1,
+          "hint": "Pense no que acontece ao usar [] com uma chave que ainda não existe no map.",
+          "ex": "Usar [] insere \"y\" com valor 0 automaticamente; o certo seria usar find() para checar existência sem criar a chave.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "code",
+          "q": "Qual a forma correta de verificar se a chave \"Bruno\" existe em um map sem criá-la acidentalmente?",
+          "opts": [
+            "if (idades[\"Bruno\"] != 0)",
+            "if (idades.find(\"Bruno\") != idades.end())",
+            "if (idades == \"Bruno\")",
+            "if (idades.size() == \"Bruno\")"
+          ],
+          "a": 1,
+          "hint": "find() retorna um iterador; compare-o com end() para saber se a chave foi encontrada.",
+          "ex": "find() não cria a chave; comparar o resultado com end() indica se ela realmente existe.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "cpp-25",
+      "name": "RAII",
+      "difficulty": "AVANÇADO",
+      "color": "#38bdf8",
+      "icon": "⬡",
+      "summary": "Entenda o princípio RAII: vincular recursos ao ciclo de vida de objetos.",
+      "lesson": [
+        {
+          "title": "O que é RAII",
+          "body": "RAII (Resource Acquisition Is Initialization) é um princípio central de C++: um recurso (memória, arquivo, conexão) é adquirido no construtor de um objeto e liberado automaticamente no destrutor. Assim, o recurso é liberado mesmo se ocorrer um erro no meio do caminho, pois o destrutor sempre roda quando o objeto sai de escopo.",
+          "code": "class GerenciadorArquivo {\nprivate:\n    FILE *arquivo;\npublic:\n    GerenciadorArquivo(const char *nome) {\n        arquivo = fopen(nome, \"r\");\n    }\n    ~GerenciadorArquivo() {\n        if (arquivo) fclose(arquivo);\n    }\n};"
+        },
+        {
+          "title": "Por que RAII evita erros",
+          "body": "Sem RAII, o programador precisa lembrar de liberar cada recurso manualmente em todos os caminhos possíveis do código, incluindo saídas antecipadas por erro. Com RAII, isso acontece automaticamente, reduzindo drasticamente vazamentos de memória e recursos esquecidos.",
+          "code": "void processar() {\n    GerenciadorArquivo g(\"dados.txt\");\n    // mesmo se ocorrer uma excecao ou um return antecipado aqui,\n    // o destrutor de g ainda sera chamado ao sair do escopo\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que o princípio RAII propõe?",
+          "opts": [
+            "Que recursos sejam liberados manualmente em todos os pontos de saída do código",
+            "Que a aquisição de um recurso aconteça no construtor e sua liberação no destrutor de um objeto",
+            "Que nunca se deva usar new ou delete",
+            "Que todo recurso deve ser global"
+          ],
+          "a": 1,
+          "hint": "Pense na relação entre o ciclo de vida de um objeto e o recurso que ele gerencia.",
+          "ex": "RAII vincula o recurso ao ciclo de vida do objeto: adquirido no construtor, liberado no destrutor.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é a principal vantagem de RAII em relação ao gerenciamento manual de recursos?",
+          "opts": [
+            "O código fica mais lento, porém mais seguro",
+            "O recurso é liberado automaticamente quando o objeto sai de escopo, mesmo em caminhos de erro inesperados",
+            "RAII elimina a necessidade de construtores",
+            "RAII só funciona com arquivos, nunca com memória"
+          ],
+          "a": 1,
+          "hint": "Pense em cenários onde o código sai antecipadamente por causa de um erro ou return.",
+          "ex": "Como o destrutor sempre executa ao sair de escopo, o recurso não fica preso mesmo em saídas inesperadas.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o problema nesta classe que tenta seguir RAII:\nclass Conexao {\npublic:\n    Conexao() { abrirConexao(); }\n    void fechar() { fecharConexao(); }\n};",
+          "opts": [
+            "O construtor não deveria abrir a conexão",
+            "A liberação do recurso está em um método comum (fechar), não no destrutor, então pode ser esquecida",
+            "abrirConexao() não pode ser chamada em um construtor",
+            "A classe não pode se chamar Conexao"
+          ],
+          "a": 1,
+          "hint": "Compare com o exemplo de GerenciadorArquivo: onde o recurso é liberado ali?",
+          "ex": "Para seguir RAII de verdade, fecharConexao() deveria estar no destrutor, garantindo liberação automática.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual situação é um bom candidato para aplicar RAII?",
+          "opts": [
+            "Uma variável int simples usada só para contar um laço",
+            "Uma classe que abre um arquivo no construtor e precisa garantir que ele seja fechado depois",
+            "Uma constante que nunca muda de valor",
+            "Uma função que apenas soma dois números"
+          ],
+          "a": 1,
+          "hint": "Pense em recursos externos que precisam ser explicitamente liberados, como arquivos, conexões ou memória.",
+          "ex": "Recursos como arquivos abertos são candidatos ideais, pois precisam ser fechados de forma confiável.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "cpp-26",
+      "name": "SMART POINTERS",
+      "difficulty": "AVANÇADO",
+      "color": "#38bdf8",
+      "icon": "⬢",
+      "summary": "Conheça unique_ptr e shared_ptr, ponteiros inteligentes que aplicam RAII à memória dinâmica.",
+      "lesson": [
+        {
+          "title": "unique_ptr",
+          "body": "std::unique_ptr, de <memory>, é um ponteiro inteligente que possui exclusivamente o recurso que gerencia: quando ele é destruído (ao sair de escopo), automaticamente chama delete na memória apontada. Um unique_ptr não pode ser copiado, apenas movido, garantindo que só exista um dono do recurso por vez.",
+          "code": "#include <memory>\nvoid usar() {\n    unique_ptr<int> p = make_unique<int>(42);\n    cout << *p; // 42\n} // ao sair do escopo, delete é chamado automaticamente"
+        },
+        {
+          "title": "shared_ptr",
+          "body": "std::shared_ptr permite que vários ponteiros compartilhem a posse do mesmo recurso, mantendo internamente uma contagem de referências. O recurso só é liberado (com delete) quando o último shared_ptr que aponta para ele é destruído.",
+          "code": "shared_ptr<int> a = make_shared<int>(10);\n{\n    shared_ptr<int> b = a; // agora dois donos, contagem = 2\n    cout << *b;\n} // b sai de escopo, contagem = 1, recurso ainda existe\ncout << *a; // ainda válido"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é a ideia central de um smart pointer como unique_ptr ou shared_ptr?",
+          "opts": [
+            "Eles são apenas nomes alternativos para ponteiros comuns, sem diferença real",
+            "Eles aplicam o princípio RAII à memória dinâmica, liberando-a automaticamente quando apropriado",
+            "Eles impedem qualquer uso de ponteiros no programa",
+            "Eles só funcionam com tipos char"
+          ],
+          "a": 1,
+          "hint": "Pense na relação entre smart pointers e o conceito de RAII visto anteriormente.",
+          "ex": "Smart pointers automatizam a liberação de memória, evitando delete manual e vazamentos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que diferencia unique_ptr de shared_ptr?",
+          "opts": [
+            "unique_ptr permite múltiplos donos; shared_ptr permite apenas um",
+            "unique_ptr representa posse exclusiva (não pode ser copiado); shared_ptr permite múltiplos donos através de contagem de referências",
+            "Não existe diferença nenhuma entre eles",
+            "shared_ptr nunca libera memória automaticamente"
+          ],
+          "a": 1,
+          "hint": "Pense em quantos ponteiros podem 'possuir' o mesmo recurso em cada caso.",
+          "ex": "unique_ptr é posse exclusiva; shared_ptr usa contagem de referências para posse compartilhada.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que acontece com o recurso gerenciado por um shared_ptr quando ainda existem outras cópias apontando para ele e uma delas sai de escopo?",
+          "opts": [
+            "O recurso é liberado imediatamente, mesmo havendo outros donos",
+            "A contagem de referências diminui, mas o recurso só é liberado quando a contagem chega a zero",
+            "O programa trava imediatamente",
+            "O recurso é duplicado automaticamente"
+          ],
+          "a": 1,
+          "hint": "Releia o exemplo com os ponteiros a e b compartilhando o mesmo recurso.",
+          "ex": "shared_ptr só libera a memória quando o último dono (contagem zero) é destruído.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Você precisa gerenciar um recurso que tem um único dono claro, sem necessidade de compartilhamento, evitando delete manual. O que escolher?",
+          "opts": [
+            "Um ponteiro comum (int*) com delete manual",
+            "Um unique_ptr, já que a posse é exclusiva e não precisa ser compartilhada",
+            "Um shared_ptr, para garantir compartilhamento",
+            "Uma variável global"
+          ],
+          "a": 1,
+          "hint": "Pense em qual smart pointer representa exatamente posse única de um recurso.",
+          "ex": "unique_ptr é ideal para posse exclusiva, liberando automaticamente sem custo de contagem de referências.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "cpp-27",
+      "name": "PONTEIROS PENDENTES E VAZAMENTOS",
+      "difficulty": "AVANÇADO",
+      "color": "#38bdf8",
+      "icon": "▶",
+      "summary": "Reconheça dangling pointers e memory leaks, e veja como smart pointers ajudam a evitá-los.",
+      "lesson": [
+        {
+          "title": "Dangling pointer",
+          "body": "Um dangling pointer (ponteiro pendente) é um ponteiro que ainda guarda um endereço de memória já liberado ou inválido. Usar um ponteiro desse tipo (por exemplo, desreferenciá-lo) causa comportamento indefinido, podendo gerar dados corrompidos ou travar o programa.",
+          "code": "int *p = new int(5);\ndelete p;\n// p agora é um dangling pointer\ncout << *p; // comportamento indefinido: perigoso!"
+        },
+        {
+          "title": "Memory leak",
+          "body": "Um vazamento de memória (memory leak) ocorre quando memória alocada com new nunca é liberada com delete e o ponteiro que a referenciava é perdido, tornando impossível liberá-la depois. Programas de longa duração com vazamentos podem consumir cada vez mais memória até falhar.",
+          "code": "void funcaoComVazamento() {\n    int *dados = new int[1000];\n    // esquece de chamar delete[] dados;\n} // o ponteiro 'dados' é perdido, mas a memória continua alocada"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que caracteriza um dangling pointer?",
+          "opts": [
+            "Um ponteiro que nunca foi inicializado",
+            "Um ponteiro que ainda aponta para um endereço de memória já liberado ou inválido",
+            "Um ponteiro que aponta para uma referência",
+            "Um ponteiro usado apenas em arrays"
+          ],
+          "a": 1,
+          "hint": "Pense no que acontece com o ponteiro p logo depois de delete p; no exemplo.",
+          "ex": "Depois do delete, p continua com o endereço antigo, agora inválido: um dangling pointer.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que causa um vazamento de memória (memory leak)?",
+          "opts": [
+            "Chamar delete duas vezes no mesmo ponteiro",
+            "Perder a referência a uma memória alocada dinamicamente sem antes liberá-la com delete",
+            "Usar smart pointers em vez de ponteiros comuns",
+            "Declarar uma variável local dentro de uma função"
+          ],
+          "a": 1,
+          "hint": "Pense no exemplo de funcaoComVazamento e o que acontece com 'dados' ao final da função.",
+          "ex": "Quando o ponteiro que referenciava a memória é perdido sem delete, a memória fica presa e inacessível.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro perigoso neste trecho:\nint *criarPonteiro() {\n    int *p = new int(10);\n    delete p;\n    return p;\n}",
+          "opts": [
+            "new int(10) tem sintaxe errada",
+            "A função retorna um dangling pointer, já que p foi liberado antes do return",
+            "delete p; deveria vir depois do return",
+            "A função não pode retornar int*"
+          ],
+          "a": 1,
+          "hint": "Observe a ordem das operações: quando o delete acontece em relação ao return.",
+          "ex": "Como delete acontece antes do return, quem receber o ponteiro terá um dangling pointer.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Como o uso de smart pointers (como unique_ptr) ajuda a reduzir dangling pointers e memory leaks?",
+          "opts": [
+            "Eles tornam impossível usar ponteiros no programa",
+            "Eles automatizam a liberação de memória no momento correto, reduzindo o risco de erro humano no gerenciamento manual",
+            "Eles fazem o programa nunca usar memória dinâmica",
+            "Eles não têm nenhum efeito sobre esses problemas"
+          ],
+          "a": 1,
+          "hint": "Relembre o que foi estudado sobre RAII aplicado aos smart pointers.",
+          "ex": "Smart pointers liberam memória automaticamente e de forma previsível, diminuindo erros manuais.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "cpp-28",
+      "name": "CONST CORRECTNESS",
+      "difficulty": "AVANÇADO",
+      "color": "#a78bfa",
+      "icon": "◒",
+      "summary": "Use const para proteger dados contra alterações não intencionais.",
+      "lesson": [
+        {
+          "title": "Variáveis e parâmetros const",
+          "body": "A palavra-chave const indica que um valor não pode ser alterado depois de inicializado. Em parâmetros de função, especialmente referências, const evita cópias desnecessárias e garante que a função não modifique o argumento original.",
+          "code": "void imprimir(const string &texto) {\n    cout << texto;\n    // texto = \"outro\"; // erro: não é permitido alterar um parâmetro const\n}"
+        },
+        {
+          "title": "Métodos const em classes",
+          "body": "Um método marcado como const, escrito após a lista de parâmetros, promete não alterar nenhum atributo do objeto. Isso permite que o método seja chamado até em objetos const, e comunica claramente a intenção de apenas 'ler' o estado do objeto.",
+          "code": "class Retangulo {\nprivate:\n    double base, altura;\npublic:\n    Retangulo(double b, double h) : base(b), altura(h) {}\n    double area() const {\n        return base * altura; // apenas lê, não modifica\n    }\n};"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que a palavra-chave const garante quando aplicada a uma variável?",
+          "opts": [
+            "Que a variável só pode ser lida uma vez",
+            "Que o valor da variável não pode ser alterado depois de inicializado",
+            "Que a variável é automaticamente global",
+            "Que a variável ocupa menos memória"
+          ],
+          "a": 1,
+          "hint": "Pense no significado literal da palavra 'const' (constante).",
+          "ex": "const impede que o valor de uma variável seja modificado após sua inicialização.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que declarar um parâmetro de função como 'const string &texto' em vez de apenas 'string texto'?",
+          "opts": [
+            "Para evitar copiar a string e garantir que a função não a modifique",
+            "Porque strings não podem ser passadas por valor",
+            "Porque const torna a string maiúscula automaticamente",
+            "Não há diferença prática nenhuma"
+          ],
+          "a": 0,
+          "hint": "Pense em performance (evitar cópia) e segurança (garantia de não alteração) ao mesmo tempo.",
+          "ex": "const & evita a cópia da string e assegura ao chamador que a função não vai alterá-la.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nclass Retangulo {\npublic:\n    double base, altura;\n    double area() const {\n        base = 10; // erro aqui\n        return base * altura;\n    }\n};",
+          "opts": [
+            "area() não pode retornar double",
+            "Um método const está tentando modificar um atributo do objeto (base = 10), o que não é permitido",
+            "base e altura deveriam ser private",
+            "área() precisa de parâmetros"
+          ],
+          "a": 1,
+          "hint": "Lembre-se do que um método const promete não fazer.",
+          "ex": "Um método const não pode alterar atributos; a linha base = 10 viola essa promessa.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual método deveria ser declarado como const em uma classe ContaBancaria?",
+          "opts": [
+            "depositar(double valor), que altera o saldo",
+            "sacar(double valor), que altera o saldo",
+            "getSaldo(), que apenas retorna o valor atual do saldo sem modificá-lo",
+            "Nenhum método deveria ser const"
+          ],
+          "a": 2,
+          "hint": "const deve ser usado em métodos que apenas leem o estado do objeto, sem alterá-lo.",
+          "ex": "getSaldo() apenas lê o saldo, então é um bom candidato a ser marcado como const.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "cpp-29",
+      "name": "COMPILAÇÃO E ARQUIVOS HEADER",
+      "difficulty": "AVANÇADO",
+      "color": "#a78bfa",
+      "icon": "◓",
+      "summary": "Entenda como separar declarações e implementações em arquivos .h e .cpp.",
+      "lesson": [
+        {
+          "title": "Separando declaração e implementação",
+          "body": "Em projetos maiores, é comum colocar a declaração de uma classe em um arquivo .h (header) e sua implementação em um arquivo .cpp correspondente. Isso permite que outros arquivos usem a classe incluindo apenas o header, sem recompilar a implementação inteira.",
+          "code": "// Pessoa.h\nclass Pessoa {\npublic:\n    string nome;\n    void apresentar();\n};\n\n// Pessoa.cpp\n#include \"Pessoa.h\"\nvoid Pessoa::apresentar() {\n    cout << \"Ola, eu sou \" << nome;\n}"
+        },
+        {
+          "title": "Guardas de inclusão (include guards)",
+          "body": "Se um header for incluído mais de uma vez (direta ou indiretamente) na mesma unidade de compilação, isso gera erro de redefinição. Para evitar isso, usa-se #ifndef/#define/#endif ou #pragma once no topo do arquivo header.",
+          "code": "#ifndef PESSOA_H\n#define PESSOA_H\n\nclass Pessoa {\npublic:\n    string nome;\n};\n\n#endif"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é o propósito de um arquivo header (.h) em um projeto C++?",
+          "opts": [
+            "Armazenar apenas comentários do projeto",
+            "Conter declarações (como classes e protótipos de funções) que podem ser incluídas por outros arquivos",
+            "Substituir completamente os arquivos .cpp",
+            "Ser executado diretamente pelo sistema operacional"
+          ],
+          "a": 1,
+          "hint": "Pense em como Pessoa.h é incluído em Pessoa.cpp e em outros arquivos que usam a classe.",
+          "ex": "Headers concentram declarações compartilháveis entre múltiplos arquivos .cpp de um projeto.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Para que servem as guardas de inclusão (#ifndef/#define/#endif)?",
+          "opts": [
+            "Para deixar o código mais bonito visualmente",
+            "Para evitar que o conteúdo de um header seja processado mais de uma vez na mesma compilação, prevenindo erro de redefinição",
+            "Para impedir que o header seja incluído em qualquer arquivo",
+            "Para acelerar a execução do programa em tempo real"
+          ],
+          "a": 1,
+          "hint": "Pense no problema de incluir o mesmo header duas vezes, direta ou indiretamente.",
+          "ex": "As guardas garantem que o conteúdo do header só seja processado uma vez por unidade de compilação.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o problema neste header:\nclass Produto {\npublic:\n    string nome;\n    double preco;\n};\n// (sem guardas de inclusão)",
+          "opts": [
+            "string não pode ser usado em headers",
+            "Sem #ifndef/#define/#endif ou #pragma once, incluir esse header duas vezes causará erro de redefinição",
+            "preco deveria ser int",
+            "A classe precisa de um construtor obrigatoriamente"
+          ],
+          "a": 1,
+          "hint": "Pense no que acontece se dois arquivos .cpp diferentes incluírem esse mesmo header no mesmo binário.",
+          "ex": "Faltam guardas de inclusão, o que pode causar erro de 'classe já definida' em compilações maiores.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "code",
+          "q": "Qual alternativa moderna e mais simples às guardas #ifndef/#define/#endif é amplamente suportada pelos compiladores?",
+          "opts": ["#once", "#pragma once", "#include guard", "#define header"],
+          "a": 1,
+          "hint": "É uma diretiva de uma linha colocada no topo do arquivo header.",
+          "ex": "#pragma once cumpre o mesmo papel das guardas tradicionais, de forma mais concisa.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "cpp-30",
+      "name": "PROJETO: SISTEMA DE ESTOQUE",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "▲",
+      "summary": "Revise classes, herança, vectors e smart pointers construindo um mini sistema de estoque.",
+      "lesson": [
+        {
+          "title": "Modelando o problema",
+          "body": "Um sistema de estoque pode ser modelado com uma classe Produto (nome, preco, quantidade) e uma classe Estoque que guarda um vector de produtos. Métodos da classe Estoque, como adicionarProduto e valorTotal, encapsulam as regras de negócio.",
+          "code": "class Produto {\npublic:\n    string nome;\n    double preco;\n    int quantidade;\n    Produto(string n, double p, int q) : nome(n), preco(p), quantidade(q) {}\n};\n\nclass Estoque {\nprivate:\n    vector<Produto> produtos;\npublic:\n    void adicionarProduto(const Produto &p) {\n        produtos.push_back(p);\n    }\n    double valorTotal() const {\n        double total = 0;\n        for (const Produto &p : produtos) {\n            total += p.preco * p.quantidade;\n        }\n        return total;\n    }\n};"
+        },
+        {
+          "title": "Juntando os conceitos",
+          "body": "O exemplo acima usa classes com construtor, encapsulamento (produtos é private), vector para armazenar objetos, passagem por referência const para evitar cópias e um método const que apenas lê o estado do estoque. Esses são os pilares vistos ao longo da trilha de C++.",
+          "code": "int main() {\n    Estoque loja;\n    loja.adicionarProduto(Produto(\"Teclado\", 150.0, 3));\n    loja.adicionarProduto(Produto(\"Mouse\", 80.0, 5));\n    cout << \"Valor total: \" << loja.valorTotal();\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "No exemplo do sistema de estoque, qual seria o valor de loja.valorTotal() após adicionar Produto(\"Teclado\", 150.0, 3) e Produto(\"Mouse\", 80.0, 5)?",
+          "opts": ["230.0", "450.0", "850.0", "8.0"],
+          "a": 2,
+          "hint": "Calcule preco * quantidade para cada produto e some os resultados.",
+          "ex": "150 * 3 = 450 e 80 * 5 = 400; a soma total é 850.0.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que 'produtos' é declarado como private dentro da classe Estoque?",
+          "opts": [
+            "Para impedir que a classe Estoque seja usada em qualquer programa",
+            "Para proteger a lista de produtos, garantindo que só métodos da própria classe controlem como ela é alterada",
+            "Porque vector não pode ser public",
+            "Não há razão específica, poderia ser public sem problema"
+          ],
+          "a": 1,
+          "hint": "Relembre o conceito de encapsulamento estudado nas classes.",
+          "ex": "Manter produtos private evita que código externo insira ou remova itens sem passar pelos métodos definidos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o problema nesta variação do método adicionarProduto:\nvoid adicionarProduto(Produto p) {\n    produtos.push_back(p);\n}",
+          "opts": [
+            "push_back não existe em vector<Produto>",
+            "O parâmetro é passado por valor (Produto p), copiando o objeto inteiro desnecessariamente; o ideal seria const Produto &p",
+            "A função não pode se chamar adicionarProduto",
+            "vector<Produto> não é permitido em C++"
+          ],
+          "a": 1,
+          "hint": "Compare com a assinatura do exemplo original da lição, que usa &.",
+          "ex": "Sem referência, cada chamada copia todo o objeto Produto; usar const & evita essa cópia extra.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Se quiséssemos que Estoque aceitasse tanto Produto comuns quanto uma futura classe ProdutoPerecivel (com validade), qual conceito de C++ estudado nesta trilha permitiria tratar ambos de forma uniforme?",
+          "opts": [
+            "Sobrecarga de operadores aritméticos",
+            "Herança e polimorfismo, com ProdutoPerecivel derivando de Produto e usando funções virtuais",
+            "Apenas aumentar o tamanho do vector",
+            "Usar apenas tipos primitivos como int e double"
+          ],
+          "a": 1,
+          "hint": "Pense em uma relação 'é um' entre ProdutoPerecivel e Produto, e no uso de métodos virtuais.",
+          "ex": "Herança com funções virtuais permite tratar diferentes tipos de produto de forma polimórfica no mesmo estoque.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    }
+  ]
+}

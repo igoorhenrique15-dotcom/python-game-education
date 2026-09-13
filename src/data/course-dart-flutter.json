@@ -1,0 +1,2218 @@
+{
+  "meta": {
+    "id": "dart-flutter",
+    "title": "Dart & Flutter",
+    "subtitle": "Apps multiplataforma com um único código.",
+    "icon": "◆",
+    "color": "#02569B",
+    "fileExt": "dart",
+    "stagesPerUnit": 3,
+    "order": 19,
+    "units": [
+      { "title": "Fundamentos de Dart", "goal": "Variáveis, tipos e null safety.", "color": "#02569B" },
+      { "title": "Controle de Fluxo", "goal": "Condicionais e loops em Dart.", "color": "#ff9600" },
+      { "title": "Funções e Classes", "goal": "Funções, classes e construtores nomeados.", "color": "#f6c445" },
+      { "title": "Coleções em Dart", "goal": "List, Map e Set.", "color": "#22c55e" },
+      { "title": "Orientação a Objetos", "goal": "Herança, mixins e interfaces.", "color": "#34d399" },
+      { "title": "Introdução ao Flutter", "goal": "Widgets, StatelessWidget vs StatefulWidget.", "color": "#1cb0f6" },
+      { "title": "Layout com Widgets", "goal": "Row, Column e Container (conceitual).", "color": "#0ea5e9" },
+      { "title": "Estado e Interação", "goal": "setState e eventos de botão.", "color": "#38bdf8" },
+      { "title": "Navegação e Estrutura", "goal": "Rotas e telas múltiplas (conceitual).", "color": "#a78bfa" },
+      { "title": "Projeto final", "goal": "Revisão integrada com um mini app Flutter.", "color": "#facc15" }
+    ]
+  },
+  "title": "Dart & Flutter",
+  "version": 1,
+  "stages": [
+    {
+      "id": "dart-flutter-1",
+      "name": "VARIÁVEIS E TIPOS",
+      "difficulty": "INICIANTE",
+      "color": "#02569B",
+      "icon": "◆",
+      "summary": "Aprenda a declarar variáveis em Dart usando var, tipos explícitos e final.",
+      "lesson": [
+        {
+          "title": "Declarando variáveis",
+          "body": "Em Dart, você pode declarar uma variável com um tipo explícito, como int ou String, ou usar var para deixar o Dart inferir o tipo pelo valor atribuído. Uma vez inferido, o tipo não muda.",
+          "code": "int idade = 20;\nString nome = 'Ana';\nvar cidade = 'Recife'; // inferido como String"
+        },
+        {
+          "title": "final e const",
+          "body": "final cria uma variável cujo valor só pode ser atribuído uma vez, mas o valor pode ser calculado em tempo de execução. const exige que o valor já seja conhecido em tempo de compilação.",
+          "code": "final horaAtual = DateTime.now();\nconst pi = 3.14159;"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que acontece quando você usa 'var nome = \"Ana\";' em Dart?",
+          "opts": [
+            "O tipo fica dinâmico para sempre",
+            "O Dart infere o tipo String e ele fica fixo",
+            "Gera erro de compilação",
+            "nome vira uma constante"
+          ],
+          "a": 1,
+          "hint": "Pense em como o Dart decide o tipo a partir do valor inicial.",
+          "ex": "Com var, o Dart infere o tipo pelo valor atribuído e esse tipo permanece fixo.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual a diferença principal entre final e const em Dart?",
+          "opts": [
+            "Não há diferença, são sinônimos",
+            "final só existe em classes, const só em funções",
+            "const exige valor conhecido em tempo de compilação; final pode ser calculado em tempo de execução",
+            "const permite reatribuição, final não"
+          ],
+          "a": 2,
+          "hint": "Pense em qual das duas pode guardar o resultado de uma função executada agora, como DateTime.now().",
+          "ex": "const é resolvido em tempo de compilação; final pode receber um valor calculado durante a execução, mas não pode ser reatribuído.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que essa declaração produz?\nfinal x = 10;\nx = 20;",
+          "opts": [
+            "x passa a valer 20 normalmente",
+            "Erro de compilação, pois final não pode ser reatribuído",
+            "x vira null",
+            "Funciona, mas gera um aviso apenas"
+          ],
+          "a": 1,
+          "hint": "Lembre o que 'final' significa sobre reatribuição.",
+          "ex": "Uma variável final só pode receber valor uma vez; tentar reatribuir gera erro de compilação.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nString nome = 25;",
+          "opts": [
+            "Não há erro",
+            "Erro de tipo: 25 é int, não String",
+            "String não aceita valores numéricos em nenhuma hipótese",
+            "Falta usar var em vez de String"
+          ],
+          "a": 1,
+          "hint": "Compare o tipo declarado com o tipo do valor atribuído.",
+          "ex": "Dart é fortemente tipado: não é possível atribuir um int diretamente a uma variável do tipo String.",
+          "format": "ENCONTRE O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "dart-flutter-2",
+      "name": "NULL SAFETY",
+      "difficulty": "INICIANTE",
+      "color": "#02569B",
+      "icon": "▲",
+      "summary": "Entenda como o null safety do Dart evita erros de referência nula usando ? e !.",
+      "lesson": [
+        {
+          "title": "Tipos que aceitam null",
+          "body": "Por padrão, uma variável em Dart não pode ser null. Para permitir isso, adiciona-se um ponto de interrogação após o tipo, como String?. Isso obriga o programador a tratar o caso nulo antes de usar o valor.",
+          "code": "String? apelido;\nprint(apelido); // imprime null, sem erro"
+        },
+        {
+          "title": "O operador ! e o ??",
+          "body": "O operador ! afirma ao compilador que um valor não é nulo naquele ponto (use com cuidado). Já o operador ?? fornece um valor padrão caso a expressão à esquerda seja null.",
+          "code": "String? apelido;\nString exibicao = apelido ?? 'Sem apelido';\nprint(exibicao); // Sem apelido"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que representa o tipo 'int?' em Dart?",
+          "opts": [
+            "Um inteiro que aceita o valor null",
+            "Um inteiro que nunca pode ser negativo",
+            "Um erro de sintaxe",
+            "Um inteiro convertido para double"
+          ],
+          "a": 0,
+          "hint": "Pense no papel do símbolo de interrogação depois do tipo.",
+          "ex": "O '?' após um tipo indica que a variável pode assumir o valor null.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual o resultado deste código?\nString? nome;\nprint(nome ?? 'Visitante');",
+          "opts": [
+            "Erro de compilação",
+            "null",
+            "Visitante",
+            "Uma string vazia"
+          ],
+          "a": 2,
+          "hint": "O operador ?? retorna o valor da direita quando o da esquerda é nulo.",
+          "ex": "Como 'nome' é null, o operador ?? retorna 'Visitante'.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Corrija o erro de null safety:\nString? cidade;\nprint(cidade.length);",
+          "opts": [
+            "Trocar 'length' por 'size'",
+            "Usar cidade!.length ou cidade?.length",
+            "Remover o ponto de interrogação da declaração e nada mais muda",
+            "O código já está correto"
+          ],
+          "a": 1,
+          "hint": "Pense em como acessar uma propriedade de algo que pode ser nulo com segurança ou com afirmação explícita.",
+          "ex": "Como 'cidade' é String?, é preciso usar '?.' para acesso seguro ou '!' para afirmar que não é nulo.",
+          "format": "CORRIJA O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Quando é apropriado usar o operador '!' (bang) em Dart?",
+          "opts": [
+            "Sempre, para simplificar o código",
+            "Quando você tem certeza absoluta de que o valor não é nulo naquele ponto",
+            "Apenas dentro de loops",
+            "Nunca, ele foi removido do Dart"
+          ],
+          "a": 1,
+          "hint": "Pense no risco de usar essa afirmação quando não se tem certeza sobre o valor.",
+          "ex": "O '!' força o Dart a tratar o valor como não nulo; usado incorretamente, causa erro em tempo de execução.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "dart-flutter-3",
+      "name": "OPERADORES E STRINGS",
+      "difficulty": "INICIANTE",
+      "color": "#02569B",
+      "icon": "★",
+      "summary": "Explore operadores aritméticos, comparação e interpolação de strings em Dart.",
+      "lesson": [
+        {
+          "title": "Interpolação de strings",
+          "body": "Dart permite inserir o valor de variáveis diretamente dentro de uma string usando o símbolo $. Para expressões mais complexas, usa-se ${expressao}.",
+          "code": "var nome = 'Léo';\nvar idade = 22;\nprint('Olá, $nome! Você tem ${idade + 1} anos no próximo aniversário.');"
+        },
+        {
+          "title": "Operadores comuns",
+          "body": "Dart possui os operadores aritméticos usuais (+, -, *, /, ~/ para divisão inteira, % para resto) e operadores de comparação (==, !=, <, >). O operador ~/ descarta a parte decimal do resultado.",
+          "code": "print(7 / 2);   // 3.5\nprint(7 ~/ 2);  // 3\nprint(7 % 2);   // 1"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "Qual o resultado de: print(9 ~/ 2);",
+          "opts": ["4.5", "4", "5", "Erro de compilação"],
+          "a": 1,
+          "hint": "O operador ~/ realiza divisão inteira, descartando a parte decimal.",
+          "ex": "9 ~/ 2 resulta em 4, pois a divisão inteira descarta a casa decimal.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "O que imprime este trecho?\nvar total = 5;\nprint('Total: ${total * 2}');",
+          "opts": ["Total: ${total * 2}", "Total: 5 * 2", "Total: 10", "Erro de sintaxe"],
+          "a": 2,
+          "hint": "Dentro de ${}, o Dart avalia a expressão antes de montar a string final.",
+          "ex": "A interpolação ${total * 2} calcula 5 * 2 e insere o resultado 10 na string.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Para inserir apenas o valor de uma variável simples dentro de uma string, qual sintaxe é suficiente?",
+          "opts": [
+            "%nome%",
+            "$nome",
+            "{{nome}}",
+            "<nome>"
+          ],
+          "a": 1,
+          "hint": "Não é necessário usar chaves quando é só o nome da variável, sem operações.",
+          "ex": "Para uma variável simples, basta $nome; as chaves ${} são necessárias apenas para expressões.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nvar preco = 10;\nprint('Preço: $preco + 5');",
+          "opts": [
+            "Não há erro, o código soma corretamente",
+            "O + 5 fica fora da interpolação e é tratado como texto literal, não soma",
+            "$preco deveria ser ${preco}",
+            "print não aceita strings com interpolação"
+          ],
+          "a": 1,
+          "hint": "Observe onde termina a interpolação $preco e onde começa o texto puro.",
+          "ex": "Sem chaves, a interpolação $preco termina logo após o nome da variável; ' + 5' vira texto literal, não uma soma.",
+          "format": "ENCONTRE O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "dart-flutter-4",
+      "name": "CONDICIONAIS EM DART",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#ff9600",
+      "icon": "↗",
+      "summary": "Use if, else if e else para tomar decisões no código Dart.",
+      "lesson": [
+        {
+          "title": "if / else if / else",
+          "body": "A estrutura if avalia uma condição booleana. Se for verdadeira, executa o bloco; senão, passa para o else if seguinte, e por fim para o else, caso nenhuma condição seja atendida.",
+          "code": "int nota = 75;\nif (nota >= 90) {\n  print('A');\n} else if (nota >= 70) {\n  print('B');\n} else {\n  print('C');\n}"
+        },
+        {
+          "title": "Operador ternário",
+          "body": "Para decisões simples de um único valor, o operador ternário condicao ? valorSeVerdadeiro : valorSeFalso é uma alternativa mais compacta ao if/else.",
+          "code": "int idade = 16;\nString status = idade >= 18 ? 'Maior de idade' : 'Menor de idade';\nprint(status);"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "Qual será a saída deste código?\nint nota = 82;\nif (nota >= 90) {\n  print('A');\n} else if (nota >= 70) {\n  print('B');\n} else {\n  print('C');\n}",
+          "opts": ["A", "B", "C", "Nada é impresso"],
+          "a": 1,
+          "hint": "Verifique qual condição é a primeira a ser verdadeira, na ordem em que aparecem.",
+          "ex": "82 não é >= 90, mas é >= 70, então o bloco 'B' é executado.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Quando o bloco 'else' de um if/else if/else é executado?",
+          "opts": [
+            "Sempre, além dos outros blocos",
+            "Somente quando nenhuma das condições anteriores for verdadeira",
+            "Apenas quando a primeira condição for verdadeira",
+            "Nunca, é um bloco opcional sem função"
+          ],
+          "a": 1,
+          "hint": "Pense no papel do else como 'último recurso' da cadeia condicional.",
+          "ex": "O else só roda quando todas as condições anteriores da cadeia forem falsas.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Reescreva mentalmente e avalie: qual o valor de 'status'?\nint idade = 17;\nString status = idade >= 18 ? 'Maior' : 'Menor';",
+          "opts": ["Maior", "Menor", "17", "Erro de compilação"],
+          "a": 1,
+          "hint": "Verifique se a condição do ternário é verdadeira ou falsa para idade = 17.",
+          "ex": "Como 17 não é >= 18, a condição é falsa e o ternário retorna 'Menor'.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Corrija o erro de sintaxe:\nif (idade >= 18)\n  print('Adulto')\nelse\n  print('Menor');",
+          "opts": [
+            "Trocar if por when",
+            "Adicionar ponto e vírgula após print('Adulto')",
+            "Remover os parênteses da condição",
+            "Trocar else por elseif"
+          ],
+          "a": 1,
+          "hint": "Em Dart, cada instrução simples precisa terminar com ponto e vírgula.",
+          "ex": "Falta o ';' ao final de print('Adulto'), o que causa erro de sintaxe antes do else.",
+          "format": "CORRIJA O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "dart-flutter-5",
+      "name": "LOOPS FOR E WHILE",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#ff9600",
+      "icon": "▤",
+      "summary": "Repita ações com for, while e do-while em Dart.",
+      "lesson": [
+        {
+          "title": "Loop for clássico",
+          "body": "O for tradicional em Dart segue o padrão: inicialização, condição e incremento, separados por ponto e vírgula. Ele repete o bloco enquanto a condição for verdadeira.",
+          "code": "for (int i = 0; i < 5; i++) {\n  print('Contagem: $i');\n}"
+        },
+        {
+          "title": "while e do-while",
+          "body": "O while verifica a condição antes de cada execução, podendo nunca executar o bloco. Já o do-while executa o bloco pelo menos uma vez, verificando a condição depois.",
+          "code": "int contador = 0;\nwhile (contador < 3) {\n  print(contador);\n  contador++;\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "Quantas vezes 'Oi' é impresso?\nfor (int i = 0; i < 4; i++) {\n  print('Oi');\n}",
+          "opts": ["3 vezes", "4 vezes", "5 vezes", "Infinitas vezes"],
+          "a": 1,
+          "hint": "Conte os valores de i que satisfazem i < 4, começando em 0.",
+          "ex": "i assume os valores 0, 1, 2 e 3, totalizando 4 execuções.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual a principal diferença entre while e do-while?",
+          "opts": [
+            "Não há diferença nenhuma",
+            "do-while sempre executa o bloco pelo menos uma vez, mesmo se a condição for falsa de início",
+            "while só funciona com números",
+            "do-while não aceita condições booleanas"
+          ],
+          "a": 1,
+          "hint": "Pense em quando a condição é verificada: antes ou depois do bloco.",
+          "ex": "No do-while, o bloco roda primeiro e a condição é checada depois, garantindo ao menos uma execução.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro que causa loop infinito:\nint i = 0;\nwhile (i < 5) {\n  print(i);\n}",
+          "opts": [
+            "Falta trocar while por for",
+            "Falta incrementar i dentro do bloco (i++)",
+            "A condição deveria ser i > 5",
+            "print não pode ser usado dentro de while"
+          ],
+          "a": 1,
+          "hint": "Verifique se algo dentro do bloco muda o valor usado na condição.",
+          "ex": "Como i nunca é incrementado, a condição i < 5 permanece sempre verdadeira, gerando loop infinito.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "code",
+          "q": "O que este código imprime?\nfor (int i = 10; i > 7; i--) {\n  print(i);\n}",
+          "opts": ["10, 9, 8", "10, 9, 8, 7", "7, 8, 9, 10", "Nada, pois a condição é falsa"],
+          "a": 0,
+          "hint": "O loop decrementa i e para assim que a condição i > 7 deixa de ser verdadeira.",
+          "ex": "i começa em 10 e decresce; para em 8, pois quando i vale 7 a condição 7 > 7 é falsa. Valores impressos: 10, 9, 8.",
+          "format": "PREVISÃO DE RESULTADO"
+        }
+      ]
+    },
+    {
+      "id": "dart-flutter-6",
+      "name": "SWITCH E BREAK",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#ff9600",
+      "icon": "▦",
+      "summary": "Utilize switch/case para decisões múltiplas e break/continue em loops.",
+      "lesson": [
+        {
+          "title": "switch/case",
+          "body": "O switch compara uma expressão com vários valores possíveis definidos em case. Cada case deve terminar com break (ou return) para evitar que a execução continue para o próximo caso.",
+          "code": "int dia = 3;\nswitch (dia) {\n  case 1:\n    print('Segunda');\n    break;\n  case 3:\n    print('Quarta');\n    break;\n  default:\n    print('Outro dia');\n}"
+        },
+        {
+          "title": "break e continue em loops",
+          "body": "Dentro de um loop, break interrompe totalmente a repetição, saindo do loop. continue pula apenas a iteração atual e segue para a próxima.",
+          "code": "for (int i = 0; i < 5; i++) {\n  if (i == 2) continue;\n  if (i == 4) break;\n  print(i);\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "O que este loop imprime?\nfor (int i = 0; i < 5; i++) {\n  if (i == 2) continue;\n  if (i == 4) break;\n  print(i);\n}",
+          "opts": ["0, 1, 3", "0, 1, 2, 3", "0, 1, 3, 4", "0, 1, 2, 3, 4"],
+          "a": 0,
+          "hint": "continue pula só a iteração atual; break encerra o loop completamente antes de imprimir aquele valor.",
+          "ex": "Quando i=2, continue pula a impressão; quando i=4, break encerra antes de imprimir. Resultado: 0, 1, 3.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que acontece se um 'case' do switch não tiver 'break' nem 'return' em Dart?",
+          "opts": [
+            "O Dart executa normalmente e ignora a falta do break",
+            "É um erro de compilação, pois Dart exige que cada case termine de forma explícita",
+            "O switch para de funcionar silenciosamente",
+            "O case seguinte é ignorado automaticamente"
+          ],
+          "a": 1,
+          "hint": "Diferente de outras linguagens, Dart não permite 'fall-through' implícito sem aviso.",
+          "ex": "Dart exige que cada cláusula case termine com break, continue, return ou throw, gerando erro caso contrário.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual a saída deste switch?\nint nota = 2;\nswitch (nota) {\n  case 1:\n    print('Um');\n    break;\n  case 2:\n    print('Dois');\n    break;\n  default:\n    print('Outro');\n}",
+          "opts": ["Um", "Dois", "Outro", "Nada é impresso"],
+          "a": 1,
+          "hint": "Compare o valor de 'nota' com cada case até encontrar a correspondência.",
+          "ex": "Como nota é 2, o case 2 é executado e imprime 'Dois'.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "code",
+          "q": "Corrija o problema deste código para que ele funcione (Dart não compila assim):\nswitch (cor) {\n  case 'vermelho':\n    print('Pare');\n  case 'verde':\n    print('Siga');\n    break;\n}",
+          "opts": [
+            "Adicionar 'break;' após print('Pare');",
+            "Trocar switch por if",
+            "Remover as aspas de 'vermelho'",
+            "O código já compila normalmente"
+          ],
+          "a": 0,
+          "hint": "Cada case precisa de uma instrução de encerramento antes do próximo case.",
+          "ex": "Falta 'break;' após o primeiro case; sem isso, Dart aponta erro de compilação por falta de terminador.",
+          "format": "CORRIJA O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "dart-flutter-7",
+      "name": "FUNÇÕES EM DART",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#f6c445",
+      "icon": "▣",
+      "summary": "Declare funções com parâmetros posicionais, nomeados e valores padrão.",
+      "lesson": [
+        {
+          "title": "Parâmetros posicionais e nomeados",
+          "body": "Funções em Dart podem ter parâmetros posicionais obrigatórios, parâmetros opcionais entre colchetes [] e parâmetros nomeados entre chaves {}. Parâmetros nomeados podem ser obrigatórios com 'required'.",
+          "code": "void saudacao(String nome, {int idade = 0, required String cidade}) {\n  print('$nome, $idade anos, de $cidade');\n}\n\nsaudacao('Ana', cidade: 'Recife');"
+        },
+        {
+          "title": "Funções como valores (arrow function)",
+          "body": "Funções curtas de uma única expressão podem ser escritas com a sintaxe de seta (=>), evitando chaves e a palavra return.",
+          "code": "int dobro(int x) => x * 2;\nprint(dobro(5)); // 10"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "Dada a função:\nvoid saudacao(String nome, {required String cidade}) {\n  print('$nome de $cidade');\n}\nQual chamada é válida?",
+          "opts": [
+            "saudacao('Ana');",
+            "saudacao('Ana', 'Recife');",
+            "saudacao('Ana', cidade: 'Recife');",
+            "saudacao(cidade: 'Recife');"
+          ],
+          "a": 2,
+          "hint": "Parâmetros nomeados precisam ser passados explicitando o nome do parâmetro.",
+          "ex": "Como 'cidade' é um parâmetro nomeado obrigatório, deve ser chamado como cidade: 'Recife'.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "O que a palavra-chave 'required' faz em um parâmetro nomeado?",
+          "opts": [
+            "Torna o parâmetro posicional",
+            "Obriga que o parâmetro nomeado seja fornecido na chamada da função",
+            "Define um valor padrão automático",
+            "Impede que o parâmetro aceite null"
+          ],
+          "a": 1,
+          "hint": "Pense em parâmetros nomeados que, mesmo sendo nomeados, não podem ser omitidos.",
+          "ex": "'required' torna obrigatório um parâmetro que, por padrão, seria opcional por ser nomeado.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual o resultado de 'print(dobro(5));' dado:\nint dobro(int x) => x * 2;",
+          "opts": ["5", "10", "x * 2", "Erro de compilação"],
+          "a": 1,
+          "hint": "A sintaxe de seta retorna diretamente o valor da expressão à direita.",
+          "ex": "A função de seta calcula x * 2, então dobro(5) retorna 10.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nvoid mostrar({String texto}) {\n  print(texto);\n}",
+          "opts": [
+            "Não há erro",
+            "Com null safety, um parâmetro nomeado não anulável precisa ser 'required' ou ter valor padrão",
+            "Parâmetros nomeados não podem usar String",
+            "Falta usar colchetes em vez de chaves"
+          ],
+          "a": 1,
+          "hint": "Pense no que o null safety exige quando um parâmetro nomeado não é opcional por natureza (String, não String?).",
+          "ex": "Como 'texto' é String (não anulável) e não tem valor padrão, é obrigatório marcá-lo como 'required'.",
+          "format": "ENCONTRE O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "dart-flutter-8",
+      "name": "CLASSES E CONSTRUTORES",
+      "difficulty": "AVANÇADO",
+      "color": "#f6c445",
+      "icon": "◐",
+      "summary": "Crie classes em Dart com construtores padrão e construtores nomeados.",
+      "lesson": [
+        {
+          "title": "Definindo uma classe",
+          "body": "Uma classe agrupa dados (atributos) e comportamentos (métodos). O construtor padrão tem o mesmo nome da classe e pode usar a sintaxe abreviada this.atributo para inicializar campos diretamente.",
+          "code": "class Pessoa {\n  String nome;\n  int idade;\n\n  Pessoa(this.nome, this.idade);\n\n  void apresentar() {\n    print('Sou $nome e tenho $idade anos');\n  }\n}"
+        },
+        {
+          "title": "Construtores nomeados",
+          "body": "Além do construtor padrão, uma classe pode ter construtores nomeados, úteis para criar instâncias de formas alternativas, como Pessoa.bebe(), que já define valores específicos.",
+          "code": "class Pessoa {\n  String nome;\n  int idade;\n\n  Pessoa(this.nome, this.idade);\n\n  Pessoa.bebe(String nome) : this.nome = nome, idade = 0;\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "Dado:\nclass Pessoa {\n  String nome;\n  int idade;\n  Pessoa(this.nome, this.idade);\n}\nQual instrução cria corretamente um objeto?",
+          "opts": [
+            "var p = Pessoa();",
+            "var p = new Pessoa('Ana', 30);",
+            "var p = Pessoa('Ana', 30);",
+            "var p = Pessoa.new('Ana', 30);"
+          ],
+          "a": 2,
+          "hint": "Em Dart moderno, a palavra 'new' é opcional; pense na forma mais idiomática.",
+          "ex": "Pessoa('Ana', 30) é a forma idiomática, já que 'new' é opcional em Dart.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Para que servem os construtores nomeados em Dart, como Pessoa.bebe()?",
+          "opts": [
+            "Para substituir métodos comuns da classe",
+            "Para oferecer formas alternativas de criar instâncias com lógica ou valores específicos",
+            "Para impedir a criação de objetos",
+            "Para converter a classe em uma função"
+          ],
+          "a": 1,
+          "hint": "Pense em quando você quer mais de uma maneira de instanciar um objeto da mesma classe.",
+          "ex": "Construtores nomeados permitem múltiplas formas de criação de objetos, cada uma com sua própria lógica.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que a sintaxe 'Pessoa(this.nome, this.idade);' faz?",
+          "opts": [
+            "Declara métodos getters",
+            "Atribui os parâmetros recebidos diretamente aos atributos da classe",
+            "Cria uma cópia da classe",
+            "Define valores padrão para nome e idade"
+          ],
+          "a": 1,
+          "hint": "Pense no atalho que evita escrever 'this.nome = nome;' manualmente no corpo do construtor.",
+          "ex": "this.nome e this.idade no construtor atribuem automaticamente os parâmetros aos atributos correspondentes.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nclass Carro {\n  String modelo;\n  Carro() {\n    modelo = 'Sem modelo';\n  }\n}",
+          "opts": [
+            "Não há erro",
+            "Com null safety, 'modelo' precisa ser inicializado antes do corpo do construtor rodar, ou ser marcado como late ou nullable",
+            "Carro não pode ter construtor sem parâmetros",
+            "String não pode ser atribuída dentro de um construtor"
+          ],
+          "a": 1,
+          "hint": "Pense em quando o Dart verifica se atributos não anuláveis já têm valor: antes ou depois do corpo do construtor.",
+          "ex": "Campos não anuláveis devem ser inicializados na declaração ou na lista de inicialização, não apenas dentro do corpo do construtor; senão o Dart aponta erro.",
+          "format": "ENCONTRE O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "dart-flutter-9",
+      "name": "MÉTODOS E GETTERS",
+      "difficulty": "AVANÇADO",
+      "color": "#f6c445",
+      "icon": "✓",
+      "summary": "Explore métodos de instância, getters e setters personalizados em Dart.",
+      "lesson": [
+        {
+          "title": "Getters e setters",
+          "body": "Getters permitem calcular um valor sob demanda como se fosse um atributo, usando a palavra get. Setters, com a palavra set, permitem validar ou transformar um valor antes de atribuí-lo.",
+          "code": "class Retangulo {\n  double largura, altura;\n  Retangulo(this.largura, this.altura);\n\n  double get area => largura * altura;\n}\n\nvar r = Retangulo(3, 4);\nprint(r.area); // 12.0, acessado sem parênteses"
+        },
+        {
+          "title": "Métodos de instância",
+          "body": "Métodos definem comportamentos que operam sobre os dados da instância. Eles têm acesso direto aos atributos do objeto, sem precisar de this em muitos casos (embora this seja permitido para clareza).",
+          "code": "class ContaBancaria {\n  double saldo = 0;\n\n  void depositar(double valor) {\n    saldo += valor;\n  }\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "Dado o getter:\ndouble get area => largura * altura;\nComo se acessa esse valor a partir de um objeto 'r'?",
+          "opts": ["r.area()", "r.area", "r.get area", "r->area"],
+          "a": 1,
+          "hint": "Getters em Dart são acessados como atributos, não como métodos com parênteses.",
+          "ex": "Getters são acessados sem parênteses, como r.area, mesmo sendo calculados dinamicamente.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual a principal vantagem de usar um getter em vez de um atributo comum?",
+          "opts": [
+            "Getters são mais rápidos sempre",
+            "O valor pode ser calculado dinamicamente a cada acesso, sem armazenar um campo redundante",
+            "Getters permitem alterar o valor diretamente",
+            "Não há diferença nenhuma"
+          ],
+          "a": 1,
+          "hint": "Pense no caso da 'area', que depende de outros dois atributos e não precisa ser guardada separadamente.",
+          "ex": "Um getter calcula o valor sob demanda, evitando manter um campo duplicado e possivelmente desatualizado.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual o resultado deste código?\nclass ContaBancaria {\n  double saldo = 0;\n  void depositar(double valor) {\n    saldo += valor;\n  }\n}\nvar c = ContaBancaria();\nc.depositar(100);\nc.depositar(50);\nprint(c.saldo);",
+          "opts": ["0.0", "50.0", "100.0", "150.0"],
+          "a": 3,
+          "hint": "Some as duas chamadas ao método depositar, que acumula na propriedade saldo.",
+          "ex": "Cada chamada de depositar soma ao saldo; 100 + 50 resulta em 150.0.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nclass Retangulo {\n  double largura, altura;\n  Retangulo(this.largura, this.altura);\n  double area() => largura * altura;\n}\nvar r = Retangulo(2, 3);\nprint(r.area);",
+          "opts": [
+            "Não há erro",
+            "area foi declarado como método (com parênteses), então deveria ser chamado como r.area()",
+            "Retangulo não pode ter dois parâmetros no construtor",
+            "double não pode multiplicar dois valores"
+          ],
+          "a": 1,
+          "hint": "Compare como 'area' foi declarado: como método comum ou como getter.",
+          "ex": "Como area() foi declarado como método comum, e não com 'get', é preciso chamá-lo com parênteses: r.area().",
+          "format": "ENCONTRE O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "dart-flutter-10",
+      "name": "REVISÃO: FUNDAMENTOS DE DART",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "⌗",
+      "summary": "Consolide variáveis, null safety, controle de fluxo, funções e classes.",
+      "lesson": [
+        {
+          "title": "Juntando os conceitos",
+          "body": "Até aqui você viu variáveis e tipos, null safety, condicionais e loops, funções com parâmetros variados, e classes com construtores, métodos e getters. Esses são os pilares que sustentam qualquer programa Dart, incluindo apps Flutter.",
+          "code": "class Produto {\n  String nome;\n  double preco;\n  Produto(this.nome, this.preco);\n\n  String get resumo => '$nome: R\\$${preco.toStringAsFixed(2)}';\n}"
+        },
+        {
+          "title": "Combinando lógica e dados",
+          "body": "Programas reais combinam estruturas de controle com classes: por exemplo, percorrer uma lista de produtos e aplicar um desconto condicional a cada um, chamando métodos da classe.",
+          "code": "for (var p in [Produto('Caderno', 10), Produto('Caneta', 3)]) {\n  print(p.resumo);\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "Dada a classe:\nclass Produto {\n  String nome;\n  double preco;\n  Produto(this.nome, this.preco);\n}\nQual expressão cria um Produto chamado 'Livro' custando 25.0?",
+          "opts": [
+            "Produto(nome: 'Livro', preco: 25.0);",
+            "Produto('Livro', 25.0);",
+            "new Produto[25.0, 'Livro'];",
+            "Produto.create('Livro', 25.0);"
+          ],
+          "a": 1,
+          "hint": "O construtor da classe recebe parâmetros posicionais, na ordem nome, preco.",
+          "ex": "Como o construtor usa this.nome, this.preco como parâmetros posicionais, a chamada correta é Produto('Livro', 25.0).",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que null safety é importante em um app real, como um Produto sem preço definido?",
+          "opts": [
+            "Porque deixa o código mais lento de propósito",
+            "Porque obriga o desenvolvedor a tratar explicitamente casos em que um valor pode não existir, evitando falhas em tempo de execução",
+            "Porque impede o uso de classes",
+            "Porque só serve para tipos numéricos"
+          ],
+          "a": 1,
+          "hint": "Pense no problema clássico de acessar algo que não existe (null) sem perceber.",
+          "ex": "Null safety força o tratamento de valores ausentes em tempo de compilação, prevenindo erros comuns em produção.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual o resultado deste laço?\nint total = 0;\nfor (int i = 1; i <= 3; i++) {\n  total += i;\n}\nprint(total);",
+          "opts": ["3", "6", "5", "0"],
+          "a": 1,
+          "hint": "Some os valores de i de 1 até 3, acumulando em total.",
+          "ex": "total acumula 1 + 2 + 3, resultando em 6.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro nesta função com null safety:\nString? buscarNome(int id) {\n  if (id == 1) return 'Ana';\n  return null;\n}\nvoid main() {\n  String nome = buscarNome(2);\n  print(nome);\n}",
+          "opts": [
+            "Não há erro",
+            "buscarNome retorna String?, mas está sendo atribuído a uma variável String não anulável",
+            "id deveria ser do tipo String",
+            "return null; não é permitido em Dart"
+          ],
+          "a": 1,
+          "hint": "Compare o tipo de retorno da função com o tipo declarado da variável que recebe o valor.",
+          "ex": "buscarNome retorna String?, então não pode ser atribuído diretamente a uma variável String (não anulável) sem tratamento.",
+          "format": "ENCONTRE O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "dart-flutter-11",
+      "name": "LISTAS EM DART",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#22c55e",
+      "icon": "◫",
+      "summary": "Crie e manipule List em Dart, incluindo listas tipadas e métodos comuns.",
+      "lesson": [
+        {
+          "title": "Criando listas",
+          "body": "Uma List armazena elementos ordenados, indexados a partir de 0. Pode-se declarar com tipo genérico, como List<String>, garantindo que só aquele tipo seja aceito.",
+          "code": "List<String> frutas = ['maçã', 'banana', 'uva'];\nprint(frutas[0]); // maçã\nfrutas.add('pera');"
+        },
+        {
+          "title": "Métodos úteis de List",
+          "body": "Listas possuem métodos como length (tamanho), remove (remove um item específico) e contains (verifica se um item existe). Também é possível iterar com for-in.",
+          "code": "print(frutas.length); // 4\nfrutas.remove('banana');\nprint(frutas.contains('uva')); // true"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "Dado:\nList<int> numeros = [10, 20, 30];\nQual o valor de numeros[1]?",
+          "opts": ["10", "20", "30", "Erro, índice inválido"],
+          "a": 1,
+          "hint": "Lembre que o índice começa em 0, então [1] é o segundo elemento.",
+          "ex": "O índice 1 corresponde ao segundo elemento da lista, que é 20.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que 'List<String>' indica sobre a lista?",
+          "opts": [
+            "Que ela só pode ter no máximo uma string",
+            "Que todos os elementos da lista devem ser do tipo String",
+            "Que a lista é imutável",
+            "Que a lista está vazia por padrão"
+          ],
+          "a": 1,
+          "hint": "Pense no papel do tipo genérico entre os sinais < >.",
+          "ex": "O tipo genérico List<String> garante que todos os elementos armazenados sejam do tipo String.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual o resultado final de 'frutas' após este código?\nList<String> frutas = ['maçã', 'banana'];\nfrutas.add('uva');\nfrutas.remove('maçã');\nprint(frutas);",
+          "opts": [
+            "[maçã, banana, uva]",
+            "[banana, uva]",
+            "[maçã, uva]",
+            "[banana]"
+          ],
+          "a": 1,
+          "hint": "Siga as operações na ordem: primeiro adiciona, depois remove.",
+          "ex": "Após add('uva'), a lista é [maçã, banana, uva]; após remove('maçã'), fica [banana, uva].",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nList<int> idades = [10, 20, 30];\nidades.add('40');",
+          "opts": [
+            "Não há erro",
+            "'40' é uma String, mas a lista é List<int>, então há erro de tipo",
+            "add() não existe para List",
+            "idades deveria ser declarada como List<String>"
+          ],
+          "a": 1,
+          "hint": "Compare o tipo genérico declarado da lista com o tipo do valor que está sendo adicionado.",
+          "ex": "Como idades é List<int>, adicionar a String '40' viola a tipagem e gera erro de compilação.",
+          "format": "ENCONTRE O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "dart-flutter-12",
+      "name": "MAP EM DART",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#22c55e",
+      "icon": "⌕",
+      "summary": "Armazene pares chave-valor usando Map e acesse seus dados.",
+      "lesson": [
+        {
+          "title": "Criando e acessando um Map",
+          "body": "Um Map associa chaves a valores, como um dicionário. Em Dart, declara-se com Map<TipoChave, TipoValor> e acessa-se um valor pela chave usando colchetes.",
+          "code": "Map<String, int> idades = {'Ana': 25, 'Léo': 30};\nprint(idades['Ana']); // 25\nidades['Bia'] = 22;"
+        },
+        {
+          "title": "Verificando chaves e percorrendo",
+          "body": "O método containsKey verifica se uma chave existe. Para percorrer todos os pares, usa-se o método forEach ou um for-in sobre entries.",
+          "code": "if (idades.containsKey('Léo')) {\n  print('Léo está no mapa');\n}\nidades.forEach((chave, valor) {\n  print('$chave tem $valor anos');\n});"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "Dado:\nMap<String, int> estoque = {'lápis': 50, 'caneta': 30};\nQual o valor de estoque['caneta']?",
+          "opts": ["50", "30", "null", "Erro de compilação"],
+          "a": 1,
+          "hint": "Localize a chave 'caneta' e veja o valor associado a ela.",
+          "ex": "A chave 'caneta' está associada ao valor 30 no mapa.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "code",
+          "q": "O que acontece ao acessar uma chave inexistente em um Map, como estoque['borracha']?",
+          "opts": [
+            "Lança uma exceção imediatamente",
+            "Retorna null",
+            "Retorna 0 automaticamente",
+            "Cria a chave automaticamente com valor vazio"
+          ],
+          "a": 1,
+          "hint": "Pense no tipo de retorno do operador de acesso em um Map: ele é sempre anulável.",
+          "ex": "Acessar uma chave que não existe retorna null, por isso o tipo de retorno do acesso é sempre anulável (int? no exemplo).",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Para que serve o método containsKey em um Map?",
+          "opts": [
+            "Para adicionar uma nova chave",
+            "Para verificar se uma determinada chave já existe no mapa",
+            "Para remover todas as chaves",
+            "Para converter o Map em uma List"
+          ],
+          "a": 1,
+          "hint": "Pense em como evitar acessar uma chave que talvez não exista, verificando antes.",
+          "ex": "containsKey verifica a existência de uma chave antes de tentar acessá-la, evitando resultados nulos inesperados.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nMap<String, int> notas = {'Ana': 8, 'Léo': 9};\nnotas['Ana'] = 'dez';",
+          "opts": [
+            "Não há erro",
+            "'dez' é String, mas o Map espera valores do tipo int",
+            "Map não permite atualizar valores existentes",
+            "A chave 'Ana' precisa ser removida antes de ser reatribuída"
+          ],
+          "a": 1,
+          "hint": "Verifique o tipo declarado dos valores do Map: Map<String, int>.",
+          "ex": "Como o Map é Map<String, int>, atribuir a String 'dez' ao valor viola a tipagem esperada.",
+          "format": "ENCONTRE O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "dart-flutter-13",
+      "name": "SET E COMPREENSÕES",
+      "difficulty": "AVANÇADO",
+      "color": "#22c55e",
+      "icon": "◧",
+      "summary": "Use Set para coleções sem duplicatas e explore for de coleção.",
+      "lesson": [
+        {
+          "title": "Set: coleção sem duplicatas",
+          "body": "Um Set armazena elementos únicos, sem repetição e sem ordem garantida. Ao tentar adicionar um valor já existente, ele simplesmente é ignorado, sem erro.",
+          "code": "Set<String> cores = {'azul', 'verde', 'azul'};\nprint(cores); // {azul, verde}\nprint(cores.length); // 2"
+        },
+        {
+          "title": "Collection for e if",
+          "body": "Dart permite usar for e if diretamente dentro de literais de lista, mapa ou set, para construir coleções de forma declarativa, muito usado depois em widgets Flutter.",
+          "code": "List<int> pares = [for (int i = 0; i < 10; i++) if (i % 2 == 0) i];\nprint(pares); // [0, 2, 4, 6, 8]"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "Qual o resultado de:\nSet<int> numeros = {1, 2, 2, 3, 3, 3};\nprint(numeros.length);",
+          "opts": ["6", "3", "1", "Erro de compilação"],
+          "a": 1,
+          "hint": "Lembre que um Set elimina automaticamente valores duplicados.",
+          "ex": "Como Set não permite duplicatas, o conjunto final é {1, 2, 3}, com 3 elementos.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual a principal diferença entre List e Set em Dart?",
+          "opts": [
+            "List não aceita números, Set sim",
+            "Set não permite elementos duplicados e não garante ordem; List permite duplicatas e mantém ordem de inserção",
+            "Set é sempre mais lento que List em qualquer operação",
+            "Não há diferença prática entre eles"
+          ],
+          "a": 1,
+          "hint": "Pense na garantia de unicidade que um dos dois tipos oferece.",
+          "ex": "Set garante unicidade dos elementos e não garante ordem; List preserva ordem e permite repetições.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual o conteúdo de 'pares' após este código?\nList<int> pares = [for (int i = 0; i < 6; i++) if (i % 2 == 0) i];",
+          "opts": [
+            "[0, 1, 2, 3, 4, 5]",
+            "[0, 2, 4]",
+            "[1, 3, 5]",
+            "[0, 2, 4, 6]"
+          ],
+          "a": 1,
+          "hint": "O for percorre de 0 a 5; o if dentro filtra apenas os valores pares.",
+          "ex": "Percorrendo i de 0 a 5 e filtrando os pares, o resultado é [0, 2, 4].",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nSet<String> nomes = {'Ana', 'Léo'};\nprint(nomes[0]);",
+          "opts": [
+            "Não há erro",
+            "Set não possui acesso por índice como List; nomes[0] não é válido",
+            "Set não pode conter Strings",
+            "Faltou usar List em vez de Set"
+          ],
+          "a": 1,
+          "hint": "Pense se um Set garante alguma ordem que justifique um acesso por posição numérica.",
+          "ex": "Como Set não é indexado (não há garantia de ordem), a sintaxe nomes[0] não existe para essa coleção.",
+          "format": "ENCONTRE O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "dart-flutter-14",
+      "name": "MANIPULANDO COLEÇÕES",
+      "difficulty": "AVANÇADO",
+      "color": "#22c55e",
+      "icon": "⇄",
+      "summary": "Use map, where e métodos funcionais para transformar coleções.",
+      "lesson": [
+        {
+          "title": "map e where",
+          "body": "O método map transforma cada elemento de uma coleção aplicando uma função, retornando um Iterable. O método where filtra elementos que satisfazem uma condição, também retornando um Iterable.",
+          "code": "List<int> numeros = [1, 2, 3, 4];\nvar dobrados = numeros.map((n) => n * 2).toList();\nvar pares = numeros.where((n) => n % 2 == 0).toList();\nprint(dobrados); // [2, 4, 6, 8]\nprint(pares);     // [2, 4]"
+        },
+        {
+          "title": "toList e encadeamento",
+          "body": "Como map e where retornam Iterable (não List diretamente), costuma-se encadear .toList() ao final para obter uma lista concreta, permitindo inclusive combinar as duas operações em sequência.",
+          "code": "var resultado = numeros.where((n) => n > 1).map((n) => n * 10).toList();\nprint(resultado); // [20, 30, 40]"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "Qual o resultado de:\nList<int> numeros = [1, 2, 3];\nvar r = numeros.map((n) => n + 1).toList();\nprint(r);",
+          "opts": ["[1, 2, 3]", "[2, 3, 4]", "[0, 1, 2]", "Erro de compilação"],
+          "a": 1,
+          "hint": "map aplica a transformação a cada elemento individualmente, gerando uma nova coleção.",
+          "ex": "Cada elemento recebe +1: 1→2, 2→3, 3→4, resultando em [2, 3, 4].",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que o método where faz em uma coleção?",
+          "opts": [
+            "Transforma cada elemento em outro valor",
+            "Filtra os elementos que satisfazem uma condição booleana",
+            "Ordena a coleção",
+            "Remove todos os elementos da coleção"
+          ],
+          "a": 1,
+          "hint": "Pense no papel de uma condição passada como argumento para essa função.",
+          "ex": "where seleciona apenas os elementos para os quais a condição fornecida é verdadeira.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual o resultado de:\nList<int> numeros = [5, 10, 15, 20];\nvar r = numeros.where((n) => n > 10).map((n) => n ~/ 5).toList();\nprint(r);",
+          "opts": ["[3, 4]", "[15, 20]", "[1, 2, 3, 4]", "[]"],
+          "a": 0,
+          "hint": "Primeiro filtre os maiores que 10, depois divida cada um por 5.",
+          "ex": "where mantém [15, 20]; map aplica ~/5, resultando em [3, 4].",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nList<int> numeros = [1, 2, 3];\nList<int> dobrados = numeros.map((n) => n * 2);",
+          "opts": [
+            "Não há erro",
+            "map retorna um Iterable, não um List diretamente; falta chamar .toList()",
+            "O parâmetro n deveria ser do tipo String",
+            "numeros não pode ser List<int>"
+          ],
+          "a": 1,
+          "hint": "Compare o tipo declarado da variável (List<int>) com o que map efetivamente retorna.",
+          "ex": "map retorna Iterable<int>, então atribuí-lo diretamente a uma variável List<int> exige antes chamar .toList().",
+          "format": "ENCONTRE O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "dart-flutter-15",
+      "name": "REVISÃO: COLEÇÕES",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "⇆",
+      "summary": "Consolide List, Map, Set e métodos funcionais de coleções em Dart.",
+      "lesson": [
+        {
+          "title": "Escolhendo a coleção certa",
+          "body": "Use List quando a ordem e as duplicatas importam, Map quando você precisa associar chaves a valores, e Set quando a unicidade dos elementos é o mais importante. Todas aceitam tipos genéricos para segurança de tipo.",
+          "code": "List<String> historico = ['login', 'compra', 'login'];\nSet<String> acoesUnicas = historico.toSet();\nprint(acoesUnicas); // {login, compra}"
+        },
+        {
+          "title": "Combinando operações",
+          "body": "É comum combinar métodos funcionais como where e map em sequência para processar dados de forma declarativa, um estilo muito usado depois na construção de listas de widgets em Flutter.",
+          "code": "Map<String, int> vendas = {'jan': 100, 'fev': 0, 'mar': 200};\nvar mesesComVenda = vendas.entries.where((e) => e.value > 0).map((e) => e.key).toList();\nprint(mesesComVenda); // [jan, mar]"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Você precisa armazenar os e-mails cadastrados em um sistema, sem permitir duplicatas. Qual coleção é mais adequada?",
+          "opts": ["List<String>", "Set<String>", "Map<int, String>", "int"],
+          "a": 1,
+          "hint": "Pense na coleção que garante unicidade automaticamente, sem verificação manual.",
+          "ex": "Set<String> é ideal, pois garante que cada e-mail apareça apenas uma vez, sem lógica extra.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "code",
+          "q": "Qual o resultado de:\nList<String> historico = ['a', 'b', 'a', 'c'];\nprint(historico.toSet().length);",
+          "opts": ["4", "3", "2", "1"],
+          "a": 1,
+          "hint": "toSet() remove duplicatas antes de calcular o length.",
+          "ex": "toSet() elimina a repetição de 'a', restando {a, b, c}, com 3 elementos.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Dado:\nMap<String, int> vendas = {'jan': 100, 'fev': 0};\nvar comVenda = vendas.entries.where((e) => e.value > 0).map((e) => e.key).toList();\nprint(comVenda);",
+          "opts": ["[jan, fev]", "[jan]", "[fev]", "[]"],
+          "a": 1,
+          "hint": "Filtre apenas as entradas com valor maior que 0, depois extraia só as chaves.",
+          "ex": "Apenas 'jan' tem valor > 0; where filtra essa entrada e map extrai a chave 'jan'.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nMap<String, int> idades = {};\nidades.add('Ana', 25);",
+          "opts": [
+            "Não há erro",
+            "Map não tem método add com dois argumentos; deve-se usar idades['Ana'] = 25;",
+            "Map não pode começar vazio",
+            "Falta declarar idades como List"
+          ],
+          "a": 1,
+          "hint": "Pense em como se adiciona um novo par chave-valor a um Map em Dart.",
+          "ex": "Map não possui um método add(chave, valor); a forma correta é idades['Ana'] = 25;",
+          "format": "CORRIJA O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "dart-flutter-16",
+      "name": "HERANÇA EM DART",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#34d399",
+      "icon": "▧",
+      "summary": "Estenda classes com extends e reutilize comportamento com super.",
+      "lesson": [
+        {
+          "title": "extends e super",
+          "body": "Uma classe pode herdar atributos e métodos de outra usando extends. O construtor da subclasse pode chamar o construtor da superclasse com super(...), e métodos sobrescritos podem chamar a versão original com super.metodo().",
+          "code": "class Animal {\n  String nome;\n  Animal(this.nome);\n  void emitirSom() => print('Som genérico');\n}\n\nclass Cachorro extends Animal {\n  Cachorro(String nome) : super(nome);\n\n  @override\n  void emitirSom() => print('Latido');\n}"
+        },
+        {
+          "title": "Polimorfismo",
+          "body": "Graças à herança, um objeto de uma subclasse pode ser tratado como se fosse do tipo da superclasse, e o método sobrescrito correto é chamado automaticamente em tempo de execução.",
+          "code": "Animal a = Cachorro('Rex');\na.emitirSom(); // Latido, mesmo 'a' sendo do tipo Animal"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "Dado:\nclass Animal {\n  void emitirSom() => print('Som genérico');\n}\nclass Gato extends Animal {\n  @override\n  void emitirSom() => print('Miau');\n}\nAnimal a = Gato();\na.emitirSom();\nQual a saída?",
+          "opts": ["Som genérico", "Miau", "Erro de compilação", "Nada é impresso"],
+          "a": 1,
+          "hint": "Mesmo a variável sendo do tipo Animal, o objeto real é um Gato.",
+          "ex": "Por polimorfismo, o método sobrescrito de Gato é executado, imprimindo 'Miau'.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Para que serve a palavra-chave 'extends' em Dart?",
+          "opts": [
+            "Para criar uma cópia idêntica de uma classe",
+            "Para permitir que uma classe herde atributos e métodos de outra",
+            "Para importar um arquivo externo",
+            "Para declarar uma variável global"
+          ],
+          "a": 1,
+          "hint": "Pense na relação de 'é um tipo de', como Cachorro é um tipo de Animal.",
+          "ex": "extends estabelece uma relação de herança, onde a subclasse reutiliza e pode sobrescrever membros da superclasse.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que 'super(nome)' faz neste construtor?\nclass Cachorro extends Animal {\n  Cachorro(String nome) : super(nome);\n}",
+          "opts": [
+            "Cria uma nova instância de Animal separada",
+            "Chama o construtor da superclasse Animal, passando 'nome'",
+            "Sobrescreve o método emitirSom",
+            "Declara uma variável chamada super"
+          ],
+          "a": 1,
+          "hint": "Pense em como inicializar os atributos herdados da classe pai.",
+          "ex": "super(nome) delega a inicialização do atributo herdado ao construtor da classe Animal.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nclass Veiculo {\n  void mover() => print('Movendo');\n}\nclass Carro extends Veiculo {\n  void mover() => print('Dirigindo');\n}",
+          "opts": [
+            "Não há erro, o código está correto e funcional",
+            "Falta a anotação @override antes de sobrescrever o método mover (boa prática exigida em código limpo)",
+            "extends não pode ser usado com void",
+            "O construtor de Carro é obrigatório"
+          ],
+          "a": 1,
+          "hint": "Embora compile, há uma boa prática de documentação de sobrescrita que está ausente.",
+          "ex": "Embora o código funcione, a convenção e boa prática em Dart é anotar métodos sobrescritos com @override para clareza e checagem do compilador.",
+          "format": "ENCONTRE O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "dart-flutter-17",
+      "name": "CLASSES ABSTRATAS E INTERFACES",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#34d399",
+      "icon": "◉",
+      "summary": "Defina contratos com classes abstratas e implemente interfaces com implements.",
+      "lesson": [
+        {
+          "title": "Classes abstratas",
+          "body": "Uma classe abstract não pode ser instanciada diretamente; ela serve como modelo para subclasses. Métodos sem corpo definem um contrato que as subclasses são obrigadas a implementar.",
+          "code": "abstract class Forma {\n  double calcularArea();\n}\n\nclass Quadrado extends Forma {\n  double lado;\n  Quadrado(this.lado);\n\n  @override\n  double calcularArea() => lado * lado;\n}"
+        },
+        {
+          "title": "implements",
+          "body": "Em Dart, qualquer classe pode ser usada como interface com implements. Diferente de extends, implements obriga a classe a fornecer sua própria implementação de todos os métodos, sem herdar código pronto.",
+          "code": "class Impressora {\n  void imprimir() => print('Imprimindo...');\n}\n\nclass ImpressoraLaser implements Impressora {\n  @override\n  void imprimir() => print('Imprimindo a laser...');\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que caracteriza uma classe abstrata em Dart?",
+          "opts": [
+            "Ela não pode ter nenhum método",
+            "Ela não pode ser instanciada diretamente e pode definir métodos sem implementação",
+            "Ela é sempre mais rápida que uma classe comum",
+            "Ela só pode ter um atributo"
+          ],
+          "a": 1,
+          "hint": "Pense no propósito de servir como modelo para outras classes, não para ser usada sozinha.",
+          "ex": "Classes abstratas não podem ser instanciadas e podem declarar métodos que as subclasses são obrigadas a implementar.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Dado:\nabstract class Forma {\n  double calcularArea();\n}\nQual linha causaria erro de compilação?",
+          "opts": [
+            "class Quadrado extends Forma { double calcularArea() => 4.0; }",
+            "Forma f = Forma();",
+            "abstract class Forma3D extends Forma {}",
+            "class Circulo implements Forma { double calcularArea() => 3.14; }"
+          ],
+          "a": 1,
+          "hint": "Pense se é possível criar uma instância direta de uma classe marcada como abstract.",
+          "ex": "Não é possível instanciar diretamente uma classe abstrata: 'Forma f = Forma();' gera erro de compilação.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual a principal diferença entre extends e implements em Dart?",
+          "opts": [
+            "Não há diferença nenhuma",
+            "extends herda a implementação dos métodos; implements exige que a classe implemente tudo do zero, tratando a outra classe como interface",
+            "implements só funciona com classes abstratas",
+            "extends não permite sobrescrever métodos"
+          ],
+          "a": 1,
+          "hint": "Pense se o código do método é reaproveitado (extends) ou se precisa ser todo reescrito (implements).",
+          "ex": "extends reaproveita implementações da superclasse; implements trata a classe como um contrato, exigindo implementação própria de todos os métodos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nabstract class Forma {\n  double calcularArea();\n}\nclass Triangulo extends Forma {\n  double base, altura;\n  Triangulo(this.base, this.altura);\n}",
+          "opts": [
+            "Não há erro",
+            "Triangulo não implementou o método calcularArea exigido pela classe abstrata Forma",
+            "Forma não pode ser abstrata e ter um método",
+            "Triangulo não pode ter dois atributos"
+          ],
+          "a": 1,
+          "hint": "Verifique se todos os métodos abstratos da classe pai foram implementados na subclasse.",
+          "ex": "Como calcularArea() é abstrato em Forma, Triangulo é obrigado a fornecer uma implementação concreta dele; sem isso, há erro de compilação.",
+          "format": "ENCONTRE O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "dart-flutter-18",
+      "name": "MIXINS EM DART",
+      "difficulty": "AVANÇADO",
+      "color": "#34d399",
+      "icon": "⟳",
+      "summary": "Reutilize código entre classes não relacionadas usando mixins com with.",
+      "lesson": [
+        {
+          "title": "O que é um mixin",
+          "body": "Um mixin é uma forma de reutilizar código em várias hierarquias de classes diferentes, sem usar herança tradicional. Declara-se com mixin e aplica-se a uma classe com a palavra with.",
+          "code": "mixin Nadador {\n  void nadar() => print('Nadando...');\n}\n\nclass Peixe with Nadador {}\n\nvar p = Peixe();\np.nadar(); // Nadando..."
+        },
+        {
+          "title": "Combinando múltiplos mixins",
+          "body": "Uma classe pode usar vários mixins ao mesmo tempo, algo que não é possível com herança simples (extends só permite uma superclasse). Isso resolve o problema de comportamento compartilhado entre classes não relacionadas.",
+          "code": "mixin Voador {\n  void voar() => print('Voando...');\n}\n\nclass Pato with Nadador, Voador {}\n\nvar pato = Pato();\npato.nadar();\npato.voar();"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual o principal propósito de um mixin em Dart?",
+          "opts": [
+            "Substituir totalmente o uso de classes",
+            "Compartilhar comportamento entre classes diferentes, sem exigir uma relação de herança direta",
+            "Impedir que uma classe tenha construtor",
+            "Criar variáveis globais"
+          ],
+          "a": 1,
+          "hint": "Pense no problema de dar a Peixe e Pato a mesma capacidade de nadar, sem que um herde do outro.",
+          "ex": "Mixins permitem reutilizar métodos entre classes que não têm relação hierárquica entre si, como Peixe e Pato ambos nadando.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Dado:\nmixin Voador {\n  void voar() => print('Voando');\n}\nclass Passaro with Voador {}\nQual código usa corretamente o mixin?",
+          "opts": [
+            "var p = Passaro(); p.voar();",
+            "var p = Voador(); p.voar();",
+            "Passaro.voar();",
+            "with Voador { Passaro p; }"
+          ],
+          "a": 0,
+          "hint": "O mixin adiciona o método voar() à classe Passaro; instancie a classe normalmente.",
+          "ex": "Como Passaro usa 'with Voador', instâncias de Passaro ganham o método voar() diretamente.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "code",
+          "q": "Qual a diferença ao usar múltiplos mixins, como 'class Pato with Nadador, Voador {}'?",
+          "opts": [
+            "É um erro de sintaxe, só é permitido um mixin por classe",
+            "Pato ganha os métodos de ambos os mixins, Nadador e Voador",
+            "Apenas o último mixin listado é aplicado",
+            "Os mixins entram em conflito e nenhum funciona"
+          ],
+          "a": 1,
+          "hint": "Diferente de extends (que permite só uma superclasse), with aceita uma lista de mixins.",
+          "ex": "Uma classe pode combinar vários mixins com vírgula, herdando o comportamento de todos eles simultaneamente.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nmixin Nadador {\n  void nadar() => print('Nadando');\n}\nclass Peixe extends Nadador {}",
+          "opts": [
+            "Não há erro",
+            "Um mixin deve ser aplicado com 'with', não com 'extends'",
+            "mixin não pode ter métodos",
+            "Peixe precisa de um construtor obrigatório"
+          ],
+          "a": 1,
+          "hint": "Verifique a palavra-chave usada para aplicar um mixin a uma classe.",
+          "ex": "Mixins são aplicados com 'with Nadador', e não com 'extends Nadador', que é reservado para herança de classes.",
+          "format": "CORRIJA O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "dart-flutter-19",
+      "name": "REVISÃO: ORIENTAÇÃO A OBJETOS",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "⏱",
+      "summary": "Consolide herança, classes abstratas, implements e mixins em Dart.",
+      "lesson": [
+        {
+          "title": "Escolhendo entre extends, implements e with",
+          "body": "Use extends quando há uma relação clara de 'é um tipo de' e você quer reaproveitar implementação. Use implements quando quer apenas seguir um contrato, implementando tudo do zero. Use mixins (with) quando quer compartilhar comportamento entre classes sem parentesco direto.",
+          "code": "abstract class Funcionario {\n  double calcularSalario();\n}\n\nmixin Bonus {\n  double calcularBonus() => 100.0;\n}\n\nclass Vendedor extends Funcionario with Bonus {\n  @override\n  double calcularSalario() => 2000 + calcularBonus();\n}"
+        },
+        {
+          "title": "Combinando os três conceitos",
+          "body": "É possível combinar extends com with na mesma declaração de classe, herdando de uma superclasse e ainda incorporando mixins, desde que a ordem siga: extends antes de with.",
+          "code": "var v = Vendedor();\nprint(v.calcularSalario()); // 2100.0"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Você quer garantir que várias classes não relacionadas (Carro, Avião, Barco) tenham o método ligarMotor(), sem duplicar código. Qual abordagem é mais adequada?",
+          "opts": [
+            "Criar uma superclasse comum artificial e usar extends em todas",
+            "Usar um mixin com o método ligarMotor() e aplicá-lo com 'with' em cada classe",
+            "Copiar e colar o método em cada classe",
+            "Usar apenas variáveis globais"
+          ],
+          "a": 1,
+          "hint": "Pense em compartilhar comportamento entre classes que não têm relação de 'é um tipo de' entre si.",
+          "ex": "Um mixin é ideal para compartilhar comportamento comum entre classes sem parentesco natural, como Carro, Avião e Barco.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "code",
+          "q": "Dado:\nabstract class Funcionario {\n  double calcularSalario();\n}\nmixin Bonus {\n  double calcularBonus() => 100.0;\n}\nclass Vendedor extends Funcionario with Bonus {\n  @override\n  double calcularSalario() => 2000 + calcularBonus();\n}\nQual o valor de Vendedor().calcularSalario()?",
+          "opts": ["2000.0", "100.0", "2100.0", "Erro de compilação"],
+          "a": 2,
+          "hint": "Some o salário base ao valor retornado pelo método do mixin.",
+          "ex": "calcularSalario soma 2000 ao resultado de calcularBonus (100), totalizando 2100.0.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que uma classe abstrata como Funcionario não pode ser instanciada diretamente?",
+          "opts": [
+            "Porque Dart proíbe classes com métodos",
+            "Porque ela define um contrato incompleto, faltando implementação de métodos abstratos",
+            "Porque só pode ter atributos privados",
+            "Não existe essa restrição em Dart"
+          ],
+          "a": 1,
+          "hint": "Pense no papel do método calcularSalario() sem corpo dentro de Funcionario.",
+          "ex": "Uma classe abstrata pode conter métodos sem implementação, tornando-a incompleta para uso direto; apenas subclasses concretas podem ser instanciadas.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nclass Vendedor with Bonus extends Funcionario {\n  double calcularSalario() => 2000;\n}",
+          "opts": [
+            "Não há erro",
+            "A ordem está invertida: extends deve vir antes de with na declaração da classe",
+            "with não pode ser usado com extends na mesma classe",
+            "Funcionario não pode ser usado com mixins"
+          ],
+          "a": 1,
+          "hint": "Verifique a ordem correta das cláusulas ao combinar herança e mixins em Dart.",
+          "ex": "A sintaxe correta exige extends antes de with: 'class Vendedor extends Funcionario with Bonus'.",
+          "format": "CORRIJA O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "dart-flutter-20",
+      "name": "PRIMEIRO WIDGET FLUTTER",
+      "difficulty": "INICIANTE",
+      "color": "#1cb0f6",
+      "icon": "Ω",
+      "summary": "Entenda o que é um widget e escreva o primeiro app Flutter mínimo.",
+      "lesson": [
+        {
+          "title": "Tudo é widget",
+          "body": "Em Flutter, praticamente toda a interface é composta por widgets: textos, botões, imagens e até o layout são widgets combinados em uma árvore. A função runApp() recebe o widget raiz e o exibe na tela.",
+          "code": "import 'package:flutter/material.dart';\n\nvoid main() {\n  runApp(const MeuApp());\n}"
+        },
+        {
+          "title": "MaterialApp e Scaffold",
+          "body": "MaterialApp configura o app com temas e navegação seguindo o Material Design. Scaffold fornece a estrutura visual básica de uma tela, como barra superior (appBar) e corpo (body).",
+          "code": "class MeuApp extends StatelessWidget {\n  const MeuApp({super.key});\n\n  @override\n  Widget build(BuildContext context) {\n    return MaterialApp(\n      home: Scaffold(\n        appBar: AppBar(title: const Text('Meu App')),\n        body: const Center(child: Text('Olá, Flutter!')),\n      ),\n    );\n  }\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual a função de runApp() em um projeto Flutter?",
+          "opts": [
+            "Compila o código Dart para outra linguagem",
+            "Recebe o widget raiz da aplicação e o exibe na tela",
+            "Cria um novo projeto Flutter do zero",
+            "Apenas testa o app sem exibir nada"
+          ],
+          "a": 1,
+          "hint": "Pense no ponto de entrada visual do app: o que conecta o código à tela do dispositivo.",
+          "ex": "runApp() infla o widget passado como argumento e o torna a raiz visível da árvore de widgets.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "No código:\nreturn MaterialApp(\n  home: Scaffold(\n    appBar: AppBar(title: const Text('Meu App')),\n    body: const Center(child: Text('Olá, Flutter!')),\n  ),\n);\nOnde aparece o texto 'Meu App'?",
+          "opts": [
+            "No corpo central da tela",
+            "Na barra superior do aplicativo",
+            "Em um pop-up",
+            "Ele não é exibido, é apenas um comentário"
+          ],
+          "a": 1,
+          "hint": "Observe em qual propriedade do Scaffold esse texto foi colocado: appBar ou body.",
+          "ex": "O texto 'Meu App' está dentro de appBar, que corresponde à barra superior da tela.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual o papel do widget Scaffold em uma tela Flutter?",
+          "opts": [
+            "Ele estiliza apenas cores de texto",
+            "Fornece a estrutura visual básica da tela, como appBar e body",
+            "Substitui o MaterialApp",
+            "Gerencia apenas a navegação entre rotas"
+          ],
+          "a": 1,
+          "hint": "Pense no 'esqueleto' padrão de uma tela do Material Design.",
+          "ex": "Scaffold organiza elementos comuns de uma tela, como barra superior, corpo e outros componentes estruturais.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nvoid main() {\n  MeuApp();\n}",
+          "opts": [
+            "Não há erro",
+            "Falta chamar runApp(MeuApp()) para exibir o widget na tela",
+            "MeuApp precisa ser uma String",
+            "main() não pode ser void"
+          ],
+          "a": 1,
+          "hint": "Apenas instanciar o widget não é suficiente; é preciso informar ao Flutter para exibi-lo.",
+          "ex": "Sem runApp(), o widget é criado mas nunca é anexado à árvore visual, então nada aparece na tela.",
+          "format": "ENCONTRE O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "dart-flutter-21",
+      "name": "STATELESS VS STATEFUL",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#1cb0f6",
+      "icon": "✦",
+      "summary": "Diferencie StatelessWidget, que não muda, de StatefulWidget, que pode se atualizar.",
+      "lesson": [
+        {
+          "title": "StatelessWidget",
+          "body": "Um StatelessWidget descreve uma parte da interface que não muda ao longo do tempo, a menos que seja reconstruído de fora (por um widget pai). Ele implementa apenas o método build.",
+          "code": "class Saudacao extends StatelessWidget {\n  final String nome;\n  const Saudacao({super.key, required this.nome});\n\n  @override\n  Widget build(BuildContext context) {\n    return Text('Olá, $nome!');\n  }\n}"
+        },
+        {
+          "title": "StatefulWidget",
+          "body": "Um StatefulWidget tem um objeto de estado associado (State) que pode mudar durante a vida do widget, causando reconstrução da interface. É usado sempre que a UI precisa reagir a interações do usuário, como cliques.",
+          "code": "class Contador extends StatefulWidget {\n  const Contador({super.key});\n  @override\n  State<Contador> createState() => _ContadorState();\n}\n\nclass _ContadorState extends State<Contador> {\n  int valor = 0;\n\n  @override\n  Widget build(BuildContext context) {\n    return Text('Valor: $valor');\n  }\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Quando é mais apropriado usar um StatefulWidget em vez de um StatelessWidget?",
+          "opts": [
+            "Quando o widget nunca precisa mudar depois de criado",
+            "Quando o widget precisa manter e atualizar informações internas ao longo do tempo, como um contador",
+            "Sempre, StatefulWidget é sempre melhor",
+            "Apenas para textos estáticos"
+          ],
+          "a": 1,
+          "hint": "Pense em um widget cuja aparência muda em resposta a uma ação, como clicar em um botão.",
+          "ex": "StatefulWidget é indicado quando há dados internos que mudam e exigem reconstrução da tela, como um contador que incrementa.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que diferencia estruturalmente um StatefulWidget de um StatelessWidget?",
+          "opts": [
+            "StatefulWidget não pode ter um método build",
+            "StatefulWidget possui um objeto State associado, criado por createState(), que guarda dados mutáveis",
+            "Não há diferença de estrutura, apenas de nome",
+            "StatelessWidget não pode receber parâmetros no construtor"
+          ],
+          "a": 1,
+          "hint": "Pense em qual dos dois separa a lógica de estado em uma classe auxiliar chamada State.",
+          "ex": "StatefulWidget delega a um objeto State (via createState()) o gerenciamento de dados que podem mudar ao longo do tempo.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "No código:\nclass Saudacao extends StatelessWidget {\n  final String nome;\n  const Saudacao({super.key, required this.nome});\n  @override\n  Widget build(BuildContext context) => Text('Olá, $nome!');\n}\nO que acontece se o valor de 'nome' mudar depois que o widget foi criado?",
+          "opts": [
+            "O texto na tela é atualizado automaticamente, pois é um Stateless",
+            "Nada muda na tela automaticamente, pois 'nome' é final e o widget não gerencia estado próprio",
+            "O app trava imediatamente",
+            "O StatelessWidget se transforma em StatefulWidget"
+          ],
+          "a": 1,
+          "hint": "Pense no fato de 'nome' ser um campo final: ele não pode ser reatribuído depois de definido no widget.",
+          "ex": "Como 'nome' é final e o widget é Stateless, ele não gerencia mudanças internas; qualquer atualização visual dependeria de recriar o widget com um novo valor vindo de fora.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nclass Contador extends StatefulWidget {\n  int valor = 0;\n  @override\n  Widget build(BuildContext context) {\n    return Text('$valor');\n  }\n}",
+          "opts": [
+            "Não há erro",
+            "StatefulWidget não implementa build diretamente; ele precisa de um método createState() que retorna um objeto State, e é o State que implementa build",
+            "int não pode ser usado em StatefulWidget",
+            "Text não aceita interpolação de string"
+          ],
+          "a": 1,
+          "hint": "Compare com a estrutura correta de um StatefulWidget: quem realmente contém o método build?",
+          "ex": "Em um StatefulWidget, o método build pertence à classe State associada, criada via createState(), não à classe do widget em si.",
+          "format": "ENCONTRE O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "dart-flutter-22",
+      "name": "WIDGETS DE TEXTO E ÍCONE",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#1cb0f6",
+      "icon": "●",
+      "summary": "Explore os widgets Text e Icon e suas propriedades básicas de estilo.",
+      "lesson": [
+        {
+          "title": "O widget Text",
+          "body": "O widget Text exibe uma string na tela. Ele aceita um parâmetro style, do tipo TextStyle, para customizar cor, tamanho da fonte e peso (bold, por exemplo).",
+          "code": "Text(\n  'Bem-vindo!',\n  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold, color: Colors.blue),\n)"
+        },
+        {
+          "title": "O widget Icon",
+          "body": "O widget Icon exibe um ícone gráfico a partir de um conjunto pré-definido, como Icons.home ou Icons.favorite. Também aceita propriedades como size e color.",
+          "code": "Icon(\n  Icons.favorite,\n  color: Colors.red,\n  size: 32,\n)"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "No código:\nText('Título', style: TextStyle(fontSize: 20, color: Colors.red))\nQual propriedade define o tamanho da fonte?",
+          "opts": ["color", "fontSize", "style", "Text"],
+          "a": 1,
+          "hint": "Procure o parâmetro dentro de TextStyle relacionado diretamente ao tamanho.",
+          "ex": "fontSize é a propriedade de TextStyle responsável por definir o tamanho do texto.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual widget é adequado para exibir um ícone de coração representando 'favoritar'?",
+          "opts": [
+            "Text('❤')",
+            "Icon(Icons.favorite)",
+            "Container(color: Colors.red)",
+            "Image.asset('coracao.png') obrigatoriamente"
+          ],
+          "a": 1,
+          "hint": "Pense no widget específico do Flutter voltado para símbolos gráficos pré-definidos.",
+          "ex": "Icon(Icons.favorite) é a forma idiomática de exibir um ícone de coração usando o conjunto de ícones do Material.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "O que a propriedade fontWeight: FontWeight.bold faz em um Text?",
+          "opts": [
+            "Aumenta o tamanho da fonte",
+            "Deixa o texto em negrito",
+            "Muda a cor do texto para preto",
+            "Centraliza o texto na tela"
+          ],
+          "a": 1,
+          "hint": "Pense no significado da palavra 'bold' em inglês.",
+          "ex": "FontWeight.bold aplica peso de negrito ao texto, sem alterar tamanho ou cor.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nText(\n  fontSize: 18,\n  'Olá'\n)",
+          "opts": [
+            "Não há erro",
+            "fontSize não é parâmetro direto de Text; deveria estar dentro de style: TextStyle(fontSize: 18)",
+            "Text não aceita strings acentuadas",
+            "A ordem dos parâmetros nunca importa em Dart"
+          ],
+          "a": 1,
+          "hint": "Verifique se fontSize é uma propriedade que pertence diretamente ao widget Text ou a outro objeto.",
+          "ex": "fontSize pertence a TextStyle, não a Text diretamente; o correto é Text('Olá', style: TextStyle(fontSize: 18)).",
+          "format": "CORRIJA O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "dart-flutter-23",
+      "name": "REVISÃO: INTRODUÇÃO AO FLUTTER",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "◍",
+      "summary": "Consolide widgets, StatelessWidget, StatefulWidget e widgets básicos de exibição.",
+      "lesson": [
+        {
+          "title": "Montando uma tela simples",
+          "body": "Uma tela Flutter combina widgets estruturais (Scaffold, AppBar) com widgets de exibição (Text, Icon) e decide se precisa de estado interno (StatefulWidget) ou não (StatelessWidget), dependendo se algo muda com a interação do usuário.",
+          "code": "class Perfil extends StatelessWidget {\n  const Perfil({super.key});\n  @override\n  Widget build(BuildContext context) {\n    return Scaffold(\n      appBar: AppBar(title: const Text('Perfil')),\n      body: const Center(child: Icon(Icons.person, size: 64)),\n    );\n  }\n}"
+        },
+        {
+          "title": "Decidindo o tipo de widget",
+          "body": "A pergunta chave é: essa parte da tela precisa mudar sozinha, sem que o widget pai a reconstrua de fora? Se sim, StatefulWidget. Se a tela é apenas uma exibição fixa de dados recebidos, StatelessWidget é suficiente.",
+          "code": "// Uma tela de 'Sobre' que nunca muda: StatelessWidget\n// Uma tela de contador que incrementa ao clicar: StatefulWidget"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Você está construindo uma tela 'Sobre o App', com apenas texto fixo e um ícone, sem nenhuma interação. Qual tipo de widget usar como raiz da tela?",
+          "opts": ["StatefulWidget", "StatelessWidget", "Nenhum dos dois, apenas Text", "Scaffold sem classe"],
+          "a": 1,
+          "hint": "Pense se essa tela precisa reagir e atualizar algo internamente.",
+          "ex": "Como a tela não muda com interações, StatelessWidget é suficiente e mais simples.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "code",
+          "q": "No código:\nScaffold(\n  appBar: AppBar(title: const Text('Perfil')),\n  body: const Center(child: Icon(Icons.person, size: 64)),\n)\nO que aparece centralizado no corpo da tela?",
+          "opts": ["O texto 'Perfil'", "Um ícone de pessoa", "Nada, o body está vazio", "A AppBar duplicada"],
+          "a": 1,
+          "hint": "Observe o que está dentro da propriedade 'body', não da 'appBar'.",
+          "ex": "O body contém um Center com um Icon(Icons.person), então o ícone de pessoa aparece centralizado.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que o método build de um StatelessWidget não deveria depender de variáveis que mudam sozinhas com o tempo?",
+          "opts": [
+            "Porque build só pode retornar Text",
+            "Porque um StatelessWidget não é reconstruído automaticamente quando um valor interno muda, então a tela ficaria desatualizada",
+            "Porque build é executado apenas uma vez por app, nunca mais",
+            "Porque isso é proibido pelo compilador Dart"
+          ],
+          "a": 1,
+          "hint": "Pense em quem decide reconstruir um StatelessWidget: ele mesmo ou o widget pai.",
+          "ex": "Um StatelessWidget só é reconstruído quando o pai o reconstrói com novos parâmetros; ele não observa mudanças internas sozinho.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nclass Sobre extends StatelessWidget {\n  const Sobre({super.key});\n  Widget build(BuildContext context) {\n    return Text('App educacional');\n  }\n}",
+          "opts": [
+            "Não há erro",
+            "Falta a anotação @override antes do método build, que sobrescreve o método da superclasse",
+            "StatelessWidget não pode retornar Text diretamente",
+            "const não pode ser usado em construtores de widgets"
+          ],
+          "a": 1,
+          "hint": "Verifique se falta alguma anotação padrão ao sobrescrever um método herdado.",
+          "ex": "Embora funcione sem a anotação, a convenção correta em Dart/Flutter é usar @override antes de build(), já que ele sobrescreve o método da classe StatelessWidget.",
+          "format": "ENCONTRE O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "dart-flutter-24",
+      "name": "ROW E COLUMN",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#0ea5e9",
+      "icon": "◎",
+      "summary": "Organize widgets horizontalmente com Row e verticalmente com Column.",
+      "lesson": [
+        {
+          "title": "Row: layout horizontal",
+          "body": "O widget Row organiza seus filhos (children) lado a lado, na horizontal. Propriedades como mainAxisAlignment controlam como os filhos são distribuídos ao longo do eixo principal (horizontal, no caso do Row).",
+          "code": "Row(\n  mainAxisAlignment: MainAxisAlignment.spaceBetween,\n  children: const [\n    Icon(Icons.star),\n    Text('Favorito'),\n  ],\n)"
+        },
+        {
+          "title": "Column: layout vertical",
+          "body": "O widget Column organiza seus filhos um abaixo do outro, na vertical. Assim como Row, aceita mainAxisAlignment e crossAxisAlignment para controlar o alinhamento dos elementos.",
+          "code": "Column(\n  crossAxisAlignment: CrossAxisAlignment.start,\n  children: const [\n    Text('Nome: Ana'),\n    Text('Idade: 25'),\n  ],\n)"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Você quer colocar um ícone e um texto lado a lado, na mesma linha. Qual widget de layout usar?",
+          "opts": ["Column", "Row", "Container", "Text"],
+          "a": 1,
+          "hint": "Pense em qual widget organiza elementos na horizontal.",
+          "ex": "Row organiza seus filhos lado a lado na horizontal, ideal para ícone e texto na mesma linha.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Em um widget Column, os elementos filhos são organizados de que forma?",
+          "opts": [
+            "Lado a lado, horizontalmente",
+            "Um abaixo do outro, verticalmente",
+            "Sobrepostos, um em cima do outro",
+            "Em uma grade automática"
+          ],
+          "a": 1,
+          "hint": "Pense no significado de 'coluna' em um layout de página.",
+          "ex": "Column empilha seus filhos verticalmente, um abaixo do outro.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "No código:\nRow(\n  mainAxisAlignment: MainAxisAlignment.spaceBetween,\n  children: const [Icon(Icons.star), Text('Favorito')],\n)\nO que 'children' representa aqui?",
+          "opts": [
+            "Uma lista com os widgets filhos que serão exibidos dentro do Row",
+            "Uma propriedade obrigatória apenas de Column",
+            "O nome de uma variável de estado",
+            "Um método que retorna void"
+          ],
+          "a": 0,
+          "hint": "Observe que 'children' recebe uma lista entre colchetes com os widgets a serem organizados.",
+          "ex": "children é a lista de widgets que o Row (ou Column) organiza de acordo com seu eixo principal.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nRow(\n  child: Text('Olá'),\n)",
+          "opts": [
+            "Não há erro",
+            "Row espera a propriedade 'children' (uma lista), não 'child' (um único widget)",
+            "Text não pode ser usado dentro de Row",
+            "Row não existe no Flutter"
+          ],
+          "a": 1,
+          "hint": "Compare o nome da propriedade usada com o que Row realmente espera receber: um único widget ou uma lista.",
+          "ex": "Row (assim como Column) recebe uma lista de widgets via 'children', não um único widget via 'child'.",
+          "format": "ENCONTRE O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "dart-flutter-25",
+      "name": "CONTAINER E DECORAÇÃO",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#0ea5e9",
+      "icon": "▶",
+      "summary": "Use Container para espaçamento, tamanho e decoração visual de widgets.",
+      "lesson": [
+        {
+          "title": "Container: a caixa versátil",
+          "body": "Container é um widget que pode definir tamanho (width, height), margens (margin), espaçamento interno (padding) e envolver um único filho (child). É uma das ferramentas mais usadas para ajustar visualmente outros widgets.",
+          "code": "Container(\n  width: 100,\n  height: 100,\n  padding: const EdgeInsets.all(8),\n  color: Colors.blue,\n  child: const Text('Caixa'),\n)"
+        },
+        {
+          "title": "padding vs margin (conceitual)",
+          "body": "padding é o espaço interno entre a borda do Container e seu conteúdo (child); margin é o espaço externo entre o Container e os widgets ao redor dele. São conceitos análogos ao box model do CSS.",
+          "code": "Container(\n  margin: const EdgeInsets.all(16),\n  padding: const EdgeInsets.all(8),\n  child: const Text('Espaçado'),\n)"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual a diferença entre padding e margin em um Container?",
+          "opts": [
+            "Não há diferença, são sinônimos",
+            "padding é o espaço interno entre a borda e o conteúdo; margin é o espaço externo ao redor do Container",
+            "padding só funciona em Text, margin só em Container",
+            "margin é sempre maior que padding"
+          ],
+          "a": 1,
+          "hint": "Pense no espaço 'dentro' da caixa versus o espaço 'fora' dela.",
+          "ex": "padding afasta o conteúdo das bordas internas; margin afasta o próprio Container dos elementos vizinhos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "No código:\nContainer(\n  width: 100,\n  height: 100,\n  color: Colors.blue,\n  child: const Text('Caixa'),\n)\nQuantos filhos diretos esse Container pode ter?",
+          "opts": ["Nenhum", "Exatamente um, via 'child'", "Vários, via 'children'", "Ilimitados, sem restrição"],
+          "a": 1,
+          "hint": "Observe se a propriedade usada é 'child' (singular) ou 'children' (plural).",
+          "ex": "Container aceita apenas um único widget filho, através da propriedade 'child'.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Você quer dar um espaço de 16 pixels entre um Container e os widgets vizinhos, sem afetar o conteúdo interno dele. Qual propriedade usar?",
+          "opts": ["padding", "margin", "width", "color"],
+          "a": 1,
+          "hint": "Pense no espaço que fica do lado de 'fora' da caixa, entre ela e os elementos vizinhos.",
+          "ex": "margin controla o espaçamento externo, entre o Container e os elementos ao seu redor.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nContainer(\n  children: [Text('A'), Text('B')],\n)",
+          "opts": [
+            "Não há erro",
+            "Container não aceita 'children' (lista); ele aceita apenas um 'child' (widget único)",
+            "Text não pode ser usado dentro de Container",
+            "Container precisa obrigatoriamente de width e height"
+          ],
+          "a": 1,
+          "hint": "Lembre que Container é diferente de Row e Column quanto ao número de filhos que aceita.",
+          "ex": "Container só aceita um único widget via 'child'; para múltiplos widgets, seria necessário envolver Text('A') e Text('B') em um Row ou Column primeiro.",
+          "format": "ENCONTRE O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "dart-flutter-26",
+      "name": "REVISÃO: LAYOUT COM WIDGETS",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "◒",
+      "summary": "Consolide Row, Column e Container para montar layouts compostos.",
+      "lesson": [
+        {
+          "title": "Combinando layouts",
+          "body": "Layouts reais combinam Row, Column e Container aninhados: um Container pode ter como child um Column, que por sua vez tem como children vários Row, formando estruturas visuais complexas a partir de blocos simples.",
+          "code": "Container(\n  padding: const EdgeInsets.all(16),\n  child: Column(\n    children: [\n      Row(children: const [Icon(Icons.person), Text('Ana')]),\n      Row(children: const [Icon(Icons.email), Text('ana@email.com')]),\n    ],\n  ),\n)"
+        },
+        {
+          "title": "Pensando em blocos",
+          "body": "Ao montar uma tela, pense em blocos: qual widget organiza este grupo (Row ou Column)? Precisa de espaçamento ou cor de fundo (Container)? Essa forma de pensar em composição é central no Flutter.",
+          "code": "// Um cartão de perfil pode ser: Container > Column > [Row de nome, Row de email]"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Você quer um bloco com fundo cinza, espaçamento interno de 16px, contendo um título em cima e uma descrição embaixo. Qual combinação de widgets é mais adequada?",
+          "opts": [
+            "Apenas um Text com duas linhas",
+            "Container (para fundo e padding) envolvendo uma Column (para empilhar título e descrição)",
+            "Apenas um Row",
+            "Apenas um Icon"
+          ],
+          "a": 1,
+          "hint": "Pense em qual widget cuida do fundo/espaçamento e qual cuida do empilhamento vertical.",
+          "ex": "Container cuida da decoração (fundo, padding) e Column organiza o título e a descrição um abaixo do outro.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "code",
+          "q": "No código:\nContainer(\n  padding: const EdgeInsets.all(16),\n  child: Column(\n    children: [\n      Row(children: const [Icon(Icons.person), Text('Ana')]),\n      Row(children: const [Icon(Icons.email), Text('ana@email.com')]),\n    ],\n  ),\n)\nQuantas linhas (Rows) existem dentro da Column?",
+          "opts": ["Uma", "Duas", "Três", "Nenhuma"],
+          "a": 1,
+          "hint": "Conte quantos widgets Row aparecem na lista children da Column.",
+          "ex": "A Column tem duas Rows na lista children: uma para nome, outra para e-mail.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que é comum aninhar Container > Column > Row ao montar uma tela Flutter?",
+          "opts": [
+            "Porque é obrigatório usar essa ordem específica sempre",
+            "Porque cada widget tem uma responsabilidade específica: decoração, empilhamento vertical e alinhamento horizontal, respectivamente",
+            "Porque Flutter não permite outra combinação",
+            "Porque isso deixa o app mais lento de propósito"
+          ],
+          "a": 1,
+          "hint": "Pense na responsabilidade única de cada widget: um decora, outro empilha, outro alinha lado a lado.",
+          "ex": "Cada widget tem um papel: Container decora e espaça, Column empilha verticalmente, Row alinha horizontalmente; combiná-los cria layouts complexos a partir de peças simples.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nColumn(\n  child: Row(children: const [Text('A'), Text('B')]),\n)",
+          "opts": [
+            "Não há erro",
+            "Column espera a propriedade 'children' (lista), não 'child' (widget único)",
+            "Row não pode estar dentro de Column",
+            "Text não pode ser usado dentro de Row aninhado em Column"
+          ],
+          "a": 1,
+          "hint": "Compare com a sintaxe padrão de Column: ela usa uma lista ou um único widget?",
+          "ex": "Assim como Row, Column espera 'children' (uma lista), mesmo que contenha apenas um item: children: [Row(...)].",
+          "format": "ENCONTRE O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "dart-flutter-27",
+      "name": "SETSTATE E INTERAÇÃO",
+      "difficulty": "AVANÇADO",
+      "color": "#38bdf8",
+      "icon": "◓",
+      "summary": "Use setState para atualizar a interface em resposta a eventos, como cliques de botão.",
+      "lesson": [
+        {
+          "title": "setState atualiza a tela",
+          "body": "Dentro de um State, chamar setState(() { ... }) informa ao Flutter que algo mudou e que o método build deve ser executado novamente para refletir o novo estado na tela. Sem setState, mudar uma variável não atualiza a interface visualmente.",
+          "code": "class _ContadorState extends State<Contador> {\n  int valor = 0;\n\n  void incrementar() {\n    setState(() {\n      valor++;\n    });\n  }\n\n  @override\n  Widget build(BuildContext context) {\n    return Text('Valor: $valor');\n  }\n}"
+        },
+        {
+          "title": "ElevatedButton e onPressed",
+          "body": "O widget ElevatedButton exibe um botão estilizado. A propriedade onPressed recebe uma função a ser chamada quando o botão é clicado; se onPressed for null, o botão fica desabilitado.",
+          "code": "ElevatedButton(\n  onPressed: incrementar,\n  child: const Text('Incrementar'),\n)"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que aconteceria se a variável 'valor' fosse alterada sem estar dentro de um setState()?",
+          "opts": [
+            "O valor mudaria e a tela seria atualizada normalmente",
+            "O valor mudaria internamente, mas a tela não seria reconstruída para exibir a mudança",
+            "O app travaria imediatamente",
+            "O Flutter geraria um erro de compilação"
+          ],
+          "a": 1,
+          "hint": "Pense no papel específico de setState: ele avisa o Flutter para reconstruir a interface.",
+          "ex": "Sem setState, a variável muda de valor internamente, mas o método build não é chamado novamente, então a tela permanece desatualizada.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "No código:\nElevatedButton(\n  onPressed: incrementar,\n  child: const Text('Incrementar'),\n)\nQuando a função 'incrementar' é executada?",
+          "opts": [
+            "Assim que a tela é construída, automaticamente",
+            "Quando o usuário toca/clica no botão",
+            "A cada segundo, repetidamente",
+            "Nunca, pois falta invocar incrementar()"
+          ],
+          "a": 1,
+          "hint": "Pense no significado de 'onPressed' como um evento associado a uma ação do usuário.",
+          "ex": "onPressed é chamado no momento em que o usuário toca o botão, executando a função associada.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que setState só pode ser chamado dentro da classe State, e não dentro de um StatelessWidget?",
+          "opts": [
+            "Porque StatelessWidget não tem estado mutável para atualizar; ele não gerencia um objeto State próprio",
+            "Porque é uma limitação arbitrária sem motivo técnico",
+            "Porque StatelessWidget não pode ter métodos",
+            "Porque setState só funciona em telas com botões"
+          ],
+          "a": 0,
+          "hint": "Pense na diferença fundamental entre os dois tipos: um tem estado mutável associado, o outro não.",
+          "ex": "setState pertence ao ciclo de vida de State, que existe apenas em StatefulWidget; StatelessWidget não gerencia estado interno que precise ser sinalizado dessa forma.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nvoid incrementar() {\n  valor++;\n}",
+          "opts": [
+            "Não há erro, incrementar valor é suficiente para atualizar a tela",
+            "Falta envolver a alteração de 'valor' dentro de setState(() { ... }) para que a tela seja reconstruída",
+            "valor++ é uma sintaxe inválida em Dart",
+            "incrementar deveria retornar um int"
+          ],
+          "a": 1,
+          "hint": "Pense em como o Flutter fica sabendo que precisa redesenhar a tela após essa mudança.",
+          "ex": "Sem setState envolvendo 'valor++', a interface não é notificada da mudança e continuará exibindo o valor antigo.",
+          "format": "CORRIJA O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "dart-flutter-28",
+      "name": "GESTOS E CAMPOS DE TEXTO",
+      "difficulty": "AVANÇADO",
+      "color": "#38bdf8",
+      "icon": "◆",
+      "summary": "Capture toques com GestureDetector e entrada de texto com TextField.",
+      "lesson": [
+        {
+          "title": "GestureDetector",
+          "body": "GestureDetector envolve qualquer widget e permite detectar gestos como onTap (toque simples), onLongPress (pressão longa) e outros, mesmo em widgets que normalmente não reagem a toques, como um Container ou um Icon.",
+          "code": "GestureDetector(\n  onTap: () {\n    print('Container tocado!');\n  },\n  child: Container(width: 50, height: 50, color: Colors.green),\n)"
+        },
+        {
+          "title": "TextField e controllers",
+          "body": "O widget TextField captura entrada de texto do usuário. Um TextEditingController é frequentemente associado a ele para ler ou definir o texto digitado de forma programática.",
+          "code": "final controller = TextEditingController();\n\nTextField(\n  controller: controller,\n  decoration: const InputDecoration(labelText: 'Nome'),\n)"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Você quer que um Icon reaja a um toque, mesmo ele não tendo suporte nativo a cliques como um botão. Qual widget usar para envolvê-lo?",
+          "opts": ["Container", "GestureDetector", "Text", "Column"],
+          "a": 1,
+          "hint": "Pense no widget cuja função é justamente detectar gestos em qualquer widget filho.",
+          "ex": "GestureDetector envolve qualquer widget, incluindo Icon, e adiciona a capacidade de detectar toques via onTap.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "code",
+          "q": "No código:\nGestureDetector(\n  onTap: () { print('Tocado!'); },\n  child: Container(width: 50, height: 50, color: Colors.green),\n)\nQuando a mensagem 'Tocado!' é impressa?",
+          "opts": [
+            "Assim que o widget é construído",
+            "Quando o usuário toca no Container verde",
+            "A cada frame renderizado",
+            "Nunca, falta configurar onLongPress"
+          ],
+          "a": 1,
+          "hint": "Observe qual propriedade do GestureDetector está associada à função impressa.",
+          "ex": "onTap dispara a função associada no momento em que o usuário toca na área do widget filho.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual a utilidade de um TextEditingController associado a um TextField?",
+          "opts": [
+            "Ele define a cor de fundo do campo de texto",
+            "Ele permite ler ou alterar programaticamente o texto digitado pelo usuário no campo",
+            "Ele é obrigatório e o TextField não funciona sem ele",
+            "Ele substitui completamente o widget TextField"
+          ],
+          "a": 1,
+          "hint": "Pense em como o código Dart 'consegue enxergar' o que o usuário digitou em um campo de texto.",
+          "ex": "O controller dá acesso programático ao valor atual do campo (controller.text) e permite modificá-lo via código.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nContainer(\n  onTap: () { print('Tocado'); },\n  width: 50,\n  height: 50,\n  color: Colors.blue,\n)",
+          "opts": [
+            "Não há erro",
+            "Container não possui a propriedade onTap; é necessário envolvê-lo com GestureDetector para capturar toques",
+            "Container não pode ter width e height juntos",
+            "print não funciona dentro de widgets"
+          ],
+          "a": 1,
+          "hint": "Verifique se Container, por si só, tem suporte nativo a detecção de toques.",
+          "ex": "Container não tem propriedade onTap; para detectar toques nele, é preciso envolvê-lo em um GestureDetector.",
+          "format": "ENCONTRE O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "dart-flutter-29",
+      "name": "NAVEGAÇÃO ENTRE TELAS",
+      "difficulty": "AVANÇADO",
+      "color": "#a78bfa",
+      "icon": "⬡",
+      "summary": "Entenda rotas e como navegar entre telas usando Navigator (conceitual).",
+      "lesson": [
+        {
+          "title": "Navigator.push e pop",
+          "body": "Em Flutter, telas são organizadas como uma pilha de rotas. Navigator.push adiciona uma nova tela ao topo da pilha, exibindo-a. Navigator.pop remove a tela atual do topo, voltando para a anterior.",
+          "code": "Navigator.push(\n  context,\n  MaterialPageRoute(builder: (context) => const TelaDetalhes()),\n);"
+        },
+        {
+          "title": "Voltando com pop",
+          "body": "Dentro da tela de destino, chamar Navigator.pop(context) remove essa tela da pilha e retorna à tela anterior, exatamente como o botão de voltar padrão do sistema faz.",
+          "code": "ElevatedButton(\n  onPressed: () => Navigator.pop(context),\n  child: const Text('Voltar'),\n)"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é a analogia usada para entender como o Flutter gerencia as telas de um app?",
+          "opts": [
+            "Uma lista circular sem ordem",
+            "Uma pilha de rotas, onde a tela do topo é a visível",
+            "Um mapa de árvore binária",
+            "Um dicionário chave-valor de telas"
+          ],
+          "a": 1,
+          "hint": "Pense em como push adiciona ao topo e pop remove do topo, como uma pilha de cartas.",
+          "ex": "O Flutter organiza as telas como uma pilha (stack) de rotas; a última adicionada é a exibida no momento.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que Navigator.pop(context) faz?",
+          "opts": [
+            "Adiciona uma nova tela ao topo da pilha",
+            "Remove a tela atual do topo da pilha, retornando à tela anterior",
+            "Fecha o aplicativo completamente",
+            "Reinicia toda a navegação do zero"
+          ],
+          "a": 1,
+          "hint": "Pense na ação oposta de 'push': em vez de adicionar, o que ele faz?",
+          "ex": "pop remove a rota (tela) atual do topo da pilha, revelando a rota anterior.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "No código:\nNavigator.push(\n  context,\n  MaterialPageRoute(builder: (context) => const TelaDetalhes()),\n);\nO que acontece quando essa linha é executada?",
+          "opts": [
+            "A TelaDetalhes é removida da navegação",
+            "A TelaDetalhes é exibida, sendo empilhada sobre a tela atual",
+            "Nada acontece até o usuário reiniciar o app",
+            "O app fecha e reabre na TelaDetalhes"
+          ],
+          "a": 1,
+          "hint": "Pense no verbo 'push': o que ele faz com uma nova rota em relação à pilha existente.",
+          "ex": "push adiciona a TelaDetalhes ao topo da pilha de navegação, tornando-a a tela visível.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o problema conceitual: o usuário reclama que, ao tocar em 'Voltar' na TelaDetalhes, o app fecha totalmente em vez de retornar à tela anterior. O botão está assim:\nElevatedButton(\n  onPressed: () {},\n  child: const Text('Voltar'),\n)",
+          "opts": [
+            "O texto do botão está errado",
+            "onPressed está vazio; falta chamar Navigator.pop(context) dentro dele",
+            "ElevatedButton não pode ser usado para voltar",
+            "Falta adicionar um GestureDetector ao redor do botão"
+          ],
+          "a": 1,
+          "hint": "Verifique se alguma ação de navegação está realmente sendo chamada dentro de onPressed.",
+          "ex": "Como onPressed não chama nada, o botão não executa nenhuma navegação; é preciso adicionar Navigator.pop(context) dentro da função.",
+          "format": "CORRIJA O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "dart-flutter-30",
+      "name": "PROJETO FINAL: MINI APP FLUTTER",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "⬢",
+      "summary": "Revise todos os conceitos integrando widgets, estado e navegação em um mini app.",
+      "lesson": [
+        {
+          "title": "Juntando tudo",
+          "body": "Um mini app de lista de tarefas combina: StatefulWidget para gerenciar a lista de tarefas, setState para atualizar a tela ao adicionar uma tarefa, Column e Row para o layout, e Navigator para abrir uma tela de detalhes de cada tarefa.",
+          "code": "class _ListaTarefasState extends State<ListaTarefas> {\n  List<String> tarefas = ['Estudar Dart'];\n\n  void adicionar(String tarefa) {\n    setState(() {\n      tarefas.add(tarefa);\n    });\n  }\n}"
+        },
+        {
+          "title": "Estrutura completa de uma tela",
+          "body": "A tela final normalmente usa Scaffold como base, um Column ou ListView para exibir os itens, um TextField para nova entrada e um ElevatedButton para confirmar a ação, tudo dentro do build() de um StatefulWidget.",
+          "code": "Scaffold(\n  appBar: AppBar(title: const Text('Tarefas')),\n  body: Column(\n    children: [\n      for (var t in tarefas) Text(t),\n      ElevatedButton(onPressed: () {}, child: const Text('Adicionar')),\n    ],\n  ),\n)"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Em um app de lista de tarefas onde o usuário pode adicionar novos itens, qual tipo de widget deve gerenciar a lista de tarefas?",
+          "opts": [
+            "StatelessWidget, pois a lista nunca muda",
+            "StatefulWidget, pois a lista de tarefas muda ao longo do uso do app",
+            "Nenhum, listas não podem ser exibidas em Flutter",
+            "Apenas um Container simples"
+          ],
+          "a": 1,
+          "hint": "Pense se a lista de tarefas é fixa ou se muda conforme o usuário interage com o app.",
+          "ex": "Como a lista de tarefas muda quando o usuário adiciona itens, é necessário um StatefulWidget para gerenciar esse estado.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "code",
+          "q": "Dado:\nvoid adicionar(String tarefa) {\n  setState(() {\n    tarefas.add(tarefa);\n  });\n}\nO que acontece na tela depois que 'adicionar' é chamado?",
+          "opts": [
+            "Nada muda visualmente, apenas a lista interna é alterada",
+            "A tela é reconstruída e a nova tarefa passa a aparecer na interface",
+            "O app apresenta um erro de execução",
+            "A lista de tarefas é apagada"
+          ],
+          "a": 1,
+          "hint": "Lembre o papel do setState: ele provoca a reconstrução visual da tela.",
+          "ex": "setState notifica o Flutter para reconstruir o widget, exibindo a lista atualizada com a nova tarefa.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Ao tocar em uma tarefa da lista para ver seus detalhes em outra tela, qual mecanismo do Flutter é usado?",
+          "opts": [
+            "setState apenas",
+            "Navigator.push para abrir a tela de detalhes",
+            "Um novo runApp()",
+            "Alterar diretamente o Scaffold"
+          ],
+          "a": 1,
+          "hint": "Pense em como se abre uma nova tela empilhada sobre a atual.",
+          "ex": "Navigator.push é o mecanismo usado para navegar para uma nova tela, como a de detalhes de uma tarefa.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro neste mini app:\nclass ListaTarefas extends StatefulWidget {\n  List<String> tarefas = ['Estudar'];\n  @override\n  State<ListaTarefas> createState() => _ListaTarefasState();\n}\nclass _ListaTarefasState extends State<ListaTarefas> {\n  void adicionar(String t) {\n    tarefas.add(t);\n  }\n}",
+          "opts": [
+            "Não há erro",
+            "adicionar deveria envolver a alteração da lista com setState(() {...}) para atualizar a tela",
+            "StatefulWidget não pode ter atributos",
+            "createState não pode retornar _ListaTarefasState"
+          ],
+          "a": 1,
+          "hint": "Pense se a interface será notificada da mudança na lista sem o mecanismo apropriado.",
+          "ex": "Sem setState envolvendo tarefas.add(t), a lista muda internamente mas a tela não é reconstruída para refletir a nova tarefa.",
+          "format": "ENCONTRE O ERRO"
+        }
+      ]
+    }
+  ]
+}

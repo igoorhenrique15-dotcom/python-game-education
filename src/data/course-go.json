@@ -1,0 +1,1759 @@
+{
+  "meta": {
+    "id": "go",
+    "title": "Go",
+    "subtitle": "Back-end performático e sistemas em nuvem.",
+    "icon": "◆",
+    "color": "#00ADD8",
+    "fileExt": "go",
+    "stagesPerUnit": 3,
+    "order": 16,
+    "units": [
+      { "title": "Fundamentos de Go", "goal": "Variáveis, tipos e package main.", "color": "#00ADD8" },
+      { "title": "Controle de Fluxo", "goal": "if, for (único loop) e switch.", "color": "#ff9600" },
+      { "title": "Funções em Go", "goal": "Múltiplos retornos e funções variádicas.", "color": "#f6c445" },
+      { "title": "Structs e Métodos", "goal": "Structs, métodos e ponteiros.", "color": "#22c55e" },
+      { "title": "Interfaces", "goal": "Tipagem estrutural implícita.", "color": "#34d399" },
+      { "title": "Slices e Maps", "goal": "Manipulação de coleções nativas.", "color": "#1cb0f6" },
+      { "title": "Tratamento de Erros", "goal": "Padrão error e panic/recover.", "color": "#0ea5e9" },
+      { "title": "Concorrência Básica", "goal": "Goroutines e channels (conceitual).", "color": "#38bdf8" },
+      { "title": "Ecossistema Go", "goal": "Módulos e uso em APIs e cloud.", "color": "#a78bfa" },
+      { "title": "Projeto final", "goal": "Revisão integrada com um mini serviço concorrente.", "color": "#facc15" }
+    ]
+  },
+  "title": "Go",
+  "version": 1,
+  "stages": [
+    {
+      "id": "go-1",
+      "name": "PACKAGE MAIN",
+      "difficulty": "INICIANTE",
+      "color": "#00ADD8",
+      "icon": "◆",
+      "summary": "Conheça a estrutura mínima de um programa Go executável.",
+      "lesson": [
+        {
+          "title": "Todo programa começa com um pacote",
+          "body": "Todo arquivo Go pertence a um pacote, declarado na primeira linha com 'package'. Para gerar um executável, o pacote precisa se chamar 'main' e conter uma função 'func main()', que é o ponto de entrada do programa.",
+          "code": "package main\n\nimport \"fmt\"\n\nfunc main() {\n\tfmt.Println(\"Olá, Go!\")\n}"
+        },
+        {
+          "title": "Import e uso da biblioteca padrão",
+          "body": "A palavra 'import' traz pacotes prontos, como 'fmt' para entrada e saída. Um pacote importado e não usado é erro de compilação em Go — a linguagem é rígida quanto a isso, o que evita código morto.",
+          "code": "import \"fmt\"\n\n// se \"fmt\" não for usado, o compilador recusa o build"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual função é o ponto de entrada obrigatório de um programa Go executável?",
+          "opts": ["init()", "main()", "start()", "run()"],
+          "a": 1,
+          "hint": "É a mesma palavra em inglês para 'principal'.",
+          "ex": "func main() dentro do package main é onde a execução começa.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Este código compila?\npackage main\n\nimport \"fmt\"\n\nfunc main() {\n\tfmt.Println(\"oi\")\n}",
+          "opts": ["Sim, compila e imprime 'oi'", "Não, falta declarar variável", "Não, 'fmt' está incorreto", "Sim, mas não imprime nada"],
+          "a": 0,
+          "hint": "Compare com a estrutura mínima apresentada na lição.",
+          "ex": "O código segue exatamente a estrutura mínima válida de um programa Go.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que acontece se um pacote for importado mas nunca utilizado no código?",
+          "opts": ["Nada, Go ignora silenciosamente", "Erro de compilação", "Aviso, mas compila", "O pacote é removido do binário automaticamente sem erro"],
+          "a": 1,
+          "hint": "Go é conhecido por ser exigente com código não utilizado.",
+          "ex": "Go recusa compilar imports não usados, forçando código limpo.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que apenas o pacote chamado 'main' pode gerar um executável?",
+          "opts": ["Porque é uma convenção sem efeito real", "Porque o Go exige esse nome específico para reconhecer o ponto de entrada do binário", "Porque 'main' é uma palavra reservada da linguagem", "Porque outros nomes geram erro de sintaxe"],
+          "a": 1,
+          "hint": "Pense na diferença entre pacotes de biblioteca e pacotes executáveis.",
+          "ex": "O compilador só produz um binário executável quando o pacote é 'main' e existe 'func main()'.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "go-2",
+      "name": "VARIÁVEIS E TIPOS",
+      "difficulty": "INICIANTE",
+      "color": "#00ADD8",
+      "icon": "▲",
+      "summary": "Declare variáveis com 'var' ou ':=' e conheça os tipos básicos.",
+      "lesson": [
+        {
+          "title": "Declaração explícita com var",
+          "body": "Com 'var nome tipo = valor' você declara o tipo explicitamente. Go tem tipagem estática: uma vez definido o tipo, ele não muda. Os tipos básicos incluem int, float64, string e bool.",
+          "code": "var idade int = 25\nvar nome string = \"Ana\"\nvar ativo bool = true"
+        },
+        {
+          "title": "Inferência com :=",
+          "body": "Dentro de funções, o operador ':=' declara e inicializa uma variável ao mesmo tempo, inferindo o tipo pelo valor atribuído. É a forma mais comum no dia a dia, mas só funciona dentro de funções, não no escopo de pacote.",
+          "code": "func main() {\n\tpreco := 19.90 // float64 inferido\n\tqtd := 3       // int inferido\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O operador ':=' pode ser usado para declarar variáveis no escopo global do pacote?",
+          "opts": ["Sim, sempre", "Não, funciona apenas dentro de funções", "Sim, mas só para strings", "Não, foi removido nas versões recentes"],
+          "a": 1,
+          "hint": "Pense onde 'preco := 19.90' apareceu na lição.",
+          "ex": "':=' é restrito ao corpo de funções; no escopo de pacote usa-se 'var'.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual é o tipo inferido de 'qtd' neste trecho?\nfunc main() {\n\tqtd := 3\n}",
+          "opts": ["float64", "string", "int", "bool"],
+          "a": 2,
+          "hint": "O valor 3 não tem ponto decimal nem aspas.",
+          "ex": "Números inteiros sem parte decimal são inferidos como int.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nfunc main() {\n\tvar idade int = 25\n\tidade = \"trinta\"\n}",
+          "opts": ["Não há erro", "Atribuir uma string a uma variável do tipo int não compila", "Falta o ':=' na segunda linha", "'var' não pode receber valor inicial"],
+          "a": 1,
+          "hint": "Lembre que Go tem tipagem estática e não converte tipos automaticamente.",
+          "ex": "Uma vez declarada como int, a variável não aceita valores de outro tipo sem conversão explícita.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual das opções melhor descreve a tipagem de Go?",
+          "opts": ["Dinâmica e fraca", "Estática e forte, sem conversões implícitas entre tipos", "Dinâmica e forte", "Estática, mas com conversão automática entre int e float64"],
+          "a": 1,
+          "hint": "Pense se Go converte int em float64 sozinho em uma atribuição.",
+          "ex": "Go exige conversão explícita mesmo entre tipos numéricos, característica de tipagem estática forte.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "go-3",
+      "name": "CONSTANTES E ZERO VALUES",
+      "difficulty": "INICIANTE",
+      "color": "#00ADD8",
+      "icon": "★",
+      "summary": "Entenda 'const' e os valores-zero que Go atribui automaticamente.",
+      "lesson": [
+        {
+          "title": "Constantes com const",
+          "body": "Valores que não devem mudar são declarados com 'const'. Diferente de 'var', uma constante precisa de valor conhecido em tempo de compilação e não pode ser reatribuída.",
+          "code": "const Pi = 3.14159\nconst MaxTentativas = 3"
+        },
+        {
+          "title": "Zero values",
+          "body": "Em Go, toda variável declarada sem valor inicial recebe um 'zero value' automático: 0 para números, \"\" para string, false para bool e nil para ponteiros, slices e interfaces. Não existe variável 'indefinida'.",
+          "code": "var total int    // 0\nvar nome string  // \"\"\nvar ok bool      // false"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é o zero value de uma variável do tipo string em Go?",
+          "opts": ["nil", "\"\" (string vazia)", "0", "undefined"],
+          "a": 1,
+          "hint": "Strings não usam nil como valor padrão em Go.",
+          "ex": "O zero value de string é a string vazia \"\".",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nconst Limite = 10\n\nfunc main() {\n\tLimite = 20\n}",
+          "opts": ["Não há erro", "Constantes não podem ser reatribuídas depois de declaradas", "'const' precisa de tipo explícito", "Falta ':=' na atribuição"],
+          "a": 1,
+          "hint": "Pense no significado da palavra 'constante'.",
+          "ex": "Uma const é imutável; tentar reatribuir gera erro de compilação.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "code",
+          "q": "O que 'fmt.Println(total)' imprime aqui?\nvar total int\nfmt.Println(total)",
+          "opts": ["nil", "Erro de compilação, variável não inicializada", "0", "vazio, nada é impresso"],
+          "a": 2,
+          "hint": "Lembre do zero value para tipos numéricos.",
+          "ex": "Variáveis int não inicializadas recebem automaticamente o valor 0.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que Go define zero values em vez de deixar variáveis 'indefinidas' como em outras linguagens?",
+          "opts": ["Só por convenção estética, sem efeito prático", "Para evitar comportamento imprevisível de memória não inicializada e tornar o código mais previsível", "Porque o compilador não suporta valores nulos", "Para forçar o uso de 'const' em todo o código"],
+          "a": 1,
+          "hint": "Pense em segurança e previsibilidade de programas.",
+          "ex": "Zero values eliminam a classe de bugs causada por variáveis com lixo de memória.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "go-4",
+      "name": "CONDICIONAL IF",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#ff9600",
+      "icon": "↗",
+      "summary": "Use if/else sem parênteses e com inicialização de variável embutida.",
+      "lesson": [
+        {
+          "title": "if sem parênteses",
+          "body": "Em Go, a condição do 'if' não usa parênteses, mas as chaves são obrigatórias mesmo para um único comando. Isso mantém o código consistente e evita ambiguidades comuns em outras linguagens.",
+          "code": "idade := 20\nif idade >= 18 {\n\tfmt.Println(\"maior de idade\")\n} else {\n\tfmt.Println(\"menor de idade\")\n}"
+        },
+        {
+          "title": "if com inicialização",
+          "body": "Go permite declarar uma variável junto da condição, com escopo limitado ao bloco if/else. É muito usado com funções que retornam erro.",
+          "code": "if valor, ok := cache[\"chave\"]; ok {\n\tfmt.Println(valor)\n} else {\n\tfmt.Println(\"não encontrado\")\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nidade := 20\nif (idade >= 18)\n\tfmt.Println(\"ok\")",
+          "opts": ["Não há erro", "Faltam as chaves { } obrigatórias no bloco if", "Parênteses não são permitidos em nenhuma expressão", "'idade' precisa ser declarada com var"],
+          "a": 1,
+          "hint": "Go aceita parênteses na condição, mas exige algo mais no corpo do if.",
+          "ex": "Mesmo com uma única instrução, o bloco if precisa de chaves em Go.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é o escopo da variável 'valor' declarada em 'if valor, ok := cache[\"x\"]; ok { ... }'?",
+          "opts": ["Todo o arquivo", "Apenas o bloco if/else correspondente", "Toda a função onde o if está", "Escopo global do pacote"],
+          "a": 1,
+          "hint": "Pense em variáveis criadas na cláusula de inicialização de um if.",
+          "ex": "Variáveis inicializadas na cláusula do if existem apenas dentro do if/else.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que este código imprime?\nnota := 7\nif nota >= 7 {\n\tfmt.Println(\"aprovado\")\n} else {\n\tfmt.Println(\"reprovado\")\n}",
+          "opts": ["reprovado", "aprovado", "Erro de compilação", "Nada é impresso"],
+          "a": 1,
+          "hint": "Verifique se 7 >= 7 é verdadeiro.",
+          "ex": "7 é maior ou igual a 7, então a condição é verdadeira e imprime 'aprovado'.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual vantagem prática tem a forma 'if valor, ok := mapa[chave]; ok { ... }' em relação a declarar 'valor' antes do if?",
+          "opts": ["Nenhuma, é apenas estilo", "Limita o escopo da variável ao bloco, evitando poluir o restante da função com uma variável temporária", "É a única forma de acessar mapas em Go", "Torna o código mais lento"],
+          "a": 1,
+          "hint": "Pense em organização de escopo e evitar vazamento de variáveis auxiliares.",
+          "ex": "Restringir a variável ao escopo do if evita que ela seja usada indevidamente fora do bloco.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "go-5",
+      "name": "O LAÇO FOR",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#ff9600",
+      "icon": "▤",
+      "summary": "Go tem um único comando de laço: for, em várias formas.",
+      "lesson": [
+        {
+          "title": "for clássico e como while",
+          "body": "Go não tem 'while' nem 'do-while': tudo é 'for'. A forma clássica tem inicialização, condição e incremento. Omitindo inicialização e incremento, 'for condição { }' se comporta como um while.",
+          "code": "for i := 0; i < 5; i++ {\n\tfmt.Println(i)\n}\n\nn := 0\nfor n < 3 {\n\tn++\n}"
+        },
+        {
+          "title": "for infinito e range",
+          "body": "'for { }' sem condição cria um laço infinito, geralmente controlado com 'break'. 'for i, v := range slice { }' itera sobre índices e valores de slices, arrays, maps e strings.",
+          "code": "nomes := []string{\"Ana\", \"Bia\"}\nfor i, nome := range nomes {\n\tfmt.Println(i, nome)\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual palavra-chave Go usa para todos os tipos de laço (equivalente a while, do-while e for de outras linguagens)?",
+          "opts": ["loop", "while", "for", "repeat"],
+          "a": 2,
+          "hint": "Go se orgulha de simplificar a sintaxe unificando os laços em uma só palavra.",
+          "ex": "Go tem apenas 'for', que assume formas diferentes conforme os elementos usados.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que este código imprime?\nn := 0\nfor n < 3 {\n\tfmt.Println(n)\n\tn++\n}",
+          "opts": ["0 1 2", "0 1 2 3", "1 2 3", "Laço infinito"],
+          "a": 0,
+          "hint": "A condição para o laço quando n deixa de ser menor que 3.",
+          "ex": "O laço imprime 0, 1 e 2, parando antes de n chegar a 3.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nfor i := 0; i < 5; i++\n{\n\tfmt.Println(i)\n}",
+          "opts": ["Não há erro, isso compila e funciona normalmente", "A chave de abertura precisa estar na mesma linha do for, não em uma linha separada", "Falta o 'range' antes de i", "'i++' não é uma sintaxe válida em Go"],
+          "a": 1,
+          "hint": "Go exige um estilo específico de formatação de chaves por causa da inserção automática de ponto e vírgula.",
+          "ex": "Em Go, a chave { deve ficar na mesma linha da declaração, senão o compilador insere ponto e vírgula automaticamente e quebra a sintaxe.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "code",
+          "q": "O que 'for i, nome := range []string{\"Ana\",\"Bia\"} { fmt.Println(i, nome) }' imprime?",
+          "opts": ["0 Ana\\n1 Bia", "Ana 0\\nBia 1", "1 Ana\\n2 Bia", "Apenas Ana e Bia, sem índices"],
+          "a": 0,
+          "hint": "range retorna primeiro o índice, depois o valor.",
+          "ex": "range em slices retorna (índice, valor) nessa ordem, começando em 0.",
+          "format": "LEITURA DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "go-6",
+      "name": "SWITCH SEM FALLTHROUGH",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#ff9600",
+      "icon": "◈",
+      "summary": "O switch de Go não cai para o próximo case por padrão.",
+      "lesson": [
+        {
+          "title": "switch básico",
+          "body": "Diferente de C ou JavaScript, cada 'case' em Go já tem um 'break' implícito: não há fallthrough automático. Isso evita bugs comuns de esquecer o break.",
+          "code": "dia := 3\nswitch dia {\ncase 1:\n\tfmt.Println(\"Segunda\")\ncase 2, 3:\n\tfmt.Println(\"Terça ou quarta\")\ndefault:\n\tfmt.Println(\"Outro dia\")\n}"
+        },
+        {
+          "title": "switch sem expressão",
+          "body": "Um 'switch' sem valor após a palavra-chave funciona como uma cadeia de if/else mais legível, testando condições booleanas em cada case.",
+          "code": "nota := 85\nswitch {\ncase nota >= 90:\n\tfmt.Println(\"A\")\ncase nota >= 70:\n\tfmt.Println(\"B\")\ndefault:\n\tfmt.Println(\"C\")\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "O que este código imprime?\ndia := 3\nswitch dia {\ncase 1:\n\tfmt.Println(\"Segunda\")\ncase 2, 3:\n\tfmt.Println(\"Terça ou quarta\")\ndefault:\n\tfmt.Println(\"Outro\")\n}",
+          "opts": ["Segunda\\nTerça ou quarta", "Terça ou quarta", "Outro", "Erro de compilação"],
+          "a": 1,
+          "hint": "Um case pode listar múltiplos valores separados por vírgula.",
+          "ex": "'case 2, 3' casa com dia == 3, imprimindo apenas 'Terça ou quarta', sem fallthrough.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Em Go, ao entrar em um case que casa com o valor testado, o que acontece após executar esse case?",
+          "opts": ["Continua executando os cases seguintes (fallthrough automático)", "Sai do switch automaticamente, sem precisar de 'break'", "Gera erro se não houver 'break' explícito", "Repete o mesmo case indefinidamente"],
+          "a": 1,
+          "hint": "Compare com o comportamento de C/JavaScript, que a lição contrasta.",
+          "ex": "Go sai do switch automaticamente ao final do case, sem precisar de break.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual o valor impresso?\nnota := 75\nswitch {\ncase nota >= 90:\n\tfmt.Println(\"A\")\ncase nota >= 70:\n\tfmt.Println(\"B\")\ndefault:\n\tfmt.Println(\"C\")\n}",
+          "opts": ["A", "B", "C", "Nenhum, precisa de valor após switch"],
+          "a": 1,
+          "hint": "Um switch sem expressão testa cada case como uma condição booleana em ordem.",
+          "ex": "75 não é >= 90, mas é >= 70, então cai no segundo case e imprime 'B'.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Como forçar a execução do case seguinte em um switch de Go, já que não há fallthrough automático?",
+          "opts": ["Usando a palavra-chave 'fallthrough' explicitamente no final do case", "Não é possível de forma alguma", "Repetindo o mesmo case duas vezes", "Usando 'continue' dentro do case"],
+          "a": 0,
+          "hint": "Existe uma palavra-chave específica de Go para esse comportamento raro.",
+          "ex": "'fallthrough' é a palavra-chave que força a execução do próximo case explicitamente.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "go-7",
+      "name": "FUNÇÕES E RETORNOS MÚLTIPLOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#f6c445",
+      "icon": "▦",
+      "summary": "Funções em Go podem retornar mais de um valor, comum com error.",
+      "lesson": [
+        {
+          "title": "Declarando funções",
+          "body": "Uma função usa 'func nome(parametros) tipoRetorno { }'. Os parâmetros exigem tipo explícito e, quando consecutivos compartilham o tipo, ele pode ser escrito uma única vez.",
+          "code": "func somar(a, b int) int {\n\treturn a + b\n}"
+        },
+        {
+          "title": "Múltiplos retornos",
+          "body": "É comum uma função retornar um valor e um erro, como '(int, error)'. O chamador deve checar o erro antes de usar o resultado — é o padrão idiomático de Go.",
+          "code": "func dividir(a, b float64) (float64, error) {\n\tif b == 0 {\n\t\treturn 0, fmt.Errorf(\"divisão por zero\")\n\t}\n\treturn a / b, nil\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "Qual assinatura de função está correta para retornar um int e um error?",
+          "opts": ["func buscar() int, error", "func buscar() (int, error)", "func buscar(): (int, error)", "func buscar() -> (int, error)"],
+          "a": 1,
+          "hint": "Múltiplos tipos de retorno em Go ficam entre parênteses.",
+          "ex": "A sintaxe correta usa parênteses ao redor dos múltiplos tipos de retorno.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que 'dividir(10, 0)' retorna, dado o código da lição?",
+          "opts": ["10, nil", "Um erro em tempo de execução (panic)", "0, um valor de error não-nil", "Erro de compilação"],
+          "a": 2,
+          "hint": "Veja a condição 'if b == 0' na função dividir.",
+          "ex": "Quando b é 0, a função retorna 0 e um error criado com fmt.Errorf, sem panic.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nresultado, err := dividir(10, 2)\nfmt.Println(resultado)",
+          "opts": ["Não há erro de sintaxe, mas ignorar 'err' sem checá-lo é uma má prática que pode esconder falhas", "':=' não pode receber dois valores", "'dividir' não pode ter dois retornos", "'err' precisa ser declarado com var antes"],
+          "a": 0,
+          "hint": "O código compila, mas pense no padrão idiomático de tratamento de erros em Go.",
+          "ex": "Go compila normalmente, mas a convenção idiomática é sempre checar 'err' antes de usar o resultado.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que Go prefere múltiplos retornos (valor, error) em vez de lançar exceções como outras linguagens?",
+          "opts": ["Porque Go não suporta nenhum tipo de tratamento de erro", "Porque torna explícito, no tipo da função, que uma operação pode falhar, forçando o chamador a lidar com isso", "Porque é mais rápido de compilar apenas", "Porque exceções não existem em nenhuma linguagem compilada"],
+          "a": 1,
+          "hint": "Pense em como o retorno de error aparece diretamente na assinatura da função.",
+          "ex": "O erro é parte visível do contrato da função, tornando o tratamento de falhas explícito e obrigatório na leitura do código.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "go-8",
+      "name": "FUNÇÕES VARIÁDICAS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#f6c445",
+      "icon": "▣",
+      "summary": "Aceite um número variável de argumentos com '...'.",
+      "lesson": [
+        {
+          "title": "Sintaxe variádica",
+          "body": "Usando '...tipo' no último parâmetro, a função aceita zero ou mais argumentos daquele tipo, acessados dentro dela como um slice.",
+          "code": "func somarTodos(numeros ...int) int {\n\ttotal := 0\n\tfor _, n := range numeros {\n\t\ttotal += n\n\t}\n\treturn total\n}\n\nsomarTodos(1, 2, 3) // 6"
+        },
+        {
+          "title": "Expandindo um slice existente",
+          "body": "Para passar um slice já existente para uma função variádica, usa-se '...' depois do slice na chamada, expandindo seus elementos.",
+          "code": "valores := []int{4, 5, 6}\nsomarTodos(valores...)"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Dentro do corpo de uma função variádica 'func f(nums ...int)', qual é o tipo de 'nums'?",
+          "opts": ["int", "[]int (slice de int)", "array de tamanho fixo", "interface{}"],
+          "a": 1,
+          "hint": "Pense em como o for/range é usado sobre 'numeros' na lição.",
+          "ex": "O parâmetro variádico é tratado como um slice do tipo indicado dentro da função.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que 'somarTodos()' retorna, chamada sem nenhum argumento, dado o código da lição?",
+          "opts": ["Erro de compilação", "0", "nil", "Panic em tempo de execução"],
+          "a": 1,
+          "hint": "O slice vazio ainda permite o for/range executar zero vezes, mantendo 'total' inicial.",
+          "ex": "Sem argumentos, 'numeros' é um slice vazio, o laço não executa e total permanece 0.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nvalores := []int{4, 5, 6}\nsomarTodos(valores)",
+          "opts": ["Não há erro", "Falta o '...' após 'valores' para expandir o slice em argumentos individuais", "Slices não podem ser usados com funções variádicas", "'valores' precisa ser um array, não um slice"],
+          "a": 1,
+          "hint": "Compare com a forma correta mostrada na lição.",
+          "ex": "Sem '...', o compilador tenta passar o slice inteiro como se fosse um único argumento variádico, o que não compila para tipos incompatíveis.",
+          "format": "CORRIJA O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual restrição existe sobre a posição de um parâmetro variádico em uma função Go?",
+          "opts": ["Pode estar em qualquer posição", "Deve ser sempre o primeiro parâmetro", "Deve ser o último parâmetro da lista", "Uma função só pode ter parâmetros variádicos, nenhum outro"],
+          "a": 2,
+          "hint": "Pense em por que isso evita ambiguidade na hora de interpretar os argumentos.",
+          "ex": "O parâmetro variádico precisa ser o último, pois recebe todos os argumentos restantes da chamada.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "go-9",
+      "name": "FUNÇÕES ANÔNIMAS E CLOSURES",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#f6c445",
+      "icon": "◐",
+      "summary": "Funções são valores em Go e podem capturar variáveis do escopo externo.",
+      "lesson": [
+        {
+          "title": "Funções como valores",
+          "body": "Em Go, funções podem ser atribuídas a variáveis, passadas como argumento e retornadas por outras funções, pois são valores de primeira classe.",
+          "code": "dobrar := func(n int) int {\n\treturn n * 2\n}\nfmt.Println(dobrar(5)) // 10"
+        },
+        {
+          "title": "Closures capturam variáveis",
+          "body": "Uma closure 'fecha' sobre variáveis do escopo em que foi criada, mantendo acesso e podendo modificá-las mesmo depois que a função externa retornou.",
+          "code": "func contador() func() int {\n\tcont := 0\n\treturn func() int {\n\t\tcont++\n\t\treturn cont\n\t}\n}\n\nc := contador()\nc() // 1\nc() // 2"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "Dado o código da lição, o que 'c()' retorna na terceira chamada consecutiva ao mesmo 'c'?",
+          "opts": ["1", "3", "0", "Erro, pois 'cont' foi destruída após 'contador()' retornar"],
+          "a": 1,
+          "hint": "A closure mantém seu próprio estado de 'cont' entre chamadas.",
+          "ex": "Cada chamada a c() incrementa a variável capturada 'cont', chegando a 3 na terceira chamada.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que caracteriza uma closure em Go?",
+          "opts": ["Uma função que só pode ser chamada uma vez", "Uma função anônima que captura e retém acesso a variáveis do escopo onde foi definida", "Um tipo especial de struct", "Uma função que não pode receber parâmetros"],
+          "a": 1,
+          "hint": "Pense no exemplo 'contador()' que retorna outra função.",
+          "ex": "A closure retém referência às variáveis externas, permanecendo válida mesmo após a função externa terminar.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Se criarmos 'c1 := contador()' e 'c2 := contador()' e chamarmos 'c1()' duas vezes e 'c2()' uma vez, quais os resultados?",
+          "opts": ["c1: 1, 2 e c2: 1 (contadores independentes)", "c1: 1, 2 e c2: 3 (contador compartilhado)", "Erro de compilação, só pode existir um contador por vez", "c1 e c2 sempre retornam o mesmo valor"],
+          "a": 0,
+          "hint": "Cada chamada a 'contador()' cria uma nova variável 'cont' isolada.",
+          "ex": "Cada invocação de contador() cria seu próprio 'cont', então c1 e c2 têm estados independentes.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual cenário prático justifica o uso de uma closure em vez de uma função comum?",
+          "opts": ["Quando é preciso manter um estado privado entre chamadas sem usar uma struct ou variável global", "Sempre que a função tiver mais de um parâmetro", "Apenas para funções recursivas", "Nunca, closures são apenas curiosidade acadêmica"],
+          "a": 0,
+          "hint": "Pense no exemplo do contador que preserva 'cont' sem expor uma variável global.",
+          "ex": "Closures são úteis para encapsular estado (como um contador ou cache) sem recorrer a variáveis globais.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "go-10",
+      "name": "DEFININDO STRUCTS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#22c55e",
+      "icon": "✓",
+      "summary": "Structs agrupam campos relacionados em um novo tipo.",
+      "lesson": [
+        {
+          "title": "Declarando uma struct",
+          "body": "Uma struct é um tipo composto que agrupa campos nomeados. É a base para modelar entidades em Go, já que a linguagem não tem classes.",
+          "code": "type Usuario struct {\n\tNome  string\n\tIdade int\n}\n\nu := Usuario{Nome: \"Carlos\", Idade: 30}"
+        },
+        {
+          "title": "Campos exportados vs não exportados",
+          "body": "Em Go, a visibilidade é definida pela primeira letra: campos e identificadores com letra maiúscula são exportados (públicos entre pacotes); com letra minúscula, ficam privados ao pacote.",
+          "code": "type conta struct {\n\tSaldo   float64 // exportado\n\tsenha   string  // privado ao pacote\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Como Go determina se um campo de struct é exportado (visível fora do pacote)?",
+          "opts": ["Usando a palavra-chave 'public'", "Pela primeira letra do nome: maiúscula é exportado, minúscula é privado ao pacote", "Todos os campos são sempre públicos", "Depende de um comentário especial acima do campo"],
+          "a": 1,
+          "hint": "Compare 'Saldo' e 'senha' no segundo exemplo da lição.",
+          "ex": "Go usa a convenção de capitalização: maiúscula inicial = exportado, minúscula = privado ao pacote.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual o valor de 'u.Idade' após:\ntype Usuario struct {\n\tNome  string\n\tIdade int\n}\nu := Usuario{Nome: \"Carlos\"}",
+          "opts": ["Erro de compilação por campo faltando", "0 (zero value de int)", "nil", "\"\" (string vazia)"],
+          "a": 1,
+          "hint": "Campos omitidos em um struct literal recebem o zero value do seu tipo.",
+          "ex": "Campos não especificados no literal recebem o zero value correspondente; para int, é 0.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\ntype usuario struct {\n\tnome string\n}\n\nfunc main() {\n\tu := usuario{\"Bia\"}\n\tfmt.Println(u.Nome)\n}",
+          "opts": ["Não há erro", "O campo se chama 'nome' (minúsculo), mas o código acessa 'u.Nome' (maiúsculo), que não existe", "Structs não podem ser inicializadas com valores posicionais", "'usuario' precisa ser exportado para ser usado em main"],
+          "a": 1,
+          "hint": "Go diferencia maiúsculas de minúsculas nos identificadores.",
+          "ex": "Go é case-sensitive: 'nome' e 'Nome' são identificadores diferentes, então u.Nome não existe nessa struct.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que Go não usa 'class' e sim structs para modelar entidades?",
+          "opts": ["Porque Go não é orientado a objetos no sentido clássico; ele usa composição de structs com métodos associados em vez de herança de classes", "Porque structs são apenas um apelido para arrays", "Porque 'class' é uma palavra reservada usada para outra finalidade em Go", "Não há diferença real, é apenas nomenclatura"],
+          "a": 0,
+          "hint": "Pense no estilo de design de Go, que favorece composição sobre herança.",
+          "ex": "Go opta por composição e interfaces implícitas em vez do modelo clássico de classes com herança.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "go-11",
+      "name": "MÉTODOS E RECEIVERS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#22c55e",
+      "icon": "⌗",
+      "summary": "Associe funções a um tipo através de um receiver.",
+      "lesson": [
+        {
+          "title": "Métodos com receiver de valor",
+          "body": "Um método é uma função com um 'receiver' entre 'func' e o nome. O receiver de valor recebe uma cópia da struct, então alterações nele não afetam o original.",
+          "code": "type Retangulo struct {\n\tLargura, Altura float64\n}\n\nfunc (r Retangulo) Area() float64 {\n\treturn r.Largura * r.Altura\n}"
+        },
+        {
+          "title": "Receiver de ponteiro para modificar",
+          "body": "Para que um método altere o valor original da struct, o receiver deve ser um ponteiro '*Tipo'. É a forma idiomática de métodos que precisam mutar estado.",
+          "code": "func (r *Retangulo) Dobrar() {\n\tr.Largura *= 2\n\tr.Altura *= 2\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é a diferença entre um receiver de valor 'func (r Retangulo)' e um receiver de ponteiro 'func (r *Retangulo)'?",
+          "opts": ["Não há diferença, é apenas estilo", "O receiver de ponteiro pode modificar a struct original; o de valor trabalha sobre uma cópia", "Receiver de valor é mais rápido sempre e deve ser preferido", "Receiver de ponteiro só funciona com slices"],
+          "a": 1,
+          "hint": "Pense em qual dos dois métodos da lição consegue alterar Largura e Altura de fato.",
+          "ex": "Apenas o receiver de ponteiro opera sobre o endereço da struct original, permitindo mutação real.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nfunc (r Retangulo) Dobrar() {\n\tr.Largura *= 2\n}\n\nfunc main() {\n\tret := Retangulo{Largura: 3, Altura: 4}\n\tret.Dobrar()\n\tfmt.Println(ret.Largura) // esperado: 6\n}",
+          "opts": ["Não há erro, imprime 6 como esperado", "Dobrar usa receiver de valor, então altera uma cópia; ret.Largura continua 3", "'Dobrar' precisa retornar um valor", "Structs não podem ter métodos com esse nome"],
+          "a": 1,
+          "hint": "Verifique se o receiver de 'Dobrar' é valor ou ponteiro.",
+          "ex": "Como o receiver é de valor, a alteração ocorre só na cópia local, e ret.Largura permanece 3.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "code",
+          "q": "Qual assinatura corrige o método 'Dobrar' da questão anterior para de fato alterar 'ret'?",
+          "opts": ["func (r Retangulo) Dobrar() { r.Largura *= 2 }", "func (r *Retangulo) Dobrar() { r.Largura *= 2 }", "func Dobrar(r Retangulo) { r.Largura *= 2 }", "func (r Retangulo) Dobrar() *Retangulo { return &r }"],
+          "a": 1,
+          "hint": "É preciso que o receiver aponte para o endereço de memória da struct original.",
+          "ex": "Usando '*Retangulo' como receiver, o método opera diretamente sobre o valor original, permitindo a mutação.",
+          "format": "CORRIJA O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual boa prática é recomendada sobre misturar receivers de valor e ponteiro nos métodos de um mesmo tipo?",
+          "opts": ["É indiferente, pode-se misturar livremente sem consequências", "É recomendado manter consistência: se algum método precisa de ponteiro, geralmente todos os métodos do tipo usam ponteiro", "Deve-se sempre usar receiver de valor para evitar ponteiros", "É proibido pelo compilador misturar os dois tipos de receiver"],
+          "a": 1,
+          "hint": "Pense em previsibilidade: se um método muta o estado, os outros deveriam operar sobre o mesmo tipo de referência.",
+          "ex": "A convenção idiomática evita confusão ao manter consistência no tipo de receiver usado por todos os métodos de um tipo.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "go-12",
+      "name": "PONTEIROS EM GO",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#22c55e",
+      "icon": "◫",
+      "summary": "Use & e * para trabalhar com endereços de memória de forma segura.",
+      "lesson": [
+        {
+          "title": "Endereço e desreferência",
+          "body": "O operador '&' obtém o endereço de uma variável, criando um ponteiro. O operador '*' antes de um ponteiro acessa (desreferencia) o valor guardado naquele endereço.",
+          "code": "x := 10\np := &x     // p é *int, aponta para x\n*p = 20     // altera x através do ponteiro\nfmt.Println(x) // 20"
+        },
+        {
+          "title": "Ponteiros em funções",
+          "body": "Passar um ponteiro como argumento permite que a função modifique a variável original, já que Go passa argumentos por valor por padrão — sem ponteiro, a função recebe apenas uma cópia.",
+          "code": "func incrementar(n *int) {\n\t*n++\n}\n\nx := 5\nincrementar(&x)\nfmt.Println(x) // 6"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que o operador '&' faz quando aplicado a uma variável em Go?",
+          "opts": ["Converte a variável para string", "Retorna o endereço de memória da variável, criando um ponteiro", "Duplica o valor da variável", "Remove a variável da memória"],
+          "a": 1,
+          "hint": "Veja o exemplo 'p := &x' na lição.",
+          "ex": "'&' obtém o endereço de memória, produzindo um valor do tipo ponteiro.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que este código imprime?\nfunc incrementar(n *int) {\n\t*n++\n}\n\nx := 5\nincrementar(&x)\nfmt.Println(x)",
+          "opts": ["5", "6", "Endereço de memória, algo como 0xc0000...", "Erro de compilação"],
+          "a": 1,
+          "hint": "O ponteiro permite que a função altere o valor original de x.",
+          "ex": "Como a função recebe o endereço de x, '*n++' incrementa diretamente x, resultando em 6.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nfunc dobrar(n int) {\n\tn = n * 2\n}\n\nx := 5\ndobrar(x)\nfmt.Println(x) // esperado: 10",
+          "opts": ["Não há erro, imprime 10 como esperado", "'dobrar' recebe uma cópia de x (passagem por valor); a alteração não afeta x, que continua 5", "Falta usar '&' na declaração da função", "'n = n * 2' não é uma expressão válida em Go"],
+          "a": 1,
+          "hint": "Verifique se o parâmetro de 'dobrar' é int ou *int.",
+          "ex": "Sem ponteiro, a função opera sobre uma cópia local de x, então o valor externo não muda.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que usar um ponteiro (*Struct) como receiver de método ou parâmetro de função é comum ao trabalhar com structs grandes, mesmo sem precisar de mutação?",
+          "opts": ["Porque structs grandes não podem ser copiadas em Go", "Porque copiar uma struct grande por valor a cada chamada é mais custoso em memória e tempo do que copiar um ponteiro", "Porque ponteiros tornam o código mais lento e por isso são evitados", "Não existe motivo, é apenas preferência estética"],
+          "a": 1,
+          "hint": "Pense no custo de copiar todos os campos de uma struct grande versus copiar apenas um endereço.",
+          "ex": "Passar um ponteiro evita a cópia completa de uma struct grande a cada chamada, sendo mais eficiente.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "go-13",
+      "name": "DEFININDO INTERFACES",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#34d399",
+      "icon": "⌕",
+      "summary": "Interfaces em Go são satisfeitas implicitamente, sem 'implements'.",
+      "lesson": [
+        {
+          "title": "Interface como contrato de comportamento",
+          "body": "Uma interface declara um conjunto de métodos. Qualquer tipo que implemente esses métodos satisfaz a interface automaticamente — não existe palavra-chave 'implements'.",
+          "code": "type Formatador interface {\n\tFormatar() string\n}\n\ntype Data struct{ Dia int }\n\nfunc (d Data) Formatar() string {\n\treturn fmt.Sprintf(\"dia %d\", d.Dia)\n}"
+        },
+        {
+          "title": "Tipagem estrutural implícita",
+          "body": "Como a satisfação é implícita, um mesmo tipo pode satisfazer várias interfaces sem declarar isso explicitamente, e uma interface pode ser satisfeita por tipos de pacotes diferentes que nem se conhecem.",
+          "code": "var f Formatador = Data{Dia: 10}\nfmt.Println(f.Formatar()) // \"dia 10\""
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Como um tipo em Go declara que implementa uma interface?",
+          "opts": ["Usando a palavra-chave 'implements' no tipo", "Implicitamente, apenas implementando todos os métodos exigidos pela interface", "Herdando da interface com 'extends'", "Registrando o tipo em um arquivo de configuração"],
+          "a": 1,
+          "hint": "A lição destaca que não existe palavra-chave para isso.",
+          "ex": "Go usa tipagem estrutural: basta implementar os métodos, sem declaração explícita de conformidade.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Dado o código da lição, 'Data' satisfaz a interface 'Formatador'?",
+          "opts": ["Não, porque falta a declaração 'Data implements Formatador'", "Sim, porque Data implementa o método Formatar() string exigido pela interface", "Não, structs nunca satisfazem interfaces", "Só satisfaria se Formatador fosse uma struct também"],
+          "a": 1,
+          "hint": "Compare a assinatura do método de Data com o método declarado na interface.",
+          "ex": "Como Data implementa Formatar() string, ela satisfaz Formatador automaticamente.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\ntype Formatador interface {\n\tFormatar() string\n}\n\ntype Data struct{ Dia int }\n\nfunc (d Data) Formatar() int {\n\treturn d.Dia\n}\n\nvar f Formatador = Data{Dia: 5}",
+          "opts": ["Não há erro", "O método Formatar de Data retorna int, mas a interface exige string; a assinatura não bate e Data não satisfaz Formatador", "Interfaces não podem ser atribuídas a variáveis", "'Data' precisa ser um ponteiro para satisfazer a interface"],
+          "a": 1,
+          "hint": "Compare cuidadosamente o tipo de retorno declarado na interface com o do método.",
+          "ex": "A assinatura precisa bater exatamente, incluindo o tipo de retorno; int diferente de string quebra a conformidade.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual vantagem prática a satisfação implícita de interfaces traz para o design de bibliotecas em Go?",
+          "opts": ["Nenhuma vantagem real, apenas menos digitação", "Permite que um tipo de um pacote satisfaça uma interface definida em outro pacote sem que os dois precisem se conhecer ou ser modificados", "Impede que structs tenham mais de um método", "Obriga todo tipo a implementar todas as interfaces do programa"],
+          "a": 1,
+          "hint": "Pense em desacoplamento entre quem define o comportamento esperado e quem implementa.",
+          "ex": "A tipagem estrutural permite alto desacoplamento: bibliotecas podem aceitar qualquer tipo compatível, mesmo desconhecido em tempo de design.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "go-14",
+      "name": "INTERFACE VAZIA E TYPE ASSERTION",
+      "difficulty": "AVANÇADO",
+      "color": "#34d399",
+      "icon": "◧",
+      "summary": "interface{} (ou any) aceita qualquer tipo; type assertion recupera o tipo concreto.",
+      "lesson": [
+        {
+          "title": "interface{} e any",
+          "body": "Uma interface sem métodos, 'interface{}' (ou o alias 'any' desde Go 1.18), é satisfeita por qualquer valor. É útil para funções genéricas antigas, mas perde a segurança de tipos em tempo de compilação.",
+          "code": "func imprimir(v any) {\n\tfmt.Println(v)\n}\n\nimprimir(42)\nimprimir(\"texto\")"
+        },
+        {
+          "title": "Type assertion",
+          "body": "Para recuperar o tipo concreto guardado em uma interface, usa-se 'valor.(Tipo)'. A forma com segunda variável de retorno ('v, ok := x.(Tipo)') evita panic quando o tipo não corresponde.",
+          "code": "var v any = \"olá\"\ns, ok := v.(string)\nif ok {\n\tfmt.Println(s)\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual tipo em Go pode armazenar um valor de absolutamente qualquer tipo?",
+          "opts": ["string", "interface{} (ou any)", "int", "struct{}"],
+          "a": 1,
+          "hint": "É a interface que não exige nenhum método.",
+          "ex": "interface{} (e seu alias any) não exige métodos, então qualquer valor a satisfaz.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que acontece com 'v.(string)' (sem o ', ok') se 'v' guardar um int?",
+          "opts": ["Retorna uma string vazia silenciosamente", "Causa panic em tempo de execução por assertion falhar", "É um erro de compilação", "Converte automaticamente o int para string"],
+          "a": 1,
+          "hint": "Compare com a forma segura 'v, ok := x.(Tipo)' apresentada na lição.",
+          "ex": "Sem o ', ok', uma assertion que falha causa panic; por isso a forma segura é preferida quando o tipo não é garantido.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Corrija para evitar panic:\nvar v any = 10\ns := v.(string)\nfmt.Println(s)",
+          "opts": ["var v any = 10\ns := v.(string)\nfmt.Println(s)", "var v any = 10\ns, ok := v.(string)\nif ok {\n\tfmt.Println(s)\n}", "var v any = 10\ns := string(v)\nfmt.Println(s)", "var v any = 10\nfmt.Println(v.string())"],
+          "a": 1,
+          "hint": "Use a forma de type assertion com duas variáveis de retorno.",
+          "ex": "Usar 'ok' permite checar a conversão antes de usar o valor, evitando panic.",
+          "format": "CORRIJA O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que o uso excessivo de 'interface{}'/'any' é considerado, em geral, menos idiomático do que tipos concretos ou interfaces específicas em Go?",
+          "opts": ["Porque interface{} não pode ser usada em funções", "Porque abre mão da checagem de tipos em tempo de compilação, empurrando erros para o tempo de execução", "Porque não existe suporte real para interface{} desde versões recentes", "Porque é proibido pelo compilador em código de produção"],
+          "a": 1,
+          "hint": "Pense na diferença entre erros pegos pelo compilador e erros só descobertos rodando o programa.",
+          "ex": "Usar any em excesso sacrifica a segurança de tipos estática, deslocando erros para runtime, algo que Go geralmente evita.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "go-15",
+      "name": "COMPOSIÇÃO COM EMBEDDING",
+      "difficulty": "AVANÇADO",
+      "color": "#34d399",
+      "icon": "⇄",
+      "summary": "Go favorece composição de structs via embedding em vez de herança.",
+      "lesson": [
+        {
+          "title": "Embedding de structs",
+          "body": "Ao declarar um campo apenas com o nome de um tipo (sem nome de campo), seus métodos e campos ficam 'promovidos' à struct externa, simulando reutilização de comportamento sem herança clássica.",
+          "code": "type Animal struct {\n\tNome string\n}\n\nfunc (a Animal) Descrever() string {\n\treturn \"Sou \" + a.Nome\n}\n\ntype Cachorro struct {\n\tAnimal\n\tRaca string\n}"
+        },
+        {
+          "title": "Acessando membros promovidos",
+          "body": "Com 'c := Cachorro{Animal{\"Rex\"}, \"Labrador\"}', é possível chamar 'c.Descrever()' e acessar 'c.Nome' diretamente, como se fossem da própria Cachorro, apesar de pertencerem a Animal.",
+          "code": "c := Cachorro{Animal{Nome: \"Rex\"}, \"Labrador\"}\nfmt.Println(c.Descrever()) // \"Sou Rex\"\nfmt.Println(c.Nome)         // \"Rex\""
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Go possui herança de classes como Java ou Python?",
+          "opts": ["Sim, com a palavra-chave 'extends'", "Não; Go usa composição via embedding de structs para reaproveitar comportamento", "Sim, mas apenas para interfaces", "Sim, com a palavra-chave 'inherits'"],
+          "a": 1,
+          "hint": "A lição contrasta embedding com herança clássica.",
+          "ex": "Go não tem herança; a composição por embedding é o mecanismo idiomático de reaproveitamento.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Dado o exemplo da lição, o que 'c.Descrever()' retorna para 'c := Cachorro{Animal{Nome: \"Rex\"}, \"Labrador\"}'?",
+          "opts": ["Erro de compilação, Cachorro não tem método Descrever", "\"Sou Rex\"", "\"Sou Labrador\"", "nil"],
+          "a": 1,
+          "hint": "O método Descrever pertence a Animal, mas fica promovido em Cachorro por embedding.",
+          "ex": "Como Animal está embutido em Cachorro, o método Descrever() é promovido e usa o campo Nome de Animal.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\ntype Cachorro struct {\n\tanimal Animal\n\tRaca   string\n}\n\nc := Cachorro{Animal{Nome:\"Rex\"}, \"Labrador\"}\nfmt.Println(c.Nome)",
+          "opts": ["Não há erro", "O campo foi nomeado 'animal' em vez de embutido anonimamente, então Nome não é promovido; seria preciso c.animal.Nome", "Cachorro não pode ter dois campos", "'Animal{Nome:\"Rex\"}' é sintaxe inválida"],
+          "a": 1,
+          "hint": "Compare a declaração do campo com o embedding correto da lição (sem nome de campo).",
+          "ex": "Dar um nome explícito ao campo ('animal Animal') o torna uma composição nomeada comum, não um embedding — por isso Nome não é promovido.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é uma vantagem de 'composição sobre herança' que o embedding de Go ilustra?",
+          "opts": ["Evita hierarquias rígidas e frágeis, permitindo combinar comportamentos de múltiplos tipos sem os problemas clássicos de herança múltipla", "Torna o código impossível de reaproveitar", "Impede que structs tenham mais de um campo", "É apenas uma forma alternativa de nomear campos, sem benefício real"],
+          "a": 0,
+          "hint": "Pense em problemas clássicos como herança múltipla ambígua em outras linguagens.",
+          "ex": "Composição via embedding evita hierarquias rígidas, permitindo reaproveitar comportamento de forma flexível e explícita.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "go-16",
+      "name": "ARRAYS E SLICES",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#1cb0f6",
+      "icon": "⇆",
+      "summary": "Slices são a estrutura de coleção mais usada em Go, construídas sobre arrays.",
+      "lesson": [
+        {
+          "title": "Array de tamanho fixo",
+          "body": "Um array tem tamanho fixo definido no tipo, como '[3]int'. O tamanho faz parte do tipo, então '[3]int' e '[5]int' são tipos diferentes e incompatíveis entre si.",
+          "code": "var numeros [3]int = [3]int{1, 2, 3}"
+        },
+        {
+          "title": "Slices são dinâmicos",
+          "body": "Um slice, como '[]int', tem tamanho dinâmico e é a estrutura preferida no dia a dia. 'append' adiciona elementos, podendo realocar memória internamente quando a capacidade é excedida.",
+          "code": "numeros := []int{1, 2, 3}\nnumeros = append(numeros, 4)\nfmt.Println(numeros) // [1 2 3 4]\nfmt.Println(len(numeros)) // 4"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual a principal diferença entre um array e um slice em Go?",
+          "opts": ["Não há diferença, são sinônimos", "O array tem tamanho fixo definido no tipo; o slice tem tamanho dinâmico e é mais usado na prática", "Slices só armazenam strings", "Arrays não podem ser percorridos com range"],
+          "a": 1,
+          "hint": "Compare '[3]int' com '[]int' na lição.",
+          "ex": "O tamanho do array é parte do seu tipo e é fixo; o slice cresce dinamicamente com append.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que 'len(numeros)' retorna após:\nnumeros := []int{1, 2, 3}\nnumeros = append(numeros, 4)",
+          "opts": ["3", "4", "5", "Erro de compilação"],
+          "a": 1,
+          "hint": "Conte quantos elementos o slice tem após o append.",
+          "ex": "Após adicionar o elemento 4, o slice passa a ter 4 elementos: [1, 2, 3, 4].",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nvar a [3]int = [3]int{1, 2, 3}\nvar b [5]int = a",
+          "opts": ["Não há erro, arrays de tamanhos diferentes são compatíveis", "'[3]int' e '[5]int' são tipos diferentes; não é possível atribuir um ao outro diretamente", "Arrays não podem ser declarados com var", "Falta usar append para converter o tamanho"],
+          "a": 1,
+          "hint": "Lembre que o tamanho é parte do tipo do array.",
+          "ex": "Como o tamanho integra o tipo, [3]int e [5]int são incompatíveis para atribuição direta.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que slices são preferidos em relação a arrays na maior parte do código Go do dia a dia?",
+          "opts": ["Porque arrays foram removidos da linguagem", "Porque slices oferecem tamanho flexível e compatibilidade mais simples entre funções, sem amarrar o tamanho ao tipo", "Porque slices são sempre mais rápidos que arrays em qualquer cenário", "Porque arrays não podem conter números"],
+          "a": 1,
+          "hint": "Pense na rigidez de um tipo que inclui o tamanho fixo, como [5]int.",
+          "ex": "A flexibilidade de tamanho dos slices os torna muito mais práticos para manipular coleções que crescem ou encolhem.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "go-17",
+      "name": "SLICING E CAPACIDADE",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#1cb0f6",
+      "icon": "▧",
+      "summary": "Entenda len, cap e o compartilhamento de memória entre slices.",
+      "lesson": [
+        {
+          "title": "Operador de slicing",
+          "body": "'s[inicio:fim]' cria um novo slice referenciando o mesmo array subjacente, do índice 'inicio' (incluso) até 'fim' (excluso). Modificar o sub-slice pode afetar o slice original, pois compartilham memória.",
+          "code": "s := []int{1, 2, 3, 4, 5}\nsub := s[1:3] // [2 3]\nsub[0] = 99\nfmt.Println(s) // [1 99 3 4 5]"
+        },
+        {
+          "title": "len vs cap",
+          "body": "'len(s)' é o número de elementos atuais; 'cap(s)' é a capacidade do array subjacente a partir do início do slice. Um 'append' que ultrapassa 'cap' aloca um novo array e copia os dados, deixando de compartilhar memória com o original.",
+          "code": "s := make([]int, 2, 5)\nfmt.Println(len(s), cap(s)) // 2 5"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "Qual o resultado de 'fmt.Println(s)' neste código?\ns := []int{1, 2, 3, 4, 5}\nsub := s[1:3]\nsub[0] = 99",
+          "opts": ["[1 2 3 4 5]", "[1 99 3 4 5]", "[99 2 3 4 5]", "Erro de compilação"],
+          "a": 1,
+          "hint": "Lembre que slices compartilham o array subjacente.",
+          "ex": "sub[0] corresponde a s[1], então alterá-lo reflete em s, resultando em [1 99 3 4 5].",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que 'cap(s)' representa em um slice?",
+          "opts": ["O número atual de elementos no slice", "A capacidade do array subjacente disponível a partir do início do slice, antes de precisar realocar", "O tipo dos elementos do slice", "Sempre o dobro de len(s)"],
+          "a": 1,
+          "hint": "Compare com len(s) no exemplo 'make([]int, 2, 5)'.",
+          "ex": "cap indica quantos elementos cabem no array subjacente a partir daquele slice antes de uma realocação.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Após 'append' ultrapassar a capacidade de um slice, o que acontece com a relação entre o slice resultante e o original?",
+          "opts": ["Continuam sempre compartilhando o mesmo array subjacente", "Um novo array é alocado internamente, e o slice resultante deixa de compartilhar memória com o array original", "O programa gera panic obrigatoriamente", "O slice original é apagado da memória imediatamente"],
+          "a": 1,
+          "hint": "Pense em como Go garante espaço para crescer o slice além da capacidade atual.",
+          "ex": "Quando a capacidade é excedida, Go aloca um novo array maior e copia os elementos, desacoplando o novo slice do original.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que é importante saber que slicing compartilha memória com o array original antes de passar um sub-slice para outra função?",
+          "opts": ["Não é importante, slices sempre são cópias completas e independentes", "Porque alterações feitas pela função no sub-slice podem afetar inesperadamente o slice original, exigindo cuidado ou uma cópia explícita quando isso não é desejado", "Porque isso impede o uso de range no sub-slice", "Porque sub-slices não podem ser impressos com fmt.Println"],
+          "a": 1,
+          "hint": "Pense no exemplo em que sub[0] = 99 alterou o slice original s.",
+          "ex": "Como o sub-slice referencia o mesmo array, mutações podem se propagar de forma não intencional, exigindo atenção ou cópia via 'copy()'.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "go-18",
+      "name": "MAPS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#1cb0f6",
+      "icon": "◉",
+      "summary": "Maps armazenam pares chave-valor com acesso rápido por chave.",
+      "lesson": [
+        {
+          "title": "Criando e usando maps",
+          "body": "Um map é declarado como 'map[TipoChave]TipoValor'. Deve ser inicializado com 'make' ou um literal antes de receber valores; um map nil não pode receber escritas.",
+          "code": "precos := map[string]float64{\n\t\"cafe\": 5.50,\n\t\"suco\": 7.00,\n}\nprecos[\"agua\"] = 3.00"
+        },
+        {
+          "title": "Verificando existência de chave",
+          "body": "Acessar uma chave inexistente retorna o zero value do tipo do valor, sem erro. Para distinguir 'zero value real' de 'chave ausente', usa-se a forma 'valor, ok := mapa[chave]'.",
+          "code": "valor, ok := precos[\"leite\"]\nif !ok {\n\tfmt.Println(\"produto não encontrado\")\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "O que 'precos[\"leite\"]' retorna, dado o mapa da lição, se \"leite\" não existir?",
+          "opts": ["Erro em tempo de execução (panic)", "nil sempre, independente do tipo do valor", "O zero value do tipo do valor do map (0.0 para float64), sem erro", "Erro de compilação"],
+          "a": 2,
+          "hint": "Maps em Go não geram panic ao acessar chave ausente.",
+          "ex": "Acessar chave inexistente retorna o zero value do tipo de valor, aqui 0.0, sem lançar erro.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que a forma 'valor, ok := mapa[chave]' é útil em maps?",
+          "opts": ["Ela é mais rápida que o acesso comum", "Permite diferenciar uma chave presente cujo valor é o zero value de uma chave realmente ausente", "É a única forma de ler valores de um map", "Ela apaga a chave após a leitura"],
+          "a": 1,
+          "hint": "Pense em como diferenciar 'valor 0 armazenado' de 'chave nunca inserida'.",
+          "ex": "'ok' indica com precisão se a chave existe, resolvendo a ambiguidade do zero value.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nvar precos map[string]float64\nprecos[\"cafe\"] = 5.50",
+          "opts": ["Não há erro", "'precos' é um map nil (não inicializado); escrever nele causa panic em tempo de execução", "Maps não podem ter chave do tipo string", "Falta usar := em vez de var"],
+          "a": 1,
+          "hint": "Compare com a inicialização usando 'make' ou literal na lição.",
+          "ex": "Um map declarado apenas com 'var', sem make ou literal, é nil, e escrever nele causa panic.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "code",
+          "q": "Qual correção resolve o problema do map nil da questão anterior?",
+          "opts": ["var precos map[string]float64 = nil", "precos := make(map[string]float64)\nprecos[\"cafe\"] = 5.50", "precos[\"cafe\"] := 5.50", "var precos []float64\nprecos[\"cafe\"] = 5.50"],
+          "a": 1,
+          "hint": "É preciso inicializar o map antes de escrever nele.",
+          "ex": "Usar make(map[string]float64) inicializa o map, permitindo escritas seguras nas chaves.",
+          "format": "CORRIJA O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "go-19",
+      "name": "ITERANDO SLICES E MAPS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#1cb0f6",
+      "icon": "⟳",
+      "summary": "Use range com cuidado, especialmente sobre a ordem de maps.",
+      "lesson": [
+        {
+          "title": "range em slices preserva ordem",
+          "body": "Iterar um slice com range sempre segue a ordem dos índices, do início ao fim, de forma determinística.",
+          "code": "nums := []int{10, 20, 30}\nfor i, v := range nums {\n\tfmt.Println(i, v)\n}"
+        },
+        {
+          "title": "range em maps não garante ordem",
+          "body": "A ordem de iteração de um map com range é intencionalmente aleatória a cada execução, para evitar que o código dependa de uma ordem específica. Se a ordem importa, é preciso coletar e ordenar as chaves manualmente.",
+          "code": "precos := map[string]float64{\"a\": 1, \"b\": 2}\nfor chave, valor := range precos {\n\tfmt.Println(chave, valor) // ordem não garantida\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "A ordem de iteração de um map com 'for range' em Go é garantida entre execuções?",
+          "opts": ["Sim, sempre segue a ordem de inserção", "Sim, sempre segue ordem alfabética das chaves", "Não, é intencionalmente não determinística", "Sim, mas apenas para maps com chave string"],
+          "a": 2,
+          "hint": "A lição destaca que isso é proposital, para evitar dependência de ordem.",
+          "ex": "Go randomiza a ordem de iteração de maps de propósito, para que o código não dependa dela.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que 'for i, v := range []int{10, 20, 30}' garante sobre a ordem de i e v?",
+          "opts": ["Ordem aleatória, como em maps", "Sempre segue a ordem dos índices: 0,10 depois 1,20 depois 2,30", "Ordem decrescente dos valores", "Depende do sistema operacional"],
+          "a": 1,
+          "hint": "Slices têm posições fixas e sequenciais.",
+          "ex": "Diferente de maps, slices têm ordem determinística e previsível na iteração.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Como garantir uma ordem específica e previsível ao imprimir os pares de um map?",
+          "opts": ["Não é possível de forma alguma em Go", "Coletar as chaves em um slice, ordená-las (por exemplo com sort.Strings) e então iterar o slice ordenado acessando o map por chave", "Usar 'for range' repetidamente até a ordem desejada aparecer por acaso", "Trocar o map por outro map com uma chave diferente"],
+          "a": 1,
+          "hint": "Pense em separar 'coletar chaves' de 'ordenar' e depois 'acessar valores'.",
+          "ex": "A abordagem idiomática é extrair as chaves para um slice, ordená-las e então iterar nessa ordem controlada.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "go-20",
+      "name": "PROJETO: CATÁLOGO DE PRODUTOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#facc15",
+      "icon": "⏱",
+      "summary": "Combine structs, slices e maps para modelar um catálogo simples.",
+      "lesson": [
+        {
+          "title": "Modelando com struct e slice",
+          "body": "Um catálogo pode ser representado como um slice de structs 'Produto', permitindo iterar, filtrar e somar valores com as ferramentas já vistas: for/range, métodos e slices.",
+          "code": "type Produto struct {\n\tNome  string\n\tPreco float64\n}\n\ncatalogo := []Produto{\n\t{\"Caneta\", 2.50},\n\t{\"Caderno\", 12.00},\n}"
+        },
+        {
+          "title": "Indexando por chave com map",
+          "body": "Para busca rápida por nome, é comum montar um map auxiliar a partir do slice, associando o nome do produto ao seu índice ou ao próprio Produto.",
+          "code": "indice := make(map[string]Produto)\nfor _, p := range catalogo {\n\tindice[p.Nome] = p\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "Dado o slice 'catalogo' da lição, qual expressão soma o preço total de todos os produtos?",
+          "opts": ["catalogo.Sum()", "var total float64; for _, p := range catalogo { total += p.Preco }", "sum(catalogo)", "total := catalogo[0] + catalogo[1]"],
+          "a": 1,
+          "hint": "Go não tem método Sum nativo em slices; é preciso usar for/range manualmente.",
+          "ex": "A soma é feita acumulando p.Preco de cada produto em um for/range, pois Go não tem Sum embutido.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que usar um map auxiliar 'indice' além do slice 'catalogo' pode ser útil?",
+          "opts": ["Porque slices não podem ser percorridos mais de uma vez", "Porque busca por nome em um map é, em média, mais rápida do que percorrer o slice inteiro procurando o nome", "Porque maps ocupam menos memória que slices sempre", "Não há vantagem real, é redundante"],
+          "a": 1,
+          "hint": "Pense na diferença de custo entre busca linear em slice e busca por chave em map.",
+          "ex": "Maps oferecem acesso por chave em tempo médio constante, evitando percorrer o slice inteiro a cada busca por nome.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\ntype Produto struct {\n\tNome  string\n\tPreco float64\n}\n\nvar indice map[string]Produto\nindice[\"Caneta\"] = Produto{\"Caneta\", 2.50}",
+          "opts": ["Não há erro", "'indice' é um map nil, pois só foi declarado com var; escrever nele causa panic", "Produto não pode ser valor de um map", "Falta usar range para inicializar o map"],
+          "a": 1,
+          "hint": "Compare com o uso de 'make' no segundo exemplo da lição.",
+          "ex": "Sem make ou literal, 'indice' é nil, e escrever em um map nil causa panic em tempo de execução.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "code",
+          "q": "Qual código filtra do 'catalogo' apenas os produtos com Preco acima de 10.00?",
+          "opts": ["catalogo.filter(p => p.Preco > 10)", "var caros []Produto; for _, p := range catalogo { if p.Preco > 10.00 { caros = append(caros, p) } }", "caros := catalogo[10:]", "caros := catalogo where Preco > 10"],
+          "a": 1,
+          "hint": "Go não tem métodos funcionais como filter nativos em slices; use for/range com if e append.",
+          "ex": "A filtragem idiomática usa um for/range acumulando com append os elementos que satisfazem a condição.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "go-21",
+      "name": "O TIPO ERROR",
+      "difficulty": "AVANÇADO",
+      "color": "#0ea5e9",
+      "icon": "Ω",
+      "summary": "error é uma interface simples que representa falhas recuperáveis.",
+      "lesson": [
+        {
+          "title": "A interface error",
+          "body": "'error' é uma interface com um único método, 'Error() string'. Qualquer tipo que implemente esse método pode ser usado como erro. 'errors.New' e 'fmt.Errorf' criam erros simples rapidamente.",
+          "code": "import \"errors\"\n\nfunc validar(idade int) error {\n\tif idade < 0 {\n\t\treturn errors.New(\"idade não pode ser negativa\")\n\t}\n\treturn nil\n}"
+        },
+        {
+          "title": "Checando erros no chamador",
+          "body": "A convenção idiomática é checar 'if err != nil' logo após a chamada que pode falhar, tratando o erro antes de prosseguir.",
+          "code": "if err := validar(-5); err != nil {\n\tfmt.Println(\"erro:\", err)\n\treturn\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Quantos métodos a interface 'error' exige para ser satisfeita?",
+          "opts": ["Nenhum", "Um: Error() string", "Dois: Error() e Message()", "Três, incluindo Code() int"],
+          "a": 1,
+          "hint": "Veja a lição: a interface error é deliberadamente mínima.",
+          "ex": "A interface error exige apenas o método Error() string.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que 'validar(-5)' retorna, dado o código da lição?",
+          "opts": ["nil", "Um valor não-nil de error com a mensagem \"idade não pode ser negativa\"", "panic imediato", "0"],
+          "a": 1,
+          "hint": "A condição 'idade < 0' é verdadeira para -5.",
+          "ex": "Como -5 é negativo, a função retorna um erro criado por errors.New com a mensagem indicada.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nerr := validar(-5)\nfmt.Println(\"ok, prosseguindo\")\nif err != nil {\n\tfmt.Println(\"erro:\", err)\n}",
+          "opts": ["Não há erro de lógica", "O código prossegue com 'ok, prosseguindo' antes de checar o erro, invertendo a ordem idiomática de checar err primeiro", "'validar' não pode ser usada com := ", "err nunca pode ser nil em Go"],
+          "a": 1,
+          "hint": "Compare a ordem das instruções com o padrão 'if err != nil' logo após a chamada, da lição.",
+          "ex": "A convenção idiomática é checar o erro imediatamente após a chamada, antes de qualquer lógica que dependa do sucesso da operação.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual a diferença prática entre 'errors.New(\"msg\")' e 'fmt.Errorf(\"msg: %v\", detalhe)'?",
+          "opts": ["Não há diferença nenhuma", "fmt.Errorf permite formatar a mensagem com valores interpolados, útil para incluir contexto no erro, além de suportar %w para encapsular outro erro", "errors.New só funciona dentro de testes", "fmt.Errorf não pode ser usado como valor de retorno error"],
+          "a": 1,
+          "hint": "Pense na função de formatação de string por trás de fmt.Errorf.",
+          "ex": "fmt.Errorf oferece formatação com valores e o verbo %w para encapsular (wrap) outro erro, algo que errors.New não faz.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "go-22",
+      "name": "WRAPPING E ERRORS.IS/AS",
+      "difficulty": "AVANÇADO",
+      "color": "#0ea5e9",
+      "icon": "✦",
+      "summary": "Encapsule erros preservando contexto e a causa original.",
+      "lesson": [
+        {
+          "title": "Encapsulando com %w",
+          "body": "O verbo '%w' em 'fmt.Errorf' encapsula um erro original dentro de um novo, preservando a cadeia de causas sem perder a mensagem interna.",
+          "code": "err := consultarBanco()\nif err != nil {\n\treturn fmt.Errorf(\"falha ao buscar usuário: %w\", err)\n}"
+        },
+        {
+          "title": "errors.Is e errors.As",
+          "body": "'errors.Is(err, alvo)' verifica se 'err' (ou algum erro que ele encapsula) é igual a 'alvo'. 'errors.As(err, &destino)' verifica se algum erro na cadeia tem um tipo específico e o extrai.",
+          "code": "if errors.Is(err, sql.ErrNoRows) {\n\tfmt.Println(\"usuário não encontrado\")\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual verbo de formatação em fmt.Errorf encapsula (wrap) um erro original preservando a cadeia de causas?",
+          "opts": ["%v", "%s", "%w", "%d"],
+          "a": 2,
+          "hint": "É um verbo específico para erros, diferente dos verbos genéricos de formatação.",
+          "ex": "%w é o verbo dedicado a encapsular erros, permitindo que errors.Is/As percorram a cadeia depois.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Dado 'err := fmt.Errorf(\"contexto: %w\", sql.ErrNoRows)', o que 'errors.Is(err, sql.ErrNoRows)' retorna?",
+          "opts": ["false, pois err é uma string diferente", "true, pois errors.Is percorre a cadeia de erros encapsulados até encontrar sql.ErrNoRows", "Erro de compilação", "panic em tempo de execução"],
+          "a": 1,
+          "hint": "Lembre que %w preserva o erro original dentro da cadeia.",
+          "ex": "errors.Is desembrulha a cadeia criada por %w e encontra sql.ErrNoRows, retornando true.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nerr := fmt.Errorf(\"falha: %v\", sql.ErrNoRows)\nif errors.Is(err, sql.ErrNoRows) {\n\tfmt.Println(\"não encontrado\")\n}",
+          "opts": ["Não há erro, o comportamento é idêntico ao usar %w", "Usar %v em vez de %w apenas formata a mensagem como texto, sem encapsular o erro; errors.Is não encontrará sql.ErrNoRows na cadeia", "'errors.Is' não existe em Go", "fmt.Errorf não aceita sql.ErrNoRows como argumento"],
+          "a": 1,
+          "hint": "Compare %v (formata como texto) com %w (preserva o erro na cadeia).",
+          "ex": "%v converte o erro em texto simples, perdendo a referência ao erro original, então errors.Is retorna false.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Quando usar 'errors.As' em vez de 'errors.Is'?",
+          "opts": ["Quando se quer apenas comparar com um valor de erro sentinela específico, como sql.ErrNoRows", "Quando se quer verificar se algum erro na cadeia é de um determinado tipo customizado e extrair essa instância para acessar seus campos", "As duas funções fazem exatamente a mesma coisa", "errors.As serve apenas para logging, nunca para lógica de negócio"],
+          "a": 1,
+          "hint": "Pense na diferença entre comparar um valor específico (Is) e extrair um tipo (As).",
+          "ex": "errors.As é usado para recuperar um erro de um tipo customizado específico da cadeia, permitindo acessar seus campos adicionais.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "go-23",
+      "name": "PANIC E RECOVER",
+      "difficulty": "AVANÇADO",
+      "color": "#0ea5e9",
+      "icon": "●",
+      "summary": "panic interrompe o fluxo normal; recover permite retomar controle dentro de defer.",
+      "lesson": [
+        {
+          "title": "Quando ocorre panic",
+          "body": "'panic' interrompe a execução normal da função e começa a desempilhar chamadas, executando os 'defer' pendentes. Ocorre automaticamente em erros graves, como acesso a índice inválido de slice, ou pode ser chamado manualmente.",
+          "code": "func acessar(s []int, i int) int {\n\treturn s[i] // panic se i estiver fora dos limites\n}"
+        },
+        {
+          "title": "Recuperando com recover",
+          "body": "'recover()' só tem efeito dentro de uma função chamada via 'defer', e permite capturar um panic em andamento, evitando que ele derrube todo o programa.",
+          "code": "func seguro() {\n\tdefer func() {\n\t\tif r := recover(); r != nil {\n\t\t\tfmt.Println(\"recuperado de:\", r)\n\t\t}\n\t}()\n\tpanic(\"algo deu errado\")\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Fora de uma função chamada por 'defer', o que 'recover()' retorna?",
+          "opts": ["Sempre o último erro do programa", "nil, pois recover só tem efeito dentro de uma função adiada (defer) durante um panic", "O valor do panic mais recente da execução do programa inteiro", "Um erro de compilação"],
+          "a": 1,
+          "hint": "A lição destaca que recover só funciona dentro de defer.",
+          "ex": "Chamado fora de uma função defer em andamento, recover() não tem efeito e retorna nil.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que 'seguro()' imprime, dado o código da lição?",
+          "opts": ["O programa encerra abruptamente sem imprimir nada", "recuperado de: algo deu errado", "panic: algo deu errado, e o programa encerra mesmo assim", "Nada, pois panic sem erro real não faz nada"],
+          "a": 1,
+          "hint": "O defer com recover está posicionado antes do panic ser disparado.",
+          "ex": "O defer captura o panic com recover() e imprime a mensagem, evitando que o programa encerre abruptamente.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nfunc seguro() {\n\tpanic(\"algo deu errado\")\n\tdefer func() {\n\t\tif r := recover(); r != nil {\n\t\t\tfmt.Println(\"recuperado de:\", r)\n\t\t}\n\t}()\n}",
+          "opts": ["Não há erro", "O defer está declarado depois do panic; como panic interrompe a função imediatamente, o defer nunca é registrado, e o panic não é recuperado", "'recover' precisa ser chamado fora de uma função anônima", "panic não pode receber uma string como argumento"],
+          "a": 1,
+          "hint": "Pense na ordem de execução: o panic acontece antes do defer ser registrado.",
+          "ex": "Como o panic ocorre antes da linha do defer ser executada, o defer nunca chega a ser registrado e o panic não é recuperado.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é a prática recomendada sobre o uso de panic para tratamento de erros esperados (como validação de entrada) em Go?",
+          "opts": ["Usar panic sempre, é a forma padrão de erro em Go", "Evitar panic para erros esperados; prefira retornar um valor 'error' e reservar panic para situações realmente excepcionais e irrecuperáveis", "panic e error são idênticos e intercambiáveis em qualquer situação", "Nunca usar panic, mesmo internamente na biblioteca padrão"],
+          "a": 1,
+          "hint": "Pense na diferença de intenção entre um erro esperado (ex.: entrada inválida) e uma falha catastrófica.",
+          "ex": "A convenção idiomática usa error para falhas esperadas e reserva panic para condições excepcionais que indicam bug ou estado irrecuperável.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "go-24",
+      "name": "GOROUTINES",
+      "difficulty": "AVANÇADO",
+      "color": "#38bdf8",
+      "icon": "◍",
+      "summary": "Execute funções concorrentemente com a palavra-chave go.",
+      "lesson": [
+        {
+          "title": "Criando uma goroutine",
+          "body": "Prefixar uma chamada de função com 'go' a executa em uma goroutine: uma unidade de execução leve, gerenciada pelo runtime de Go, que roda concorrentemente com o restante do programa.",
+          "code": "func imprimir(msg string) {\n\tfmt.Println(msg)\n}\n\nfunc main() {\n\tgo imprimir(\"em paralelo\")\n\tfmt.Println(\"principal\")\n}"
+        },
+        {
+          "title": "O programa não espera goroutines sozinho",
+          "body": "Se 'main' terminar antes da goroutine rodar, ela é simplesmente descartada — Go não espera automaticamente. É preciso um mecanismo de sincronização, como um channel ou sync.WaitGroup, para aguardar o término.",
+          "code": "// sem sincronização, \"em paralelo\" pode nunca ser impresso,\n// pois main() pode terminar primeiro"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que a palavra-chave 'go' faz antes de uma chamada de função?",
+          "opts": ["Compila a função separadamente", "Executa a função em uma goroutine, de forma concorrente com o restante do programa", "Transforma a função em um método", "Faz a função retornar imediatamente um error"],
+          "a": 1,
+          "hint": "Veja o exemplo 'go imprimir(\"em paralelo\")'.",
+          "ex": "'go' inicia uma nova goroutine para executar a chamada de forma concorrente.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "No código da lição, é garantido que \"em paralelo\" será impresso antes do programa terminar?",
+          "opts": ["Sim, Go sempre espera todas as goroutines terminarem antes de main() encerrar", "Não, se main() terminar primeiro, a goroutine pode ser descartada sem nunca imprimir nada", "Sim, mas apenas se houver apenas uma goroutine", "Não, goroutines nunca conseguem imprimir na tela"],
+          "a": 1,
+          "hint": "A lição explica que main não espera goroutines automaticamente.",
+          "ex": "Sem sincronização explícita, o programa principal pode terminar antes da goroutine ser executada.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro (ou risco) neste código:\nfunc main() {\n\tgo fmt.Println(\"tarefa em background\")\n}",
+          "opts": ["Não há problema, a mensagem sempre será impressa", "main() pode terminar imediatamente após disparar a goroutine, sem dar tempo dela executar, e o programa encerra sem imprimir nada", "'go' não pode ser usado com fmt.Println diretamente", "Isso causa panic obrigatoriamente"],
+          "a": 1,
+          "hint": "Pense em quão rápido main() termina sem nenhuma sincronização ou espera.",
+          "ex": "Sem WaitGroup, channel ou outro mecanismo de espera, o programa pode encerrar antes da goroutine rodar.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que goroutines são descritas como 'leves' em comparação a threads do sistema operacional?",
+          "opts": ["Porque na verdade são threads do sistema operacional comuns, sem diferença", "Porque o runtime de Go gerencia muitas goroutines sobre um número menor de threads do SO, com pilha inicial pequena e crescimento dinâmico, permitindo criar milhares delas com baixo custo", "Porque goroutines não podem executar código real", "Porque cada goroutine consome exatamente a mesma memória que uma thread do SO"],
+          "a": 1,
+          "hint": "Pense em por que Go consegue rodar milhares de goroutines sem esgotar recursos rapidamente.",
+          "ex": "O runtime de Go multiplexa goroutines sobre poucas threads do SO, com pilhas pequenas e crescimento sob demanda, tornando-as muito mais baratas que threads tradicionais.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "go-25",
+      "name": "CHANNELS",
+      "difficulty": "AVANÇADO",
+      "color": "#38bdf8",
+      "icon": "◎",
+      "summary": "Channels permitem que goroutines se comuniquem e sincronizem com segurança.",
+      "lesson": [
+        {
+          "title": "Enviando e recebendo em um channel",
+          "body": "Um channel é criado com 'make(chan Tipo)'. O operador '<-' envia ('ch <- valor') ou recebe ('v := <-ch') dados. Por padrão, um channel sem buffer bloqueia o envio até que outra goroutine esteja pronta para receber.",
+          "code": "ch := make(chan string)\n\ngo func() {\n\tch <- \"pronto\"\n}()\n\nmsg := <-ch\nfmt.Println(msg) // \"pronto\""
+        },
+        {
+          "title": "Channels sincronizam, não só transportam dados",
+          "body": "Como o envio e o recebimento bloqueiam até que ambos os lados estejam prontos (em channels sem buffer), channels servem tanto para passar dados quanto para sincronizar a ordem de execução entre goroutines — um dos motivos do dito 'não se comunique compartilhando memória, compartilhe memória se comunicando'.",
+          "code": "feito := make(chan bool)\n\ngo func() {\n\tfmt.Println(\"trabalho concluído\")\n\tfeito <- true\n}()\n\n<-feito // main espera a goroutine terminar"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual operador é usado para enviar e receber valores em um channel?",
+          "opts": ["->", "<-", "=>", "::"],
+          "a": 1,
+          "hint": "Veja 'ch <- \"pronto\"' e 'msg := <-ch' na lição.",
+          "ex": "O operador '<-' é usado tanto para enviar (ch <- valor) quanto para receber (<-ch).",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "No segundo exemplo da lição, para que serve a linha '<-feito' em main()?",
+          "opts": ["Ela apenas descarta um valor sem propósito real", "Ela bloqueia main() até a goroutine enviar um valor em 'feito', sincronizando a espera pela conclusão do trabalho em background", "Ela fecha o channel imediatamente", "Ela cria uma nova goroutine"],
+          "a": 1,
+          "hint": "Pense em como o recebimento em um channel sem buffer bloqueia até haver um envio correspondente.",
+          "ex": "'<-feito' bloqueia main() até a goroutine enviar 'true', garantindo que o trabalho termine antes do programa seguir.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o problema:\nch := make(chan string)\nch <- \"oi\"\nfmt.Println(<-ch)",
+          "opts": ["Não há problema, isso imprime 'oi' normalmente", "Um channel sem buffer bloqueia o envio até haver um receptor pronto; como não há goroutine recebendo, esse código trava (deadlock) na linha do envio", "Channels não podem armazenar strings", "'<-ch' não é uma sintaxe válida para receber valores"],
+          "a": 1,
+          "hint": "Pense em quem está pronto para receber o valor enviado na mesma goroutine, sequencialmente.",
+          "ex": "Como o envio em um channel sem buffer bloqueia até um receptor estar pronto, e não há outra goroutine recebendo, o programa trava em deadlock.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que a frase idiomática de Go 'não se comunique compartilhando memória, compartilhe memória se comunicando' sugere sobre o uso de channels?",
+          "opts": ["Que se deve sempre usar variáveis globais protegidas por mutex em vez de channels", "Que channels são preferíveis para coordenar goroutines, transmitindo dados através deles em vez de fazer múltiplas goroutines acessarem diretamente a mesma variável compartilhada", "Que memória compartilhada é proibida pela linguagem Go", "Que channels só servem para logging, nunca para lógica real"],
+          "a": 1,
+          "hint": "Pense na alternativa que channels oferecem ao acesso concorrente direto a uma variável.",
+          "ex": "A frase resume a filosofia de Go de preferir passar dados por channels a coordenar acesso direto e simultâneo à mesma memória.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "go-26",
+      "name": "SYNC.WAITGROUP E MUTEX",
+      "difficulty": "AVANÇADO",
+      "color": "#38bdf8",
+      "icon": "⬡",
+      "summary": "Coordene múltiplas goroutines e proteja acesso concorrente a dados compartilhados.",
+      "lesson": [
+        {
+          "title": "sync.WaitGroup",
+          "body": "'WaitGroup' permite esperar várias goroutines terminarem. 'Add(n)' registra quantas são esperadas, cada goroutine chama 'Done()' ao terminar (tipicamente via defer), e 'Wait()' bloqueia até o contador chegar a zero.",
+          "code": "var wg sync.WaitGroup\nfor i := 0; i < 3; i++ {\n\twg.Add(1)\n\tgo func(n int) {\n\t\tdefer wg.Done()\n\t\tfmt.Println(n)\n\t}(i)\n}\nwg.Wait()"
+        },
+        {
+          "title": "sync.Mutex protege dados compartilhados",
+          "body": "Quando múltiplas goroutines leem e escrevem a mesma variável, é preciso um 'Mutex' para evitar condição de corrida (race condition): 'Lock()' antes de acessar e 'Unlock()' depois, geralmente com defer.",
+          "code": "var mu sync.Mutex\ncontador := 0\n\nfunc incrementar() {\n\tmu.Lock()\n\tdefer mu.Unlock()\n\tcontador++\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é a função de 'wg.Add(1)' em um sync.WaitGroup?",
+          "opts": ["Inicia uma nova goroutine imediatamente", "Incrementa o contador interno de goroutines que ainda precisam ser aguardadas", "Bloqueia o programa até todas as goroutines terminarem", "Cria um novo Mutex"],
+          "a": 1,
+          "hint": "Compare com 'Done()' e 'Wait()' no mesmo exemplo.",
+          "ex": "Add(n) incrementa o contador que Wait() usa para saber quantas chamadas a Done() ainda faltam.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Por que este código é propenso a bugs de concorrência (race condition)?\nvar contador int\nfor i := 0; i < 100; i++ {\n\tgo func() {\n\t\tcontador++\n\t}()\n}",
+          "opts": ["Não é propenso, 'contador++' é uma operação atômica segura em Go", "Múltiplas goroutines incrementam 'contador' ao mesmo tempo sem nenhum mecanismo de sincronização (mutex ou channel), causando resultado final imprevisível", "'go func()' não pode ser usado dentro de um for", "O erro é que falta usar ':=' em vez de 'contador++'"],
+          "a": 1,
+          "hint": "Lembre que 'contador++' não é uma operação atômica e nada protege o acesso concorrente aqui.",
+          "ex": "Sem Mutex ou outro mecanismo de sincronização, incrementos concorrentes de 'contador' podem se perder, gerando um valor final incorreto e não determinístico.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "code",
+          "q": "Qual correção resolve a race condition da questão anterior, usando sync.Mutex?",
+          "opts": ["var contador int\nfor i := 0; i < 100; i++ {\n\tgo func() { contador++ }()\n}", "var contador int\nvar mu sync.Mutex\nfor i := 0; i < 100; i++ {\n\tgo func() {\n\t\tmu.Lock()\n\t\tdefer mu.Unlock()\n\t\tcontador++\n\t}()\n}", "var contador int\nfor i := 0; i < 100; i++ {\n\tcontador++\n}", "var contador chan int"],
+          "a": 1,
+          "hint": "Proteja a região crítica ('contador++') com Lock/Unlock de um Mutex compartilhado.",
+          "ex": "Envolver o incremento com mu.Lock() e defer mu.Unlock() garante que apenas uma goroutine por vez modifique 'contador'.",
+          "format": "CORRIJA O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Em qual cenário faz mais sentido usar um sync.Mutex em vez de um channel para coordenar goroutines?",
+          "opts": ["Quando o objetivo é apenas proteger o acesso simultâneo a uma variável compartilhada simples, sem necessidade de passar mensagens entre goroutines", "Sempre, channels nunca devem ser usados em Go", "Nunca, Mutex foi descontinuado em versões recentes de Go", "Apenas quando há uma única goroutine no programa"],
+          "a": 0,
+          "hint": "Pense na diferença entre 'proteger um dado compartilhado' e 'comunicar/sincronizar fluxo entre goroutines'.",
+          "ex": "Mutex é indicado para proteger acesso direto a estado compartilhado simples; channels se encaixam melhor quando há passagem de dados ou sincronização de fluxo entre goroutines.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "go-27",
+      "name": "MÓDULOS E GO.MOD",
+      "difficulty": "AVANÇADO",
+      "color": "#a78bfa",
+      "icon": "⬢",
+      "summary": "Go Modules gerenciam dependências e versionamento de projetos.",
+      "lesson": [
+        {
+          "title": "Iniciando um módulo",
+          "body": "'go mod init nome-do-modulo' cria o arquivo 'go.mod', que declara o nome do módulo, a versão de Go usada e as dependências externas do projeto.",
+          "code": "go mod init github.com/usuario/meuprojeto\n\n// gera go.mod:\n// module github.com/usuario/meuprojeto\n// go 1.22"
+        },
+        {
+          "title": "Adicionando dependências",
+          "body": "Ao importar um pacote externo e rodar 'go build' ou 'go mod tidy', Go baixa a dependência, registra a versão em 'go.mod' e grava os hashes de verificação em 'go.sum', garantindo builds reprodutíveis.",
+          "code": "import \"github.com/gin-gonic/gin\"\n\n// go mod tidy atualiza go.mod e go.sum automaticamente"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual comando cria o arquivo go.mod de um novo projeto Go?",
+          "opts": ["go new module", "go mod init nome-do-modulo", "go create mod", "go build --init"],
+          "a": 1,
+          "hint": "Veja o primeiro comando da lição.",
+          "ex": "'go mod init' inicializa o módulo, criando o arquivo go.mod com o nome informado.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual a função do arquivo go.sum em um projeto Go?",
+          "opts": ["Armazenar o código-fonte compilado", "Registrar hashes de verificação das dependências, garantindo integridade e builds reprodutíveis", "Substituir o go.mod completamente", "Guardar apenas comentários de documentação"],
+          "a": 1,
+          "hint": "Pense em segurança e consistência entre diferentes máquinas rodando o mesmo projeto.",
+          "ex": "go.sum guarda os hashes das dependências para garantir que todos obtenham exatamente o mesmo código em builds futuros.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Depois de adicionar um novo import de um pacote externo no código, qual comando atualiza go.mod e go.sum automaticamente com essa dependência?",
+          "opts": ["go mod tidy", "go run main.go apenas", "go fmt", "go vet"],
+          "a": 0,
+          "hint": "Veja o comentário no segundo exemplo da lição.",
+          "ex": "'go mod tidy' sincroniza go.mod e go.sum com os imports realmente usados no código.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que Go Modules foi um avanço importante em relação ao antigo modelo baseado apenas em GOPATH?",
+          "opts": ["Porque eliminou a necessidade de versionar dependências", "Porque permitiu versionamento explícito de dependências por projeto, sem exigir que todo o código ficasse dentro de uma única pasta GOPATH global", "Porque tornou Go uma linguagem interpretada", "Porque removeu a necessidade de import nos arquivos"],
+          "a": 1,
+          "hint": "Pense em como projetos diferentes podem depender de versões diferentes da mesma biblioteca.",
+          "ex": "Módulos permitem que cada projeto declare e trave suas próprias versões de dependência, superando as limitações do GOPATH único e global.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "go-28",
+      "name": "GO NO DESENVOLVIMENTO DE APIS",
+      "difficulty": "AVANÇADO",
+      "color": "#a78bfa",
+      "icon": "▶",
+      "summary": "O pacote net/http permite construir servidores web sem frameworks externos.",
+      "lesson": [
+        {
+          "title": "Servidor HTTP mínimo",
+          "body": "O pacote padrão 'net/http' já permite criar um servidor web funcional: 'http.HandleFunc' registra uma rota e 'http.ListenAndServe' inicia o servidor na porta indicada.",
+          "code": "func handler(w http.ResponseWriter, r *http.Request) {\n\tfmt.Fprintln(w, \"Olá da API em Go!\")\n}\n\nfunc main() {\n\thttp.HandleFunc(\"/\", handler)\n\thttp.ListenAndServe(\":8080\", nil)\n}"
+        },
+        {
+          "title": "Retornando JSON",
+          "body": "O pacote 'encoding/json' converte structs em JSON com 'json.Marshal' ou diretamente para o corpo da resposta com 'json.NewEncoder(w).Encode(valor)', muito usado em APIs REST.",
+          "code": "type Resposta struct {\n\tMensagem string `json:\"mensagem\"`\n}\n\nfunc handler(w http.ResponseWriter, r *http.Request) {\n\tw.Header().Set(\"Content-Type\", \"application/json\")\n\tjson.NewEncoder(w).Encode(Resposta{Mensagem: \"ok\"})\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual função do pacote net/http inicia o servidor escutando em uma porta?",
+          "opts": ["http.HandleFunc", "http.ListenAndServe", "http.StartServer", "http.Run"],
+          "a": 1,
+          "hint": "Veja a última linha de main() no primeiro exemplo.",
+          "ex": "http.ListenAndServe(porta, handler) inicia o servidor e bloqueia aguardando requisições.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Para que serve a tag `json:\"mensagem\"` no campo 'Mensagem string' da struct 'Resposta'?",
+          "opts": ["É apenas um comentário sem efeito", "Define o nome da chave usada quando essa struct é convertida para JSON, em vez do nome do campo em Go", "Torna o campo obrigatório na struct", "Impede que o campo seja exportado"],
+          "a": 1,
+          "hint": "Pense em como o JSON gerado usaria 'mensagem' (minúsculo) mesmo o campo Go sendo 'Mensagem'.",
+          "ex": "As struct tags de json controlam o nome (e outras opções) usados na serialização/deserialização JSON.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o problema:\nfunc handler(w http.ResponseWriter, r *http.Request) {\n\tjson.NewEncoder(w).Encode(Resposta{Mensagem: \"ok\"})\n}\n\nfunc main() {\n\thttp.HandleFunc(\"/api\", handler)\n}",
+          "opts": ["Não há problema, o servidor funciona normalmente", "Falta chamar 'http.ListenAndServe' para efetivamente iniciar o servidor escutando em uma porta; sem isso, nenhuma requisição chega ao handler", "'json.NewEncoder' não existe no pacote encoding/json", "'HandleFunc' precisa de um terceiro argumento obrigatório"],
+          "a": 1,
+          "hint": "Compare com o main() completo do primeiro exemplo da lição.",
+          "ex": "Registrar a rota com HandleFunc não é suficiente; é preciso chamar ListenAndServe para o servidor de fato começar a escutar.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que Go é frequentemente escolhido para construir APIs de back-end e serviços em nuvem?",
+          "opts": ["Porque é a única linguagem que suporta HTTP", "Por combinar desempenho próximo de linguagens compiladas de baixo nível, concorrência nativa simples (goroutines) e uma biblioteca padrão robusta para redes, como net/http", "Porque não é possível compilar Go para outros sistemas operacionais", "Porque Go exige um framework externo obrigatório para qualquer servidor"],
+          "a": 1,
+          "hint": "Pense nos temas já vistos: goroutines, compilação e a biblioteca padrão net/http.",
+          "ex": "A combinação de performance, concorrência simples e uma biblioteca padrão completa torna Go muito popular para APIs e sistemas em nuvem.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "go-29",
+      "name": "GO EM CONTAINERS E NUVEM",
+      "difficulty": "AVANÇADO",
+      "color": "#a78bfa",
+      "icon": "◒",
+      "summary": "Binários estáticos tornam Go ideal para containers leves e ambientes cloud-native.",
+      "lesson": [
+        {
+          "title": "Compilação estática e cross-compilation",
+          "body": "'go build' gera um binário único, geralmente estático (sem depender de bibliotecas externas do sistema), o que simplifica muito a criação de imagens Docker mínimas. Variáveis como 'GOOS' e 'GOARCH' permitem compilar para outro sistema operacional e arquitetura sem sair da máquina atual.",
+          "code": "GOOS=linux GOARCH=amd64 go build -o servidor main.go"
+        },
+        {
+          "title": "Imagens Docker enxutas",
+          "body": "Como o binário Go já inclui tudo que precisa, é comum usar imagens base minúsculas (como 'scratch' ou 'alpine') no Dockerfile, resultando em containers pequenos, que sobem rápido — ideal para orquestração em nuvem com Kubernetes.",
+          "code": "FROM golang:1.22 AS build\nWORKDIR /app\nCOPY . .\nRUN go build -o servidor .\n\nFROM scratch\nCOPY --from=build /app/servidor /servidor\nENTRYPOINT [\"/servidor\"]"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Por que binários Go compilados estaticamente facilitam a criação de imagens Docker mínimas?",
+          "opts": ["Porque Go não pode ser usado com Docker", "Porque o binário já contém o que precisa para rodar, sem depender de bibliotecas do sistema operacional instaladas na imagem", "Porque Docker só aceita binários Go", "Porque isso elimina a necessidade de qualquer sistema operacional na máquina host"],
+          "a": 1,
+          "hint": "Pense em por que imagens baseadas em 'scratch' (praticamente vazias) conseguem rodar um binário Go.",
+          "ex": "Como o binário é autossuficiente, ele pode rodar mesmo em uma imagem quase vazia, sem bibliotecas do sistema, reduzindo drasticamente o tamanho da imagem.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que o comando 'GOOS=linux GOARCH=amd64 go build -o servidor main.go' permite fazer, mesmo rodando em outro sistema operacional?",
+          "opts": ["Executar o programa imediatamente no sistema atual", "Compilar (cross-compile) um binário para rodar em Linux/amd64, mesmo que a máquina atual use outro sistema ou arquitetura", "Apagar o código-fonte original", "Instalar o Go em outra máquina remotamente"],
+          "a": 1,
+          "hint": "GOOS e GOARCH definem o alvo da compilação, não o ambiente de execução do comando.",
+          "ex": "As variáveis GOOS e GOARCH permitem gerar um binário para outra plataforma sem precisar de uma máquina com esse sistema operacional.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "No Dockerfile de múltiplos estágios da lição, qual é o papel do primeiro estágio ('FROM golang:1.22 AS build')?",
+          "opts": ["Ele é a imagem final que vai para produção", "Ele compila o código-fonte Go em um binário, mas não é incluído na imagem final, apenas o binário resultante é copiado", "Ele apenas executa testes automatizados", "Ele serve exclusivamente para armazenar logs"],
+          "a": 1,
+          "hint": "Veja como o segundo estágio usa 'COPY --from=build' para pegar só o binário.",
+          "ex": "O primeiro estágio é usado apenas para compilar; a imagem final ('scratch') recebe só o binário compilado, descartando o resto do ambiente de build.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual benefício prático uma imagem Docker mínima baseada em 'scratch' traz para sistemas rodando em nuvem, como em Kubernetes?",
+          "opts", "opts": ["Nenhum, o tamanho da imagem não afeta nada em produção", "Imagens menores sobem (deploy) mais rápido, consomem menos armazenamento e reduzem a superfície de ataque de segurança, por não incluir ferramentas e bibliotecas desnecessárias do sistema", "Imagens 'scratch' são obrigatórias para qualquer aplicação em nuvem", "Isso só importa para aplicações que não usam rede"],
+          "a": 1,
+          "hint": "Pense em tempo de deploy, uso de armazenamento e segurança de containers.",
+          "ex": "Imagens mínimas aceleram deploys, economizam recursos e reduzem a superfície de ataque, por não carregarem ferramentas e bibliotecas supérfluas.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "go-30",
+      "name": "PROJETO FINAL: SERVIÇO CONCORRENTE",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "◓",
+      "summary": "Integre structs, interfaces, error, goroutines e channels em um mini serviço.",
+      "lesson": [
+        {
+          "title": "Combinando as peças",
+          "body": "Um mini serviço de processamento pode usar uma struct 'Tarefa', uma interface 'Processador' (satisfeita implicitamente), múltiplos retornos com error para validação, e goroutines com channels para processar tarefas em paralelo e coletar resultados.",
+          "code": "type Tarefa struct {\n\tID    int\n\tValor int\n}\n\ntype Processador interface {\n\tProcessar(t Tarefa) (int, error)\n}"
+        },
+        {
+          "title": "Processando em paralelo e sincronizando",
+          "body": "Cada tarefa é processada em sua própria goroutine, enviando o resultado por um channel; a função principal usa um WaitGroup para saber quando fechar o channel com segurança e coletar todos os resultados.",
+          "code": "func executar(tarefas []Tarefa, p Processador) []int {\n\tresultados := make(chan int, len(tarefas))\n\tvar wg sync.WaitGroup\n\n\tfor _, t := range tarefas {\n\t\twg.Add(1)\n\t\tgo func(t Tarefa) {\n\t\t\tdefer wg.Done()\n\t\t\tif r, err := p.Processar(t); err == nil {\n\t\t\t\tresultados <- r\n\t\t\t}\n\t\t}(t)\n\t}\n\n\twg.Wait()\n\tclose(resultados)\n\n\tvar saida []int\n\tfor r := range resultados {\n\t\tsaida = append(saida, r)\n\t}\n\treturn saida\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Na função 'executar' da lição, por que 'close(resultados)' só acontece depois de 'wg.Wait()'?",
+          "opts": ["A ordem é arbitrária e não importa", "Porque fechar o channel antes de todas as goroutines terminarem de enviar poderia causar panic ao tentar enviar em um channel já fechado", "Porque 'close' só pode ser chamado no início da função", "Porque WaitGroup e channels não podem ser usados juntos"],
+          "a": 1,
+          "hint": "Pense no que aconteceria se uma goroutine ainda tentasse enviar ('resultados <- r') depois do channel já fechado.",
+          "ex": "Enviar em um channel fechado causa panic, então é essencial esperar (Wait) todas as goroutines terminarem de enviar antes de fechar (close).",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual struct concreta abaixo, ao implementar 'Processar(t Tarefa) (int, error)', satisfaz a interface 'Processador' da lição?",
+          "opts": ["type Dobro struct{}\nfunc (d Dobro) Processar(t Tarefa) (int, error) {\n\treturn t.Valor * 2, nil\n}", "type Dobro struct{}\nfunc (d Dobro) Processar(t Tarefa) int {\n\treturn t.Valor * 2\n}", "type Dobro struct{}\nfunc (d Dobro) Executar(t Tarefa) (int, error) {\n\treturn t.Valor * 2, nil\n}", "type Dobro struct{}\nfunc Processar(t Tarefa) (int, error) {\n\treturn t.Valor * 2, nil\n}"],
+          "a": 0,
+          "hint": "A assinatura do método precisa bater exatamente com a interface, incluindo nome, parâmetros e retornos, e precisa ser um método (com receiver).",
+          "ex": "Apenas a primeira opção implementa exatamente 'Processar(t Tarefa) (int, error)' como método de Dobro, satisfazendo a interface.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nfunc (d Dobro) Processar(t Tarefa) (int, error) {\n\tif t.Valor < 0 {\n\t\treturn -1\n\t}\n\treturn t.Valor * 2, nil\n}",
+          "opts": ["Não há erro", "O retorno 'return -1' fornece apenas um valor, mas a função declara dois retornos (int, error); falta o segundo valor, como um error explicando a falha", "'t.Valor < 0' não é uma condição válida em Go", "Funções não podem ter condicionais dentro de métodos"],
+          "a": 1,
+          "hint": "Compare a quantidade de valores retornados com a assinatura '(int, error)' da função.",
+          "ex": "Como a função declara dois retornos, todo 'return' precisa fornecer dois valores; falta um error (ou nil) junto ao -1.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual conjunto de conceitos deste curso está mais diretamente combinado no design da função 'executar' apresentada nesta fase?",
+          "opts": ["Apenas slices e maps, sem nenhum outro conceito", "Interfaces (Processador), structs (Tarefa), múltiplos retornos com error, goroutines, channels e sync.WaitGroup trabalhando juntos", "Somente ponteiros e structs, sem concorrência", "Apenas o pacote net/http para servir uma API"],
+          "a": 1,
+          "hint": "Revise a função 'executar' e identifique cada elemento da linguagem usado nela.",
+          "ex": "A função integra interface, struct, tratamento de erro, concorrência com goroutines/channels e sincronização com WaitGroup, resumindo os pilares vistos na trilha.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    }
+  ]
+}

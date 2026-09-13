@@ -1,0 +1,2133 @@
+{
+  "meta": {
+    "id": "r-lang",
+    "title": "R",
+    "subtitle": "Análise estatística e ciência de dados.",
+    "icon": "◆",
+    "color": "#276DC3",
+    "fileExt": "r",
+    "stagesPerUnit": 3,
+    "order": 18,
+    "units": [
+      { "title": "Fundamentos de R", "goal": "Variáveis, vetores e tipos de dados.", "color": "#276DC3" },
+      { "title": "Estruturas de Dados", "goal": "Data frames, listas e matrizes.", "color": "#ff9600" },
+      { "title": "Controle de Fluxo", "goal": "Condicionais, loops e funções apply.", "color": "#f6c445" },
+      { "title": "Funções em R", "goal": "Definição e uso de funções.", "color": "#22c55e" },
+      { "title": "Manipulação de Dados", "goal": "Filtragem, ordenação e dplyr básico.", "color": "#34d399" },
+      { "title": "Estatística Descritiva", "goal": "Média, mediana e desvio padrão.", "color": "#1cb0f6" },
+      { "title": "Visualização de Dados", "goal": "Gráficos com ggplot2 (conceitual).", "color": "#0ea5e9" },
+      { "title": "Importação de Dados", "goal": "Leitura de CSV e limpeza básica.", "color": "#38bdf8" },
+      { "title": "Introdução a Modelos", "goal": "Correlação e regressão simples.", "color": "#a78bfa" },
+      { "title": "Projeto final", "goal": "Revisão integrada com uma análise de dados fictícia.", "color": "#facc15" }
+    ]
+  },
+  "title": "R",
+  "version": 1,
+  "stages": [
+    {
+      "id": "r-lang-1",
+      "name": "VARIÁVEIS E ATRIBUIÇÃO",
+      "difficulty": "INICIANTE",
+      "color": "#276DC3",
+      "icon": "◆",
+      "summary": "Aprenda a criar variáveis em R usando o operador de atribuição.",
+      "lesson": [
+        {
+          "title": "O operador <-",
+          "body": "Em R, o jeito mais idiomático de atribuir um valor a uma variável é o operador <-, embora o sinal de igual (=) também funcione em muitos contextos. A convenção da comunidade R prefere <- para atribuições.",
+          "code": "idade <- 25\nnome <- \"Maria\"\nprint(idade)"
+        },
+        {
+          "title": "Nomes de variáveis",
+          "body": "Nomes de variáveis podem conter letras, números, ponto e underline, mas não podem começar com número. R é case-sensitive: Idade e idade são variáveis diferentes.",
+          "code": "total_vendas <- 1500\nmedia.notas <- 8.5"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é o operador de atribuição mais idiomático em R?",
+          "opts": ["=>", "<-", "::", ":="],
+          "a": 1,
+          "hint": "É formado por dois caracteres que lembram uma seta.",
+          "ex": "O operador <- é a convenção padrão da comunidade R para atribuição de valores.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que este código imprime?\nx <- 10\nx <- x + 5\nprint(x)",
+          "opts": ["10", "5", "15", "Erro"],
+          "a": 2,
+          "hint": "A atribuição usa o valor atual de x antes de sobrescrevê-lo.",
+          "ex": "x recebe 10, depois x + 5 (15) é atribuído de volta a x.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual nome de variável é válido em R?",
+          "opts": ["2valor", "valor_2", "valor-2", "valor 2"],
+          "a": 1,
+          "hint": "Nomes não podem começar com dígito nem conter espaços ou hífen.",
+          "ex": "valor_2 segue as regras de nomes válidos em R (underline é permitido).",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nNome <- \"Ana\"\nprint(nome)",
+          "opts": [
+            "Não há erro",
+            "R é case-sensitive; 'nome' não existe, apenas 'Nome'",
+            "Aspas duplas não são permitidas",
+            "print() não existe em R"
+          ],
+          "a": 1,
+          "hint": "Compare cuidadosamente a caixa das letras nos dois nomes.",
+          "ex": "Como R diferencia maiúsculas de minúsculas, 'nome' e 'Nome' são variáveis distintas.",
+          "format": "ENCONTRE O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "r-lang-2",
+      "name": "VETORES BÁSICOS",
+      "difficulty": "INICIANTE",
+      "color": "#276DC3",
+      "icon": "▲",
+      "summary": "Crie e acesse vetores, a estrutura de dados fundamental de R.",
+      "lesson": [
+        {
+          "title": "Criando vetores com c()",
+          "body": "A função c() (combine) cria vetores, que são sequências de elementos do mesmo tipo. Vetores são a base de quase tudo em R, inclusive um único número é tecnicamente um vetor de tamanho 1.",
+          "code": "notas <- c(7, 8.5, 9, 6)\nnomes <- c(\"Ana\", \"Bruno\", \"Carla\")"
+        },
+        {
+          "title": "Indexação 1-indexada",
+          "body": "Diferente de linguagens como Python ou JavaScript, R começa a contar índices em 1, não em 0. Assim, o primeiro elemento de um vetor é acessado com [1].",
+          "code": "notas <- c(7, 8.5, 9, 6)\nprint(notas[1])\nprint(notas[4])"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "Qual é o resultado?\nv <- c(10, 20, 30)\nprint(v[1])",
+          "opts": ["10", "20", "30", "Erro: índice inválido"],
+          "a": 0,
+          "hint": "Lembre-se de como R numera a posição dos elementos.",
+          "ex": "Em R, vetores começam no índice 1, então v[1] é o primeiro elemento.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual função é usada para criar um vetor em R?",
+          "opts": ["vec()", "c()", "list()", "array()"],
+          "a": 1,
+          "hint": "É uma função de apenas uma letra, abreviação de 'combine'.",
+          "ex": "c() combina valores individuais em um único vetor.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Corrija o erro para acessar o terceiro elemento de v <- c(5, 10, 15, 20):",
+          "opts": ["v[2]", "v[3]", "v[4]", "v(3)"],
+          "a": 1,
+          "hint": "Conte a posição começando do número 1, não do zero.",
+          "ex": "O terceiro elemento (15) está no índice 3, pois R é 1-indexado.",
+          "format": "CORRIJA O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que acontece se você tentar criar um vetor com c(1, \"dois\", 3)?",
+          "opts": [
+            "Erro de tipo",
+            "Todos os elementos viram texto (character)",
+            "Todos os elementos viram número",
+            "O vetor fica vazio"
+          ],
+          "a": 1,
+          "hint": "Vetores em R só admitem um tipo de dado; R escolhe o tipo mais 'genérico'.",
+          "ex": "Quando há tipos diferentes em c(), R converte tudo para o tipo mais abrangente, geralmente character.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "r-lang-3",
+      "name": "TIPOS DE DADOS",
+      "difficulty": "INICIANTE",
+      "color": "#276DC3",
+      "icon": "★",
+      "summary": "Conheça os tipos básicos de R: numeric, character, logical e integer.",
+      "lesson": [
+        {
+          "title": "Os tipos principais",
+          "body": "R possui os tipos numeric (números decimais), integer (inteiros, com sufixo L), character (texto) e logical (TRUE/FALSE). A função class() revela o tipo de um valor.",
+          "code": "class(10)\nclass(10L)\nclass(\"texto\")\nclass(TRUE)"
+        },
+        {
+          "title": "Conversão de tipos",
+          "body": "Funções como as.numeric(), as.character() e as.logical() convertem valores entre tipos. Conversões inválidas retornam NA com um aviso.",
+          "code": "as.numeric(\"42\")\nas.character(100)\nas.numeric(\"abc\")"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "Qual é o resultado de class(TRUE)?",
+          "opts": ["\"boolean\"", "\"logical\"", "\"character\"", "\"numeric\""],
+          "a": 1,
+          "hint": "R não usa a palavra 'boolean' para esse tipo.",
+          "ex": "Valores TRUE/FALSE em R pertencem ao tipo logical.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que retorna as.numeric(\"abc\")?",
+          "opts": ["0", "\"abc\"", "NA com aviso", "Erro fatal que interrompe o script"],
+          "a": 2,
+          "hint": "R não interrompe a execução, mas sinaliza que a conversão falhou.",
+          "ex": "Conversões impossíveis geram NA (valor ausente) e um warning, sem parar o script.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual sufixo indica um número do tipo integer em R?",
+          "opts": ["I", "L", "N", "Int"],
+          "a": 1,
+          "hint": "É uma única letra maiúscula colocada logo após o número.",
+          "ex": "O sufixo L, como em 5L, força o valor a ser do tipo integer.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Você quer converter o texto \"3.14\" em número decimal. Qual função usar?",
+          "opts": ["as.integer(\"3.14\")", "as.character(\"3.14\")", "as.numeric(\"3.14\")", "as.logical(\"3.14\")"],
+          "a": 2,
+          "hint": "Pense em qual tipo representa números com casas decimais.",
+          "ex": "as.numeric() converte texto em número de ponto flutuante, preservando as casas decimais.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "r-lang-4",
+      "name": "DATA FRAMES",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#ff9600",
+      "icon": "↗",
+      "summary": "Organize dados tabulares usando data frames, a estrutura central da análise de dados em R.",
+      "lesson": [
+        {
+          "title": "Criando um data frame",
+          "body": "Um data.frame é uma tabela onde cada coluna é um vetor e todas as colunas têm o mesmo número de linhas. É a estrutura mais usada para representar conjuntos de dados reais.",
+          "code": "alunos <- data.frame(\n  nome = c(\"Ana\", \"Bruno\"),\n  nota = c(8.5, 7.0)\n)\nprint(alunos)"
+        },
+        {
+          "title": "Acessando colunas",
+          "body": "Colunas de um data frame podem ser acessadas com $ seguido do nome da coluna, ou com colchetes duplos [[\"nome\"]].",
+          "code": "alunos$nota\nalunos[[\"nome\"]]\nnrow(alunos)\nncol(alunos)"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Como você acessa a coluna 'nota' do data frame alunos?",
+          "opts": ["alunos.nota", "alunos->nota", "alunos$nota", "alunos::nota"],
+          "a": 2,
+          "hint": "É um símbolo bastante usado em R para acessar componentes nomeados.",
+          "ex": "O operador $ acessa uma coluna específica pelo nome dentro de um data frame.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que nrow(alunos) retorna se alunos tem 2 linhas e 2 colunas?",
+          "opts": ["2", "4", "1", "\"alunos\""],
+          "a": 0,
+          "hint": "A função conta apenas as linhas, não o total de células.",
+          "ex": "nrow() retorna o número de linhas do data frame, que nesse caso é 2.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nalunos <- data.frame(nome = c(\"Ana\", \"Bruno\"), nota = c(8.5, 7.0, 9.0))",
+          "opts": [
+            "Não há erro",
+            "As colunas têm números de linhas diferentes (2 vs 3)",
+            "data.frame() não aceita texto",
+            "Faltam aspas em nota"
+          ],
+          "a": 1,
+          "hint": "Compare quantos valores há em cada vetor passado para data.frame().",
+          "ex": "Todas as colunas de um data frame precisam ter o mesmo comprimento; aqui uma tem 2 e outra 3 elementos.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é uma forma alternativa e válida de acessar a coluna 'nome'?",
+          "opts": ["alunos[[\"nome\"]]", "alunos{nome}", "alunos<nome>", "alunos#nome"],
+          "a": 0,
+          "hint": "Pense em colchetes duplos usados com o nome entre aspas.",
+          "ex": "alunos[[\"nome\"]] é equivalente a alunos$nome para acessar a coluna.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "r-lang-5",
+      "name": "LISTAS EM R",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#ff9600",
+      "icon": "▤",
+      "summary": "Use listas para armazenar coleções heterogêneas de dados.",
+      "lesson": [
+        {
+          "title": "Listas versus vetores",
+          "body": "Diferente de vetores, uma list() pode conter elementos de tipos diferentes: números, textos, vetores e até outras listas, tudo junto.",
+          "code": "pessoa <- list(nome = \"Carla\", idade = 30, notas = c(8, 9, 7))\nprint(pessoa$nome)"
+        },
+        {
+          "title": "Acessando elementos de listas",
+          "body": "Colchete simples [ ] retorna uma sublista, enquanto colchete duplo [[ ]] retorna o elemento em si, sem a estrutura de lista ao redor.",
+          "code": "pessoa[[\"idade\"]]\npessoa[1]\nclass(pessoa[1])\nclass(pessoa[[1]])"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual a principal diferença entre uma list() e um vetor c()?",
+          "opts": [
+            "Listas não podem ter nomes",
+            "Listas podem conter elementos de tipos diferentes",
+            "Vetores podem conter tipos diferentes e listas não",
+            "Não há diferença"
+          ],
+          "a": 1,
+          "hint": "Pense na regra de tipo único que vetores impõem.",
+          "ex": "Vetores exigem um único tipo, enquanto listas aceitam qualquer combinação de tipos e estruturas.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que class(pessoa[1]) retorna, sendo pessoa uma list()?",
+          "opts": ["\"list\"", "\"character\"", "\"numeric\"", "\"vector\""],
+          "a": 0,
+          "hint": "Colchete simples preserva a estrutura original ao redor do elemento.",
+          "ex": "pessoa[1] com colchete simples retorna uma sublista, então sua classe continua sendo list.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Qual expressão retorna diretamente o valor 30 (não uma lista) do exemplo pessoa <- list(idade = 30)?",
+          "opts": ["pessoa[\"idade\"]", "pessoa[1]", "pessoa[[\"idade\"]]", "pessoa(idade)"],
+          "a": 2,
+          "hint": "Você precisa do acesso que 'descasca' a lista até o valor puro.",
+          "ex": "Colchete duplo [[ ]] extrai o valor bruto do elemento, sem envolvê-lo em uma lista.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Como nomear elementos ao criar uma lista?",
+          "opts": [
+            "list(\"nome\" = \"Ana\")",
+            "list(nome: \"Ana\")",
+            "list(nome => \"Ana\")",
+            "list.name(\"Ana\")"
+          ],
+          "a": 0,
+          "hint": "Use o mesmo formato de atribuição com sinal de igual dentro dos parênteses.",
+          "ex": "Dentro de list(), nome = valor associa um rótulo ao elemento correspondente.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "r-lang-6",
+      "name": "MATRIZES",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#ff9600",
+      "icon": "◈",
+      "summary": "Trabalhe com matrizes, estruturas bidimensionais de um único tipo de dado.",
+      "lesson": [
+        {
+          "title": "Criando matrizes",
+          "body": "A função matrix() cria uma estrutura bidimensional preenchida por colunas por padrão. Os parâmetros nrow e ncol definem o formato.",
+          "code": "m <- matrix(1:6, nrow = 2, ncol = 3)\nprint(m)"
+        },
+        {
+          "title": "Acessando elementos",
+          "body": "Elementos de uma matriz são acessados com [linha, coluna]. Deixar um dos dois em branco seleciona a linha ou coluna inteira.",
+          "code": "m[1, 2]\nm[1, ]\nm[, 2]"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "Dado m <- matrix(1:6, nrow = 2, ncol = 3), o que m[1, 2] retorna?",
+          "opts": ["1", "2", "3", "4"],
+          "a": 2,
+          "hint": "Lembre que R preenche a matriz por colunas: a primeira coluna recebe 1 e 2, a segunda recebe 3 e 4.",
+          "ex": "Como o preenchimento é por coluna, a posição [1,2] (linha 1, coluna 2) contém o valor 3.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que m[1, ] retorna, sendo m uma matriz?",
+          "opts": [
+            "Apenas a primeira coluna",
+            "A primeira linha inteira",
+            "Um único elemento",
+            "Erro de sintaxe"
+          ],
+          "a": 1,
+          "hint": "O espaço vazio após a vírgula significa 'todas as colunas'.",
+          "ex": "Deixar a posição de coluna vazia retorna todas as colunas da linha 1, ou seja, a linha inteira.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro: você quer uma matriz preenchida por linha, mas escreveu apenas matrix(1:6, nrow = 2).",
+          "opts": [
+            "Não há erro, o preenchimento por linha é o padrão",
+            "Falta o argumento byrow = TRUE",
+            "matrix() não aceita nrow",
+            "1:6 não é um vetor válido"
+          ],
+          "a": 1,
+          "hint": "Existe um argumento booleano específico para mudar a ordem de preenchimento.",
+          "ex": "O parâmetro byrow = TRUE altera o preenchimento padrão (por coluna) para por linha.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Todas as matrizes em R devem ter elementos de qual característica?",
+          "opts": [
+            "Tipos variados, como listas",
+            "O mesmo tipo de dado",
+            "Sempre números inteiros",
+            "Sempre texto"
+          ],
+          "a": 1,
+          "hint": "Assim como vetores, matrizes têm uma restrição sobre a variedade de tipos.",
+          "ex": "Uma matriz é essencialmente um vetor reorganizado em duas dimensões, então exige um único tipo de dado.",
+          "format": "CONCEITO"
+        }
+      ]
+    },
+    {
+      "id": "r-lang-7",
+      "name": "ESTRUTURAS ANINHADAS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#ff9600",
+      "icon": "▦",
+      "summary": "Combine listas, vetores e data frames para representar dados mais complexos.",
+      "lesson": [
+        {
+          "title": "Listas de data frames",
+          "body": "É comum guardar múltiplos data frames dentro de uma lista, por exemplo para representar tabelas relacionadas de um mesmo estudo.",
+          "code": "relatorio <- list(\n  vendas = data.frame(produto = c(\"A\", \"B\"), total = c(100, 200)),\n  metas = c(150, 150)\n)\nrelatorio$vendas$total"
+        },
+        {
+          "title": "A função str()",
+          "body": "A função str() mostra a estrutura interna de qualquer objeto R, muito útil para entender listas e data frames aninhados sem imprimir tudo.",
+          "code": "str(relatorio)"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "Dado relatorio <- list(vendas = data.frame(total = c(100, 200))), como acessar o vetor 'total'?",
+          "opts": [
+            "relatorio$vendas$total",
+            "relatorio.vendas.total",
+            "relatorio[vendas][total]",
+            "relatorio->vendas->total"
+          ],
+          "a": 0,
+          "hint": "Encadeie o operador de acesso a componentes duas vezes.",
+          "ex": "O $ pode ser encadeado para navegar por níveis de listas e data frames aninhados.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Para que serve a função str()?",
+          "opts": [
+            "Converter um objeto em texto (string)",
+            "Mostrar a estrutura interna de um objeto",
+            "Somar os elementos de um vetor",
+            "Ordenar um data frame"
+          ],
+          "a": 1,
+          "hint": "O nome é abreviação de 'structure', não de 'string'.",
+          "ex": "str() exibe um resumo compacto da estrutura de listas, vetores e data frames.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual é o resultado de class(relatorio$vendas), considerando o exemplo da lição?",
+          "opts": ["\"list\"", "\"data.frame\"", "\"vector\"", "\"numeric\""],
+          "a": 1,
+          "hint": "vendas foi criado dentro da lista usando data.frame().",
+          "ex": "Mesmo estando dentro de uma lista, o elemento vendas mantém sua própria classe, data.frame.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Você tem uma lista com vários data frames de vendas mensais. Qual estrutura é mais adequada para organizá-los?",
+          "opts": [
+            "Um único vetor numérico",
+            "Uma lista nomeada de data frames",
+            "Uma matriz de texto",
+            "Uma variável lógica"
+          ],
+          "a": 1,
+          "hint": "Pense em uma estrutura que agrupe várias tabelas mantendo cada uma intacta.",
+          "ex": "Uma lista nomeada permite guardar múltiplos data frames distintos e acessá-los por nome.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "r-lang-8",
+      "name": "CONDICIONAIS EM R",
+      "difficulty": "AVANÇADO",
+      "color": "#f6c445",
+      "icon": "▣",
+      "summary": "Use if, else if e else para tomar decisões no fluxo do programa.",
+      "lesson": [
+        {
+          "title": "Estrutura if/else",
+          "body": "O bloco if avalia uma condição lógica; se for TRUE, executa o código associado. else if encadeia condições adicionais, e else cobre o caso restante.",
+          "code": "nota <- 7\nif (nota >= 7) {\n  print(\"Aprovado\")\n} else {\n  print(\"Reprovado\")\n}"
+        },
+        {
+          "title": "A função ifelse()",
+          "body": "Para operações vetorizadas, ifelse(condicao, valor_se_true, valor_se_false) aplica a lógica elemento a elemento em um vetor inteiro, sem precisar de loop.",
+          "code": "notas <- c(5, 8, 6, 9)\nifelse(notas >= 7, \"Aprovado\", \"Reprovado\")"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "O que este código imprime?\nx <- 4\nif (x > 5) {\n  print(\"grande\")\n} else {\n  print(\"pequeno\")\n}",
+          "opts": ["\"grande\"", "\"pequeno\"", "TRUE", "Erro"],
+          "a": 1,
+          "hint": "Verifique se 4 é realmente maior que 5.",
+          "ex": "Como 4 não é maior que 5, a condição é FALSE e o bloco else é executado.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual a vantagem de ifelse() sobre if/else em vetores?",
+          "opts": [
+            "ifelse() é mais lento",
+            "ifelse() aplica a lógica a cada elemento do vetor de uma vez",
+            "ifelse() só funciona com texto",
+            "Não há diferença"
+          ],
+          "a": 1,
+          "hint": "Pense em vetorização: operar sobre todos os elementos sem loop explícito.",
+          "ex": "ifelse() é vetorizada, avaliando a condição para cada elemento do vetor simultaneamente.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nnota <- 8\nif nota >= 7 {\n  print(\"Aprovado\")\n}",
+          "opts": [
+            "Não há erro",
+            "Faltam parênteses ao redor da condição: if (nota >= 7)",
+            "print() não aceita texto",
+            "nota deveria ser uma string"
+          ],
+          "a": 1,
+          "hint": "Toda condição de if em R precisa estar entre um par de símbolos específicos.",
+          "ex": "Em R, a condição do if deve obrigatoriamente estar entre parênteses.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "code",
+          "q": "Qual expressão classifica corretamente um vetor de idades em 'menor' ou 'adulto', usando 18 como corte?",
+          "opts": [
+            "ifelse(idades >= 18, \"adulto\", \"menor\")",
+            "if (idades >= 18) \"adulto\" else \"menor\"",
+            "idades >= 18 ? \"adulto\" : \"menor\"",
+            "switch(idades, 18, \"adulto\")"
+          ],
+          "a": 0,
+          "hint": "Pense em qual função foi feita para trabalhar com vetores inteiros, não só um valor.",
+          "ex": "ifelse() é a forma correta e vetorizada de aplicar essa classificação a todos os elementos do vetor idades.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "r-lang-9",
+      "name": "LOOPS FOR E WHILE",
+      "difficulty": "AVANÇADO",
+      "color": "#f6c445",
+      "icon": "◐",
+      "summary": "Repita ações com for e while, controlando iterações sobre vetores e condições.",
+      "lesson": [
+        {
+          "title": "Loop for",
+          "body": "O loop for percorre cada elemento de um vetor ou sequência, executando o bloco de código uma vez para cada um. É comum em R, mas para muitas tarefas as funções apply são preferidas por serem mais eficientes.",
+          "code": "for (i in 1:5) {\n  print(i * 2)\n}"
+        },
+        {
+          "title": "Loop while",
+          "body": "O loop while repete o bloco enquanto a condição for TRUE. É essencial atualizar a variável de controle dentro do loop para evitar um laço infinito.",
+          "code": "contador <- 1\nwhile (contador <= 3) {\n  print(contador)\n  contador <- contador + 1\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "Quantas vezes o bloco é executado?\nfor (i in 1:4) {\n  print(\"oi\")\n}",
+          "opts": ["3", "4", "5", "Infinitas vezes"],
+          "a": 1,
+          "hint": "Conte quantos números existem na sequência 1:4.",
+          "ex": "A sequência 1:4 tem quatro elementos (1, 2, 3, 4), então o loop executa quatro vezes.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro que causa loop infinito:\ncontador <- 1\nwhile (contador <= 3) {\n  print(contador)\n}",
+          "opts": [
+            "Não há erro",
+            "A variável contador nunca é incrementada dentro do loop",
+            "while não aceita <=",
+            "print() está fora do loop"
+          ],
+          "a": 1,
+          "hint": "Verifique se algum valor usado na condição muda a cada repetição.",
+          "ex": "Sem incrementar contador dentro do bloco, a condição contador <= 3 nunca se torna FALSE.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que muitos programadores R preferem funções apply a loops for em certas tarefas?",
+          "opts": [
+            "Loops for não existem em R",
+            "Funções apply costumam ser mais concisas e eficientes para operações vetorizadas",
+            "apply() só funciona com texto",
+            "Não há diferença prática"
+          ],
+          "a": 1,
+          "hint": "Pense no estilo funcional e na vetorização como marcas de R.",
+          "ex": "A família apply aproveita a vetorização de R, geralmente resultando em código mais curto e eficiente.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual código imprime os números pares de 1 a 10 usando for?",
+          "opts": [
+            "for (i in seq(2, 10, by = 2)) { print(i) }",
+            "for (i in 1:10) { print(\"par\") }",
+            "while (i in 1:10) { print(i) }",
+            "for (i in 2:10) { print(i / 2) }"
+          ],
+          "a": 0,
+          "hint": "Pense em uma função que gera sequências com um passo (incremento) definido.",
+          "ex": "seq(2, 10, by = 2) gera exatamente os números pares de 2 a 10, que o for então imprime.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "r-lang-10",
+      "name": "FAMÍLIA APPLY",
+      "difficulty": "AVANÇADO",
+      "color": "#f6c445",
+      "icon": "✓",
+      "summary": "Use sapply, lapply e apply para processar dados sem loops explícitos.",
+      "lesson": [
+        {
+          "title": "sapply e lapply",
+          "body": "sapply() aplica uma função a cada elemento de um vetor ou lista e tenta simplificar o resultado em vetor. lapply() faz o mesmo, mas sempre retorna uma lista.",
+          "code": "notas <- c(5, 7, 9)\nsapply(notas, function(x) x * 2)\nlapply(notas, function(x) x * 2)"
+        },
+        {
+          "title": "apply em matrizes",
+          "body": "A função apply(matriz, margem, funcao) aplica uma função por linha (margem = 1) ou por coluna (margem = 2) de uma matriz ou data frame.",
+          "code": "m <- matrix(1:6, nrow = 2)\napply(m, 1, sum)\napply(m, 2, mean)"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "Qual é a diferença principal entre sapply() e lapply()?",
+          "opts": [
+            "sapply() sempre retorna lista, lapply() sempre retorna vetor",
+            "lapply() sempre retorna uma lista; sapply() tenta simplificar para vetor ou matriz",
+            "Não há diferença",
+            "lapply() só funciona com números"
+          ],
+          "a": 1,
+          "hint": "O nome lapply começa com 'l' de 'list'.",
+          "ex": "lapply() preserva sempre o formato de lista, enquanto sapply() simplifica o resultado quando possível.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Dado m <- matrix(1:6, nrow = 2), o que apply(m, 1, sum) calcula?",
+          "opts": [
+            "A soma de cada coluna",
+            "A soma de cada linha",
+            "A soma total da matriz",
+            "A média de cada linha"
+          ],
+          "a": 1,
+          "hint": "Margem 1 se refere à primeira dimensão de uma matriz: as linhas.",
+          "ex": "Quando a margem é 1, apply() aplica a função a cada linha da matriz.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Corrija o erro para calcular a média de cada coluna de uma matriz m:",
+          "opts": ["apply(m, 1, mean)", "apply(m, 2, mean)", "sapply(m, mean)", "lapply(m, 1, mean)"],
+          "a": 1,
+          "hint": "Colunas correspondem à segunda dimensão de uma matriz em apply().",
+          "ex": "A margem 2 em apply() indica que a função deve ser aplicada por coluna.",
+          "format": "CORRIJA O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Você quer aplicar uma função a cada elemento de uma lista e manter o resultado como lista. Qual função usar?",
+          "opts": ["apply()", "sapply()", "lapply()", "for()"],
+          "a": 2,
+          "hint": "Pense na função cujo nome indica explicitamente que o retorno é uma lista.",
+          "ex": "lapply() garante que o resultado permaneça no formato de lista, independentemente do conteúdo.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "r-lang-11",
+      "name": "DEFININDO FUNÇÕES",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#22c55e",
+      "icon": "⌗",
+      "summary": "Crie suas próprias funções com function() para reutilizar lógica.",
+      "lesson": [
+        {
+          "title": "Sintaxe básica",
+          "body": "Funções em R são criadas com function(argumentos) { corpo }. O valor da última expressão avaliada é retornado automaticamente, mesmo sem return() explícito.",
+          "code": "dobro <- function(x) {\n  x * 2\n}\ndobro(5)"
+        },
+        {
+          "title": "Retorno explícito",
+          "body": "A função return() encerra a execução imediatamente e devolve um valor. É útil para saídas antecipadas, mas não é obrigatória ao final da função.",
+          "code": "classificar <- function(nota) {\n  if (nota >= 7) {\n    return(\"Aprovado\")\n  }\n  \"Reprovado\"\n}"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "O que dobro(4) retorna, dado dobro <- function(x) { x * 2 }?",
+          "opts": ["4", "6", "8", "Erro, falta return()"],
+          "a": 2,
+          "hint": "R retorna automaticamente a última expressão avaliada, mesmo sem return().",
+          "ex": "Como x * 2 é a última expressão do corpo, seu valor (8) é retornado automaticamente.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "É obrigatório usar return() no final de uma função em R?",
+          "opts": [
+            "Sim, sempre",
+            "Não, a última expressão avaliada é retornada automaticamente",
+            "Só em funções recursivas",
+            "Só quando há mais de um argumento"
+          ],
+          "a": 1,
+          "hint": "Pense no comportamento padrão de qualquer bloco de código em R.",
+          "ex": "R retorna implicitamente o valor da última linha executada dentro da função.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nsoma <- function(a, b) {\n  resultado = a + b\n}\nprint(soma(2, 3))",
+          "opts": [
+            "Não há erro, imprime 5",
+            "= não pode ser usado para atribuição dentro de funções",
+            "function() não aceita dois parâmetros",
+            "print() não funciona com funções"
+          ],
+          "a": 0,
+          "hint": "Pense se o valor resultado é realmente a última expressão avaliada.",
+          "ex": "Apesar de usar = em vez de <-, o código funciona normalmente e retorna 5, pois resultado é a última expressão.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "code",
+          "q": "Como definir uma função chamada 'quadrado' que recebe um número e retorna seu quadrado?",
+          "opts": [
+            "quadrado <- function(x) { x ^ 2 }",
+            "quadrado(x) <- function { x ^ 2 }",
+            "function quadrado(x) { x ^ 2 }",
+            "quadrado = { x ^ 2 } function(x)"
+          ],
+          "a": 0,
+          "hint": "O nome da função é uma variável comum, atribuída a um valor criado com function().",
+          "ex": "A sintaxe correta atribui function(x) { ... } ao nome da função usando <-.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "r-lang-12",
+      "name": "ARGUMENTOS PADRÃO",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#22c55e",
+      "icon": "◫",
+      "summary": "Defina valores padrão para argumentos e torne suas funções mais flexíveis.",
+      "lesson": [
+        {
+          "title": "Valores default",
+          "body": "Você pode atribuir um valor padrão a um argumento diretamente na definição da função. Se o chamador não fornecer esse argumento, o valor padrão é usado.",
+          "code": "saudacao <- function(nome, saudacao = \"Olá\") {\n  paste(saudacao, nome)\n}\nsaudacao(\"Ana\")\nsaudacao(\"Ana\", \"Bom dia\")"
+        },
+        {
+          "title": "Argumentos nomeados",
+          "body": "Argumentos podem ser passados por posição ou por nome. Passar por nome permite alterar a ordem e é mais claro em funções com muitos parâmetros.",
+          "code": "potencia <- function(base, expoente = 2) {\n  base ^ expoente\n}\npotencia(expoente = 3, base = 2)"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "O que saudacao(\"Ana\") retorna, dado saudacao <- function(nome, saudacao = \"Olá\") { paste(saudacao, nome) }?",
+          "opts": ["\"Ana Olá\"", "\"Olá Ana\"", "\"Olá\"", "Erro, falta o segundo argumento"],
+          "a": 1,
+          "hint": "Como o segundo argumento tem valor padrão, ele não precisa ser informado.",
+          "ex": "Como saudacao não foi informado, usa-se o padrão \"Olá\", resultando em \"Olá Ana\".",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é a vantagem de usar argumentos nomeados ao chamar uma função?",
+          "opts": [
+            "Torna a função mais lenta",
+            "Permite passar os argumentos em qualquer ordem",
+            "É obrigatório em toda função R",
+            "Impede o uso de valores padrão"
+          ],
+          "a": 1,
+          "hint": "Pense em clareza e flexibilidade na ordem dos parâmetros.",
+          "ex": "Argumentos nomeados podem ser passados fora da ordem de definição sem alterar o resultado.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro: você quer que 'unidade' tenha o padrão \"kg\", mas escreveu:\nconverter <- function(valor, unidade) {\n  unidade <- \"kg\"\n  paste(valor, unidade)\n}",
+          "opts": [
+            "Não há erro",
+            "O padrão deveria ser definido na assinatura: function(valor, unidade = \"kg\")",
+            "paste() não existe em R",
+            "valor precisa ter aspas"
+          ],
+          "a": 1,
+          "hint": "O valor padrão de um argumento deve ficar na declaração da função, não sobrescrito dentro do corpo.",
+          "ex": "Sobrescrever unidade dentro do corpo ignora qualquer valor passado pelo chamador; o correto é definir o padrão na assinatura.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "code",
+          "q": "Você quer chamar potencia(base, expoente = 2) alterando apenas o expoente para 3, mantendo base = 5. Qual chamada é correta?",
+          "opts": [
+            "potencia(5, 3)",
+            "potencia(expoente = 3, 5)",
+            "potencia(3, expoente = 5)",
+            "potencia(base = 5)"
+          ],
+          "a": 0,
+          "hint": "Pense na ordem posicional dos parâmetros na função original.",
+          "ex": "potencia(5, 3) passa base = 5 e expoente = 3 na ordem correta de definição.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "r-lang-13",
+      "name": "FUNÇÕES ANÔNIMAS",
+      "difficulty": "AVANÇADO",
+      "color": "#22c55e",
+      "icon": "⌕",
+      "summary": "Escreva funções sem nome para usar em conjunto com sapply, lapply e outras.",
+      "lesson": [
+        {
+          "title": "Funções anônimas com function()",
+          "body": "Uma função anônima é definida sem ser atribuída a um nome, geralmente usada uma única vez dentro de outra função, como sapply().",
+          "code": "sapply(1:5, function(x) x^2)"
+        },
+        {
+          "title": "Notação abreviada (R 4.1+)",
+          "body": "A partir do R 4.1, é possível usar \\(x) como abreviação de function(x), tornando o código mais compacto para funções curtas.",
+          "code": "sapply(1:5, \\(x) x^2)"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "O que sapply(1:3, function(x) x + 1) retorna?",
+          "opts": ["c(1, 2, 3)", "c(2, 3, 4)", "c(0, 1, 2)", "Erro"],
+          "a": 1,
+          "hint": "Some 1 a cada elemento do vetor 1:3.",
+          "ex": "A função anônima soma 1 a cada valor de 1, 2 e 3, resultando em 2, 3 e 4.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é a notação abreviada de function(x) disponível a partir do R 4.1?",
+          "opts": ["#(x)", "\\(x)", "=>(x)", "fn(x)"],
+          "a": 1,
+          "hint": "É uma barra invertida seguida do parâmetro entre parênteses.",
+          "ex": "\\(x) é o atalho introduzido no R 4.1 para escrever function(x) de forma mais curta.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\nresultado <- sapply(1:3, function(x) { x * 2 )",
+          "opts": [
+            "Não há erro",
+            "Faltou fechar as chaves { } corretamente",
+            "sapply() não aceita function()",
+            "1:3 é inválido"
+          ],
+          "a": 1,
+          "hint": "Conte com cuidado os parênteses e chaves abertos e fechados.",
+          "ex": "O bloco abre com { mas fecha apenas o parêntese, faltando a chave de fechamento }.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Quando faz mais sentido usar uma função anônima em vez de definir uma função nomeada?",
+          "opts": [
+            "Sempre, em qualquer situação",
+            "Quando a lógica é curta e usada uma única vez",
+            "Nunca, é uma má prática",
+            "Apenas dentro de loops for"
+          ],
+          "a": 1,
+          "hint": "Pense em reuso: você vai chamar essa lógica em vários lugares do código?",
+          "ex": "Funções anônimas são ideais para lógica pontual e simples, evitando poluir o ambiente com nomes desnecessários.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "r-lang-14",
+      "name": "FILTRAGEM DE DADOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#34d399",
+      "icon": "◧",
+      "summary": "Filtre linhas de um data frame usando condições lógicas e a função subset().",
+      "lesson": [
+        {
+          "title": "Filtragem com colchetes",
+          "body": "Você pode filtrar linhas de um data frame usando uma condição lógica dentro de colchetes: df[condicao, ]. Apenas as linhas onde a condição é TRUE são mantidas.",
+          "code": "alunos <- data.frame(nome = c(\"Ana\", \"Bruno\", \"Carla\"), nota = c(9, 5, 7))\naprovados <- alunos[alunos$nota >= 7, ]\nprint(aprovados)"
+        },
+        {
+          "title": "A função subset()",
+          "body": "subset() oferece uma sintaxe mais legível para filtrar data frames, sem precisar repetir o nome do data frame para cada coluna referenciada.",
+          "code": "aprovados <- subset(alunos, nota >= 7)"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "Dado alunos com nota = c(9, 5, 7), quantas linhas alunos[alunos$nota >= 7, ] retorna?",
+          "opts": ["1", "2", "3", "0"],
+          "a": 1,
+          "hint": "Conte quantos valores do vetor de notas são maiores ou iguais a 7.",
+          "ex": "As notas 9 e 7 satisfazem a condição >= 7, resultando em 2 linhas.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual a vantagem de subset() em relação à filtragem com colchetes?",
+          "opts": [
+            "É mais rápido tecnicamente",
+            "Permite referenciar colunas diretamente pelo nome, sem repetir df$",
+            "Só funciona com vetores",
+            "Não existe diferença nenhuma"
+          ],
+          "a": 1,
+          "hint": "Compare a sintaxe: alunos$nota versus apenas nota dentro de subset().",
+          "ex": "subset() permite escrever a condição usando apenas o nome da coluna, tornando o código mais limpo.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro:\naprovados <- alunos[alunos$nota >= 7]",
+          "opts": [
+            "Não há erro",
+            "Falta a vírgula antes do colchete de fechamento: alunos[alunos$nota >= 7, ]",
+            "subset() deveria ser usado obrigatoriamente",
+            "nota não pode ser comparada com número"
+          ],
+          "a": 1,
+          "hint": "Lembre-se que o filtro de linhas em um data frame precisa indicar a posição da coluna também.",
+          "ex": "Sem a vírgula, R tenta filtrar como se fosse um vetor, ignorando a estrutura de linhas e colunas do data frame.",
+          "format": "CORRIJA O ERRO"
+        },
+        {
+          "type": "code",
+          "q": "Como filtrar apenas os alunos com nota menor que 6, usando subset()?",
+          "opts": [
+            "subset(alunos, nota < 6)",
+            "subset(alunos, nota <- 6)",
+            "subset(nota < 6, alunos)",
+            "alunos.subset(nota < 6)"
+          ],
+          "a": 0,
+          "hint": "A sintaxe é subset(data_frame, condicao_logica).",
+          "ex": "subset(alunos, nota < 6) retorna apenas as linhas em que a coluna nota é menor que 6.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "r-lang-15",
+      "name": "ORDENAÇÃO COM ORDER",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#34d399",
+      "icon": "⇄",
+      "summary": "Ordene vetores e data frames usando sort() e order().",
+      "lesson": [
+        {
+          "title": "sort() em vetores",
+          "body": "sort() ordena um vetor diretamente, em ordem crescente por padrão. Use decreasing = TRUE para ordem decrescente.",
+          "code": "notas <- c(7, 3, 9, 5)\nsort(notas)\nsort(notas, decreasing = TRUE)"
+        },
+        {
+          "title": "order() em data frames",
+          "body": "order() não ordena valores diretamente; ele retorna os índices que reordenariam o vetor. Isso é essencial para ordenar um data frame inteiro por uma coluna.",
+          "code": "alunos <- data.frame(nome = c(\"Ana\", \"Bruno\"), nota = c(5, 9))\nalunos[order(alunos$nota), ]"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "O que sort(c(7, 3, 9, 5)) retorna?",
+          "opts": ["c(7, 3, 9, 5)", "c(3, 5, 7, 9)", "c(9, 7, 5, 3)", "c(5, 3, 9, 7)"],
+          "a": 1,
+          "hint": "Por padrão, sort() organiza os valores do menor para o maior.",
+          "ex": "sort() sem argumentos adicionais ordena em ordem crescente: 3, 5, 7, 9.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que order() é usado em vez de sort() para reordenar um data frame por uma coluna?",
+          "opts": [
+            "sort() é proibido em data frames",
+            "order() retorna os índices para reordenar, preservando a correspondência entre colunas",
+            "order() é mais rápido sempre",
+            "Não há diferença entre eles"
+          ],
+          "a": 1,
+          "hint": "Pense no que aconteceria se você ordenasse cada coluna de forma independente.",
+          "ex": "order() gera a sequência de índices que, aplicada às linhas, mantém a correspondência entre todas as colunas do data frame.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro: você quer ordenar alunos por nota em ordem decrescente, mas escreveu:\nalunos[order(alunos$nota)]",
+          "opts": [
+            "Não há erro",
+            "Falta a vírgula para indicar seleção de linhas: alunos[order(alunos$nota), ]",
+            "order() não existe em R",
+            "nota deveria estar entre aspas"
+          ],
+          "a": 1,
+          "hint": "Lembre-se da sintaxe de seleção de linhas versus colunas em data frames.",
+          "ex": "Sem a vírgula, R interpreta a expressão como seleção de colunas, não de linhas reordenadas.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "code",
+          "q": "Como ordenar o data frame alunos pela coluna nota em ordem decrescente?",
+          "opts": [
+            "alunos[order(alunos$nota, decreasing = TRUE), ]",
+            "alunos[sort(alunos$nota), ]",
+            "order(alunos, decreasing = TRUE)",
+            "alunos[order(-alunos$nota)]"
+          ],
+          "a": 0,
+          "hint": "order() aceita um argumento para inverter a direção da ordenação, assim como sort().",
+          "ex": "Passar decreasing = TRUE para order() dentro da seleção de linhas ordena o data frame do maior para o menor valor.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "r-lang-16",
+      "name": "INTRODUÇÃO AO DPLYR",
+      "difficulty": "AVANÇADO",
+      "color": "#34d399",
+      "icon": "⇆",
+      "summary": "Conheça os verbos básicos do pacote dplyr para manipular dados de forma legível.",
+      "lesson": [
+        {
+          "title": "filter() e select()",
+          "body": "O pacote dplyr oferece filter() para selecionar linhas por condição e select() para escolher colunas específicas, com sintaxe mais legível que a base R.",
+          "code": "library(dplyr)\nalunos %>% filter(nota >= 7) %>% select(nome, nota)"
+        },
+        {
+          "title": "O operador pipe %>%",
+          "body": "O operador %>% (do magrittr, também usado no dplyr) encadeia operações, passando o resultado de uma expressão como primeiro argumento da próxima, deixando o código mais legível de cima para baixo.",
+          "code": "alunos %>% filter(nota >= 7) %>% arrange(desc(nota))"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que a função filter() do dplyr faz?",
+          "opts": [
+            "Seleciona colunas",
+            "Seleciona linhas com base em uma condição",
+            "Ordena o data frame",
+            "Cria uma nova coluna"
+          ],
+          "a": 1,
+          "hint": "É o equivalente do dplyr ao subset() da base R.",
+          "ex": "filter() mantém apenas as linhas que satisfazem a condição lógica informada.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que faz o operador %>% em alunos %>% filter(nota >= 7)?",
+          "opts": [
+            "Compara dois valores",
+            "Passa alunos como primeiro argumento de filter()",
+            "Cria um novo data frame vazio",
+            "Concatena texto"
+          ],
+          "a": 1,
+          "hint": "Pense em uma 'tubulação' que encaminha o resultado à esquerda para a função à direita.",
+          "ex": "O pipe %>% envia alunos como entrada da função filter(), equivalente a filter(alunos, nota >= 7).",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro: você quer selecionar apenas nome e nota dos aprovados, mas escreveu:\nalunos %>% filter(nota >= 7) %>% select(\"nome\", \"nota\")",
+          "opts": [
+            "O código já está correto",
+            "select() no dplyr geralmente usa nomes sem aspas (nome, nota)",
+            "filter() não pode ser combinado com select()",
+            "%>% não pode ser usado duas vezes"
+          ],
+          "a": 1,
+          "hint": "Compare com a sintaxe mostrada na lição sobre select().",
+          "ex": "Embora funcione em algumas versões, o estilo idiomático do dplyr é usar os nomes das colunas sem aspas dentro de select().",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "code",
+          "q": "Como encadear filtro e ordenação decrescente por nota usando dplyr?",
+          "opts": [
+            "alunos %>% filter(nota >= 7) %>% arrange(desc(nota))",
+            "alunos %>% arrange(nota) %>% filter(desc)",
+            "filter(alunos) %>% nota >= 7",
+            "alunos %>% desc(nota) %>% filter(7)"
+          ],
+          "a": 0,
+          "hint": "Primeiro filtre a condição, depois ordene o resultado usando arrange() com desc().",
+          "ex": "O pipe encadeia filter() e arrange(desc(nota)) na ordem correta: primeiro filtra, depois ordena decrescentemente.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "r-lang-17",
+      "name": "MÉDIA E MEDIANA",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#1cb0f6",
+      "icon": "▧",
+      "summary": "Calcule medidas de tendência central com mean() e median().",
+      "lesson": [
+        {
+          "title": "A função mean()",
+          "body": "mean() calcula a média aritmética de um vetor numérico. Se houver valores NA (ausentes), o resultado será NA, a menos que se use na.rm = TRUE.",
+          "code": "notas <- c(7, 8, 9, NA)\nmean(notas)\nmean(notas, na.rm = TRUE)"
+        },
+        {
+          "title": "A função median()",
+          "body": "median() retorna o valor central de um vetor ordenado. Diferente da média, a mediana é menos sensível a valores extremos (outliers).",
+          "code": "salarios <- c(1500, 1600, 1700, 50000)\nmean(salarios)\nmedian(salarios)"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "O que mean(c(7, 8, 9, NA)) retorna, sem argumentos extras?",
+          "opts": ["8", "NA", "24", "0"],
+          "a": 1,
+          "hint": "Por padrão, operações com NA se propagam para o resultado.",
+          "ex": "Sem na.rm = TRUE, a presença de um NA torna o resultado da média NA.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que a mediana é preferível à média em dados com outliers extremos?",
+          "opts": [
+            "A mediana é sempre mais rápida de calcular",
+            "A mediana é menos sensível a valores muito distantes da maioria dos dados",
+            "A média não funciona com números negativos",
+            "Não há diferença prática entre elas"
+          ],
+          "a": 1,
+          "hint": "Pense em como um valor extremamente alto ou baixo afeta a soma total usada na média.",
+          "ex": "Como a mediana depende apenas da posição central dos dados ordenados, outliers não a distorcem tanto quanto distorcem a média.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Corrija o erro para calcular a média ignorando valores ausentes:\nmean(c(1, 2, NA, 4))",
+          "opts": [
+            "mean(c(1, 2, NA, 4), na.rm = TRUE)",
+            "mean(c(1, 2, NA, 4), remove.na = TRUE)",
+            "mean(c(1, 2, 4))",
+            "na.mean(c(1, 2, NA, 4))"
+          ],
+          "a": 0,
+          "hint": "O argumento correto tem o nome na.rm, não outra variação.",
+          "ex": "na.rm = TRUE instrui mean() a ignorar os valores NA antes de calcular a média.",
+          "format": "CORRIJA O ERRO"
+        },
+        {
+          "type": "code",
+          "q": "Você tem um vetor de salários com um valor muito acima dos demais (outlier). Qual medida melhor representa o 'salário típico'?",
+          "opts": ["mean()", "median()", "sum()", "length()"],
+          "a": 1,
+          "hint": "Pense em qual medida resiste melhor à influência de valores extremos.",
+          "ex": "median() é mais robusta a outliers, representando melhor o valor típico nesse cenário.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "r-lang-18",
+      "name": "DESVIO PADRÃO E VARIÂNCIA",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#1cb0f6",
+      "icon": "◉",
+      "summary": "Meça a dispersão dos dados com sd() e var().",
+      "lesson": [
+        {
+          "title": "Variância e desvio padrão",
+          "body": "var() calcula a variância, que mede o quanto os valores se espalham em torno da média. sd() é a raiz quadrada da variância, expressa na mesma unidade dos dados originais.",
+          "code": "notas <- c(6, 7, 8, 9, 10)\nvar(notas)\nsd(notas)"
+        },
+        {
+          "title": "Interpretando a dispersão",
+          "body": "Um desvio padrão baixo indica que os valores estão próximos da média; um desvio padrão alto indica maior variabilidade. Isso ajuda a comparar a consistência entre conjuntos de dados.",
+          "code": "turma_a <- c(7, 7.2, 6.9, 7.1)\nturma_b <- c(2, 9, 5, 10)\nsd(turma_a)\nsd(turma_b)"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que o desvio padrão (sd) mede?",
+          "opts": [
+            "O valor central dos dados",
+            "O quanto os valores se dispersam em torno da média",
+            "O maior valor do conjunto",
+            "A quantidade de valores ausentes"
+          ],
+          "a": 1,
+          "hint": "Pense em 'espalhamento' dos dados, não em posição central.",
+          "ex": "O desvio padrão quantifica a dispersão dos valores em relação à média do conjunto.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual é a relação entre var() e sd()?",
+          "opts": [
+            "sd() é o dobro de var()",
+            "sd() é a raiz quadrada de var()",
+            "var() é a raiz quadrada de sd()",
+            "Não há relação matemática entre elas"
+          ],
+          "a": 1,
+          "hint": "Pense na operação inversa de elevar ao quadrado.",
+          "ex": "O desvio padrão é definido matematicamente como a raiz quadrada da variância.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Comparando turma_a = c(7, 7.2, 6.9, 7.1) e turma_b = c(2, 9, 5, 10), qual terá maior sd()?",
+          "opts": ["turma_a", "turma_b", "Serão iguais", "Não é possível saber"],
+          "a": 1,
+          "hint": "Observe qual conjunto tem valores mais próximos entre si e qual tem valores mais espalhados.",
+          "ex": "turma_b tem valores muito mais dispersos entre si, resultando em um desvio padrão maior que o de turma_a.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Você quer comparar a consistência de notas entre duas turmas com médias parecidas. Qual medida usar?",
+          "opts": ["mean()", "sd()", "length()", "sum()"],
+          "a": 1,
+          "hint": "Pense em qual medida revela o quanto os valores variam, além da média.",
+          "ex": "sd() revela qual turma tem notas mais consistentes (menor dispersão) mesmo com médias semelhantes.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "r-lang-19",
+      "name": "TABELAS DE FREQUÊNCIA",
+      "difficulty": "AVANÇADO",
+      "color": "#1cb0f6",
+      "icon": "⟳",
+      "summary": "Resuma dados categóricos com table() e summary().",
+      "lesson": [
+        {
+          "title": "A função table()",
+          "body": "table() conta quantas vezes cada valor único aparece em um vetor, útil para resumir dados categóricos como respostas de pesquisa ou classificações.",
+          "code": "respostas <- c(\"sim\", \"não\", \"sim\", \"sim\", \"não\")\ntable(respostas)"
+        },
+        {
+          "title": "A função summary()",
+          "body": "summary() gera um resumo estatístico de um vetor numérico, incluindo mínimo, máximo, quartis, média e mediana, tudo em uma única chamada.",
+          "code": "notas <- c(4, 6, 7, 8, 9, 10)\nsummary(notas)"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "O que table(c(\"sim\", \"não\", \"sim\", \"sim\")) retorna?",
+          "opts": [
+            "Uma contagem: sim=3, não=1",
+            "Uma média dos valores",
+            "Um erro, pois table() não aceita texto",
+            "A soma das strings"
+          ],
+          "a": 0,
+          "hint": "table() conta as ocorrências de cada valor distinto no vetor.",
+          "ex": "table() retorna a frequência de cada valor único: \"sim\" aparece 3 vezes e \"não\" aparece 1 vez.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Quais informações summary() fornece para um vetor numérico?",
+          "opts": [
+            "Apenas a soma total",
+            "Mínimo, quartis, mediana, média e máximo",
+            "Apenas o desvio padrão",
+            "Somente valores ausentes"
+          ],
+          "a": 1,
+          "hint": "Pense em um resumo estatístico completo em uma única chamada de função.",
+          "ex": "summary() apresenta um panorama com mínimo, 1º e 3º quartis, mediana, média e máximo.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro: você quer contar categorias de um vetor categorias, mas escreveu:\nfreq <- summary(categorias)",
+          "opts": [
+            "Não há erro, summary() conta categorias perfeitamente",
+            "Para contar frequência de categorias, table() é mais apropriado que summary()",
+            "categorias precisa ser convertido em número antes",
+            "summary() não existe em R"
+          ],
+          "a": 1,
+          "hint": "Pense em qual função foi apresentada especificamente para contar ocorrências de valores.",
+          "ex": "table() é a função adequada para contagem de frequências; summary() é voltado a resumos numéricos.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Você tem uma pesquisa com respostas 'sim' e 'não' e quer saber quantas pessoas responderam cada opção. Qual função usar?",
+          "opts": ["mean()", "table()", "sd()", "order()"],
+          "a": 1,
+          "hint": "Pense na função que resume dados categóricos por contagem, não numéricos.",
+          "ex": "table() é ideal para contar quantas vezes cada categoria (sim/não) aparece nas respostas.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "r-lang-20",
+      "name": "REVISÃO: ESTATÍSTICA DESCRITIVA",
+      "difficulty": "AVANÇADO",
+      "color": "#1cb0f6",
+      "icon": "⏱",
+      "summary": "Consolide média, mediana, desvio padrão e tabelas de frequência em um exercício integrado.",
+      "lesson": [
+        {
+          "title": "Combinando medidas",
+          "body": "Uma boa análise descritiva combina medidas de posição (média, mediana) com medidas de dispersão (desvio padrão) e, quando aplicável, contagens categóricas com table().",
+          "code": "vendas <- c(120, 135, 128, 400, 130)\nmean(vendas)\nmedian(vendas)\nsd(vendas)"
+        },
+        {
+          "title": "Interpretando os resultados juntos",
+          "body": "Quando média e mediana diferem muito, é sinal de assimetria ou outliers nos dados, como no exemplo acima em que o valor 400 distorce a média para cima.",
+          "code": "# média puxada para cima pelo outlier 400\n# mediana reflete melhor o valor 'típico'"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Se a média de um conjunto é muito maior que a mediana, o que isso geralmente indica?",
+          "opts": [
+            "Os dados são perfeitamente simétricos",
+            "Provável presença de outliers ou assimetria para valores altos",
+            "Os dados têm desvio padrão zero",
+            "Erro de cálculo do R"
+          ],
+          "a": 1,
+          "hint": "Pense em como um único valor muito alto puxa a média, mas não a mediana.",
+          "ex": "Uma grande diferença entre média e mediana costuma sinalizar outliers que distorcem a média para cima ou para baixo.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Dado vendas <- c(120, 135, 128, 400, 130), qual medida é menos afetada pelo valor 400?",
+          "opts": ["mean(vendas)", "median(vendas)", "sum(vendas)", "sd(vendas)"],
+          "a": 1,
+          "hint": "Pense em qual medida depende apenas da posição central dos dados ordenados.",
+          "ex": "median(vendas) é mais robusta ao outlier 400, refletindo melhor o valor típico das vendas.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Você tem um vetor de idades de clientes categorizadas em 'jovem', 'adulto' e 'idoso'. Qual conjunto de funções melhor resume esses dados?",
+          "opts": [
+            "mean() e sd(), pois são categorias numéricas",
+            "table(), pois os dados são categóricos",
+            "median() apenas",
+            "var() apenas"
+          ],
+          "a": 1,
+          "hint": "Pense se as categorias são valores numéricos contínuos ou rótulos de texto.",
+          "ex": "Como as categorias são texto (não numéricas), table() é a ferramenta correta para contar a frequência de cada uma.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro numa análise: o analista usou apenas mean(vendas) para descrever vendas = c(120, 135, 128, 400, 130) e concluiu que 'as vendas típicas são de 182,6'.",
+          "opts": [
+            "Não há erro, a média sempre representa bem o valor típico",
+            "A média foi distorcida pelo outlier 400; a mediana (130) representaria melhor o valor típico",
+            "mean() está com sintaxe errada",
+            "O vetor vendas está mal formado"
+          ],
+          "a": 1,
+          "hint": "Recalcule mentalmente comparando quanto a média se afasta da maioria dos valores.",
+          "ex": "O valor 400 puxa a média para cima; a mediana (130) descreve melhor o comportamento típico do conjunto de vendas.",
+          "format": "ENCONTRE O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "r-lang-21",
+      "name": "GRÁFICOS DE BARRAS E LINHAS",
+      "difficulty": "AVANÇADO",
+      "color": "#0ea5e9",
+      "icon": "Ω",
+      "summary": "Entenda conceitualmente como o ggplot2 constrói gráficos em camadas.",
+      "lesson": [
+        {
+          "title": "A gramática dos gráficos",
+          "body": "O pacote ggplot2 constrói gráficos em camadas: primeiro define os dados e o mapeamento estético com aes(), depois adiciona geometrias como geom_bar() ou geom_line() com o operador +.",
+          "code": "library(ggplot2)\nggplot(dados, aes(x = mes, y = vendas)) +\n  geom_line()"
+        },
+        {
+          "title": "Gráfico de barras",
+          "body": "geom_bar() cria gráficos de barras, geralmente usados para comparar quantidades entre categorias. geom_col() é usado quando os valores das barras já estão calculados previamente.",
+          "code": "ggplot(dados, aes(x = categoria, y = total)) +\n  geom_col()"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual função do ggplot2 define o mapeamento entre colunas dos dados e elementos visuais (x, y, cor)?",
+          "opts": ["geom_line()", "aes()", "ggtitle()", "theme()"],
+          "a": 1,
+          "hint": "É a abreviação de 'aesthetic', ou seja, propriedade estética do gráfico.",
+          "ex": "aes() mapeia colunas do data frame para propriedades visuais como eixo x, eixo y e cor.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual código cria um gráfico de linhas mostrando vendas ao longo dos meses?",
+          "opts": [
+            "ggplot(dados, aes(x = mes, y = vendas)) + geom_line()",
+            "ggplot(dados) + geom_bar(mes, vendas)",
+            "plot_line(dados$mes, dados$vendas)",
+            "ggplot(dados, aes(mes)) + geom_point() - geom_line()"
+          ],
+          "a": 0,
+          "hint": "Lembre da sintaxe de camadas: ggplot(dados, aes(...)) + geometria().",
+          "ex": "Essa é a estrutura correta: aes() define x e y, e geom_line() adiciona a camada de linha.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é a diferença entre geom_bar() e geom_col()?",
+          "opts": [
+            "Não há diferença nenhuma",
+            "geom_bar() conta ocorrências por padrão; geom_col() usa valores já calculados no eixo y",
+            "geom_col() só funciona com texto",
+            "geom_bar() é usado apenas para gráficos de linha"
+          ],
+          "a": 1,
+          "hint": "Pense em qual das duas espera que você já tenha o valor da altura de cada barra pronto.",
+          "ex": "geom_bar() calcula contagens automaticamente, enquanto geom_col() exige que o valor de y já esteja definido nos dados.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro: o operador usado para adicionar camadas no ggplot2 foi digitado incorretamente:\nggplot(dados, aes(x = mes, y = vendas)) %>% geom_line()",
+          "opts": [
+            "Não há erro",
+            "Camadas do ggplot2 usam o operador + , não %>%",
+            "geom_line() não existe",
+            "aes() deveria vir fora de ggplot()"
+          ],
+          "a": 1,
+          "hint": "O pipe %>% é do dplyr; o ggplot2 usa um símbolo diferente para empilhar camadas.",
+          "ex": "No ggplot2, as camadas são adicionadas com o operador +, não com o pipe %>% usado no dplyr.",
+          "format": "ENCONTRE O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "r-lang-22",
+      "name": "HISTOGRAMAS E BOXPLOTS",
+      "difficulty": "AVANÇADO",
+      "color": "#0ea5e9",
+      "icon": "✦",
+      "summary": "Visualize distribuições de dados numéricos com geom_histogram() e geom_boxplot().",
+      "lesson": [
+        {
+          "title": "Histogramas",
+          "body": "geom_histogram() divide os dados numéricos em faixas (bins) e mostra a frequência de valores em cada faixa, revelando a forma da distribuição.",
+          "code": "ggplot(dados, aes(x = idade)) +\n  geom_histogram(binwidth = 5)"
+        },
+        {
+          "title": "Boxplots",
+          "body": "geom_boxplot() mostra a mediana, quartis e possíveis outliers de uma variável numérica, sendo muito útil para comparar distribuições entre grupos.",
+          "code": "ggplot(dados, aes(x = turma, y = nota)) +\n  geom_boxplot()"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que geom_histogram() ajuda a visualizar?",
+          "opts": [
+            "A relação entre duas variáveis categóricas",
+            "A distribuição de frequências de uma variável numérica",
+            "Apenas o valor máximo de um vetor",
+            "Uma sequência temporal de eventos"
+          ],
+          "a": 1,
+          "hint": "Pense em 'faixas de valores' e quantas observações caem em cada uma.",
+          "ex": "O histograma agrupa valores em faixas (bins) e mostra quantas observações caem em cada uma, revelando a distribuição dos dados.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que o argumento binwidth = 5 controla em geom_histogram(binwidth = 5)?",
+          "opts": [
+            "A cor das barras",
+            "A largura de cada faixa (bin) do histograma",
+            "O número total de gráficos",
+            "O tamanho da fonte do título"
+          ],
+          "a": 1,
+          "hint": "O nome do argumento combina 'bin' (faixa) com 'width' (largura).",
+          "ex": "binwidth define o intervalo de valores agrupado em cada barra do histograma.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Você quer comparar a distribuição de notas entre três turmas diferentes, incluindo outliers. Qual gráfico é mais indicado?",
+          "opts": ["geom_line()", "geom_boxplot()", "geom_point() sozinho", "geom_bar()"],
+          "a": 1,
+          "hint": "Pense em qual gráfico mostra mediana, quartis e outliers ao mesmo tempo, por grupo.",
+          "ex": "geom_boxplot() é ideal para comparar distribuições e identificar outliers entre múltiplos grupos.",
+          "format": "DECISÃO DE CÓDIGO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro: para comparar notas por turma em boxplot, foi escrito:\nggplot(dados, aes(x = nota, y = turma)) + geom_boxplot()",
+          "opts": [
+            "Não há erro, essa é a forma correta",
+            "Os eixos estão invertidos; o grupo categórico (turma) deveria estar em x e a variável numérica (nota) em y",
+            "geom_boxplot() não aceita duas variáveis",
+            "aes() não pode conter x e y juntos"
+          ],
+          "a": 1,
+          "hint": "Pense em qual variável é categórica (para separar as caixas) e qual é numérica (para medir a distribuição).",
+          "ex": "Convencionalmente, a variável categórica (turma) fica no eixo x, separando as caixas, e a numérica (nota) fica no eixo y.",
+          "format": "CORRIJA O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "r-lang-23",
+      "name": "PERSONALIZANDO GRÁFICOS",
+      "difficulty": "AVANÇADO",
+      "color": "#0ea5e9",
+      "icon": "●",
+      "summary": "Adicione títulos, cores e temas aos gráficos do ggplot2.",
+      "lesson": [
+        {
+          "title": "Títulos e rótulos",
+          "body": "A função labs() adiciona título, subtítulo e rótulos de eixos ao gráfico, tornando-o mais compreensível para quem o lê.",
+          "code": "ggplot(dados, aes(x = mes, y = vendas)) +\n  geom_line() +\n  labs(title = \"Vendas mensais\", x = \"Mês\", y = \"Total (R$)\")"
+        },
+        {
+          "title": "Cores e temas",
+          "body": "O argumento color dentro de aes() mapeia uma variável para diferentes cores, útil para distinguir grupos. Funções theme_*() como theme_minimal() alteram a aparência geral do gráfico.",
+          "code": "ggplot(dados, aes(x = mes, y = vendas, color = regiao)) +\n  geom_line() +\n  theme_minimal()"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual função é usada para adicionar título e rótulos de eixos a um gráfico ggplot2?",
+          "opts": ["theme()", "labs()", "aes()", "geom_text()"],
+          "a": 1,
+          "hint": "O nome é abreviação de 'labels'.",
+          "ex": "labs() define título, subtítulo e nomes dos eixos de um gráfico ggplot2.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que color = regiao dentro de aes() faz em um gráfico de linhas?",
+          "opts": [
+            "Pinta o fundo do gráfico de acordo com regiao",
+            "Cria uma linha de cor diferente para cada valor único de regiao",
+            "Remove a variável regiao do gráfico",
+            "Ordena as linhas alfabeticamente"
+          ],
+          "a": 1,
+          "hint": "Pense em como o ggplot2 usa aes() para separar visualmente categorias diferentes.",
+          "ex": "Mapear color = regiao faz com que cada categoria de regiao seja desenhada com uma cor distinta.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro: o gráfico deveria ter título \"Vendas\", mas o título não aparece:\nggplot(dados, aes(x = mes, y = vendas)) + geom_line() + labs(\"Vendas\")",
+          "opts": [
+            "Não há erro",
+            "Falta nomear o argumento: labs(title = \"Vendas\")",
+            "geom_line() não aceita labs()",
+            "O eixo x deveria ser vendas"
+          ],
+          "a": 1,
+          "hint": "Verifique se o argumento passado para labs() foi nomeado corretamente.",
+          "ex": "Sem nomear o argumento como title =, labs() não sabe que o texto deve virar o título do gráfico.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Você quer um gráfico com aparência mais limpa e minimalista, sem alterar os dados. O que usar?",
+          "opts": ["geom_line()", "theme_minimal()", "aes()", "filter()"],
+          "a": 1,
+          "hint": "Pense em funções que alteram apenas a aparência visual, não os dados representados.",
+          "ex": "theme_minimal() é uma função de tema do ggplot2 que altera a estética geral sem modificar os dados plotados.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "r-lang-24",
+      "name": "LEITURA DE ARQUIVOS CSV",
+      "difficulty": "AVANÇADO",
+      "color": "#38bdf8",
+      "icon": "◍",
+      "summary": "Importe dados externos de arquivos CSV para data frames em R.",
+      "lesson": [
+        {
+          "title": "read.csv()",
+          "body": "A função read.csv() lê um arquivo CSV e o transforma em um data frame. Por padrão, ela assume que a primeira linha contém os nomes das colunas e que os valores são separados por vírgula.",
+          "code": "dados <- read.csv(\"vendas.csv\")\nhead(dados)"
+        },
+        {
+          "title": "Ajustando o separador",
+          "body": "Em arquivos que usam ponto e vírgula como separador (comum em configurações regionais brasileiras), o argumento sep = \";\" ajusta a leitura corretamente.",
+          "code": "dados <- read.csv(\"vendas.csv\", sep = \";\")\nstr(dados)"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual função é usada para ler um arquivo CSV e transformá-lo em data frame?",
+          "opts": ["read.table()", "read.csv()", "load.csv()", "import()"],
+          "a": 1,
+          "hint": "O nome da função é bem literal, quase idêntico à extensão do arquivo.",
+          "ex": "read.csv() é a função padrão do R base para importar arquivos CSV como data frame.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Qual função mostra as primeiras linhas de um data frame recém-importado, sem imprimir tudo?",
+          "opts": ["tail()", "head()", "nrow()", "summary()"],
+          "a": 1,
+          "hint": "Pense na palavra em inglês para 'cabeça', referindo-se ao início dos dados.",
+          "ex": "head() exibe por padrão as primeiras 6 linhas de um data frame, útil para uma inspeção rápida.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro: um arquivo CSV usa ponto e vírgula como separador, mas foi lido assim:\ndados <- read.csv(\"vendas.csv\")",
+          "opts": [
+            "Não há erro, read.csv() detecta qualquer separador automaticamente",
+            "Falta especificar sep = \";\" para o separador correto",
+            "read.csv() não existe em R",
+            "O nome do arquivo precisa ter aspas simples"
+          ],
+          "a": 1,
+          "hint": "Lembre-se de que read.csv() assume vírgula como separador por padrão.",
+          "ex": "Sem indicar sep = \";\", o R tentará separar colunas por vírgula, resultando em uma única coluna mal formatada.",
+          "format": "CORRIJA O ERRO"
+        },
+        {
+          "type": "code",
+          "q": "Depois de importar dados <- read.csv(\"vendas.csv\"), qual função revela rapidamente os tipos de cada coluna?",
+          "opts": ["str(dados)", "print(dados)", "dados[1]", "length(dados)"],
+          "a": 0,
+          "hint": "Pense na função que mostra a 'estrutura' interna de um objeto, incluindo tipos das colunas.",
+          "ex": "str(dados) exibe o tipo de cada coluna do data frame junto com uma amostra dos primeiros valores.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "r-lang-25",
+      "name": "TRATANDO VALORES AUSENTES",
+      "difficulty": "AVANÇADO",
+      "color": "#38bdf8",
+      "icon": "◎",
+      "summary": "Identifique e trate valores NA em conjuntos de dados importados.",
+      "lesson": [
+        {
+          "title": "Detectando NA com is.na()",
+          "body": "is.na() retorna um vetor lógico indicando quais posições têm valores ausentes (NA). Combinado com sum(), é possível contar quantos NAs existem.",
+          "code": "notas <- c(7, NA, 8, NA, 9)\nis.na(notas)\nsum(is.na(notas))"
+        },
+        {
+          "title": "Removendo ou substituindo NAs",
+          "body": "na.omit() remove linhas com qualquer valor NA de um data frame. Alternativamente, é possível substituir NAs por um valor específico, como a média da coluna.",
+          "code": "dados_limpos <- na.omit(dados)\nnotas[is.na(notas)] <- mean(notas, na.rm = TRUE)"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "O que sum(is.na(c(1, NA, 3, NA))) retorna?",
+          "opts": ["1", "2", "4", "NA"],
+          "a": 1,
+          "hint": "is.na() retorna TRUE/FALSE para cada elemento; sum() soma os TRUE como 1.",
+          "ex": "Há dois valores NA no vetor, e sum() conta as ocorrências de TRUE retornadas por is.na().",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que na.omit() faz em um data frame?",
+          "opts": [
+            "Substitui NAs pela média",
+            "Remove as linhas que contêm ao menos um valor NA",
+            "Converte NAs em zero",
+            "Conta o número de NAs"
+          ],
+          "a": 1,
+          "hint": "O nome sugere 'omitir', ou seja, excluir algo do conjunto.",
+          "ex": "na.omit() elimina do data frame todas as linhas que possuem pelo menos um valor ausente.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro: para substituir os NAs de notas pela média, sem remover linhas, foi escrito:\nnotas <- na.omit(notas)",
+          "opts": [
+            "Não há erro, isso substitui NAs pela média",
+            "na.omit() remove os NAs, não os substitui; o correto seria notas[is.na(notas)] <- mean(notas, na.rm = TRUE)",
+            "na.omit() não existe em R",
+            "notas deveria ser um data frame, não um vetor"
+          ],
+          "a": 1,
+          "hint": "Pense na diferença entre 'remover' elementos e 'substituir' elementos por outro valor.",
+          "ex": "na.omit() apenas remove os NAs do vetor; para substituição é necessário indexar as posições NA e atribuir um novo valor.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "code",
+          "q": "Você importou um dataset com muitos NAs e não quer perder linhas inteiras. Qual abordagem preserva mais dados?",
+          "opts": [
+            "Usar na.omit() no data frame inteiro",
+            "Substituir os NAs por um valor calculado, como a média da coluna",
+            "Ignorar o problema",
+            "Excluir todas as colunas com algum NA"
+          ],
+          "a": 1,
+          "hint": "Pense em qual técnica evita descartar dados válidos de outras colunas na mesma linha.",
+          "ex": "Substituir NAs por um valor representativo (como a média) preserva as demais informações da linha, ao contrário de removê-la inteira.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    },
+    {
+      "id": "r-lang-26",
+      "name": "LIMPEZA BÁSICA DE DADOS",
+      "difficulty": "AVANÇADO",
+      "color": "#38bdf8",
+      "icon": "▶",
+      "summary": "Padronize nomes de colunas, tipos de dados e valores duplicados em um dataset.",
+      "lesson": [
+        {
+          "title": "Renomeando colunas",
+          "body": "names() acessa (e permite alterar) os nomes das colunas de um data frame. Nomes consistentes facilitam muito o trabalho posterior com o dataset.",
+          "code": "names(dados)\nnames(dados)[1] <- \"id_cliente\""
+        },
+        {
+          "title": "Removendo duplicatas",
+          "body": "duplicated() identifica linhas duplicadas em um data frame, retornando um vetor lógico. Combinado com negação (!), permite filtrar apenas as linhas únicas.",
+          "code": "dados_unicos <- dados[!duplicated(dados), ]"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual função retorna e permite alterar os nomes das colunas de um data frame?",
+          "opts": ["colnames() apenas", "names()", "rownames() apenas", "labels()"],
+          "a": 1,
+          "hint": "É uma função genérica de apenas uma palavra, aplicável a vários tipos de objeto.",
+          "ex": "names() acessa e permite reatribuir os nomes das colunas (para data frames, equivalente a colnames()).",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que duplicated(dados) retorna?",
+          "opts": [
+            "O número total de linhas",
+            "Um vetor lógico indicando quais linhas são duplicatas de linhas anteriores",
+            "Uma cópia do data frame",
+            "Os nomes das colunas duplicadas"
+          ],
+          "a": 1,
+          "hint": "Pense em uma marcação TRUE/FALSE por linha, não em um número único.",
+          "ex": "duplicated() retorna TRUE para cada linha que é repetição de uma linha anterior no data frame.",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "code",
+          "q": "Corrija o erro para manter apenas linhas únicas de dados:",
+          "opts": [
+            "dados[duplicated(dados), ]",
+            "dados[!duplicated(dados), ]",
+            "dados[duplicated(dados)]",
+            "unique(dados) sozinho está errado"
+          ],
+          "a": 1,
+          "hint": "Você quer manter o oposto do que duplicated() marca como TRUE.",
+          "ex": "A negação (!) inverte a lógica, mantendo apenas as linhas que não são duplicatas.",
+          "format": "CORRIJA O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual função também remove duplicatas de um data frame, como alternativa a dados[!duplicated(dados), ]?",
+          "opts": ["unique(dados)", "sort(dados)", "table(dados)", "order(dados)"],
+          "a": 0,
+          "hint": "Pense em uma função de nome direto que significa 'valores únicos' e também funciona em data frames.",
+          "ex": "unique(dados) remove linhas duplicadas de um data frame, funcionando como alternativa a duplicated().",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "r-lang-27",
+      "name": "CORRELAÇÃO ENTRE VARIÁVEIS",
+      "difficulty": "AVANÇADO",
+      "color": "#a78bfa",
+      "icon": "◒",
+      "summary": "Meça a relação entre duas variáveis numéricas usando cor().",
+      "lesson": [
+        {
+          "title": "O coeficiente de correlação",
+          "body": "A função cor() calcula o coeficiente de correlação de Pearson entre duas variáveis numéricas, variando de -1 (correlação negativa perfeita) a 1 (correlação positiva perfeita), sendo 0 ausência de correlação linear.",
+          "code": "horas_estudo <- c(1, 2, 3, 4, 5)\nnotas <- c(4, 5, 6, 8, 9)\ncor(horas_estudo, notas)"
+        },
+        {
+          "title": "Correlação não é causalidade",
+          "body": "Um valor alto de correlação indica que duas variáveis tendem a variar juntas, mas não prova que uma causa a outra. Fatores externos podem explicar a relação observada.",
+          "code": "# cor próximo de 1: forte relação linear positiva\n# cor próximo de -1: forte relação linear negativa\n# cor próximo de 0: pouca relação linear"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que significa um coeficiente de correlação próximo de -1?",
+          "opts": [
+            "Não há relação entre as variáveis",
+            "Uma forte relação linear negativa: quando uma variável sobe, a outra tende a descer",
+            "Uma forte relação linear positiva",
+            "Erro no cálculo"
+          ],
+          "a": 1,
+          "hint": "Pense no sinal negativo como indicativo de direções opostas de variação.",
+          "ex": "Correlação próxima de -1 indica que, conforme uma variável aumenta, a outra tende a diminuir de forma consistente.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Dado horas_estudo <- c(1, 2, 3, 4, 5) e notas <- c(4, 5, 6, 8, 9), o valor de cor(horas_estudo, notas) provavelmente será:",
+          "opts": ["Próximo de -1", "Próximo de 0", "Próximo de 1", "Exatamente igual a 100"],
+          "a": 2,
+          "hint": "Observe que, conforme horas_estudo aumenta, notas também aumenta de forma consistente.",
+          "ex": "Como ambas as variáveis crescem juntas de forma quase proporcional, a correlação será próxima de 1 (forte e positiva).",
+          "format": "PREVISÃO DE RESULTADO"
+        },
+        {
+          "type": "mcq",
+          "q": "Por que é um erro comum concluir 'X causa Y' apenas porque cor(X, Y) é alta?",
+          "opts": [
+            "Porque cor() nunca funciona corretamente",
+            "Porque correlação mede associação, não necessariamente causa e efeito",
+            "Porque cor() só funciona com vetores de mesmo tamanho",
+            "Porque a correlação sempre é negativa em dados reais"
+          ],
+          "a": 1,
+          "hint": "Pense em variáveis externas que poderiam explicar a relação sem uma causar a outra diretamente.",
+          "ex": "A correlação apenas indica associação estatística; fatores de confusão podem explicar a relação sem que haja causalidade direta.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro: para calcular a correlação entre duas colunas de um data frame dados, foi escrito:\ncor(dados)",
+          "opts": [
+            "Não há erro, sempre funciona igual",
+            "Se dados tem mais de duas colunas numéricas, cor(dados) retorna uma matriz; para duas variáveis específicas, use cor(dados$x, dados$y)",
+            "cor() não existe em R",
+            "cor() só aceita vetores de texto"
+          ],
+          "a": 1,
+          "hint": "Pense no que acontece quando cor() recebe um data frame inteiro em vez de dois vetores.",
+          "ex": "Passar um data frame inteiro retorna uma matriz de correlações entre todas as colunas numéricas, que pode não ser o que se deseja ao comparar apenas duas variáveis.",
+          "format": "ENCONTRE O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "r-lang-28",
+      "name": "REGRESSÃO LINEAR SIMPLES",
+      "difficulty": "AVANÇADO",
+      "color": "#a78bfa",
+      "icon": "◓",
+      "summary": "Ajuste um modelo de regressão linear simples com a função lm().",
+      "lesson": [
+        {
+          "title": "A função lm()",
+          "body": "lm() ajusta um modelo de regressão linear. A fórmula y ~ x indica que queremos prever y a partir de x. O resultado é um objeto de modelo do qual podemos extrair coeficientes e previsões.",
+          "code": "modelo <- lm(notas ~ horas_estudo)\nsummary(modelo)"
+        },
+        {
+          "title": "Interpretando os coeficientes",
+          "body": "O coeficiente da variável independente indica o quanto y muda, em média, para cada unidade de aumento em x. O intercepto é o valor previsto de y quando x é zero.",
+          "code": "coef(modelo)\npredict(modelo, newdata = data.frame(horas_estudo = 6))"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que a fórmula notas ~ horas_estudo em lm(notas ~ horas_estudo) representa?",
+          "opts": [
+            "Que horas_estudo depende de notas",
+            "Que notas é a variável a ser prevista (dependente) e horas_estudo é a variável explicativa (independente)",
+            "Uma divisão entre notas e horas_estudo",
+            "Um erro de sintaxe"
+          ],
+          "a": 1,
+          "hint": "Na notação de fórmula do R, o que fica à esquerda do til (~) é a variável que queremos prever.",
+          "ex": "A notação y ~ x indica que y é a variável dependente prevista a partir da variável independente x.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "code",
+          "q": "Qual função é usada para prever novos valores a partir de um modelo já ajustado?",
+          "opts": ["lm()", "predict()", "cor()", "summary()"],
+          "a": 1,
+          "hint": "O nome da função em inglês significa literalmente 'prever'.",
+          "ex": "predict() gera previsões de um modelo ajustado para novos dados fornecidos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro: para ajustar um modelo prevendo vendas a partir de investimento, foi escrito:\nmodelo <- lm(investimento ~ vendas)",
+          "opts": [
+            "Não há erro, a ordem da fórmula não importa",
+            "A fórmula está invertida; deveria ser lm(vendas ~ investimento), já que vendas é a variável a ser prevista",
+            "lm() não aceita duas variáveis",
+            "Faltam aspas em investimento e vendas"
+          ],
+          "a": 1,
+          "hint": "Relembre qual variável fica à esquerda do til quando queremos prevê-la.",
+          "ex": "Como o objetivo é prever vendas a partir de investimento, a variável dependente (vendas) deve ficar à esquerda do til.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Depois de ajustar modelo <- lm(notas ~ horas_estudo), qual função revela o intercepto e o coeficiente angular do modelo?",
+          "opts": ["plot(modelo)", "coef(modelo)", "length(modelo)", "table(modelo)"],
+          "a": 1,
+          "hint": "Pense na função que extrai diretamente os valores numéricos que definem a reta ajustada.",
+          "ex": "coef(modelo) retorna o intercepto e o coeficiente da variável independente estimados pelo modelo.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "r-lang-29",
+      "name": "AVALIANDO UM MODELO",
+      "difficulty": "AVANÇADO",
+      "color": "#a78bfa",
+      "icon": "▧",
+      "summary": "Interprete o R² e os resíduos de um modelo de regressão linear.",
+      "lesson": [
+        {
+          "title": "O coeficiente R²",
+          "body": "O R-squared (R²), disponível em summary(modelo), indica a proporção da variação de y explicada pelo modelo. Varia de 0 a 1: quanto mais próximo de 1, melhor o ajuste do modelo aos dados.",
+          "code": "modelo <- lm(notas ~ horas_estudo)\nsummary(modelo)$r.squared"
+        },
+        {
+          "title": "Resíduos do modelo",
+          "body": "Resíduos são as diferenças entre os valores observados e os valores previstos pelo modelo. Resíduos grandes e padronizados de forma sistemática podem indicar que o modelo linear não é adequado para os dados.",
+          "code": "residuos <- resid(modelo)\nplot(residuos)"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "O que o R² (r.squared) de um modelo de regressão indica?",
+          "opts": [
+            "O número de observações usadas no modelo",
+            "A proporção da variação de y explicada pelo modelo",
+            "O valor máximo previsto pelo modelo",
+            "A quantidade de variáveis independentes"
+          ],
+          "a": 1,
+          "hint": "Pense em uma medida de 'quão bem o modelo explica os dados', não em contagem de itens.",
+          "ex": "R² mede a fração da variabilidade da variável dependente que é explicada pelas variáveis independentes do modelo.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "O que resid(modelo) retorna?",
+          "opts": [
+            "Os coeficientes do modelo",
+            "A diferença entre valores observados e valores previstos pelo modelo",
+            "O valor de R² do modelo",
+            "Uma cópia dos dados originais"
+          ],
+          "a": 1,
+          "hint": "Pense na palavra 'resíduo' como o que 'sobra' depois da previsão.",
+          "ex": "resid() calcula, para cada observação, a diferença entre o valor real e o valor previsto pelo modelo (o erro).",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "Um modelo tem R² = 0.15. O que isso sugere?",
+          "opts": [
+            "O modelo explica muito bem a variação dos dados",
+            "O modelo explica pouco da variação de y; outras variáveis ou uma relação não linear podem estar envolvidas",
+            "Há um erro de sintaxe no código",
+            "R² sempre deve ser negativo em bons modelos"
+          ],
+          "a": 1,
+          "hint": "Lembre-se que R² varia de 0 a 1, sendo valores próximos de 1 indicativos de melhor ajuste.",
+          "ex": "Um R² baixo, como 0.15, indica que o modelo capta pouco da variação observada, sugerindo que fatores adicionais influenciam y.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro: o analista concluiu que o modelo é perfeito porque summary(modelo)$r.squared retornou 0.98, sem checar mais nada.",
+          "opts": [
+            "Não há erro, R² alto sempre garante um modelo perfeito",
+            "Um R² alto não garante ausência de problemas; é importante também checar os resíduos e a adequação do modelo aos dados",
+            "r.squared não existe em summary()",
+            "0.98 é um valor impossível para R²"
+          ],
+          "a": 1,
+          "hint": "Pense se uma única métrica é suficiente para validar completamente um modelo estatístico.",
+          "ex": "Mesmo com R² alto, é importante analisar os resíduos e outras características do modelo para confirmar que ele é realmente adequado.",
+          "format": "ENCONTRE O ERRO"
+        }
+      ]
+    },
+    {
+      "id": "r-lang-30",
+      "name": "PROJETO: ANÁLISE DE DADOS FICTÍCIA",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "◆",
+      "summary": "Integre importação, limpeza, estatística descritiva e um modelo simples em um fluxo completo de análise.",
+      "lesson": [
+        {
+          "title": "O fluxo completo de uma análise",
+          "body": "Uma análise típica em R segue etapas: importar os dados (read.csv), limpar (tratar NAs e duplicatas), explorar com estatística descritiva (mean, sd, table) e, quando fizer sentido, ajustar um modelo (lm) para entender relações entre variáveis.",
+          "code": "dados <- read.csv(\"clientes.csv\")\ndados <- na.omit(dados)\nsummary(dados$gasto_mensal)"
+        },
+        {
+          "title": "Do dado bruto à conclusão",
+          "body": "Depois da limpeza e exploração, é comum visualizar os dados com ggplot2 e, por fim, ajustar um modelo simples para testar hipóteses, sempre interpretando os resultados com cautela.",
+          "code": "modelo <- lm(gasto_mensal ~ idade, data = dados)\nsummary(modelo)$r.squared"
+        }
+      ],
+      "questions": [
+        {
+          "type": "code",
+          "q": "Qual é a ordem mais adequada de um fluxo de análise em R, considerando as etapas apresentadas no curso?",
+          "opts": [
+            "Ajustar modelo, importar dados, limpar dados, explorar dados",
+            "Importar dados, limpar dados, explorar com estatística descritiva, ajustar modelo",
+            "Explorar dados, ajustar modelo, importar dados, limpar dados",
+            "Limpar dados, ajustar modelo, importar dados, explorar dados"
+          ],
+          "a": 1,
+          "hint": "Pense logicamente: você precisa ter os dados antes de limpá-los, e limpos antes de modelar.",
+          "ex": "O fluxo típico começa pela importação, segue para limpeza, depois exploração descritiva e só então modelagem.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "code",
+          "q": "Encontre o erro num script de análise:\ndados <- read.csv(\"clientes.csv\")\nmodelo <- lm(gasto_mensal ~ idade, data = dados)\ndados <- na.omit(dados)",
+          "opts": [
+            "Não há erro, a ordem das linhas não importa",
+            "O modelo foi ajustado antes de remover os NAs, o que pode causar problemas ou resultados inconsistentes",
+            "lm() não aceita o argumento data",
+            "na.omit() deveria vir antes de read.csv()"
+          ],
+          "a": 1,
+          "hint": "Verifique se a limpeza dos dados ausentes acontece antes ou depois da modelagem.",
+          "ex": "Ajustar o modelo antes de tratar os NAs pode gerar resultados baseados em dados incompletos ou inconsistentes; a limpeza deveria vir primeiro.",
+          "format": "ENCONTRE O ERRO"
+        },
+        {
+          "type": "mcq",
+          "q": "Depois de ajustar um modelo lm(gasto_mensal ~ idade, data = dados) com R² baixo, qual é a conclusão mais responsável?",
+          "opts": [
+            "Afirmar categoricamente que idade não tem nenhuma relação com gasto_mensal",
+            "Considerar que idade sozinha explica pouco da variação de gasto_mensal, podendo haver outras variáveis relevantes",
+            "Descartar todo o dataset como inútil",
+            "Ignorar o R² e publicar o resultado como conclusivo"
+          ],
+          "a": 1,
+          "hint": "Pense em uma conclusão cautelosa que reconhece as limitações do modelo sem exageros.",
+          "ex": "Um R² baixo sugere que a variável idade sozinha não explica bem gasto_mensal, indicando que outros fatores provavelmente influenciam o resultado.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "code",
+          "q": "Você quer resumir rapidamente quantos clientes ficam em cada faixa etária categórica (jovem, adulto, idoso) do data frame dados. Qual função usar?",
+          "opts": ["mean(dados$faixa_etaria)", "table(dados$faixa_etaria)", "lm(dados$faixa_etaria)", "cor(dados$faixa_etaria)"],
+          "a": 1,
+          "hint": "Pense em qual função foi apresentada especificamente para contar frequências de categorias.",
+          "ex": "table() é a ferramenta correta para contar quantos clientes existem em cada categoria de faixa etária.",
+          "format": "DECISÃO DE CÓDIGO"
+        }
+      ]
+    }
+  ]
+}
