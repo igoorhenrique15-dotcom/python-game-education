@@ -1,0 +1,568 @@
+{
+  "meta": {
+    "id": "typescript",
+    "title": "TypeScript",
+    "subtitle": "Tipagem estática para o ecossistema JavaScript.",
+    "icon": "◆",
+    "color": "#3178C6",
+    "fileExt": "ts",
+    "stagesPerUnit": 3,
+    "order": 13,
+    "units": [
+      { "title": "Fundamentos do TypeScript", "goal": "Tipos básicos, inferência e anotações.", "color": "#3178C6" },
+      { "title": "Tipos Compostos", "goal": "Arrays, tuplas, enums, union e intersection types.", "color": "#f6c445" },
+      { "title": "Interfaces e Types", "goal": "Interface vs type alias, propriedades opcionais.", "color": "#22c55e" },
+      { "title": "Funções Tipadas", "goal": "Parâmetros, retornos e overloads.", "color": "#34d399" },
+      { "title": "Classes em TypeScript", "goal": "Modificadores de acesso, implements e abstract.", "color": "#1cb0f6" },
+      { "title": "Generics", "goal": "Funções e interfaces genéricas.", "color": "#0ea5e9" },
+      { "title": "Tipos Avançados", "goal": "Utility types, mapped types e narrowing.", "color": "#38bdf8" },
+      { "title": "TypeScript no Front-end", "goal": "Tipagem em props e eventos de UI.", "color": "#a78bfa" },
+      { "title": "Configuração e Ferramentas", "goal": "tsconfig, strict mode e integração com JS.", "color": "#f472b6" },
+      { "title": "Projeto final", "goal": "Revisão integrada com um mini sistema tipado.", "color": "#facc15" }
+    ]
+  },
+  "title": "TypeScript",
+  "version": 1,
+  "stages": [
+    {
+      "id": "typescript-1",
+      "name": "POR QUE TYPESCRIPT",
+      "difficulty": "INICIANTE",
+      "color": "#3178C6",
+      "icon": "◆",
+      "summary": "Entenda o que TypeScript adiciona ao JavaScript e como declarar tipos básicos.",
+      "lesson": [
+        { "title": "JavaScript com tipos", "body": "TypeScript é um superset de JavaScript: todo código JS válido também é válido em TS. A diferença é que TypeScript permite declarar tipos para variáveis, parâmetros e retornos, e o compilador verifica esses tipos antes mesmo de rodar o código.", "code": "let nome: string = \"Ana\";\nlet idade: number = 30;\nlet ativo: boolean = true;" },
+        { "title": "Compilação para JS", "body": "O código TypeScript (.ts) não roda direto no navegador. Ele é compilado (transpilado) pelo compilador tsc para JavaScript puro (.js), removendo as anotações de tipo. Os erros de tipo aparecem antes disso, ainda durante a escrita do código.", "code": "// arquivo.ts\nlet total: number = 10;\n// após compilar -> arquivo.js\nvar total = 10;" }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "O que é TypeScript em relação ao JavaScript?", "opts": ["Uma linguagem totalmente diferente e incompatível", "Um superset de JavaScript que adiciona tipagem estática", "Um framework para criar interfaces", "Um banco de dados"], "a": 1, "hint": "Pense na relação de compatibilidade entre os dois códigos.", "ex": "TypeScript estende JavaScript adicionando tipos, mas todo JS válido continua funcionando em TS.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "O que acontece com as anotações de tipo quando o código TypeScript é compilado?", "opts": ["Elas viram comentários no JS", "Elas são removidas, restando apenas JavaScript puro", "Elas são convertidas em testes automáticos", "Elas continuam no arquivo final .js"], "a": 1, "hint": "O navegador não entende sintaxe de tipos.", "ex": "O compilador tsc apaga as anotações de tipo ao gerar o JavaScript final.", "format": "CONCEITO" },
+        { "type": "code", "q": "Qual variável está com o tipo declarado corretamente?\nlet preco: number = \"29.90\";", "opts": ["Está correta, pois número e texto são equivalentes", "Está incorreta: o valor é uma string, mas o tipo declarado é number", "Está incorreta porque falta o valor decimal sem aspas em outro lugar", "Está correta porque TypeScript converte automaticamente"], "a": 1, "hint": "Observe as aspas ao redor do valor.", "ex": "\"29.90\" é uma string por causa das aspas, o que conflita com o tipo number declarado.", "format": "ENCONTRE O ERRO" },
+        { "type": "mcq", "q": "Qual extensão de arquivo é usada para código TypeScript?", "opts": [".jsx", ".ts", ".tsp", ".type"], "a": 1, "hint": "É parecida com a extensão do JavaScript, mas troca uma letra.", "ex": "Arquivos TypeScript usam a extensão .ts (ou .tsx quando têm JSX).", "format": "CONCEITO" }
+      ]
+    },
+    {
+      "id": "typescript-2",
+      "name": "INFERÊNCIA DE TIPOS",
+      "difficulty": "INICIANTE",
+      "color": "#3178C6",
+      "icon": "▲",
+      "summary": "Veja como o TypeScript deduz tipos automaticamente sem anotação explícita.",
+      "lesson": [
+        { "title": "TypeScript adivinha o tipo", "body": "Quando você atribui um valor a uma variável na declaração, o TypeScript infere o tipo automaticamente, sem precisar escrever a anotação. Isso deixa o código mais limpo sem perder segurança.", "code": "let cidade = \"Recife\"; // inferido como string\nlet ano = 2024;        // inferido como number" },
+        { "title": "Quando anotar explicitamente", "body": "A anotação explícita é útil quando a variável não recebe valor imediato, ou quando você quer garantir um tipo mais amplo do que o inferido, como usar number em vez de um literal específico.", "code": "let quantidade: number; // sem valor inicial, precisa anotar\nquantidade = 5;" }
+      ],
+      "questions": [
+        { "type": "code", "q": "Qual é o tipo inferido pelo TypeScript para a variável abaixo?\nlet mensagem = \"Olá, mundo\";", "opts": ["number", "boolean", "string", "any"], "a": 2, "hint": "Veja o tipo do valor atribuído entre aspas.", "ex": "Como o valor inicial é um texto entre aspas, o TypeScript infere o tipo string.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "Quando é necessário anotar explicitamente o tipo de uma variável?", "opts": ["Sempre, mesmo com valor inicial óbvio", "Nunca, o TypeScript sempre acerta sozinho", "Quando a variável é declarada sem valor inicial", "Apenas em variáveis do tipo string"], "a": 2, "hint": "Pense em quando não há valor para o compilador observar.", "ex": "Sem um valor inicial, o TypeScript não tem como inferir o tipo, então a anotação explícita é necessária.", "format": "CONCEITO" },
+        { "type": "code", "q": "O que acontece ao executar o código abaixo?\nlet idade = 25;\nidade = \"vinte e cinco\";", "opts": ["Funciona normalmente, pois TypeScript converte o tipo", "Gera erro de compilação: string não é atribuível a number", "Gera erro apenas em tempo de execução no navegador", "idade vira automaticamente do tipo any"], "a": 1, "hint": "Pense no tipo que foi inferido na primeira linha.", "ex": "Como idade foi inferida como number, atribuir uma string depois gera erro de tipo.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Qual é a vantagem de deixar o TypeScript inferir tipos em vez de anotar tudo manualmente?", "opts": ["O código fica mais rápido em tempo de execução", "O código fica mais conciso sem perder a checagem de tipos", "Isso desativa a checagem de tipos", "Não há nenhuma vantagem real"], "a": 1, "hint": "Pense em legibilidade sem perder segurança.", "ex": "A inferência mantém a segurança de tipos com menos código escrito à mão.", "format": "CONCEITO" }
+      ]
+    },
+    {
+      "id": "typescript-3",
+      "name": "TIPO ANY E UNKNOWN",
+      "difficulty": "INICIANTE",
+      "color": "#3178C6",
+      "icon": "★",
+      "summary": "Compreenda os tipos any e unknown e por que unknown é mais seguro.",
+      "lesson": [
+        { "title": "O tipo any desativa a checagem", "body": "O tipo any permite que uma variável receba qualquer valor sem checagem de tipo, basicamente voltando ao comportamento do JavaScript puro. Usar any em excesso anula os benefícios do TypeScript.", "code": "let dado: any = 10;\ndado = \"agora sou texto\";\ndado = true; // nenhum erro é acusado" },
+        { "title": "unknown é mais seguro", "body": "O tipo unknown também aceita qualquer valor, mas exige uma verificação de tipo antes de usá-lo em operações, o que evita erros. É a alternativa recomendada ao any quando o tipo realmente não é conhecido de antemão.", "code": "let valor: unknown = \"texto\";\nif (typeof valor === \"string\") {\n  console.log(valor.toUpperCase());\n}" }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Qual a principal diferença entre any e unknown?", "opts": ["Não há diferença, são sinônimos", "any permite qualquer operação sem checagem; unknown exige verificação antes de usar", "unknown só aceita números", "any é mais seguro que unknown"], "a": 1, "hint": "Pense em qual dos dois obriga uma verificação de tipo antes do uso.", "ex": "unknown obriga o desenvolvedor a checar o tipo antes de operar sobre o valor, o que any não faz.", "format": "CONCEITO" },
+        { "type": "code", "q": "O que este código faz?\nlet valor: unknown = 42;\nconsole.log(valor.toFixed(2));", "opts": ["Executa normalmente e imprime 42.00", "Gera erro de compilação, pois unknown exige checagem de tipo antes do uso", "Converte valor para any automaticamente", "Imprime undefined"], "a": 1, "hint": "Lembre que unknown não permite chamar métodos diretamente sem verificação.", "ex": "Sem antes verificar que valor é number, o TypeScript não permite chamar toFixed sobre um unknown.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Por que o uso excessivo de any é considerado uma má prática em TypeScript?", "opts": ["Porque deixa o código mais lento em tempo de execução", "Porque anula a checagem de tipos, perdendo o principal benefício da linguagem", "Porque any não existe em versões recentes do TypeScript", "Porque any só funciona com números"], "a": 1, "hint": "Pense no motivo de existir o TypeScript.", "ex": "any remove a segurança de tipos, tornando o código tão arriscado quanto JavaScript puro.", "format": "CONCEITO" },
+        { "type": "code", "q": "Qual correção torna este trecho seguro, mantendo o tipo unknown?\nlet dado: unknown = \"olá\";\nconsole.log(dado.length);", "opts": ["Trocar unknown por any sem mais mudanças", "Adicionar um typeof dado === \"string\" antes de acessar .length", "Remover a anotação de tipo completamente", "Trocar .length por .toFixed()"], "a": 1, "hint": "Pense em como comprovar ao compilador que dado é uma string.", "ex": "Verificar com typeof antes de acessar .length permite que o TypeScript estreite (narrow) o tipo para string com segurança.", "format": "CORRIJA O ERRO" }
+      ]
+    },
+    {
+      "id": "typescript-4",
+      "name": "ARRAYS TIPADOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#f6c445",
+      "icon": "↗",
+      "summary": "Declare arrays com tipos específicos e evite misturar tipos incompatíveis.",
+      "lesson": [
+        { "title": "Sintaxe de arrays tipados", "body": "Um array tipado garante que todos os elementos sejam do mesmo tipo. A sintaxe mais comum usa o tipo seguido de colchetes, mas também existe a forma genérica Array<tipo>.", "code": "let numeros: number[] = [1, 2, 3];\nlet nomes: Array<string> = [\"Ana\", \"Beto\"];" },
+        { "title": "Erros comuns com arrays", "body": "Tentar inserir um valor de tipo diferente em um array tipado gera erro de compilação. Isso evita bugs sutis, como misturar strings e números em uma lista de preços.", "code": "let precos: number[] = [10, 20, 30];\n// precos.push(\"40\"); // erro: string não é number" }
+      ],
+      "questions": [
+        { "type": "code", "q": "Qual das declarações abaixo está correta para um array de strings?", "opts": ["let nomes: string = [];", "let nomes: string[] = [\"Ana\", \"Beto\"];", "let nomes: [string] = \"Ana\";", "let nomes: array(string) = [\"Ana\"];"], "a": 1, "hint": "A sintaxe usa o tipo seguido de colchetes vazios.", "ex": "string[] declara um array cujos elementos são todos do tipo string.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "code", "q": "O que acontece ao executar este código?\nlet idades: number[] = [20, 25, 30];\nidades.push(\"40\");", "opts": ["Funciona normalmente, o array aceita qualquer tipo", "Gera erro de compilação, pois \"40\" é string e o array é de number", "Substitui todo o array por uma string", "Gera erro apenas se o array tiver mais de 3 elementos"], "a": 1, "hint": "Observe o tipo declarado no array e o tipo do valor inserido.", "ex": "Como o array foi tipado como number[], inserir uma string gera erro de tipo na compilação.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Qual é a forma genérica equivalente a 'number[]'?", "opts": ["Array<number>", "Generic<number>", "List[number]", "number<Array>"], "a": 0, "hint": "Pense na sintaxe de generics usando os símbolos < >.", "ex": "Array<number> é a notação genérica equivalente a number[].", "format": "CONCEITO" },
+        { "type": "code", "q": "Encontre o erro no trecho:\nlet frutas: string[] = [\"maçã\", \"banana\", 3];", "opts": ["Não há erro nesse código", "O número 3 não é do tipo string, quebrando a tipagem do array", "Faltam vírgulas entre os elementos", "O array deveria começar com chaves {}"], "a": 1, "hint": "Compare o tipo de cada elemento com o tipo declarado do array.", "ex": "O array foi declarado como string[], então o valor numérico 3 é incompatível.", "format": "ENCONTRE O ERRO" }
+      ]
+    },
+    {
+      "id": "typescript-5",
+      "name": "TUPLAS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#f6c445",
+      "icon": "▤",
+      "summary": "Use tuplas para representar arrays de tamanho fixo com tipos por posição.",
+      "lesson": [
+        { "title": "O que é uma tupla", "body": "Uma tupla é um array de tamanho fixo onde cada posição tem um tipo específico. É útil para representar pares ou registros pequenos, como coordenadas ou pares chave-valor.", "code": "let coordenada: [number, number] = [10, 20];\nlet usuario: [string, number] = [\"Ana\", 30];" },
+        { "title": "Diferença entre tupla e array comum", "body": "Um array comum (string[]) pode ter qualquer quantidade de elementos, todos do mesmo tipo. Uma tupla tem quantidade fixa e cada posição pode ter um tipo diferente, respeitando a ordem declarada.", "code": "let par: [string, boolean] = [\"ativo\", true];\n// par = [true, \"ativo\"]; // erro: ordem dos tipos trocada" }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "O que caracteriza uma tupla em TypeScript?", "opts": ["Um array que só aceita números", "Um array de tamanho fixo com tipo definido para cada posição", "Um objeto com chaves e valores", "Uma função que retorna múltiplos valores"], "a": 1, "hint": "Pense na ordem e quantidade de elementos.", "ex": "Tuplas definem exatamente quantos elementos existem e o tipo de cada posição.", "format": "CONCEITO" },
+        { "type": "code", "q": "Qual declaração está correta para representar um nome (string) e uma idade (number), nessa ordem?", "opts": ["let pessoa: [number, string] = [\"Ana\", 30];", "let pessoa: [string, number] = [\"Ana\", 30];", "let pessoa: [string, number] = [30, \"Ana\"];", "let pessoa: (string, number) = [\"Ana\", 30];"], "a": 1, "hint": "A ordem dos tipos na tupla deve bater com a ordem dos valores.", "ex": "[string, number] = [\"Ana\", 30] respeita a ordem: primeiro string, depois number.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "code", "q": "O que acontece com este código?\nlet ponto: [number, number] = [5, 10, 15];", "opts": ["Funciona normalmente, tuplas aceitam elementos extras", "Gera erro, pois a tupla foi declarada com exatamente 2 posições", "O terceiro valor é ignorado silenciosamente", "Transforma automaticamente a tupla em array comum"], "a": 1, "hint": "Conte quantas posições foram declaradas no tipo da tupla.", "ex": "A tupla [number, number] espera exatamente dois elementos, então um terceiro valor gera erro.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Em qual cenário faz mais sentido usar uma tupla em vez de um array comum?", "opts": ["Uma lista de milhares de produtos do mesmo tipo", "Um par fixo como [latitude, longitude]", "Uma lista de nomes de usuários que pode crescer", "Uma coleção de textos de tamanho variável"], "a": 1, "hint": "Pense em uma estrutura com quantidade e ordem fixas.", "ex": "Pares fixos como coordenadas se beneficiam da ordem e tamanho garantidos pela tupla.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "typescript-6",
+      "name": "ENUMS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#f6c445",
+      "icon": "◈",
+      "summary": "Use enums para representar um conjunto fixo de valores nomeados.",
+      "lesson": [
+        { "title": "Criando um enum", "body": "Um enum define um conjunto de valores nomeados relacionados, como status de um pedido. Por padrão, cada membro recebe um número sequencial começando em 0, mas você pode atribuir valores manualmente.", "code": "enum StatusPedido {\n  Pendente,\n  Enviado,\n  Entregue\n}\nlet status: StatusPedido = StatusPedido.Enviado;" },
+        { "title": "Enums de string", "body": "Enums também podem usar strings como valores, o que torna o código mais legível ao depurar, já que o valor final não é apenas um número.", "code": "enum Cor {\n  Vermelho = \"VERMELHO\",\n  Verde = \"VERDE\",\n  Azul = \"AZUL\"\n}" }
+      ],
+      "questions": [
+        { "type": "code", "q": "Qual é o valor numérico padrão do primeiro membro de um enum sem valores atribuídos?\nenum Nivel { Baixo, Medio, Alto }", "opts": ["1", "0", "-1", "Não tem valor até ser usado"], "a": 1, "hint": "Enums numéricos começam a contar a partir de um número bem pequeno.", "ex": "Por padrão, o primeiro membro de um enum numérico recebe o valor 0, e os seguintes incrementam a partir dele.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "Qual a vantagem de um enum de strings sobre um enum numérico padrão?", "opts": ["Ocupa menos memória", "É mais fácil de ler ao depurar, pois o valor mostra o próprio nome", "Só enums de string podem ser comparados", "Não existe diferença prática"], "a": 1, "hint": "Pense no que aparece no console ao inspecionar a variável.", "ex": "Um enum de string exibe o próprio nome do valor ao ser depurado, facilitando a leitura.", "format": "CONCEITO" },
+        { "type": "code", "q": "Considerando o enum abaixo, qual é o valor de StatusPedido.Entregue?\nenum StatusPedido {\n  Pendente,\n  Enviado,\n  Entregue\n}", "opts": ["0", "1", "2", "\"Entregue\""], "a": 2, "hint": "Conte a posição de Entregue a partir de 0.", "ex": "Pendente é 0, Enviado é 1, e Entregue é 2, pois os valores numéricos incrementam sequencialmente.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Quando faz mais sentido usar um enum em vez de um union type de strings literais?", "opts": ["Nunca, union types sempre são superiores", "Quando se quer um conjunto nomeado e reutilizável de constantes relacionadas em várias partes do código", "Apenas quando o valor precisa ser um número decimal", "Enums só existem em JavaScript, não em TypeScript"], "a": 1, "hint": "Pense em um agrupamento nomeado de opções fixas usado repetidamente.", "ex": "Enums são úteis quando você quer nomear e agrupar um conjunto fixo e reutilizável de valores relacionados.", "format": "DECISÃO DE CÓDIGO" }
+      ]
+    },
+    {
+      "id": "typescript-7",
+      "name": "UNION E INTERSECTION TYPES",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#f6c445",
+      "icon": "▦",
+      "summary": "Combine tipos com union (|) e intersection (&) para criar tipos mais expressivos.",
+      "lesson": [
+        { "title": "Union types", "body": "Um union type permite que uma variável aceite mais de um tipo possível, usando o símbolo |. É comum para representar um valor que pode ser, por exemplo, string ou number.", "code": "let id: string | number;\nid = 101;\nid = \"ABC-101\";" },
+        { "title": "Intersection types", "body": "Um intersection type combina múltiplos tipos em um só, usando o símbolo &. O valor final deve satisfazer todas as propriedades de todos os tipos combinados.", "code": "type ComNome = { nome: string };\ntype ComIdade = { idade: number };\ntype Pessoa = ComNome & ComIdade;\nlet p: Pessoa = { nome: \"Ana\", idade: 30 };" }
+      ],
+      "questions": [
+        { "type": "code", "q": "Qual valor é válido para a variável abaixo?\nlet codigo: string | number;", "opts": ["Apenas valores string", "Apenas valores number", "Valores do tipo string ou number", "Valores booleanos"], "a": 2, "hint": "O símbolo | indica uma escolha entre tipos.", "ex": "O union type string | number aceita valores de qualquer um dos dois tipos.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "O que um intersection type (&) exige do valor atribuído a ele?", "opts": ["Que o valor satisfaça apenas um dos tipos combinados", "Que o valor satisfaça todas as propriedades de todos os tipos combinados", "Que o valor seja sempre um número", "Que o valor seja nulo"], "a": 1, "hint": "Pense em 'interseção' como algo que precisa cumprir todas as condições ao mesmo tempo.", "ex": "Um intersection type exige que o valor tenha todas as propriedades de cada tipo combinado.", "format": "CONCEITO" },
+        { "type": "code", "q": "Encontre o erro:\nlet resultado: string | number;\nresultado = true;", "opts": ["Não há erro, o TypeScript aceita boolean nesse caso", "O valor true é do tipo boolean, que não faz parte da union string | number", "O erro é a falta de aspas em true", "O erro é usar let em vez de const"], "a": 1, "hint": "Compare o tipo do valor atribuído com os tipos permitidos na união.", "ex": "A união permite apenas string ou number, então atribuir um boolean gera erro de tipo.", "format": "ENCONTRE O ERRO" },
+        { "type": "code", "q": "Dado o código abaixo, qual afirmação está correta?\ntype A = { x: number };\ntype B = { y: number };\ntype C = A & B;\nlet obj: C = { x: 1 };", "opts": ["O código compila normalmente, pois y é opcional", "O código gera erro, pois C exige tanto x quanto y", "O código gera erro porque A e B não podem se combinar", "O código compila e obj.y vale undefined"], "a": 1, "hint": "Lembre que & exige todas as propriedades de ambos os tipos.", "ex": "Como C é A & B, o objeto precisa ter tanto x quanto y; faltando y, ocorre erro de tipo.", "format": "PREVISÃO DE RESULTADO" }
+      ]
+    },
+    {
+      "id": "typescript-8",
+      "name": "DEFININDO INTERFACES",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#22c55e",
+      "icon": "▣",
+      "summary": "Modele a forma de objetos com interfaces e propriedades opcionais.",
+      "lesson": [
+        { "title": "Criando uma interface", "body": "Uma interface descreve a forma esperada de um objeto: quais propriedades existem e de que tipo. Objetos que não seguem exatamente essa forma geram erro de compilação.", "code": "interface Produto {\n  nome: string;\n  preco: number;\n}\nconst item: Produto = { nome: \"Caneta\", preco: 2.5 };" },
+        { "title": "Propriedades opcionais e readonly", "body": "Usar ? torna uma propriedade opcional, permitindo objetos sem ela. O modificador readonly impede que a propriedade seja alterada depois da criação do objeto.", "code": "interface Usuario {\n  readonly id: number;\n  nome: string;\n  apelido?: string;\n}" }
+      ],
+      "questions": [
+        { "type": "code", "q": "O objeto abaixo respeita a interface Produto?\ninterface Produto {\n  nome: string;\n  preco: number;\n}\nconst item = { nome: \"Caneta\" };\nconst p: Produto = item;", "opts": ["Sim, pois nome já é suficiente", "Não, falta a propriedade obrigatória preco", "Sim, preco é sempre opcional em interfaces", "Não, porque nome deveria ser number"], "a": 1, "hint": "Verifique se todas as propriedades obrigatórias da interface estão presentes no objeto.", "ex": "A interface exige preco como obrigatório; como o objeto não tem essa propriedade, o código gera erro.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "O que o símbolo ? indica em uma propriedade de interface?", "opts": ["Que a propriedade é do tipo boolean", "Que a propriedade é opcional", "Que a propriedade é somente leitura", "Que a propriedade aceita qualquer tipo"], "a": 1, "hint": "Pense em uma propriedade que pode ou não estar presente no objeto.", "ex": "O símbolo ? torna a propriedade opcional, permitindo objetos com ou sem ela.", "format": "CONCEITO" },
+        { "type": "code", "q": "O que acontece ao tentar alterar uma propriedade readonly depois da criação do objeto?\ninterface Usuario {\n  readonly id: number;\n}\nconst u: Usuario = { id: 1 };\nu.id = 2;", "opts": ["Funciona normalmente, readonly só afeta arrays", "Gera erro de compilação, pois id não pode ser reatribuído", "O valor de id vira undefined", "readonly só funciona em classes, não em interfaces"], "a": 1, "hint": "Pense no significado da palavra readonly.", "ex": "Uma propriedade readonly só pode ser definida na criação do objeto; tentar reatribuí-la depois gera erro.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Qual é o principal propósito de uma interface em TypeScript?", "opts": ["Executar código em tempo de execução como uma função", "Descrever a forma esperada de um objeto, sem gerar código JS", "Armazenar dados em um banco de dados", "Substituir totalmente as classes"], "a": 1, "hint": "Interfaces existem apenas durante a checagem de tipos.", "ex": "Interfaces servem para descrever contratos de forma de objetos e desaparecem na compilação para JS.", "format": "CONCEITO" }
+      ]
+    },
+    {
+      "id": "typescript-9",
+      "name": "TYPE ALIAS VS INTERFACE",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#22c55e",
+      "icon": "◐",
+      "summary": "Compare type alias e interface e saiba quando usar cada um.",
+      "lesson": [
+        { "title": "Type alias", "body": "Um type alias cria um nome para qualquer tipo, incluindo primitivos, unions e objetos. É mais flexível que interface para representar tipos que não são apenas objetos.", "code": "type ID = string | number;\ntype Ponto = { x: number; y: number };" },
+        { "title": "Semelhanças e diferenças", "body": "Tanto type quanto interface podem descrever a forma de objetos. A principal diferença prática é que interfaces podem ser reabertas e estendidas (declaration merging), enquanto type alias não pode ser redeclarado com o mesmo nome.", "code": "interface Config { modo: string }\ninterface Config { debug: boolean } // mescla automaticamente\n// type Config2 = { modo: string }\n// type Config2 = { debug: boolean } // erro: identificador duplicado" }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Qual das opções abaixo só pode ser feita com type alias, não com interface?", "opts": ["Descrever a forma de um objeto", "Criar um alias para um union type como string | number", "Declarar uma propriedade opcional", "Declarar uma propriedade readonly"], "a": 1, "hint": "Pense em um tipo que não é um objeto, mas uma combinação de tipos primitivos.", "ex": "Union types como string | number só podem ser nomeados com type alias, não com interface.", "format": "CONCEITO" },
+        { "type": "code", "q": "O que acontece com este código?\ninterface Config { modo: string }\ninterface Config { debug: boolean }\nconst c: Config = { modo: \"prod\", debug: true };", "opts": ["Gera erro, pois Config foi declarada duas vezes", "Funciona normalmente: as duas declarações se mesclam em uma única interface", "Apenas a segunda declaração de Config é considerada", "c precisa ter apenas a propriedade debug"], "a": 1, "hint": "Lembre do comportamento de declaration merging em interfaces.", "ex": "Interfaces com o mesmo nome se mesclam automaticamente, então Config passa a exigir modo e debug.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Qual afirmação sobre type alias é verdadeira?", "opts": ["Não pode ser redeclarado com o mesmo nome no mesmo escopo", "Só pode representar tipos primitivos", "Nunca pode descrever a forma de um objeto", "É exclusivo de arquivos .tsx"], "a": 0, "hint": "Pense na diferença em relação à mesclagem de interfaces.", "ex": "Diferente de interface, declarar um type alias duas vezes com o mesmo nome no mesmo escopo gera erro.", "format": "CONCEITO" },
+        { "type": "code", "q": "Qual é a forma mais adequada de nomear o tipo abaixo?\n// Um valor que pode ser \"ativo\" ou \"inativo\"", "opts": ["interface Status { \"ativo\" | \"inativo\" }", "type Status = \"ativo\" | \"inativo\";", "class Status = \"ativo\" | \"inativo\";", "enum Status: \"ativo\" | \"inativo\""], "a": 1, "hint": "Pense em qual das duas ferramentas aceita unions de valores literais.", "ex": "type alias é a forma correta de nomear um union de strings literais como \"ativo\" | \"inativo\".", "format": "DECISÃO DE CÓDIGO" }
+      ]
+    },
+    {
+      "id": "typescript-10",
+      "name": "EXTENDS EM INTERFACES",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#22c55e",
+      "icon": "✓",
+      "summary": "Reaproveite estruturas com herança de interfaces usando extends.",
+      "lesson": [
+        { "title": "Estendendo interfaces", "body": "Uma interface pode herdar propriedades de outra usando extends, evitando repetição de código. A interface filha tem todas as propriedades da interface pai, além das próprias.", "code": "interface Animal {\n  nome: string;\n}\ninterface Cachorro extends Animal {\n  raca: string;\n}\nconst rex: Cachorro = { nome: \"Rex\", raca: \"Labrador\" };" },
+        { "title": "Herança múltipla", "body": "Uma interface pode estender mais de uma interface ao mesmo tempo, separando os nomes por vírgula. O objeto final precisa satisfazer as propriedades de todas as interfaces combinadas.", "code": "interface ComData { criadoEm: Date }\ninterface ComAutor { autor: string }\ninterface Post extends ComData, ComAutor {\n  titulo: string;\n}" }
+      ],
+      "questions": [
+        { "type": "code", "q": "O objeto abaixo é válido?\ninterface Animal { nome: string }\ninterface Cachorro extends Animal { raca: string }\nconst rex: Cachorro = { raca: \"Labrador\" };", "opts": ["Sim, raca é a única propriedade obrigatória", "Não, falta a propriedade nome herdada de Animal", "Sim, nome é opcional por padrão em heranças", "Não, porque extends não existe em interfaces"], "a": 1, "hint": "Lembre que a interface filha herda as obrigações da interface pai.", "ex": "Como Cachorro estende Animal, o objeto precisa ter tanto nome quanto raca.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "Qual é o benefício de usar extends entre interfaces?", "opts": ["Diminuir a performance do compilador", "Reaproveitar propriedades comuns sem repetir código", "Transformar a interface em uma classe", "Impedir que a interface seja usada em objetos"], "a": 1, "hint": "Pense em evitar repetição de propriedades comuns entre estruturas parecidas.", "ex": "extends permite reaproveitar propriedades de uma interface base em interfaces mais específicas.", "format": "CONCEITO" },
+        { "type": "code", "q": "Dado o código, quais propriedades o objeto post precisa ter?\ninterface ComData { criadoEm: Date }\ninterface ComAutor { autor: string }\ninterface Post extends ComData, ComAutor {\n  titulo: string;\n}", "opts": ["Apenas titulo", "titulo e criadoEm apenas", "titulo, criadoEm e autor", "Nenhuma, todas são opcionais"], "a": 2, "hint": "Some as propriedades próprias de Post com as de todas as interfaces estendidas.", "ex": "Post herda criadoEm e autor de suas interfaces base, além de definir titulo, então todas as três são obrigatórias.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Interfaces em TypeScript podem estender mais de uma interface ao mesmo tempo?", "opts": ["Não, apenas uma interface por vez", "Sim, separando os nomes por vírgula em extends", "Sim, mas só usando a palavra-chave implements", "Não, isso só é possível em classes"], "a": 1, "hint": "Pense na sintaxe de extends com múltiplos nomes.", "ex": "TypeScript permite herança múltipla de interfaces listando os nomes separados por vírgula após extends.", "format": "CONCEITO" }
+      ]
+    },
+    {
+      "id": "typescript-11",
+      "name": "PARÂMETROS TIPADOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#34d399",
+      "icon": "⌗",
+      "summary": "Tipe parâmetros de funções, incluindo opcionais e valores padrão.",
+      "lesson": [
+        { "title": "Tipando parâmetros e retorno", "body": "Cada parâmetro de uma função pode ter um tipo declarado, e o tipo de retorno também pode ser anotado após os parênteses. Isso evita chamar a função com argumentos incorretos.", "code": "function somar(a: number, b: number): number {\n  return a + b;\n}" },
+        { "title": "Parâmetros opcionais e padrão", "body": "Um parâmetro opcional é marcado com ?, e deve vir depois dos obrigatórios. Um parâmetro com valor padrão já assume um tipo inferido a partir desse valor e pode ser omitido na chamada.", "code": "function saudacao(nome: string, saudacaoTexto: string = \"Olá\"): string {\n  return `${saudacaoTexto}, ${nome}!`;\n}" }
+      ],
+      "questions": [
+        { "type": "code", "q": "Qual chamada é válida para a função abaixo?\nfunction somar(a: number, b: number): number {\n  return a + b;\n}", "opts": ["somar(\"2\", \"3\")", "somar(2, 3)", "somar(2)", "somar(2, 3, 4)"], "a": 1, "hint": "Verifique quantos parâmetros a função exige e de que tipo.", "ex": "A função exige exatamente dois argumentos do tipo number, então somar(2, 3) é a chamada correta.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "code", "q": "Encontre o erro na declaração da função:\nfunction saudacao(nome?: string, sobrenome: string): string {\n  return nome + sobrenome;\n}", "opts": ["Não há erro nesse código", "Um parâmetro opcional não pode vir antes de um obrigatório", "Faltam aspas em string", "A função não pode retornar string"], "a": 1, "hint": "Observe a ordem dos parâmetros opcional e obrigatório.", "ex": "Parâmetros opcionais devem sempre vir depois dos obrigatórios, nunca antes.", "format": "ENCONTRE O ERRO" },
+        { "type": "code", "q": "Qual é o tipo de retorno inferido para a função abaixo, mesmo sem anotação explícita?\nfunction dobrar(x: number) {\n  return x * 2;\n}", "opts": ["string", "number", "boolean", "void"], "a": 1, "hint": "Veja o tipo do valor retornado pela expressão x * 2.", "ex": "Como x é number e a multiplicação de números resulta em number, o TypeScript infere o retorno como number.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "O que o tipo de retorno void indica em uma função?", "opts": ["Que a função sempre retorna null", "Que a função não retorna um valor utilizável", "Que a função retorna qualquer tipo", "Que a função é assíncrona"], "a": 1, "hint": "Pense em funções que só executam uma ação, como imprimir no console.", "ex": "void indica que a função não produz um valor de retorno útil, como uma função que só executa console.log.", "format": "CONCEITO" }
+      ]
+    },
+    {
+      "id": "typescript-12",
+      "name": "OVERLOADS DE FUNÇÃO",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#34d399",
+      "icon": "◫",
+      "summary": "Declare múltiplas assinaturas para uma mesma função com overloads.",
+      "lesson": [
+        { "title": "Por que usar overloads", "body": "Overloads permitem declarar várias assinaturas possíveis para a mesma função, quando o comportamento ou o tipo de retorno muda conforme os tipos dos argumentos recebidos.", "code": "function combinar(a: string, b: string): string;\nfunction combinar(a: number, b: number): number;\nfunction combinar(a: any, b: any): any {\n  return a + b;\n}" },
+        { "title": "A implementação real", "body": "A última assinatura da função, com tipos amplos como any, é a implementação de fato e não aparece para quem chama a função — apenas as assinaturas declaradas antes dela ficam visíveis.", "code": "combinar(\"a\", \"b\"); // ok, retorna string\ncombinar(1, 2);      // ok, retorna number\n// combinar(\"a\", 2); // erro: nenhuma assinatura combina" }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Qual é o propósito de declarar overloads em uma função TypeScript?", "opts": ["Tornar a função mais rápida em tempo de execução", "Permitir múltiplas assinaturas de tipos para a mesma função", "Impedir que a função seja chamada mais de uma vez", "Transformar a função em uma classe"], "a": 1, "hint": "Pense em uma função cujo comportamento de tipos muda conforme os argumentos.", "ex": "Overloads permitem descrever diferentes combinações válidas de parâmetros e retornos para a mesma função.", "format": "CONCEITO" },
+        { "type": "code", "q": "Considerando o código abaixo, o que acontece com a chamada combinar(\"a\", 2)?\nfunction combinar(a: string, b: string): string;\nfunction combinar(a: number, b: number): number;\nfunction combinar(a: any, b: any): any {\n  return a + b;\n}\ncombinar(\"a\", 2);", "opts": ["Retorna a string \"a2\"", "Gera erro de compilação, pois nenhuma assinatura aceita string e number juntos", "Retorna o número 2", "Retorna undefined"], "a": 1, "hint": "Compare os tipos dos argumentos com cada assinatura declarada.", "ex": "Nenhuma das assinaturas declaradas aceita uma combinação de string e number, então a chamada gera erro.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Qual das assinaturas em uma função com overloads é a que realmente executa o código?", "opts": ["A primeira assinatura declarada", "A última assinatura, que contém a implementação", "Todas executam simultaneamente", "Nenhuma, overloads não têm implementação"], "a": 1, "hint": "Pense em qual assinatura tem um corpo de função com chaves e código.", "ex": "A última assinatura, com a implementação de fato, é a que efetivamente executa quando a função é chamada.", "format": "CONCEITO" },
+        { "type": "code", "q": "Qual chamada é válida para as assinaturas abaixo?\nfunction formatar(valor: number): string;\nfunction formatar(valor: boolean): string;\nfunction formatar(valor: any): string {\n  return String(valor);\n}", "opts": ["formatar(\"texto\")", "formatar(10)", "formatar([1, 2, 3])", "formatar({ chave: 1 })"], "a": 1, "hint": "Verifique quais tipos aparecem nas assinaturas declaradas antes da implementação.", "ex": "Apenas number e boolean são aceitos pelas assinaturas declaradas, então formatar(10) é válida.", "format": "DECISÃO DE CÓDIGO" }
+      ]
+    },
+    {
+      "id": "typescript-13",
+      "name": "FUNÇÕES COMO TIPOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#34d399",
+      "icon": "⌕",
+      "summary": "Declare o tipo de uma função e use-o para tipar callbacks e variáveis.",
+      "lesson": [
+        { "title": "Tipo de função com type alias", "body": "É possível declarar o formato completo de uma função (parâmetros e retorno) como um type alias, e usar esse tipo para variáveis que armazenam funções ou para parâmetros de callback.", "code": "type Operacao = (a: number, b: number) => number;\nconst somar: Operacao = (a, b) => a + b;" },
+        { "title": "Tipando callbacks", "body": "Quando uma função recebe outra função como argumento (callback), o parâmetro pode ser tipado diretamente com a assinatura esperada, garantindo que apenas funções compatíveis sejam passadas.", "code": "function executar(callback: (msg: string) => void) {\n  callback(\"Concluído\");\n}\nexecutar((msg) => console.log(msg));" }
+      ],
+      "questions": [
+        { "type": "code", "q": "O código abaixo compila sem erro?\ntype Operacao = (a: number, b: number) => number;\nconst multiplicar: Operacao = (a, b) => a * b;", "opts": ["Sim, a função respeita a assinatura de Operacao", "Não, pois multiplicar deveria retornar string", "Não, faltam anotações de tipo em a e b dentro da função", "Sim, mas apenas se a função usar var em vez de const"], "a": 0, "hint": "Compare os parâmetros e o retorno da função com o type alias Operacao.", "ex": "A função recebe dois números e retorna um número, exatamente como Operacao especifica.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "Qual é a vantagem de tipar um parâmetro de callback com uma assinatura de função?", "opts": ["Impede que a função seja chamada mais de uma vez", "Garante que apenas funções com a assinatura correta possam ser passadas como argumento", "Torna o callback mais rápido", "Elimina a necessidade de chamar a função"], "a": 1, "hint": "Pense em evitar passar uma função com parâmetros ou retorno incompatíveis.", "ex": "Tipar o callback garante, em tempo de compilação, que a função passada tem os parâmetros e retorno esperados.", "format": "CONCEITO" },
+        { "type": "code", "q": "Encontre o erro:\nfunction executar(callback: (msg: string) => void) {\n  callback(\"Concluído\");\n}\nexecutar((msg: number) => console.log(msg));", "opts": ["Não há erro nesse código", "O callback foi passado com o parâmetro tipado como number, mas era esperado string", "A função executar não pode receber callbacks", "Falta o tipo de retorno na função executar"], "a": 1, "hint": "Compare o tipo do parâmetro msg na assinatura esperada e na função passada.", "ex": "A assinatura esperada exige um parâmetro string, mas o callback foi declarado com número, gerando incompatibilidade.", "format": "ENCONTRE O ERRO" },
+        { "type": "mcq", "q": "Qual sintaxe representa corretamente o tipo de uma função que recebe um número e retorna um boolean?", "opts": ["(n: number) => boolean", "function(n: number): boolean", "boolean(n: number)", "n: number -> boolean"], "a": 0, "hint": "Lembre-se da seta usada para indicar o retorno em tipos de função.", "ex": "A sintaxe (n: number) => boolean descreve uma função que recebe number e retorna boolean.", "format": "CONCEITO" }
+      ]
+    },
+    {
+      "id": "typescript-14",
+      "name": "CLASSES E MODIFICADORES DE ACESSO",
+      "difficulty": "AVANÇADO",
+      "color": "#1cb0f6",
+      "icon": "◧",
+      "summary": "Controle a visibilidade de propriedades com public, private e protected.",
+      "lesson": [
+        { "title": "Modificadores de acesso", "body": "TypeScript adiciona modificadores de acesso às classes: public (padrão, acessível de qualquer lugar), private (só acessível dentro da própria classe) e protected (acessível na classe e em subclasses).", "code": "class ContaBancaria {\n  private saldo: number;\n  constructor(saldoInicial: number) {\n    this.saldo = saldoInicial;\n  }\n  consultarSaldo(): number {\n    return this.saldo;\n  }\n}" },
+        { "title": "Parâmetros de construtor abreviados", "body": "TypeScript permite declarar e inicializar propriedades diretamente nos parâmetros do construtor, adicionando o modificador de acesso antes do nome do parâmetro, o que reduz código repetido.", "code": "class Pessoa {\n  constructor(public nome: string, private idade: number) {}\n}" }
+      ],
+      "questions": [
+        { "type": "code", "q": "O que acontece ao executar este código?\nclass ContaBancaria {\n  private saldo: number = 100;\n}\nconst conta = new ContaBancaria();\nconsole.log(conta.saldo);", "opts": ["Imprime 100 normalmente", "Gera erro de compilação, pois saldo é private e não pode ser acessado fora da classe", "Imprime undefined", "Funciona, mas apenas em modo estrito"], "a": 1, "hint": "Pense no que private impede de fazer fora da classe.", "ex": "A propriedade saldo é private, então acessá-la diretamente fora da classe ContaBancaria gera erro de compilação.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Qual modificador permite acesso à propriedade dentro da própria classe e em suas subclasses, mas não fora delas?", "opts": ["public", "private", "protected", "readonly"], "a": 2, "hint": "Pense no modificador intermediário entre público e totalmente privado.", "ex": "protected libera o acesso para a classe e suas subclasses, mas bloqueia o acesso externo.", "format": "CONCEITO" },
+        { "type": "code", "q": "O que este construtor abreviado faz?\nclass Pessoa {\n  constructor(public nome: string, private idade: number) {}\n}", "opts": ["Declara e inicializa nome como pública e idade como privada automaticamente", "Apenas declara os parâmetros sem criar propriedades na classe", "Gera erro, pois construtores não aceitam modificadores de acesso", "Torna nome e idade propriedades estáticas"], "a": 0, "hint": "Observe onde os modificadores de acesso aparecem: antes dos parâmetros do construtor.", "ex": "Colocar public ou private antes de um parâmetro do construtor cria e inicializa automaticamente a propriedade correspondente.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "Qual é o modificador de acesso padrão de uma propriedade de classe em TypeScript quando nenhum é especificado?", "opts": ["private", "protected", "public", "readonly"], "a": 2, "hint": "Pense no comportamento equivalente ao JavaScript comum, sem restrições.", "ex": "Quando nenhum modificador é escrito, a propriedade é public por padrão, acessível de qualquer lugar.", "format": "CONCEITO" }
+      ]
+    },
+    {
+      "id": "typescript-15",
+      "name": "IMPLEMENTS E CLASSES ABSTRATAS",
+      "difficulty": "AVANÇADO",
+      "color": "#1cb0f6",
+      "icon": "⇄",
+      "summary": "Use implements para cumprir contratos de interface e classes abstract como base.",
+      "lesson": [
+        { "title": "implements", "body": "Uma classe pode declarar que implementa uma interface usando implements, garantindo que ela tenha todas as propriedades e métodos exigidos por essa interface.", "code": "interface Forma {\n  calcularArea(): number;\n}\nclass Quadrado implements Forma {\n  constructor(private lado: number) {}\n  calcularArea(): number {\n    return this.lado * this.lado;\n  }\n}" },
+        { "title": "Classes abstratas", "body": "Uma classe abstract não pode ser instanciada diretamente; ela serve como base para outras classes. Métodos marcados como abstract não têm implementação na classe base e devem ser implementados pelas subclasses.", "code": "abstract class Animal {\n  abstract emitirSom(): string;\n  descrever(): string {\n    return `Este animal faz: ${this.emitirSom()}`;\n  }\n}\nclass Gato extends Animal {\n  emitirSom(): string {\n    return \"Miau\";\n  }\n}" }
+      ],
+      "questions": [
+        { "type": "code", "q": "O que acontece com este código?\nabstract class Animal {\n  abstract emitirSom(): string;\n}\nconst a = new Animal();", "opts": ["Funciona normalmente, criando uma instância genérica", "Gera erro de compilação, pois classes abstract não podem ser instanciadas diretamente", "Cria um objeto vazio sem métodos", "Só funciona se Animal tiver um construtor vazio"], "a": 1, "hint": "Pense no propósito de uma classe declarada como abstract.", "ex": "Classes abstract servem apenas como base para herança e não podem ser instanciadas diretamente.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "O que a palavra-chave implements garante em uma classe?", "opts": ["Que a classe herda toda a implementação de outra classe", "Que a classe cumpre o contrato de propriedades e métodos definido por uma interface", "Que a classe se torna abstrata", "Que a classe não pode ser instanciada"], "a": 1, "hint": "Pense em um contrato que a classe promete cumprir.", "ex": "implements obriga a classe a fornecer todas as propriedades e métodos exigidos pela interface.", "format": "CONCEITO" },
+        { "type": "code", "q": "Encontre o erro:\ninterface Forma {\n  calcularArea(): number;\n}\nclass Circulo implements Forma {\n  constructor(private raio: number) {}\n}", "opts": ["Não há erro nesse código", "A classe Circulo não implementou o método calcularArea exigido pela interface Forma", "raio deveria ser public, não private", "A interface Forma não pode ter métodos"], "a": 1, "hint": "Compare os métodos exigidos pela interface com os métodos definidos na classe.", "ex": "A interface Forma exige o método calcularArea, mas a classe Circulo não o implementou, gerando erro.", "format": "ENCONTRE O ERRO" },
+        { "type": "mcq", "q": "Em uma classe abstrata, o que caracteriza um método marcado como abstract?", "opts": ["Ele já vem com uma implementação padrão pronta", "Ele não tem implementação na classe base e deve ser implementado pelas subclasses", "Ele só pode ser chamado fora da classe", "Ele é sempre estático"], "a": 1, "hint": "Pense em um método que apenas declara a assinatura, sem corpo.", "ex": "Um método abstract define apenas a assinatura; a implementação real fica a cargo de cada subclasse.", "format": "CONCEITO" }
+      ]
+    },
+    {
+      "id": "typescript-16",
+      "name": "HERANÇA E POLIMORFISMO EM TS",
+      "difficulty": "AVANÇADO",
+      "color": "#1cb0f6",
+      "icon": "⇆",
+      "summary": "Combine extends com tipos para modelar hierarquias de classes seguras.",
+      "lesson": [
+        { "title": "extends em classes", "body": "Uma classe pode herdar de outra usando extends, reaproveitando propriedades e métodos. O construtor da subclasse deve chamar super() antes de acessar this, quando a classe base tem construtor próprio.", "code": "class Veiculo {\n  constructor(protected velocidade: number) {}\n}\nclass Carro extends Veiculo {\n  constructor(velocidade: number, private marca: string) {\n    super(velocidade);\n  }\n}" },
+        { "title": "Polimorfismo com tipos", "body": "Uma variável tipada com a classe base pode receber instâncias de qualquer subclasse. Isso permite escrever funções genéricas que funcionam com toda a hierarquia, chamando métodos sobrescritos de forma polimórfica.", "code": "class Animal {\n  emitirSom(): string { return \"...\"; }\n}\nclass Cachorro extends Animal {\n  emitirSom(): string { return \"Au au\"; }\n}\nfunction apresentar(a: Animal) {\n  console.log(a.emitirSom());\n}\napresentar(new Cachorro());" }
+      ],
+      "questions": [
+        { "type": "code", "q": "O que acontece com este código?\nclass Veiculo {\n  constructor(protected velocidade: number) {}\n}\nclass Carro extends Veiculo {\n  constructor(velocidade: number, private marca: string) {\n    this.marca = marca;\n  }\n}", "opts": ["Compila normalmente sem restrições", "Gera erro, pois super() precisa ser chamado antes de usar this no construtor da subclasse", "Gera erro porque protected não pode ser herdado", "Funciona, mas velocidade fica undefined"], "a": 1, "hint": "Pense na ordem exigida entre chamar a classe base e usar this.", "ex": "Quando a classe base tem construtor, a subclasse deve chamar super() antes de acessar this.", "format": "ENCONTRE O ERRO" },
+        { "type": "mcq", "q": "Por que é possível passar uma instância de Cachorro para uma função que espera o tipo Animal?", "opts": ["Porque TypeScript ignora tipos em tempo de execução", "Porque Cachorro é uma subclasse de Animal, então também satisfaz o tipo Animal", "Porque toda função aceita qualquer tipo por padrão", "Porque Animal e Cachorro são o mesmo tipo"], "a": 1, "hint": "Pense na relação de herança entre as duas classes.", "ex": "Uma subclasse é compatível com o tipo da superclasse, por isso Cachorro pode ser usado onde Animal é esperado.", "format": "CONCEITO" },
+        { "type": "code", "q": "O que a chamada apresentar(new Cachorro()) imprime no console?\nclass Animal {\n  emitirSom(): string { return \"...\"; }\n}\nclass Cachorro extends Animal {\n  emitirSom(): string { return \"Au au\"; }\n}\nfunction apresentar(a: Animal) {\n  console.log(a.emitirSom());\n}", "opts": ["\"...\"", "\"Au au\"", "undefined", "Gera erro de compilação"], "a": 1, "hint": "Pense em qual versão do método emitirSom é executada em tempo real: a da classe base ou a sobrescrita.", "ex": "Como o objeto real é um Cachorro, o método sobrescrito emitirSom da subclasse é o executado, imprimindo \"Au au\".", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "O que é necessário chamar no construtor de uma subclasse antes de usar 'this', quando a classe base tem construtor próprio?", "opts": ["this.super()", "super()", "base()", "extends()"], "a": 1, "hint": "É uma palavra-chave específica para chamar o construtor da classe pai.", "ex": "super() invoca o construtor da classe base e deve ser chamado antes de usar this na subclasse.", "format": "CONCEITO" }
+      ]
+    },
+    {
+      "id": "typescript-17",
+      "name": "FUNÇÕES GENÉRICAS",
+      "difficulty": "AVANÇADO",
+      "color": "#0ea5e9",
+      "icon": "▧",
+      "summary": "Crie funções que funcionam com qualquer tipo, preservando a segurança de tipos.",
+      "lesson": [
+        { "title": "O problema que generics resolve", "body": "Sem generics, uma função que precisa aceitar qualquer tipo teria que usar any, perdendo a checagem de tipo do retorno. Generics permitem capturar o tipo de entrada e reutilizá-lo no retorno.", "code": "function identidade<T>(valor: T): T {\n  return valor;\n}\nlet a = identidade<number>(10); // a: number\nlet b = identidade(\"oi\");       // b: string, inferido" },
+        { "title": "Generics com arrays", "body": "Generics são muito usados com arrays e coleções, permitindo escrever uma única função que funciona para arrays de qualquer tipo, mantendo o tipo correto no retorno.", "code": "function primeiroItem<T>(lista: T[]): T {\n  return lista[0];\n}\nconst n = primeiroItem([1, 2, 3]);       // number\nconst s = primeiroItem([\"a\", \"b\"]);      // string" }
+      ],
+      "questions": [
+        { "type": "code", "q": "Qual é o tipo de retorno inferido na chamada abaixo?\nfunction identidade<T>(valor: T): T {\n  return valor;\n}\nconst resultado = identidade(\"TypeScript\");", "opts": ["any", "string", "T (sem resolver)", "unknown"], "a": 1, "hint": "Observe o tipo do argumento passado na chamada.", "ex": "Como o argumento é uma string, T é inferido como string, e o retorno também é string.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "Qual é a principal vantagem de usar generics em vez de any em uma função?", "opts": ["Generics tornam o código mais lento", "Generics preservam a relação entre o tipo de entrada e o tipo de saída, mantendo a checagem de tipos", "any e generics têm exatamente o mesmo efeito", "Generics eliminam a necessidade de parâmetros"], "a": 1, "hint": "Pense em uma função identidade: com any, o tipo de retorno se perde.", "ex": "Diferente de any, generics mantêm o vínculo entre o tipo de entrada e o tipo de saída, preservando a segurança de tipos.", "format": "CONCEITO" },
+        { "type": "code", "q": "O que a chamada abaixo retorna, e de que tipo?\nfunction primeiroItem<T>(lista: T[]): T {\n  return lista[0];\n}\nconst resultado = primeiroItem([10, 20, 30]);", "opts": ["Retorna 10, do tipo number", "Retorna [10, 20, 30], do tipo number[]", "Retorna undefined, do tipo any", "Gera erro de compilação"], "a": 0, "hint": "Veja qual elemento do array a função acessa e qual é o tipo dos elementos.", "ex": "A função retorna o primeiro elemento do array, que é 10, e como o array é number[], T é inferido como number.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "code", "q": "Qual declaração de função genérica está sintaticamente correta?", "opts": ["function embrulhar[T](valor: T): T[] { return [valor]; }", "function embrulhar<T>(valor: T): T[] { return [valor]; }", "function embrulhar(valor: <T>): T[] { return [valor]; }", "function<T> embrulhar(valor: T): T[] { return [valor]; }"], "a": 1, "hint": "O parâmetro de tipo genérico usa os símbolos < > logo após o nome da função.", "ex": "A sintaxe correta declara o parâmetro genérico entre < > logo após o nome da função, antes dos parênteses.", "format": "DECISÃO DE CÓDIGO" }
+      ]
+    },
+    {
+      "id": "typescript-18",
+      "name": "INTERFACES GENÉRICAS",
+      "difficulty": "AVANÇADO",
+      "color": "#0ea5e9",
+      "icon": "◉",
+      "summary": "Aplique generics em interfaces e types para estruturas reutilizáveis.",
+      "lesson": [
+        { "title": "Interface genérica", "body": "Uma interface pode receber um parâmetro de tipo, permitindo descrever estruturas reutilizáveis, como uma resposta de API que pode carregar qualquer tipo de dado.", "code": "interface Resposta<T> {\n  sucesso: boolean;\n  dados: T;\n}\nconst r: Resposta<string> = { sucesso: true, dados: \"ok\" };\nconst r2: Resposta<number[]> = { sucesso: true, dados: [1, 2, 3] };" },
+        { "title": "Restringindo generics com extends", "body": "É possível restringir quais tipos um generic aceita usando extends dentro dos < >. Isso garante que o tipo genérico tenha pelo menos certas propriedades, permitindo acessá-las com segurança.", "code": "interface TemNome {\n  nome: string;\n}\nfunction mostrarNome<T extends TemNome>(item: T): string {\n  return item.nome;\n}" }
+      ],
+      "questions": [
+        { "type": "code", "q": "Qual declaração usa corretamente a interface genérica abaixo para representar dados do tipo number[]?\ninterface Resposta<T> {\n  sucesso: boolean;\n  dados: T;\n}", "opts": ["const r: Resposta = { sucesso: true, dados: [1,2,3] };", "const r: Resposta<number[]> = { sucesso: true, dados: [1,2,3] };", "const r: Resposta<number> = { sucesso: true, dados: [1,2,3] };", "const r: Resposta[number] = { sucesso: true, dados: [1,2,3] };"], "a": 1, "hint": "O parâmetro genérico deve corresponder exatamente ao tipo do valor de dados.", "ex": "Como dados é um array de números, o tipo genérico correto a informar é number[], usando Resposta<number[]>.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "mcq", "q": "Para que serve restringir um generic com 'extends' dentro dos < >, como em <T extends TemNome>?", "opts": ["Para impedir que a função genérica seja usada", "Para garantir que o tipo T tenha pelo menos as propriedades exigidas por TemNome", "Para transformar T em uma classe abstrata", "Para tornar T obrigatoriamente um array"], "a": 1, "hint": "Pense em acessar uma propriedade específica de um tipo genérico com segurança.", "ex": "A restrição extends garante que qualquer tipo usado como T tenha, no mínimo, as propriedades de TemNome.", "format": "CONCEITO" },
+        { "type": "code", "q": "Encontre o erro:\ninterface TemNome {\n  nome: string;\n}\nfunction mostrarNome<T extends TemNome>(item: T): string {\n  return item.nome;\n}\nmostrarNome({ idade: 30 });", "opts": ["Não há erro nesse código", "O objeto passado não tem a propriedade nome exigida pela restrição TemNome", "A função não aceita objetos como argumento", "extends não pode ser usado com generics"], "a": 1, "hint": "Compare as propriedades do objeto passado com o que a restrição extends exige.", "ex": "Como T deve estender TemNome, o objeto passado precisa ter a propriedade nome, o que não ocorre aqui.", "format": "ENCONTRE O ERRO" },
+        { "type": "mcq", "q": "Qual é a vantagem de uma interface genérica como Resposta<T> em vez de criar uma interface específica para cada tipo de dado?", "opts": ["Reduz a segurança de tipos", "Permite reaproveitar a mesma estrutura para diferentes tipos de dados sem duplicar código", "Faz a interface funcionar apenas com strings", "Elimina a necessidade de tipos em toda a aplicação"], "a": 1, "hint": "Pense em uma resposta de API que pode carregar diferentes tipos de conteúdo.", "ex": "Uma interface genérica evita duplicar a mesma estrutura para cada tipo de dado possível, mantendo reuso e segurança.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "typescript-19",
+      "name": "GENERICS COM MÚLTIPLOS PARÂMETROS",
+      "difficulty": "AVANÇADO",
+      "color": "#0ea5e9",
+      "icon": "⟳",
+      "summary": "Use mais de um parâmetro de tipo genérico para relacionar múltiplos valores.",
+      "lesson": [
+        { "title": "Vários parâmetros de tipo", "body": "Uma função ou interface genérica pode ter mais de um parâmetro de tipo, como <K, V> para representar chave e valor. Cada parâmetro é inferido de forma independente a partir dos argumentos.", "code": "function criarPar<K, V>(chave: K, valor: V): [K, V] {\n  return [chave, valor];\n}\nconst par = criarPar(\"idade\", 30); // [string, number]" },
+        { "title": "Generics em estruturas de mapa", "body": "Interfaces com dois parâmetros genéricos são comuns para representar estruturas de mapeamento, como um dicionário de chave e valor, mantendo os tipos corretos em cada posição.", "code": "interface Mapa<K, V> {\n  chave: K;\n  valor: V;\n}\nconst item: Mapa<string, number> = { chave: \"total\", valor: 100 };" }
+      ],
+      "questions": [
+        { "type": "code", "q": "Qual é o tipo inferido para o retorno da chamada abaixo?\nfunction criarPar<K, V>(chave: K, valor: V): [K, V] {\n  return [chave, valor];\n}\nconst par = criarPar(\"total\", 100);", "opts": ["[number, string]", "[string, number]", "[any, any]", "string"], "a": 1, "hint": "Observe o tipo de cada argumento na ordem em que foram passados.", "ex": "chave é uma string e valor é number, então o retorno é a tupla [string, number].", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "Por que é útil usar dois parâmetros de tipo genérico, como <K, V>, em vez de apenas um <T>?", "opts": ["Porque TypeScript exige pelo menos dois parâmetros genéricos sempre", "Porque permite relacionar e tipar de forma independente duas partes distintas de uma estrutura, como chave e valor", "Porque <T> só funciona com números", "Porque reduz a legibilidade do código"], "a": 1, "hint": "Pense em uma estrutura como um dicionário, que tem duas partes bem distintas.", "ex": "Dois parâmetros genéricos permitem tipar separadamente, por exemplo, a chave e o valor de uma estrutura de mapa.", "format": "CONCEITO" },
+        { "type": "code", "q": "Qual valor é válido para a variável abaixo?\ninterface Mapa<K, V> {\n  chave: K;\n  valor: V;\n}\nconst item: Mapa<string, number> = ???", "opts": ["{ chave: 1, valor: \"total\" }", "{ chave: \"total\", valor: 100 }", "{ chave: \"total\", valor: \"100\" }", "[\"total\", 100]"], "a": 1, "hint": "Compare cada propriedade do objeto com o tipo genérico correspondente na declaração.", "ex": "chave deve ser string e valor deve ser number, o que só ocorre em { chave: \"total\", valor: 100 }.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "code", "q": "O que acontece com este código?\nfunction criarPar<K, V>(chave: K, valor: V): [K, V] {\n  return [chave, valor];\n}\nconst par: [string, number] = criarPar(30, \"idade\");", "opts": ["Funciona normalmente, pois generics ignoram a ordem dos argumentos", "Gera erro, pois a ordem dos tipos inferidos (number, string) não corresponde à anotação [string, number]", "O código corrige automaticamente a ordem dos valores", "par se torna do tipo any"], "a": 1, "hint": "Observe a ordem dos argumentos passados na chamada em relação à anotação de tipo esperada.", "ex": "Como os argumentos foram passados na ordem (number, string), o tipo inferido conflita com a anotação [string, number].", "format": "PREVISÃO DE RESULTADO" }
+      ]
+    },
+    {
+      "id": "typescript-20",
+      "name": "UTILITY TYPES BÁSICOS",
+      "difficulty": "AVANÇADO",
+      "color": "#38bdf8",
+      "icon": "⏱",
+      "summary": "Use Partial, Pick e Omit para transformar tipos existentes.",
+      "lesson": [
+        { "title": "Partial e Required", "body": "Partial<T> transforma todas as propriedades de um tipo em opcionais, útil para atualizações parciais de objetos. Required<T> faz o oposto, tornando todas as propriedades obrigatórias.", "code": "interface Produto {\n  nome: string;\n  preco: number;\n}\nfunction atualizar(id: number, dados: Partial<Produto>) {\n  // dados pode ter nome, preco, ou ambos\n}" },
+        { "title": "Pick e Omit", "body": "Pick<T, K> cria um novo tipo contendo apenas as propriedades selecionadas de T. Omit<T, K> faz o inverso: cria um tipo com todas as propriedades de T, exceto as indicadas.", "code": "interface Usuario {\n  id: number;\n  nome: string;\n  senha: string;\n}\ntype UsuarioPublico = Omit<Usuario, \"senha\">;\ntype ResumoUsuario = Pick<Usuario, \"id\" | \"nome\">;" }
+      ],
+      "questions": [
+        { "type": "code", "q": "O que o tipo abaixo permite?\ninterface Produto {\n  nome: string;\n  preco: number;\n}\nfunction atualizar(dados: Partial<Produto>) {}\natualizar({ preco: 15 });", "opts": ["Gera erro, pois falta a propriedade nome", "Funciona normalmente, pois Partial torna todas as propriedades opcionais", "Funciona, mas preco precisa ser string", "Gera erro, pois Partial não aceita objetos parciais"], "a": 1, "hint": "Pense no que Partial faz com as propriedades obrigatórias do tipo original.", "ex": "Partial<Produto> torna nome e preco opcionais, então passar apenas preco é válido.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "O que o utility type Omit<T, K> faz?", "opts": ["Cria um tipo apenas com as propriedades indicadas em K", "Cria um tipo com todas as propriedades de T, exceto as indicadas em K", "Torna todas as propriedades de T opcionais", "Remove o tipo T completamente"], "a": 1, "hint": "Pense na palavra 'omitir' como excluir algo específico.", "ex": "Omit remove as propriedades especificadas em K, mantendo todas as outras propriedades de T.", "format": "CONCEITO" },
+        { "type": "code", "q": "Dado o código abaixo, quais propriedades existem no tipo ResumoUsuario?\ninterface Usuario {\n  id: number;\n  nome: string;\n  senha: string;\n}\ntype ResumoUsuario = Pick<Usuario, \"id\" | \"nome\">;", "opts": ["id, nome e senha", "Apenas id", "id e nome", "Apenas senha"], "a": 2, "hint": "Pick seleciona exatamente as propriedades listadas.", "ex": "Pick<Usuario, \"id\" | \"nome\"> cria um tipo contendo apenas id e nome, excluindo senha.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "Em qual situação faz mais sentido usar Partial<T> em uma função?", "opts": ["Quando todos os campos de um objeto são sempre obrigatórios na chamada", "Quando a função atualiza apenas alguns campos de um objeto, sem exigir todos", "Quando a função nunca recebe objetos como parâmetro", "Quando se quer remover propriedades permanentemente do tipo original"], "a": 1, "hint": "Pense em uma função de atualização parcial, como um PATCH de API.", "ex": "Partial é ideal para funções de atualização parcial, onde nem todos os campos precisam ser enviados de uma vez.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "typescript-21",
+      "name": "RECORD E READONLY",
+      "difficulty": "AVANÇADO",
+      "color": "#38bdf8",
+      "icon": "Ω",
+      "summary": "Modele dicionários com Record e proteja objetos com Readonly.",
+      "lesson": [
+        { "title": "Record para dicionários", "body": "Record<K, V> cria um tipo objeto onde todas as chaves são do tipo K e todos os valores são do tipo V. É muito usado para representar mapas de configuração ou contagens.", "code": "type Estoque = Record<string, number>;\nconst estoque: Estoque = { caneta: 50, caderno: 20 };" },
+        { "title": "Readonly em objetos completos", "body": "Readonly<T> torna todas as propriedades de um tipo somente leitura de uma vez, sem precisar marcar cada propriedade individualmente com readonly.", "code": "interface Config {\n  modo: string;\n}\nconst config: Readonly<Config> = { modo: \"produção\" };\n// config.modo = \"dev\"; // erro: readonly" }
+      ],
+      "questions": [
+        { "type": "code", "q": "Qual declaração usa Record corretamente para representar um dicionário de string para number?", "opts": ["type Estoque = Record<string, number>;", "type Estoque = Record[string, number];", "type Estoque = Record<number>;", "type Estoque = Record(string, number);"], "a": 0, "hint": "Record recebe dois parâmetros genéricos entre < >: o tipo da chave e o tipo do valor.", "ex": "A sintaxe correta é Record<string, number>, definindo o tipo da chave e do valor entre os símbolos < >.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "code", "q": "O que acontece ao executar este código?\ninterface Config {\n  modo: string;\n}\nconst config: Readonly<Config> = { modo: \"produção\" };\nconfig.modo = \"dev\";", "opts": ["Funciona normalmente, alterando modo para \"dev\"", "Gera erro de compilação, pois Readonly torna modo somente leitura", "Cria uma nova propriedade modo2", "config vira undefined"], "a": 1, "hint": "Pense no efeito de aplicar Readonly sobre todo o tipo Config.", "ex": "Readonly<Config> torna todas as propriedades, incluindo modo, somente leitura, impedindo reatribuição.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Em que situação Record<K, V> é mais indicado?", "opts": ["Quando se quer representar uma lista ordenada de elementos", "Quando se quer representar um objeto cujas chaves seguem um padrão comum, todas mapeando para o mesmo tipo de valor", "Quando não se sabe o tipo de nenhuma propriedade", "Quando o objeto tem exatamente duas propriedades fixas"], "a": 1, "hint": "Pense em um dicionário onde todas as chaves têm o mesmo formato de valor.", "ex": "Record é ideal para dicionários onde todas as chaves compartilham o mesmo tipo de valor associado.", "format": "APLICAÇÃO PRÁTICA" }
+        ,{ "type": "code", "q": "Encontre o erro:\ntype Notas = Record<string, number>;\nconst notas: Notas = { matematica: 9, portugues: \"8\" };", "opts": ["Não há erro nesse código", "O valor \"8\" é uma string, mas Record<string, number> exige que todos os valores sejam number", "As chaves matematica e portugues não podem ser strings", "Record não aceita mais de uma chave"], "a": 1, "hint": "Verifique o tipo de cada valor do objeto em relação ao segundo parâmetro genérico de Record.", "ex": "Record<string, number> exige que todo valor seja number, mas \"8\" está entre aspas, sendo uma string.", "format": "ENCONTRE O ERRO" }
+      ]
+    },
+    {
+      "id": "typescript-22",
+      "name": "TYPE NARROWING",
+      "difficulty": "AVANÇADO",
+      "color": "#38bdf8",
+      "icon": "✦",
+      "summary": "Estreite union types com typeof, instanceof e verificações condicionais.",
+      "lesson": [
+        { "title": "Narrowing com typeof", "body": "Quando uma variável tem um union type, usar typeof dentro de um if permite que o TypeScript estreite o tipo dentro daquele bloco, liberando o uso de métodos específicos daquele tipo.", "code": "function formatar(valor: string | number) {\n  if (typeof valor === \"string\") {\n    return valor.toUpperCase();\n  }\n  return valor.toFixed(2);\n}" },
+        { "title": "Narrowing com instanceof", "body": "Para distinguir entre classes diferentes em um union type, usa-se instanceof. Isso permite acessar métodos específicos de cada classe dentro do bloco correspondente.", "code": "class Cachorro { latir() { return \"Au au\"; } }\nclass Gato { miar() { return \"Miau\"; } }\nfunction fazerSom(animal: Cachorro | Gato) {\n  if (animal instanceof Cachorro) {\n    return animal.latir();\n  }\n  return animal.miar();\n}" }
+      ],
+      "questions": [
+        { "type": "code", "q": "Por que o código abaixo compila sem erro dentro do bloco if?\nfunction formatar(valor: string | number) {\n  if (typeof valor === \"string\") {\n    return valor.toUpperCase();\n  }\n  return valor.toFixed(2);\n}", "opts": ["Porque toUpperCase funciona em qualquer tipo", "Porque a checagem typeof faz o TypeScript estreitar valor para string dentro do bloco", "Porque valor foi convertido para any", "Porque number também tem o método toUpperCase"], "a": 1, "hint": "Pense no que acontece com o tipo de valor dentro do if depois da checagem typeof.", "ex": "A checagem typeof === \"string\" estreita o tipo de valor para string apenas dentro daquele bloco, liberando toUpperCase.", "format": "CONCEITO" },
+        { "type": "code", "q": "O que acontece ao chamar fazerSom(new Gato())?\nclass Cachorro { latir() { return \"Au au\"; } }\nclass Gato { miar() { return \"Miau\"; } }\nfunction fazerSom(animal: Cachorro | Gato) {\n  if (animal instanceof Cachorro) {\n    return animal.latir();\n  }\n  return animal.miar();\n}", "opts": ["Retorna \"Au au\"", "Retorna \"Miau\"", "Gera erro de compilação", "Retorna undefined"], "a": 1, "hint": "Verifique qual branch do if é executado quando o objeto não é instância de Cachorro.", "ex": "Como o objeto é um Gato, a condição instanceof Cachorro é falsa, executando o retorno animal.miar(), que resulta em \"Miau\".", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Qual verificação é mais adequada para diferenciar duas classes distintas dentro de um union type?", "opts": ["typeof", "instanceof", "in", "Array.isArray"], "a": 1, "hint": "typeof funciona bem para primitivos, mas não diferencia classes específicas.", "ex": "instanceof verifica se um objeto pertence a uma classe específica, sendo o ideal para diferenciar instâncias de classes.", "format": "CONCEITO" },
+        { "type": "code", "q": "Encontre o erro:\nfunction processar(valor: string | number) {\n  return valor.toUpperCase();\n}", "opts": ["Não há erro nesse código", "toUpperCase não existe em number, então falta um narrowing (como typeof) antes de chamá-lo", "valor deveria ser apenas number", "A função não pode receber union types como parâmetro"], "a": 1, "hint": "Pense em qual dos dois tipos possíveis não tem o método toUpperCase.", "ex": "Sem verificar o tipo com typeof antes, o TypeScript não permite chamar toUpperCase, pois number não tem esse método.", "format": "CORRIJA O ERRO" }
+      ]
+    },
+    {
+      "id": "typescript-23",
+      "name": "MAPPED TYPES",
+      "difficulty": "AVANÇADO",
+      "color": "#38bdf8",
+      "icon": "●",
+      "summary": "Entenda como Partial, Readonly e Record são construídos com mapped types.",
+      "lesson": [
+        { "title": "O que é um mapped type", "body": "Um mapped type percorre as chaves de um tipo existente e produz um novo tipo transformando cada propriedade. É a técnica usada internamente para implementar utility types como Partial e Readonly.", "code": "type MeuPartial<T> = {\n  [K in keyof T]?: T[K];\n};" },
+        { "title": "Combinando keyof com mapped types", "body": "O operador keyof extrai as chaves de um tipo como um union de strings literais. Usado dentro de um mapped type com in, permite iterar sobre cada propriedade e aplicar uma transformação, como tornar tudo readonly.", "code": "type MeuReadonly<T> = {\n  readonly [K in keyof T]: T[K];\n};\ninterface Config { modo: string; debug: boolean; }\ntype ConfigFixa = MeuReadonly<Config>;" }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "O que o operador keyof faz ao ser aplicado a um tipo?", "opts": ["Retorna o valor de todas as propriedades do tipo", "Retorna um union type com os nomes de todas as chaves do tipo", "Remove todas as chaves do tipo", "Transforma o tipo em uma classe"], "a": 1, "hint": "Pense em extrair apenas os nomes das propriedades, não os valores.", "ex": "keyof extrai um union de strings literais representando os nomes das propriedades do tipo.", "format": "CONCEITO" },
+        { "type": "code", "q": "O que o mapped type abaixo produz quando aplicado a uma interface Config { modo: string; debug: boolean }?\ntype MeuReadonly<T> = {\n  readonly [K in keyof T]: T[K];\n};", "opts": ["Um tipo com modo e debug, ambos opcionais", "Um tipo com modo e debug, ambos somente leitura", "Um tipo vazio, sem propriedades", "Um tipo com apenas a chave modo"], "a": 1, "hint": "Observe o modificador readonly aplicado antes de [K in keyof T].", "ex": "O mapped type percorre cada chave de Config e aplica readonly a todas, resultando em modo e debug somente leitura.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "Qual é a relação entre mapped types e utility types como Partial e Readonly?", "opts": ["Não têm relação nenhuma", "Utility types como Partial e Readonly são implementados internamente usando mapped types", "Mapped types substituem completamente interfaces", "Mapped types só funcionam com arrays"], "a": 1, "hint": "Pense em como o TypeScript constrói esses utility types por trás dos panos.", "ex": "Partial, Readonly e outros utility types semelhantes são, na prática, mapped types já prontos na biblioteca padrão do TypeScript.", "format": "CONCEITO" },
+        { "type": "code", "q": "Qual sintaxe representa corretamente um mapped type que torna todas as propriedades de T opcionais?", "opts": ["type P<T> = { [K in keyof T]?: T[K] };", "type P<T> = { [K of keyof T]: T[K]? };", "type P<T> = { keyof T?: T };", "type P<T> = { [T in K]?: K };"], "a": 0, "hint": "A sintaxe correta usa 'in' para iterar sobre keyof T, com ? logo após o colchete de fechamento da chave.", "ex": "{ [K in keyof T]?: T[K] } é a forma correta de tornar cada propriedade de T opcional através de um mapped type.", "format": "DECISÃO DE CÓDIGO" }
+      ]
+    },
+    {
+      "id": "typescript-24",
+      "name": "TIPANDO PROPS DE COMPONENTES",
+      "difficulty": "AVANÇADO",
+      "color": "#a78bfa",
+      "icon": "◍",
+      "summary": "Aplique interfaces para tipar props de componentes de UI, incluindo children e callbacks.",
+      "lesson": [
+        { "title": "Interface de props", "body": "Ao construir componentes de interface, é comum definir uma interface descrevendo as props esperadas, incluindo quais são obrigatórias e quais são opcionais, tornando o uso do componente mais seguro.", "code": "interface BotaoProps {\n  texto: string;\n  desabilitado?: boolean;\n  aoClicar: () => void;\n}" },
+        { "title": "Tipando children e eventos", "body": "Props que representam conteúdo aninhado geralmente usam um tipo apropriado do framework para 'children'. Handlers de eventos são tipados como funções que recebem o tipo do evento correspondente.", "code": "interface CardProps {\n  titulo: string;\n  children: ReactNode;\n  onSelecionar: (id: number) => void;\n}" }
+      ],
+      "questions": [
+        { "type": "code", "q": "Qual uso da interface abaixo é válido?\ninterface BotaoProps {\n  texto: string;\n  desabilitado?: boolean;\n  aoClicar: () => void;\n}", "opts": ["{ texto: \"Enviar\", aoClicar: () => {} }", "{ desabilitado: true }", "{ texto: \"Enviar\" }", "{ aoClicar: () => {} }"], "a": 0, "hint": "Verifique quais propriedades são obrigatórias (sem ?) na interface.", "ex": "texto e aoClicar são obrigatórios; desabilitado é opcional, então { texto: \"Enviar\", aoClicar: () => {} } é válido.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "mcq", "q": "Por que é uma boa prática tipar as props de um componente com uma interface?", "opts": ["Porque torna o componente mais lento", "Porque garante, em tempo de compilação, que o componente seja usado com os dados corretos", "Porque elimina a necessidade de testar o componente", "Porque interfaces só funcionam em componentes de classe"], "a": 1, "hint": "Pense no erro que seria detectado antes mesmo de rodar a aplicação.", "ex": "Tipar as props evita que o componente seja usado com dados faltando ou de tipo incorreto, detectando isso na compilação.", "format": "CONCEITO" },
+        { "type": "code", "q": "Encontre o erro:\ninterface BotaoProps {\n  texto: string;\n  aoClicar: () => void;\n}\nfunction Botao(props: BotaoProps) {\n  return props.texto;\n}\nBotao({ texto: \"Salvar\", aoClicar: \"clique\" });", "opts": ["Não há erro nesse código", "aoClicar deveria ser uma função, mas recebeu uma string", "texto deveria ser number", "Botao não pode receber props como argumento"], "a": 1, "hint": "Compare o tipo esperado de aoClicar na interface com o valor passado.", "ex": "A interface exige que aoClicar seja uma função (() => void), mas foi passada a string \"clique\", o que é incompatível.", "format": "ENCONTRE O ERRO" },
+        { "type": "code", "q": "Qual assinatura de callback é adequada para uma prop chamada onSelecionar que recebe o id (number) do item selecionado e não retorna nada?", "opts": ["onSelecionar: number;", "onSelecionar: () => number;", "onSelecionar: (id: number) => void;", "onSelecionar: (id: void) => number;"], "a": 2, "hint": "Pense no tipo do parâmetro recebido e no tipo de retorno esperado.", "ex": "(id: number) => void descreve corretamente uma função que recebe um number e não retorna valor algum.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    },
+    {
+      "id": "typescript-25",
+      "name": "EVENTOS TIPADOS",
+      "difficulty": "AVANÇADO",
+      "color": "#a78bfa",
+      "icon": "◎",
+      "summary": "Tipe eventos de UI como clique, mudança de input e envio de formulário.",
+      "lesson": [
+        { "title": "Tipos de eventos comuns", "body": "Bibliotecas de UI tipadas expõem tipos específicos para cada tipo de evento, como MouseEvent para cliques e ChangeEvent para mudanças em inputs. Usar o tipo correto dá acesso seguro às propriedades do evento.", "code": "function aoClicar(evento: MouseEvent) {\n  console.log(evento.clientX, evento.clientY);\n}" },
+        { "title": "Eventos de formulário", "body": "Ao lidar com o envio de um formulário, o evento deve ser tipado como um evento de formulário, permitindo chamar preventDefault() com segurança e acessar os dados enviados.", "code": "function aoEnviar(evento: SubmitEvent) {\n  evento.preventDefault();\n  console.log(\"Formulário enviado\");\n}" }
+      ],
+      "questions": [
+        { "type": "code", "q": "O que este código faz?\nfunction aoClicar(evento: MouseEvent) {\n  console.log(evento.clientX, evento.clientY);\n}", "opts": ["Imprime o texto digitado pelo usuário", "Imprime as coordenadas X e Y do clique do mouse", "Impede o envio de um formulário", "Cria um novo elemento na tela"], "a": 1, "hint": "clientX e clientY são propriedades relacionadas à posição de um evento de mouse.", "ex": "clientX e clientY são as coordenadas horizontal e vertical do ponteiro no momento do clique.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "Por que é importante tipar corretamente o parâmetro de uma função que trata um evento?", "opts": ["Porque isso muda o comportamento visual da página", "Porque dá acesso seguro, com checagem de tipo, às propriedades específicas daquele tipo de evento", "Porque eventos não podem ser tipados em TypeScript", "Porque apenas eventos de teclado podem ser tipados"], "a": 1, "hint": "Pense no que aconteceria se o evento fosse tipado como any.", "ex": "Tipar o evento corretamente garante que o TypeScript verifique se as propriedades acessadas realmente existem naquele tipo de evento.", "format": "CONCEITO" },
+        { "type": "code", "q": "Encontre o erro:\nfunction aoEnviar(evento: SubmitEvent) {\n  console.log(\"Formulário enviado\");\n}\n// O comportamento padrão do navegador recarrega a página ao enviar o formulário", "opts": ["Não há erro, a função está completa", "Falta chamar evento.preventDefault() para impedir o recarregamento padrão da página", "SubmitEvent não é um tipo válido", "A função não deveria receber nenhum parâmetro"], "a": 1, "hint": "Pense no que evita o comportamento padrão do navegador ao submeter um formulário.", "ex": "Sem chamar evento.preventDefault(), o navegador recarrega a página normalmente ao enviar o formulário.", "format": "CORRIJA O ERRO" },
+        { "type": "mcq", "q": "O que geralmente acontece se um evento for tipado incorretamente, como usar KeyboardEvent para um clique de mouse?", "opts": ["Funciona normalmente sem diferença", "O TypeScript pode acusar erro ao tentar acessar propriedades específicas de mouse, como clientX, que não existem em KeyboardEvent", "O navegador corrige o tipo automaticamente", "O código sempre falha em tempo de execução, nunca na compilação"], "a": 1, "hint": "Pense nas propriedades específicas de cada tipo de evento.", "ex": "Tipos de evento diferentes têm propriedades diferentes; usar o tipo errado gera erro ao acessar propriedades que não existem nele.", "format": "CONCEITO" }
+      ]
+    },
+    {
+      "id": "typescript-26",
+      "name": "MÓDULOS E DECLARAÇÕES DE TIPO",
+      "difficulty": "AVANÇADO",
+      "color": "#a78bfa",
+      "icon": "▶",
+      "summary": "Organize tipos em módulos e use arquivos de declaração para bibliotecas JS.",
+      "lesson": [
+        { "title": "Exportando e importando tipos", "body": "Tipos, interfaces e type alias podem ser exportados de um arquivo e importados em outro, assim como funções e variáveis, ajudando a organizar tipos compartilhados entre módulos.", "code": "// tipos.ts\nexport interface Usuario {\n  id: number;\n  nome: string;\n}\n\n// app.ts\nimport { Usuario } from \"./tipos\";" },
+        { "title": "Arquivos de declaração (.d.ts)", "body": "Bibliotecas escritas em JavaScript puro podem ganhar tipos através de arquivos de declaração (.d.ts), que descrevem os tipos sem conter implementação. Isso permite usar bibliotecas JS com segurança de tipos em projetos TypeScript.", "code": "// biblioteca.d.ts\ndeclare function saudacao(nome: string): string;" }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Qual é o propósito de um arquivo de declaração de tipos (.d.ts)?", "opts": ["Conter a implementação completa de uma biblioteca em TypeScript", "Descrever os tipos de uma biblioteca JavaScript sem conter sua implementação", "Substituir arquivos .ts na compilação final", "Armazenar apenas comentários de documentação"], "a": 1, "hint": "Pense em bibliotecas escritas originalmente em JavaScript puro, sem tipos.", "ex": "Arquivos .d.ts descrevem apenas os tipos de uma biblioteca, permitindo checagem de tipos sem reescrever a implementação.", "format": "CONCEITO" },
+        { "type": "code", "q": "Qual sintaxe importa corretamente a interface Usuario exportada do arquivo tipos.ts?", "opts": ["import Usuario from \"./tipos\";", "import { Usuario } from \"./tipos\";", "require(\"./tipos\").Usuario;", "include Usuario from \"./tipos\";"], "a": 1, "hint": "Interfaces exportadas nomeadamente são importadas entre chaves.", "ex": "Como Usuario foi exportada com 'export interface', ela deve ser importada com chaves: import { Usuario } from \"./tipos\".", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "mcq", "q": "Por que organizar tipos compartilhados em um módulo separado (como tipos.ts) é uma boa prática?", "opts": ["Porque tipos não podem ser declarados fora de módulos", "Porque evita duplicação e centraliza a definição de estruturas usadas em várias partes do projeto", "Porque reduz o tamanho do código JavaScript final", "Porque é uma exigência obrigatória do compilador"], "a": 1, "hint": "Pense em manter uma única fonte de verdade para uma estrutura usada em vários arquivos.", "ex": "Centralizar tipos compartilhados evita definições duplicadas e inconsistentes entre diferentes partes do projeto.", "format": "CONCEITO" },
+        { "type": "code", "q": "O que a palavra-chave 'declare' indica em um arquivo .d.ts?\ndeclare function saudacao(nome: string): string;", "opts": ["Que a função será implementada logo abaixo, no mesmo arquivo", "Que essa é apenas a descrição de tipo de algo que existe em outro lugar (como um arquivo JS)", "Que a função é privada", "Que a função retorna void obrigatoriamente"], "a": 1, "hint": "Pense no propósito de um arquivo de declaração: ele não contém implementação real.", "ex": "declare informa ao TypeScript que aquela função existe (normalmente implementada em JS), sem fornecer o corpo dela ali.", "format": "CONCEITO" }
+      ]
+    },
+    {
+      "id": "typescript-27",
+      "name": "TSCONFIG E STRICT MODE",
+      "difficulty": "AVANÇADO",
+      "color": "#f472b6",
+      "icon": "◒",
+      "summary": "Configure o tsconfig.json e entenda o impacto do modo strict.",
+      "lesson": [
+        { "title": "O arquivo tsconfig.json", "body": "O tsconfig.json define como o compilador TypeScript deve se comportar: qual versão de JS gerar, quais arquivos incluir, e diversas opções de checagem de tipo para o projeto inteiro.", "code": "{\n  \"compilerOptions\": {\n    \"target\": \"ES2020\",\n    \"strict\": true,\n    \"outDir\": \"./dist\"\n  },\n  \"include\": [\"src\"]\n}" },
+        { "title": "O que o strict mode ativa", "body": "A opção strict ativa um conjunto de checagens mais rigorosas de uma só vez, como noImplicitAny (proíbe tipos implícitos any) e strictNullChecks (obriga tratar null e undefined explicitamente). É recomendada para projetos novos.", "code": "// Com strictNullChecks ativo:\nfunction pegarNome(usuario: { nome: string } | null) {\n  // usuario.nome; // erro: usuario pode ser null\n  if (usuario) {\n    return usuario.nome;\n  }\n}" }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "Qual é a função do arquivo tsconfig.json em um projeto TypeScript?", "opts": ["Armazenar dados do usuário da aplicação", "Configurar o comportamento do compilador TypeScript para o projeto", "Substituir o package.json", "Executar testes automatizados"], "a": 1, "hint": "Pense em onde ficam as opções de compilação, como versão de saída e pastas incluídas.", "ex": "tsconfig.json centraliza as configurações do compilador, como versão alvo, pastas incluídas e regras de checagem.", "format": "CONCEITO" },
+        { "type": "code", "q": "Com strictNullChecks ativado, o que acontece com este código?\nfunction pegarNome(usuario: { nome: string } | null) {\n  return usuario.nome;\n}", "opts": ["Funciona normalmente, sempre retornando o nome", "Gera erro de compilação, pois usuario pode ser null e precisa de verificação antes do acesso", "Retorna undefined quando usuario é null", "strictNullChecks não afeta esse tipo de código"], "a": 1, "hint": "Pense no que acontece ao acessar uma propriedade de algo que pode ser null.", "ex": "Com strictNullChecks, o TypeScript exige verificar se usuario não é null antes de acessar usuario.nome.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "O que a opção noImplicitAny (parte do strict mode) proíbe?", "opts": ["O uso de arrays no código", "Que uma variável ou parâmetro receba o tipo any de forma implícita, sem anotação", "O uso de classes abstratas", "A criação de interfaces"], "a": 1, "hint": "Pense em parâmetros de função sem tipo declarado, que o TypeScript teria que assumir como any.", "ex": "noImplicitAny obriga a anotar explicitamente tipos que, de outra forma, cairiam silenciosamente em any.", "format": "CONCEITO" },
+        { "type": "code", "q": "Qual configuração no tsconfig.json ativa de uma vez várias checagens rigorosas recomendadas?", "opts": ["\"loose\": false", "\"strict\": true", "\"safe\": true", "\"checkAll\": true"], "a": 1, "hint": "É uma única flag booleana que liga várias regras de checagem ao mesmo tempo.", "ex": "\"strict\": true ativa um conjunto de checagens mais rígidas, incluindo noImplicitAny e strictNullChecks.", "format": "CONCEITO" }
+      ]
+    },
+    {
+      "id": "typescript-28",
+      "name": "INTEGRANDO TS COM JS EXISTENTE",
+      "difficulty": "AVANÇADO",
+      "color": "#f472b6",
+      "icon": "◓",
+      "summary": "Adote TypeScript gradualmente em um projeto JavaScript já existente.",
+      "lesson": [
+        { "title": "Adoção incremental", "body": "TypeScript permite migrar um projeto JavaScript aos poucos: é possível manter arquivos .js e .ts convivendo no mesmo projeto, usando a opção allowJs no tsconfig.json enquanto os arquivos são convertidos gradualmente.", "code": "{\n  \"compilerOptions\": {\n    \"allowJs\": true,\n    \"checkJs\": false\n  }\n}" },
+        { "title": "Tipando bibliotecas de terceiros", "body": "Muitas bibliotecas JavaScript populares já têm arquivos de tipos disponíveis através do pacote @types, que fornece as declarações sem alterar a biblioteca original.", "code": "// terminal:\n// npm install --save-dev @types/lodash\nimport _ from \"lodash\";\n_.chunk([1, 2, 3], 2); // agora com tipos" }
+      ],
+      "questions": [
+        { "type": "mcq", "q": "O que a opção allowJs no tsconfig.json permite?", "opts": ["Que arquivos .js sejam ignorados pelo compilador", "Que arquivos .js e .ts convivam no mesmo projeto TypeScript", "Que todo o projeto seja convertido para .ts automaticamente", "Que erros de tipo sejam ignorados em arquivos .ts"], "a": 1, "hint": "Pense em migração gradual, sem precisar converter tudo de uma vez.", "ex": "allowJs permite que o compilador TypeScript processe também arquivos .js, facilitando a migração incremental.", "format": "CONCEITO" },
+        { "type": "mcq", "q": "Para que servem os pacotes @types, como @types/lodash?", "opts": ["Para substituir completamente a biblioteca JavaScript original", "Para fornecer declarações de tipo para bibliotecas JavaScript que não têm tipos nativos", "Para converter automaticamente a biblioteca para TypeScript", "Para testar a biblioteca em produção"], "a": 1, "hint": "Pense em bibliotecas escritas antes do TypeScript existir, sem tipos embutidos.", "ex": "Pacotes @types trazem apenas as declarações de tipo, permitindo usar bibliotecas JS com checagem de tipos no TS.", "format": "CONCEITO" },
+        { "type": "code", "q": "Em um projeto migrando gradualmente para TypeScript, qual estratégia é mais adequada?", "opts": ["Apagar todos os arquivos .js antes de escrever qualquer .ts", "Converter todos os arquivos de uma vez, sem testar nada", "Manter allowJs ativado e converter os arquivos .js para .ts aos poucos, testando cada mudança", "Nunca instalar pacotes @types"], "a": 2, "hint": "Pense em uma migração segura, sem quebrar tudo de uma vez.", "ex": "A adoção incremental, convertendo arquivo por arquivo com allowJs ativado, é a estratégia mais segura de migração.", "format": "APLICAÇÃO PRÁTICA" },
+        { "type": "mcq", "q": "O que a opção checkJs, quando combinada com allowJs, faz de diferente?", "opts": ["Impede que arquivos .js sejam compilados", "Faz o TypeScript também verificar erros de tipo dentro dos arquivos .js, não apenas incluí-los", "Converte arquivos .js em .ts automaticamente", "Desativa a checagem de tipos em arquivos .ts"], "a": 1, "hint": "Pense na diferença entre apenas incluir arquivos .js e realmente checá-los quanto a tipos.", "ex": "checkJs estende a checagem de tipos do TypeScript também para dentro dos arquivos .js incluídos no projeto.", "format": "CONCEITO" }
+      ]
+    },
+    {
+      "id": "typescript-29",
+      "name": "REVISÃO: TIPOS E ESTRUTURAS",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "◆",
+      "summary": "Revise interfaces, generics e utility types combinando conceitos de várias unidades.",
+      "lesson": [
+        { "title": "Combinando interfaces e generics", "body": "Em um sistema real, é comum combinar interfaces genéricas com utility types para modelar respostas de API, formulários e listas de forma reutilizável e segura.", "code": "interface Tarefa {\n  id: number;\n  titulo: string;\n  concluida: boolean;\n}\ninterface Resposta<T> {\n  sucesso: boolean;\n  dados: T;\n}\ntype NovaTarefa = Omit<Tarefa, \"id\">;" },
+        { "title": "Funções que juntam tudo", "body": "Funções genéricas tipadas com interfaces e utility types tornam o sistema mais seguro: erros de tipo em chamadas incorretas aparecem antes mesmo de rodar o código.", "code": "function criarTarefa(dados: Omit<Tarefa, \"id\" | \"concluida\">): Tarefa {\n  return { id: Date.now(), concluida: false, ...dados };\n}" }
+      ],
+      "questions": [
+        { "type": "code", "q": "Considerando as declarações abaixo, qual chamada é válida?\ninterface Tarefa {\n  id: number;\n  titulo: string;\n  concluida: boolean;\n}\nfunction criarTarefa(dados: Omit<Tarefa, \"id\" | \"concluida\">): Tarefa {\n  return { id: Date.now(), concluida: false, ...dados };\n}", "opts": ["criarTarefa({ id: 1, titulo: \"Estudar\", concluida: false })", "criarTarefa({ titulo: \"Estudar\" })", "criarTarefa({ titulo: \"Estudar\", concluida: true })", "criarTarefa()"], "a": 1, "hint": "Lembre que Omit removeu id e concluida do tipo esperado pelo parâmetro.", "ex": "Como Omit<Tarefa, \"id\" | \"concluida\"> remove essas duas propriedades, apenas titulo é exigido no parâmetro.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "code", "q": "Qual é o tipo de retorno da chamada abaixo?\ninterface Resposta<T> {\n  sucesso: boolean;\n  dados: T;\n}\nfunction buscarTarefas(): Resposta<Tarefa[]> {\n  return { sucesso: true, dados: [] };\n}\nconst r = buscarTarefas();", "opts": ["Resposta<Tarefa>", "Resposta<Tarefa[]>", "Tarefa[]", "any"], "a": 1, "hint": "Observe o tipo declarado no retorno da função buscarTarefas.", "ex": "A função retorna explicitamente Resposta<Tarefa[]>, então essa é a inferência para a constante r.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "mcq", "q": "Por que combinar generics, interfaces e utility types é útil em sistemas reais?", "opts": ["Porque deixa o código mais lento em produção", "Porque permite modelar estruturas reutilizáveis e seguras, evitando duplicação e detectando erros cedo", "Porque elimina totalmente a necessidade de testes", "Porque é a única forma de declarar uma função em TypeScript"], "a": 1, "hint": "Pense na combinação de reuso e segurança em uma aplicação real.", "ex": "A combinação dessas ferramentas cria estruturas reutilizáveis, mantendo a segurança de tipos e evitando erros comuns em produção.", "format": "CONCEITO" },
+        { "type": "code", "q": "Encontre o erro:\ninterface Tarefa {\n  id: number;\n  titulo: string;\n  concluida: boolean;\n}\ntype NovaTarefa = Omit<Tarefa, \"id\">;\nconst t: NovaTarefa = { id: 5, titulo: \"Ler\", concluida: false };", "opts": ["Não há erro nesse código", "NovaTarefa não deveria ter a propriedade id, pois ela foi removida por Omit", "titulo deveria ser number", "Omit não pode ser usado com interfaces"], "a": 1, "hint": "Lembre do que Omit<Tarefa, \"id\"> removeu do tipo original.", "ex": "Como id foi removido pelo Omit, o objeto atribuído a NovaTarefa não deveria conter essa propriedade.", "format": "ENCONTRE O ERRO" }
+      ]
+    },
+    {
+      "id": "typescript-30",
+      "name": "PROJETO: SISTEMA DE TAREFAS TIPADO",
+      "difficulty": "AVANÇADO",
+      "color": "#facc15",
+      "icon": "★",
+      "summary": "Aplique tipos, interfaces, generics e classes em um mini sistema de tarefas completo.",
+      "lesson": [
+        { "title": "Modelando o domínio", "body": "Um mini sistema de tarefas pode usar uma interface para a entidade principal, um enum para o status, e uma classe para encapsular as operações, aplicando modificadores de acesso e generics onde fizer sentido.", "code": "enum StatusTarefa { Pendente, EmAndamento, Concluida }\ninterface Tarefa {\n  id: number;\n  titulo: string;\n  status: StatusTarefa;\n}\nclass GerenciadorTarefas {\n  private tarefas: Tarefa[] = [];\n  adicionar(titulo: string): Tarefa {\n    const nova: Tarefa = { id: this.tarefas.length + 1, titulo, status: StatusTarefa.Pendente };\n    this.tarefas.push(nova);\n    return nova;\n  }\n}" },
+        { "title": "Repositório genérico", "body": "Uma classe genérica pode servir de base para repositórios de diferentes entidades, reaproveitando lógica de armazenamento sem perder a tipagem específica de cada uso.", "code": "class Repositorio<T extends { id: number }> {\n  private itens: T[] = [];\n  adicionar(item: T): void {\n    this.itens.push(item);\n  }\n  buscarPorId(id: number): T | undefined {\n    return this.itens.find((i) => i.id === id);\n  }\n}" }
+      ],
+      "questions": [
+        { "type": "code", "q": "O que a classe genérica abaixo exige do tipo T?\nclass Repositorio<T extends { id: number }> {\n  private itens: T[] = [];\n}", "opts": ["Que T seja obrigatoriamente uma string", "Que T tenha pelo menos uma propriedade id do tipo number", "Que T seja sempre uma interface vazia", "Nenhuma exigência, extends aqui é decorativo"], "a": 1, "hint": "Observe a restrição declarada depois de extends.", "ex": "A restrição extends { id: number } exige que qualquer T usado tenha, no mínimo, uma propriedade id numérica.", "format": "LEITURA DE CÓDIGO" },
+        { "type": "code", "q": "Considerando o enum e a interface abaixo, qual valor é válido para status?\nenum StatusTarefa { Pendente, EmAndamento, Concluida }\ninterface Tarefa {\n  id: number;\n  titulo: string;\n  status: StatusTarefa;\n}\nconst t: Tarefa = { id: 1, titulo: \"Estudar\", status: ??? };", "opts": ["\"Pendente\"", "StatusTarefa.Pendente", "0.5", "true"], "a": 1, "hint": "O tipo status espera um valor do próprio enum, não uma string solta.", "ex": "status é do tipo StatusTarefa, então o valor correto é uma referência ao membro do enum, como StatusTarefa.Pendente.", "format": "DECISÃO DE CÓDIGO" },
+        { "type": "code", "q": "O que o método buscarPorId retorna quando nenhum item corresponde ao id informado?\nclass Repositorio<T extends { id: number }> {\n  private itens: T[] = [];\n  buscarPorId(id: number): T | undefined {\n    return this.itens.find((i) => i.id === id);\n  }\n}", "opts": ["Lança um erro imediatamente", "Retorna undefined, pois o tipo de retorno é T | undefined", "Retorna um objeto vazio {}", "Retorna sempre o primeiro item da lista"], "a": 1, "hint": "Observe o tipo de retorno declarado no método e o comportamento de find quando nada é encontrado.", "ex": "Como o tipo de retorno é T | undefined e find retorna undefined quando não encontra nada, esse é o resultado esperado.", "format": "PREVISÃO DE RESULTADO" },
+        { "type": "mcq", "q": "Qual é a principal vantagem de usar uma classe genérica como Repositorio<T> para diferentes entidades do sistema (tarefas, usuários, produtos)?", "opts": ["Ela só funciona com uma entidade por vez, sem reuso", "Reaproveitar a mesma lógica de armazenamento e busca, mantendo a tipagem correta para cada entidade", "Ela elimina a necessidade de interfaces no projeto", "Ela transforma automaticamente os dados em JSON"], "a": 1, "hint": "Pense em não precisar reescrever adicionar/buscarPorId para cada entidade do sistema.", "ex": "Uma classe genérica reaproveita a lógica comum de repositório para várias entidades, mantendo a segurança de tipos de cada uma.", "format": "APLICAÇÃO PRÁTICA" }
+      ]
+    }
+  ]
+}
