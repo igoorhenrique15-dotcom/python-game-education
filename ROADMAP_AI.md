@@ -44,10 +44,10 @@ Tudo client-side, progresso em `localStorage`, sem chamadas de rede.
 - `src/CompleteApp.jsx` — único componente-app real (telas, navegação por
   `useState`, persistência, gamificação); `src/App.jsx` foi removido por
   ser uma versão antiga não utilizada;
-- `src/data/course.json`, `course-html.json`, `course-java.json`,
-  `course-ia.json`, `course-js.json`, `course-sql.json`, `course-git.json`,
-  `course-supabase.json`, `course-vercel.json`, `course-security.json`,
-  `course-ia-dev.json` — conteúdo de cada trilha;
+- `src/data/course*.json` (30 arquivos — uma trilha por arquivo: Python,
+  linguagens diversas, fundamentos de ADS, ciclo de vida de sistema, IA) —
+  conteúdo de cada trilha; a lista completa de ids está em `TRACK_CATALOG`
+  em runtime, não precisa ser mantida manualmente em lugar nenhum;
 - `TRACK_CATALOG` (em `CompleteApp.jsx`) é **construído automaticamente em
   runtime** por `buildTrackCatalog`, a partir de
   `import.meta.glob('./data/course*.json', { eager: true })`. Qualquer

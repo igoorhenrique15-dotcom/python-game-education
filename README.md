@@ -9,20 +9,24 @@ há vidas, moedas ou qualquer cobrança: todo o conteúdo é 100% aberto.
 
 ## Trilhas
 
-- **Python** — do zero à prática profissional;
-- **HTML & CSS** — estrutura e estilo para a web;
-- **JavaScript** — interatividade, DOM, eventos e requisições;
-- **Java** — orientação a objetos e back-end;
-- **Banco de Dados** — modelagem relacional e SQL;
-- **Git & GitHub** — controle de versão e colaboração;
-- **Supabase** — backend, autenticação e banco de dados gerenciado;
-- **Deploy & Vercel** — publicar um projeto do zero ao ar;
-- **Segurança da Informação** — boas práticas para proteger sistemas e dados;
-- **Inteligência Artificial** — usar IA no dia a dia;
-- **IA para Desenvolvedores** — usar IA com técnica durante a programação.
+30 trilhas no total, cobrindo linguagens, fundamentos de ADS e o ciclo
+completo de construção de software:
 
-Cada trilha é dividida em 10 unidades com microlições curtas: uma explicação
-objetiva, um exemplo de código e um desafio de múltipla escolha com
+**Linguagens:** Python, JavaScript, TypeScript, Java, C#, PHP, Kotlin, Go,
+C++, Rust, R, Dart & Flutter, Ruby, Swift.
+
+**Web e fundamentos:** HTML & CSS, Banco de Dados (SQL), Estruturas de
+Dados e Algoritmos, Engenharia de Software, APIs & HTTP, Bash & Linux.
+
+**Ciclo de vida de um sistema:** Git & GitHub, Testes de Software,
+DevOps & CI/CD, Docker & Kubernetes, Supabase, Deploy & Vercel, Segurança
+da Informação.
+
+**IA:** Inteligência Artificial (uso no dia a dia), IA para
+Desenvolvedores (uso ao programar), Machine Learning.
+
+Cada trilha é dividida em 10 unidades com microlições curtas: uma aula
+teórica objetiva, um exemplo de código e desafios de múltipla escolha com
 feedback imediato. Tudo se resolve por clique — não é preciso digitar
 código para avançar.
 
