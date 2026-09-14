@@ -2102,12 +2102,12 @@
       "lesson": [
         {
           "title": "Dados Imutáveis e Compactos",
-          "body": "Lançado espetacularmente na vanguarda do fabuloso novo Java 14 e estabilizado magistral e solidamente depois disso, a maravilhosa revolução mágica compacta batizada e reverenciada globalmente por records dissolveu e exorcizou corajosa, imediata e milagrosamente centenas de gigabytes tristes de infames getters e setters aborrecidos.",
+          "body": "Introduzidos como preview no Java 14 e estabilizados no Java 16, os records são um tipo especial de classe para representar dados imutáveis de forma compacta. O compilador gera automaticamente construtor, getters (sem prefixo \"get\"), equals(), hashCode() e toString() a partir dos componentes declarados, eliminando o código repetitivo de classes que existem apenas para carregar dados.",
           "code": "public record Cliente(String nome, String email) {}\n// Simples, indestrutível, perfeito e maravilhoso! O código está pronto!\nCliente c = new Cliente(\"Igor\", \"i@mail.com\");\nSystem.out.println(c.nome());"
         },
         {
           "title": "Quando Utilizar Records",
-          "body": "Com seu invejável imaculado escudo e armadura robusta impenetrável de proteção padrão invicta, infalível e soberana de imutabilidade garantida, records servem divinamente e celestialmente para trafegar altíssimos pacotes volumosos e absurdamente enormes de simples informações entre as intrincadas malhas do sistema.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "body": "Records são adequados para transportar pequenos agrupamentos de dados relacionados entre camadas do sistema — DTOs, respostas de API, coordenadas, pares chave-valor — situações em que o objetivo é apenas carregar informação, sem comportamento associado. Por serem imutáveis, evitam efeitos colaterais indesejados quando o mesmo objeto é compartilhado entre vários pontos do código.\n\nÉ possível declarar um construtor compacto (sem lista de parâmetros repetida) para validar os valores recebidos antes da criação do objeto, como no exemplo, lançando uma exceção quando um argumento inválido é passado.",
           "code": "public record Ponto(int x, int y) {\n    // Escudo invencível de segurança em records robustos implacáveis!\n    public Ponto {\n        if (x < 0) throw new IllegalArgumentException();\n    }\n}"
         }
       ],
@@ -2180,12 +2180,12 @@
       "lesson": [
         {
           "title": "Organização através de Pacotes",
-          "body": "Ao adentrar e ingressar profissional e gloriosamente num verdadeiro ecossistema corporativo imponente gigantesco corporativamente gigante de altíssima octanagem densa recheado vastamente com densos milhões massivos e absurdos incalculáveis de valiosos arquivos brilhantes, se tornaria impraticável tentar trabalhar ali.\n\nOs pacotes (package) organizam classes relacionadas sob um mesmo namespace, geralmente seguindo a convenção de domínio invertido (com.empresa.projeto.modulo), evitando conflitos de nomes entre classes de bibliotecas diferentes e deixando claro, pela própria estrutura de pastas, onde cada responsabilidade do sistema vive.",
+          "body": "Em um projeto real, com centenas ou milhares de arquivos, organizar classes soltas em uma única pasta rapidamente se torna inviável. Os pacotes (package) organizam classes relacionadas sob um mesmo namespace, geralmente seguindo a convenção de domínio invertido (com.empresa.projeto.modulo), evitando conflitos de nomes entre classes de bibliotecas diferentes e deixando claro, pela própria estrutura de pastas, onde cada responsabilidade do sistema vive.",
           "code": "package com.empresa.modelo;\n\npublic class Produto {\n    // Esta utilíssima classe brilha organizadamente aqui em paz\n}\n"
         },
         {
           "title": "Visibilidade e Camadas",
-          "body": "A majestosa, poderosa e importantíssima engrenagem e ferramenta invisível impenetrável silenciosa, pacífica e secreta da valiosa fortíssima e utilíssima camada discreta de visibilidade package-private nativamente escondida blinda poderosamente suas lógicas internas secretas impedindo acesso invasivo externo impiedosamente.",
+          "body": "Além dos modificadores public, private e protected, o Java tem um quarto nível de visibilidade: package-private, aplicado quando nenhum modificador é escrito. Uma classe ou método nesse nível é acessível apenas por outras classes do mesmo pacote, o que permite esconder detalhes de implementação (como classes auxiliares internas) sem expô-los ao restante da aplicação, reforçando o encapsulamento entre módulos.",
           "code": "package com.empresa.servico;\n\nclass CalculadorDeJuros {\n    // Secretíssimo e maravilhosamente invisível de fora, muito seguro!\n    void calcular() { }\n}"
         }
       ],
@@ -2258,12 +2258,12 @@
       "lesson": [
         {
           "title": "Garantindo o Funcionamento",
-          "body": "Testes magistrais automatizados incansáveis vigorosos formam um invencível valioso e insuperável exército fiel gigante guardião protetor silencioso cibernético veloz formidável construído minuciosamente e rigorosamente linha após linha duramente batalhada com nobre intenção imaculada incansável de checar seu valiosíssimo e rentável trabalho.",
+          "body": "Testes automatizados são código escrito para verificar se outro código se comporta como esperado, sem depender de execução manual repetida. O JUnit é o framework de testes mais usado em Java: métodos anotados com @Test são executados isoladamente, e métodos como assertEquals comparam o valor obtido com o valor esperado, falhando o teste quando eles divergem. Escrever testes cedo ajuda a detectar erros antes que cheguem à produção.",
           "code": "import static org.junit.jupiter.api.Assertions.assertEquals;\nimport org.junit.jupiter.api.Test;\n\npublic class CalculadoraTest {\n    @Test\n    public void somaDoisNumeros() {\n        assertEquals(4, 2 + 2);\n    }\n}"
         },
         {
           "title": "Refatoração Sem Medo",
-          "body": "Apenas e inequivocamente após construir, assentar, espalhar, espelhar minuciosamente, metodicamente e orgulhosamente uma invejável gloriosa magnífica valiosa e preciosa malha grandiosa colossal testável maciça reluzente confiável fortíssima inabalável protetora espessa em torno do seu impecável trabalho artesanal engenhoso você poderá respirar.",
+          "body": "Com uma boa cobertura de testes, é possível refatorar código — melhorar sua estrutura interna sem alterar seu comportamento externo — com muito mais segurança: se algo quebrar, os testes acusam imediatamente. Testes também devem cobrir casos de erro, não só o caminho feliz. O método assertThrows verifica que uma exceção específica é lançada quando uma operação inválida é executada, como um saque maior que o saldo disponível.",
           "code": "@Test\npublic void testaSaqueInvalido() {\n    Conta c = new Conta(100.0);\n    // Validação heroica e inabalável contra saques ilegais insidiosos maliciosos!\n    assertThrows(Exception.class, () -> c.sacar(500.0));\n}"
         }
       ],
@@ -2336,12 +2336,12 @@
       "lesson": [
         {
           "title": "Unindo os Pilares do Java",
-          "body": "Finalmente no clímax apoteótico fantástico glorioso da deslumbrante grandiosa fenomenal e incomparável espetacular belíssima jornada heroica formidável magnânima vitoriosa resplandecente luminosa sublime imbatível suprema esmagadora brilhante fascinante e estupenda de altíssimos estudos avançadíssimos intensivos implacáveis densos.",
+          "body": "Uma aplicação Java completa combina os conceitos vistos até aqui: classes e objetos para modelar o domínio, coleções para armazenar dados, controle de fluxo para a lógica de negócio, tratamento de exceções para lidar com erros, e entrada de dados via Scanner para interação com o usuário. Um menu em loop, como no exemplo, é a estrutura básica de qualquer aplicação de console: exibe opções, lê a escolha do usuário e repete até que ele decida sair.",
           "code": "public void iniciarMenu() {\n    Scanner sc = new Scanner(System.in);\n    boolean executando = true;\n    while(executando) {\n        System.out.println(\"1 - Novo | 2 - Sair\");\n        if(sc.nextInt() == 2) executando = false;\n    }\n}"
         },
         {
           "title": "O Papel das Camadas e Injeção",
-          "body": "Ao despedaçar inteligentemente habilmente cirurgicamente categoricamente metodicamente impecavelmente e minuciosamente as responsabilidades espessas maciças monolíticas desastrosas antiquadas medievais grosseiras brutas da sua preciosa gloriosa aplicação magistral suprema elegante em pequenas e minúsculas singelas belíssimas preciosidades independentes.",
+          "body": "Dividir uma aplicação em camadas (como apresentação, serviço e acesso a dados) separa responsabilidades e facilita manutenção e testes. A injeção de dependência é a técnica pela qual uma classe recebe os objetos de que precisa (suas dependências) de fora, em vez de criá-los internamente com new. No exemplo, a classe Loja recebe um Estoque pronto pelo construtor, o que permite trocar essa dependência — por exemplo, por uma versão de teste — sem alterar o código da Loja.",
           "code": "// Magnífica e gloriosa injeção poderosa via construtor mestre sublime!\npublic class Loja {\n    private Estoque estoque;\n    public Loja(Estoque estoque) {\n        this.estoque = estoque;\n    }\n}"
         }
       ],
