@@ -75,12 +75,14 @@
         {
           "title": "Imutabilidade com 'val'",
           "body": "Em Kotlin, você usa 'val' (value) para declarar variáveis somente leitura, semelhantes a constantes. É uma excelente prática porque previne que valores sejam alterados acidentalmente ao longo do programa, garantindo maior previsibilidade e segurança, especialmente em aplicações concorrentes onde o estado imutável evita bugs.",
-          "code": "val linguagem = \"Kotlin\"\n// linguagem = \"Java\" // Erro de compilação\nprintln(linguagem)"
+          "code": "val linguagem = \"Kotlin\"\n// linguagem = \"Java\" // Erro de compilação\nprintln(linguagem)",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Mutabilidade com 'var'",
           "body": "A palavra-chave 'var' (variable) é usada quando você precisa de uma variável cujo valor possa ser reatribuído ao longo da execução do código. Você deve utilizá-la apenas quando a mutabilidade for estritamente necessária, como em contadores de loops ou acumuladores, mantendo a maior parte do seu código imutável com 'val'.",
-          "code": "var contador = 0\ncontador += 1\ncontador = 5\nprintln(\"Contador está em: $contador\")"
+          "code": "var contador = 0\ncontador += 1\ncontador = 5\nprintln(\"Contador está em: $contador\")",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -152,13 +154,15 @@
       "lesson": [
         {
           "title": "Tudo é um Objeto",
-          "body": "Diferente de Java, onde existem tipos primitivos (como int e double), no Kotlin tudo é um objeto. Isso significa que você pode chamar funções e propriedades em qualquer variável, como números e booleanos. Os principais tipos numéricos são Int, Long, Double e Float, definidos pelas suas capacidades de armazenamento.",
-          "code": "val idade: Int = 30\nval peso: Double = 75.5\n// Chamando funções em números\nval textoIdade = idade.toString()\nprintln(textoIdade)"
+          "body": "Diferente de Java, onde existem tipos primitivos (como int e double), no Kotlin tudo é um objeto. Isso significa que você pode chamar funções e propriedades em qualquer variável, como números e booleanos. Os principais tipos numéricos são Int, Long, Double e Float, definidos pelas suas capacidades de armazenamento.\n\nCompreender este fundamento é crucial em Kotlin. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "val idade: Int = 30\nval peso: Double = 75.5\n// Chamando funções em números\nval textoIdade = idade.toString()\nprintln(textoIdade)",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "String Templates Avançados",
           "body": "Kotlin simplifica muito a concatenação de textos usando String Templates. Você pode inserir variáveis diretamente na string usando o símbolo '$'. Para expressões matemáticas, chamadas de funções ou acessos a propriedades, você envolve a expressão com chaves '${}'. Isso deixa o código mais limpo e evita erros comuns de formatação.",
-          "code": "val nome = \"Ana\"\nval anoNascimento = 1995\nval anoAtual = 2026\nprintln(\"Olá $nome, você tem ${anoAtual - anoNascimento} anos.\")"
+          "code": "val nome = \"Ana\"\nval anoNascimento = 1995\nval anoAtual = 2026\nprintln(\"Olá $nome, você tem ${anoAtual - anoNascimento} anos.\")",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -231,12 +235,14 @@
         {
           "title": "O Fim do NullPointerException",
           "body": "O Kotlin foi projetado para eliminar o temido NullPointerException. Por padrão, nenhuma variável pode receber o valor 'null'. O compilador exige que os tipos não-nulos sejam inicializados e nunca recebam 'null', tornando o código infinitamente mais seguro e garantindo que você não acesse referências vazias inesperadamente.",
-          "code": "var nome: String = \"Carlos\"\n// nome = null // Isso gera um erro de compilação\nprintln(nome.length) // Garantido que não será nulo"
+          "code": "var nome: String = \"Carlos\"\n// nome = null // Isso gera um erro de compilação\nprintln(nome.length) // Garantido que não será nulo",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Tipos Anuláveis (Nullable Types)",
           "body": "Quando você realmente precisa que uma variável possa ser nula (por exemplo, buscando algo que pode não existir num banco de dados), você deve declarar seu tipo explicitamente como anulável adicionando um '?' após o tipo. O compilador do Kotlin forçará você a tratar o caso nulo antes de acessar as propriedades dessa variável.",
-          "code": "var sobrenome: String? = null\nsobrenome = \"Silva\"\n// O compilador exige checagem antes de usar\nif (sobrenome != null) {\n    println(sobrenome.length)\n}"
+          "code": "var sobrenome: String? = null\nsobrenome = \"Silva\"\n// O compilador exige checagem antes de usar\nif (sobrenome != null) {\n    println(sobrenome.length)\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -309,12 +315,14 @@
         {
           "title": "O 'If' que Retorna Valores",
           "body": "No Kotlin, o 'if' não é apenas uma estrutura de controle de fluxo, mas sim uma expressão. Isso significa que ele pode retornar um valor diretamente para uma variável. Com isso, o Kotlin elimina a necessidade do operador ternário (condição ? a : b) comum em outras linguagens, unificando a sintaxe e melhorando a legibilidade.",
-          "code": "val nota = 85\n// if retornando valor diretamente\nval status = if (nota >= 70) \"Aprovado\" else \"Reprovado\"\nprintln(status)"
+          "code": "val nota = 85\n// if retornando valor diretamente\nval status = if (nota >= 70) \"Aprovado\" else \"Reprovado\"\nprintln(status)",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Blocos Completos no If",
-          "body": "Quando você usa o 'if' como expressão, cada ramo (if ou else) pode ser um bloco de código com múltiplas linhas usando chaves. O valor retornado pelo bloco será sempre a última expressão avaliada dentro dele. Isso é extremamente útil para realizar pequenos cálculos ou logs antes de decidir o valor final da variável.",
-          "code": "val a = 10\nval b = 20\nval max = if (a > b) {\n    println(\"Escolhendo a\")\n    a\n} else {\n    println(\"Escolhendo b\")\n    b\n}\nprintln(max)"
+          "body": "Quando você usa o 'if' como expressão, cada ramo (if ou else) pode ser um bloco de código com múltiplas linhas usando chaves. O valor retornado pelo bloco será sempre a última expressão avaliada dentro dele. Isso é extremamente útil para realizar pequenos cálculos ou logs antes de decidir o valor final da variável.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "val a = 10\nval b = 20\nval max = if (a > b) {\n    println(\"Escolhendo a\")\n    a\n} else {\n    println(\"Escolhendo b\")\n    b\n}\nprintln(max)",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -387,12 +395,14 @@
         {
           "title": "O Substituto do Switch",
           "body": "O 'when' é a alternativa moderna e poderosa ao clássico 'switch-case'. Ele permite testar uma variável contra múltiplas condições de forma limpa, sem a necessidade de 'break' a cada passo. Assim como o 'if', o 'when' também é uma expressão e pode retornar valores diretamente, tornando seu código incrivelmente conciso e seguro.",
-          "code": "val dia = 3\nval nomeDia = when (dia) {\n    1 -> \"Domingo\"\n    2 -> \"Segunda\"\n    3 -> \"Terça\"\n    else -> \"Dia inválido\"\n}\nprintln(nomeDia)"
+          "code": "val dia = 3\nval nomeDia = when (dia) {\n    1 -> \"Domingo\"\n    2 -> \"Segunda\"\n    3 -> \"Terça\"\n    else -> \"Dia inválido\"\n}\nprintln(nomeDia)",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Condições Complexas no When",
           "body": "O 'when' não se limita a valores exatos. Você pode checar se um valor está dentro de um intervalo usando 'in', checar tipos com 'is', ou até mesmo criar lógicas booleanas complexas omitindo o argumento principal. Isso o torna a ferramenta de controle de fluxo mais flexível do Kotlin para substituir cadeias de 'if-else'.",
-          "code": "val pontuacao = 85\nwhen (pontuacao) {\n    in 90..100 -> println(\"Excelente\")\n    in 70..89 -> println(\"Bom\")\n    else -> println(\"Precisa melhorar\")\n}"
+          "code": "val pontuacao = 85\nwhen (pontuacao) {\n    in 90..100 -> println(\"Excelente\")\n    in 70..89 -> println(\"Bom\")\n    else -> println(\"Precisa melhorar\")\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -465,12 +475,14 @@
         {
           "title": "Iterando com o For Loop",
           "body": "O loop 'for' em Kotlin é usado principalmente para iterar sobre qualquer coisa que forneça um iterador, como listas, arrays e intervalos (ranges). Em vez do antigo for indexado (i = 0; i < n), usamos a sintaxe 'for (item in colecao)'. Isso simplifica muito a navegação em dados e previne erros comuns de indexação fora dos limites.",
-          "code": "val frutas = listOf(\"Maçã\", \"Banana\", \"Laranja\")\nfor (fruta in frutas) {\n    println(\"Eu gosto de $fruta\")\n}\n\n// Iterando com intervalo\nfor (i in 1..3) println(i)"
+          "code": "val frutas = listOf(\"Maçã\", \"Banana\", \"Laranja\")\nfor (fruta in frutas) {\n    println(\"Eu gosto de $fruta\")\n}\n\n// Iterando com intervalo\nfor (i in 1..3) println(i)",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "O Clássico Loop While",
           "body": "Os loops 'while' e 'do-while' funcionam exatamente como em linguagens como C e Java. O 'while' verifica a condição antes de executar o bloco, enquanto o 'do-while' executa o bloco ao menos uma vez antes da checagem. Eles são úteis quando o número de iterações não é conhecido antecipadamente e depende de uma condição dinâmica.",
-          "code": "var contador = 3\nwhile (contador > 0) {\n    println(\"Contagem regressiva: $contador\")\n    contador--\n}\nprintln(\"Lançar!\")"
+          "code": "var contador = 3\nwhile (contador > 0) {\n    println(\"Contagem regressiva: $contador\")\n    contador--\n}\nprintln(\"Lançar!\")",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -542,13 +554,15 @@
       "lesson": [
         {
           "title": "Sintaxe Base de Funções",
-          "body": "Em Kotlin, funções são declaradas usando a palavra-chave 'fun'. Os parâmetros devem sempre ter o tipo explicitamente declarado, e o tipo de retorno fica após os dois pontos. Se a função não retorna nada, ela retorna implicitamente 'Unit' (similar ao void em Java). As funções são cidadãos de primeira classe no Kotlin.",
-          "code": "fun saudacao(nome: String): Unit {\n    println(\"Olá, $nome!\")\n}\n\nfun somar(a: Int, b: Int): Int {\n    return a + b\n}"
+          "body": "Em Kotlin, funções são declaradas usando a palavra-chave 'fun'. Os parâmetros devem sempre ter o tipo explicitamente declarado, e o tipo de retorno fica após os dois pontos. Se a função não retorna nada, ela retorna implicitamente 'Unit' (similar ao void em Java). As funções são cidadãos de primeira classe no Kotlin.\n\nCompreender este fundamento é crucial em Kotlin. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "fun saudacao(nome: String): Unit {\n    println(\"Olá, $nome!\")\n}\n\nfun somar(a: Int, b: Int): Int {\n    return a + b\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Funções de Uma Linha (Single-Expression)",
           "body": "Quando uma função consiste em apenas uma expressão que retorna um valor, você pode omitir as chaves e o 'return', usando o sinal de igual '='. O Kotlin inferirá automaticamente o tipo de retorno. Essa funcionalidade enxuga dramaticamente o código, tornando funções matemáticas ou pequenos processamentos muito mais elegantes.",
-          "code": "fun multiplicar(a: Int, b: Int) = a * b\n\nfun ehPar(numero: Int) = numero % 2 == 0\n\nprintln(multiplicar(5, 4))\nprintln(ehPar(10))"
+          "code": "fun multiplicar(a: Int, b: Int) = a * b\n\nfun ehPar(numero: Int) = numero % 2 == 0\n\nprintln(multiplicar(5, 4))\nprintln(ehPar(10))",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -621,12 +635,14 @@
         {
           "title": "Valores Default em Parâmetros",
           "body": "No Kotlin, você pode atribuir valores padrão aos parâmetros de uma função. Isso significa que, se quem chamar a função não fornecer um valor para aquele parâmetro, o padrão será usado. Essa funcionalidade elimina a necessidade de criar várias sobrecargas de uma mesma função apenas para cobrir omissões de argumentos comuns.",
-          "code": "fun enviarEmail(destino: String, assunto: String = \"Sem Assunto\") {\n    println(\"Enviando para $destino: $assunto\")\n}\n\nenviarEmail(\"joao@exemplo.com\") // Usa padrão\nenviarEmail(\"maria@exemplo.com\", \"Reunião\")"
+          "code": "fun enviarEmail(destino: String, assunto: String = \"Sem Assunto\") {\n    println(\"Enviando para $destino: $assunto\")\n}\n\nenviarEmail(\"joao@exemplo.com\") // Usa padrão\nenviarEmail(\"maria@exemplo.com\", \"Reunião\")",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Argumentos Nomeados (Named Arguments)",
-          "body": "Ao chamar funções com muitos parâmetros, você pode nomear os argumentos passando-os na ordem que quiser. Isso aumenta a legibilidade do código, deixando claro o que cada valor representa. Combinado com parâmetros padrão, os argumentos nomeados são essenciais para construir APIs flexíveis e fáceis de consumir.",
-          "code": "fun criarUsuario(nome: String, idade: Int, ativo: Boolean = true) {\n    println(\"Usuário: $nome, Idade: $idade, Ativo: $ativo\")\n}\n\n// Passando fora de ordem com argumentos nomeados\ncriarUsuario(idade = 25, nome = \"Pedro\")"
+          "body": "Ao chamar funções com muitos parâmetros, você pode nomear os argumentos passando-os na ordem que quiser. Isso aumenta a legibilidade do código, deixando claro o que cada valor representa. Combinado com parâmetros padrão, os argumentos nomeados são essenciais para construir APIs flexíveis e fáceis de consumir.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "fun criarUsuario(nome: String, idade: Int, ativo: Boolean = true) {\n    println(\"Usuário: $nome, Idade: $idade, Ativo: $ativo\")\n}\n\n// Passando fora de ordem com argumentos nomeados\ncriarUsuario(idade = 25, nome = \"Pedro\")",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -699,12 +715,14 @@
         {
           "title": "A Essência das Lambdas",
           "body": "Expressões lambda são pequenos blocos de código anônimos que podem ser passados como parâmetros para outras funções ou armazenados em variáveis. Em Kotlin, elas são definidas entre chaves '{}'. Elas formam a base da programação funcional da linguagem, permitindo a criação de lógicas dinâmicas sem definir funções normais completas.",
-          "code": "val multiplicar: (Int, Int) -> Int = { x, y -> x * y }\nval resultado = multiplicar(4, 5)\nprintln(\"O resultado da lambda é $resultado\")"
+          "code": "val multiplicar: (Int, Int) -> Int = { x, y -> x * y }\nval resultado = multiplicar(4, 5)\nprintln(\"O resultado da lambda é $resultado\")",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "A Convenção do 'it'",
           "body": "Para lambdas que recebem exatamente um parâmetro, o Kotlin permite uma sintaxe super curta. Você não precisa nomear o parâmetro explicitamente; o compilador disponibiliza automaticamente a palavra reservada 'it' para representar esse único valor. Isso deixa as operações em coleções incrivelmente concisas e fáceis de ler.",
-          "code": "val numeros = listOf(1, 2, 3, 4)\n// O 'it' representa cada elemento iterado na lambda\nval dobro = numeros.map { it * 2 }\nprintln(dobro) // [2, 4, 6, 8]"
+          "code": "val numeros = listOf(1, 2, 3, 4)\n// O 'it' representa cada elemento iterado na lambda\nval dobro = numeros.map { it * 2 }\nprintln(dobro) // [2, 4, 6, 8]",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -777,12 +795,14 @@
         {
           "title": "Construtores Primários",
           "body": "Em Kotlin, as classes geralmente declaram seu construtor principal diretamente no cabeçalho da classe. Usar 'val' ou 'var' nos parâmetros do construtor primário cria e inicializa propriedades da classe automaticamente. Isso remove a necessidade do código repetitivo (boilerplate) de atribuição explícita aos campos como em Java.",
-          "code": "class Carro(val marca: String, var velocidade: Int) {\n    fun acelerar() {\n        velocidade += 10\n    }\n}\nval meuCarro = Carro(\"Toyota\", 0)\nmeuCarro.acelerar()\nprintln(meuCarro.velocidade)"
+          "code": "class Carro(val marca: String, var velocidade: Int) {\n    fun acelerar() {\n        velocidade += 10\n    }\n}\nval meuCarro = Carro(\"Toyota\", 0)\nmeuCarro.acelerar()\nprintln(meuCarro.velocidade)",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "O Bloco 'init'",
           "body": "Como o construtor primário fica apenas na assinatura da classe, ele não pode conter código de lógica. Para executar validações ou lógicas de inicialização no momento em que o objeto é instanciado, você utiliza o bloco 'init'. Ele é executado logo após a criação do objeto, tendo acesso aos parâmetros do construtor primário.",
-          "code": "class ContaBancaria(val titular: String, saldoInicial: Double) {\n    var saldo: Double = saldoInicial\n    init {\n        require(saldoInicial >= 0) { \"O saldo inicial não pode ser negativo\" }\n        println(\"Conta de $titular criada com $saldo\")\n    }\n}"
+          "code": "class ContaBancaria(val titular: String, saldoInicial: Double) {\n    var saldo: Double = saldoInicial\n    init {\n        require(saldoInicial >= 0) { \"O saldo inicial não pode ser negativo\" }\n        println(\"Conta de $titular criada com $saldo\")\n    }\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -855,12 +875,14 @@
         {
           "title": "Dados Sem Boilerplate",
           "body": "A 'data class' foi criada especificamente para armazenar dados. Ao marcarmos uma classe com 'data', o compilador automaticamente gera implementações úteis de toString(), equals(), hashCode() e copy() baseadas nas propriedades do construtor. Isso te poupa dezenas de linhas de código padrão apenas para criar modelos de dados simples.",
-          "code": "data class Usuario(val id: Int, val nome: String)\n\nval user1 = Usuario(1, \"Alice\")\nval user2 = Usuario(1, \"Alice\")\n\nprintln(user1) // Imprime: Usuario(id=1, nome=Alice)\nprintln(user1 == user2) // Retorna true (compara valores, não referência)"
+          "code": "data class Usuario(val id: Int, val nome: String)\n\nval user1 = Usuario(1, \"Alice\")\nval user2 = Usuario(1, \"Alice\")\n\nprintln(user1) // Imprime: Usuario(id=1, nome=Alice)\nprintln(user1 == user2) // Retorna true (compara valores, não referência)",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Clonagem com a função Copy",
           "body": "Como as boas práticas sugerem criar objetos imutáveis usando 'val', você frequentemente precisará alterar uma propriedade copiando o objeto inteiro. A função 'copy' gerada nas 'data classes' permite duplicar o objeto alterando apenas propriedades específicas. É um recurso poderoso para gerenciar estados em arquiteturas modernas.",
-          "code": "data class Produto(val id: Int, val preco: Double, val emEstoque: Boolean)\n\nval mouse = Produto(101, 150.0, false)\n// Copiamos o objeto, mudando apenas 'emEstoque'\nval mouseRestocado = mouse.copy(emEstoque = true)\nprintln(mouseRestocado)"
+          "code": "data class Produto(val id: Int, val preco: Double, val emEstoque: Boolean)\n\nval mouse = Produto(101, 150.0, false)\n// Copiamos o objeto, mudando apenas 'emEstoque'\nval mouseRestocado = mouse.copy(emEstoque = true)\nprintln(mouseRestocado)",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -933,12 +955,14 @@
         {
           "title": "Classes Abertas (Open Classes)",
           "body": "Em Kotlin, todas as classes são finais ('final') por padrão, o que significa que não podem ser herdadas. Essa escolha de design previne heranças acidentais e fragilidades. Se você realmente deseja permitir que uma classe seja base para outras, deve marcá-la explicitamente com a palavra-chave 'open' antes da declaração de classe.",
-          "code": "open class Animal(val nome: String) {\n    open fun emitirSom() = println(\"Som indefinido\")\n}\n\nclass Cachorro(nome: String) : Animal(nome) {\n    override fun emitirSom() = println(\"Au Au!\")\n}\nCachorro(\"Rex\").emitirSom()"
+          "code": "open class Animal(val nome: String) {\n    open fun emitirSom() = println(\"Som indefinido\")\n}\n\nclass Cachorro(nome: String) : Animal(nome) {\n    override fun emitirSom() = println(\"Au Au!\")\n}\nCachorro(\"Rex\").emitirSom()",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Sobrescrita (Override)",
           "body": "Da mesma forma que as classes, os métodos e propriedades no Kotlin não podem ser sobrescritos por padrão. Eles também precisam da palavra 'open' na classe mãe. Quando você herda e reescreve a lógica na classe filha, o uso da palavra 'override' é obrigatório. O compilador garante que você está efetivamente substituindo o comportamento base.",
-          "code": "open class Funcionario {\n    open val salarioBase: Double = 3000.0\n    open fun calcularBonus() = salarioBase * 0.1\n}\n\nclass Gerente : Funcionario() {\n    override val salarioBase: Double = 5000.0\n    override fun calcularBonus() = salarioBase * 0.3\n}"
+          "code": "open class Funcionario {\n    open val salarioBase: Double = 3000.0\n    open fun calcularBonus() = salarioBase * 0.1\n}\n\nclass Gerente : Funcionario() {\n    override val salarioBase: Double = 5000.0\n    override fun calcularBonus() = salarioBase * 0.3\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1011,12 +1035,14 @@
         {
           "title": "O Operador Safe Call (?.)",
           "body": "Ao lidar com variáveis anuláveis, o compilador do Kotlin não permite acessar suas propriedades ou métodos diretamente usando o ponto '.'. Para acessá-los com segurança, usamos o Safe Call (?.). Ele checa se a variável é nula: se não for, executa a chamada; se for, retorna nulo silenciosamente, evitando um NullPointerException devastador.",
-          "code": "val textoNulo: String? = null\n// Retorna null de forma segura, sem quebrar a aplicação\nval tamanho = textoNulo?.length\nprintln(\"Tamanho: $tamanho\")"
+          "code": "val textoNulo: String? = null\n// Retorna null de forma segura, sem quebrar a aplicação\nval tamanho = textoNulo?.length\nprintln(\"Tamanho: $tamanho\")",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Encadeando Safe Calls",
           "body": "O Safe Call brilha de verdade quando lidamos com objetos aninhados onde qualquer nível pode ser nulo. Você pode encadear múltiplos '?.' juntos. Se em qualquer parte da cadeia um valor for nulo, a avaliação para imediatamente e o resultado final da expressão inteira será 'null', mantendo seu código limpo de dezenas de checagens 'if'.",
-          "code": "class Endereco(val cidade: String)\nclass Pessoa(val endereco: Endereco?)\n\nval usuario: Pessoa? = Pessoa(null)\n// Se usuario ou endereco forem nulos, cidadeAtual será null\nval cidadeAtual = usuario?.endereco?.cidade\nprintln(cidadeAtual)"
+          "code": "class Endereco(val cidade: String)\nclass Pessoa(val endereco: Endereco?)\n\nval usuario: Pessoa? = Pessoa(null)\n// Se usuario ou endereco forem nulos, cidadeAtual será null\nval cidadeAtual = usuario?.endereco?.cidade\nprintln(cidadeAtual)",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1089,12 +1115,14 @@
         {
           "title": "Lidando com Fallbacks (?:)",
           "body": "O Elvis Operator (?:) é o companheiro perfeito para os Safe Calls. Quando um Safe Call retorna nulo, muitas vezes queremos fornecer um valor padrão em vez de propagar o 'null'. O Elvis verifica a expressão da esquerda: se não for nula, ele a retorna; se for nula, retorna a expressão da direita, criando fallbacks elegantes em uma linha.",
-          "code": "val nomeFornecido: String? = null\n// Se 'nomeFornecido' for nulo, usamos \"Visitante\"\nval nomeExibicao = nomeFornecido ?: \"Visitante\"\nprintln(\"Olá, $nomeExibicao!\")"
+          "code": "val nomeFornecido: String? = null\n// Se 'nomeFornecido' for nulo, usamos \"Visitante\"\nval nomeExibicao = nomeFornecido ?: \"Visitante\"\nprintln(\"Olá, $nomeExibicao!\")",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Retornos Antecipados e Exceções",
           "body": "Como o Elvis Operator avalia apenas o lado direito se a esquerda for nula, você pode usá-lo com comandos de fluxo de controle, como 'return' ou 'throw'. Isso é excepcionalmente útil em Android para validações de parâmetros, garantindo que o programa interrompa sua execução com um erro explícito se um dado essencial estiver ausente.",
-          "code": "fun processarId(id: String?) {\n    // Se id for null, interrompe a função imediatamente\n    val idValido = id ?: return println(\"ID está ausente, saindo...\")\n    println(\"Processando ID válido: $idValido\")\n}\nprocessarId(null)"
+          "code": "fun processarId(id: String?) {\n    // Se id for null, interrompe a função imediatamente\n    val idValido = id ?: return println(\"ID está ausente, saindo...\")\n    println(\"Processando ID válido: $idValido\")\n}\nprocessarId(null)",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1167,12 +1195,14 @@
         {
           "title": "A Função de Escopo 'let'",
           "body": "A função de escopo 'let' permite executar um bloco de código sobre um objeto, acessando-o via 'it'. Seu caso de uso mais popular é combiná-la com o Safe Call (?.) para executar instruções apenas se o objeto for não-nulo. Isso substitui os antigos blocos de 'if (obj != null)' de forma fluida e idiomática na linguagem Kotlin.",
-          "code": "var clienteEmail: String? = \"cliente@email.com\"\n// O bloco só será executado porque clienteEmail não é nulo\nclienteEmail?.let {\n    println(\"Enviando e-mail promocional para $it\")\n}"
+          "code": "var clienteEmail: String? = \"cliente@email.com\"\n// O bloco só será executado porque clienteEmail não é nulo\nclienteEmail?.let {\n    println(\"Enviando e-mail promocional para $it\")\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Configuração com 'apply'",
-          "body": "Diferente do 'let', a função 'apply' passa o objeto para o bloco como 'this' e sempre retorna o próprio objeto. Seu principal propósito é agrupar múltiplas atribuições de propriedades e configurações iniciais na instanciação de um objeto, como a estilização de componentes de tela (Views) no desenvolvimento Android.",
-          "code": "class ConfigBanco {\n    var host = \"\"\n    var port = 0\n}\n\n// apply configura e retorna a instância do banco\nval db = ConfigBanco().apply {\n    host = \"localhost\"\n    port = 5432\n}\nprintln(\"Conectando a ${db.host}:${db.port}\")"
+          "body": "Diferente do 'let', a função 'apply' passa o objeto para o bloco como 'this' e sempre retorna o próprio objeto. Seu principal propósito é agrupar múltiplas atribuições de propriedades e configurações iniciais na instanciação de um objeto, como a estilização de componentes de tela (Views) no desenvolvimento Android.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "class ConfigBanco {\n    var host = \"\"\n    var port = 0\n}\n\n// apply configura e retorna a instância do banco\nval db = ConfigBanco().apply {\n    host = \"localhost\"\n    port = 5432\n}\nprintln(\"Conectando a ${db.host}:${db.port}\")",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1245,12 +1275,14 @@
         {
           "title": "Listas Imutáveis (listOf)",
           "body": "As coleções no Kotlin são projetadas pensando na imutabilidade segura. A função 'listOf()' cria uma lista somente leitura, o que significa que o seu tamanho e seus elementos não podem ser alterados depois de criados. Isso é preferível sempre que os dados não precisam mudar, evitando bugs de concorrência em sistemas complexos.",
-          "code": "val cores = listOf(\"Vermelho\", \"Verde\", \"Azul\")\n// cores.add(\"Amarelo\") // Isso é um erro de compilação\nprintln(cores[0]) // Acessando por índice\nprintln(\"Tamanho da lista: ${cores.size}\")"
+          "code": "val cores = listOf(\"Vermelho\", \"Verde\", \"Azul\")\n// cores.add(\"Amarelo\") // Isso é um erro de compilação\nprintln(cores[0]) // Acessando por índice\nprintln(\"Tamanho da lista: ${cores.size}\")",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Listas Mutáveis (mutableListOf)",
           "body": "Quando você sabe que precisará adicionar, remover ou modificar elementos ao longo do ciclo de vida da coleção, deve usar 'mutableListOf()'. Essa estrutura permite mutações com funções como 'add' e 'remove'. No desenvolvimento Android, é comum popular MutableLists a partir de requisições de rede ou interações com banco de dados.",
-          "code": "val convidados = mutableListOf(\"João\", \"Ana\")\nconvidados.add(\"Carlos\")\nconvidados.remove(\"João\")\nconvidados[0] = \"Ana Silva\" // Atualizando valor\nprintln(convidados)"
+          "code": "val convidados = mutableListOf(\"João\", \"Ana\")\nconvidados.add(\"Carlos\")\nconvidados.remove(\"João\")\nconvidados[0] = \"Ana Silva\" // Atualizando valor\nprintln(convidados)",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1323,12 +1355,14 @@
         {
           "title": "Dicionários Chave-Valor (mapOf)",
           "body": "Um Map, em Kotlin, é uma coleção que relaciona chaves únicas a valores, funcionando exatamente como um dicionário do mundo real. Utilizando a função 'mapOf', nós criamos um Map imutável. A relação entre a chave e o valor é mapeada usando a expressiva palavra-chave 'to', que cria um objeto Pair de forma concisa sob o capô.",
-          "code": "val notas = mapOf(\"Matemática\" to 9.5, \"História\" to 8.0)\n// Acessando valores através das chaves exclusivas\nprintln(\"Nota em Matemática: ${notas[\"Matemática\"]}\")\n// Se a chave não existir, retorna nulo\nprintln(\"Nota em Física: ${notas[\"Física\"]}\")"
+          "code": "val notas = mapOf(\"Matemática\" to 9.5, \"História\" to 8.0)\n// Acessando valores através das chaves exclusivas\nprintln(\"Nota em Matemática: ${notas[\"Matemática\"]}\")\n// Se a chave não existir, retorna nulo\nprintln(\"Nota em Física: ${notas[\"Física\"]}\")",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Alterando Dicionários (mutableMapOf)",
           "body": "Para construir e atualizar mapas dinamicamente, utilizamos a estrutura mutável 'mutableMapOf'. Os mapas mutáveis nos permitem adicionar novos pares ou atualizar os valores das chaves já existentes usando atribuição direta por colchetes []. Essa é a melhor ferramenta para armazenar dados em cache durante a execução do aplicativo.",
-          "code": "val inventario = mutableMapOf(\"Espada\" to 1)\ninventario[\"Poção\"] = 5 // Adicionando novo par\ninventario[\"Espada\"] = 2 // Atualizando valor existente\nfor ((item, qtd) in inventario) {\n    println(\"$item: $qtd unidades\")\n}"
+          "code": "val inventario = mutableMapOf(\"Espada\" to 1)\ninventario[\"Poção\"] = 5 // Adicionando novo par\ninventario[\"Espada\"] = 2 // Atualizando valor existente\nfor ((item, qtd) in inventario) {\n    println(\"$item: $qtd unidades\")\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1400,13 +1434,15 @@
       "lesson": [
         {
           "title": "O Poder da Função 'filter'",
-          "body": "A programação funcional no Kotlin torna as operações com coleções muito expressivas. A função 'filter' percorre uma coleção inteira, passa cada elemento (it) por uma condição booleana e retorna uma nova lista contendo apenas os elementos que satisfizeram o critério. Ela não altera a lista original.",
-          "code": "val idades = listOf(15, 22, 12, 30, 18)\n// Retorna apenas maiores ou iguais a 18\nval maioresDeIdade = idades.filter { it >= 18 }\nprintln(maioresDeIdade) // [22, 30, 18]"
+          "body": "A programação funcional no Kotlin torna as operações com coleções muito expressivas. A função 'filter' percorre uma coleção inteira, passa cada elemento (it) por uma condição booleana e retorna uma nova lista contendo apenas os elementos que satisfizeram o critério. Ela não altera a lista original.\n\nCompreender este fundamento é crucial em Kotlin. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "val idades = listOf(15, 22, 12, 30, 18)\n// Retorna apenas maiores ou iguais a 18\nval maioresDeIdade = idades.filter { it >= 18 }\nprintln(maioresDeIdade) // [22, 30, 18]",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Transformando dados com 'map'",
           "body": "A função 'map' é utilizada para transformação de dados. Diferente do filter que reduz a quantidade de elementos, o map preserva o mesmo tamanho da lista original, mas transforma o valor ou o tipo de cada item aplicando a lógica da lambda fornecida. É amplamente usado para converter entidades de banco de dados em modelos de tela.",
-          "code": "val produtos = listOf(\"mesa\", \"cadeira\", \"sofá\")\n// Transforma todas as strings para maiúsculas\nval formatados = produtos.map { it.uppercase() }\nprintln(formatados) // [MESA, CADEIRA, SOFÁ]"
+          "code": "val produtos = listOf(\"mesa\", \"cadeira\", \"sofá\")\n// Transforma todas as strings para maiúsculas\nval formatados = produtos.map { it.uppercase() }\nprintln(formatados) // [MESA, CADEIRA, SOFÁ]",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1479,12 +1515,14 @@
         {
           "title": "Concorrência Descomplicada",
           "body": "Corrotinas (Coroutines) são a solução oficial e moderna do Kotlin para lidar com programação assíncrona. Elas agem como \"threads leves\", permitindo rodar tarefas demoradas no fundo sem bloquear a Thread Principal, onde rodam as interfaces gráficas. São imensamente mais baratas em uso de memória em comparação a Threads de sistema Java reais.",
-          "code": "import kotlinx.coroutines.*\nfun main() = runBlocking {\n    launch { // Lança uma corrotina em background\n        delay(1000L) // Pausa a corrotina (não a thread)\n        println(\"Mundo!\")\n    }\n    print(\"Olá, \")\n}"
+          "code": "import kotlinx.coroutines.*\nfun main() = runBlocking {\n    launch { // Lança uma corrotina em background\n        delay(1000L) // Pausa a corrotina (não a thread)\n        println(\"Mundo!\")\n    }\n    print(\"Olá, \")\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "A Mágica do modificador 'suspend'",
           "body": "O coração das corrotinas é a palavra-chave 'suspend'. Uma função 'suspend' pode ser pausada no meio de sua execução, liberar a Thread para outro trabalho, e depois ser retomada exatamente de onde parou quando o resultado estiver pronto. Isso nos permite escrever código assíncrono usando estrutura e lógica sequenciais comuns.",
-          "code": "import kotlinx.coroutines.delay\n\nsuspend fun baixarDadosDoServidor(): String {\n    // Simula espera de rede sem travar o aplicativo\n    delay(2000L)\n    return \"Dados JSON recebidos\"\n}"
+          "code": "import kotlinx.coroutines.delay\n\nsuspend fun baixarDadosDoServidor(): String {\n    // Simula espera de rede sem travar o aplicativo\n    delay(2000L)\n    return \"Dados JSON recebidos\"\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1557,12 +1595,14 @@
         {
           "title": "Despachantes (Dispatchers)",
           "body": "Em Android, precisamos garantir que chamadas pesadas rodem fora da thread principal. Os Dispatchers controlam em qual thread a corrotina vai rodar. O 'Dispatchers.IO' é projetado especificamente para operações de rede e banco de dados, enquanto o 'Dispatchers.Main' é o único lugar permitido para alterar a interface gráfica.",
-          "code": "import kotlinx.coroutines.*\n\nfun main() = runBlocking {\n    // Mudando o contexto para uma thread de I/O de dados pesados\n    withContext(Dispatchers.IO) {\n        println(\"Buscando no banco de dados na thread: ${Thread.currentThread().name}\")\n    }\n}"
+          "code": "import kotlinx.coroutines.*\n\nfun main() = runBlocking {\n    // Mudando o contexto para uma thread de I/O de dados pesados\n    withContext(Dispatchers.IO) {\n        println(\"Buscando no banco de dados na thread: ${Thread.currentThread().name}\")\n    }\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Lidando com a Sincronização",
-          "body": "Corrotinas tornam chamadas em APIs muito simples. Você pode iniciar múltiplas tarefas em paralelo (usando async) ou aguardar os dados em série. A grande força na prática é manter a tela de um app sempre fluída para o usuário, independentemente do que está sendo baixado em background.",
-          "code": "import kotlinx.coroutines.*\n\nsuspend fun buscarNome() = \"Android\"\nsuspend fun buscarVersao() = 15\n\nfun main() = runBlocking {\n    // Chama funções suspensas sequencialmente\n    val nome = buscarNome()\n    val versao = buscarVersao()\n    println(\"Sistema: $nome $versao\")\n}"
+          "body": "Corrotinas tornam chamadas em APIs muito simples. Você pode iniciar múltiplas tarefas em paralelo (usando async) ou aguardar os dados em série. A grande força na prática é manter a tela de um app sempre fluída para o usuário, independentemente do que está sendo baixado em background.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "import kotlinx.coroutines.*\n\nsuspend fun buscarNome() = \"Android\"\nsuspend fun buscarVersao() = 15\n\nfun main() = runBlocking {\n    // Chama funções suspensas sequencialmente\n    val nome = buscarNome()\n    val versao = buscarVersao()\n    println(\"Sistema: $nome $versao\")\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1635,12 +1675,14 @@
         {
           "title": "A Tela Principal (Activity)",
           "body": "No Android, uma 'Activity' é um componente fundamental que representa uma única tela com interface para interação com o usuário. Ela gerencia todo o ciclo de vida visual e carrega o arquivo de layout (XML) para exibir botões, textos e imagens. A maioria dos apps Kotlin simples possui pelo menos uma MainActivity atuando como porta de entrada.",
-          "code": "// Representação simplificada\nclass MainActivity : ComponentActivity() {\n    override fun onCreate(savedInstanceState: Bundle?) {\n        super.onCreate(savedInstanceState)\n        println(\"A tela principal foi criada e carregada!\")\n    }\n}"
+          "code": "// Representação simplificada\nclass MainActivity : ComponentActivity() {\n    override fun onCreate(savedInstanceState: Bundle?) {\n        super.onCreate(savedInstanceState)\n        println(\"A tela principal foi criada e carregada!\")\n    }\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Comunicação entre Activities",
-          "body": "Para navegar de uma tela (Activity) para outra, utilizamos Intents. Uma Intent é essencialmente um mensageiro do sistema operacional Android. Ela declara sua 'intenção' de fazer algo, como iniciar uma nova Activity. Além disso, as Intents podem carregar pequenos pacotes de dados de uma tela para a outra.",
-          "code": "/* \nval intent = Intent(this, DetalhesActivity::class.java)\nintent.putExtra(\"ID_PRODUTO\", 101)\nstartActivity(intent)\n*/\nprintln(\"Intent acionada para abrir nova tela com dados\")"
+          "body": "Para navegar de uma tela (Activity) para outra, utilizamos Intents. Uma Intent é essencialmente um mensageiro do sistema operacional Android. Ela declara sua 'intenção' de fazer algo, como iniciar uma nova Activity. Além disso, as Intents podem carregar pequenos pacotes de dados de uma tela para a outra.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "/* \nval intent = Intent(this, DetalhesActivity::class.java)\nintent.putExtra(\"ID_PRODUTO\", 101)\nstartActivity(intent)\n*/\nprintln(\"Intent acionada para abrir nova tela com dados\")",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1713,12 +1755,14 @@
         {
           "title": "Separação entre Lógica e Interface",
           "body": "O Android tradicionalmente divide o trabalho separando a lógica Kotlin do visual XML. Os Layouts definem as posições de Views (textos, botões, containers) e a Activity infla esses arquivos para exibi-los. É vital compreender que referenciar uma visualização por IDs faz a ponte entre o design e as respostas a cliques em Kotlin.",
-          "code": "/* Em um ambiente Android real:\nval botao = findViewById<Button>(R.id.btn_enviar)\nbotao.setOnClickListener {\n    println(\"Botão foi clicado pelo usuário!\")\n}\n*/\nprintln(\"Ponte entre UI (Interface) e lógica feita via IDs\")"
+          "code": "/* Em um ambiente Android real:\nval botao = findViewById<Button>(R.id.btn_enviar)\nbotao.setOnClickListener {\n    println(\"Botão foi clicado pelo usuário!\")\n}\n*/\nprintln(\"Ponte entre UI (Interface) e lógica feita via IDs\")",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Estruturas de Tela",
           "body": "Layouts organizam visualmente componentes filhos. Um 'LinearLayout' empilha itens em linha reta (vertical ou horizontal), enquanto um 'ConstraintLayout' os amarra uns aos outros com base em regras e pesos. Entender como eles funcionam teoricamente é essencial para que a lógica em Kotlin consiga manipular animações e inserções corretamente.",
-          "code": "fun carregarLayoutTeorico() {\n    // O Android infla a árvore de componentes do XML aqui.\n    println(\"Layout desenhado. Componentes estão prontos para receber eventos em Kotlin.\")\n}\ncarregarLayoutTeorico()"
+          "code": "fun carregarLayoutTeorico() {\n    // O Android infla a árvore de componentes do XML aqui.\n    println(\"Layout desenhado. Componentes estão prontos para receber eventos em Kotlin.\")\n}\ncarregarLayoutTeorico()",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1791,12 +1835,14 @@
         {
           "title": "A Criação (onCreate)",
           "body": "Uma Activity não está sempre 'viva'. Ela atravessa vários estados governados pelo sistema operacional. O método 'onCreate' é chamado uma vez no começo e é onde você deve fazer a configuração principal: inflar as views, configurar botões e disparar buscas de dados essenciais, pois é a inicialização de todo o escopo visual.",
-          "code": "open class ActivityMock {\n    open fun onCreate() {\n        println(\"Layout carregado, observadores iniciados.\")\n    }\n}\nclass MinhaTela : ActivityMock() {\n    override fun onCreate() = super.onCreate().also { println(\"Meus dados\") }\n}\nMinhaTela().onCreate()"
+          "code": "open class ActivityMock {\n    open fun onCreate() {\n        println(\"Layout carregado, observadores iniciados.\")\n    }\n}\nclass MinhaTela : ActivityMock() {\n    override fun onCreate() = super.onCreate().also { println(\"Meus dados\") }\n}\nMinhaTela().onCreate()",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Pausa e Destruição (onPause, onDestroy)",
           "body": "Saber limpar recursos é fundamental. Quando o app vai pro fundo, 'onPause' e 'onStop' são chamados; quando a tela é fechada, 'onDestroy' entra em cena. É essencial cancelar requisições de rede corrotinas ativas nesses estados para evitar vazamento de memória ou tentativas de atualizar uma interface que já nem existe mais no celular.",
-          "code": "open class ActivityDestroyMock {\n    open fun onDestroy() {\n        println(\"Limpando memória e cancelando corrotinas ativas!\")\n    }\n}\nActivityDestroyMock().onDestroy()"
+          "code": "open class ActivityDestroyMock {\n    open fun onDestroy() {\n        println(\"Limpando memória e cancelando corrotinas ativas!\")\n    }\n}\nActivityDestroyMock().onDestroy()",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1868,13 +1914,15 @@
       "lesson": [
         {
           "title": "Aumentando Classes Existentes",
-          "body": "As Extension Functions do Kotlin permitem que você adicione novas funções a classes que você não tem acesso ao código fonte, como String do sistema e Views do Android. Isso é pura magia, permitindo criar lógicas personalizadas sem depender de herança ou classes utilitárias cheias de métodos estáticos estranhos.",
-          "code": "fun String.removerEspacos(): String {\n    return this.replace(\" \", \"\")\n}\n\nval texto = \"K o t l i n\"\nprintln(texto.removerEspacos()) // Retorna 'Kotlin'"
+          "body": "As Extension Functions do Kotlin permitem que você adicione novas funções a classes que você não tem acesso ao código fonte, como String do sistema e Views do Android. Isso é pura magia, permitindo criar lógicas personalizadas sem depender de herança ou classes utilitárias cheias de métodos estáticos estranhos.\n\nCompreender este fundamento é crucial em Kotlin. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "fun String.removerEspacos(): String {\n    return this.replace(\" \", \"\")\n}\n\nval texto = \"K o t l i n\"\nprintln(texto.removerEspacos()) // Retorna 'Kotlin'",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Ocultando Complexidade",
-          "body": "Extensões tornam o código muito legível. É super comum no Android criar Extension Functions para transformar dados, mostrar pop-ups genéricos ou formatar datas. Dentro do bloco da Extension Function, a palavra-chave 'this' se refere à instância exata na qual a função foi chamada.",
-          "code": "fun Int.ehPositivo(): Boolean {\n    return this > 0\n}\n\nval saldo = 1500\nif (saldo.ehPositivo()) {\n    println(\"Conta com crédito positivo\")\n}"
+          "body": "Extensões tornam o código muito legível. É super comum no Android criar Extension Functions para transformar dados, mostrar pop-ups genéricos ou formatar datas. Dentro do bloco da Extension Function, a palavra-chave 'this' se refere à instância exata na qual a função foi chamada.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "fun Int.ehPositivo(): Boolean {\n    return this > 0\n}\n\nval saldo = 1500\nif (saldo.ehPositivo()) {\n    println(\"Conta com crédito positivo\")\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1947,12 +1995,14 @@
         {
           "title": "Estado de Tela Protegido",
           "body": "Sealed Classes são ferramentas incríveis para criar representações de estado da tela em Kotlin. Ao definir uma classe como 'sealed', você garante que ela só pode ser herdada dentro do mesmo arquivo. Isso restringe o número de possibilidades, sendo excelente para modelar Sucesso, Erro ou Carregamento para uma interface gráfica de forma engessada.",
-          "code": "sealed class Result\ndata class Sucesso(val dados: String) : Result()\ndata class Erro(val motivo: String) : Result()\nobject Carregando : Result()\nprintln(\"Estados de interface bem definidos!\")"
+          "code": "sealed class Result\ndata class Sucesso(val dados: String) : Result()\ndata class Erro(val motivo: String) : Result()\nobject Carregando : Result()\nprintln(\"Estados de interface bem definidos!\")",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Companheiro do When",
           "body": "Quando você cruza uma Sealed Class com a estrutura 'when', o compilador torna o bloco seguro. Como o Kotlin sabe todos os filhos possíveis, o 'when' vai exigir que você cubra absolutamente todos os estados ou você receberá um erro de compilação. É a garantia de que o seu aplicativo nunca vai esquecer de tratar um cenário de erro ou erro crítico.",
-          "code": "sealed class UIState\nobject Loading : UIState()\n\nfun renderizar(state: UIState) {\n    when (state) {\n        is Loading -> println(\"Mostrando spinner giratório no centro\")\n        // Compilador forçaria a cobrir Sucesso e Erro se existissem\n    }\n}\nrenderizar(Loading)"
+          "code": "sealed class UIState\nobject Loading : UIState()\n\nfun renderizar(state: UIState) {\n    when (state) {\n        is Loading -> println(\"Mostrando spinner giratório no centro\")\n        // Compilador forçaria a cobrir Sucesso e Erro se existissem\n    }\n}\nrenderizar(Loading)",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -2025,12 +2075,14 @@
         {
           "title": "O Padrão Singleton com 'object'",
           "body": "No mundo da programação, frequentemente necessitamos que apenas uma única instância de uma classe viva durante toda a execução. No Java é complexo, mas no Kotlin, basta substituir a palavra 'class' por 'object'. Essa declaração unifica a classe e a instância: o objeto é criado no primeiro acesso e o mesmo é partilhado por todo o projeto.",
-          "code": "object ConfiguracaoApp {\n    var modoNoturno = false\n    fun ativarDark() { modoNoturno = true }\n}\nConfiguracaoApp.ativarDark()\nprintln(\"Modo dark ativo: ${ConfiguracaoApp.modoNoturno}\")"
+          "code": "object ConfiguracaoApp {\n    var modoNoturno = false\n    fun ativarDark() { modoNoturno = true }\n}\nConfiguracaoApp.ativarDark()\nprintln(\"Modo dark ativo: ${ConfiguracaoApp.modoNoturno}\")",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Companion Objects",
           "body": "Diferente de Java, não temos a keyword 'static' em Kotlin. Para associar propriedades ou funções diretamente a uma classe sem necessitar instanciar um objeto, utilizamos o 'companion object'. É massivamente utilizado no Android para fornecer fábricas de Intents constantes globais pertencentes a uma Activity ou Fragment específica.",
-          "code": "class Relatorio {\n    companion object {\n        const val CABECALHO_PADRAO = \"RELATÓRIO CONFIDENCIAL\"\n        fun gerarVazio() = Relatorio()\n    }\n}\nprintln(Relatorio.CABECALHO_PADRAO)"
+          "code": "class Relatorio {\n    companion object {\n        const val CABECALHO_PADRAO = \"RELATÓRIO CONFIDENCIAL\"\n        fun gerarVazio() = Relatorio()\n    }\n}\nprintln(Relatorio.CABECALHO_PADRAO)",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -2102,13 +2154,15 @@
       "lesson": [
         {
           "title": "Consolidando Imutabilidade",
-          "body": "Revisando os conceitos-chave, o desenvolvimento de um aplicativo limpo demanda o uso massivo de variáveis 'val' imutáveis. Reduzir ao máximo as reatribuições diminui a imprevisibilidade do estado. Além disso, a conversão segura entre tipos diferentes e uso de String Templates solidifica a entrega visual no Android.",
-          "code": "val idadeFixa = 28\nval mensagem = \"Usuário possui $idadeFixa anos\"\n// Prevenção inteligente evitando lixo e bugs visuais\nprintln(mensagem)"
+          "body": "Revisando os conceitos-chave, o desenvolvimento de um aplicativo limpo demanda o uso massivo de variáveis 'val' imutáveis. Reduzir ao máximo as reatribuições diminui a imprevisibilidade do estado. Além disso, a conversão segura entre tipos diferentes e uso de String Templates solidifica a entrega visual no Android.\n\nCompreender este fundamento é crucial em Kotlin. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "val idadeFixa = 28\nval mensagem = \"Usuário possui $idadeFixa anos\"\n// Prevenção inteligente evitando lixo e bugs visuais\nprintln(mensagem)",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Revisão de Operadores de Segurança",
           "body": "Ter o conceito dos operadores de segurança na ponta dos dedos garante tranquilidade. O Safe Call (?.) impede as quebras acessando atributos não nulos e o Elvis Operator (?:) estabelece defesas preenchendo as lacunas. Juntos, blindam sua infraestrutura Kotlin para que seus aplicativos evitem a esmagadora maioria de quedas acidentais.",
-          "code": "val apelido: String? = null\nval tamanho = apelido?.length ?: 0\nprintln(\"O tamanho do texto processado foi de $tamanho\")"
+          "code": "val apelido: String? = null\nval tamanho = apelido?.length ?: 0\nprintln(\"O tamanho do texto processado foi de $tamanho\")",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -2181,12 +2235,14 @@
         {
           "title": "Modelagem de Entidades com Data Classes",
           "body": "Para construir a camada de dados confiável do seu projeto final, Data Classes são absolutas. Elas automatizam toda a rotina de comparar listas com DiffUtil em ferramentas como RecyclerView no Android. O compilador oferece de graça o método equals, focado unicamente na checagem dos parâmetros estipulados no seu construtor principal.",
-          "code": "data class Tarefa(val titulo: String, val finalizada: Boolean)\nval t1 = Tarefa(\"Estudar\", true)\nval t2 = Tarefa(\"Estudar\", true)\nprintln(\"São iguais para listagens: ${t1 == t2}\")"
+          "code": "data class Tarefa(val titulo: String, val finalizada: Boolean)\nval t1 = Tarefa(\"Estudar\", true)\nval t2 = Tarefa(\"Estudar\", true)\nprintln(\"São iguais para listagens: ${t1 == t2}\")",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Coleções Funcionais no Dia a Dia",
-          "body": "Operar as listas não se resume mais apenas ao clássico loop. Funções encadeadas como 'filter' e 'map' expressam claramente o que seu código está fazendo. Extrair dados cruciais para a exibição de layouts no Android ganha fluidez e legibilidade imediata, o que impacta na manutenção colaborativa do time de programação.",
-          "code": "val compras = listOf(\"Suco\", \"Pão\", \"Bolo\")\nval itensComO = compras.filter { it.contains(\"o\") }\nprintln(itensComO) // [Pão, Bolo]"
+          "body": "Operar as listas não se resume mais apenas ao clássico loop. Funções encadeadas como 'filter' e 'map' expressam claramente o que seu código está fazendo. Extrair dados cruciais para a exibição de layouts no Android ganha fluidez e legibilidade imediata, o que impacta na manutenção colaborativa do time de programação.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "val compras = listOf(\"Suco\", \"Pão\", \"Bolo\")\nval itensComO = compras.filter { it.contains(\"o\") }\nprintln(itensComO) // [Pão, Bolo]",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -2258,13 +2314,15 @@
       "lesson": [
         {
           "title": "Mantendo a Interface Fluida",
-          "body": "A Thread Principal no Android dita o ritmo e a beleza dos aplicativos. Para não a sobrecarregar causando congelamentos de tela e até o fatídico ANR (Application Not Responding), as chamadas para servidores externos sempre deverão utilizar o modelo assíncrono suspendido pelas potentes e amigáveis Corrotinas do Kotlin.",
-          "code": "import kotlinx.coroutines.*\nfun buscarConfig(): String = \"JSON Pronto\"\nfun main() = runBlocking {\n    val configuracoes = async(Dispatchers.Default) { buscarConfig() }\n    println(\"Aguardando... ${configuracoes.await()}\")\n}"
+          "body": "A Thread Principal no Android dita o ritmo e a beleza dos aplicativos. Para não a sobrecarregar causando congelamentos de tela e até o fatídico ANR (Application Not Responding), as chamadas para servidores externos sempre deverão utilizar o modelo assíncrono suspendido pelas potentes e amigáveis Corrotinas do Kotlin.\n\nCompreender este fundamento é crucial em Kotlin. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "import kotlinx.coroutines.*\nfun buscarConfig(): String = \"JSON Pronto\"\nfun main() = runBlocking {\n    val configuracoes = async(Dispatchers.Default) { buscarConfig() }\n    println(\"Aguardando... ${configuracoes.await()}\")\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Gerenciamento do Ciclo de Vida Prático",
-          "body": "Unindo boas práticas das Classes Abertas, heranças com Override, Extension Functions e Ciclo de Vida: é primordial criar pontes entre a tela e os dados de uma maneira que respeite quando uma Activity vai a campo ou para o background. Desconectar referências nulas nesses estágios é o segredo para estabilidade de topo.",
-          "code": "fun onStopLifecycle() {\n    val apiAtiva: Boolean = false\n    if (!apiAtiva) println(\"Atividades em plano de fundo interrompidas de forma segura\")\n}\nonStopLifecycle()"
+          "body": "Unindo boas práticas das Classes Abertas, heranças com Override, Extension Functions e Ciclo de Vida: é primordial criar pontes entre a tela e os dados de uma maneira que respeite quando uma Activity vai a campo ou para o background. Desconectar referências nulas nesses estágios é o segredo para estabilidade de topo.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "fun onStopLifecycle() {\n    val apiAtiva: Boolean = false\n    if (!apiAtiva) println(\"Atividades em plano de fundo interrompidas de forma segura\")\n}\nonStopLifecycle()",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -2337,12 +2395,14 @@
         {
           "title": "Definindo a Camada de Dados",
           "body": "Um aplicativo completo integra todas as peças do quebra-cabeça. Iniciamos consolidando a arquitetura definindo o modelo via Data Class, estabelecendo listas geridas e utilizando uma Sealed Class blindada para notificar e controlar a interface, demonstrando se está carregando, pronta ou em erro crítico antes de apresentar a interface.",
-          "code": "data class Task(val nome: String, var feita: Boolean = false)\nsealed class AppState\nobject Buscando : AppState()\ndata class Apresentando(val list: List<Task>) : AppState()"
+          "code": "data class Task(val nome: String, var feita: Boolean = false)\nsealed class AppState\nobject Buscando : AppState()\ndata class Apresentando(val list: List<Task>) : AppState()",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Simulando uma Busca de Dados",
           "body": "O toque final simula um chamado com corrotinas de maneira elegante. Recupera as informações com suspend, faz a filtragem das tarefas usando transformações funcionais e garante uma tela empolgante que atualiza dados usando lambdas. Este é o alicerce principal do moderno desenvolvimento Android com o rico ecossistema Kotlin.",
-          "code": "import kotlinx.coroutines.*\ndata class Task(val id: Int)\nsuspend fun baixarTasks(): List<Task> {\n    delay(100L)\n    return listOf(Task(1), Task(2))\n}\nfun main() = runBlocking {\n    val tarefas = baixarTasks()\n    println(\"Exibindo com sucesso ${tarefas.size} tarefas na UI!\")\n}"
+          "code": "import kotlinx.coroutines.*\ndata class Task(val id: Int)\nsuspend fun baixarTasks(): List<Task> {\n    delay(100L)\n    return listOf(Task(1), Task(2))\n}\nfun main() = runBlocking {\n    val tarefas = baixarTasks()\n    println(\"Exibindo com sucesso ${tarefas.size} tarefas na UI!\")\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [

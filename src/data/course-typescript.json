@@ -74,13 +74,15 @@
       "lesson": [
         {
           "title": "Adicionando Tipos ao JavaScript",
-          "body": "TypeScript é um superconjunto do JavaScript que introduz tipagem estática. Ao invés de descobrir erros apenas ao executar, você declara os tipos (como 'string' ou 'number') e o compilador valida tudo antes, tornando o código mais previsível e seguro em aplicações grandes.",
-          "code": "let nome: string = \"Carlos\";\nlet idade: number = 28;\nlet ativo: boolean = true;"
+          "body": "TypeScript é um superconjunto do JavaScript que introduz tipagem estática. Ao invés de descobrir erros apenas ao executar, você declara os tipos (como 'string' ou 'number') e o compilador valida tudo antes, tornando o código mais previsível e seguro em aplicações grandes.\n\nCompreender este fundamento é crucial em TypeScript. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "let nome: string = \"Carlos\";\nlet idade: number = 28;\nlet ativo: boolean = true;",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "O Processo de Compilação",
-          "body": "O navegador ou Node não executam TypeScript nativamente. O código '.ts' deve ser compilado usando o comando 'tsc', que verifica os erros e gera um arquivo '.js' limpo. Durante esse processo, as anotações de tipo são completamente removidas do código final.",
-          "code": "// arquivo.ts\nlet taxa: number = 0.5;\n\n// arquivo.js gerado (após compilação)\nvar taxa = 0.5;"
+          "body": "O navegador ou Node não executam TypeScript nativamente. O código '.ts' deve ser compilado usando o comando 'tsc', que verifica os erros e gera um arquivo '.js' limpo. Durante esse processo, as anotações de tipo são completamente removidas do código final.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "// arquivo.ts\nlet taxa: number = 0.5;\n\n// arquivo.js gerado (após compilação)\nvar taxa = 0.5;",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -152,13 +154,15 @@
       "lesson": [
         {
           "title": "Adivinhando o Tipo (Inferência)",
-          "body": "Você não precisa tipar tudo no TypeScript. Quando você declara uma variável e já atribui um valor, o TypeScript infere o tipo automaticamente. Se você atribuir 'texto', ele sabe que é uma 'string' e impedirá que você atribua um número depois.",
-          "code": "let cidade = \"São Paulo\"; // Inferido como string\n\n// Erro: O tipo 'number' não pode ser atribuído a 'string'\n// cidade = 123;"
+          "body": "Você não precisa tipar tudo no TypeScript. Quando você declara uma variável e já atribui um valor, o TypeScript infere o tipo automaticamente. Se você atribuir 'texto', ele sabe que é uma 'string' e impedirá que você atribua um número depois.\n\nCompreender este fundamento é crucial em TypeScript. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "let cidade = \"São Paulo\"; // Inferido como string\n\n// Erro: O tipo 'number' não pode ser atribuído a 'string'\n// cidade = 123;",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Quando Anotar os Tipos?",
-          "body": "A inferência de tipos é ótima, mas não resolve tudo. Se você declarar uma variável sem valor inicial, o TS assumirá o tipo 'any' (qualquer coisa). Nesses casos, ou ao definir parâmetros de funções, você deve usar anotações explícitas para garantir a segurança.",
-          "code": "let total; // Inferido como 'any' (evite isso)\nlet contador: number; // Anotação explícita correta\n\ncontador = 10;"
+          "body": "A inferência de tipos é ótima, mas não resolve tudo. Se você declarar uma variável sem valor inicial, o TS assumirá o tipo 'any' (qualquer coisa). Nesses casos, ou ao definir parâmetros de funções, você deve usar anotações explícitas para garantir a segurança.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "let total; // Inferido como 'any' (evite isso)\nlet contador: number; // Anotação explícita correta\n\ncontador = 10;",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -230,13 +234,15 @@
       "lesson": [
         {
           "title": "O Perigo do Tipo Any",
-          "body": "O tipo 'any' desliga completamente a checagem do TypeScript. Com ele, você pode acessar métodos inexistentes ou atribuir valores absurdos sem erros de compilação. Use 'any' apenas temporariamente durante migrações ou quando é impossível saber o tipo.",
-          "code": "let valor: any = \"texto\";\nvalor = 10;\nvalor.metodoQueNaoExiste(); // Sem erro no TS, falha no JS"
+          "body": "O tipo 'any' desliga completamente a checagem do TypeScript. Com ele, você pode acessar métodos inexistentes ou atribuir valores absurdos sem erros de compilação. Use 'any' apenas temporariamente durante migrações ou quando é impossível saber o tipo.\n\nCompreender este fundamento é crucial em TypeScript. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "let valor: any = \"texto\";\nvalor = 10;\nvalor.metodoQueNaoExiste(); // Sem erro no TS, falha no JS",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Unknown: O Any Seguro",
-          "body": "O tipo 'unknown' também aceita qualquer valor, mas obriga você a verificar o tipo real antes de usá-lo. É a alternativa recomendada ao 'any', pois mantém a segurança: você não pode acessar propriedades ou métodos de um 'unknown' sem confirmar o que ele é.",
-          "code": "let dado: unknown = \"mensagem\";\n\n// Erro: não podemos usar direto\n// console.log(dado.toUpperCase()); \n\nif (typeof dado === \"string\") {\n  console.log(dado.toUpperCase()); // Seguro!\n}"
+          "body": "O tipo 'unknown' também aceita qualquer valor, mas obriga você a verificar o tipo real antes de usá-lo. É a alternativa recomendada ao 'any', pois mantém a segurança: você não pode acessar propriedades ou métodos de um 'unknown' sem confirmar o que ele é.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "let dado: unknown = \"mensagem\";\n\n// Erro: não podemos usar direto\n// console.log(dado.toUpperCase()); \n\nif (typeof dado === \"string\") {\n  console.log(dado.toUpperCase()); // Seguro!\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -308,13 +314,15 @@
       "lesson": [
         {
           "title": "Tipando Listas de Elementos",
-          "body": "Para tipar um array em TypeScript, basta colocar '[]' após o tipo, como 'string[]' ou 'number[]'. Isso garante que você não coloque um texto em uma lista que deveria ter apenas números, evitando que métodos como 'map' ou 'filter' quebrem inesperadamente.",
-          "code": "let notas: number[] = [8.5, 9.0, 7.5];\n\n// Erro: O tipo 'string' não pode ser atribuído\n// notas.push(\"dez\");\nnotas.push(10);"
+          "body": "Para tipar um array em TypeScript, basta colocar '[]' após o tipo, como 'string[]' ou 'number[]'. Isso garante que você não coloque um texto em uma lista que deveria ter apenas números, evitando que métodos como 'map' ou 'filter' quebrem inesperadamente.\n\nCompreender este fundamento é crucial em TypeScript. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "let notas: number[] = [8.5, 9.0, 7.5];\n\n// Erro: O tipo 'string' não pode ser atribuído\n// notas.push(\"dez\");\nnotas.push(10);",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Sintaxe Alternativa para Arrays",
-          "body": "Além do formato clássico 'tipo[]', você pode usar a sintaxe genérica 'Array<tipo>'. Ambas têm o mesmíssimo efeito e garantem a tipagem da lista. A escolha é apenas uma questão de estilo no seu time, mas a forma com colchetes é a mais comum.",
-          "code": "let nomes: Array<string> = [\"Ana\", \"João\"];\nlet ativos: Array<boolean> = [true, false];\n\nnomes.push(\"Maria\");"
+          "body": "Além do formato clássico 'tipo[]', você pode usar a sintaxe genérica 'Array<tipo>'. Ambas têm o mesmíssimo efeito e garantem a tipagem da lista. A escolha é apenas uma questão de estilo no seu time, mas a forma com colchetes é a mais comum.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "let nomes: Array<string> = [\"Ana\", \"João\"];\nlet ativos: Array<boolean> = [true, false];\n\nnomes.push(\"Maria\");",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -386,13 +394,15 @@
       "lesson": [
         {
           "title": "Estruturas de Tamanho Fixo",
-          "body": "Enquanto arrays normais podem crescer indefinidamente, as tuplas são arrays com um número fixo de elementos, onde cada posição tem um tipo específico. São muito usadas para retornar múltiplos valores de uma função, limitando posições e tipos estritamente.",
-          "code": "let ponto3D: [number, number, number] = [10, 20, 30];\nlet usuario: [string, number] = [\"Carlos\", 25];\n\n// Erro: posições invertidas\n// usuario = [25, \"Carlos\"];"
+          "body": "Enquanto arrays normais podem crescer indefinidamente, as tuplas são arrays com um número fixo de elementos, onde cada posição tem um tipo específico. São muito usadas para retornar múltiplos valores de uma função, limitando posições e tipos estritamente.\n\nCompreender este fundamento é crucial em TypeScript. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "let ponto3D: [number, number, number] = [10, 20, 30];\nlet usuario: [string, number] = [\"Carlos\", 25];\n\n// Erro: posições invertidas\n// usuario = [25, \"Carlos\"];",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Tuplas com Elementos Opcionais",
-          "body": "As tuplas podem ter elementos opcionais no final. Ao adicionar um '?' após o tipo na declaração da tupla, aquele elemento pode ou não estar presente, flexibilizando a estrutura sem perder a garantia de tipos para as posições obrigatórias.",
-          "code": "let rgba: [number, number, number, number?] = [255, 0, 0];\n// Válido com 3 ou 4 elementos\nrgba = [255, 255, 255, 0.5];"
+          "body": "As tuplas podem ter elementos opcionais no final. Ao adicionar um '?' após o tipo na declaração da tupla, aquele elemento pode ou não estar presente, flexibilizando a estrutura sem perder a garantia de tipos para as posições obrigatórias.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "let rgba: [number, number, number, number?] = [255, 0, 0];\n// Válido com 3 ou 4 elementos\nrgba = [255, 255, 255, 0.5];",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -464,13 +474,15 @@
       "lesson": [
         {
           "title": "Agrupando Valores Nomeados",
-          "body": "Enums permitem criar um grupo restrito de constantes nomeadas. Em vez de usar números ou strings soltas (como 'admin', 'user'), você usa um Enum para restringir as opções, melhorando o autocompletar e evitando erros de digitação no código.",
-          "code": "enum NivelAcesso {\n  Admin,\n  Usuario,\n  Visitante\n}\n\nlet acesso: NivelAcesso = NivelAcesso.Admin;"
+          "body": "Enums permitem criar um grupo restrito de constantes nomeadas. Em vez de usar números ou strings soltas (como 'admin', 'user'), você usa um Enum para restringir as opções, melhorando o autocompletar e evitando erros de digitação no código.\n\nCompreender este fundamento é crucial em TypeScript. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "enum NivelAcesso {\n  Admin,\n  Usuario,\n  Visitante\n}\n\nlet acesso: NivelAcesso = NivelAcesso.Admin;",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Enums Numéricos vs Strings",
-          "body": "Por padrão, os valores de um enum numérico começam em 0. No entanto, é muito comum usar Enums baseados em String, pois facilitam a depuração (logs exibirão a palavra e não o número). Enums de string exigem que cada membro seja inicializado com um valor.",
-          "code": "enum StatusPedido {\n  Pendente = \"PENDENTE\",\n  Aprovado = \"APROVADO\",\n  Cancelado = \"CANCELADO\"\n}\n\nlet status = StatusPedido.Aprovado;"
+          "body": "Por padrão, os valores de um enum numérico começam em 0. No entanto, é muito comum usar Enums baseados em String, pois facilitam a depuração (logs exibirão a palavra e não o número). Enums de string exigem que cada membro seja inicializado com um valor.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "enum StatusPedido {\n  Pendente = \"PENDENTE\",\n  Aprovado = \"APROVADO\",\n  Cancelado = \"CANCELADO\"\n}\n\nlet status = StatusPedido.Aprovado;",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -542,13 +554,15 @@
       "lesson": [
         {
           "title": "Union Types (Ou)",
-          "body": "Com o Union Type (|), você permite que uma variável ou parâmetro aceite mais de um tipo. É ideal para quando uma função pode receber formatos diferentes (como string ou número). O TypeScript só permitirá usar métodos que existam em todos os tipos unidos.",
-          "code": "function exibirId(id: number | string) {\n  console.log(\"O ID é: \" + id);\n}\n\nexibirId(101);\nexibirId(\"abc-123\");"
+          "body": "Com o Union Type (|), você permite que uma variável ou parâmetro aceite mais de um tipo. É ideal para quando uma função pode receber formatos diferentes (como string ou número). O TypeScript só permitirá usar métodos que existam em todos os tipos unidos.\n\nCompreender este fundamento é crucial em TypeScript. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "function exibirId(id: number | string) {\n  console.log(\"O ID é: \" + id);\n}\n\nexibirId(101);\nexibirId(\"abc-123\");",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Intersection Types (E)",
-          "body": "A Intersecção (&) combina vários tipos em um só. Em vez de escolher entre as opções, o objeto final precisa ter todas as propriedades de todos os tipos combinados. É útil para mesclar estruturas, como juntar os dados de um Usuário com as permissões de um Admin.",
-          "code": "type Usuario = { nome: string };\ntype Admin = { nivel: number };\n\ntype SuperUsuario = Usuario & Admin;\n\nlet admin: SuperUsuario = { nome: \"Ana\", nivel: 1 };"
+          "body": "A Intersecção (&) combina vários tipos em um só. Em vez de escolher entre as opções, o objeto final precisa ter todas as propriedades de todos os tipos combinados. É útil para mesclar estruturas, como juntar os dados de um Usuário com as permissões de um Admin.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "type Usuario = { nome: string };\ntype Admin = { nivel: number };\n\ntype SuperUsuario = Usuario & Admin;\n\nlet admin: SuperUsuario = { nome: \"Ana\", nivel: 1 };",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -620,13 +634,15 @@
       "lesson": [
         {
           "title": "Descrevendo Objetos",
-          "body": "Interfaces são contratos que definem qual o formato exato que um objeto deve ter. Elas obrigam que propriedades específicas com tipos corretos estejam presentes. Caso falte alguma propriedade obrigatória, o compilador apontará o erro imediatamente.",
-          "code": "interface Produto {\n  id: number;\n  nome: string;\n  preco: number;\n}\n\nlet p: Produto = { id: 1, nome: \"Teclado\", preco: 150 };"
+          "body": "Interfaces são contratos que definem qual o formato exato que um objeto deve ter. Elas obrigam que propriedades específicas com tipos corretos estejam presentes. Caso falte alguma propriedade obrigatória, o compilador apontará o erro imediatamente.\n\nCompreender este fundamento é crucial em TypeScript. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "interface Produto {\n  id: number;\n  nome: string;\n  preco: number;\n}\n\nlet p: Produto = { id: 1, nome: \"Teclado\", preco: 150 };",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Propriedades Opcionais",
-          "body": "Nem toda propriedade de um objeto é obrigatória. Adicionando um '?' antes dos dois-pontos em uma interface, você torna aquela propriedade opcional. Isso é vital para dados flexíveis, onde certos campos podem não ser preenchidos pelo usuário.",
-          "code": "interface Cliente {\n  nome: string;\n  email: string;\n  telefone?: string; // Opcional\n}\n\nlet c1: Cliente = { nome: \"Rui\", email: \"rui@email.com\" };"
+          "body": "Nem toda propriedade de um objeto é obrigatória. Adicionando um '?' antes dos dois-pontos em uma interface, você torna aquela propriedade opcional. Isso é vital para dados flexíveis, onde certos campos podem não ser preenchidos pelo usuário.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "interface Cliente {\n  nome: string;\n  email: string;\n  telefone?: string; // Opcional\n}\n\nlet c1: Cliente = { nome: \"Rui\", email: \"rui@email.com\" };",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -698,13 +714,15 @@
       "lesson": [
         {
           "title": "Criando Type Aliases",
-          "body": "O 'type' (Alias) permite dar um nome para qualquer tipo no TypeScript, seja ele um objeto, uma união ou um tipo primitivo. É mais versátil que a interface para tipos complexos, permitindo definir formatos exatos que uma variável pode assumir.",
-          "code": "type Coordenada = [number, number]; // Tupla\ntype Status = \"sucesso\" | \"erro\"; // Union\n\nlet posicao: Coordenada = [10, 20];\nlet resultado: Status = \"sucesso\";"
+          "body": "O 'type' (Alias) permite dar um nome para qualquer tipo no TypeScript, seja ele um objeto, uma união ou um tipo primitivo. É mais versátil que a interface para tipos complexos, permitindo definir formatos exatos que uma variável pode assumir.\n\nCompreender este fundamento é crucial em TypeScript. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "type Coordenada = [number, number]; // Tupla\ntype Status = \"sucesso\" | \"erro\"; // Union\n\nlet posicao: Coordenada = [10, 20];\nlet resultado: Status = \"sucesso\";",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Qual Deles Usar?",
-          "body": "Interfaces são ideais para modelar objetos e classes, e podem ser estendidas livremente (declaration merging). Types são mais amplos, suportando uniões e tuplas. Na prática, para descrever objetos em projetos comuns, a escolha depende do padrão da equipe.",
-          "code": "// Interface é aberta para adição\ninterface Animal { nome: string; }\ninterface Animal { patas: number; }\n\n// Type não pode ser recriado\ntype Pessoa = { nome: string; };\n// Erro: type Pessoa já existe"
+          "body": "Interfaces são ideais para modelar objetos e classes, e podem ser estendidas livremente (declaration merging). Types são mais amplos, suportando uniões e tuplas. Na prática, para descrever objetos em projetos comuns, a escolha depende do padrão da equipe.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "// Interface é aberta para adição\ninterface Animal { nome: string; }\ninterface Animal { patas: number; }\n\n// Type não pode ser recriado\ntype Pessoa = { nome: string; };\n// Erro: type Pessoa já existe",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -776,13 +794,15 @@
       "lesson": [
         {
           "title": "Reaproveitando Interfaces",
-          "body": "Você pode criar novas interfaces a partir de outras usando a palavra-chave 'extends'. Isso copia todas as propriedades da interface base para a nova, permitindo organizar o código de forma hierárquica e sem repetir as propriedades básicas.",
-          "code": "interface Veiculo {\n  marca: string;\n  rodas: number;\n}\n\ninterface Carro extends Veiculo {\n  portas: number;\n}\n\nlet meuCarro: Carro = { marca: \"Ford\", rodas: 4, portas: 4 };"
+          "body": "Você pode criar novas interfaces a partir de outras usando a palavra-chave 'extends'. Isso copia todas as propriedades da interface base para a nova, permitindo organizar o código de forma hierárquica e sem repetir as propriedades básicas.\n\nCompreender este fundamento é crucial em TypeScript. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "interface Veiculo {\n  marca: string;\n  rodas: number;\n}\n\ninterface Carro extends Veiculo {\n  portas: number;\n}\n\nlet meuCarro: Carro = { marca: \"Ford\", rodas: 4, portas: 4 };",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Estendendo Múltiplas Interfaces",
-          "body": "Diferente da herança de classes em muitas linguagens, uma interface pode estender várias outras ao mesmo tempo, separando-as por vírgula. Isso permite combinar pequenas peças isoladas em uma interface gigantesca que atende a todos os requisitos.",
-          "code": "interface Voador { voar(): void; }\ninterface Nadador { nadar(): void; }\n\ninterface Pato extends Voador, Nadador {\n  grasnar(): void;\n}"
+          "body": "Diferente da herança de classes em muitas linguagens, uma interface pode estender várias outras ao mesmo tempo, separando-as por vírgula. Isso permite combinar pequenas peças isoladas em uma interface gigantesca que atende a todos os requisitos.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "interface Voador { voar(): void; }\ninterface Nadador { nadar(): void; }\n\ninterface Pato extends Voador, Nadador {\n  grasnar(): void;\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -854,13 +874,15 @@
       "lesson": [
         {
           "title": "Segurança nas Funções",
-          "body": "Ao criar funções, você deve tipar os parâmetros e o retorno. Isso impede que você chame a função com argumentos errados ou tente usar o resultado de forma indevida. Se a função não retorna nada, usamos o tipo especial 'void'.",
-          "code": "function somar(a: number, b: number): number {\n  return a + b;\n}\n\nfunction log(mensagem: string): void {\n  console.log(mensagem);\n}"
+          "body": "Ao criar funções, você deve tipar os parâmetros e o retorno. Isso impede que você chame a função com argumentos errados ou tente usar o resultado de forma indevida. Se a função não retorna nada, usamos o tipo especial 'void'.\n\nCompreender este fundamento é crucial em TypeScript. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "function somar(a: number, b: number): number {\n  return a + b;\n}\n\nfunction log(mensagem: string): void {\n  console.log(mensagem);\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Parâmetros Opcionais e Padrão",
-          "body": "Você pode tornar parâmetros de função opcionais com '?'. Mas lembre-se: eles devem vir sempre após os obrigatórios. Outra alternativa é usar valores padrão ('='). Quando você define um padrão, o TS já infere o tipo e o torna opcional.",
-          "code": "function saudacao(nome: string, titulo?: string) {\n  return titulo ? `Olá, ${titulo} ${nome}` : `Olá, ${nome}`;\n}\n\nfunction criar(qtd = 1) { // qtd inferido como number\n  return new Array(qtd);\n}"
+          "body": "Você pode tornar parâmetros de função opcionais com '?'. Mas lembre-se: eles devem vir sempre após os obrigatórios. Outra alternativa é usar valores padrão ('='). Quando você define um padrão, o TS já infere o tipo e o torna opcional.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "function saudacao(nome: string, titulo?: string) {\n  return titulo ? `Olá, ${titulo} ${nome}` : `Olá, ${nome}`;\n}\n\nfunction criar(qtd = 1) { // qtd inferido como number\n  return new Array(qtd);\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -932,13 +954,15 @@
       "lesson": [
         {
           "title": "Múltiplas Assinaturas",
-          "body": "O Overload de Função permite declarar diferentes formas de chamar a mesma função. Você escreve várias assinaturas (apenas as declarações) e, por último, a implementação que lida com todos os casos. É ideal para funções que mudam o comportamento com base no tipo do parâmetro.",
-          "code": "function dobrar(valor: number): number;\nfunction dobrar(valor: string): string;\nfunction dobrar(valor: any): any {\n  if (typeof valor === \"string\") return valor + valor;\n  return valor * 2;\n}"
+          "body": "O Overload de Função permite declarar diferentes formas de chamar a mesma função. Você escreve várias assinaturas (apenas as declarações) e, por último, a implementação que lida com todos os casos. É ideal para funções que mudam o comportamento com base no tipo do parâmetro.\n\nCompreender este fundamento é crucial em TypeScript. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "function dobrar(valor: number): number;\nfunction dobrar(valor: string): string;\nfunction dobrar(valor: any): any {\n  if (typeof valor === \"string\") return valor + valor;\n  return valor * 2;\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Restrições do Overload",
-          "body": "A implementação do overload não pode ser chamada diretamente, ela deve abranger (ser compatível com) todas as assinaturas declaradas antes dela. Geralmente, usamos tipos amplos (como any ou union types) na implementação para lidar com as diferenças de forma segura.",
-          "code": "function buscar(id: number): string;\nfunction buscar(nome: string): boolean;\nfunction buscar(termo: number | string): string | boolean {\n  if (typeof termo === \"number\") return \"Usuário 1\";\n  return true;\n}"
+          "body": "A implementação do overload não pode ser chamada diretamente, ela deve abranger (ser compatível com) todas as assinaturas declaradas antes dela. Geralmente, usamos tipos amplos (como any ou union types) na implementação para lidar com as diferenças de forma segura.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "function buscar(id: number): string;\nfunction buscar(nome: string): boolean;\nfunction buscar(termo: number | string): string | boolean {\n  if (typeof termo === \"number\") return \"Usuário 1\";\n  return true;\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1010,13 +1034,15 @@
       "lesson": [
         {
           "title": "Tipando Callbacks",
-          "body": "Podemos definir o tipo de uma função usando a sintaxe de 'arrow function' dentro da anotação de tipo. Isso é muito utilizado ao passar callbacks, garantindo que a função recebida aceitará os parâmetros corretos e retornará o valor esperado.",
-          "code": "type Operacao = (x: number, y: number) => number;\n\nlet subtrair: Operacao = (a, b) => a - b;\n\nfunction calcular(fn: Operacao) {\n  console.log(fn(10, 5));\n}"
+          "body": "Podemos definir o tipo de uma função usando a sintaxe de 'arrow function' dentro da anotação de tipo. Isso é muito utilizado ao passar callbacks, garantindo que a função recebida aceitará os parâmetros corretos e retornará o valor esperado.\n\nCompreender este fundamento é crucial em TypeScript. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "type Operacao = (x: number, y: number) => number;\n\nlet subtrair: Operacao = (a, b) => a - b;\n\nfunction calcular(fn: Operacao) {\n  console.log(fn(10, 5));\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Interfaces para Funções",
-          "body": "Além do Type Alias, as Interfaces também podem descrever funções. Isso é menos comum que usar 'type', mas é totalmente suportado. Basta definir uma assinatura de chamada dentro das chaves da interface, sem dar nome à propriedade.",
-          "code": "interface Formatador {\n  (texto: string): string;\n}\n\nlet maiuscula: Formatador = (t) => t.toUpperCase();\nconsole.log(maiuscula(\"olá\"));"
+          "body": "Além do Type Alias, as Interfaces também podem descrever funções. Isso é menos comum que usar 'type', mas é totalmente suportado. Basta definir uma assinatura de chamada dentro das chaves da interface, sem dar nome à propriedade.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "interface Formatador {\n  (texto: string): string;\n}\n\nlet maiuscula: Formatador = (t) => t.toUpperCase();\nconsole.log(maiuscula(\"olá\"));",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1088,13 +1114,15 @@
       "lesson": [
         {
           "title": "Public, Private e Protected",
-          "body": "TypeScript traz modificadores de acesso para classes. 'public' é o padrão (acessível de qualquer lugar). 'private' esconde a propriedade, permitindo acesso apenas dentro da própria classe. 'protected' é como private, mas permite acesso em classes filhas.",
-          "code": "class Conta {\n  public titular: string;\n  private saldo: number = 0;\n\n  constructor(t: string) {\n    this.titular = t;\n  }\n}"
+          "body": "TypeScript traz modificadores de acesso para classes. 'public' é o padrão (acessível de qualquer lugar). 'private' esconde a propriedade, permitindo acesso apenas dentro da própria classe. 'protected' é como private, mas permite acesso em classes filhas.\n\nCompreender este fundamento é crucial em TypeScript. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "class Conta {\n  public titular: string;\n  private saldo: number = 0;\n\n  constructor(t: string) {\n    this.titular = t;\n  }\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Atalhos no Construtor",
-          "body": "Existe uma forma enxuta de declarar propriedades: se você colocar um modificador de acesso direto nos parâmetros do construtor, o TypeScript cria e atribui as propriedades automaticamente, economizando muitas linhas de código.",
-          "code": "class Produto {\n  // Cria 'nome' e 'preco' automaticamente\n  constructor(\n    public nome: string, \n    private preco: number\n  ) {}\n}\n\nlet p = new Produto(\"Mouse\", 50);"
+          "body": "Existe uma forma enxuta de declarar propriedades: se você colocar um modificador de acesso direto nos parâmetros do construtor, o TypeScript cria e atribui as propriedades automaticamente, economizando muitas linhas de código.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "class Produto {\n  // Cria 'nome' e 'preco' automaticamente\n  constructor(\n    public nome: string, \n    private preco: number\n  ) {}\n}\n\nlet p = new Produto(\"Mouse\", 50);",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1166,13 +1194,15 @@
       "lesson": [
         {
           "title": "Assinando Contratos (Implements)",
-          "body": "Classes podem usar a palavra 'implements' para garantir que obedecem a uma Interface. Isso obriga a classe a definir todos os métodos e propriedades descritos no contrato. É a melhor forma de garantir o padrão em diferentes partes do sistema.",
-          "code": "interface Logger {\n  log(msg: string): void;\n}\n\nclass FileLogger implements Logger {\n  log(msg: string) {\n    console.log(`Arquivo: ${msg}`);\n  }\n}"
+          "body": "Classes podem usar a palavra 'implements' para garantir que obedecem a uma Interface. Isso obriga a classe a definir todos os métodos e propriedades descritos no contrato. É a melhor forma de garantir o padrão em diferentes partes do sistema.\n\nCompreender este fundamento é crucial em TypeScript. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "interface Logger {\n  log(msg: string): void;\n}\n\nclass FileLogger implements Logger {\n  log(msg: string) {\n    console.log(`Arquivo: ${msg}`);\n  }\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Classes Base (Abstract)",
-          "body": "Classes abstratas servem como molde. Elas não podem ser instanciadas diretamente, apenas herdadas. Elas podem conter métodos implementados e métodos abstratos (que as classes filhas são obrigadas a criar). São úteis para centralizar lógicas em comum.",
-          "code": "abstract class Animal {\n  abstract emitirSom(): void; // Sem corpo\n  dormir() { console.log(\"Zzz\"); } // Com corpo\n}\n\nclass Cachorro extends Animal {\n  emitirSom() { console.log(\"Au au\"); }\n}"
+          "body": "Classes abstratas servem como molde. Elas não podem ser instanciadas diretamente, apenas herdadas. Elas podem conter métodos implementados e métodos abstratos (que as classes filhas são obrigadas a criar). São úteis para centralizar lógicas em comum.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "abstract class Animal {\n  abstract emitirSom(): void; // Sem corpo\n  dormir() { console.log(\"Zzz\"); } // Com corpo\n}\n\nclass Cachorro extends Animal {\n  emitirSom() { console.log(\"Au au\"); }\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1244,13 +1274,15 @@
       "lesson": [
         {
           "title": "Aproveitando Código (Extends)",
-          "body": "Com a palavra 'extends', uma classe herda características e métodos de outra classe pai. Além de reaproveitar o código, ela pode usar a função 'super()' no construtor para repassar dados ou sobrescrever métodos da classe original, mantendo a flexibilidade.",
-          "code": "class Funcionario {\n  constructor(public nome: string) {}\n}\n\nclass Gerente extends Funcionario {\n  constructor(nome: string, public setor: string) {\n    super(nome); // Chama o pai\n  }\n}"
+          "body": "Com a palavra 'extends', uma classe herda características e métodos de outra classe pai. Além de reaproveitar o código, ela pode usar a função 'super()' no construtor para repassar dados ou sobrescrever métodos da classe original, mantendo a flexibilidade.\n\nCompreender este fundamento é crucial em TypeScript. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "class Funcionario {\n  constructor(public nome: string) {}\n}\n\nclass Gerente extends Funcionario {\n  constructor(nome: string, public setor: string) {\n    super(nome); // Chama o pai\n  }\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Polimorfismo com Tipos",
-          "body": "O polimorfismo ocorre quando usamos a classe pai como tipo de uma variável, mas guardamos nela uma instância da classe filha. O TS entende e garante que você só chame os métodos conhecidos, permitindo tratar diferentes objetos de forma genérica.",
-          "code": "class Pagamento { processar() {} }\nclass Pix extends Pagamento { processar() {} }\n\n// Funciona de forma genérica\nlet p: Pagamento = new Pix();\np.processar();"
+          "body": "O polimorfismo ocorre quando usamos a classe pai como tipo de uma variável, mas guardamos nela uma instância da classe filha. O TS entende e garante que você só chame os métodos conhecidos, permitindo tratar diferentes objetos de forma genérica.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "class Pagamento { processar() {} }\nclass Pix extends Pagamento { processar() {} }\n\n// Funciona de forma genérica\nlet p: Pagamento = new Pix();\np.processar();",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1322,13 +1354,15 @@
       "lesson": [
         {
           "title": "Tipos como Variáveis",
-          "body": "Generics '<T>' funcionam como variáveis para tipos. Em vez de criar uma função com 'any' perdendo o autocomplete, você usa o parâmetro 'T'. Quando a função for chamada, o TypeScript captura o tipo passado e o repassa, mantendo a total segurança.",
-          "code": "function primeiro<T>(lista: T[]): T {\n  return lista[0];\n}\n\nlet num = primeiro<number>([1, 2, 3]); // Retorna number\nlet str = primeiro([\"A\", \"B\"]); // Inferido como string"
+          "body": "Generics '<T>' funcionam como variáveis para tipos. Em vez de criar uma função com 'any' perdendo o autocomplete, você usa o parâmetro 'T'. Quando a função for chamada, o TypeScript captura o tipo passado e o repassa, mantendo a total segurança.\n\nCompreender este fundamento é crucial em TypeScript. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "function primeiro<T>(lista: T[]): T {\n  return lista[0];\n}\n\nlet num = primeiro<number>([1, 2, 3]); // Retorna number\nlet str = primeiro([\"A\", \"B\"]); // Inferido como string",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Restringindo Genéricos",
-          "body": "Às vezes, a função precisa que o tipo genérico possua algumas características, como a propriedade 'length'. Você pode restringir o Generic usando 'extends'. Assim, ele aceitará qualquer tipo, desde que tenha aquela propriedade específica.",
-          "code": "interface ComTamanho { length: number; }\n\nfunction exibirTamanho<T extends ComTamanho>(item: T) {\n  console.log(item.length);\n}\n\nexibirTamanho(\"Teste\"); // string tem length"
+          "body": "Às vezes, a função precisa que o tipo genérico possua algumas características, como a propriedade 'length'. Você pode restringir o Generic usando 'extends'. Assim, ele aceitará qualquer tipo, desde que tenha aquela propriedade específica.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "interface ComTamanho { length: number; }\n\nfunction exibirTamanho<T extends ComTamanho>(item: T) {\n  console.log(item.length);\n}\n\nexibirTamanho(\"Teste\"); // string tem length",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1400,13 +1434,15 @@
       "lesson": [
         {
           "title": "Estruturas Reutilizáveis",
-          "body": "Interfaces e Type Aliases também podem receber Generics. Isso permite modelar formatos de dados altamente reutilizáveis, como Respostas de API. O tipo exato do 'dado' só é definido na hora de usar a interface, flexibilizando a estrutura.",
-          "code": "interface RespostaAPI<T> {\n  sucesso: boolean;\n  dados: T;\n}\n\nlet respostaUser: RespostaAPI<{nome: string}> = {\n  sucesso: true,\n  dados: { nome: \"Ana\" }\n};"
+          "body": "Interfaces e Type Aliases também podem receber Generics. Isso permite modelar formatos de dados altamente reutilizáveis, como Respostas de API. O tipo exato do 'dado' só é definido na hora de usar a interface, flexibilizando a estrutura.\n\nCompreender este fundamento é crucial em TypeScript. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "interface RespostaAPI<T> {\n  sucesso: boolean;\n  dados: T;\n}\n\nlet respostaUser: RespostaAPI<{nome: string}> = {\n  sucesso: true,\n  dados: { nome: \"Ana\" }\n};",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Valores Padrão para Generics",
-          "body": "Assim como parâmetros de funções, os parâmetros genéricos '<T>' podem ter um tipo padrão. Se o desenvolvedor esquecer ou não precisar fornecer o tipo na hora do uso, o TypeScript usará o padrão, garantindo que o código não quebre e permaneça limpo.",
-          "code": "interface Caixa<T = string> {\n  conteudo: T;\n}\n\nlet caixaTexto: Caixa = { conteudo: \"livro\" };\nlet caixaNumero: Caixa<number> = { conteudo: 100 };"
+          "body": "Assim como parâmetros de funções, os parâmetros genéricos '<T>' podem ter um tipo padrão. Se o desenvolvedor esquecer ou não precisar fornecer o tipo na hora do uso, o TypeScript usará o padrão, garantindo que o código não quebre e permaneça limpo.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "interface Caixa<T = string> {\n  conteudo: T;\n}\n\nlet caixaTexto: Caixa = { conteudo: \"livro\" };\nlet caixaNumero: Caixa<number> = { conteudo: 100 };",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1478,13 +1514,15 @@
       "lesson": [
         {
           "title": "Relacionando Vários Tipos",
-          "body": "Você não está limitado a um único Generic ('<T>'). Pode usar múltiplos, como '<T, U>'. É muito útil para funções que misturam parâmetros diferentes e precisam garantir que o tipo de retorno ou o comportamento dependa dessa combinação.",
-          "code": "function juntar<T, U>(a: T, b: U): [T, U] {\n  return [a, b];\n}\n\nlet resultado = juntar(10, \"Vidas\");\n// Inferido: [number, string]"
+          "body": "Você não está limitado a um único Generic ('<T>'). Pode usar múltiplos, como '<T, U>'. É muito útil para funções que misturam parâmetros diferentes e precisam garantir que o tipo de retorno ou o comportamento dependa dessa combinação.\n\nCompreender este fundamento é crucial em TypeScript. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "function juntar<T, U>(a: T, b: U): [T, U] {\n  return [a, b];\n}\n\nlet resultado = juntar(10, \"Vidas\");\n// Inferido: [number, string]",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "O Generic como Dependência",
-          "body": "Um parâmetro genérico pode depender de outro. Usando 'extends keyof T', o segundo parâmetro fica restrito a ser uma chave válida do primeiro parâmetro. É perfeito para funções de leitura ou modificação de objetos dinâmicos de forma estrita.",
-          "code": "function pegarPropriedade<T, K extends keyof T>(obj: T, chave: K) {\n  return obj[chave];\n}\n\nlet user = { id: 1, nome: \"Bob\" };\npegarPropriedade(user, \"nome\"); // Funciona\n// pegarPropriedade(user, \"idade\"); // Erro!"
+          "body": "Um parâmetro genérico pode depender de outro. Usando 'extends keyof T', o segundo parâmetro fica restrito a ser uma chave válida do primeiro parâmetro. É perfeito para funções de leitura ou modificação de objetos dinâmicos de forma estrita.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "function pegarPropriedade<T, K extends keyof T>(obj: T, chave: K) {\n  return obj[chave];\n}\n\nlet user = { id: 1, nome: \"Bob\" };\npegarPropriedade(user, \"nome\"); // Funciona\n// pegarPropriedade(user, \"idade\"); // Erro!",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1556,13 +1594,15 @@
       "lesson": [
         {
           "title": "Tornando Tudo Opcional (Partial)",
-          "body": "O Utility Type 'Partial<T>' cria um novo tipo transformando todas as propriedades obrigatórias de 'T' em opcionais. Isso é incrivelmente útil para funções de atualização (PATCH), onde você envia apenas os campos do objeto que deseja alterar.",
-          "code": "interface Tarefa {\n  id: number; \n  titulo: string;\n}\n\nfunction atualizar(id: number, dados: Partial<Tarefa>) {\n  // Podemos enviar apenas o título, se quisermos\n}\natualizar(1, { titulo: \"Novo titulo\" });"
+          "body": "O Utility Type 'Partial<T>' cria um novo tipo transformando todas as propriedades obrigatórias de 'T' em opcionais. Isso é incrivelmente útil para funções de atualização (PATCH), onde você envia apenas os campos do objeto que deseja alterar.\n\nCompreender este fundamento é crucial em TypeScript. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "interface Tarefa {\n  id: number; \n  titulo: string;\n}\n\nfunction atualizar(id: number, dados: Partial<Tarefa>) {\n  // Podemos enviar apenas o título, se quisermos\n}\natualizar(1, { titulo: \"Novo titulo\" });",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Extraindo ou Omitindo Chaves",
-          "body": "Com 'Pick<T, K>', você cria um novo tipo selecionando apenas algumas propriedades. Oposto a ele, 'Omit<T, K>' remove propriedades de um tipo existente. Isso evita duplicar interfaces apenas para remover o ID na hora de criar um novo registro.",
-          "code": "interface Produto { id: number; nome: string; preco: number; }\n\ntype NovoProduto = Omit<Produto, \"id\">\ntype Resumo = Pick<Produto, \"nome\" | \"preco\">\n\nlet p: NovoProduto = { nome: \"Caneta\", preco: 2 };"
+          "body": "Com 'Pick<T, K>', você cria um novo tipo selecionando apenas algumas propriedades. Oposto a ele, 'Omit<T, K>' remove propriedades de um tipo existente. Isso evita duplicar interfaces apenas para remover o ID na hora de criar um novo registro.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "interface Produto { id: number; nome: string; preco: number; }\n\ntype NovoProduto = Omit<Produto, \"id\">\ntype Resumo = Pick<Produto, \"nome\" | \"preco\">\n\nlet p: NovoProduto = { nome: \"Caneta\", preco: 2 };",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1634,13 +1674,15 @@
       "lesson": [
         {
           "title": "Dicionários com Record",
-          "body": "O 'Record<K, T>' cria objetos que funcionam como dicionários, mapeando um conjunto de chaves 'K' para um tipo de valor 'T'. É a melhor alternativa a colocar 'any' ou assinaturas de índice complicadas quando você quer mapear strings para objetos ou números.",
-          "code": "type Permissoes = \"leitura\" | \"escrita\";\n\nlet regras: Record<Permissoes, boolean> = {\n  leitura: true,\n  escrita: false\n};"
+          "body": "O 'Record<K, T>' cria objetos que funcionam como dicionários, mapeando um conjunto de chaves 'K' para um tipo de valor 'T'. É a melhor alternativa a colocar 'any' ou assinaturas de índice complicadas quando você quer mapear strings para objetos ou números.\n\nCompreender este fundamento é crucial em TypeScript. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "type Permissoes = \"leitura\" | \"escrita\";\n\nlet regras: Record<Permissoes, boolean> = {\n  leitura: true,\n  escrita: false\n};",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Blindando Dados (Readonly)",
-          "body": "O Utility Type 'Readonly<T>' congela as propriedades do objeto, impedindo que sejam alteradas após a criação. É essencial para fluxos de dados imutáveis (como Redux) ou para configurações fixas do sistema que não devem ser sobrescritas acidentalmente.",
-          "code": "interface Config {\n  tema: string;\n}\n\nlet app: Readonly<Config> = { tema: \"escuro\" };\n\n// Erro de compilação: propriedade somente leitura\n// app.tema = \"claro\";"
+          "body": "O Utility Type 'Readonly<T>' congela as propriedades do objeto, impedindo que sejam alteradas após a criação. É essencial para fluxos de dados imutáveis (como Redux) ou para configurações fixas do sistema que não devem ser sobrescritas acidentalmente.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "interface Config {\n  tema: string;\n}\n\nlet app: Readonly<Config> = { tema: \"escuro\" };\n\n// Erro de compilação: propriedade somente leitura\n// app.tema = \"claro\";",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1712,13 +1754,15 @@
       "lesson": [
         {
           "title": "Afine seus Tipos",
-          "body": "Type Narrowing (Estreitamento) é o processo onde o TypeScript analisa seu fluxo lógico (if/else) e reduz um Union Type para um tipo mais específico dentro do bloco de código, usando verificadores em tempo de execução como 'typeof' para tipos básicos.",
-          "code": "function processar(dado: string | number) {\n  if (typeof dado === \"string\") {\n    // Aqui, o TS sabe que é string\n    console.log(dado.toUpperCase());\n  } else {\n    // Aqui, o TS sabe que é number\n    console.log(dado.toFixed(2));\n  }\n}"
+          "body": "Type Narrowing (Estreitamento) é o processo onde o TypeScript analisa seu fluxo lógico (if/else) e reduz um Union Type para um tipo mais específico dentro do bloco de código, usando verificadores em tempo de execução como 'typeof' para tipos básicos.\n\nCompreender este fundamento é crucial em TypeScript. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "function processar(dado: string | number) {\n  if (typeof dado === \"string\") {\n    // Aqui, o TS sabe que é string\n    console.log(dado.toUpperCase());\n  } else {\n    // Aqui, o TS sabe que é number\n    console.log(dado.toFixed(2));\n  }\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Análise de Classes (instanceof)",
-          "body": "Quando lidamos com objetos instanciados de classes em vez de tipos básicos, o 'typeof' não funciona (ele retorna 'object'). Para narrowed types de classes, usamos o 'instanceof'. Ele testa se o objeto pertence à classe e o TS filtra o tipo na condicional.",
-          "code": "class ErroApp { codigo = 500; }\n\nfunction tratarErro(erro: ErroApp | string) {\n  if (erro instanceof ErroApp) {\n    console.log(erro.codigo); // Seguro\n  }\n}"
+          "body": "Quando lidamos com objetos instanciados de classes em vez de tipos básicos, o 'typeof' não funciona (ele retorna 'object'). Para narrowed types de classes, usamos o 'instanceof'. Ele testa se o objeto pertence à classe e o TS filtra o tipo na condicional.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "class ErroApp { codigo = 500; }\n\nfunction tratarErro(erro: ErroApp | string) {\n  if (erro instanceof ErroApp) {\n    console.log(erro.codigo); // Seguro\n  }\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1790,13 +1834,15 @@
       "lesson": [
         {
           "title": "Transformação em Massa",
-          "body": "Mapped Types permitem percorrer as chaves de um tipo existente usando '[K in keyof T]' para gerar um novo tipo. É assim que os Utility Types como Partial e Readonly são criados internamente. É magia pura para automatizar a criação de interfaces.",
-          "code": "type Usuario = { nome: string; idade: number; }\n\n// Transforma todos os tipos em boolean\ntype Validacoes<T> = {\n  [K in keyof T]: boolean;\n};\n\ntype UserValido = Validacoes<Usuario>;"
+          "body": "Mapped Types permitem percorrer as chaves de um tipo existente usando '[K in keyof T]' para gerar um novo tipo. É assim que os Utility Types como Partial e Readonly são criados internamente. É magia pura para automatizar a criação de interfaces.\n\nCompreender este fundamento é crucial em TypeScript. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "type Usuario = { nome: string; idade: number; }\n\n// Transforma todos os tipos em boolean\ntype Validacoes<T> = {\n  [K in keyof T]: boolean;\n};\n\ntype UserValido = Validacoes<Usuario>;",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Removendo Modificadores",
-          "body": "Nos Mapped Types, você pode usar os operadores '+' ou '-' para adicionar ou remover modificadores opcionais ('?') ou de leitura ('readonly'). Usando o sinal de menos '-', você converte propriedades opcionais de volta para obrigatórias de forma dinâmica.",
-          "code": "type Opcional = { nome?: string; idade?: number };\n\n// Remove o '?' de todas as propriedades\ntype Obrigatorio<T> = {\n  [K in keyof T]-?: T[K];\n};\n\ntype Result = Obrigatorio<Opcional>;"
+          "body": "Nos Mapped Types, você pode usar os operadores '+' ou '-' para adicionar ou remover modificadores opcionais ('?') ou de leitura ('readonly'). Usando o sinal de menos '-', você converte propriedades opcionais de volta para obrigatórias de forma dinâmica.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "type Opcional = { nome?: string; idade?: number };\n\n// Remove o '?' de todas as propriedades\ntype Obrigatorio<T> = {\n  [K in keyof T]-?: T[K];\n};\n\ntype Result = Obrigatorio<Opcional>;",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1868,13 +1914,15 @@
       "lesson": [
         {
           "title": "Interfaces em Componentes",
-          "body": "No desenvolvimento de interfaces UI, as 'props' são parâmetros passados para os componentes. Para o TypeScript te ajudar com autocomplete e evitar esquecimento de atributos obrigatórios, tipamos essas props com uma Interface, documentando o componente.",
-          "code": "interface BotaoProps {\n  texto: string;\n  cor?: \"primaria\" | \"secundaria\";\n  onClick: () => void;\n}\n\nfunction Botao(props: BotaoProps) {\n  // Implementação\n}"
+          "body": "No desenvolvimento de interfaces UI, as 'props' são parâmetros passados para os componentes. Para o TypeScript te ajudar com autocomplete e evitar esquecimento de atributos obrigatórios, tipamos essas props com uma Interface, documentando o componente.\n\nCompreender este fundamento é crucial em TypeScript. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "interface BotaoProps {\n  texto: string;\n  cor?: \"primaria\" | \"secundaria\";\n  onClick: () => void;\n}\n\nfunction Botao(props: BotaoProps) {\n  // Implementação\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Tipando os Filhos (Children)",
-          "body": "Muitas vezes, componentes envolvem outros elementos (children). O tipo do children varia dependendo do framework, mas no contexto geral do TS e React, usa-se 'React.ReactNode', que engloba strings, números, elementos JSX, fragmentos ou arrays deles.",
-          "code": "interface CardProps {\n  titulo: string;\n  children: React.ReactNode;\n}\n\nfunction Card({ titulo, children }: CardProps) {\n  return <div><h1>{titulo}</h1>{children}</div>;\n}"
+          "body": "Muitas vezes, componentes envolvem outros elementos (children). O tipo do children varia dependendo do framework, mas no contexto geral do TS e React, usa-se 'React.ReactNode', que engloba strings, números, elementos JSX, fragmentos ou arrays deles.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "interface CardProps {\n  titulo: string;\n  children: React.ReactNode;\n}\n\nfunction Card({ titulo, children }: CardProps) {\n  return <div><h1>{titulo}</h1>{children}</div>;\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1946,13 +1994,15 @@
       "lesson": [
         {
           "title": "Tipando Elementos Nativos",
-          "body": "Eventos de mouse ou teclado carregam informações do elemento que disparou a ação (target). No TypeScript, usamos tipos nativos específicos (como 'HTMLInputElement') para que o compilador saiba que a propriedade 'value' ou 'checked' realmente existe.",
-          "code": "function onChange(event: React.ChangeEvent<HTMLInputElement>) {\n  // Sem esse tipo, o TS daria erro no event.target.value\n  let valor: string = event.target.value;\n  console.log(valor);\n}"
+          "body": "Eventos de mouse ou teclado carregam informações do elemento que disparou a ação (target). No TypeScript, usamos tipos nativos específicos (como 'HTMLInputElement') para que o compilador saiba que a propriedade 'value' ou 'checked' realmente existe.\n\nCompreender este fundamento é crucial em TypeScript. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "function onChange(event: React.ChangeEvent<HTMLInputElement>) {\n  // Sem esse tipo, o TS daria erro no event.target.value\n  let valor: string = event.target.value;\n  console.log(valor);\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Eventos de Formulário",
-          "body": "Um dos eventos mais clássicos é o de submissão. Para evitar que a página recarregue e permitir a manipulação segura dos dados enviados, tipamos a submissão com 'FormEvent'. Isso habilita o método 'preventDefault()' de forma tipada e segura.",
-          "code": "function onSubmit(e: React.FormEvent<HTMLFormElement>) {\n  e.preventDefault();\n  console.log(\"Formulário interceptado e enviado!\");\n}"
+          "body": "Um dos eventos mais clássicos é o de submissão. Para evitar que a página recarregue e permitir a manipulação segura dos dados enviados, tipamos a submissão com 'FormEvent'. Isso habilita o método 'preventDefault()' de forma tipada e segura.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "function onSubmit(e: React.FormEvent<HTMLFormElement>) {\n  e.preventDefault();\n  console.log(\"Formulário interceptado e enviado!\");\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -2024,13 +2074,15 @@
       "lesson": [
         {
           "title": "Importação de Tipos",
-          "body": "Para manter o código limpo, é comum separar interfaces e types em arquivos isolados. Você os exporta e os importa onde for necessário. Se a importação servir apenas para tipagem estática (não gerando código JS final), usamos a palavra 'import type'.",
-          "code": "// em tipos.ts\nexport interface Cliente { nome: string; }\n\n// em app.ts\nimport type { Cliente } from \"./tipos\";\nlet c: Cliente = { nome: \"Julia\" };"
+          "body": "Para manter o código limpo, é comum separar interfaces e types em arquivos isolados. Você os exporta e os importa onde for necessário. Se a importação servir apenas para tipagem estática (não gerando código JS final), usamos a palavra 'import type'.\n\nCompreender este fundamento é crucial em TypeScript. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "// em tipos.ts\nexport interface Cliente { nome: string; }\n\n// em app.ts\nimport type { Cliente } from \"./tipos\";\nlet c: Cliente = { nome: \"Julia\" };",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Arquivos de Declaração (.d.ts)",
-          "body": "Quando você instala bibliotecas JavaScript antigas sem suporte ao TS, o compilador não sabe como checar os tipos delas. Os arquivos de declaração (.d.ts) servem como um \"tradutor\", definindo assinaturas de métodos e tipos dessas bibliotecas.",
-          "code": "// arquivo global.d.ts\n// Informa ao TS que existe uma função global 'ga'\ndeclare function ga(comando: string, valor: string): void;\n\nga(\"send\", \"pageview\"); // O TS aceitará"
+          "body": "Quando você instala bibliotecas JavaScript antigas sem suporte ao TS, o compilador não sabe como checar os tipos delas. Os arquivos de declaração (.d.ts) servem como um \"tradutor\", definindo assinaturas de métodos e tipos dessas bibliotecas.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "// arquivo global.d.ts\n// Informa ao TS que existe uma função global 'ga'\ndeclare function ga(comando: string, valor: string): void;\n\nga(\"send\", \"pageview\"); // O TS aceitará",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -2102,13 +2154,15 @@
       "lesson": [
         {
           "title": "O Coração do TypeScript",
-          "body": "O arquivo 'tsconfig.json' diz ao compilador como se comportar. Ele define o nível de JavaScript gerado (target, ex: ES6), onde salvar os arquivos compilados (outDir) e inclui ou exclui diretórios. Sem ele, o compilador usa configurações padronizadas.",
-          "code": "// tsconfig.json básico\n{\n  \"compilerOptions\": {\n    \"target\": \"ES2015\",\n    \"outDir\": \"./dist\",\n    \"module\": \"commonjs\"\n  }\n}"
+          "body": "O arquivo 'tsconfig.json' diz ao compilador como se comportar. Ele define o nível de JavaScript gerado (target, ex: ES6), onde salvar os arquivos compilados (outDir) e inclui ou exclui diretórios. Sem ele, o compilador usa configurações padronizadas.\n\nCompreender este fundamento é crucial em TypeScript. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "// tsconfig.json básico\n{\n  \"compilerOptions\": {\n    \"target\": \"ES2015\",\n    \"outDir\": \"./dist\",\n    \"module\": \"commonjs\"\n  }\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "O Poder do Strict Mode",
-          "body": "A flag 'strict: true' ativa todas as proteções de tipagem do TS. Ela impede que o tipo 'any' seja deduzido sem querer, alerta sobre variáveis não usadas e força verificações de valores nulos, reduzindo os famosos erros 'undefined is not an object'.",
-          "code": "// Sem strict mode, este erro passaria\nlet nome: string;\n// Com strict mode, o TS alerta uso sem valor inicial:\n// console.log(nome);"
+          "body": "A flag 'strict: true' ativa todas as proteções de tipagem do TS. Ela impede que o tipo 'any' seja deduzido sem querer, alerta sobre variáveis não usadas e força verificações de valores nulos, reduzindo os famosos erros 'undefined is not an object'.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "// Sem strict mode, este erro passaria\nlet nome: string;\n// Com strict mode, o TS alerta uso sem valor inicial:\n// console.log(nome);",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -2180,13 +2234,15 @@
       "lesson": [
         {
           "title": "Migração Gradual",
-          "body": "Não precisa reescrever todo o projeto JavaScript para TS de uma vez. O compilador permite manter arquivos '.js' e '.ts' juntos, basta ativar a opção 'allowJs' no 'tsconfig'. A partir daí, você renomeia arquivo por arquivo e ajusta os tipos devagar.",
-          "code": "// tsconfig.json para migração\n{\n  \"compilerOptions\": {\n    \"allowJs\": true,\n    \"checkJs\": true,\n    \"strict\": false\n  }\n}"
+          "body": "Não precisa reescrever todo o projeto JavaScript para TS de uma vez. O compilador permite manter arquivos '.js' e '.ts' juntos, basta ativar a opção 'allowJs' no 'tsconfig'. A partir daí, você renomeia arquivo por arquivo e ajusta os tipos devagar.\n\nCompreender este fundamento é crucial em TypeScript. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "// tsconfig.json para migração\n{\n  \"compilerOptions\": {\n    \"allowJs\": true,\n    \"checkJs\": true,\n    \"strict\": false\n  }\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Verificando JavaScript com JSDoc",
-          "body": "Mesmo em arquivos '.js' limpos, você pode usar comentários com formato JSDoc para documentar tipos. O TypeScript entende a marcação JSDoc e consegue alertar erros no JavaScript diretamente no editor, servindo como uma prévia das tipagens.",
-          "code": "/**\n * @param {number} x\n * @param {number} y\n * @returns {number}\n */\nfunction somarJs(x, y) {\n  return x + y;\n}"
+          "body": "Mesmo em arquivos '.js' limpos, você pode usar comentários com formato JSDoc para documentar tipos. O TypeScript entende a marcação JSDoc e consegue alertar erros no JavaScript diretamente no editor, servindo como uma prévia das tipagens.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "/**\n * @param {number} x\n * @param {number} y\n * @returns {number}\n */\nfunction somarJs(x, y) {\n  return x + y;\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -2258,13 +2314,15 @@
       "lesson": [
         {
           "title": "Dominando as Ferramentas",
-          "body": "Dominar TypeScript significa saber escolher a ferramenta certa. Use Interfaces para modelar objetos do sistema, Generics para algoritmos reaproveitáveis e Utility Types (como Partial e Omit) para flexibilizar contratos no fluxo de dados de chamadas API.",
-          "code": "interface User { id: number; nome: string; }\n\n// Uso combinado: Generic + Omit\nfunction criarRegistro<T>(dados: Omit<T, \"id\">) {\n  return dados;\n}\ncriarRegistro<User>({ nome: \"Novo User\" });"
+          "body": "Dominar TypeScript significa saber escolher a ferramenta certa. Use Interfaces para modelar objetos do sistema, Generics para algoritmos reaproveitáveis e Utility Types (como Partial e Omit) para flexibilizar contratos no fluxo de dados de chamadas API.\n\nCompreender este fundamento é crucial em TypeScript. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "interface User { id: number; nome: string; }\n\n// Uso combinado: Generic + Omit\nfunction criarRegistro<T>(dados: Omit<T, \"id\">) {\n  return dados;\n}\ncriarRegistro<User>({ nome: \"Novo User\" });",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Refatorando com Segurança",
-          "body": "Uma das maiores vantagens da tipagem estática é a segurança ao alterar o sistema. Ao renomear uma propriedade obrigatória de uma Interface central, o TypeScript alertará imediatamente onde quer que esse modelo seja usado, evitando regressões no código.",
-          "code": "interface Produto { id: number; valor: number; }\n\n// Se mudarmos 'valor' para 'preco', o TS acusará\n// o erro abaixo instantaneamente.\nlet p: Produto = { id: 1, valor: 100 };"
+          "body": "Uma das maiores vantagens da tipagem estática é a segurança ao alterar o sistema. Ao renomear uma propriedade obrigatória de uma Interface central, o TypeScript alertará imediatamente onde quer que esse modelo seja usado, evitando regressões no código.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "interface Produto { id: number; valor: number; }\n\n// Se mudarmos 'valor' para 'preco', o TS acusará\n// o erro abaixo instantaneamente.\nlet p: Produto = { id: 1, valor: 100 };",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -2336,13 +2394,15 @@
       "lesson": [
         {
           "title": "Modelagem de Entidades",
-          "body": "Na criação de um sistema de tarefas real, o primeiro passo é declarar Interfaces, Types e Enums para desenhar a arquitetura do banco ou da memória. Sem as entidades bem definidas, as funções ficarão cheias de parâmetros mal formatados.",
-          "code": "enum Status { Aberto, Concluido }\n\ninterface Tarefa {\n  id: string;\n  titulo: string;\n  status: Status;\n  criadaEm: Date;\n}"
+          "body": "Na criação de um sistema de tarefas real, o primeiro passo é declarar Interfaces, Types e Enums para desenhar a arquitetura do banco ou da memória. Sem as entidades bem definidas, as funções ficarão cheias de parâmetros mal formatados.\n\nCompreender este fundamento é crucial em TypeScript. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "enum Status { Aberto, Concluido }\n\ninterface Tarefa {\n  id: string;\n  titulo: string;\n  status: Status;\n  criadaEm: Date;\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Serviços e Classes Tipadas",
-          "body": "Para agrupar as regras de negócio, criamos classes com forte tipagem de retornos e Arrays, isolando o estado e garantindo métodos seguros. Aliamos tudo o que aprendemos: Modificadores, Generics e Tipos Utilitários, para entregar robustez.",
-          "code": "class TodoList {\n  private tarefas: Tarefa[] = [];\n\n  adicionar(tarefa: Omit<Tarefa, \"id\" | \"criadaEm\">): Tarefa {\n    const nova = { ...tarefa, id: \"1\", criadaEm: new Date() };\n    this.tarefas.push(nova);\n    return nova;\n  }\n}"
+          "body": "Para agrupar as regras de negócio, criamos classes com forte tipagem de retornos e Arrays, isolando o estado e garantindo métodos seguros. Aliamos tudo o que aprendemos: Modificadores, Generics e Tipos Utilitários, para entregar robustez.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "class TodoList {\n  private tarefas: Tarefa[] = [];\n\n  adicionar(tarefa: Omit<Tarefa, \"id\" | \"criadaEm\">): Tarefa {\n    const nova = { ...tarefa, id: \"1\", criadaEm: new Date() };\n    this.tarefas.push(nova);\n    return nova;\n  }\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [

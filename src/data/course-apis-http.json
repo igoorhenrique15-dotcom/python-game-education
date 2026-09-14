@@ -74,13 +74,15 @@
       "lesson": [
         {
           "title": "A Base da Web: O que é HTTP?",
-          "body": "O HTTP (Hypertext Transfer Protocol) é a linguagem da web. Ele permite a comunicação entre clientes (como seu navegador) e servidores. Ele funciona em um modelo de requisição-resposta: você pede uma página e o servidor a envia de volta.",
-          "code": "GET / HTTP/1.1\nHost: www.exemplo.com\nAccept: text/html"
+          "body": "O HTTP (Hypertext Transfer Protocol) é a linguagem da web. Ele permite a comunicação entre clientes (como seu navegador) e servidores. Ele funciona em um modelo de requisição-resposta: você pede uma página e o servidor a envia de volta.\n\nCompreender este fundamento é crucial em APIs e HTTP. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "GET / HTTP/1.1\nHost: www.exemplo.com\nAccept: text/html",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "A Estrutura de uma Requisição HTTP",
-          "body": "Toda comunicação HTTP contém cabeçalhos (headers) com metadados e, opcionalmente, um corpo (body) com dados. Por exemplo, ao enviar um formulário, os dados vão no corpo. Isso garante flexibilidade e extensibilidade para a web.",
-          "code": "HTTP/1.1 200 OK\nContent-Type: text/html\n\n<html><body>Olá, Mundo!</body></html>"
+          "body": "Toda comunicação HTTP contém cabeçalhos (headers) com metadados e, opcionalmente, um corpo (body) com dados. Por exemplo, ao enviar um formulário, os dados vão no corpo. Isso garante flexibilidade e extensibilidade para a web.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "HTTP/1.1 200 OK\nContent-Type: text/html\n\n<html><body>Olá, Mundo!</body></html>",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -152,13 +154,15 @@
       "lesson": [
         {
           "title": "Os Verbos da Web: Métodos HTTP",
-          "body": "Os métodos HTTP indicam a intenção da requisição. GET busca dados, POST envia novos dados, PUT atualiza dados existentes e DELETE remove algo. Pense neles como ações de um CRUD (Criar, Ler, Atualizar, Deletar) na web.",
-          "code": "POST /usuarios HTTP/1.1\nHost: api.exemplo.com\n\n{\"nome\": \"Maria\"}"
+          "body": "Os métodos HTTP indicam a intenção da requisição. GET busca dados, POST envia novos dados, PUT atualiza dados existentes e DELETE remove algo. Pense neles como ações de um CRUD (Criar, Ler, Atualizar, Deletar) na web.\n\nCompreender este fundamento é crucial em APIs e HTTP. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "POST /usuarios HTTP/1.1\nHost: api.exemplo.com\n\n{\"nome\": \"Maria\"}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "GET vs POST na Prática",
-          "body": "O GET nunca deve alterar estado (é idempotente e seguro). Todos os parâmetros vão na URL. Já o POST é usado para ações que alteram o sistema, enviando dados de forma mais oculta no corpo da requisição, ideal para senhas e envios grandes.",
-          "code": "// Requisição GET na URL\nGET /busca?q=javascript HTTP/1.1\n\n// Requisição POST no Body\nPOST /login HTTP/1.1\n{\"user\":\"admin\",\"pass\":\"1234\"}"
+          "body": "O GET nunca deve alterar estado (é idempotente e seguro). Todos os parâmetros vão na URL. Já o POST é usado para ações que alteram o sistema, enviando dados de forma mais oculta no corpo da requisição, ideal para senhas e envios grandes.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "// Requisição GET na URL\nGET /busca?q=javascript HTTP/1.1\n\n// Requisição POST no Body\nPOST /login HTTP/1.1\n{\"user\":\"admin\",\"pass\":\"1234\"}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -230,13 +234,15 @@
       "lesson": [
         {
           "title": "Entendendo os Status Codes",
-          "body": "Os códigos de status (Status Codes) HTTP informam rapidamente o resultado da requisição. Eles são agrupados em faixas: 2xx para sucesso, 3xx para redirecionamentos, 4xx para erros do cliente e 5xx para erros no servidor.",
-          "code": "HTTP/1.1 201 Created\nLocation: /usuarios/123\n\n{\"id\": 123, \"status\": \"sucesso\"}"
+          "body": "Os códigos de status (Status Codes) HTTP informam rapidamente o resultado da requisição. Eles são agrupados em faixas: 2xx para sucesso, 3xx para redirecionamentos, 4xx para erros do cliente e 5xx para erros no servidor.\n\nCompreender este fundamento é crucial em APIs e HTTP. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "HTTP/1.1 201 Created\nLocation: /usuarios/123\n\n{\"id\": 123, \"status\": \"sucesso\"}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Erros Comuns na Web",
-          "body": "O clássico 404 Not Found significa que a URL não existe. O 401 Unauthorized indica falta de autenticação, enquanto o 500 Internal Server Error sinaliza que o servidor travou ao processar a requisição válida.",
-          "code": "HTTP/1.1 404 Not Found\nContent-Type: application/json\n\n{\"erro\": \"Recurso não encontrado\"}"
+          "body": "O clássico 404 Not Found significa que a URL não existe. O 401 Unauthorized indica falta de autenticação, enquanto o 500 Internal Server Error sinaliza que o servidor travou ao processar a requisição válida.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "HTTP/1.1 404 Not Found\nContent-Type: application/json\n\n{\"erro\": \"Recurso não encontrado\"}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -308,13 +314,15 @@
       "lesson": [
         {
           "title": "O que é uma API REST?",
-          "body": "REST (Representational State Transfer) é um estilo arquitetural para construir APIs. Uma API RESTful utiliza o protocolo HTTP de forma semântica, tratando cada entidade como um Recurso acessível via URLs.",
-          "code": "// Exemplo de Recursos RESTful\nGET /produtos     // Lista produtos\nGET /produtos/5   // Detalhes do produto 5\nDELETE /produtos/5 // Remove produto 5"
+          "body": "REST (Representational State Transfer) é um estilo arquitetural para construir APIs. Uma API RESTful utiliza o protocolo HTTP de forma semântica, tratando cada entidade como um Recurso acessível via URLs.\n\nCompreender este fundamento é crucial em APIs e HTTP. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "// Exemplo de Recursos RESTful\nGET /produtos     // Lista produtos\nGET /produtos/5   // Detalhes do produto 5\nDELETE /produtos/5 // Remove produto 5",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Recursos e Representações",
-          "body": "Em REST, o estado de um recurso é transferido através de representações, normalmente JSON ou XML. Quando você requisita um usuário, a API não retorna o banco de dados, mas sim um JSON representando aquele usuário.",
-          "code": "{\n  \"id\": 8,\n  \"nome\": \"João\",\n  \"email\": \"joao@email.com\"\n}"
+          "body": "Em REST, o estado de um recurso é transferido através de representações, normalmente JSON ou XML. Quando você requisita um usuário, a API não retorna o banco de dados, mas sim um JSON representando aquele usuário.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "{\n  \"id\": 8,\n  \"nome\": \"João\",\n  \"email\": \"joao@email.com\"\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -386,13 +394,15 @@
       "lesson": [
         {
           "title": "Design de URLs Semânticas",
-          "body": "URLs em REST devem ser substantivos no plural e representar hierarquias claras. Evite verbos na URL. Em vez de `/pegarUsuarios` ou `/criarProduto`, use os métodos HTTP junto aos recursos: `GET /usuarios` ou `POST /produtos`.",
-          "code": "// Ruim\nGET /getArticle?id=10\nPOST /createArticle\n\n// Bom\nGET /articles/10\nPOST /articles"
+          "body": "URLs em REST devem ser substantivos no plural e representar hierarquias claras. Evite verbos na URL. Em vez de `/pegarUsuarios` ou `/criarProduto`, use os métodos HTTP junto aos recursos: `GET /usuarios` ou `POST /produtos`.\n\nCompreender este fundamento é crucial em APIs e HTTP. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "// Ruim\nGET /getArticle?id=10\nPOST /createArticle\n\n// Bom\nGET /articles/10\nPOST /articles",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Coleções e Sub-recursos",
-          "body": "Se um recurso pertence a outro, aninhe-os na URL. Por exemplo, para pegar os comentários do artigo 10, use `/articles/10/comments`. Isso cria uma hierarquia lógica, previsível e amigável para outros desenvolvedores.",
-          "code": "GET /users/5/orders HTTP/1.1\nHost: api.store.com\n\n// Retorna todos os pedidos do usuário 5"
+          "body": "Se um recurso pertence a outro, aninhe-os na URL. Por exemplo, para pegar os comentários do artigo 10, use `/articles/10/comments`. Isso cria uma hierarquia lógica, previsível e amigável para outros desenvolvedores.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "GET /users/5/orders HTTP/1.1\nHost: api.store.com\n\n// Retorna todos os pedidos do usuário 5",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -464,13 +474,15 @@
       "lesson": [
         {
           "title": "O Conceito de Stateless",
-          "body": "Statelessness (Sem estado) significa que o servidor não guarda a sessão do usuário entre requisições. Toda requisição precisa enviar todas as informações necessárias para ser compreendida de forma independente.",
-          "code": "// O cliente envia o token de autenticação em CADA requisição\nGET /dashboard HTTP/1.1\nAuthorization: Bearer my-token-123"
+          "body": "Statelessness (Sem estado) significa que o servidor não guarda a sessão do usuário entre requisições. Toda requisição precisa enviar todas as informações necessárias para ser compreendida de forma independente.\n\nCompreender este fundamento é crucial em APIs e HTTP. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "// O cliente envia o token de autenticação em CADA requisição\nGET /dashboard HTTP/1.1\nAuthorization: Bearer my-token-123",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Vantagens do Stateless",
-          "body": "Como o servidor não guarda estado, é muito mais fácil escalar horizontalmente a aplicação (adicionar mais servidores). Se a requisição 1 for pro Servidor A e a 2 pro Servidor B, tudo funciona, pois a requisição tem tudo o que precisa.",
-          "code": "ServidorA <- Req(Token: abc) -> OK\nServidorB <- Req(Token: abc) -> OK"
+          "body": "Como o servidor não guarda estado, é muito mais fácil escalar horizontalmente a aplicação (adicionar mais servidores). Se a requisição 1 for pro Servidor A e a 2 pro Servidor B, tudo funciona, pois a requisição tem tudo o que precisa.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "ServidorA <- Req(Token: abc) -> OK\nServidorB <- Req(Token: abc) -> OK",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -542,13 +554,15 @@
       "lesson": [
         {
           "title": "O Formato Universal: JSON",
-          "body": "JSON (JavaScript Object Notation) é o formato padrão para troca de dados em APIs. Ele é leve, fácil de ler para humanos e nativamente entendido por linguagens como o JavaScript. Substituiu amplamente o XML.",
-          "code": "{\n  \"curso\": \"APIs HTTP\",\n  \"ativo\": true,\n  \"modulos\": [1, 2, 3]\n}"
+          "body": "JSON (JavaScript Object Notation) é o formato padrão para troca de dados em APIs. Ele é leve, fácil de ler para humanos e nativamente entendido por linguagens como o JavaScript. Substituiu amplamente o XML.\n\nCompreender este fundamento é crucial em APIs e HTTP. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "{\n  \"curso\": \"APIs HTTP\",\n  \"ativo\": true,\n  \"modulos\": [1, 2, 3]\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Regras do JSON",
-          "body": "O JSON exige que todas as chaves (nomes de propriedades) estejam entre aspas duplas. Tipos válidos incluem strings, números, booleanos, arrays, objetos aninhados e null. Não suporta funções ou datas nativas (vão como string).",
-          "code": "{\n  \"nome\": \"Ana\",    // string\n  \"idade\": 28,      // número\n  \"casada\": false,  // boolean\n  \"carro\": null     // null\n}"
+          "body": "O JSON exige que todas as chaves (nomes de propriedades) estejam entre aspas duplas. Tipos válidos incluem strings, números, booleanos, arrays, objetos aninhados e null. Não suporta funções ou datas nativas (vão como string).\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "{\n  \"nome\": \"Ana\",    // string\n  \"idade\": 28,      // número\n  \"casada\": false,  // boolean\n  \"carro\": null     // null\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -620,13 +634,15 @@
       "lesson": [
         {
           "title": "Serialização: JSON.stringify()",
-          "body": "Para enviar dados de uma aplicação para uma API, você precisa converter objetos da memória em uma string JSON. Isso é chamado de serialização. No JavaScript, usamos `JSON.stringify()` para essa tarefa.",
-          "code": "const usuario = { id: 1, nome: \"Bia\" };\nconst jsonString = JSON.stringify(usuario);\nconsole.log(jsonString);\n// '{\"id\":1,\"nome\":\"Bia\"}'"
+          "body": "Para enviar dados de uma aplicação para uma API, você precisa converter objetos da memória em uma string JSON. Isso é chamado de serialização. No JavaScript, usamos `JSON.stringify()` para essa tarefa.\n\nCompreender este fundamento é crucial em APIs e HTTP. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "const usuario = { id: 1, nome: \"Bia\" };\nconst jsonString = JSON.stringify(usuario);\nconsole.log(jsonString);\n// '{\"id\":1,\"nome\":\"Bia\"}'",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Deserialização: JSON.parse()",
-          "body": "Quando sua aplicação recebe uma resposta da API, os dados vêm como texto puro. Para transformá-los de volta em objetos utilizáveis, aplicamos a deserialização usando a função `JSON.parse()`.",
-          "code": "const textoAPI = '{\"status\":\"ativo\"}';\nconst obj = JSON.parse(textoAPI);\nconsole.log(obj.status); // Imprime: ativo"
+          "body": "Quando sua aplicação recebe uma resposta da API, os dados vêm como texto puro. Para transformá-los de volta em objetos utilizáveis, aplicamos a deserialização usando a função `JSON.parse()`.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "const textoAPI = '{\"status\":\"ativo\"}';\nconst obj = JSON.parse(textoAPI);\nconsole.log(obj.status); // Imprime: ativo",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -698,13 +714,15 @@
       "lesson": [
         {
           "title": "Listas e Coleções em JSON",
-          "body": "Frequentemente APIs retornam não apenas um objeto, mas coleções. Um array no nível raiz ou aninhado dentro de um objeto é perfeito para listas de usuários, comentários ou produtos em uma loja virtual.",
-          "code": "{\n  \"resultados\": [\n    {\"id\": 1, \"nome\": \"TV\"},\n    {\"id\": 2, \"nome\": \"Rádio\"}\n  ],\n  \"total\": 2\n}"
+          "body": "Frequentemente APIs retornam não apenas um objeto, mas coleções. Um array no nível raiz ou aninhado dentro de um objeto é perfeito para listas de usuários, comentários ou produtos em uma loja virtual.\n\nCompreender este fundamento é crucial em APIs e HTTP. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "{\n  \"resultados\": [\n    {\"id\": 1, \"nome\": \"TV\"},\n    {\"id\": 2, \"nome\": \"Rádio\"}\n  ],\n  \"total\": 2\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Trabalhando com Metadados",
-          "body": "Ao devolver estruturas complexas, é uma boa prática agrupar os dados reais em uma propriedade `data` e usar as outras chaves para metadados, como informações de paginação, total de itens ou links associados.",
-          "code": "{\n  \"meta\": { \"pagina\": 1, \"limite\": 10 },\n  \"data\": [ { \"id\": 9, \"titulo\": \"Post\" } ]\n}"
+          "body": "Ao devolver estruturas complexas, é uma boa prática agrupar os dados reais em uma propriedade `data` e usar as outras chaves para metadados, como informações de paginação, total de itens ou links associados.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "{\n  \"meta\": { \"pagina\": 1, \"limite\": 10 },\n  \"data\": [ { \"id\": 9, \"titulo\": \"Post\" } ]\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -776,13 +794,15 @@
       "lesson": [
         {
           "title": "Basic Auth",
-          "body": "A Autenticação Básica é um esquema simples embutido no HTTP. O cliente envia as credenciais no formato 'usuario:senha' codificadas em Base64 no cabeçalho Authorization. É obrigatório usar HTTPS com ela para segurança.",
-          "code": "// 'admin:1234' em Base64 é 'YWRtaW46MTIzNA=='\nGET /admin HTTP/1.1\nAuthorization: Basic YWRtaW46MTIzNA=="
+          "body": "A Autenticação Básica é um esquema simples embutido no HTTP. O cliente envia as credenciais no formato 'usuario:senha' codificadas em Base64 no cabeçalho Authorization. É obrigatório usar HTTPS com ela para segurança.\n\nCompreender este fundamento é crucial em APIs e HTTP. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "// 'admin:1234' em Base64 é 'YWRtaW46MTIzNA=='\nGET /admin HTTP/1.1\nAuthorization: Basic YWRtaW46MTIzNA==",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "API Keys",
-          "body": "API Keys são strings longas fornecidas pelo serviço que identificam o cliente ou o projeto. Normalmente são passadas no cabeçalho HTTP ou na URL (query string). Elas são úteis para controlar limites de uso (rate limit).",
-          "code": "GET /clima?cidade=SP HTTP/1.1\nX-API-Key: a1b2c3d4e5f6g7h8\n\n// Ou na URL\nGET /clima?cidade=SP&apikey=a1b2c3d4"
+          "body": "API Keys são strings longas fornecidas pelo serviço que identificam o cliente ou o projeto. Normalmente são passadas no cabeçalho HTTP ou na URL (query string). Elas são úteis para controlar limites de uso (rate limit).\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "GET /clima?cidade=SP HTTP/1.1\nX-API-Key: a1b2c3d4e5f6g7h8\n\n// Ou na URL\nGET /clima?cidade=SP&apikey=a1b2c3d4",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -854,13 +874,15 @@
       "lesson": [
         {
           "title": "O que é JWT?",
-          "body": "JSON Web Token (JWT) é um padrão para criar tokens seguros. Ele contém três partes: Cabeçalho, Payload (os dados) e Assinatura. Como ele é auto-contido, o servidor não precisa buscar o token no banco de dados para validá-lo.",
-          "code": "// Estrutura visual de um JWT\nheader_base64.payload_base64.assinatura_hash"
+          "body": "JSON Web Token (JWT) é um padrão para criar tokens seguros. Ele contém três partes: Cabeçalho, Payload (os dados) e Assinatura. Como ele é auto-contido, o servidor não precisa buscar o token no banco de dados para validá-lo.\n\nCompreender este fundamento é crucial em APIs e HTTP. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "// Estrutura visual de um JWT\nheader_base64.payload_base64.assinatura_hash",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Usando Bearer Tokens",
-          "body": "Na prática, o JWT é enviado ao servidor usando o esquema Bearer (Portador) no cabeçalho Authorization. O servidor então decodifica o token, confere a assinatura criptográfica e sabe quem fez a requisição.",
-          "code": "GET /perfil HTTP/1.1\nAuthorization: Bearer eyJhbGciOiJIUzI1...\nAccept: application/json"
+          "body": "Na prática, o JWT é enviado ao servidor usando o esquema Bearer (Portador) no cabeçalho Authorization. O servidor então decodifica o token, confere a assinatura criptográfica e sabe quem fez a requisição.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "GET /perfil HTTP/1.1\nAuthorization: Bearer eyJhbGciOiJIUzI1...\nAccept: application/json",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -932,13 +954,15 @@
       "lesson": [
         {
           "title": "Introdução ao OAuth 2.0",
-          "body": "OAuth 2.0 não é apenas autenticação, mas um protocolo de Autorização Delegada. Ele permite que um aplicativo acesse os dados de um usuário em outro serviço (como 'Login com Google') sem que o aplicativo saiba a senha do usuário.",
-          "code": "// Fluxo simplificado:\n// 1. App pede permissão pro Google\n// 2. Google pede login do Usuário\n// 3. App recebe Access Token"
+          "body": "OAuth 2.0 não é apenas autenticação, mas um protocolo de Autorização Delegada. Ele permite que um aplicativo acesse os dados de um usuário em outro serviço (como 'Login com Google') sem que o aplicativo saiba a senha do usuário.\n\nCompreender este fundamento é crucial em APIs e HTTP. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "// Fluxo simplificado:\n// 1. App pede permissão pro Google\n// 2. Google pede login do Usuário\n// 3. App recebe Access Token",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Access e Refresh Tokens",
-          "body": "OAuth usa Access Tokens de vida curta para acessar a API, aumentando a segurança. Quando eles expiram, um Refresh Token (de vida mais longa e armazenado com segurança) é usado para solicitar um novo Access Token silenciosamente.",
-          "code": "POST /oauth/token\n{\n  \"grant_type\": \"refresh_token\",\n  \"refresh_token\": \"rt_9876xyz\"\n}"
+          "body": "OAuth usa Access Tokens de vida curta para acessar a API, aumentando a segurança. Quando eles expiram, um Refresh Token (de vida mais longa e armazenado com segurança) é usado para solicitar um novo Access Token silenciosamente.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "POST /oauth/token\n{\n  \"grant_type\": \"refresh_token\",\n  \"refresh_token\": \"rt_9876xyz\"\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1010,13 +1034,15 @@
       "lesson": [
         {
           "title": "Usando o cURL",
-          "body": "O `curl` é uma ferramenta de linha de comando para fazer requisições HTTP. É a forma mais universal de testar APIs sem interfaces gráficas. É rápido, nativo em muitos sistemas e ótimo para automação em scripts.",
-          "code": "curl -X GET https://api.github.com/users/octocat"
+          "body": "O `curl` é uma ferramenta de linha de comando para fazer requisições HTTP. É a forma mais universal de testar APIs sem interfaces gráficas. É rápido, nativo em muitos sistemas e ótimo para automação em scripts.\n\nCompreender este fundamento é crucial em APIs e HTTP. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "curl -X GET https://api.github.com/users/octocat",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Enviando Dados com cURL",
-          "body": "Para métodos como POST e PUT, você pode enviar dados e especificar cabeçalhos HTTP com as flags `-d` (data) e `-H` (header). Muito útil para simular submissões de formulários ou envios de JSON.",
-          "code": "curl -X POST https://api.exemplo.com/login \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"email\":\"a@a.com\",\"senha\":\"123\"}'"
+          "body": "Para métodos como POST e PUT, você pode enviar dados e especificar cabeçalhos HTTP com as flags `-d` (data) e `-H` (header). Muito útil para simular submissões de formulários ou envios de JSON.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "curl -X POST https://api.exemplo.com/login \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"email\":\"a@a.com\",\"senha\":\"123\"}'",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1088,13 +1114,15 @@
       "lesson": [
         {
           "title": "Explorando com Postman",
-          "body": "Postman e Insomnia são clientes HTTP com interface gráfica que facilitam muito a vida do desenvolvedor. Você pode organizar requisições em coleções, configurar ambientes (Dev, Prod) e salvar variáveis (como tokens).",
-          "code": "// No Postman, você pode criar scripts de Teste:\npm.test(\"Status é 200\", function () {\n    pm.response.to.have.status(200);\n});"
+          "body": "Postman e Insomnia são clientes HTTP com interface gráfica que facilitam muito a vida do desenvolvedor. Você pode organizar requisições em coleções, configurar ambientes (Dev, Prod) e salvar variáveis (como tokens).\n\nCompreender este fundamento é crucial em APIs e HTTP. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "// No Postman, você pode criar scripts de Teste:\npm.test(\"Status é 200\", function () {\n    pm.response.to.have.status(200);\n});",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Variáveis e Automação",
-          "body": "Uma das maiores vantagens dessas ferramentas é salvar dinamicamente respostas. Você faz um POST em `/login`, o Postman salva o token da resposta, e as requisições seguintes já utilizam esse token automaticamente.",
-          "code": "// Após o login, capturando o token:\nconst resp = pm.response.json();\npm.environment.set(\"jwt_token\", resp.token);"
+          "body": "Uma das maiores vantagens dessas ferramentas é salvar dinamicamente respostas. Você faz um POST em `/login`, o Postman salva o token da resposta, e as requisições seguintes já utilizam esse token automaticamente.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "// Após o login, capturando o token:\nconst resp = pm.response.json();\npm.environment.set(\"jwt_token\", resp.token);",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1166,13 +1194,15 @@
       "lesson": [
         {
           "title": "API Nativa do JS: Fetch",
-          "body": "A função `fetch()` é a API nativa dos navegadores (e agora Node.js) para requisições HTTP. Ela usa Promises modernas, o que a torna limpa e fácil de usar com a sintaxe async/await no JavaScript moderno.",
-          "code": "async function buscarDados() {\n  const resposta = await fetch('https://api.exemplo.com/dados');\n  const dados = await resposta.json();\n  console.log(dados);\n}"
+          "body": "A função `fetch()` é a API nativa dos navegadores (e agora Node.js) para requisições HTTP. Ela usa Promises modernas, o que a torna limpa e fácil de usar com a sintaxe async/await no JavaScript moderno.\n\nCompreender este fundamento é crucial em APIs e HTTP. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "async function buscarDados() {\n  const resposta = await fetch('https://api.exemplo.com/dados');\n  const dados = await resposta.json();\n  console.log(dados);\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Configurando Requisições com Fetch",
-          "body": "Por padrão, o fetch faz requisições GET. Para enviar um POST ou configurar headers customizados, basta passar um objeto de opções como segundo argumento. Nunca esqueça de converter a resposta com `.json()`.",
-          "code": "fetch('/api/users', {\n  method: 'POST',\n  headers: { 'Content-Type': 'application/json' },\n  body: JSON.stringify({ nome: 'Leo' })\n});"
+          "body": "Por padrão, o fetch faz requisições GET. Para enviar um POST ou configurar headers customizados, basta passar um objeto de opções como segundo argumento. Nunca esqueça de converter a resposta com `.json()`.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "fetch('/api/users', {\n  method: 'POST',\n  headers: { 'Content-Type': 'application/json' },\n  body: JSON.stringify({ nome: 'Leo' })\n});",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1244,13 +1274,15 @@
       "lesson": [
         {
           "title": "Criando o Servidor e Rotas",
-          "body": "Com bibliotecas como o Express.js (Node), criar uma API é rápido. Você define rotas associando um método HTTP (GET, POST) a um caminho na URL (como `/api/users`), e passa uma função callback para lidar com a requisição.",
-          "code": "const express = require('express');\nconst app = express();\n\napp.get('/api/users', (req, res) => {\n  res.send('Lista de Usuários');\n});"
+          "body": "Com bibliotecas como o Express.js (Node), criar uma API é rápido. Você define rotas associando um método HTTP (GET, POST) a um caminho na URL (como `/api/users`), e passa uma função callback para lidar com a requisição.\n\nCompreender este fundamento é crucial em APIs e HTTP. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "const express = require('express');\nconst app = express();\n\napp.get('/api/users', (req, res) => {\n  res.send('Lista de Usuários');\n});",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Parâmetros Dinâmicos de Rota",
-          "body": "Frequentemente precisamos buscar um recurso específico, como um usuário por ID. Usamos parâmetros de rota definidos com `:` (dois pontos) na URL. O servidor captura esse valor dinamicamente e disponibiliza para o código.",
-          "code": "app.get('/api/users/:id', (req, res) => {\n  const userId = req.params.id;\n  res.send(`Detalhes do usuário ${userId}`);\n});"
+          "body": "Frequentemente precisamos buscar um recurso específico, como um usuário por ID. Usamos parâmetros de rota definidos com `:` (dois pontos) na URL. O servidor captura esse valor dinamicamente e disponibiliza para o código.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "app.get('/api/users/:id', (req, res) => {\n  const userId = req.params.id;\n  res.send(`Detalhes do usuário ${userId}`);\n});",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1322,13 +1354,15 @@
       "lesson": [
         {
           "title": "Arquitetura com Controllers",
-          "body": "À medida que a API cresce, deixar a lógica de negócios direto no arquivo de rotas causa bagunça. A solução é extrair as funções para arquivos chamados Controllers, promovendo organização e separação de responsabilidades.",
-          "code": "// userController.js\nexports.getUsers = (req, res) => {\n  // Lógica do banco de dados aqui\n  res.json([{ nome: \"Ana\" }]);\n};"
+          "body": "À medida que a API cresce, deixar a lógica de negócios direto no arquivo de rotas causa bagunça. A solução é extrair as funções para arquivos chamados Controllers, promovendo organização e separação de responsabilidades.\n\nCompreender este fundamento é crucial em APIs e HTTP. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "// userController.js\nexports.getUsers = (req, res) => {\n  // Lógica do banco de dados aqui\n  res.json([{ nome: \"Ana\" }]);\n};",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Rotas Limpas",
-          "body": "Ao usar controllers, suas definições de rota passam a ser apenas um índice que mapeia a URL para o método importado, facilitando enormemente a leitura de todos os endpoints disponíveis na sua aplicação.",
-          "code": "const userController = require('./userController');\n\n// Arquivo de rotas muito mais limpo!\napp.get('/users', userController.getUsers);\napp.post('/users', userController.createUser);"
+          "body": "Ao usar controllers, suas definições de rota passam a ser apenas um índice que mapeia a URL para o método importado, facilitando enormemente a leitura de todos os endpoints disponíveis na sua aplicação.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "const userController = require('./userController');\n\n// Arquivo de rotas muito mais limpo!\napp.get('/users', userController.getUsers);\napp.post('/users', userController.createUser);",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1400,13 +1434,15 @@
       "lesson": [
         {
           "title": "Enviando Respostas JSON",
-          "body": "Construir APIs REST implica em retornar dados de forma padronizada. Em vez de enviar HTML, enviamos JSON. Frameworks back-end costumam ter métodos utilitários, como `res.json()`, que serializam objetos automaticamente e ajustam headers.",
-          "code": "app.get('/api/config', (req, res) => {\n  const config = { theme: 'dark', version: 1 };\n  // Converte e ajusta o Content-Type para JSON\n  res.json(config);\n});"
+          "body": "Construir APIs REST implica em retornar dados de forma padronizada. Em vez de enviar HTML, enviamos JSON. Frameworks back-end costumam ter métodos utilitários, como `res.json()`, que serializam objetos automaticamente e ajustam headers.\n\nCompreender este fundamento é crucial em APIs e HTTP. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "app.get('/api/config', (req, res) => {\n  const config = { theme: 'dark', version: 1 };\n  // Converte e ajusta o Content-Type para JSON\n  res.json(config);\n});",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Manipulando Status Codes",
-          "body": "Sempre certifique-se de retornar os códigos HTTP corretos. Quando um recurso é criado via POST, retorne 201 (Created). Se algo não for encontrado, mude o status para 404 antes de enviar a resposta JSON de erro.",
-          "code": "app.post('/produtos', (req, res) => {\n  // Produto criado\n  res.status(201).json({ id: 9, msg: \"Criado!\" });\n});"
+          "body": "Sempre certifique-se de retornar os códigos HTTP corretos. Quando um recurso é criado via POST, retorne 201 (Created). Se algo não for encontrado, mude o status para 404 antes de enviar a resposta JSON de erro.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "app.post('/produtos', (req, res) => {\n  // Produto criado\n  res.status(201).json({ id: 9, msg: \"Criado!\" });\n});",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1478,13 +1514,15 @@
       "lesson": [
         {
           "title": "Entendendo Middlewares",
-          "body": "Middlewares são funções que rodam entre o recebimento da requisição e o envio da resposta. Eles podem inspecionar a requisição, alterar dados, validar coisas ou bloquear o acesso (como um guarda na porta).",
-          "code": "function meuMiddleware(req, res, next) {\n  console.log(`Recebeu requisição em ${req.url}`);\n  next(); // Passa para a próxima função\n}"
+          "body": "Middlewares são funções que rodam entre o recebimento da requisição e o envio da resposta. Eles podem inspecionar a requisição, alterar dados, validar coisas ou bloquear o acesso (como um guarda na porta).\n\nCompreender este fundamento é crucial em APIs e HTTP. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "function meuMiddleware(req, res, next) {\n  console.log(`Recebeu requisição em ${req.url}`);\n  next(); // Passa para a próxima função\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Parseando o Corpo da Requisição",
-          "body": "Um dos middlewares mais comuns é o interpretador de JSON (Body Parser). Sem ele, requisições POST com JSON no corpo chegam como uma string bruta e inútil; com ele, os dados vão direto para `req.body`.",
-          "code": "// Express nativamente suporta o parse de JSON\napp.use(express.json());\n\napp.post('/dados', (req, res) => {\n  console.log(req.body); // Objeto pronto para uso\n});"
+          "body": "Um dos middlewares mais comuns é o interpretador de JSON (Body Parser). Sem ele, requisições POST com JSON no corpo chegam como uma string bruta e inútil; com ele, os dados vão direto para `req.body`.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "// Express nativamente suporta o parse de JSON\napp.use(express.json());\n\napp.post('/dados', (req, res) => {\n  console.log(req.body); // Objeto pronto para uso\n});",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1556,13 +1594,15 @@
       "lesson": [
         {
           "title": "O que é CORS?",
-          "body": "CORS (Cross-Origin Resource Sharing) é uma medida de segurança dos navegadores. Ele impede que um frontend hospedado em `meusite.com` consuma uma API em `api.outro.com` a menos que a API dê permissão explícita.",
-          "code": "// Erro clássico no console do navegador:\n// \"Blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present\""
+          "body": "CORS (Cross-Origin Resource Sharing) é uma medida de segurança dos navegadores. Ele impede que um frontend hospedado em `meusite.com` consuma uma API em `api.outro.com` a menos que a API dê permissão explícita.\n\nCompreender este fundamento é crucial em APIs e HTTP. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "// Erro clássico no console do navegador:\n// \"Blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present\"",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Liberando o Acesso via Headers",
-          "body": "Para resolver bloqueios, a API precisa adicionar cabeçalhos específicos na resposta. Utiliza-se middlewares (como o pacote `cors` no Node.js) para autorizar todas ou apenas algumas origens (URLs) a acessarem seus dados.",
-          "code": "const cors = require('cors');\n// Libera acesso público à API\napp.use(cors());\n\n// Ou libera apenas para o frontend específico\napp.use(cors({ origin: 'https://meu-front.com' }));"
+          "body": "Para resolver bloqueios, a API precisa adicionar cabeçalhos específicos na resposta. Utiliza-se middlewares (como o pacote `cors` no Node.js) para autorizar todas ou apenas algumas origens (URLs) a acessarem seus dados.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "const cors = require('cors');\n// Libera acesso público à API\napp.use(cors());\n\n// Ou libera apenas para o frontend específico\napp.use(cors({ origin: 'https://meu-front.com' }));",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1634,13 +1674,15 @@
       "lesson": [
         {
           "title": "A Importância da Validação",
-          "body": "Nunca confie nos dados enviados pelo cliente. Se sua API exige um email, você deve validar no backend se o formato é realmente de um email. Validação garante integridade no banco de dados e previne quebras sistêmicas.",
-          "code": "app.post('/cadastro', (req, res) => {\n  if (!req.body.email || !req.body.senha) {\n    return res.status(400).json({erro: \"Dados faltantes\"});\n  }\n});"
+          "body": "Nunca confie nos dados enviados pelo cliente. Se sua API exige um email, você deve validar no backend se o formato é realmente de um email. Validação garante integridade no banco de dados e previne quebras sistêmicas.\n\nCompreender este fundamento é crucial em APIs e HTTP. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "app.post('/cadastro', (req, res) => {\n  if (!req.body.email || !req.body.senha) {\n    return res.status(400).json({erro: \"Dados faltantes\"});\n  }\n});",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Bibliotecas de Esquemas",
-          "body": "Em vez de usar IFs infinitos, usamos bibliotecas de validação como Zod, Joi ou Yup. Elas definem um 'esquema' (schema) e validam automaticamente os campos, seus tipos e tamanho mínimo, limpando o código da API.",
-          "code": "const schema = z.object({\n  idade: z.number().min(18),\n  email: z.string().email()\n});\n// Valida ou lança erro antes de salvar\nschema.parse(req.body);"
+          "body": "Em vez de usar IFs infinitos, usamos bibliotecas de validação como Zod, Joi ou Yup. Elas definem um 'esquema' (schema) e validam automaticamente os campos, seus tipos e tamanho mínimo, limpando o código da API.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "const schema = z.object({\n  idade: z.number().min(18),\n  email: z.string().email()\n});\n// Valida ou lança erro antes de salvar\nschema.parse(req.body);",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1712,13 +1754,15 @@
       "lesson": [
         {
           "title": "Por que documentar a API?",
-          "body": "Uma API sem documentação é inútil. Desenvolvedores frontend ou mobile precisam saber quais rotas existem, quais métodos usar, que JSON precisam enviar e o que vão receber. A documentação é o manual de instruções do seu sistema.",
-          "code": "// Sem documentação, o time do frontend fica cego:\n// Frontend: \"Que campos o POST /users recebe?\"\n// Backend: \"Vai lá ler meu código fonte\" -> RUIM"
+          "body": "Uma API sem documentação é inútil. Desenvolvedores frontend ou mobile precisam saber quais rotas existem, quais métodos usar, que JSON precisam enviar e o que vão receber. A documentação é o manual de instruções do seu sistema.\n\nCompreender este fundamento é crucial em APIs e HTTP. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "// Sem documentação, o time do frontend fica cego:\n// Frontend: \"Que campos o POST /users recebe?\"\n// Backend: \"Vai lá ler meu código fonte\" -> RUIM",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Padrões Vivos de Documentação",
-          "body": "Documentar num arquivo Word rapidamente fica desatualizado. Hoje, adotamos 'documentação viva', onde o próprio código gera a documentação automatizada, que inclusive permite testes diretamente pela interface web.",
-          "code": "// Exemplo de acesso à documentação da API\n// GET /api/docs -> Retorna página Swagger com UI interativa"
+          "body": "Documentar num arquivo Word rapidamente fica desatualizado. Hoje, adotamos 'documentação viva', onde o próprio código gera a documentação automatizada, que inclusive permite testes diretamente pela interface web.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "// Exemplo de acesso à documentação da API\n// GET /api/docs -> Retorna página Swagger com UI interativa",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1790,13 +1834,15 @@
       "lesson": [
         {
           "title": "Conhecendo o OpenAPI/Swagger",
-          "body": "A Especificação OpenAPI (antes Swagger) é o padrão de mercado para documentar APIs REST. Ele descreve toda a sua API em um formato JSON ou YAML estruturado, informando caminhos, parâmetros, segurança e modelos de dados.",
-          "code": "openapi: 3.0.0\ninfo:\n  title: API de Produtos\npaths:\n  /produtos:\n    get:\n      summary: Lista produtos"
+          "body": "A Especificação OpenAPI (antes Swagger) é o padrão de mercado para documentar APIs REST. Ele descreve toda a sua API em um formato JSON ou YAML estruturado, informando caminhos, parâmetros, segurança e modelos de dados.\n\nCompreender este fundamento é crucial em APIs e HTTP. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "openapi: 3.0.0\ninfo:\n  title: API de Produtos\npaths:\n  /produtos:\n    get:\n      summary: Lista produtos",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Interfaces com Swagger UI",
-          "body": "Uma vez que você tem a especificação OpenAPI, ferramentas como o Swagger UI e Redoc a leem e geram automaticamente um site bonito e interativo onde as pessoas podem testar os endpoints da sua API em tempo real.",
-          "code": "const swaggerUi = require('swagger-ui-express');\nconst doc = require('./swagger.json');\napp.use('/docs', swaggerUi.serve, swaggerUi.setup(doc));"
+          "body": "Uma vez que você tem a especificação OpenAPI, ferramentas como o Swagger UI e Redoc a leem e geram automaticamente um site bonito e interativo onde as pessoas podem testar os endpoints da sua API em tempo real.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "const swaggerUi = require('swagger-ui-express');\nconst doc = require('./swagger.json');\napp.use('/docs', swaggerUi.serve, swaggerUi.setup(doc));",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1868,13 +1914,15 @@
       "lesson": [
         {
           "title": "Nomenclatura Consistente",
-          "body": "Boas práticas envolvem consistência. Se você retorna dados com camelCase (`dataNascimento`) em uma rota, não use snake_case (`data_nascimento`) em outra. Mantenha os plurais para nomes de recursos, como `/users` ao invés de `/user`.",
-          "code": "// Padrão consistente e limpo:\nGET /v1/customers\nGET /v1/customers/51\nPOST /v1/customers"
+          "body": "Boas práticas envolvem consistência. Se você retorna dados com camelCase (`dataNascimento`) em uma rota, não use snake_case (`data_nascimento`) em outra. Mantenha os plurais para nomes de recursos, como `/users` ao invés de `/user`.\n\nCompreender este fundamento é crucial em APIs e HTTP. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "// Padrão consistente e limpo:\nGET /v1/customers\nGET /v1/customers/51\nPOST /v1/customers",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Filtragem e Ordenação",
-          "body": "As requisições GET para coleções costumam precisar de flexibilidade. Use strings de consulta (query params) para permitir que os clientes filtrem, ordenem e pesquisem os resultados, sem criar milhares de rotas específicas.",
-          "code": "// Buscando apenas clientes ativos, ordenados por nome\nGET /customers?status=ativo&sort=nome_asc"
+          "body": "As requisições GET para coleções costumam precisar de flexibilidade. Use strings de consulta (query params) para permitir que os clientes filtrem, ordenem e pesquisem os resultados, sem criar milhares de rotas específicas.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "// Buscando apenas clientes ativos, ordenados por nome\nGET /customers?status=ativo&sort=nome_asc",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1946,13 +1994,15 @@
       "lesson": [
         {
           "title": "O que é Paginação?",
-          "body": "Se você tiver 1 milhão de usuários, retornar todos no `GET /users` vai derrubar o banco de dados e a rede. A paginação quebra a lista em pedaços menores (páginas) controladas por parâmetros na URL, como `limit` e `page`.",
-          "code": "// Traz a segunda página de resultados (itens 11 a 20)\nGET /users?page=2&limit=10"
+          "body": "Se você tiver 1 milhão de usuários, retornar todos no `GET /users` vai derrubar o banco de dados e a rede. A paginação quebra a lista em pedaços menores (páginas) controladas por parâmetros na URL, como `limit` e `page`.\n\nCompreender este fundamento é crucial em APIs e HTTP. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "// Traz a segunda página de resultados (itens 11 a 20)\nGET /users?page=2&limit=10",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Offset vs Cursor",
-          "body": "O modelo Offset/Limit pula X registros, sendo fácil de implementar mas lento em tabelas gigantes. A paginação por Cursor (onde você informa o ID do último registro que viu) é muito mais rápida e ideal para feeds infinitos.",
-          "code": "// Paginação baseada em Cursor (mais rápida)\nGET /posts?after_id=987123&limit=20"
+          "body": "O modelo Offset/Limit pula X registros, sendo fácil de implementar mas lento em tabelas gigantes. A paginação por Cursor (onde você informa o ID do último registro que viu) é muito mais rápida e ideal para feeds infinitos.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "// Paginação baseada em Cursor (mais rápida)\nGET /posts?after_id=987123&limit=20",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -2024,13 +2074,15 @@
       "lesson": [
         {
           "title": "Proteção com Rate Limiting",
-          "body": "O Rate Limiting protege sua API contra abusos (como bots ou ataques DDoS) impondo um limite de quantas requisições um usuário ou IP pode fazer em um certo tempo. Se passar do limite, a API retorna erro 429 Too Many Requests.",
-          "code": "HTTP/1.1 429 Too Many Requests\nRetry-After: 60\n\n{\"erro\": \"Muitas requisições. Tente de novo em 1 minuto.\"}"
+          "body": "O Rate Limiting protege sua API contra abusos (como bots ou ataques DDoS) impondo um limite de quantas requisições um usuário ou IP pode fazer em um certo tempo. Se passar do limite, a API retorna erro 429 Too Many Requests.\n\nCompreender este fundamento é crucial em APIs e HTTP. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "HTTP/1.1 429 Too Many Requests\nRetry-After: 60\n\n{\"erro\": \"Muitas requisições. Tente de novo em 1 minuto.\"}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Desempenho com Cache HTTP",
-          "body": "Para dados que não mudam toda hora, o Cache reduz a carga no banco de dados. Os cabeçalhos `Cache-Control` avisam o cliente para reutilizar os dados armazenados localmente por um tempo X, evitando novas requisições reais à API.",
-          "code": "// A resposta será cacheada pelos navegadores por 1 hora\nHTTP/1.1 200 OK\nCache-Control: public, max-age=3600"
+          "body": "Para dados que não mudam toda hora, o Cache reduz a carga no banco de dados. Os cabeçalhos `Cache-Control` avisam o cliente para reutilizar os dados armazenados localmente por um tempo X, evitando novas requisições reais à API.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "// A resposta será cacheada pelos navegadores por 1 hora\nHTTP/1.1 200 OK\nCache-Control: public, max-age=3600",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -2102,13 +2154,15 @@
       "lesson": [
         {
           "title": "Por que versionar APIs?",
-          "body": "Se a sua API já está em produção e você faz mudanças estruturais (como alterar o nome de campos ou deletar rotas), aplicativos mais velhos que a consomem vão quebrar. O versionamento garante retrocompatibilidade para todos.",
-          "code": "// Aplicativo velho usa a v1, o novo usa a v2\nGET /api/v1/usuarios\nGET /api/v2/usuarios"
+          "body": "Se a sua API já está em produção e você faz mudanças estruturais (como alterar o nome de campos ou deletar rotas), aplicativos mais velhos que a consomem vão quebrar. O versionamento garante retrocompatibilidade para todos.\n\nCompreender este fundamento é crucial em APIs e HTTP. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "// Aplicativo velho usa a v1, o novo usa a v2\nGET /api/v1/usuarios\nGET /api/v2/usuarios",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Estratégias de Versionamento",
-          "body": "A forma mais comum é na própria URL (ex: `/v1/`), mas também pode ser feito usando headers customizados (`X-API-Version: 2`) ou mudando o Accept header. A regra de ouro: nunca introduza 'breaking changes' sem lançar uma nova versão.",
-          "code": "// Header de versionamento sem poluir a URL\nGET /usuarios HTTP/1.1\nAccept: application/vnd.minhaapi.v2+json"
+          "body": "A forma mais comum é na própria URL (ex: `/v1/`), mas também pode ser feito usando headers customizados (`X-API-Version: 2`) ou mudando o Accept header. A regra de ouro: nunca introduza 'breaking changes' sem lançar uma nova versão.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "// Header de versionamento sem poluir a URL\nGET /usuarios HTTP/1.1\nAccept: application/vnd.minhaapi.v2+json",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -2180,13 +2234,15 @@
       "lesson": [
         {
           "title": "Modelagem de Dados e Recursos",
-          "body": "O primeiro passo do projeto final é mapear as entidades do mundo real em recursos REST. Um sistema de biblioteca, por exemplo, terá recursos como Autores, Livros e Empréstimos. Planeje as URLs e os JSONs de resposta de cada rota.",
-          "code": "// Rascunho inicial do projeto:\n// POST /autores - Adiciona autor\n// GET /livros - Lista acervo\n// POST /emprestimos - Retira livro"
+          "body": "O primeiro passo do projeto final é mapear as entidades do mundo real em recursos REST. Um sistema de biblioteca, por exemplo, terá recursos como Autores, Livros e Empréstimos. Planeje as URLs e os JSONs de resposta de cada rota.\n\nCompreender este fundamento é crucial em APIs e HTTP. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "// Rascunho inicial do projeto:\n// POST /autores - Adiciona autor\n// GET /livros - Lista acervo\n// POST /emprestimos - Retira livro",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Definição do Stack",
-          "body": "Escolha as ferramentas certas. Em Node.js, Express é ótimo para rotas, Prisma ou Mongoose para gerenciar o banco de dados, Zod para validar a entrada, e o JWT para proteger os endpoints essenciais. Organize tudo antes do código.",
-          "code": "npm install express cors jsonwebtoken mongoose"
+          "body": "Escolha as ferramentas certas. Em Node.js, Express é ótimo para rotas, Prisma ou Mongoose para gerenciar o banco de dados, Zod para validar a entrada, e o JWT para proteger os endpoints essenciais. Organize tudo antes do código.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "npm install express cors jsonwebtoken mongoose",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -2258,13 +2314,15 @@
       "lesson": [
         {
           "title": "Criando o Core da Aplicação",
-          "body": "A implementação inicia conectando o banco e desenvolvendo as rotas de listagem (GET) e criação (POST) mais simples. Neste passo, construímos os controllers base, testando no Postman ou Insomnia para garantir que tudo salva e volta corretamente.",
-          "code": "app.post('/livros', async (req, res) => {\n  const novoLivro = await Livro.create(req.body);\n  res.status(201).json(novoLivro);\n});"
+          "body": "A implementação inicia conectando o banco e desenvolvendo as rotas de listagem (GET) e criação (POST) mais simples. Neste passo, construímos os controllers base, testando no Postman ou Insomnia para garantir que tudo salva e volta corretamente.\n\nCompreender este fundamento é crucial em APIs e HTTP. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "app.post('/livros', async (req, res) => {\n  const novoLivro = await Livro.create(req.body);\n  res.status(201).json(novoLivro);\n});",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Lidando com Relacionamentos",
-          "body": "Em seguida, aprimoramos os retornos. Quando um Empréstimo for consultado, não devolvemos apenas os IDs do livro e do usuário, mas usamos recursos (como 'populate' no Mongo ou 'JOINs' no SQL) para trazer os dados completos juntos.",
-          "code": "{\n  \"id_emprestimo\": 10,\n  \"livro\": { \"id\": 3, \"titulo\": \"1984\" },\n  \"data_devolucao\": \"2024-12-01\"\n}"
+          "body": "Em seguida, aprimoramos os retornos. Quando um Empréstimo for consultado, não devolvemos apenas os IDs do livro e do usuário, mas usamos recursos (como 'populate' no Mongo ou 'JOINs' no SQL) para trazer os dados completos juntos.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "{\n  \"id_emprestimo\": 10,\n  \"livro\": { \"id\": 3, \"titulo\": \"1984\" },\n  \"data_devolucao\": \"2024-12-01\"\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -2336,13 +2394,15 @@
       "lesson": [
         {
           "title": "Implementando Segurança JWT",
-          "body": "Na reta final, protegemos rotas críticas. Criamos uma rota de `/login` que valida senha e gera o token JWT. Em seguida, aplicamos um middleware de autorização nas rotas restritas. Apenas requisições com o Bearer token válido passam.",
-          "code": "app.post('/livros', authMiddleware, async (req, res) => {\n  // Somente usuários logados e com token válido chegam aqui\n  // ...\n});"
+          "body": "Na reta final, protegemos rotas críticas. Criamos uma rota de `/login` que valida senha e gera o token JWT. Em seguida, aplicamos um middleware de autorização nas rotas restritas. Apenas requisições com o Bearer token válido passam.\n\nCompreender este fundamento é crucial em APIs e HTTP. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "app.post('/livros', authMiddleware, async (req, res) => {\n  // Somente usuários logados e com token válido chegam aqui\n  // ...\n});",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Subindo para a Nuvem",
-          "body": "Com a API finalizada, é hora de colocá-la online! Fazemos o deploy usando serviços como Render, Heroku ou Railway, e conectamos a um banco de dados hospedado (como MongoDB Atlas). Agora qualquer front-end no mundo pode usar a API.",
-          "code": "// Comandos típicos de deploy no terminal:\ngit add .\ngit commit -m \"Projeto finalizado\"\ngit push origin main"
+          "body": "Com a API finalizada, é hora de colocá-la online! Fazemos o deploy usando serviços como Render, Heroku ou Railway, e conectamos a um banco de dados hospedado (como MongoDB Atlas). Agora qualquer front-end no mundo pode usar a API.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "// Comandos típicos de deploy no terminal:\ngit add .\ngit commit -m \"Projeto finalizado\"\ngit push origin main",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [

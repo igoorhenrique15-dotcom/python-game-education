@@ -74,13 +74,15 @@
       "lesson": [
         {
           "title": "Todo programa começa com um pacote",
-          "body": "Todo arquivo Go pertence a um pacote, declarado na primeira linha com 'package'. Para gerar um executável, o pacote precisa se chamar 'main' e conter uma função 'func main()', que é o ponto de entrada do programa.",
-          "code": "package main\n\nimport \"fmt\"\n\nfunc main() {\n\tfmt.Println(\"Olá, Go!\")\n}"
+          "body": "Todo arquivo Go pertence a um pacote, declarado na primeira linha com 'package'. Para gerar um executável, o pacote precisa se chamar 'main' e conter uma função 'func main()', que é o ponto de entrada do programa.\n\nCompreender este fundamento é crucial em Go. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "package main\n\nimport \"fmt\"\n\nfunc main() {\n\tfmt.Println(\"Olá, Go!\")\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Import e uso da biblioteca padrão",
-          "body": "A palavra 'import' traz pacotes prontos, como 'fmt' para entrada e saída. Um pacote importado e não usado é erro de compilação em Go — a linguagem é rígida quanto a isso, o que evita código morto em produção.",
-          "code": "import \"fmt\"\n\n// se \"fmt\" não for usado, o compilador recusa o build"
+          "body": "A palavra 'import' traz pacotes prontos, como 'fmt' para entrada e saída. Um pacote importado e não usado é erro de compilação em Go — a linguagem é rígida quanto a isso, o que evita código morto em produção.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "import \"fmt\"\n\n// se \"fmt\" não for usado, o compilador recusa o build",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -152,13 +154,15 @@
       "lesson": [
         {
           "title": "Declaração explícita com var",
-          "body": "Com 'var nome tipo = valor' você declara o tipo explicitamente. Go tem tipagem estática: uma vez definido o tipo, ele não muda. Os tipos básicos incluem int, float64, string e bool, todos com tamanhos definidos na memória.",
-          "code": "var idade int = 25\nvar nome string = \"Ana\"\nvar ativo bool = true"
+          "body": "Com 'var nome tipo = valor' você declara o tipo explicitamente. Go tem tipagem estática: uma vez definido o tipo, ele não muda. Os tipos básicos incluem int, float64, string e bool, todos com tamanhos definidos na memória.\n\nCompreender este fundamento é crucial em Go. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "var idade int = 25\nvar nome string = \"Ana\"\nvar ativo bool = true",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Inferência com :=",
-          "body": "Dentro de funções, o operador ':=' declara e inicializa uma variável ao mesmo tempo, inferindo o tipo pelo valor atribuído. É a forma mais comum no dia a dia, mas só funciona dentro de funções, não no escopo global do pacote.",
-          "code": "func main() {\n\tpreco := 19.90 // float64 inferido\n\tqtd := 3       // int inferido\n}"
+          "body": "Dentro de funções, o operador ':=' declara e inicializa uma variável ao mesmo tempo, inferindo o tipo pelo valor atribuído. É a forma mais comum no dia a dia, mas só funciona dentro de funções, não no escopo global do pacote.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "func main() {\n\tpreco := 19.90 // float64 inferido\n\tqtd := 3       // int inferido\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -230,13 +234,15 @@
       "lesson": [
         {
           "title": "Constantes com const",
-          "body": "Valores que não devem mudar são declarados com 'const'. Diferente de 'var', uma constante precisa de valor conhecido em tempo de compilação e não pode ser reatribuída, oferecendo segurança contra mudanças indesejadas.",
-          "code": "const Pi = 3.14159\nconst MaxTentativas = 3"
+          "body": "Valores que não devem mudar são declarados com 'const'. Diferente de 'var', uma constante precisa de valor conhecido em tempo de compilação e não pode ser reatribuída, oferecendo segurança contra mudanças indesejadas.\n\nCompreender este fundamento é crucial em Go. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "const Pi = 3.14159\nconst MaxTentativas = 3",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "A segurança dos Zero Values",
-          "body": "Em Go, toda variável declarada sem valor inicial recebe um 'zero value' automático: 0 para números, \"\" para string, false para bool e nil para ponteiros, slices e interfaces. Não existe variável 'indefinida' gerando bugs aleatórios.",
-          "code": "var total int    // 0\nvar nome string  // \"\"\nvar ok bool      // false"
+          "body": "Em Go, toda variável declarada sem valor inicial recebe um 'zero value' automático: 0 para números, \"\" para string, false para bool e nil para ponteiros, slices e interfaces. Não existe variável 'indefinida' gerando bugs aleatórios.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "var total int    // 0\nvar nome string  // \"\"\nvar ok bool      // false",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -308,13 +314,15 @@
       "lesson": [
         {
           "title": "A simplicidade do if sem parênteses",
-          "body": "Em Go, a condição do 'if' não usa parênteses, mas as chaves são obrigatórias mesmo para um único comando. Isso mantém o código consistente, mais limpo e evita ambiguidades comuns enfrentadas em linguagens como C ou Java.",
-          "code": "idade := 20\nif idade >= 18 {\n\tfmt.Println(\"maior de idade\")\n} else {\n\tfmt.Println(\"menor de idade\")\n}"
+          "body": "Em Go, a condição do 'if' não usa parênteses, mas as chaves são obrigatórias mesmo para um único comando. Isso mantém o código consistente, mais limpo e evita ambiguidades comuns enfrentadas em linguagens como C ou Java.\n\nCompreender este fundamento é crucial em Go. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "idade := 20\nif idade >= 18 {\n\tfmt.Println(\"maior de idade\")\n} else {\n\tfmt.Println(\"menor de idade\")\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "O poderoso if com inicialização",
-          "body": "Go permite declarar uma variável junto da condição, separada por ponto e vírgula, com escopo limitado ao bloco if/else. É uma construção muito idiomática e amplamente usada para lidar com funções que retornam múltiplos valores, como erros.",
-          "code": "if valor, ok := cache[\"chave\"]; ok {\n\tfmt.Println(valor)\n} else {\n\tfmt.Println(\"não encontrado\")\n}"
+          "body": "Go permite declarar uma variável junto da condição, separada por ponto e vírgula, com escopo limitado ao bloco if/else. É uma construção muito idiomática e amplamente usada para lidar com funções que retornam múltiplos valores, como erros.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "if valor, ok := cache[\"chave\"]; ok {\n\tfmt.Println(valor)\n} else {\n\tfmt.Println(\"não encontrado\")\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -386,13 +394,15 @@
       "lesson": [
         {
           "title": "Um laço para dominá-los todos",
-          "body": "Go não tem 'while' nem 'do-while': a única estrutura de repetição é o 'for'. A forma clássica tem inicialização, condição e incremento. Omitindo inicialização e incremento, 'for condição { }' se comporta exatamente como um clássico while.",
-          "code": "for i := 0; i < 5; i++ {\n\tfmt.Println(i)\n}\n\nn := 0\nfor n < 3 {\n\tn++\n}"
+          "body": "Go não tem 'while' nem 'do-while': a única estrutura de repetição é o 'for'. A forma clássica tem inicialização, condição e incremento. Omitindo inicialização e incremento, 'for condição { }' se comporta exatamente como um clássico while.\n\nCompreender este fundamento é crucial em Go. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "for i := 0; i < 5; i++ {\n\tfmt.Println(i)\n}\n\nn := 0\nfor n < 3 {\n\tn++\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "For infinito e a cláusula range",
-          "body": "Um 'for { }' sem condição cria um laço infinito, sendo útil com 'break'. E para coleções, a cláusula 'range' itera facilmente sobre índices e valores de slices, arrays, maps e até strings, extraindo os dados a cada volta do laço.",
-          "code": "nomes := []string{\"Ana\", \"Bia\"}\nfor i, nome := range nomes {\n\tfmt.Println(i, nome)\n}"
+          "body": "Um 'for { }' sem condição cria um laço infinito, sendo útil com 'break'. E para coleções, a cláusula 'range' itera facilmente sobre índices e valores de slices, arrays, maps e até strings, extraindo os dados a cada volta do laço.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "nomes := []string{\"Ana\", \"Bia\"}\nfor i, nome := range nomes {\n\tfmt.Println(i, nome)\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -464,13 +474,15 @@
       "lesson": [
         {
           "title": "Switch mais seguro sem fallthrough",
-          "body": "Diferente de C ou JavaScript, cada 'case' em Go já tem um 'break' implícito: a execução não 'cai' (fallthrough) para o próximo case por padrão. Isso evita aqueles bugs comuns de esquecer o break e executar vários blocos acidentalmente.",
-          "code": "dia := 3\nswitch dia {\ncase 1:\n\tfmt.Println(\"Segunda\")\ncase 2, 3:\n\tfmt.Println(\"Terça ou quarta\")\ndefault:\n\tfmt.Println(\"Outro dia\")\n}"
+          "body": "Diferente de C ou JavaScript, cada 'case' em Go já tem um 'break' implícito: a execução não 'cai' (fallthrough) para o próximo case por padrão. Isso evita aqueles bugs comuns de esquecer o break e executar vários blocos acidentalmente.\n\nCompreender este fundamento é crucial em Go. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "dia := 3\nswitch dia {\ncase 1:\n\tfmt.Println(\"Segunda\")\ncase 2, 3:\n\tfmt.Println(\"Terça ou quarta\")\ndefault:\n\tfmt.Println(\"Outro dia\")\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Switch sem expressão: o substituto do if-else",
-          "body": "Um 'switch' sem um valor ou variável logo após a palavra-chave funciona como uma longa cadeia de if/else mais legível, testando condições booleanas puras em cada case, da primeira à última, até encontrar uma verdadeira.",
-          "code": "nota := 85\nswitch {\ncase nota >= 90:\n\tfmt.Println(\"A\")\ncase nota >= 70:\n\tfmt.Println(\"B\")\ndefault:\n\tfmt.Println(\"C\")\n}"
+          "body": "Um 'switch' sem um valor ou variável logo após a palavra-chave funciona como uma longa cadeia de if/else mais legível, testando condições booleanas puras em cada case, da primeira à última, até encontrar uma verdadeira.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "nota := 85\nswitch {\ncase nota >= 90:\n\tfmt.Println(\"A\")\ncase nota >= 70:\n\tfmt.Println(\"B\")\ndefault:\n\tfmt.Println(\"C\")\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -542,13 +554,15 @@
       "lesson": [
         {
           "title": "Declarando funções em Go",
-          "body": "A assinatura de uma função começa com 'func', nome, parâmetros tipados e o tipo de retorno. Se parâmetros consecutivos têm o mesmo tipo, você pode declará-lo apenas uma vez no final do agrupamento para enxugar a sintaxe.",
-          "code": "func somar(a, b int) int {\n\treturn a + b\n}"
+          "body": "A assinatura de uma função começa com 'func', nome, parâmetros tipados e o tipo de retorno. Se parâmetros consecutivos têm o mesmo tipo, você pode declará-lo apenas uma vez no final do agrupamento para enxugar a sintaxe.\n\nCompreender este fundamento é crucial em Go. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "func somar(a, b int) int {\n\treturn a + b\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "A força dos múltiplos retornos",
-          "body": "Diferente da maioria das linguagens, as funções Go podem retornar dois ou mais valores de uma só vez (ex: `(int, error)`). O chamador quase sempre checa o segundo valor (um erro) antes de prosseguir usando o primeiro resultado.",
-          "code": "func dividir(a, b float64) (float64, error) {\n\tif b == 0 {\n\t\treturn 0, fmt.Errorf(\"divisão por zero\")\n\t}\n\treturn a / b, nil\n}"
+          "body": "Diferente da maioria das linguagens, as funções Go podem retornar dois ou mais valores de uma só vez (ex: `(int, error)`). O chamador quase sempre checa o segundo valor (um erro) antes de prosseguir usando o primeiro resultado.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "func dividir(a, b float64) (float64, error) {\n\tif b == 0 {\n\t\treturn 0, fmt.Errorf(\"divisão por zero\")\n\t}\n\treturn a / b, nil\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -620,13 +634,15 @@
       "lesson": [
         {
           "title": "Parâmetros variádicos com '...'",
-          "body": "Usando '...tipo' no último parâmetro da assinatura, a função passa a aceitar zero ou mais argumentos daquele tipo. Dentro do corpo da função, esse parâmetro é acessado livremente como um slice (array flexível) com todos os valores recebidos.",
-          "code": "func somarTodos(numeros ...int) int {\n\ttotal := 0\n\tfor _, n := range numeros {\n\t\ttotal += n\n\t}\n\treturn total\n}"
+          "body": "Usando '...tipo' no último parâmetro da assinatura, a função passa a aceitar zero ou mais argumentos daquele tipo. Dentro do corpo da função, esse parâmetro é acessado livremente como um slice (array flexível) com todos os valores recebidos.\n\nCompreender este fundamento é crucial em Go. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "func somarTodos(numeros ...int) int {\n\ttotal := 0\n\tfor _, n := range numeros {\n\t\ttotal += n\n\t}\n\treturn total\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "O operador de expansão (spread)",
-          "body": "Para passar um slice já existente diretamente para uma função variádica que espera múltiplos argumentos separados, usa-se '...' no final do slice durante a chamada. Isso desempacota o slice, passando seus itens um a um.",
-          "code": "valores := []int{4, 5, 6}\n// '...' desempacota o slice em argumentos soltos\nresultado := somarTodos(valores...)"
+          "body": "Para passar um slice já existente diretamente para uma função variádica que espera múltiplos argumentos separados, usa-se '...' no final do slice durante a chamada. Isso desempacota o slice, passando seus itens um a um.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "valores := []int{4, 5, 6}\n// '...' desempacota o slice em argumentos soltos\nresultado := somarTodos(valores...)",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -698,13 +714,15 @@
       "lesson": [
         {
           "title": "Funções como cidadãs de primeira classe",
-          "body": "Em Go, funções são valores como qualquer outro. Elas podem ser anônimas, atribuídas diretamente a variáveis, passadas como argumento para outras funções e até mesmo retornadas, permitindo paradigmas avançados de programação funcional.",
-          "code": "dobrar := func(n int) int {\n\treturn n * 2\n}\nfmt.Println(dobrar(5)) // 10"
+          "body": "Em Go, funções são valores como qualquer outro. Elas podem ser anônimas, atribuídas diretamente a variáveis, passadas como argumento para outras funções e até mesmo retornadas, permitindo paradigmas avançados de programação funcional.\n\nCompreender este fundamento é crucial em Go. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "dobrar := func(n int) int {\n\treturn n * 2\n}\nfmt.Println(dobrar(5)) // 10",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "O poder do escopo em Closures",
-          "body": "Uma closure é uma função anônima que 'fecha' sobre variáveis do escopo externo em que foi criada. Ela mantém o acesso a essas variáveis, podendo lê-las e modificá-las mesmo muito tempo depois que a função original já encerrou e retornou.",
-          "code": "func contador() func() int {\n\tcont := 0\n\treturn func() int {\n\t\tcont++\n\t\treturn cont\n\t}\n}"
+          "body": "Uma closure é uma função anônima que 'fecha' sobre variáveis do escopo externo em que foi criada. Ela mantém o acesso a essas variáveis, podendo lê-las e modificá-las mesmo muito tempo depois que a função original já encerrou e retornou.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "func contador() func() int {\n\tcont := 0\n\treturn func() int {\n\t\tcont++\n\t\treturn cont\n\t}\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -776,13 +794,15 @@
       "lesson": [
         {
           "title": "A base para modelagem de dados",
-          "body": "Como Go não possui 'classes' convencionais, structs são o tipo composto fundamental. Uma struct permite agrupar variáveis (campos nomeados) de diferentes tipos sob um único novo tipo customizado, criando objetos de negócio complexos.",
-          "code": "type Usuario struct {\n\tNome  string\n\tIdade int\n}\n\nu := Usuario{Nome: \"Carlos\", Idade: 30}"
+          "body": "Como Go não possui 'classes' convencionais, structs são o tipo composto fundamental. Uma struct permite agrupar variáveis (campos nomeados) de diferentes tipos sob um único novo tipo customizado, criando objetos de negócio complexos.\n\nCompreender este fundamento é crucial em Go. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "type Usuario struct {\n\tNome  string\n\tIdade int\n}\n\nu := Usuario{Nome: \"Carlos\", Idade: 30}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Controle de visibilidade via capitalização",
-          "body": "Go usa uma regra genial e simples para visibilidade: se o nome do campo começa com letra Maiúscula, ele é exportado (público) fora do pacote. Se for minúscula, ele é privado. Não existe 'public' ou 'private' no vocabulário de Go.",
-          "code": "type conta struct {\n\tSaldo   float64 // Público fora do pacote\n\tsenha   string  // Privado ao pacote\n}"
+          "body": "Go usa uma regra genial e simples para visibilidade: se o nome do campo começa com letra Maiúscula, ele é exportado (público) fora do pacote. Se for minúscula, ele é privado. Não existe 'public' ou 'private' no vocabulário de Go.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "type conta struct {\n\tSaldo   float64 // Público fora do pacote\n\tsenha   string  // Privado ao pacote\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -854,13 +874,15 @@
       "lesson": [
         {
           "title": "Receiver de Valor",
-          "body": "Um método em Go é apenas uma função com um argumento extra antes do nome: o 'receiver'. O receiver de valor recebe uma cópia independente da struct original. Qualquer alteração interna nele não afeta a variável que chamou o método.",
-          "code": "type Retangulo struct { L, A float64 }\n\nfunc (r Retangulo) Area() float64 {\n\treturn r.L * r.A\n}"
+          "body": "Um método em Go é apenas uma função com um argumento extra antes do nome: o 'receiver'. O receiver de valor recebe uma cópia independente da struct original. Qualquer alteração interna nele não afeta a variável que chamou o método.\n\nCompreender este fundamento é crucial em Go. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "type Retangulo struct { L, A float64 }\n\nfunc (r Retangulo) Area() float64 {\n\treturn r.L * r.A\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Receiver de Ponteiro para Mutação",
-          "body": "Para que um método possa de fato alterar a struct que o chamou, o receiver deve ser um ponteiro (usando '*Tipo'). Esse é o padrão mais utilizado em métodos, pois evita a cópia completa de objetos grandes e permite modificar o estado original.",
-          "code": "func (r *Retangulo) Dobrar() {\n\tr.L *= 2\n\tr.A *= 2\n}"
+          "body": "Para que um método possa de fato alterar a struct que o chamou, o receiver deve ser um ponteiro (usando '*Tipo'). Esse é o padrão mais utilizado em métodos, pois evita a cópia completa de objetos grandes e permite modificar o estado original.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "func (r *Retangulo) Dobrar() {\n\tr.L *= 2\n\tr.A *= 2\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -932,13 +954,15 @@
       "lesson": [
         {
           "title": "Endereçamento e desreferência simples",
-          "body": "Ponteiros em Go guardam endereços de memória. O operador '&' resgata o endereço de uma variável. O operador '*' antes do ponteiro desreferencia, indo até aquele endereço para ler ou alterar o valor real sem mexer em cópias.",
-          "code": "x := 10\np := &x        // p guarda o endereço de x\n*p = 20        // acessa a memória e altera para 20\nfmt.Println(x) // 20"
+          "body": "Ponteiros em Go guardam endereços de memória. O operador '&' resgata o endereço de uma variável. O operador '*' antes do ponteiro desreferencia, indo até aquele endereço para ler ou alterar o valor real sem mexer em cópias.\n\nCompreender este fundamento é crucial em Go. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "x := 10\np := &x        // p guarda o endereço de x\n*p = 20        // acessa a memória e altera para 20\nfmt.Println(x) // 20",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "A utilidade prática de ponteiros em funções",
-          "body": "Por padrão, Go sempre passa argumentos fazendo cópias completas deles. Passando um ponteiro '*Tipo', a função não ganha uma cópia do dado todo, mas apenas a localização de memória, sendo capaz de modificar os dados da variável externa de fato.",
-          "code": "func zerar(n *int) {\n\t*n = 0 // sem o *, alteraríamos apenas uma cópia\n}\n\nnum := 42\nzerar(&num)"
+          "body": "Por padrão, Go sempre passa argumentos fazendo cópias completas deles. Passando um ponteiro '*Tipo', a função não ganha uma cópia do dado todo, mas apenas a localização de memória, sendo capaz de modificar os dados da variável externa de fato.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "func zerar(n *int) {\n\t*n = 0 // sem o *, alteraríamos apenas uma cópia\n}\n\nnum := 42\nzerar(&num)",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1010,13 +1034,15 @@
       "lesson": [
         {
           "title": "O contrato das Interfaces",
-          "body": "Uma interface é um tipo abstrato que define apenas um conjunto de assinaturas de métodos, sem implementá-los. Ela dita um 'contrato comportamental': qualquer coisa capaz de fazer X (possuir o método) pode ser tratado como um Y.",
-          "code": "type Formatador interface {\n\tFormatar() string\n}\n\ntype Data struct{ Dia int }"
+          "body": "Uma interface é um tipo abstrato que define apenas um conjunto de assinaturas de métodos, sem implementá-los. Ela dita um 'contrato comportamental': qualquer coisa capaz de fazer X (possuir o método) pode ser tratado como um Y.\n\nCompreender este fundamento é crucial em Go. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "type Formatador interface {\n\tFormatar() string\n}\n\ntype Data struct{ Dia int }",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Polimorfismo e satisfação implícita",
-          "body": "Ao contrário do Java, em Go a implementação é implícita. Um tipo não precisa declarar que 'implements' uma interface; basta que ele tenha os métodos que a interface exige. Isso garante o mais puro estilo de 'Duck Typing' seguro e compilado.",
-          "code": "func (d Data) Formatar() string {\n\treturn fmt.Sprintf(\"dia %d\", d.Dia)\n}\n// Data agora é implicitamente um Formatador"
+          "body": "Ao contrário do Java, em Go a implementação é implícita. Um tipo não precisa declarar que 'implements' uma interface; basta que ele tenha os métodos que a interface exige. Isso garante o mais puro estilo de 'Duck Typing' seguro e compilado.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "func (d Data) Formatar() string {\n\treturn fmt.Sprintf(\"dia %d\", d.Dia)\n}\n// Data agora é implicitamente um Formatador",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1088,13 +1114,15 @@
       "lesson": [
         {
           "title": "O tipo any (interface vazia)",
-          "body": "A interface{} (ou 'any' nas versões recentes do Go) é uma interface que não exige método nenhum. Como todos os tipos satisfazem 'zero exigências', a interface vazia pode armazenar absolutamente qualquer tipo de valor do programa, seja nativo ou struct.",
-          "code": "var gen interface{} // ou var gen any\ngen = 42\ngen = \"agora sou texto\"\ngen = true"
+          "body": "A interface{} (ou 'any' nas versões recentes do Go) é uma interface que não exige método nenhum. Como todos os tipos satisfazem 'zero exigências', a interface vazia pode armazenar absolutamente qualquer tipo de valor do programa, seja nativo ou struct.\n\nCompreender este fundamento é crucial em Go. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "var gen interface{} // ou var gen any\ngen = 42\ngen = \"agora sou texto\"\ngen = true",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Uso em bibliotecas padrão",
-          "body": "Muitas funções da biblioteca padrão usam 'any' para serem genéricas, como o famoso fmt.Println, que aceita imprimir qualquer mistura de variáveis porque seu parâmetro subjacente é variádico e do tipo interface vazia: '...any'.",
-          "code": "func Println(a ...any) (n int, err error) {\n    // implementacao complexa para imprimir tudo\n}"
+          "body": "Muitas funções da biblioteca padrão usam 'any' para serem genéricas, como o famoso fmt.Println, que aceita imprimir qualquer mistura de variáveis porque seu parâmetro subjacente é variádico e do tipo interface vazia: '...any'.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "func Println(a ...any) (n int, err error) {\n    // implementacao complexa para imprimir tudo\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1166,13 +1194,15 @@
       "lesson": [
         {
           "title": "Recuperando tipos de uma interface",
-          "body": "Quando armazenamos um dado em uma interface (como 'any'), o compilador 'esquece' o tipo original. O Type Assertion (sintaxe 'variavel.(Tipo)') serve para extrair esse valor concreto de volta, verificando de forma segura seu verdadeiro formato.",
-          "code": "var i any = \"texto longo\"\ns := i.(string) // Extrai o valor como string\nfmt.Println(s)"
+          "body": "Quando armazenamos um dado em uma interface (como 'any'), o compilador 'esquece' o tipo original. O Type Assertion (sintaxe 'variavel.(Tipo)') serve para extrair esse valor concreto de volta, verificando de forma segura seu verdadeiro formato.\n\nCompreender este fundamento é crucial em Go. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "var i any = \"texto longo\"\ns := i.(string) // Extrai o valor como string\nfmt.Println(s)",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Evitando Panics (Ok-idiom)",
-          "body": "Se você tentar fazer um type assertion errado (ex: tentar tirar um int de algo que guarda string), o programa causa um 'panic' fatal. Para evitar isso de forma madura, pegamos um segundo retorno booleano, chamado de 'ok-idiom'.",
-          "code": "var i any = \"texto longo\"\nif n, ok := i.(int); ok {\n    // é int\n} else {\n    // não é int\n}"
+          "body": "Se você tentar fazer um type assertion errado (ex: tentar tirar um int de algo que guarda string), o programa causa um 'panic' fatal. Para evitar isso de forma madura, pegamos um segundo retorno booleano, chamado de 'ok-idiom'.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "var i any = \"texto longo\"\nif n, ok := i.(int); ok {\n    // é int\n} else {\n    // não é int\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1244,13 +1274,15 @@
       "lesson": [
         {
           "title": "A rigidez dos Arrays nativos",
-          "body": "No Go, um array tem um tamanho fixo embutido no próprio tipo (como [5]int ou [10]int). Esse tamanho nunca muda. Como arrays são grandes blocos rígidos, quando passados para funções, eles são completamente copiados, sendo pesados em uso real.",
-          "code": "var notas [3]int\nnotas[0] = 7\nnotas[1] = 8\n// [3]int é um tipo diferente de [4]int"
+          "body": "No Go, um array tem um tamanho fixo embutido no próprio tipo (como [5]int ou [10]int). Esse tamanho nunca muda. Como arrays são grandes blocos rígidos, quando passados para funções, eles são completamente copiados, sendo pesados em uso real.\n\nCompreender este fundamento é crucial em Go. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "var notas [3]int\nnotas[0] = 7\nnotas[1] = 8\n// [3]int é um tipo diferente de [4]int",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "A flexibilidade dinâmica dos Slices",
-          "body": "Slices (ex: []int) são 'janelas' super dinâmicas que apontam para um array por baixo dos panos. Um slice pode crescer, encolher e ser passado para funções de forma super leve (passa só o cabeçalho). O dia-a-dia do Go é 99% slices, não arrays.",
-          "code": "cidades := []string{\"Rio\", \"SP\", \"BH\"}\n// cidades não especifica tamanho, é um slice flexível\nfmt.Println(len(cidades))"
+          "body": "Slices (ex: []int) são 'janelas' super dinâmicas que apontam para um array por baixo dos panos. Um slice pode crescer, encolher e ser passado para funções de forma super leve (passa só o cabeçalho). O dia-a-dia do Go é 99% slices, não arrays.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "cidades := []string{\"Rio\", \"SP\", \"BH\"}\n// cidades não especifica tamanho, é um slice flexível\nfmt.Println(len(cidades))",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1322,13 +1354,15 @@
       "lesson": [
         {
           "title": "Adicionando itens com append",
-          "body": "A função built-in 'append' é a ferramenta de ouro para adicionar itens no final de um slice. Se o array interno não tiver mais capacidade livre, o 'append' aloca discretamente um novo array maior, copia os dados e retorna um slice novinho em folha.",
-          "code": "numeros := []int{1, 2}\n// append retorna um novo slice, deve ser reatribuído\nnumeros = append(numeros, 3, 4)\nfmt.Println(numeros) // [1 2 3 4]"
+          "body": "A função built-in 'append' é a ferramenta de ouro para adicionar itens no final de um slice. Se o array interno não tiver mais capacidade livre, o 'append' aloca discretamente um novo array maior, copia os dados e retorna um slice novinho em folha.\n\nCompreender este fundamento é crucial em Go. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "numeros := []int{1, 2}\n// append retorna um novo slice, deve ser reatribuído\nnumeros = append(numeros, 3, 4)\nfmt.Println(numeros) // [1 2 3 4]",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Capacidade vs Tamanho (len/cap)",
-          "body": "Um slice possui len() (quantos itens estão visíveis agora) e cap() (quantos espaços reais o array oculto suporta). É possível criar slices pré-alocando capacidade usando 'make()', otimizando a memória para grandes lotes de dados.",
-          "code": "s := make([]int, 0, 100)\n// slice vazio (len=0), mas já com array oculto de 100 (cap=100)\n// apends serão rápidos sem realocação\ns = append(s, 1)"
+          "body": "Um slice possui len() (quantos itens estão visíveis agora) e cap() (quantos espaços reais o array oculto suporta). É possível criar slices pré-alocando capacidade usando 'make()', otimizando a memória para grandes lotes de dados.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "s := make([]int, 0, 100)\n// slice vazio (len=0), mas já com array oculto de 100 (cap=100)\n// apends serão rápidos sem realocação\ns = append(s, 1)",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1400,13 +1434,15 @@
       "lesson": [
         {
           "title": "O poder dos dicionários chave-valor",
-          "body": "Maps em Go são estruturas de tabela hash ultrarrápidas não-ordenadas que mapeiam uma chave a um valor. A sintaxe básica é map[TipoChave]TipoValor. Eles são perfeitos para buscas constantes O(1) com strings ou IDs.",
-          "code": "idades := map[string]int{\n    \"Ana\": 28,\n    \"Bob\": 35,\n}\nidades[\"Carlos\"] = 40"
+          "body": "Maps em Go são estruturas de tabela hash ultrarrápidas não-ordenadas que mapeiam uma chave a um valor. A sintaxe básica é map[TipoChave]TipoValor. Eles são perfeitos para buscas constantes O(1) com strings ou IDs.\n\nCompreender este fundamento é crucial em Go. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "idades := map[string]int{\n    \"Ana\": 28,\n    \"Bob\": 35,\n}\nidades[\"Carlos\"] = 40",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Checando chaves de forma segura",
-          "body": "Se você buscar uma chave que não existe no map, Go retornará o zero-value do tipo, sem dar erro. Para saber de forma garantida se a chave realmente existe ou se apenas tem valor zero, usa-se a checagem 'ok' booleana de segurança.",
-          "code": "idade, existe := idades[\"Pedro\"]\nif !existe {\n    fmt.Println(\"Pedro não está no mapa\")\n}"
+          "body": "Se você buscar uma chave que não existe no map, Go retornará o zero-value do tipo, sem dar erro. Para saber de forma garantida se a chave realmente existe ou se apenas tem valor zero, usa-se a checagem 'ok' booleana de segurança.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "idade, existe := idades[\"Pedro\"]\nif !existe {\n    fmt.Println(\"Pedro não está no mapa\")\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1478,13 +1514,15 @@
       "lesson": [
         {
           "title": "O contrato universal de Error",
-          "body": "Em Go não há try-catch para falhas comuns. O tratamento de erros ocorre por meio de uma interface simples chamada 'error'. Funções que podem falhar devem retornar um valor de 'error' no final da assinatura, exigindo verificação explícita constante.",
-          "code": "func lerArquivo(nome string) (string, error) {\n    // retorna texto e nil, ou \"\" e o erro real\n}\n\n// A interface error só exige um método Error() string"
+          "body": "Em Go não há try-catch para falhas comuns. O tratamento de erros ocorre por meio de uma interface simples chamada 'error'. Funções que podem falhar devem retornar um valor de 'error' no final da assinatura, exigindo verificação explícita constante.\n\nCompreender este fundamento é crucial em Go. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "func lerArquivo(nome string) (string, error) {\n    // retorna texto e nil, ou \"\" e o erro real\n}\n\n// A interface error só exige um método Error() string",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "A clássica verificação de nil",
-          "body": "A verificação idiomática envolve checar se o erro retornado é diferente de 'nil' (nulo). Se não for nil, o desenvolvedor loga, retorna ou lida ali mesmo, forçando a arquitetura do programa a contemplar fluxos de exceção visualmente e obrigatoriamente.",
-          "code": "conteudo, err := lerArquivo(\"dados.txt\")\nif err != nil {\n    // Lidar com o erro de forma clara\n    log.Fatal(err)\n}"
+          "body": "A verificação idiomática envolve checar se o erro retornado é diferente de 'nil' (nulo). Se não for nil, o desenvolvedor loga, retorna ou lida ali mesmo, forçando a arquitetura do programa a contemplar fluxos de exceção visualmente e obrigatoriamente.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "conteudo, err := lerArquivo(\"dados.txt\")\nif err != nil {\n    // Lidar com o erro de forma clara\n    log.Fatal(err)\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1556,13 +1594,15 @@
       "lesson": [
         {
           "title": "A simplicidade com fmt.Errorf",
-          "body": "A maneira mais prática e rápida de criar e injetar informações nos seus próprios erros é utilizando a biblioteca fmt. A função fmt.Errorf permite formatar strings e números numa frase customizada, retornando imediatamente a interface 'error'.",
-          "code": "func validar(id int) error {\n    if id <= 0 {\n        return fmt.Errorf(\"ID inválido, recebido: %d\", id)\n    }\n    return nil\n}"
+          "body": "A maneira mais prática e rápida de criar e injetar informações nos seus próprios erros é utilizando a biblioteca fmt. A função fmt.Errorf permite formatar strings e números numa frase customizada, retornando imediatamente a interface 'error'.\n\nCompreender este fundamento é crucial em Go. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "func validar(id int) error {\n    if id <= 0 {\n        return fmt.Errorf(\"ID inválido, recebido: %d\", id)\n    }\n    return nil\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Errors.New na biblioteca padrão",
-          "body": "Quando você só precisa retornar um erro de texto simples estático sem formatações complexas, usa-se o pacote 'errors' com a função New. Muitas vezes as pessoas definem esses erros fixos como variáveis globais do pacote, para que os usuários chequem contra eles depois.",
-          "code": "import \"errors\"\n\nvar ErrNaoEncontrado = errors.New(\"registro ausente no banco\")\n\n// uso: return ErrNaoEncontrado"
+          "body": "Quando você só precisa retornar um erro de texto simples estático sem formatações complexas, usa-se o pacote 'errors' com a função New. Muitas vezes as pessoas definem esses erros fixos como variáveis globais do pacote, para que os usuários chequem contra eles depois.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "import \"errors\"\n\nvar ErrNaoEncontrado = errors.New(\"registro ausente no banco\")\n\n// uso: return ErrNaoEncontrado",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1634,13 +1674,15 @@
       "lesson": [
         {
           "title": "Ações extremas com Panic",
-          "body": "Enquanto 'error' lida com coisas corriqueiras, 'panic' aborta a execução instantaneamente. Deve ser usado apenas quando a aplicação está em estado totalmente irrecuperável, como um servidor não conseguindo conectar a uma base de dados no start inicial.",
-          "code": "if dbConfig == nil {\n    panic(\"Não é possível iniciar sem config do banco!\")\n}\n// O programa encerra com rastro de pilha (stack trace)"
+          "body": "Enquanto 'error' lida com coisas corriqueiras, 'panic' aborta a execução instantaneamente. Deve ser usado apenas quando a aplicação está em estado totalmente irrecuperável, como um servidor não conseguindo conectar a uma base de dados no start inicial.\n\nCompreender este fundamento é crucial em Go. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "if dbConfig == nil {\n    panic(\"Não é possível iniciar sem config do banco!\")\n}\n// O programa encerra com rastro de pilha (stack trace)",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "A salvaguarda Recover",
-          "body": "A função build-in 'recover' pode interceptar um programa entrando em 'panic' na pilha de chamadas e retomar o controle da thread. Porém ela só funciona se chamada dentro de uma função 'defer'. Frameworks web usam muito isso para não derrubar todo o servidor num erro fatal de um request.",
-          "code": "defer func() {\n    if r := recover(); r != nil {\n        fmt.Println(\"Recuperado de um panic:\", r)\n    }\n}()"
+          "body": "A função build-in 'recover' pode interceptar um programa entrando em 'panic' na pilha de chamadas e retomar o controle da thread. Porém ela só funciona se chamada dentro de uma função 'defer'. Frameworks web usam muito isso para não derrubar todo o servidor num erro fatal de um request.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "defer func() {\n    if r := recover(); r != nil {\n        fmt.Println(\"Recuperado de um panic:\", r)\n    }\n}()",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1712,13 +1754,15 @@
       "lesson": [
         {
           "title": "Empilhando limpezas para o futuro",
-          "body": "A palavra reservada 'defer' agenda a execução imediata de uma função inteira apenas para quando a função externa que o chamou finalmente terminar e retornar. É o pilar de uma boa engenharia de gestão e fechamento de recursos (arquivos, redes, bancos) de forma infalível.",
-          "code": "arquivo, _ := os.Open(\"dados.txt\")\n// Assim que abrir, garanta o fechamento sem se preocupar depois\ndefer arquivo.Close()"
+          "body": "A palavra reservada 'defer' agenda a execução imediata de uma função inteira apenas para quando a função externa que o chamou finalmente terminar e retornar. É o pilar de uma boa engenharia de gestão e fechamento de recursos (arquivos, redes, bancos) de forma infalível.\n\nCompreender este fundamento é crucial em Go. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "arquivo, _ := os.Open(\"dados.txt\")\n// Assim que abrir, garanta o fechamento sem se preocupar depois\ndefer arquivo.Close()",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "LIFO: Last In, First Out",
-          "body": "Ao declarar mais de um 'defer' seguidos no mesmo bloco de código, eles funcionam como uma pilha clássica LIFO: o último defer que foi agendado será o primeiríssimo a ser executado no momento da devolução da função pai.",
-          "code": "defer fmt.Println(\"Primeiro agendado\")\ndefer fmt.Println(\"Segundo agendado\")\n// Executa: \"Segundo agendado\", depois \"Primeiro agendado\""
+          "body": "Ao declarar mais de um 'defer' seguidos no mesmo bloco de código, eles funcionam como uma pilha clássica LIFO: o último defer que foi agendado será o primeiríssimo a ser executado no momento da devolução da função pai.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "defer fmt.Println(\"Primeiro agendado\")\ndefer fmt.Println(\"Segundo agendado\")\n// Executa: \"Segundo agendado\", depois \"Primeiro agendado\"",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1790,13 +1834,15 @@
       "lesson": [
         {
           "title": "A magia das micro-threads",
-          "body": "As goroutines são as famosas threads leves gerenciadas de forma super inteligente pelo runtime da própria linguagem Go. Elas consomem apenas poucos kilobytes cada, permitindo que uma única máquina rode centenas de milhares delas rodando lógicas em paralelo com extrema facilidade e performance.",
-          "code": "func relatorio() {\n    fmt.Println(\"Processando relatorio pesado...\")\n}\n\n// Basta um simples 'go' para rodar concorrente em background!\ngo relatorio()"
+          "body": "As goroutines são as famosas threads leves gerenciadas de forma super inteligente pelo runtime da própria linguagem Go. Elas consomem apenas poucos kilobytes cada, permitindo que uma única máquina rode centenas de milhares delas rodando lógicas em paralelo com extrema facilidade e performance.\n\nCompreender este fundamento é crucial em Go. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "func relatorio() {\n    fmt.Println(\"Processando relatorio pesado...\")\n}\n\n// Basta um simples 'go' para rodar concorrente em background!\ngo relatorio()",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Concorrência com uma palavra",
-          "body": "O grande trunfo do Go foi não exigir promisses ou async/awaits complicados. Bastar colocar a palavra 'go' na frente da invocação normal de qualquer função (anônima ou nomeada) e ela executa instantaneamente num canal concorrente do scheduler de CPU, destravando a execução atual.",
-          "code": "go func() {\n    fmt.Println(\"Execução anônima concorrente e separada!\")\n}()"
+          "body": "O grande trunfo do Go foi não exigir promisses ou async/awaits complicados. Bastar colocar a palavra 'go' na frente da invocação normal de qualquer função (anônima ou nomeada) e ela executa instantaneamente num canal concorrente do scheduler de CPU, destravando a execução atual.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "go func() {\n    fmt.Println(\"Execução anônima concorrente e separada!\")\n}()",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1868,13 +1914,15 @@
       "lesson": [
         {
           "title": "Sincronização por mensagens seguras",
-          "body": "O lema do Go é claro: 'não se comunique por compartilhamento de memória, mas sincronize a memória compartilhando comunicação'. Canais (channels) são dutos de tipos puros, conectando as Goroutines, permitindo que enviem ou recebam valores seguros em tempo real e de forma thread-safe.",
-          "code": "ch := make(chan int)\n\n// enviando dado\ngo func() { ch <- 42 }()\n\n// recebendo e sincronizando\nvalor := <-ch "
+          "body": "O lema do Go é claro: 'não se comunique por compartilhamento de memória, mas sincronize a memória compartilhando comunicação'. Canais (channels) são dutos de tipos puros, conectando as Goroutines, permitindo que enviem ou recebam valores seguros em tempo real e de forma thread-safe.\n\nCompreender este fundamento é crucial em Go. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "ch := make(chan int)\n\n// enviando dado\ngo func() { ch <- 42 }()\n\n// recebendo e sincronizando\nvalor := <-ch ",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Canais bufados vs não-bufados",
-          "body": "Por padrão os canais bloqueiam o enviador (sender) até haver alguém consumindo e recebendo (receiver). Contudo, pode-se criar canais com capacidade (buffer), permitindo que mensagens sejam enfileiradas até um limite antes que a ação de mandar os dados congele o emissor de fato.",
-          "code": "chBloqueante := make(chan string)\n// 10 posições em buffer, não trava até lotar a décima\nchBuffer := make(chan string, 10)"
+          "body": "Por padrão os canais bloqueiam o enviador (sender) até haver alguém consumindo e recebendo (receiver). Contudo, pode-se criar canais com capacidade (buffer), permitindo que mensagens sejam enfileiradas até um limite antes que a ação de mandar os dados congele o emissor de fato.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "chBloqueante := make(chan string)\n// 10 posições em buffer, não trava até lotar a décima\nchBuffer := make(chan string, 10)",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1946,13 +1994,15 @@
       "lesson": [
         {
           "title": "O Switch case dos canais",
-          "body": "A instrução especial 'select' é desenhada unicamente para lidar com operações concorrentes, funcionando como um switch. Ela aguarda monitorando múltiplos canais distintos, destravando e executando apenas o primeiro caso (case) que tiver uma comunicação finalizada ou mensagem pronta para recepção.",
-          "code": "select {\ncase msg1 := <-ch1:\n    fmt.Println(\"Recebido no canal 1:\", msg1)\ncase msg2 := <-ch2:\n    fmt.Println(\"Recebido no canal 2:\", msg2)\n}"
+          "body": "A instrução especial 'select' é desenhada unicamente para lidar com operações concorrentes, funcionando como um switch. Ela aguarda monitorando múltiplos canais distintos, destravando e executando apenas o primeiro caso (case) que tiver uma comunicação finalizada ou mensagem pronta para recepção.\n\nCompreender este fundamento é crucial em Go. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "select {\ncase msg1 := <-ch1:\n    fmt.Println(\"Recebido no canal 1:\", msg1)\ncase msg2 := <-ch2:\n    fmt.Println(\"Recebido no canal 2:\", msg2)\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Aplicações de Timeout",
-          "body": "Ao combinar 'select' com canais automáticos fornecidos pelo pacote 'time', ganha-se um jeito genial e poderoso de impor tempos limites globais sobre operações lentas em rede. O select cancela graciosamente o fluxo caso o limite chegue antes do processamento principal ser entregue.",
-          "code": "select {\ncase res := <-buscarNoBanco():\n    fmt.Println(res)\ncase <-time.After(2 * time.Second):\n    fmt.Println(\"Timeout! Requisição abortada.\")\n}"
+          "body": "Ao combinar 'select' com canais automáticos fornecidos pelo pacote 'time', ganha-se um jeito genial e poderoso de impor tempos limites globais sobre operações lentas em rede. O select cancela graciosamente o fluxo caso o limite chegue antes do processamento principal ser entregue.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "select {\ncase res := <-buscarNoBanco():\n    fmt.Println(res)\ncase <-time.After(2 * time.Second):\n    fmt.Println(\"Timeout! Requisição abortada.\")\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -2024,13 +2074,15 @@
       "lesson": [
         {
           "title": "Rastreio robusto de dependências",
-          "body": "Os Go Modules (go.mod) controlam de forma rigorosa as versões exatas de cada dependência externa do projeto. O comando 'go mod init' funda e inicializa um novo módulo na pasta atual, marcando as fundações da importação dos seus scripts sem depender unicamente das famosas GOPATHs velhas e arcaicas.",
-          "code": "// No terminal\n$ go mod init github.com/user/meuprojeto\n\n// Gera o arquivo go.mod"
+          "body": "Os Go Modules (go.mod) controlam de forma rigorosa as versões exatas de cada dependência externa do projeto. O comando 'go mod init' funda e inicializa um novo módulo na pasta atual, marcando as fundações da importação dos seus scripts sem depender unicamente das famosas GOPATHs velhas e arcaicas.\n\nCompreender este fundamento é crucial em Go. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "// No terminal\n$ go mod init github.com/user/meuprojeto\n\n// Gera o arquivo go.mod",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "A limpeza com go mod tidy",
-          "body": "A vida de gerenciar bibliotecas fica em paz e automatizada. O poderoso comando 'go mod tidy' varre e analisa a fundo o código real dos arquivos .go: ele vai buscar e baixar pacotes esquecidos ou excluir referências soltas antigas no go.mod e go.sum de forma indolor em segundos.",
-          "code": "// Sempre rode antes do commit\n$ go mod tidy\n\n// E então para rodar\n$ go run main.go"
+          "body": "A vida de gerenciar bibliotecas fica em paz e automatizada. O poderoso comando 'go mod tidy' varre e analisa a fundo o código real dos arquivos .go: ele vai buscar e baixar pacotes esquecidos ou excluir referências soltas antigas no go.mod e go.sum de forma indolor em segundos.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "// Sempre rode antes do commit\n$ go mod tidy\n\n// E então para rodar\n$ go run main.go",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -2102,13 +2154,15 @@
       "lesson": [
         {
           "title": "A organização descentralizada",
-          "body": "Diferente de muitas linguagens que amarram diretórios profundos sem muito critério estrutural, todo arquivo Go precisa começar declarando fielmente a qual 'package' ele integra. Tudo em um mesmo diretório físico da máquina tem que, obrigatoriamente, pertencer unicamente ao mesmo pacote unificado.",
-          "code": "// arquivo: db/banco.go\npackage db\n\nfunc Conectar() { /* publico */ }"
+          "body": "Diferente de muitas linguagens que amarram diretórios profundos sem muito critério estrutural, todo arquivo Go precisa começar declarando fielmente a qual 'package' ele integra. Tudo em um mesmo diretório físico da máquina tem que, obrigatoriamente, pertencer unicamente ao mesmo pacote unificado.\n\nCompreender este fundamento é crucial em Go. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "// arquivo: db/banco.go\npackage db\n\nfunc Conectar() { /* publico */ }",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Protegendo escopos com a regra de letras",
-          "body": "Mais uma vez: apenas variáveis, structs e funções escritas iniciadas e marcadas com letra Maiúscula poderão ser acessadas lá de fora, em outro pacote. Se você deseja fechar utilitários menores, funções puras e regras internas exclusivas para não vazarem ao público global do projeto, minúsculas são a chave.",
-          "code": "package financeiro\n\nfunc calcularImposto() float64 { /* privado da pasta */ }\nfunc GerarFatura() { /* publico */ }"
+          "body": "Mais uma vez: apenas variáveis, structs e funções escritas iniciadas e marcadas com letra Maiúscula poderão ser acessadas lá de fora, em outro pacote. Se você deseja fechar utilitários menores, funções puras e regras internas exclusivas para não vazarem ao público global do projeto, minúsculas são a chave.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "package financeiro\n\nfunc calcularImposto() float64 { /* privado da pasta */ }\nfunc GerarFatura() { /* publico */ }",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -2180,13 +2234,15 @@
       "lesson": [
         {
           "title": "Tornando as structs ricas e anotadas (Tags)",
-          "body": "A conversão fluida de dados nativos para JSON usa anotações conhecidas como 'tags'. As tags JSON ensinam à poderosa biblioteca interna 'encoding/json' como ela deve tratar, pular ou mudar o formato dos nomes das chaves do arquivo quando gerar e serializar os dados via web.",
-          "code": "type Produto struct {\n    ID    int     `json:\"id\"`\n    Nome  string  `json:\"nome\"`\n    Senha string  `json:\"-\"` // ignora a conversão\n}"
+          "body": "A conversão fluida de dados nativos para JSON usa anotações conhecidas como 'tags'. As tags JSON ensinam à poderosa biblioteca interna 'encoding/json' como ela deve tratar, pular ou mudar o formato dos nomes das chaves do arquivo quando gerar e serializar os dados via web.\n\nCompreender este fundamento é crucial em Go. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "type Produto struct {\n    ID    int     `json:\"id\"`\n    Nome  string  `json:\"nome\"`\n    Senha string  `json:\"-\"` // ignora a conversão\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "O empacotamento com Marshal/Unmarshal",
-          "body": "A função json.Marshal recebe uma struct do Go de qualquer tipo, convertendo os campos em puro array de bytes JSON enxuto pronto pra envio na nuvem. A json.Unmarshal faz exatamente o oposto reverso, transformando os bytes web de uma API externa para dados nativos estruturados novamente e fáceis de uso.",
-          "code": "prod := Produto{ID: 1, Nome: \"Mouse\"}\nbytesJson, _ := json.Marshal(prod)\n\nfmt.Println(string(bytesJson)) // {\"id\":1, \"nome\":\"Mouse\"}"
+          "body": "A função json.Marshal recebe uma struct do Go de qualquer tipo, convertendo os campos em puro array de bytes JSON enxuto pronto pra envio na nuvem. A json.Unmarshal faz exatamente o oposto reverso, transformando os bytes web de uma API externa para dados nativos estruturados novamente e fáceis de uso.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "prod := Produto{ID: 1, Nome: \"Mouse\"}\nbytesJson, _ := json.Marshal(prod)\n\nfmt.Println(string(bytesJson)) // {\"id\":1, \"nome\":\"Mouse\"}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -2258,13 +2314,15 @@
       "lesson": [
         {
           "title": "Rotas e Handlers embutidos",
-          "body": "Ao construir aplicações robustas voltadas para web no mundo real, pouquíssimas linguagens chegam aos pés do pacote limpo, polido, flexível e nativo 'net/http'. Não se precisa de frameworks absurdamente pesados de milhões de dólares para começar, servindo APIs de altíssima performance rapidamente.",
-          "code": "func handler(w http.ResponseWriter, r *http.Request) {\n    w.Write([]byte(\"Bem-vindo ao servidor!\"))\n}\n\nhttp.HandleFunc(\"/\", handler)"
+          "body": "Ao construir aplicações robustas voltadas para web no mundo real, pouquíssimas linguagens chegam aos pés do pacote limpo, polido, flexível e nativo 'net/http'. Não se precisa de frameworks absurdamente pesados de milhões de dólares para começar, servindo APIs de altíssima performance rapidamente.\n\nCompreender este fundamento é crucial em Go. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "func handler(w http.ResponseWriter, r *http.Request) {\n    w.Write([]byte(\"Bem-vindo ao servidor!\"))\n}\n\nhttp.HandleFunc(\"/\", handler)",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Ouvindo portas de rede e escalonamento",
-          "body": "Ao chamar 'http.ListenAndServe', ocorre a mágica completa de escalonamento. O servidor se inicia local, aguardando pedidos de acesso. É um sistema brilhante e imbatível: para cada pedido ou requisição que chega externamente da internet, ele injeta e gera velozmente, sozinho, uma nova goroutine.",
-          "code": "func main() {\n    http.HandleFunc(\"/api\", myHandler)\n    // trava e sobe o servidor eterno no IP e Porta descritos\n    log.Fatal(http.ListenAndServe(\":8080\", nil))\n}"
+          "body": "Ao chamar 'http.ListenAndServe', ocorre a mágica completa de escalonamento. O servidor se inicia local, aguardando pedidos de acesso. É um sistema brilhante e imbatível: para cada pedido ou requisição que chega externamente da internet, ele injeta e gera velozmente, sozinho, uma nova goroutine.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "func main() {\n    http.HandleFunc(\"/api\", myHandler)\n    // trava e sobe o servidor eterno no IP e Porta descritos\n    log.Fatal(http.ListenAndServe(\":8080\", nil))\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -2336,13 +2394,15 @@
       "lesson": [
         {
           "title": "A beleza do Worker Pool integrado",
-          "body": "Combinar o ecossistema concorrente de goroutines em lote com um enfileiramento infinito gerado por canais forma o lendário padrão de engenharia do 'worker pool'. Isso distribui a carga da fila global em dezenas de instâncias leves executando um fardo pesado uníssono, controlando hardware na medida.",
-          "code": "func worker(tarefas <-chan int, res chan<- int) {\n    for t := range tarefas {\n        res <- t * 2 // processa a carga\n    }\n}"
+          "body": "Combinar o ecossistema concorrente de goroutines em lote com um enfileiramento infinito gerado por canais forma o lendário padrão de engenharia do 'worker pool'. Isso distribui a carga da fila global em dezenas de instâncias leves executando um fardo pesado uníssono, controlando hardware na medida.\n\nCompreender este fundamento é crucial em Go. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
+          "code": "func worker(tarefas <-chan int, res chan<- int) {\n    for t := range tarefas {\n        res <- t * 2 // processa a carga\n    }\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Encerrando graciosamente com waitGroups",
-          "body": "Utilizar o poderoso sync.WaitGroup do sistema da concorrência salva o dia de desligamentos sujos em microsserviços modernos. Ele trava elegantemente o fluxo da encerramento da thread pai no fundo, esperando fielmente até que as milhares de goroutines trabalhadoras relatem na tela que terminaram e finalizaram tudo.",
-          "code": "var wg sync.WaitGroup\nwg.Add(1)\n\ngo func() {\n    defer wg.Done()\n    fmt.Println(\"Terminando tarefas limpas e essenciais...\")\n}()\n\nwg.Wait() // Espera e protege todos terminarem"
+          "body": "Utilizar o poderoso sync.WaitGroup do sistema da concorrência salva o dia de desligamentos sujos em microsserviços modernos. Ele trava elegantemente o fluxo da encerramento da thread pai no fundo, esperando fielmente até que as milhares de goroutines trabalhadoras relatem na tela que terminaram e finalizaram tudo.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "var wg sync.WaitGroup\nwg.Add(1)\n\ngo func() {\n    defer wg.Done()\n    fmt.Println(\"Terminando tarefas limpas e essenciais...\")\n}()\n\nwg.Wait() // Espera e protege todos terminarem",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [

