@@ -74,15 +74,13 @@
       "lesson": [
         {
           "title": "Variáveis em R e Atribuição",
-          "body": "Em R, usamos frequentemente a seta `<-` para atribuir valores a variáveis, embora o `=` também funcione. Isso permite armazenar dados na memória (como números e textos) para reutilizá-los posteriormente durante a análise de dados.\n\nCompreender este fundamento é crucial em R. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "idade <- 25\nnome <- \"Maria\"\nprint(idade)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Em R, usamos frequentemente a seta `<-` para atribuir valores a variáveis, embora o `=` também funcione. Isso permite armazenar dados na memória (como números e textos) para reutilizá-los posteriormente durante a análise de dados.\n\nA convenção da comunidade R favorece a seta `<-` porque ela deixa claro visualmente o sentido da atribuição (o valor da direita entra na variável da esquerda), e evita ambiguidades em contextos onde `=` também é usado para nomear argumentos dentro de chamadas de função, como em plot(x = 1:10).",
+          "code": "idade <- 25\nnome <- \"Maria\"\nprint(idade)"
         },
         {
           "title": "Tipos de Dados Básicos",
           "body": "O R trabalha com diversos tipos de dados fundamentais: numeric (números decimais ou inteiros), character (textos em aspas) e logical (TRUE ou FALSE). Conhecer o tipo correto garante que as funções matemáticas e lógicas funcionem sem erros.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "x <- 10.5      # numeric\ntexto <- \"R\"   # character\nvalido <- TRUE # logical\nclass(x)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "code": "x <- 10.5      # numeric\ntexto <- \"R\"   # character\nvalido <- TRUE # logical\nclass(x)"
         }
       ],
       "questions": [
@@ -154,15 +152,13 @@
       "lesson": [
         {
           "title": "Estruturas de Dados: Vetores",
-          "body": "O vetor é a estrutura mais básica em R, criado com a função `c()` (combine). Ele armazena uma sequência de elementos do mesmo tipo. Quase todas as operações no R são vetorizadas, o que significa que aplicam a operação a todos os elementos de uma vez.\n\nCompreender este fundamento é crucial em R. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "notas <- c(8.5, 9.0, 7.5, 10.0)\nnotas_ajustadas <- notas + 0.5\nprint(notas_ajustadas)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O vetor é a estrutura mais básica em R, criado com a função `c()` (combine). Ele armazena uma sequência de elementos do mesmo tipo. Quase todas as operações no R são vetorizadas, o que significa que aplicam a operação a todos os elementos de uma vez.\n\nSe você somar dois vetores de mesmo tamanho, o R soma elemento a elemento automaticamente, sem precisar de um loop explícito: c(1,2,3) + c(10,20,30) retorna c(11,22,33). Quando os vetores têm tamanhos diferentes, o R aplica a chamada reciclagem, repetindo o vetor menor até completar o tamanho do maior, o que pode gerar resultados inesperados se não for intencional.",
+          "code": "notas <- c(8.5, 9.0, 7.5, 10.0)\nnotas_ajustadas <- notas + 0.5\nprint(notas_ajustadas)"
         },
         {
           "title": "Acessando Elementos em Vetores",
           "body": "Para acessar elementos dentro de um vetor, utilizamos colchetes `[]` e a posição desejada. No R, a indexação começa no número 1. Você pode selecionar um elemento único, múltiplos elementos ou até remover itens usando índices negativos.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "cores <- c(\"azul\", \"verde\", \"vermelho\")\nprimeira <- cores[1]\nsem_a_primeira <- cores[-1]\nprint(primeira)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "code": "cores <- c(\"azul\", \"verde\", \"vermelho\")\nprimeira <- cores[1]\nsem_a_primeira <- cores[-1]\nprint(primeira)"
         }
       ],
       "questions": [
@@ -234,15 +230,13 @@
       "lesson": [
         {
           "title": "Trabalhando com Matrizes",
-          "body": "Matrizes são estruturas de duas dimensões (linhas e colunas) onde todos os elementos precisam ter o mesmo tipo. Elas são essenciais para álgebra linear e para estruturar dados tabulares homogêneos durante análises quantitativas no R.\n\nCompreender este fundamento é crucial em R. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "dados <- c(1, 2, 3, 4)\nmatriz <- matrix(dados, nrow=2, ncol=2)\nprint(matriz)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Matrizes são estruturas de duas dimensões (linhas e colunas) onde todos os elementos precisam ter o mesmo tipo. Elas são essenciais para álgebra linear e para estruturar dados tabulares homogêneos durante análises quantitativas no R.\n\nUma matriz é criada com a função matrix(), especificando os dados e o número de linhas (nrow) ou colunas (ncol). Operações de álgebra linear como multiplicação de matrizes (%*%) e transposição (t()) são nativas da linguagem, tornando o R uma ferramenta natural para cálculos estatísticos que dependem dessas operações.",
+          "code": "dados <- c(1, 2, 3, 4)\nmatriz <- matrix(dados, nrow=2, ncol=2)\nprint(matriz)"
         },
         {
           "title": "Indexação de Matrizes",
           "body": "O acesso aos elementos de uma matriz segue o formato `[linha, coluna]`. Deixar a linha ou a coluna em branco significa que você quer selecionar todos os elementos daquela respectiva dimensão, facilitando a extração de conjuntos inteiros.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "matriz <- matrix(1:6, nrow=2, ncol=3)\nlinha_1 <- matriz[1, ]\ncol_2 <- matriz[, 2]\nprint(linha_1)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "code": "matriz <- matrix(1:6, nrow=2, ncol=3)\nlinha_1 <- matriz[1, ]\ncol_2 <- matriz[, 2]\nprint(linha_1)"
         }
       ],
       "questions": [
@@ -314,15 +308,13 @@
       "lesson": [
         {
           "title": "Fatores em R (Factors)",
-          "body": "Fatores são usados para representar dados categóricos, podendo ser ordenados ou não. Eles armazenam os dados como inteiros e mantêm um mapeamento (levels) para os rótulos de texto, economizando memória e sendo fundamentais em modelos estatísticos.\n\nCompreender este fundamento é crucial em R. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "generos <- factor(c(\"F\", \"M\", \"F\", \"F\", \"M\"))\nlevels(generos)\nsummary(generos)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Fatores são usados para representar dados categóricos, podendo ser ordenados ou não. Eles armazenam os dados como inteiros e mantêm um mapeamento (levels) para os rótulos de texto, economizando memória e sendo fundamentais em modelos estatísticos.\n\nUm fator ordenado, criado com factor(dados, ordered=TRUE, levels=c('baixo','medio','alto')), preserva a hierarquia entre categorias, algo essencial em modelos que precisam saber que 'alto' é maior que 'medio'. Sem essa estrutura, o R trataria cada categoria como um texto solto sem nenhuma relação de ordem entre elas.",
+          "code": "generos <- factor(c(\"F\", \"M\", \"F\", \"F\", \"M\"))\nlevels(generos)\nsummary(generos)"
         },
         {
           "title": "Listas: Estruturas Heterogêneas",
           "body": "Diferente dos vetores atômicos, uma lista pode conter elementos de diferentes tipos: um número, uma string, um vetor ou até mesmo outra lista. Elas são muito usadas no R para retornar os resultados complexos de testes estatísticos.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "minha_lista <- list(nome=\"Ana\", idade=30, notas=c(9, 10))\nidade <- minha_lista$idade\nprint(idade)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "code": "minha_lista <- list(nome=\"Ana\", idade=30, notas=c(9, 10))\nidade <- minha_lista$idade\nprint(idade)"
         }
       ],
       "questions": [
@@ -394,15 +386,13 @@
       "lesson": [
         {
           "title": "Data Frames: A Base da Análise",
-          "body": "O Data Frame é a estrutura tabular por excelência no R, semelhante a planilhas ou tabelas de banco de dados. Nele, cada coluna pode ter um tipo de dado diferente, mas todas devem ter o mesmo número de linhas, ideal para dados do mundo real.\n\nCompreender este fundamento é crucial em R. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "df <- data.frame(id=1:3, nome=c(\"A\", \"B\", \"C\"), nota=c(7, 8, 9))\nprint(df)\nsummary(df)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O Data Frame é a estrutura tabular por excelência no R, semelhante a planilhas ou tabelas de banco de dados. Nele, cada coluna pode ter um tipo de dado diferente, mas todas devem ter o mesmo número de linhas, ideal para dados do mundo real.\n\nCada coluna de um Data Frame é, internamente, um vetor, e todas as colunas compartilham o mesmo comprimento, garantindo que cada linha represente uma observação completa e consistente. Funções como str() e head() são usadas com frequência logo após carregar um Data Frame, para inspecionar rapidamente os tipos de dados e as primeiras linhas antes de qualquer análise.",
+          "code": "df <- data.frame(id=1:3, nome=c(\"A\", \"B\", \"C\"), nota=c(7, 8, 9))\nprint(df)\nsummary(df)"
         },
         {
           "title": "Explorando um Data Frame",
           "body": "Você pode acessar colunas inteiras de um Data Frame de forma rápida usando o operador `$`. Funções como `head()`, `str()` e `summary()` são indispensáveis para ter uma visão geral rápida de um novo conjunto de dados antes de iniciar a análise profunda.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "df <- data.frame(venda=c(100, 200, 150), loja=c(\"X\", \"Y\", \"X\"))\nstr(df)\nprint(df$venda)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "code": "df <- data.frame(venda=c(100, 200, 150), loja=c(\"X\", \"Y\", \"X\"))\nstr(df)\nprint(df$venda)"
         }
       ],
       "questions": [
@@ -474,15 +464,13 @@
       "lesson": [
         {
           "title": "Operadores Relacionais",
-          "body": "Operadores como `==`, `!=`, `<`, `>`, `<=` e `>=` permitem comparar valores. Como R é vetorizado, você pode comparar todos os elementos de um vetor com um número de uma só vez, retornando um vetor lógico (TRUE/FALSE) ideal para filtros.\n\nCompreender este fundamento é crucial em R. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "idades <- c(15, 22, 18, 30)\nmaior_idade <- idades >= 18\nprint(maior_idade)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Operadores como `==`, `!=`, `<`, `>`, `<=` e `>=` permitem comparar valores. Como R é vetorizado, você pode comparar todos os elementos de um vetor com um número de uma só vez, retornando um vetor lógico (TRUE/FALSE) ideal para filtros.\n\nEsse vetor lógico resultante é a base para filtrar dados: escrever dados[dados$idade > 18, ] retorna apenas as linhas onde a condição é verdadeira. Combinar operadores relacionais com os operadores lógicos & (E) e | (OU) permite construir filtros compostos, como selecionar registros que atendam a múltiplos critérios simultaneamente.",
+          "code": "idades <- c(15, 22, 18, 30)\nmaior_idade <- idades >= 18\nprint(maior_idade)"
         },
         {
           "title": "Operadores Lógicos (E, OU, NÃO)",
           "body": "Para combinar múltiplas condições, utilizamos `&` (E) e `|` (OU). O operador `!` inverte o resultado lógico. Essas ferramentas são a base para realizar subconjuntos complexos (subsetting) de grandes conjuntos de dados baseados em regras.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "x <- c(10, 20, 30)\ncondicao <- (x > 15) & (x < 25)\nprint(condicao)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "code": "x <- c(10, 20, 30)\ncondicao <- (x > 15) & (x < 25)\nprint(condicao)"
         }
       ],
       "questions": [
@@ -554,15 +542,13 @@
       "lesson": [
         {
           "title": "Estruturas Condicionais: if e else",
-          "body": "As declarações `if` e `else` direcionam o fluxo de controle, executando blocos de código apenas se uma condição for TRUE. Isso é útil ao criar funções que precisam adaptar seu comportamento dependendo das características dos dados de entrada.\n\nCompreender este fundamento é crucial em R. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "nota <- 6.5\nif (nota >= 7) {\n  print(\"Aprovado\")\n} else {\n  print(\"Recuperação\")\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "As declarações `if` e `else` direcionam o fluxo de controle, executando blocos de código apenas se uma condição for TRUE. Isso é útil ao criar funções que precisam adaptar seu comportamento dependendo das características dos dados de entrada.\n\nQuando existem várias condições excludentes, o R oferece o else if para encadear testes sucessivos, avaliados em ordem até que uma condição seja verdadeira. Vale notar que, diferente de outras linguagens, o R não possui um comando switch tão idiomático quanto o if/else para a maioria dos casos de uso do dia a dia em análise de dados.",
+          "code": "nota <- 6.5\nif (nota >= 7) {\n  print(\"Aprovado\")\n} else {\n  print(\"Recuperação\")\n}"
         },
         {
           "title": "A Função ifelse()",
           "body": "A função `ifelse(teste, sim, nao)` é a versão vetorizada do if/else tradicional. Ela avalia uma condição ao longo de um vetor inteiro e retorna o valor respectivo rapidamente, sendo excelente para recodificar colunas em Data Frames.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "notas <- c(5, 8, 9, 4)\nstatus <- ifelse(notas >= 7, \"Aprovado\", \"Reprovado\")\nprint(status)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "code": "notas <- c(5, 8, 9, 4)\nstatus <- ifelse(notas >= 7, \"Aprovado\", \"Reprovado\")\nprint(status)"
         }
       ],
       "questions": [
@@ -634,15 +620,13 @@
       "lesson": [
         {
           "title": "Estruturas de Repetição: For Loop",
-          "body": "O loop `for` itera sobre os elementos de uma sequência (como um vetor ou lista), executando o mesmo bloco de código repetidas vezes. Embora loops tradicionais não sejam a forma mais performática no R, são essenciais para simulações e automação.\n\nCompreender este fundamento é crucial em R. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "nomes <- c(\"João\", \"Maria\", \"Pedro\")\nfor (n in nomes) {\n  print(paste(\"Olá,\", n))\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O loop `for` itera sobre os elementos de uma sequência (como um vetor ou lista), executando o mesmo bloco de código repetidas vezes. Embora loops tradicionais não sejam a forma mais performática no R, são essenciais para simulações e automação.\n\nEm R, por conta da natureza vetorizada da linguagem, muitas operações que exigiriam um for loop em outras linguagens podem ser resolvidas de forma direta sobre o vetor inteiro (como somar todos os elementos com sum()), executando de forma muito mais rápida internamente em código C otimizado do que um loop explícito escrito em R puro.",
+          "code": "nomes <- c(\"João\", \"Maria\", \"Pedro\")\nfor (n in nomes) {\n  print(paste(\"Olá,\", n))\n}"
         },
         {
           "title": "O Loop While",
           "body": "O `while` repete as instruções enquanto uma condição for avaliada como verdadeira. Deve ser usado com cuidado (e sempre com uma atualização de estado) para evitar loops infinitos. Útil quando não sabemos de antemão quantas iterações serão necessárias.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "contador <- 1\nwhile (contador <= 3) {\n  print(contador)\n  contador <- contador + 1\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "code": "contador <- 1\nwhile (contador <= 3) {\n  print(contador)\n  contador <- contador + 1\n}"
         }
       ],
       "questions": [
@@ -714,15 +698,13 @@
       "lesson": [
         {
           "title": "Criando Funções no R",
-          "body": "As funções encapsulam um bloco de código que realiza uma tarefa específica, recebendo argumentos e retornando um resultado usando a instrução `return()`. Elas promovem a reutilização do código, evitam repetições e organizam a lógica dos scripts.\n\nCompreender este fundamento é crucial em R. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "soma_quadrados <- function(a, b) {\n  resultado <- a^2 + b^2\n  return(resultado)\n}\nprint(soma_quadrados(3, 4))",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "As funções encapsulam um bloco de código que realiza uma tarefa específica, recebendo argumentos e retornando um resultado usando a instrução `return()`. Elas promovem a reutilização do código, evitam repetições e organizam a lógica dos scripts.\n\nParâmetros de uma função em R podem ter valores padrão, definidos diretamente na assinatura (function(x, digitos = 2)), tornando-os opcionais na hora de chamar a função. O escopo das variáveis criadas dentro de uma função é local por padrão: elas deixam de existir assim que a função termina de executar, a menos que sejam explicitamente retornadas.",
+          "code": "soma_quadrados <- function(a, b) {\n  resultado <- a^2 + b^2\n  return(resultado)\n}\nprint(soma_quadrados(3, 4))"
         },
         {
           "title": "Argumentos Padrão em Funções",
           "body": "Ao definir uma função, você pode atribuir valores default aos argumentos. Isso dá maior flexibilidade e facilita o uso de sua função, pois se o usuário não informar o parâmetro, o R usará o valor padrão definido automaticamente.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "saudacao <- function(nome = \"Visitante\") {\n  paste(\"Bem-vindo,\", nome)\n}\nprint(saudacao())\nprint(saudacao(\"Carlos\"))",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "code": "saudacao <- function(nome = \"Visitante\") {\n  paste(\"Bem-vindo,\", nome)\n}\nprint(saudacao())\nprint(saudacao(\"Carlos\"))"
         }
       ],
       "questions": [
@@ -794,15 +776,13 @@
       "lesson": [
         {
           "title": "Lendo Dados com read.csv()",
-          "body": "A leitura de arquivos CSV (Comma Separated Values) é o passo inicial de grande parte das análises. A função nativa `read.csv()` converte rapidamente um arquivo de texto estruturado em um formato de Data Frame pronto para ser explorado no ambiente R.\n\nCompreender este fundamento é crucial em R. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "# df <- read.csv(\"dados.csv\")\n# Usando um conjunto de dados interno como exemplo\ndados <- head(mtcars, 3)\nprint(dados)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "A leitura de arquivos CSV (Comma Separated Values) é o passo inicial de grande parte das análises. A função nativa `read.csv()` converte rapidamente um arquivo de texto estruturado em um formato de Data Frame pronto para ser explorado no ambiente R.\n\nA função read.csv() aceita parâmetros importantes como sep (o caractere separador de colunas, já que alguns arquivos usam ponto e vírgula em vez de vírgula) e header (indicando se a primeira linha contém os nomes das colunas). Para arquivos muito grandes, pacotes como data.table ou readr oferecem leitura significativamente mais rápida que a função base.",
+          "code": "# df <- read.csv(\"dados.csv\")\n# Usando um conjunto de dados interno como exemplo\ndados <- head(mtcars, 3)\nprint(dados)"
         },
         {
           "title": "Exportando Dados com write.csv()",
           "body": "Após processar, limpar ou resumir os dados, é fundamental salvar os resultados. A função `write.csv()` permite exportar o seu Data Frame de volta para o disco de forma padronizada, podendo ser lido depois no Excel ou em outras ferramentas.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "df <- data.frame(a=1:3, b=c(\"x\", \"y\", \"z\"))\n# write.csv(df, \"resultado.csv\", row.names=FALSE)\nprint(\"Dados prontos para exportação\")",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "code": "df <- data.frame(a=1:3, b=c(\"x\", \"y\", \"z\"))\n# write.csv(df, \"resultado.csv\", row.names=FALSE)\nprint(\"Dados prontos para exportação\")"
         }
       ],
       "questions": [
@@ -874,15 +854,13 @@
       "lesson": [
         {
           "title": "Introdução aos Gráficos Base: plot()",
-          "body": "O sistema Base Graphics do R é poderoso e vem integrado à linguagem. A função `plot()` cria gráficos simples e elegantes com poucos comandos. É ideal para fazer uma análise exploratória inicial (EDA) para entender as relações entre variáveis numéricas.\n\nCompreender este fundamento é crucial em R. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "x <- 1:10\ny <- x^2\n# plot(x, y, main=\"Dispersão Simples\", col=\"blue\")\nprint(\"Gráfico gerado na interface\")",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O sistema Base Graphics do R é poderoso e vem integrado à linguagem. A função `plot()` cria gráficos simples e elegantes com poucos comandos. É ideal para fazer uma análise exploratória inicial (EDA) para entender as relações entre variáveis numéricas.\n\nA função plot() adapta automaticamente o tipo de gráfico gerado conforme os dados fornecidos: um vetor numérico único gera um gráfico de dispersão por índice, enquanto dois vetores numéricos geram um scatter plot relacionando ambos. Parâmetros como main (título), xlab e ylab (rótulos dos eixos) e col (cor) permitem customizar rapidamente a visualização sem sair da função base.",
+          "code": "x <- 1:10\ny <- x^2\n# plot(x, y, main=\"Dispersão Simples\", col=\"blue\")\nprint(\"Gráfico gerado na interface\")"
         },
         {
           "title": "Histogramas e Boxplots Básicos",
           "body": "Para entender a distribuição de uma variável numérica e detectar outliers, as funções `hist()` e `boxplot()` são essenciais. Elas mostram a dispersão, a assimetria e o centro dos dados com apenas uma linha de código, ajudando no diagnóstico inicial.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "dados_aleatorios <- rnorm(100)\n# hist(dados_aleatorios)\n# boxplot(dados_aleatorios)\nprint(\"Histograma e boxplot plotados\")",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "code": "dados_aleatorios <- rnorm(100)\n# hist(dados_aleatorios)\n# boxplot(dados_aleatorios)\nprint(\"Histograma e boxplot plotados\")"
         }
       ],
       "questions": [
@@ -954,15 +932,13 @@
       "lesson": [
         {
           "title": "Estatísticas Descritivas Básicas",
-          "body": "Funções estatísticas nativas do R como `mean()` (média), `median()` (mediana) e `sd()` (desvio padrão) resumem informações de grandes vetores. Muitas delas possuem o parâmetro `na.rm = TRUE` para não dar erro na presença de valores faltantes (NAs).\n\nCompreender este fundamento é crucial em R. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "valores <- c(10, 20, 30, NA, 50)\nmedia <- mean(valores, na.rm = TRUE)\ndesvio <- sd(valores, na.rm = TRUE)\nprint(media)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Funções estatísticas nativas do R como `mean()` (média), `median()` (mediana) e `sd()` (desvio padrão) resumem informações de grandes vetores. Muitas delas possuem o parâmetro `na.rm = TRUE` para não dar erro na presença de valores faltantes (NAs).\n\nAlém dessas, funções como summary() geram de uma só vez um resumo completo com mínimo, máximo, quartis e média de uma variável, sendo geralmente o primeiro comando executado ao explorar um novo conjunto de dados. Ignorar valores ausentes sem o parâmetro na.rm=TRUE faz com que qualquer cálculo estatístico simples retorne NA em vez de um número.",
+          "code": "valores <- c(10, 20, 30, NA, 50)\nmedia <- mean(valores, na.rm = TRUE)\ndesvio <- sd(valores, na.rm = TRUE)\nprint(media)"
         },
         {
           "title": "A Função summary()",
           "body": "A função genérica `summary()` é um verdadeiro canivete suíço. Quando aplicada em um Data Frame, ela devolve imediatamente estatísticas descritivas básicas (mínimo, 1º quartil, mediana, média, 3º quartil e máximo) para todas as colunas numéricas de uma vez.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "df <- data.frame(idade=c(22, 25, 30, 20, 35))\nresumo <- summary(df)\nprint(resumo)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "code": "df <- data.frame(idade=c(22, 25, 30, 20, 35))\nresumo <- summary(df)\nprint(resumo)"
         }
       ],
       "questions": [
@@ -1034,15 +1010,13 @@
       "lesson": [
         {
           "title": "Família apply() para Iteração",
-          "body": "A família de funções `apply` substitui os loops `for` de maneira mais limpa. A função `apply()` aplica uma dada função sobre as margens de um array ou matriz (ex: soma por linhas ou média por colunas), acelerando muito cálculos complexos.\n\nCompreender este fundamento é crucial em R. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "matriz <- matrix(1:9, nrow=3)\nmedias_colunas <- apply(matriz, 2, mean)\nprint(medias_colunas)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "A família de funções `apply` substitui os loops `for` de maneira mais limpa. A função `apply()` aplica uma dada função sobre as margens de um array ou matriz (ex: soma por linhas ou média por colunas), acelerando muito cálculos complexos.\n\nO segundo argumento de apply() define a margem: 1 para aplicar a função por linha e 2 para aplicar por coluna. Variações como sapply() e lapply() fazem o mesmo tipo de iteração vetorizada, mas sobre listas e vetores em vez de matrizes, e são amplamente preferidas a loops for por serem mais legíveis e geralmente mais rápidas.",
+          "code": "matriz <- matrix(1:9, nrow=3)\nmedias_colunas <- apply(matriz, 2, mean)\nprint(medias_colunas)"
         },
         {
           "title": "lapply() e sapply() em Listas",
           "body": "Enquanto `lapply()` aplica uma função a cada elemento de um vetor/lista e retorna uma lista, o `sapply()` simplifica o resultado para um vetor quando possível. Elas deixam o código R incrivelmente limpo e funcional.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "lista_num <- list(a=1:5, b=10:15)\nresultados_lista <- lapply(lista_num, mean)\nresultados_vetor <- sapply(lista_num, mean)\nprint(resultados_vetor)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "code": "lista_num <- list(a=1:5, b=10:15)\nresultados_lista <- lapply(lista_num, mean)\nresultados_vetor <- sapply(lista_num, mean)\nprint(resultados_vetor)"
         }
       ],
       "questions": [
@@ -1114,15 +1088,13 @@
       "lesson": [
         {
           "title": "Manipulação com dplyr: filter()",
-          "body": "O pacote dplyr revolucionou a forma como manipulamos dados. A função `filter()` é usada para selecionar as linhas (observações) de um Data Frame baseadas em condições lógicas, de uma forma muito mais legível que as abordagens convencionais (Base R).\n\nCompreender este fundamento é crucial em R. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "# library(dplyr)\n# Usando uma abordagem análoga do R base para o exemplo:\ndf <- data.frame(nome=c(\"A\",\"B\"), idade=c(20, 30))\ndf_filtrado <- subset(df, idade > 25)\nprint(df_filtrado)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O pacote dplyr revolucionou a forma como manipulamos dados. A função `filter()` é usada para selecionar as linhas (observações) de um Data Frame baseadas em condições lógicas, de uma forma muito mais legível que as abordagens convencionais (Base R).\n\nO dplyr também introduziu o operador pipe (%>% ou, na sintaxe nativa mais recente, |>), que permite encadear várias operações em sequência lógica, como dados |> filter(idade > 18) |> select(nome, idade), lido quase como uma frase: pegue os dados, filtre, depois selecione. Isso substitui código aninhado e difícil de ler por um fluxo linear e claro.",
+          "code": "# library(dplyr)\n# Usando uma abordagem análoga do R base para o exemplo:\ndf <- data.frame(nome=c(\"A\",\"B\"), idade=c(20, 30))\ndf_filtrado <- subset(df, idade > 25)\nprint(df_filtrado)"
         },
         {
           "title": "Selecionando Colunas com select()",
           "body": "Assim como `filter()` reduz as linhas, o `select()` (do dplyr) extrai apenas as colunas de interesse. Em bancos de dados com dezenas de variáveis, trazer apenas as colunas relevantes foca a análise e diminui o uso desnecessário de memória RAM.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "# library(dplyr)\ndf <- data.frame(id=1:2, var1=10:11, var2=20:21)\n# df %>% select(id, var1)\ndf_subset <- df[, c(\"id\", \"var1\")]\nprint(df_subset)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "code": "# library(dplyr)\ndf <- data.frame(id=1:2, var1=10:11, var2=20:21)\n# df %>% select(id, var1)\ndf_subset <- df[, c(\"id\", \"var1\")]\nprint(df_subset)"
         }
       ],
       "questions": [
@@ -1194,15 +1166,13 @@
       "lesson": [
         {
           "title": "Criando Novas Variáveis: mutate()",
-          "body": "O comando `mutate()` do dplyr adiciona novas colunas a um Data Frame mantendo as existentes. Ele é extremamente poderoso para criar índices, calcular proporções (percentuais) ou simplesmente transformar variáveis usando funções matemáticas sobre os dados.\n\nCompreender este fundamento é crucial em R. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "# library(dplyr)\ndf <- data.frame(peso=c(70, 85), altura=c(1.75, 1.80))\n# df %>% mutate(imc = peso / (altura^2))\ndf$imc <- df$peso / (df$altura^2)\nprint(df)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O comando `mutate()` do dplyr adiciona novas colunas a um Data Frame mantendo as existentes. Ele é extremamente poderoso para criar índices, calcular proporções (percentuais) ou simplesmente transformar variáveis usando funções matemáticas sobre os dados.\n\nDiferente de simplesmente sobrescrever uma coluna existente, mutate() é frequentemente combinado com funções condicionais como ifelse() para criar categorias derivadas, por exemplo, classificando clientes como 'ativo' ou 'inativo' com base em uma coluna de última compra, tudo dentro da mesma cadeia de transformações do dplyr.",
+          "code": "# library(dplyr)\ndf <- data.frame(peso=c(70, 85), altura=c(1.75, 1.80))\n# df %>% mutate(imc = peso / (altura^2))\ndf$imc <- df$peso / (df$altura^2)\nprint(df)"
         },
         {
           "title": "Ordenando Dados com arrange()",
           "body": "A ordenação (sorting) é indispensável e feita pelo dplyr através da função `arrange()`. Ela permite ordenar os dados em modo ascendente (padrão) ou descendente por múltiplas variáveis ao mesmo tempo, facilitando a identificação de maiores/menores valores.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "# library(dplyr)\ndf <- data.frame(nota=c(5, 9, 7))\n# df %>% arrange(desc(nota))\nordenado <- df[order(-df$nota), ]\nprint(ordenado)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "code": "# library(dplyr)\ndf <- data.frame(nota=c(5, 9, 7))\n# df %>% arrange(desc(nota))\nordenado <- df[order(-df$nota), ]\nprint(ordenado)"
         }
       ],
       "questions": [
@@ -1274,15 +1244,13 @@
       "lesson": [
         {
           "title": "Agregação: group_by() e summarize()",
-          "body": "A magia do resumo de dados acontece quando combinamos `group_by()` com `summarize()`. O primeiro \"divide\" o conjunto por categorias (ex: região ou sexo), e o segundo aplica cálculos (soma, média) para cada grupo separadamente, gerando tabelas descritivas.\n\nCompreender este fundamento é crucial em R. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "# library(dplyr)\ndf <- data.frame(grupo=c(\"A\", \"A\", \"B\", \"B\"), valor=c(10,20,30,40))\n# df %>% group_by(grupo) %>% summarize(media=mean(valor))\naggregate(valor ~ grupo, data=df, FUN=mean)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "A magia do resumo de dados acontece quando combinamos `group_by()` com `summarize()`. O primeiro \"divide\" o conjunto por categorias (ex: região ou sexo), e o segundo aplica cálculos (soma, média) para cada grupo separadamente, gerando tabelas descritivas.\n\nO resultado de group_by() sozinho não muda visualmente o Data Frame; ele apenas marca internamente como os dados devem ser agrupados nas operações seguintes. É somente ao encadear summarize() (ou operações como mutate()) que o agrupamento realmente produz um resultado, geralmente uma linha por grupo com as métricas calculadas.",
+          "code": "# library(dplyr)\ndf <- data.frame(grupo=c(\"A\", \"A\", \"B\", \"B\"), valor=c(10,20,30,40))\n# df %>% group_by(grupo) %>% summarize(media=mean(valor))\naggregate(valor ~ grupo, data=df, FUN=mean)"
         },
         {
           "title": "O Operador Pipe (%>%) ou (|> )",
           "body": "O operador Pipe, original do magrittr (`%>%`) e agora nativo no R (`|>`), pega a saída da função à sua esquerda e passa como primeiro argumento para a função à direita. Isso encadeia os passos lógicos, tornando os scripts fluentes e incrivelmente fáceis de ler.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "valores <- c(1, 2, 3, 4)\n# valores |> sum() |> sqrt()\nresultado <- sqrt(sum(valores))\nprint(resultado)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "code": "valores <- c(1, 2, 3, 4)\n# valores |> sum() |> sqrt()\nresultado <- sqrt(sum(valores))\nprint(resultado)"
         }
       ],
       "questions": [
@@ -1354,15 +1322,13 @@
       "lesson": [
         {
           "title": "Data Visualization: Introdução ao ggplot2",
-          "body": "O pacote ggplot2 implementa a Gramática dos Gráficos. Ao invés de uma única função complexa, os gráficos são construídos sobrepondo camadas lógicas: dados (data), mapeamento estético (aes - x, y, cores) e as geometrias (geom). O visual final é extremamente profissional.\n\nCompreender este fundamento é crucial em R. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "# library(ggplot2)\n# ggplot(mtcars, aes(x=wt, y=mpg)) + geom_point()\nprint(\"Gráfico ggplot2: Mapeamento de dados estabelecido\")",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O pacote ggplot2 implementa a Gramática dos Gráficos. Ao invés de uma única função complexa, os gráficos são construídos sobrepondo camadas lógicas: dados (data), mapeamento estético (aes - x, y, cores) e as geometrias (geom). O visual final é extremamente profissional.\n\nCada camada geom_ define o tipo de gráfico: geom_point() para dispersão, geom_line() para linhas e geom_bar() para barras, todas adicionadas com o operador +. Como o mapeamento estético (aes) pode ser definido tanto globalmente no ggplot() quanto individualmente em cada camada, é possível combinar múltiplos tipos de visualização no mesmo gráfico de forma consistente.",
+          "code": "# library(ggplot2)\n# ggplot(mtcars, aes(x=wt, y=mpg)) + geom_point()\nprint(\"Gráfico ggplot2: Mapeamento de dados estabelecido\")"
         },
         {
           "title": "Camadas e Geometrias (Geoms)",
           "body": "Cada tipo de gráfico no ggplot2 é um `geom_*`: `geom_point()` faz pontos, `geom_line()` linhas, `geom_bar()` faz barras. Você pode adicionar e empilhar quantas geometrias desejar no mesmo plot usando o operador `+`, customizando cada aspecto separadamente.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "# library(ggplot2)\n# ggplot(diamonds, aes(x=cut)) + geom_bar(fill=\"steelblue\")\nprint(\"Gráfico de barras ggplot2 adicionado na camada geométrica\")",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "code": "# library(ggplot2)\n# ggplot(diamonds, aes(x=cut)) + geom_bar(fill=\"steelblue\")\nprint(\"Gráfico de barras ggplot2 adicionado na camada geométrica\")"
         }
       ],
       "questions": [
@@ -1434,15 +1400,13 @@
       "lesson": [
         {
           "title": "Faceting em ggplot2",
-          "body": "O Faceting permite dividir os dados baseados em variáveis categóricas e criar pequenos gráficos idênticos lado a lado, chamados de \"small multiples\" (ex: `facet_wrap()`). Isso é formidável para comparar as tendências de grupos diferentes mantendo a mesma escala visual.\n\nCompreender este fundamento é crucial em R. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "# library(ggplot2)\n# ggplot(mpg, aes(x=displ, y=hwy)) + geom_point() + facet_wrap(~class)\nprint(\"Geração de painéis lado a lado via facet_wrap\")",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O Faceting permite dividir os dados baseados em variáveis categóricas e criar pequenos gráficos idênticos lado a lado, chamados de \"small multiples\" (ex: `facet_wrap()`). Isso é formidável para comparar as tendências de grupos diferentes mantendo a mesma escala visual.\n\nExiste também facet_grid(), que organiza os pequenos gráficos em uma grade cruzando duas variáveis categóricas simultaneamente (uma para linhas, outra para colunas), diferente do facet_wrap(), que distribui os subgráficos em sequência. Ambos mantêm os mesmos eixos entre os painéis, o que facilita comparações visuais diretas entre grupos.",
+          "code": "# library(ggplot2)\n# ggplot(mpg, aes(x=displ, y=hwy)) + geom_point() + facet_wrap(~class)\nprint(\"Geração de painéis lado a lado via facet_wrap\")"
         },
         {
           "title": "Customização de Temas e Cores",
           "body": "A apresentação é fundamental. O ggplot2 permite ajustar detalhes infinitos: títulos, legendas e o fundo. Com funções nativas como `theme_minimal()` ou editando a paleta de cores (como o `scale_color_brewer`), seus gráficos ganham destaque em publicações científicas e painéis.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "# library(ggplot2)\n# ggplot(mtcars, aes(x=wt, y=mpg, color=as.factor(cyl))) +\n#   geom_point() + theme_minimal() + labs(title=\"Título\")\nprint(\"Tema aplicado ao ggplot\")",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "code": "# library(ggplot2)\n# ggplot(mtcars, aes(x=wt, y=mpg, color=as.factor(cyl))) +\n#   geom_point() + theme_minimal() + labs(title=\"Título\")\nprint(\"Tema aplicado ao ggplot\")"
         }
       ],
       "questions": [
@@ -1514,15 +1478,13 @@
       "lesson": [
         {
           "title": "Lidando com Datas: O pacote lubridate",
-          "body": "Trabalhar com dados de tempo costuma ser difícil devido aos formatos. O pacote `lubridate` simplifica o parsing de datas: funções intuitivas como `ymd()` (Ano-Mês-Dia) convertem rapidamente strings em objetos do tipo Data nativos, permitindo comparações seguras.\n\nCompreender este fundamento é crucial em R. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "# library(lubridate)\n# data_criada <- ymd(\"2023-10-15\")\ndata_simples <- as.Date(\"2023-10-15\")\nprint(data_simples)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Trabalhar com dados de tempo costuma ser difícil devido aos formatos. O pacote `lubridate` simplifica o parsing de datas: funções intuitivas como `ymd()` (Ano-Mês-Dia) convertem rapidamente strings em objetos do tipo Data nativos, permitindo comparações seguras.\n\nAlém de ymd(), o lubridate oferece variações como dmy() e mdy() para diferentes ordens de dia, mês e ano presentes no texto original, além de funções para extrair componentes específicos de uma data já convertida, como year(), month() e wday() (dia da semana), essenciais para análises de sazonalidade em séries temporais.",
+          "code": "# library(lubridate)\n# data_criada <- ymd(\"2023-10-15\")\ndata_simples <- as.Date(\"2023-10-15\")\nprint(data_simples)"
         },
         {
           "title": "Extração e Operações Temporais",
           "body": "Após formatar a data, é possível extrair facilmente o ano, mês, semana ou até o dia da semana (`year()`, `month()`, etc.). Você também pode fazer operações matemáticas: saber exatamente quantos dias há entre duas datas, algo vital em dados financeiros ou séries temporais.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "hoje <- Sys.Date()\npassado <- as.Date(\"2023-01-01\")\ndiferenca <- hoje - passado\nprint(diferenca)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "code": "hoje <- Sys.Date()\npassado <- as.Date(\"2023-01-01\")\ndiferenca <- hoje - passado\nprint(diferenca)"
         }
       ],
       "questions": [
@@ -1594,15 +1556,13 @@
       "lesson": [
         {
           "title": "Tratamento de Strings com stringr",
-          "body": "O processamento de texto no R se torna amigável com o pacote `stringr`. Diferente das funções base difíceis de memorizar, aqui elas começam pelo prefixo `str_`. Desde extrair e substituir caracteres (`str_replace`) até detectar padrões (`str_detect`), lidar com texto vira rotina fácil.\n\nCompreender este fundamento é crucial em R. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "# library(stringr)\ntextos <- c(\"Maçã verde\", \"Banana\")\n# str_detect(textos, \"verde\")\n# usando base R:\ngrepl(\"verde\", textos)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O processamento de texto no R se torna amigável com o pacote `stringr`. Diferente das funções base difíceis de memorizar, aqui elas começam pelo prefixo `str_`. Desde extrair e substituir caracteres (`str_replace`) até detectar padrões (`str_detect`), lidar com texto vira rotina fácil.\n\nFunções como str_split() dividem uma string em partes com base em um separador, e str_trim() remove espaços em branco no início e no fim do texto, um problema comum em dados importados de planilhas. Por seguir uma nomenclatura consistente e previsível (sempre str_algumacoisa), o pacote reduz drasticamente a curva de aprendizado comparado às funções nativas do R para manipulação de texto.",
+          "code": "# library(stringr)\ntextos <- c(\"Maçã verde\", \"Banana\")\n# str_detect(textos, \"verde\")\n# usando base R:\ngrepl(\"verde\", textos)"
         },
         {
           "title": "Juntando e Dividindo Strings",
           "body": "Combinar palavras com `paste()` ou `paste0()` é extremamente comum (por exemplo, construir caminhos de arquivos ou rótulos para gráficos dinâmicos). Do lado inverso, funções como `str_split()` desmembram um parágrafo denso num vetor de palavras que pode ser minerado e tabulado.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "nome <- \"Arquivo\"\nextensao <- \".csv\"\ncompleto <- paste0(nome, \"_dados\", extensao)\nprint(completo)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "code": "nome <- \"Arquivo\"\nextensao <- \".csv\"\ncompleto <- paste0(nome, \"_dados\", extensao)\nprint(completo)"
         }
       ],
       "questions": [
@@ -1674,15 +1634,13 @@
       "lesson": [
         {
           "title": "Valores Ausentes: Lidando com NA",
-          "body": "Na vida real, bases de dados sempre possuem lacunas. O R os representa com o tipo especial `NA` (Not Available). Funções que operam sobre NAs costumam retornar NA. A função `is.na()` permite encontrar e isolar estes valores ausentes no seu Data Frame.\n\nCompreender este fundamento é crucial em R. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "dados <- c(10, 20, NA, 40)\ntem_na <- is.na(dados)\nprint(tem_na)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Na vida real, bases de dados sempre possuem lacunas. O R os representa com o tipo especial `NA` (Not Available). Funções que operam sobre NAs costumam retornar NA. A função `is.na()` permite encontrar e isolar estes valores ausentes no seu Data Frame.\n\nPara tratar valores ausentes, é comum usar na.omit() para remover linhas inteiras com qualquer NA, ou substituir os valores faltantes por uma medida central (como a média da coluna) usando funções condicionais. A escolha da estratégia depende do quanto essa ausência de dado é aleatória ou se segue um padrão que poderia enviesar a análise se simplesmente descartado.",
+          "code": "dados <- c(10, 20, NA, 40)\ntem_na <- is.na(dados)\nprint(tem_na)"
         },
         {
           "title": "Omitindo ou Substituindo NAs",
           "body": "Temos duas grandes abordagens: remover completamente a linha que tem NA usando `na.omit()`, ou então tentar a técnica de \"imputação\", preenchendo o vazio com o valor da média ou mediana usando o pacote tidyr e a função `replace_na()`. A escolha afeta todo o resultado final.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "dados <- data.frame(a = c(1, 2, NA, 4))\ndados_limpos <- na.omit(dados)\nprint(dados_limpos)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "code": "dados <- data.frame(a = c(1, 2, NA, 4))\ndados_limpos <- na.omit(dados)\nprint(dados_limpos)"
         }
       ],
       "questions": [
@@ -1754,15 +1712,13 @@
       "lesson": [
         {
           "title": "Combinando Tabelas: left_join()",
-          "body": "Na mesma lógica do SQL, o `left_join()` combina dois conjuntos de dados através de uma ou mais chaves (colunas em comum), mantendo todas as linhas da tabela da esquerda e adicionando as correspondências da tabela da direita, crucial quando juntamos fontes diferentes.\n\nCompreender este fundamento é crucial em R. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "df1 <- data.frame(id=1:2, valor=c(100, 200))\ndf2 <- data.frame(id=c(1,3), nome=c(\"A\",\"C\"))\nmerge(df1, df2, by=\"id\", all.x=TRUE)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Na mesma lógica do SQL, o `left_join()` combina dois conjuntos de dados através de uma ou mais chaves (colunas em comum), mantendo todas as linhas da tabela da esquerda e adicionando as correspondências da tabela da direita, crucial quando juntamos fontes diferentes.\n\nAlém do left_join(), o dplyr oferece inner_join() (mantém apenas linhas com correspondência em ambas as tabelas), right_join() (o inverso do left) e full_join() (mantém todas as linhas de ambas, preenchendo com NA onde não há correspondência), cada um adequado a um cenário diferente de combinação de fontes de dados.",
+          "code": "df1 <- data.frame(id=1:2, valor=c(100, 200))\ndf2 <- data.frame(id=c(1,3), nome=c(\"A\",\"C\"))\nmerge(df1, df2, by=\"id\", all.x=TRUE)"
         },
         {
           "title": "Outros Tipos de Junção (Joins)",
           "body": "Existem outras formas de unir dados no R: O `inner_join()` mantém apenas as linhas cujas chaves coincidem em ambas as tabelas; O `full_join()` traz tudo de ambas as tabelas (preenchendo vazios com NA). Escolher o join correto evita a perda de registros fundamentais do projeto.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "# library(dplyr)\n# inner_join(clientes, compras, by=\"cliente_id\")\n# Full join preenche sem-match com NA\nprint(\"Demonstração de Joins conceituais\")",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "code": "# library(dplyr)\n# inner_join(clientes, compras, by=\"cliente_id\")\n# Full join preenche sem-match com NA\nprint(\"Demonstração de Joins conceituais\")"
         }
       ],
       "questions": [
@@ -1834,15 +1790,13 @@
       "lesson": [
         {
           "title": "Dados em Formato Largo vs Longo (tidyr)",
-          "body": "Modelos estatísticos e o pacote ggplot2 geralmente preferem que os dados estejam no formato \"Longo\", enquanto humanos gostam do formato \"Largo\". O formato Tidy (cada variável é uma coluna, cada observação é uma linha) previne muitos erros no cruzamento de dados na análise exploratória.\n\nCompreender este fundamento é crucial em R. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "# O conceito Tidy Data é fundamental\ndf_largo <- data.frame(id=1, ano_2010=5, ano_2020=10)\nprint(\"Dados largos precisam pivotar para visualização no R\")",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Modelos estatísticos e o pacote ggplot2 geralmente preferem que os dados estejam no formato \"Longo\", enquanto humanos gostam do formato \"Largo\". O formato Tidy (cada variável é uma coluna, cada observação é uma linha) previne muitos erros no cruzamento de dados na análise exploratória.\n\nA função pivot_longer() do tidyr transforma colunas em linhas (formato largo para longo), enquanto pivot_wider() faz o inverso, transformando valores únicos de uma coluna em novas colunas. Dominar essas transformações é essencial porque muitas ferramentas de análise e visualização no R esperam especificamente o formato longo para funcionar corretamente.",
+          "code": "# O conceito Tidy Data é fundamental\ndf_largo <- data.frame(id=1, ano_2010=5, ano_2020=10)\nprint(\"Dados largos precisam pivotar para visualização no R\")"
         },
         {
           "title": "Pivotamento: pivot_longer() e pivot_wider()",
           "body": "O pacote tidyr nos dá duas ferramentas cirúrgicas. `pivot_longer()` coleta as várias colunas espalhadas e as concentra em menos colunas (aumenta o nº de linhas). Já `pivot_wider()` espalha categorias de uma coluna por diversas colunas (deixando os dados compactos para apresentar tabelas).\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "# library(tidyr)\n# pivot_longer(df, cols=starts_with(\"ano\"), names_to=\"ano\", values_to=\"qtd\")\nprint(\"Transformando os dados com pivotamento\")",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "code": "# library(tidyr)\n# pivot_longer(df, cols=starts_with(\"ano\"), names_to=\"ano\", values_to=\"qtd\")\nprint(\"Transformando os dados com pivotamento\")"
         }
       ],
       "questions": [
@@ -1914,15 +1868,13 @@
       "lesson": [
         {
           "title": "Modelagem Estatística: Regressão Linear Simples",
-          "body": "A regressão linear em R é extremamente simples graças à função `lm()`. Ela é usada para prever o valor de uma variável dependente (y) baseando-se em uma variável explicativa (x), utilizando o formato de fórmula `y ~ x`. O modelo mostra o efeito de x sobre y através da inclinação da reta ajustada.\n\nCompreender este fundamento é crucial em R. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "x <- 1:10\ny <- 2 * x + rnorm(10, sd=1)\nmodelo <- lm(y ~ x)\nprint(coef(modelo))",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "A regressão linear em R é extremamente simples graças à função `lm()`. Ela é usada para prever o valor de uma variável dependente (y) baseando-se em uma variável explicativa (x), utilizando o formato de fórmula `y ~ x`. O modelo mostra o efeito de x sobre y através da inclinação da reta ajustada.\n\nO objeto retornado por lm() armazena não só os coeficientes estimados, mas também estatísticas de qualidade do ajuste, acessíveis através da função summary(modelo), como o R-quadrado (que indica quanto da variação de y é explicada por x) e o p-valor de cada coeficiente, que avalia se a relação encontrada é estatisticamente significativa.",
+          "code": "x <- 1:10\ny <- 2 * x + rnorm(10, sd=1)\nmodelo <- lm(y ~ x)\nprint(coef(modelo))"
         },
         {
           "title": "Interpretando o Resumo do Modelo",
           "body": "Após aplicar `lm()`, o comando `summary(modelo)` exibe o r-quadrado (quanto os dados explicam do modelo) e os p-values. Valores P baixos (geralmente <0.05) indicam que há forte evidência de que a relação observada não se deve apenas ao acaso. A análise crítica destes dados é o coração da estatística.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "modelo <- lm(mpg ~ wt, data = mtcars)\nresumo <- summary(modelo)\nprint(resumo$r.squared)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "code": "modelo <- lm(mpg ~ wt, data = mtcars)\nresumo <- summary(modelo)\nprint(resumo$r.squared)"
         }
       ],
       "questions": [
@@ -1994,15 +1946,13 @@
       "lesson": [
         {
           "title": "Regressão Múltipla",
-          "body": "Quando a sua resposta depende de vários fatores, a regressão passa a ter preditores extras. No R, adicionamos variáveis independentes no modelo com um `+` (ex: `lm(y ~ x1 + x2)`). Isso permite ao pesquisador controlar os efeitos e isolar influências para análises preditivas mais realistas do fenômeno.\n\nCompreender este fundamento é crucial em R. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "modelo_mult <- lm(mpg ~ wt + hp + qsec, data = mtcars)\ncoeficientes <- coef(modelo_mult)\nprint(coeficientes)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Quando a sua resposta depende de vários fatores, a regressão passa a ter preditores extras. No R, adicionamos variáveis independentes no modelo com um `+` (ex: `lm(y ~ x1 + x2)`). Isso permite ao pesquisador controlar os efeitos e isolar influências para análises preditivas mais realistas do fenômeno.\n\nUm cuidado importante na regressão múltipla é a multicolinearidade: quando dois preditores estão fortemente correlacionados entre si, fica difícil isolar o efeito individual de cada um sobre a variável resposta, e os coeficientes estimados podem se tornar instáveis. Métricas como o VIF (Variance Inflation Factor) ajudam a diagnosticar esse problema antes de confiar nas conclusões do modelo.",
+          "code": "modelo_mult <- lm(mpg ~ wt + hp + qsec, data = mtcars)\ncoeficientes <- coef(modelo_mult)\nprint(coeficientes)"
         },
         {
           "title": "Previsões com a função predict()",
           "body": "Construir o modelo é metade do caminho; aplicá-lo em dados novos gera valor. Com a função genérica `predict()`, você passa o modelo criado e um novo Data Frame e recebe o valor exato estimado pela equação. Podem ser gerados também intervalos de confiança em volta da estimativa obtida.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "modelo <- lm(mpg ~ wt, data = mtcars)\nnovos_dados <- data.frame(wt = c(2.5, 3.0))\nprevisao <- predict(modelo, novos_dados)\nprint(previsao)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "code": "modelo <- lm(mpg ~ wt, data = mtcars)\nnovos_dados <- data.frame(wt = c(2.5, 3.0))\nprevisao <- predict(modelo, novos_dados)\nprint(previsao)"
         }
       ],
       "questions": [
@@ -2074,15 +2024,13 @@
       "lesson": [
         {
           "title": "Regressão Logística para Classificação",
-          "body": "Para prever desfechos binários (ex: Sim/Não, Venceu/Perdeu), a regressão linear normal falha. O R usa o Modelo Linear Generalizado através da função `glm()` com o parâmetro `family=binomial`. Ele ajusta as probabilidades usando uma curva sigmoide em vez de uma linha reta, prevendo entre 0 e 1.\n\nCompreender este fundamento é crucial em R. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "dados <- mtcars\ndados$am_bin <- as.factor(dados$am)\nmod_log <- glm(am_bin ~ mpg, data=dados, family=binomial)\nprint(coef(mod_log))",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Para prever desfechos binários (ex: Sim/Não, Venceu/Perdeu), a regressão linear normal falha. O R usa o Modelo Linear Generalizado através da função `glm()` com o parâmetro `family=binomial`. Ele ajusta as probabilidades usando uma curva sigmoide em vez de uma linha reta, prevendo entre 0 e 1.\n\nOs coeficientes de uma regressão logística são interpretados em termos de log-odds (logaritmo da razão de chances), e costumam ser convertidos para odds ratios (exponenciando o coeficiente) para facilitar a interpretação prática: um odds ratio de 2, por exemplo, significa que o evento é duas vezes mais provável a cada unidade de aumento na variável explicativa.",
+          "code": "dados <- mtcars\ndados$am_bin <- as.factor(dados$am)\nmod_log <- glm(am_bin ~ mpg, data=dados, family=binomial)\nprint(coef(mod_log))"
         },
         {
           "title": "Interpretação e Matriz de Confusão",
           "body": "A avaliação de previsões logísticas exige cruzar a decisão (Sim/Não baseada na probabilidade > 0.5) contra a classe verdadeira. Essa tabulação se chama Matriz de Confusão, extraída com a função nativa `table()`. Com ela avaliamos se o modelo cometeu muitos Falsos Positivos ou Falsos Negativos.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "probabilidades <- runif(10)\nclasses_previstas <- ifelse(probabilidades > 0.5, 1, 0)\nclasses_reais <- sample(c(0, 1), 10, replace = TRUE)\ntable(Previsto=classes_previstas, Real=classes_reais)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "code": "probabilidades <- runif(10)\nclasses_previstas <- ifelse(probabilidades > 0.5, 1, 0)\nclasses_reais <- sample(c(0, 1), 10, replace = TRUE)\ntable(Previsto=classes_previstas, Real=classes_reais)"
         }
       ],
       "questions": [
@@ -2154,15 +2102,13 @@
       "lesson": [
         {
           "title": "Gerando Relatórios com R Markdown",
-          "body": "R Markdown mescla textos (em markdown normal), códigos R e seus resultados (como gráficos e tabelas) em um único arquivo de ponta a ponta. Isso resolve a necessidade de reprodutibilidade: todos veem os passos desde a carga dos dados brutos até a conclusão documentada no formato PDF ou HTML interativo.\n\nCompreender este fundamento é crucial em R. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "# Exemplo de chunk em um arquivo .Rmd:\n# ```{r}\n# summary(mtcars)\n# ```\nprint(\"Isso executará o código dentro do relatório gerado\")",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "R Markdown mescla textos (em markdown normal), códigos R e seus resultados (como gráficos e tabelas) em um único arquivo de ponta a ponta. Isso resolve a necessidade de reprodutibilidade: todos veem os passos desde a carga dos dados brutos até a conclusão documentada no formato PDF ou HTML interativo.\n\nOs blocos de código dentro de um documento R Markdown (delimitados por três crases) podem ser configurados para mostrar ou esconder o código-fonte no documento final, controlando exatamente o que o leitor vê: só os resultados, só o código, ou ambos. Isso torna o R Markdown especialmente valioso para relatórios que precisam ser atualizados repetidamente com dados novos, sem reescrever nada manualmente.",
+          "code": "# Exemplo de chunk em um arquivo .Rmd:\n# ```{r}\n# summary(mtcars)\n# ```\nprint(\"Isso executará o código dentro do relatório gerado\")"
         },
         {
           "title": "Processo de Renderização (Knit)",
           "body": "O pacote knitr, ativado no RStudio através do botão \"Knit\", executa bloco por bloco do código R nos bastidores, coleta os outputs e injeta direto em um documento bonito usando Pandoc. Essa automatização revolucionou como estatísticos entregam seus trabalhos acadêmicos ou corporativos ao cliente.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "# rmarkdown::render(\"meu_relatorio.Rmd\", \"html_document\")\nprint(\"Knitr executa todo o processamento sequencial invisivelmente\")",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "code": "# rmarkdown::render(\"meu_relatorio.Rmd\", \"html_document\")\nprint(\"Knitr executa todo o processamento sequencial invisivelmente\")"
         }
       ],
       "questions": [
@@ -2234,15 +2180,13 @@
       "lesson": [
         {
           "title": "Acessando APIs na Nuvem (httr2 / httr)",
-          "body": "Como muitas vezes os dados não estão locais (CSV), o R interage plenamente na web através de APIs. O pacote `httr` ou `httr2` facilita enviar as requisições GET para os servidores na nuvem, obter códigos de status HTTP e retornar arquivos JSON que então são traduzidos nas nossas famosas tabelas (Data Frames).\n\nCompreender este fundamento é crucial em R. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "# library(httr)\n# res <- GET(\"https://api.github.com/users/hadley\")\n# content(res)\nprint(\"Requisição GET feita com sucesso para buscar payload remoto\")",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Como muitas vezes os dados não estão locais (CSV), o R interage plenamente na web através de APIs. O pacote `httr` ou `httr2` facilita enviar as requisições GET para os servidores na nuvem, obter códigos de status HTTP e retornar arquivos JSON que então são traduzidos nas nossas famosas tabelas (Data Frames).\n\nApós receber a resposta de uma API, a função content() do httr extrai o corpo da requisição, geralmente em formato JSON, que então pode ser convertido para uma lista R com fromJSON() (do pacote jsonlite) e finalmente organizado em um Data Frame tabular, completando o caminho de dados brutos da nuvem até uma tabela pronta para análise.",
+          "code": "# library(httr)\n# res <- GET(\"https://api.github.com/users/hadley\")\n# content(res)\nprint(\"Requisição GET feita com sucesso para buscar payload remoto\")"
         },
         {
           "title": "Lidando com Arquivos JSON no R",
           "body": "O JSON (JavaScript Object Notation) se converte nativamente no R como listas. O pacote `jsonlite` tem a fantástica função `fromJSON()` que tenta, com bastante sucesso, converter JSONs complexos e estruturados em listas de Data Frames automaticamente prontos e limpos para análise relacional no R base.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "# library(jsonlite)\n# dados <- fromJSON('[{\"id\":1, \"nome\":\"Ana\"}, {\"id\":2, \"nome\":\"Bia\"}]')\n# print(dados)\nprint(\"JSON convertido para Data Frame local\")",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "code": "# library(jsonlite)\n# dados <- fromJSON('[{\"id\":1, \"nome\":\"Ana\"}, {\"id\":2, \"nome\":\"Bia\"}]')\n# print(dados)\nprint(\"JSON convertido para Data Frame local\")"
         }
       ],
       "questions": [
@@ -2314,15 +2258,13 @@
       "lesson": [
         {
           "title": "Shiny: Web Apps Direto do R",
-          "body": "O framework Shiny transforma os seus painéis de análise num aplicativo web interativo completo sem que o analista precise saber uma linha sequer de HTML, CSS ou JavaScript. O usuário comum muda um input deslizante (slider) na web, o R base recalcula na infraestrutura e devolve instantaneamente um novo gráfico.\n\nCompreender este fundamento é crucial em R. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "# library(shiny)\n# ui <- fluidPage( titlePanel(\"Meu App\") )\n# server <- function(input, output) {}\n# shinyApp(ui = ui, server = server)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O framework Shiny transforma os seus painéis de análise num aplicativo web interativo completo sem que o analista precise saber uma linha sequer de HTML, CSS ou JavaScript. O usuário comum muda um input deslizante (slider) na web, o R base recalcula na infraestrutura e devolve instantaneamente um novo gráfico.\n\nUm aplicativo Shiny é dividido em duas partes principais: a UI (interface do usuário, que define os elementos visuais como sliders e gráficos) e o server (a lógica que reage às mudanças na UI e recalcula os resultados). Essa separação clara entre apresentação e lógica é o que permite que analistas sem experiência em desenvolvimento web construam painéis interativos completos usando apenas R.",
+          "code": "# library(shiny)\n# ui <- fluidPage( titlePanel(\"Meu App\") )\n# server <- function(input, output) {}\n# shinyApp(ui = ui, server = server)"
         },
         {
           "title": "Reatividade no Shiny",
           "body": "A mágica do Shiny é a Reatividade. A interface e os gráficos estão amarrados a variáveis dinâmicas. Sempre que uma dessas variáveis (ex: uma data no calendário do site) é alterada pelo visitante, todas as funções dependentes disparam um recalculo, recarregando os blocos (outputs) sem recarregar a página inteira.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "# No server do Shiny:\n# output$grafico <- renderPlot({\n#   hist(rnorm(input$quantidade_obs))\n# })\nprint(\"Bloco reativo responde a input$quantidade_obs\")",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "code": "# No server do Shiny:\n# output$grafico <- renderPlot({\n#   hist(rnorm(input$quantidade_obs))\n# })\nprint(\"Bloco reativo responde a input$quantidade_obs\")"
         }
       ],
       "questions": [
@@ -2395,14 +2337,12 @@
         {
           "title": "Depuração de Código: debug()",
           "body": "Bugs são inevitáveis. A função `debug(minha_funcao)` faz com que, toda vez que sua função for ativada, o R pause a execução do código e abra o navegador no modo passo-a-passo. Ali, você verifica o valor de cada variável ambiente, linha por linha. Usar `undebug()` volta ao normal, economizando horas de sofrimento com o print.",
-          "code": "soma_estranha <- function(a, b) { a + b }\n# debug(soma_estranha)\n# soma_estranha(2, \"três\") # Causará erro detectado na depuração\nprint(\"Modo debug habilitado\")",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "code": "soma_estranha <- function(a, b) { a + b }\n# debug(soma_estranha)\n# soma_estranha(2, \"três\") # Causará erro detectado na depuração\nprint(\"Modo debug habilitado\")"
         },
         {
           "title": "Boas Práticas e Organização de Projetos",
           "body": "Ao invés de definir diretórios absolutos fixos (`setwd(\"C:/user/...\")`), é altamente recomendável utilizar os R Projects no RStudio. Eles encapsulam os caminhos (paths) relativos a raiz do projeto e garantem que qualquer analista conseguirá rodar o seu código sem precisar quebrar a cabeça mudando strings locais.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "# Use caminhos relativos:\n# dados <- read.csv(\"data/brutos.csv\")\nprint(\"Projeto R portátil, dispensando uso fixo de setwd() na equipe.\")",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "code": "# Use caminhos relativos:\n# dados <- read.csv(\"data/brutos.csv\")\nprint(\"Projeto R portátil, dispensando uso fixo de setwd() na equipe.\")"
         }
       ],
       "questions": [
