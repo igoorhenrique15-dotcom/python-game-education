@@ -73,16 +73,16 @@
       "summary": "Aprenda sobre Complexidade.",
       "lesson": [
         {
-          "title": "Notação Big O e Tempo Constante O(1)",
-          "body": "A notação Big O descreve o pior caso de tempo de execução de um algoritmo. Operações O(1) levam o mesmo tempo independente do tamanho dos dados (ex: acessar elemento de um array pelo índice), sendo a eficiência ideal.\n\nCompreender este fundamento é crucial em Estruturas de Dados e Algoritmos. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "def get_first_element(arr):\n    # O(1) tempo e O(1) espaço\n    return arr[0] if arr else None",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Notação Big O e Análise Assintótica",
+          "body": "A notação Big O é a linguagem matemática padrão usada para descrever o limite superior do tempo de execução ou consumo de memória de um algoritmo conforme o volume de entrada (n) tende ao infinito.\n\nEm vez de medir o tempo em segundos físicos — que oscila drasticamente dependendo do processador, do sistema operacional e de outras aplicações rodando em segundo plano —, a análise assintótica quantifica o número de operações elementares executadas. O Big O foca no pior cenário possível (worst-case scenario), fornecendo garantias teóricas sólidas de que o algoritmo nunca terá um desempenho inferior a essa curva de crescimento.",
+          "tip": "Na indústria e em code reviews, avalie sempre a complexidade sob a ótica do pior cenário (Big O). Isso evita que uma rota de API com entrada adversa derrube servidores por esgotamento de CPU.",
+          "code": "# Acesso direto a elementos por índice em tempo constante O(1)\ndef obter_primeiro_elemento(lista: list[int]) -> int | None:\n    # A CPU calcula o endereço de memória instantaneamente: base + 0\n    return lista[0] if lista else None\n\nnumeros = [10, 20, 30, 40, 50]\nprint(obter_primeiro_elemento(numeros))  # Saída: 10"
         },
         {
-          "title": "Tempo Linear O(n) e Quadrático O(n²)",
-          "body": "O(n) ocorre quando iteramos sobre todos os n elementos (ex: busca linear). O(n²) geralmente surge com loops aninhados comparando pares, sendo ineficiente para grandes entradas.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "def find_max(arr):\n    # O(n) tempo, iteramos n vezes\n    max_val = arr[0]\n    for num in arr:\n        if num > max_val:\n            max_val = num\n    return max_val",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Classes de Complexidade: O(1), O(log n) e O(n)",
+          "body": "As classes fundamentais de complexidade estabelecem a velocidade com que o algoritmo responde ao crescimento dos dados.\n\nO tempo constante O(1) executa no mesmo instante independentemente de processar 10 ou 10 bilhões de itens (ex: leitura de array por índice). O tempo logarítmico O(log n) divide o espaço de busca pela metade a cada iteração (como na busca binária), sendo incrivelmente eficiente: processa 1 milhão de elementos em apenas 20 passos! Já o tempo linear O(n) cresce em proporção exata ao tamanho da entrada, percorrendo cada elemento uma única vez.",
+          "tip": "Sempre que você tiver uma coleção ordenada, prefira a busca binária O(log n) em vez de iterar elemento por elemento com busca linear O(n). A diferença em larga escala é brutal.",
+          "code": "# Busca binária: complexidade de tempo O(log n) e espaço O(1)\ndef busca_binaria(vetor_ordenado: list[int], alvo: int) -> int:\n    inicio, fim = 0, len(vetor_ordenado) - 1\n    while inicio <= fim:\n        meio = (inicio + fim) // 2\n        if vetor_ordenado[meio] == alvo:\n            return meio  # Índice encontrado\n        elif vetor_ordenado[meio] < alvo:\n            inicio = meio + 1\n        else:\n            fim = meio - 1\n    return -1  # Não encontrado"
         }
       ],
       "questions": [
@@ -153,16 +153,16 @@
       "summary": "Aprenda sobre Complexidade.",
       "lesson": [
         {
-          "title": "Notação Big O e Tempo Constante O(1)",
-          "body": "A notação Big O descreve o pior caso de tempo de execução de um algoritmo. Operações O(1) levam o mesmo tempo independente do tamanho dos dados (ex: acessar elemento de um array pelo índice), sendo a eficiência ideal.\n\nCompreender este fundamento é crucial em Estruturas de Dados e Algoritmos. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "def get_first_element(arr):\n    # O(1) tempo e O(1) espaço\n    return arr[0] if arr else None",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Complexidade Linearítmica O(n log n) e Quadrática O(n²)",
+          "body": "A complexidade O(n log n) é o limite inferior matemático para ordenações baseadas em comparações no pior caso (como Merge Sort). Ela surge naturalmente quando dividimos recursivamente os dados pela metade (log n níveis) e executamos trabalho linear O(n) em cada nível de recomposição.\n\nPor outro lado, O(n²) geralmente surge de laços aninhados independentes que comparam todos os pares possíveis. Enquanto n = 1.000 resulta em 1 milhão de operações para O(n²), n = 1.000.000 exigiria 1 trilhão de passos, tornando sistemas modernos inoperantes.",
+          "tip": "Dois loops for aninhados percorrendo a mesma coleção quase sempre denunciam um algoritmo O(n²). Tente pré-ordenar a coleção para O(n log n) ou usar Tabelas Hash para atingir O(n).",
+          "code": "# Comparação de pares O(n²) vs Abordagem Linear O(n)\ndef tem_duplicados_lento(nums: list[int]) -> bool:\n    for i in range(len(nums)):\n        for j in range(i + 1, len(nums)):\n            if nums[i] == nums[j]:\n                return True\n    return False\n\ndef tem_duplicados_rapido(nums: list[int]) -> bool:\n    vistos = set()  # Hash Set para busca O(1)\n    for n in nums:\n        if n in vistos: return True\n        vistos.add(n)\n    return False"
         },
         {
-          "title": "Tempo Linear O(n) e Quadrático O(n²)",
-          "body": "O(n) ocorre quando iteramos sobre todos os n elementos (ex: busca linear). O(n²) geralmente surge com loops aninhados comparando pares, sendo ineficiente para grandes entradas.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "def find_max(arr):\n    # O(n) tempo, iteramos n vezes\n    max_val = arr[0]\n    for num in arr:\n        if num > max_val:\n            max_val = num\n    return max_val",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Complexidades Exponenciais O(2ⁿ) e Fatoriais O(n!)",
+          "body": "Algoritmos com complexidade O(2ⁿ) ou O(n!) pertencem à classe de problemas combinatórios intratáveis para entradas médias ou grandes.\n\nO tempo exponencial O(2ⁿ) dobra a cada novo elemento inserido, característico de algoritmos ingênuos que geram todos os subconjuntos possíveis (power sets) ou ramificações recursivas redundantes como a sequência de Fibonacci ingênua. O tempo fatorial O(n!) surge na enumeração de todas as permutações possíveis (ex: o problema do Caixeiro-Viajante por força bruta), tornando-se inviável já a partir de n = 20.",
+          "tip": "Problemas com explosão combinatória O(2ⁿ) frequentemente escondem subproblemas sobrepostos. Nesses casos, aplique Programação Dinâmica ou algoritmos gulosos para reduzir drasticamente o tempo.",
+          "code": "# O(2ⁿ) Recursão ingênua com árvore de chamadas redundantes\ndef fib_exponencial(n: int) -> int:\n    if n <= 1: return n\n    return fib_exponencial(n - 1) + fib_exponencial(n - 2)\n\n# O(n) Otimizado com Memoization (Programação Dinâmica)\ndef fib_memo(n: int, cache: dict = None) -> int:\n    if cache is None: cache = {}\n    if n in cache: return cache[n]\n    if n <= 1: return n\n    cache[n] = fib_memo(n - 1, cache) + fib_memo(n - 2, cache)\n    return cache[n]"
         }
       ],
       "questions": [
@@ -233,16 +233,16 @@
       "summary": "Aprenda sobre Complexidade.",
       "lesson": [
         {
-          "title": "Notação Big O e Tempo Constante O(1)",
-          "body": "A notação Big O descreve o pior caso de tempo de execução de um algoritmo. Operações O(1) levam o mesmo tempo independente do tamanho dos dados (ex: acessar elemento de um array pelo índice), sendo a eficiência ideal.\n\nCompreender este fundamento é crucial em Estruturas de Dados e Algoritmos. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "def get_first_element(arr):\n    # O(1) tempo e O(1) espaço\n    return arr[0] if arr else None",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Complexidade de Espaço (Space Complexity) e Stack Frames",
+          "body": "A complexidade de espaço mede quanta memória volátil adicional o algoritmo requer para executar em função do tamanho da entrada (n).\n\nEssa memória divide-se em duas regiões críticas: o espaço auxiliar na Heap (alocação dinâmica de vetores, mapas, conjuntos) e o espaço na Stack (pilha de execução do sistema). Toda chamada de função recursiva empilha um novo stack frame contendo variáveis locais e ponteiros de retorno. Uma recursão descontrolada com profundidade n consome O(n) na pilha e causa o erro fatal de StackOverflow.",
+          "tip": "Algoritmos in-place têm complexidade de espaço auxiliar O(1), pois reordenam ou modificam a própria estrutura de dados recebida sem alocar coleções espelho, economizando preciosos megabytes.",
+          "code": "# O(n) espaço auxiliar: cria uma nova lista clonada\ndef inverter_com_copia(arr: list[int]) -> list[int]:\n    return [arr[i] for i in range(len(arr) - 1, -1, -1)]\n\n# O(1) espaço auxiliar: inverte in-place usando two pointers\ndef inverter_in_place(arr: list[int]) -> None:\n    i, j = 0, len(arr) - 1\n    while i < j:\n        arr[i], arr[j] = arr[j], arr[i]\n        i += 1\n        j -= 1"
         },
         {
-          "title": "Tempo Linear O(n) e Quadrático O(n²)",
-          "body": "O(n) ocorre quando iteramos sobre todos os n elementos (ex: busca linear). O(n²) geralmente surge com loops aninhados comparando pares, sendo ineficiente para grandes entradas.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "def find_max(arr):\n    # O(n) tempo, iteramos n vezes\n    max_val = arr[0]\n    for num in arr:\n        if num > max_val:\n            max_val = num\n    return max_val",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Análise Amortizada e Redimensionamento de Arrays Dinâmicos",
+          "body": "A análise amortizada avalia o custo médio por operação ao longo de uma sequência inteira de ações, em cenários onde operações caras ocorrem com raridade compensada por muitas operações baratas.\n\nO exemplo mais clássico é o append em vetores dinâmicos (Python list, C++ std::vector, Java ArrayList). Quando a capacidade interna do array se esgota, aloca-se um novo bloco de memória com o dobro da capacidade anterior e todos os n elementos são copiados (operação O(n)). Como essa duplicação só ocorre a cada dobro de inserções, a média amortizada de cada append é estritamente O(1).",
+          "tip": "Se você já sabe de antemão que uma lista receberá 1 milhão de registros, pré-aloque seu tamanho. Isso poupa o processador de dezenas de realocações e cópias de blocos de memória na heap.",
+          "code": "# Simulação conceitual de vetor dinâmico com realocação geométrica\nclass VetorDinamico:\n    def __init__(self):\n        self.capacidade = 2\n        self.tamanho = 0\n        self.dados = [None] * self.capacidade\n\n    def append(self, valor):\n        if self.tamanho == self.capacidade:\n            self.capacidade *= 2  # Fator de crescimento 2x\n            novo = [None] * self.capacidade\n            for i in range(self.tamanho):\n                novo[i] = self.dados[i]\n            self.dados = novo\n        self.dados[self.tamanho] = valor\n        self.tamanho += 1  # Custo amortizado: O(1)"
         }
       ],
       "questions": [
@@ -313,16 +313,16 @@
       "summary": "Aprenda sobre Arrays e Strings.",
       "lesson": [
         {
-          "title": "Técnica dos Dois Ponteiros (Two Pointers)",
-          "body": "A técnica de dois ponteiros envolve usar dois índices iterando pela estrutura de dados para resolver problemas em arrays ordenados ou palíndromos, otimizando o tempo de O(n²) para O(n).\n\nCompreender este fundamento é crucial em Estruturas de Dados e Algoritmos. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "def is_palindrome(s: str) -> bool:\n    left, right = 0, len(s) - 1\n    while left < right:\n        if s[left] != s[right]:\n            return False\n        left += 1\n        right -= 1\n    return True",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Memória Contígua, Cache Locality e Acesso Direto O(1)",
+          "body": "Arrays representam a estrutura de dados mais elementar da computação: uma sequência de elementos contíguos na memória física RAM.\n\nComo cada item possui tamanho de bytes uniforme e previsível, o processador calcula o endereço físico de qualquer índice i instantaneamente por aritmética de ponteiros: endereço = base + (i * tamanho_tipo). Isso garante acesso em O(1) e tira proveito máximo da hierarquia de memória da CPU: ao acessar um elemento, o hardware pré-carrega uma Cache Line inteira (normalmente 64 bytes) para a Cache L1/L2, gerando altíssima localidade espacial.",
+          "tip": "Vetores contíguos são ordens de grandeza mais rápidos do que listas encadeadas na prática moderna, pois evitam constantes cache misses que forçam a CPU a esperar centenas de ciclos pela RAM.",
+          "code": "import array\n\n# Vetor com alocação contígua em memória (C-level integers)\nvetor = array.array('i', [10, 20, 30, 40, 50])\n\n# O processador localiza o valor no índice 3 instantaneamente:\n# endereco_base + (3 * sizeof(int)) -> O(1) tempo constante\nprint(vetor[3])  # Saída: 40"
         },
         {
-          "title": "Janela Deslizante (Sliding Window)",
-          "body": "Sliding window é ideal para problemas de subarrays contíguos. Mantemos uma 'janela' (dois índices) que se expande e contrai, processando dados em O(n) sem recalcular a cada passo.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "def max_sum_subarray(arr, k):\n    max_sum, window_sum = 0, sum(arr[:k])\n    for i in range(len(arr) - k):\n        window_sum = window_sum - arr[i] + arr[i+k]\n        max_sum = max(max_sum, window_sum)\n    return max(max_sum, sum(arr[:k]))",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Inserções, Deleções e Imutabilidade de Strings na Heap",
+          "body": "Apesar da leitura O(1), manipular o meio de um array impõe custos pesados: inserir ou remover um elemento no índice zero obriga o sistema operacional a deslocar (shift) todos os n elementos subsequentes em O(n).\n\nAlém disso, na maioria das linguagens de alto nível (como Python, JavaScript, Java e C#), Strings são objetos imutáveis na Heap. Toda vez que você concatena um caractere a uma string existente com +, o interpretador não altera a memória original: ele aloca um bloco inteiramente novo e copia todos os caracteres anteriores, gerando uma complexidade oculta e catastrófica de O(n²).",
+          "tip": "Nunca concatene strings repetidamente dentro de loops com o operador +. Use ''.join(lista) em Python ou StringBuilder em Java/C# para acumular os dados em O(n) linear.",
+          "code": "# Abordagem ineficiente O(n²): aloca novas strings a cada iteração\ndef concatenar_lento(palavras: list[str]) -> str:\n    resultado = \"\"\n    for p in palavras:\n        resultado += p + \" \"  # Copia todo o texto anterior repetidamente\n    return resultado\n\n# Abordagem eficiente O(n): constrói buffer único na memória\ndef concatenar_rapido(palavras: list[str]) -> str:\n    return \" \".join(palavras)  # Aloca uma única vez com tamanho exato"
         }
       ],
       "questions": [
@@ -394,15 +394,15 @@
       "lesson": [
         {
           "title": "Técnica dos Dois Ponteiros (Two Pointers)",
-          "body": "A técnica de dois ponteiros envolve usar dois índices iterando pela estrutura de dados para resolver problemas em arrays ordenados ou palíndromos, otimizando o tempo de O(n²) para O(n).\n\nCompreender este fundamento é crucial em Estruturas de Dados e Algoritmos. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "def is_palindrome(s: str) -> bool:\n    left, right = 0, len(s) - 1\n    while left < right:\n        if s[left] != s[right]:\n            return False\n        left += 1\n        right -= 1\n    return True",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "A técnica dos dois ponteiros utiliza duas variáveis de índice que caminham de forma coordenada através de uma sequência linear.\n\nEssa abordagem é comumente empregada em duas configurações: ponteiros convergentes (um no início e outro no final, movendo-se em direção ao centro) e ponteiros direcionais ou com velocidades distintas (slow e fast pointers). Ao transformar buscas aninhadas que comparariam pares de valores em uma varredura coordenada baseada na ordenação, a técnica reduz a complexidade de tempo de O(n²) para O(n) com espaço O(1).",
+          "tip": "Para encontrar pares que somam um valor alvo em um array não ordenado, pondere o trade-off: ordenar o array O(n log n) e aplicar dois ponteiros O(n) com espaço O(1), ou usar Hash Set O(n) tempo com espaço O(n).",
+          "code": "# Localiza dois números em array ordenado que somam o alvo em O(n)\ndef two_sum_ordenado(nums: list[int], alvo: int) -> list[int]:\n    esquerda, direita = 0, len(nums) - 1\n    while esquerda < direita:\n        soma = nums[esquerda] + nums[direita]\n        if soma == alvo:\n            return [esquerda, direita]\n        elif soma < alvo:\n            esquerda += 1  # Precisamos de um valor maior\n        else:\n            direita -= 1   # Precisamos de um valor menor\n    return []"
         },
         {
-          "title": "Janela Deslizante (Sliding Window)",
-          "body": "Sliding window é ideal para problemas de subarrays contíguos. Mantemos uma 'janela' (dois índices) que se expande e contrai, processando dados em O(n) sem recalcular a cada passo.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "def max_sum_subarray(arr, k):\n    max_sum, window_sum = 0, sum(arr[:k])\n    for i in range(len(arr) - k):\n        window_sum = window_sum - arr[i] + arr[i+k]\n        max_sum = max(max_sum, window_sum)\n    return max(max_sum, sum(arr[:k]))",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Manipulação In-Place e Rotação Eficiente de Vetores",
+          "body": "Manipulação in-place consiste em alterar a disposição física dos elementos dentro do próprio buffer original de memória, sem alocar vetores secundários na heap.\n\nUm dos exemplos mais elegantes da ciência da computação é o algoritmo de rotação cíclica de vetores por k posições em tempo O(n) e espaço auxiliar O(1). Ele atinge esse resultado através de três inversões sucessivas: inverte-se o array completo, depois invertem-se os primeiros k elementos e, por fim, invertem-se os elementos restantes de k até o final.",
+          "tip": "Em problemas de rotação cíclica, normalize sempre o deslocamento com o operador de módulo: k = k % tamanho. Se o vetor tem tamanho 5 e rotacionamos 52 vezes, isso equivale a apenas 2 rotações reais.",
+          "code": "# Rotaciona vetor à direita em k posições in-place: O(n) tempo, O(1) espaço\ndef rotacionar_vetor(nums: list[int], k: int) -> None:\n    n = len(nums)\n    k %= n  # Normalização contra rotações redundantes\n    \n    def inverter(i: int, j: int):\n        while i < j:\n            nums[i], nums[j] = nums[j], nums[i]\n            i += 1\n            j -= 1\n            \n    inverter(0, n - 1)  # 1. Inverte todo o vetor\n    inverter(0, k - 1)  # 2. Inverte o primeiro bloco\n    inverter(k, n - 1)  # 3. Inverte o segundo bloco"
         }
       ],
       "questions": [
@@ -473,16 +473,16 @@
       "summary": "Aprenda sobre Arrays e Strings.",
       "lesson": [
         {
-          "title": "Técnica dos Dois Ponteiros (Two Pointers)",
-          "body": "A técnica de dois ponteiros envolve usar dois índices iterando pela estrutura de dados para resolver problemas em arrays ordenados ou palíndromos, otimizando o tempo de O(n²) para O(n).\n\nCompreender este fundamento é crucial em Estruturas de Dados e Algoritmos. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "def is_palindrome(s: str) -> bool:\n    left, right = 0, len(s) - 1\n    while left < right:\n        if s[left] != s[right]:\n            return False\n        left += 1\n        right -= 1\n    return True",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Janela Deslizante (Sliding Window) de Tamanho Fixo",
+          "body": "O padrão de Janela Deslizante (Sliding Window) é uma otimização algorítmica para problemas que envolvem subconjuntos ou subarrays contíguos de uma coleção.\n\nQuando o tamanho da janela k é fixo, calcular agregadores (como soma máxima ou média) recalculando o subarray do zero a cada posição resultaria em O(n * k). Com a janela deslizante, aproveitamos o cálculo da janela anterior: ao mover a janela uma casa à direita, simplesmente subtraímos o elemento que acabou de sair pela esquerda e somamos o novo elemento que acabou de entrar pela direita, alcançando O(n) estrito.",
+          "tip": "Visualize a janela deslizante como uma moldura sobre uma fita métrica: a cada passo, exatamente uma entrada e uma saída ocorrem nas bordas, tornando a atualização O(1) por passo.",
+          "code": "# Encontra a maior soma entre todos os subarrays contíguos de tamanho k\ndef max_sub_array_sum(arr: list[int], k: int) -> int:\n    if len(arr) < k: return 0\n    soma_janela = sum(arr[:k])  # Janela inicial\n    maior_soma = soma_janela\n    \n    for i in range(k, len(arr)):\n        # Entra arr[i], sai arr[i - k] em tempo O(1)\n        soma_janela += arr[i] - arr[i - k]\n        maior_soma = max(maior_soma, soma_janela)\n        \n    return maior_soma"
         },
         {
-          "title": "Janela Deslizante (Sliding Window)",
-          "body": "Sliding window é ideal para problemas de subarrays contíguos. Mantemos uma 'janela' (dois índices) que se expande e contrai, processando dados em O(n) sem recalcular a cada passo.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "def max_sum_subarray(arr, k):\n    max_sum, window_sum = 0, sum(arr[:k])\n    for i in range(len(arr) - k):\n        window_sum = window_sum - arr[i] + arr[i+k]\n        max_sum = max(max_sum, window_sum)\n    return max(max_sum, sum(arr[:k]))",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Janela Deslizante Dinâmica e Contração de Intervalos",
+          "body": "Na variante dinâmica da Janela Deslizante, o tamanho da janela não é pré-definido, mas expande e encolhe de acordo com restrições e regras de negócio.\n\nO algoritmo utiliza dois ponteiros: o ponteiro da direita (fim) avança continuamente expandindo a janela para absorver elementos até que uma condição seja satisfeita ou violada. Quando a condição é atingida, o ponteiro da esquerda (inicio) avança para contrair a janela e encontrar o subintervalo ótimo. Como ambos os ponteiros percorrem o vetor no máximo uma vez, o tempo total é mantido em O(n).",
+          "tip": "Problemas clássicos de entrevistas como 'maior substring sem caracteres repetidos' ou 'menor subarray com soma maior que S' são resolvidos perfeitamente com janela deslizante dinâmica combinada a um Hash Map.",
+          "code": "# Comprimento da maior substring sem repetição de caracteres: O(n)\ndef sub_sem_repeticao(texto: str) -> int:\n    posicoes = {}\n    inicio = 0\n    maior_comprimento = 0\n    \n    for fim, char in enumerate(texto):\n        if char in posicoes and posicoes[char] >= inicio:\n            # Contrai a janela pulando o início para após a repetição\n            inicio = posicoes[char] + 1\n        posicoes[char] = fim\n        maior_comprimento = max(maior_comprimento, fim - inicio + 1)\n        \n    return maior_comprimento"
         }
       ],
       "questions": [
@@ -553,16 +553,16 @@
       "summary": "Aprenda sobre Listas Encadeadas.",
       "lesson": [
         {
-          "title": "Nós e Singly Linked List",
-          "body": "Listas encadeadas consistem em nós espalhados na memória. Cada nó guarda o valor e o ponteiro para o próximo nó. Inserir no início é O(1), mas buscar um elemento requer percorrer a lista O(n).\n\nCompreender este fundamento é crucial em Estruturas de Dados e Algoritmos. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "class Node:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\nhead = Node(1, Node(2, Node(3)))",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Singly Linked List: Nós, Ponteiros e Alocação Dispersa",
+          "body": "Uma Lista Simplesmente Encadeada (Singly Linked List) é uma coleção linear de nós em que cada nó armazena um valor de dado e um ponteiro next apontando para o endereço de memória do próximo nó.\n\nDiferente dos arrays, os nós não ocupam memória contígua: cada nó é alocado individualmente na Heap. Essa alocação dispersa permite inserções e remoções no início da lista (Head) em tempo O(1) sem necessidade de deslocamento de blocos de memória. Entretanto, o acesso aleatório por índice torna-se O(n), pois obriga o processador a percorrer ponteiro por ponteiro desde a raiz.",
+          "tip": "Listas encadeadas pagam um preço oculto em arquiteturas modernas de CPU: os nós espalhados na memória heap destroem a localidade espacial do cache L1/L2, resultando em frequentes cache misses.",
+          "code": "# Estrutura básica de um nó de lista encadeada simples\nclass ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\n# Criando e encadeando nós manualmente na Heap\nnode3 = ListNode(30)\nnode2 = ListNode(20, node3)\nhead = ListNode(10, node2)\n\n# Travessia linear O(n)\ncurr = head\nwhile curr:\n    print(curr.val, end=\" -> \")\n    curr = curr.next"
         },
         {
-          "title": "Invertendo uma Lista Encadeada",
-          "body": "Inverter uma lista singly-linked é um problema clássico. Precisamos de três ponteiros (prev, curr, next) para redirecionar os links sem perder a referência do resto da lista (O(n) tempo e O(1) espaço).\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "def reverse_list(head):\n    prev = None\n    curr = head\n    while curr:\n        next_node = curr.next\n        curr.next = prev\n        prev = curr\n        curr = next_node\n    return prev",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Inserção e Deleção com Ponteiro Predecessor",
+          "body": "Para inserir ou remover um nó intermediário em uma lista simplesmente encadeada, ter o nó alvo em mãos não basta: é indispensável ter a referência ao nó predecessor (anterior).\n\nPara excluir o nó B posicionado entre A e C, a operação fundamental consiste em atualizar o ponteiro do antecessor: A.next = B.next. Com isso, o nó B perde todas as conexões de entrada na lista e se torna elegível para coleta de lixo pelo Garbage Collector. A operação em si é O(1), mas localizar o nó predecessor a partir do início da lista leva tempo O(n).",
+          "tip": "Ao remover um nó, tome cuidado para não romper a cadeia de ponteiros antes de salvar a referência ao sucessor. Caso contrário, todos os elementos subsequentes serão perdidos na memória.",
+          "code": "def remover_por_valor(head: ListNode, alvo: int) -> ListNode | None:\n    if head and head.val == alvo:\n        return head.next  # Nova cabeça\n        \n    prev = head\n    curr = head.next if head else None\n    while curr:\n        if curr.val == alvo:\n            prev.next = curr.next  # Bypassa e desconecta o nó alvo\n            break\n        prev = curr\n        curr = curr.next\n    return head"
         }
       ],
       "questions": [
@@ -633,16 +633,16 @@
       "summary": "Aprenda sobre Listas Encadeadas.",
       "lesson": [
         {
-          "title": "Nós e Singly Linked List",
-          "body": "Listas encadeadas consistem em nós espalhados na memória. Cada nó guarda o valor e o ponteiro para o próximo nó. Inserir no início é O(1), mas buscar um elemento requer percorrer a lista O(n).\n\nCompreender este fundamento é crucial em Estruturas de Dados e Algoritmos. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "class Node:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\nhead = Node(1, Node(2, Node(3)))",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Listas Duplamente Encadeadas (Doubly Linked Lists)",
+          "body": "Na Lista Duplamente Encadeada, cada nó possui dois ponteiros distintos: next (para o sucessor) e prev (para o antecessor).\n\nEssa bidirecionalidade permite navegar na lista para frente e para trás, além de possibilitar a remoção de qualquer nó em tempo O(1) estrito quando já possuímos a referência direta a ele — algo impossível na lista simples, que exige buscar o antecessor. É a estrutura fundamental utilizada em Deques, buffers de texto e na clássica política de substituição de cache LRU (Least Recently Used).",
+          "tip": "A flexibilidade da lista duplamente encadeada tem um custo: consome 16 bytes adicionais por nó só em ponteiros (em arquiteturas 64-bit) e exige atualizar até 4 referências a cada mutação.",
+          "code": "class DoublyNode:\n    def __init__(self, val=0, prev=None, next=None):\n        self.val = val\n        self.prev = prev\n        self.next = next\n\n# Remoção O(1) de um nó com referência direta\ndef remover_no(no: DoublyNode) -> None:\n    if no.prev:\n        no.prev.next = no.next\n    if no.next:\n        no.next.prev = no.prev\n    no.prev = None\n    no.next = None"
         },
         {
-          "title": "Invertendo uma Lista Encadeada",
-          "body": "Inverter uma lista singly-linked é um problema clássico. Precisamos de três ponteiros (prev, curr, next) para redirecionar os links sem perder a referência do resto da lista (O(n) tempo e O(1) espaço).\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "def reverse_list(head):\n    prev = None\n    curr = head\n    while curr:\n        next_node = curr.next\n        curr.next = prev\n        prev = curr\n        curr = next_node\n    return prev",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Sentinel Nodes (Dummy Nodes) para Simplificação de Casos de Borda",
+          "body": "O nó Sentinela (também chamado de Dummy Node) é um nó artificial posicionado no início e/ou final de uma lista encadeada cujo valor de dados é deliberadamente ignorado.\n\nO papel do dummy node é puramente arquitetural: ele garante que a lista nunca esteja vazia e que qualquer nó real — inclusive a cabeça (Head) original — possua um predecessor legítimo. Isso elimina centenas de linhas de código defensivo do tipo if head is None ou if prev is None, reduzindo bugs clássicos de ponteiros nulos (NullPointerException).",
+          "tip": "Em entrevistas técnicas de estruturas de dados, inicializar sua função com dummy = ListNode(0, head) simplifica operações de fusão, reversão e deleção em mais de 50%.",
+          "code": "# Remove todos os nós com determinado valor sem casos especiais de cabeça\ndef remover_todos(head: ListNode, val: int) -> ListNode | None:\n    dummy = ListNode(0, head)\n    curr = dummy\n    while curr.next:\n        if curr.next.val == val:\n            curr.next = curr.next.next  # Bypassa nó sem checar se era a cabeça\n        else:\n            curr = curr.next\n    return dummy.next  # Retorna a cabeça verdadeira resultante"
         }
       ],
       "questions": [
@@ -713,16 +713,16 @@
       "summary": "Aprenda sobre Listas Encadeadas.",
       "lesson": [
         {
-          "title": "Nós e Singly Linked List",
-          "body": "Listas encadeadas consistem em nós espalhados na memória. Cada nó guarda o valor e o ponteiro para o próximo nó. Inserir no início é O(1), mas buscar um elemento requer percorrer a lista O(n).\n\nCompreender este fundamento é crucial em Estruturas de Dados e Algoritmos. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "class Node:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next\n\nhead = Node(1, Node(2, Node(3)))",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Algoritmo de Floyd (Tortoise and Hare) para Detecção de Ciclos",
+          "body": "Um ciclo em uma lista encadeada ocorre quando o ponteiro next de um nó aponta de volta para um nó visitado anteriormente, transformando a lista em um loop infinito.\n\nO algoritmo de detecção de ciclo de Robert Floyd utiliza dois ponteiros que avançam com velocidades distintas: a Tartaruga (slow), que anda 1 nó por iteração, e a Lebre (fast), que anda 2 nós. Se a lista for finita, a lebre encontrará o final (None) em O(n). Se houver um ciclo fechado, a lebre fatalmente colidirá com a tartaruga dentro do loop, provando o ciclo em O(n) tempo e O(1) espaço.",
+          "tip": "Se os dois ponteiros colidirem, você pode descobrir o nó exato onde o ciclo começa: reinicie o ponteiro slow para a cabeça e mova ambos a 1 passo por vez. O ponto de novo encontro é a raiz do ciclo.",
+          "code": "# Detecta presença de ciclo em lista encadeada em O(n) tempo e O(1) espaço\ndef tem_ciclo(head: ListNode) -> bool:\n    slow = head\n    fast = head\n    while fast and fast.next:\n        slow = slow.next       # 1 nó por iteração\n        fast = fast.next.next  # 2 nós por iteração\n        if slow == fast:\n            return True        # Colisão confirmada: há ciclo!\n    return False               # Atingiu None: lista linear acíclica"
         },
         {
-          "title": "Invertendo uma Lista Encadeada",
-          "body": "Inverter uma lista singly-linked é um problema clássico. Precisamos de três ponteiros (prev, curr, next) para redirecionar os links sem perder a referência do resto da lista (O(n) tempo e O(1) espaço).\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "def reverse_list(head):\n    prev = None\n    curr = head\n    while curr:\n        next_node = curr.next\n        curr.next = prev\n        prev = curr\n        curr = next_node\n    return prev",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Inversão In-Place de Listas Encadeadas",
+          "body": "Inverter uma lista encadeada consiste em reorientar todos os ponteiros next de modo que passem a apontar para seus antecessores em vez de seus sucessores.\n\nA inversão in-place é uma das habilidades mais exigidas na engenharia de software porque realiza essa transformação em tempo O(n) sem alocar um único nó novo na Heap (espaço auxiliar O(1)). O algoritmo mantém três ponteiros simultâneos: prev (nó anterior já invertido), curr (nó sendo processado) e next_temp (guarda o restante da lista antes de quebrar a referência).",
+          "tip": "A ordem das atribuições é estrita: salve curr.next na variável temporária antes de sobrescrever curr.next = prev. Se esquecer esse passo, você perderá a referência para todo o restante da lista.",
+          "code": "# Inverte uma lista encadeada in-place: O(n) tempo e O(1) espaço auxiliar\ndef inverter_lista(head: ListNode) -> ListNode | None:\n    prev = None\n    curr = head\n    while curr:\n        next_temp = curr.next  # 1. Salva o próximo nó\n        curr.next = prev       # 2. Inverte o sentido do ponteiro\n        prev = curr            # 3. Avança o prev para o nó atual\n        curr = next_temp       # 4. Avança o curr para o próximo original\n    return prev  # prev agora é a nova cabeça da lista invertida"
         }
       ],
       "questions": [
@@ -793,16 +793,16 @@
       "summary": "Aprenda sobre Pilhas e Filas.",
       "lesson": [
         {
-          "title": "Pilhas (Stack - LIFO)",
-          "body": "Pilhas funcionam no princípio LIFO (Last-In, First-Out). São usadas para desfazer ações, histórico de navegação, e validação de parênteses. Em Python, usamos listas comuns com append() e pop() para O(1).\n\nCompreender este fundamento é crucial em Estruturas de Dados e Algoritmos. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "def is_valid_parentheses(s):\n    stack = []\n    pairs = {')': '(', '}': '{', ']': '['}\n    for char in s:\n        if char in pairs:\n            if not stack or stack.pop() != pairs[char]: return False\n        else:\n            stack.append(char)\n    return not stack",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Pilhas (Stack - LIFO) e a Pilha de Execução (Call Stack)",
+          "body": "Uma Pilha (Stack) é uma estrutura de dados linear abstrata regida pelo princípio LIFO (Last-In, First-Out): o último elemento inserido é obrigatoriamente o primeiro a ser removido.\n\nAs operações fundamentais são push (empilhar), pop (desempilhar) e peek/top (espiar o topo), todas operando em tempo constante O(1). No hardware e nos sistemas operacionais, a Pilha de Execução (Call Stack) é a estrutura mais crítica da máquina: é ela quem controla o fluxo de invocação de funções, parâmetros, variáveis locais e endereços de retorno.",
+          "tip": "Em Python, use list com append() e pop() para implementar pilhas O(1) amortizado. Evite listas encadeadas para pilhas simples, pois arrays têm melhor localidade de cache.",
+          "code": "# Implementação conceitual de Pilha usando array subjacente\nclass Pilha:\n    def __init__(self):\n        self._itens = []\n\n    def push(self, valor):\n        self._itens.append(valor)  # O(1) amortizado\n\n    def pop(self):\n        if not self._itens: raise IndexError(\"Pilha vazia\")\n        return self._itens.pop()   # O(1) remoção do topo\n\n    def peek(self):\n        return self._itens[-1] if self._itens else None"
         },
         {
-          "title": "Filas (Queue - FIFO)",
-          "body": "Filas seguem o FIFO (First-In, First-Out). Excelentes para filas de impressão, buffers e travessia BFS. Em Python, usamos collections.deque para ter popleft() e append() em O(1).\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "from collections import deque\n\nqueue = deque(['A', 'B', 'C'])\nqueue.append('D')       # Entra na fila (enqueue)\nfirst = queue.popleft() # Sai da fila (dequeue): 'A'",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Avaliação de Expressões e Validação de Parênteses com Stack",
+          "body": "Pilhas são a ferramenta teórica indispensável para análise sintática (parsing), validação de delimitadores e avaliação de expressões aritméticas (notação pós-fixa ou Polonesa Reversa).\n\nAo analisar parênteses aninhados, cada abertura (, [, { é empilhada aguardando fechamento. Ao encontrar um fechamento ), ], }, o caractere correspondente deve coincidir perfeitamente com o elemento desempilhado do topo. Se a pilha ficar vazia precocemente ou contiver itens sobrando ao final da leitura, a expressão é formalmente inválida em O(n) tempo.",
+          "tip": "Mapeie os caracteres de fechamento para seus pares de abertura usando um dicionário. Isso torna o código limpo, extensível para novas tags e fácil de manter.",
+          "code": "# Validação de delimitadores balanceados em O(n) tempo e O(n) espaço\ndef eh_valido(s: str) -> bool:\n    pares = {')': '(', ']': '[', '}': '{'}\n    pilha = []\n    for char in s:\n        if char in pares.values():\n            pilha.append(char)  # Caractere de abertura vai para a pilha\n        elif char in pares:\n            # Caractere de fechamento exige correspondente no topo\n            if not pilha or pilha.pop() != pares[char]:\n                return False\n    return len(pilha) == 0"
         }
       ],
       "questions": [
@@ -873,16 +873,16 @@
       "summary": "Aprenda sobre Pilhas e Filas.",
       "lesson": [
         {
-          "title": "Pilhas (Stack - LIFO)",
-          "body": "Pilhas funcionam no princípio LIFO (Last-In, First-Out). São usadas para desfazer ações, histórico de navegação, e validação de parênteses. Em Python, usamos listas comuns com append() e pop() para O(1).\n\nCompreender este fundamento é crucial em Estruturas de Dados e Algoritmos. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "def is_valid_parentheses(s):\n    stack = []\n    pairs = {')': '(', '}': '{', ']': '['}\n    for char in s:\n        if char in pairs:\n            if not stack or stack.pop() != pairs[char]: return False\n        else:\n            stack.append(char)\n    return not stack",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Filas (Queue - FIFO) e Buffers Circulares (Ring Buffer)",
+          "body": "Uma Fila (Queue) opera sob o princípio FIFO (First-In, First-Out): o primeiro elemento a entrar é o primeiro a ser atendido e removido.\n\nAs operações principais são enqueue (enfileirar no final) e dequeue (desenfileirar do início). Em arrays lineares simples, o dequeue é O(n) porque exige deslocar todos os itens restantes para a esquerda. Para resolver isso em tempo O(1), a engenharia de sistemas utiliza Buffers Circulares (Ring Buffers): o array é tratado como um anel contínuo onde os índices head e tail avançam usando aritmética modular: index = (index + 1) % capacidade.",
+          "tip": "Buffers circulares de tamanho fixo são o padrão da indústria para mensageria de alta performance, buffers de áudio, filas de pacotes de placas de rede e drivers de hardware.",
+          "code": "# Buffer circular de tamanho fixo com operações O(1) em array contíguo\nclass CircularQueue:\n    def __init__(self, k: int):\n        self.k = k\n        self.queue = [None] * k\n        self.head = 0\n        self.tail = 0\n        self.size = 0\n\n    def enqueue(self, val: int) -> bool:\n        if self.size == self.k: return False  # Fila cheia\n        self.queue[self.tail] = val\n        self.tail = (self.tail + 1) % self.k  # Avanço circular\n        self.size += 1\n        return True"
         },
         {
-          "title": "Filas (Queue - FIFO)",
-          "body": "Filas seguem o FIFO (First-In, First-Out). Excelentes para filas de impressão, buffers e travessia BFS. Em Python, usamos collections.deque para ter popleft() e append() em O(1).\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "from collections import deque\n\nqueue = deque(['A', 'B', 'C'])\nqueue.append('D')       # Entra na fila (enqueue)\nfirst = queue.popleft() # Sai da fila (dequeue): 'A'",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Fila com Duas Pilhas e Análise Amortizada O(1)",
+          "body": "Um dos problemas conceituais mais famosos de arquitetura de dados consiste em construir uma Fila FIFO utilizando exclusivamente duas Pilhas LIFO como componentes internos.\n\nO design utiliza uma pilha in_stack para receber novas inserções e uma pilha out_stack para processar remoções. Quando um dequeue é solicitado e out_stack está vazia, todos os elementos de in_stack são desempilhados e empilhados em out_stack, invertendo a ordem original dos dados. Embora uma transferência pontual custe O(n), cada elemento é transferido exatamente uma vez, conferindo tempo amortizado O(1) por operação.",
+          "tip": "Essa técnica ensina a essência da análise amortizada: um trabalho pesado pontual reorganiza os dados para abastecer dezenas de operações subsequentes ultra rápidas em O(1).",
+          "code": "class QueueWithStacks:\n    def __init__(self):\n        self.in_stack = []\n        self.out_stack = []\n\n    def push(self, x: int) -> None:\n        self.in_stack.append(x)  # Enfileirar é sempre O(1)\n\n    def pop(self) -> int:\n        if not self.out_stack:\n            # Inverte a ordem transferindo os elementos\n            while self.in_stack:\n                self.out_stack.append(self.in_stack.pop())\n        return self.out_stack.pop()  # Custo médio amortizado: O(1)"
         }
       ],
       "questions": [
@@ -953,16 +953,16 @@
       "summary": "Aprenda sobre Pilhas e Filas.",
       "lesson": [
         {
-          "title": "Pilhas (Stack - LIFO)",
-          "body": "Pilhas funcionam no princípio LIFO (Last-In, First-Out). São usadas para desfazer ações, histórico de navegação, e validação de parênteses. Em Python, usamos listas comuns com append() e pop() para O(1).\n\nCompreender este fundamento é crucial em Estruturas de Dados e Algoritmos. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "def is_valid_parentheses(s):\n    stack = []\n    pairs = {')': '(', '}': '{', ']': '['}\n    for char in s:\n        if char in pairs:\n            if not stack or stack.pop() != pairs[char]: return False\n        else:\n            stack.append(char)\n    return not stack",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Fila de Extremidade Dupla (Deque) e Alta Eficiência",
+          "body": "O Deque (Double-Ended Queue) é uma estrutura de dados generalizada que suporta inserções e deleções em ambas as extremidades (início e fim) em tempo estritamente constante O(1).\n\nEm Python, `collections.deque` é implementado internamente como uma lista duplamente encadeada de blocos contíguos de memória (chunks). Isso garante que append, appendleft, pop e popleft operem sem nunca realocar ou deslocar elementos de todo o array, tornando o Deque a escolha ideal sobre list para implementar filas, buffers de histórico e filas de prioridade simples.",
+          "tip": "Nunca use list.pop(0) em Python para filas de produção! Isso é uma armadilha clássica O(n). Use sempre collections.deque, cujo popleft() é O(1) determinístico.",
+          "code": "from collections import deque\n\n# Criando deque com capacidade máxima opcional (buffer deslizante)\nfila = deque(maxlen=3)\nfila.append(1)        # Insere no final: [1]\nfila.append(2)        # Insere no final: [1, 2]\nfila.appendleft(0)    # Insere no início em O(1): [0, 1, 2]\n\nitem = fila.popleft() # Remove do início em O(1): retorna 0\nprint(item, list(fila))  # Saída: 0 [1, 2]"
         },
         {
-          "title": "Filas (Queue - FIFO)",
-          "body": "Filas seguem o FIFO (First-In, First-Out). Excelentes para filas de impressão, buffers e travessia BFS. Em Python, usamos collections.deque para ter popleft() e append() em O(1).\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "from collections import deque\n\nqueue = deque(['A', 'B', 'C'])\nqueue.append('D')       # Entra na fila (enqueue)\nfirst = queue.popleft() # Sai da fila (dequeue): 'A'",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Pilhas e Filas Monotônicas para Próximo Maior Elemento",
+          "body": "Uma Pilha ou Fila Monotônica é uma estrutura cujos elementos internos são mantidos estritamente ordenados (de forma crescente ou decrescente) à medida que novos dados chegam.\n\nAo receber um novo número que violaria a monotonicidade, os elementos do topo da pilha são desempilhados até que a ordem seja restaurada. Essa técnica resolve problemas aparentemente complexos como 'Próximo Maior Elemento' (Next Greater Element) ou 'Maior Retângulo em Histograma' em tempo estritamente O(n), pois cada número entra e sai da pilha no máximo uma única vez ao longo de todo o algoritmo.",
+          "tip": "Quando um problema exigir encontrar o elemento maior/menor mais próximo à esquerda ou à direita para cada item de um array, descarte loops aninhados O(n²) e utilize uma Pilha Monotônica.",
+          "code": "# Encontra o próximo elemento maior à direita para cada item em O(n)\ndef next_greater_element(nums: list[int]) -> list[int]:\n    resultado = [-1] * len(nums)\n    pilha = []  # Armazena índices em ordem decrescente de valor\n    \n    for i, valor in enumerate(nums):\n        while pilha and nums[pilha[-1]] < valor:\n            indice_topo = pilha.pop()\n            resultado[indice_topo] = valor  # Encontrou o próximo maior!\n        pilha.append(i)\n        \n    return resultado"
         }
       ],
       "questions": [
@@ -1033,16 +1033,16 @@
       "summary": "Aprenda sobre Tabelas Hash.",
       "lesson": [
         {
-          "title": "Tabelas Hash e Hash Maps",
-          "body": "Hash Maps armazenam pares chave-valor. Usam uma função hash para computar o índice, permitindo buscas, inserções e deleções em O(1) médio. Em Python, o dicionário (dict) é uma tabela hash.\n\nCompreender este fundamento é crucial em Estruturas de Dados e Algoritmos. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "def two_sum(nums, target):\n    seen = {}\n    for i, num in enumerate(nums):\n        diff = target - num\n        if diff in seen:\n            return [seen[diff], i]\n        seen[num] = i\n    return []",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Funções Hash, Mapeamento em Buckets e Complexidade Amortizada O(1)",
+          "body": "A Tabela Hash (Hash Table ou Hash Map) é uma das estruturas mais poderosas da computação, permitindo buscas, inserções e deleções em tempo médio constante O(1).\n\nSeu funcionamento baseia-se em transformar qualquer chave (string, objeto, número) em um número inteiro através de uma Função Hash determinística. Em seguida, aplica-se a operação de módulo pelo tamanho da tabela interna (bucket_index = hash(key) % capacidade) para obter o índice do array onde o par chave-valor será armazenado. A mágica é converter buscas associativas em acessos diretos de memória.",
+          "tip": "A garantia O(1) de tabelas hash é assintótica média. Se a função hash for ruim ou houver colisões excessivas, todas as chaves caem no mesmo bucket e o tempo degrada para O(n).",
+          "code": "# Mapeamento conceitual de chave para bucket em uma Hash Table\ndef mapear_bucket(chave: str, capacidade_tabela: int) -> int:\n    codigo_hash = hash(chave)  # Função hash nativa da linguagem\n    indice = codigo_hash % capacidade_tabela  # Mapeamento para o bucket\n    return indice\n\nprint(f\"'usuario_42' vai para o bucket: {mapear_bucket('usuario_42', 16)}\")"
         },
         {
-          "title": "Lidando com Colisões",
-          "body": "Colisões ocorrem quando duas chaves geram o mesmo índice. Estratégias comuns incluem Chaining (usar listas no índice) e Open Addressing (procurar próximo slot vazio). O(1) se torna O(n) no pior caso de colisões severas.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "# Demonstração do uso de Sets para busca O(1)\ndef has_duplicates(nums):\n    # O(n) tempo e espaço\n    seen = set()\n    for num in nums:\n        if num in seen:\n            return True\n        seen.add(num)\n    return False",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Propriedades de Boas Funções Hash: Distribuição e Efeito Avalanche",
+          "body": "Uma boa função hash não criptográfica (como MurmurHash3, CityHash ou xxHash) precisa satisfazer dois critérios essenciais: velocidade de cálculo e distribuição estritamente uniforme.\n\nO chamado Efeito Avalanche dita que a alteração de um único bit na chave de entrada deve alterar em média 50% dos bits do hash resultante. Isso impede agrupamentos (clustering) onde chaves parecidas (ex: user_1, user_2) sejam mapeadas nos mesmos buckets vizinhos, reduzindo drasticamente a incidência de colisões físicas na memória da tabela.",
+          "tip": "Chaves utilizadas em dicionários ou mapas devem ser estritamente imutáveis (strings, números, tuplas). Se um objeto sofrer mutação após ser inserido no mapa, seu hash mudará e ele se tornará irrecuperável.",
+          "code": "# Exemplo de função hash clássica para strings (djb2 de Dan Bernstein)\ndef hash_djb2(texto: str) -> int:\n    h = 5381\n    for char in texto:\n        # h * 33 + ord(char) com dispersão rápida de bits\n        h = ((h << 5) + h) + ord(char)\n    return h & 0xFFFFFFFF  # Retorna inteiro sem sinal de 32 bits\n\nprint(f\"Hash djb2 de 'dados': {hash_djb2('dados')}\")"
         }
       ],
       "questions": [
@@ -1113,16 +1113,16 @@
       "summary": "Aprenda sobre Tabelas Hash.",
       "lesson": [
         {
-          "title": "Tabelas Hash e Hash Maps",
-          "body": "Hash Maps armazenam pares chave-valor. Usam uma função hash para computar o índice, permitindo buscas, inserções e deleções em O(1) médio. Em Python, o dicionário (dict) é uma tabela hash.\n\nCompreender este fundamento é crucial em Estruturas de Dados e Algoritmos. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "def two_sum(nums, target):\n    seen = {}\n    for i, num in enumerate(nums):\n        diff = target - num\n        if diff in seen:\n            return [seen[diff], i]\n        seen[num] = i\n    return []",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Tratamento de Colisões por Encadeamento Separado (Separate Chaining)",
+          "body": "Pelo Princípio da Casa dos Pombos, colisões em tabelas hash são matematicamente inevitáveis quando a quantidade de chaves possíveis excede o número de buckets disponíveis.\n\nNo método de Encadeamento Separado (Separate Chaining), cada bucket do array não armazena apenas um valor, mas sim o ponteiro para uma Lista Encadeada (ou árvore rubro-negra balanceada em linguagens modernas como Java 8+). Quando duas chaves produzem o mesmo índice, o novo par chave-valor é adicionado à lista desse bucket. Em caso de colisão moderada, a busca percorre apenas os poucos elementos daquela lista local.",
+          "tip": "Quando a lista de um bucket fica longa demais, o Java converte automaticamente a lista encadeada daquele bucket em uma Red-Black Tree, garantindo busca no pior caso em O(log n) em vez de O(n).",
+          "code": "# Tabela Hash com Separate Chaining (buckets contendo listas encadeadas)\nclass HashTableChaining:\n    def __init__(self, size=10):\n        self.size = size\n        self.buckets = [[] for _ in range(size)]\n\n    def put(self, key, value):\n        idx = hash(key) % self.size\n        for item in self.buckets[idx]:\n            if item[0] == key:\n                item[1] = value  # Atualiza chave existente\n                return\n        self.buckets[idx].append([key, value])  # Insere no encadeamento"
         },
         {
-          "title": "Lidando com Colisões",
-          "body": "Colisões ocorrem quando duas chaves geram o mesmo índice. Estratégias comuns incluem Chaining (usar listas no índice) e Open Addressing (procurar próximo slot vazio). O(1) se torna O(n) no pior caso de colisões severas.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "# Demonstração do uso de Sets para busca O(1)\ndef has_duplicates(nums):\n    # O(n) tempo e espaço\n    seen = set()\n    for num in nums:\n        if num in seen:\n            return True\n        seen.add(num)\n    return False",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Tratamento de Colisões por Endereçamento Aberto (Open Addressing)",
+          "body": "No Endereçamento Aberto (Open Addressing), todos os pares chave-valor residem diretamente dentro do array principal da tabela, sem estruturas encadeadas externas.\n\nQuando ocorre uma colisão no índice calculado, o algoritmo executa uma sondagem (probing) para encontrar o próximo slot vazio. Na Sondagem Linear (Linear Probing), verifica-se seqüencialmente (idx + 1, idx + 2...). Na Sondagem Quadrática, os saltos aumentam quadraticamente para evitar aglomerações primárias. Ao deletar um item, é obrigatório marcar o slot como excluído (tombstone) para não quebrar a cadeia de buscas futuras.",
+          "tip": "Open Addressing possui excelente localidade de cache por manter tudo em um único array contíguo, mas seu desempenho despenca violentamente quando a tabela ultrapassa 70% de ocupação.",
+          "code": "# Sondagem Linear simplificada para inserção em Open Addressing\ndef inserir_open_addressing(tabela: list, chave: str, valor: any) -> None:\n    tamanho = len(tabela)\n    idx = hash(chave) % tamanho\n    \n    for _ in range(tamanho):\n        if tabela[idx] is None or tabela[idx] == \"<DELETED>\":\n            tabela[idx] = (chave, valor)  # Slot livre encontrado\n            return\n        idx = (idx + 1) % tamanho  # Salto linear para o próximo slot\n    raise OverflowError(\"Tabela Hash completamente cheia!\")"
         }
       ],
       "questions": [
@@ -1193,16 +1193,16 @@
       "summary": "Aprenda sobre Tabelas Hash.",
       "lesson": [
         {
-          "title": "Tabelas Hash e Hash Maps",
-          "body": "Hash Maps armazenam pares chave-valor. Usam uma função hash para computar o índice, permitindo buscas, inserções e deleções em O(1) médio. Em Python, o dicionário (dict) é uma tabela hash.\n\nCompreender este fundamento é crucial em Estruturas de Dados e Algoritmos. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "def two_sum(nums, target):\n    seen = {}\n    for i, num in enumerate(nums):\n        diff = target - num\n        if diff in seen:\n            return [seen[diff], i]\n        seen[num] = i\n    return []",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Fator de Carga (Load Factor) e Rehashing Dinâmico",
+          "body": "O Fator de Carga (Load Factor, denotado por α) é a razão matemática entre o número de elementos armazenados (n) e o número total de buckets (k) da tabela hash: α = n / k.\n\nConforme novos elementos são inseridos, o fator de carga sobe e a probabilidade de colisões aumenta exponencialmente. Para preservar a velocidade O(1), a tabela dispara automaticamente a operação de Rehashing quando α ultrapassa um limiar seguro (comumente 0.75): aloca-se um array com o dobro da capacidade anterior e todas as chaves são re-hasheadas e realocadas em novos índices.",
+          "tip": "O rehashing é uma operação O(n) pontual e cara. Se você puder estimar o volume total de chaves antes do processamento, inicialize o mapa com capacidade suficiente para evitar múltiplos rehashings.",
+          "code": "# Simulação de rehashing dinâmico quando load factor > 0.75\nclass DynamicHashMap:\n    def __init__(self, capacity=4):\n        self.capacity = capacity\n        self.count = 0\n        self.buckets = [[] for _ in range(capacity)]\n\n    def put(self, key, val):\n        if self.count / self.capacity >= 0.75:\n            self._rehash()  # Dobra capacidade e redistribui chaves\n        # Inserção nos buckets...\n\n    def _rehash(self):\n        self.capacity *= 2\n        # Realoca todos os elementos na nova tabela ampliada"
         },
         {
-          "title": "Lidando com Colisões",
-          "body": "Colisões ocorrem quando duas chaves geram o mesmo índice. Estratégias comuns incluem Chaining (usar listas no índice) e Open Addressing (procurar próximo slot vazio). O(1) se torna O(n) no pior caso de colisões severas.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "# Demonstração do uso de Sets para busca O(1)\ndef has_duplicates(nums):\n    # O(n) tempo e espaço\n    seen = set()\n    for num in nums:\n        if num in seen:\n            return True\n        seen.add(num)\n    return False",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Vulnerabilidade a Hash-DoS e Mitigação Criptográfica com SipHash",
+          "body": "Um ataque Hash-DoS (Denial of Service) explora funções hash previsíveis enviando requisições HTTP forjadas cujas chaves colidem intencionalmente no mesmíssimo bucket.\n\nQuando um servidor web recebe 50.000 parâmetros POST que geram o mesmo índice hash, a tabela interna degenera em uma lista encadeada O(n), e processar a requisição passa de frações de milissegundo para dezenas de segundos, congelando os núcleos de CPU. Para mitigar isso, Python, Ruby e Rust utilizam por padrão o algoritmo SipHash, que injeta uma chave secreta aleatória na inicialização do processo.",
+          "tip": "Nunca utilize funções hash rápidas não criptográficas (como djb2 ou FNV-1) para processar entradas externas não confiáveis da internet sem adicionar salt aleatório por processo.",
+          "code": "# Em Python 3, a semente da função hash é randomizada a cada inicialização\nimport os\n\n# Python utiliza SipHash internamente com segredo por processo\nchave = \"parametro_requisicao_web\"\nprint(f\"Hash seguro do processo atual: {hash(chave)}\")\n# Se rodar este script em outro processo, o valor numérico mudará!"
         }
       ],
       "questions": [
@@ -1273,16 +1273,16 @@
       "summary": "Aprenda sobre Árvores.",
       "lesson": [
         {
-          "title": "Árvores Binárias e BST",
-          "body": "Árvores organizam dados hierarquicamente. Numa Árvore Binária de Busca (BST), a subárvore esquerda tem valores menores e a direita valores maiores, permitindo buscas em O(log n) na média.\n\nCompreender este fundamento é crucial em Estruturas de Dados e Algoritmos. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "class TreeNode:\n    def __init__(self, val=0):\n        self.val = val\n        self.left = None\n        self.right = None\n\ndef search_bst(root, val):\n    if not root or root.val == val:\n        return root\n    return search_bst(root.left, val) if val < root.val else search_bst(root.right, val)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Estrutura de Árvores: Raiz, Arestas, Altura e Profundidade",
+          "body": "Árvores são estruturas de dados não lineares e hierárquicas formadas por nós conectados por arestas direcionadas sem ciclos.\n\nO nó do topo é denominado Raiz (Root). Nós sem filhos são chamados de Folhas (Leaves). A Profundidade de um nó é a distância (número de arestas) da raiz até ele, enquanto a Altura da árvore é o comprimento do caminho mais longo da raiz até a folha mais distante. Em uma Árvore Binária, cada nó possui no máximo dois nós filhos: a subárvore esquerda e a subárvore direita.",
+          "tip": "Árvores modelam naturalmente hierarquias do mundo real, como sistemas de arquivos em disco (diretórios e arquivos), o DOM dos navegadores web e tabelas de roteamento de rede.",
+          "code": "# Estrutura clássica de nó para Árvore Binária\nclass TreeNode:\n    def __init__(self, val=0, left=None, right=None):\n        self.val = val\n        self.left = left    # Ponteiro para filho esquerdo\n        self.right = right  # Ponteiro para filho direito\n\n# Construção manual: Raiz com dois nós filhos\nraiz = TreeNode(10, TreeNode(5), TreeNode(15))\nprint(f\"Raiz: {raiz.val}, Esquerda: {raiz.left.val}, Direita: {raiz.right.val}\")"
         },
         {
-          "title": "Travessia: Inorder, Preorder e Postorder",
-          "body": "Travessia de árvore define a ordem de visita aos nós. Inorder (Esquerda-Raiz-Direita) visita os nós de uma BST em ordem crescente. Essencial para avaliar expressões matemáticas em árvores.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "def inorder_traversal(root):\n    res = []\n    def dfs(node):\n        if not node: return\n        dfs(node.left)\n        res.append(node.val)\n        dfs(node.right)\n    dfs(root)\n    return res",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Percursos em Árvores Binárias: Pre-Order, In-Order e Post-Order (DFS)",
+          "body": "A Busca em Profundidade (DFS) em árvores percorre cada ramo até a folha mais profunda antes de retroceder, categorizando-se em três ordens fundamentais de visitação.\n\nNo percurso Pre-Order (Raiz, Esquerda, Direita), processa-se o nó pai antes de seus filhos (ideal para clonar ou serializar árvores). No In-Order (Esquerda, Raiz, Direita), visita-se o filho esquerdo, o nó pai e depois o filho direito (em Árvores de Busca Binária, essa ordem visita os elementos perfeitamente ordenados). No Post-Order (Esquerda, Direita, Raiz), processam-se primeiro os filhos (ideal para desalocar memória ou calcular tamanho de diretórios).",
+          "tip": "A travessia In-Order em uma Árvore de Busca Binária (BST) sempre produz os valores em ordem estritamente crescente. É o teste definitivo para validar se uma BST é válida.",
+          "code": "# Travessia In-Order recursiva: Esquerda -> Raiz -> Direita em O(n)\ndef percurso_in_order(no: TreeNode | None, resultado: list) -> None:\n    if not no: return\n    percurso_in_order(no.left, resultado)   # Subárvore esquerda\n    resultado.append(no.val)                 # Processa nó atual\n    percurso_in_order(no.right, resultado)  # Subárvore direita\n\nvalores = []\npercurso_in_order(raiz, valores)\nprint(f\"Valores ordenados: {valores}\")"
         }
       ],
       "questions": [
@@ -1353,16 +1353,16 @@
       "summary": "Aprenda sobre Árvores.",
       "lesson": [
         {
-          "title": "Árvores Binárias e BST",
-          "body": "Árvores organizam dados hierarquicamente. Numa Árvore Binária de Busca (BST), a subárvore esquerda tem valores menores e a direita valores maiores, permitindo buscas em O(log n) na média.\n\nCompreender este fundamento é crucial em Estruturas de Dados e Algoritmos. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "class TreeNode:\n    def __init__(self, val=0):\n        self.val = val\n        self.left = None\n        self.right = None\n\ndef search_bst(root, val):\n    if not root or root.val == val:\n        return root\n    return search_bst(root.left, val) if val < root.val else search_bst(root.right, val)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Árvores de Busca Binária (BST) e Invariante de Ordenação",
+          "body": "A Árvore de Busca Binária (Binary Search Tree - BST) é uma árvore binária que impõe uma invariante de ordenação estrita em todos os seus nós.\n\nPara qualquer nó com valor X, todos os nós em sua subárvore esquerda possuem valores estritamente menores que X, e todos os nós em sua subárvore direita possuem valores estritamente maiores que X. Graças a essa propriedade invariante, buscar, inserir ou remover um elemento elimina metade da árvore a cada decisão, alcançando tempo O(log n) no caso médio proporcional à altura da árvore.",
+          "tip": "A velocidade O(log n) só é garantida se a árvore for razoavelmente balanceada. Se os dados forem inseridos em ordem crescente (1, 2, 3, 4, 5), a árvore vira uma lista encadeada O(n).",
+          "code": "# Busca em BST com complexidade média O(log n)\ndef buscar_bst(raiz: TreeNode | None, alvo: int) -> TreeNode | None:\n    curr = raiz\n    while curr and curr.val != alvo:\n        if alvo < curr.val:\n            curr = curr.left   # Descarta subárvore direita\n        else:\n            curr = curr.right  # Descarta subárvore esquerda\n    return curr  # Retorna o nó ou None se não existir"
         },
         {
-          "title": "Travessia: Inorder, Preorder e Postorder",
-          "body": "Travessia de árvore define a ordem de visita aos nós. Inorder (Esquerda-Raiz-Direita) visita os nós de uma BST em ordem crescente. Essencial para avaliar expressões matemáticas em árvores.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "def inorder_traversal(root):\n    res = []\n    def dfs(node):\n        if not node: return\n        dfs(node.left)\n        res.append(node.val)\n        dfs(node.right)\n    dfs(root)\n    return res",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Travessia em Nível (Level-Order / BFS) com Fila Auxiliar",
+          "body": "A Travessia em Nível (Level-Order) explora a árvore camada por camada, visitando primeiro a raiz, depois todos os nós de profundidade 1, em seguida todos de profundidade 2, e assim por diante.\n\nDiferente dos percursos em profundidade que utilizam a pilha (Stack/recursão), a travessia em largura (BFS) utiliza obrigatoriamente uma Fila (Queue FIFO). A cada iteração, retira-se o nó da frente da fila, processa-se seu dado e enfileiram-se seus filhos esquerdo e direito. Esse padrão é essencial para encontrar caminhos mínimos e calcular a largura de estruturas hierárquicas.",
+          "tip": "Para agrupar os nós nível a nível em listas separadas, capture o tamanho da fila no início do laço (len(queue)) e processe exatamente essa quantidade de nós por nível.",
+          "code": "from collections import deque\n\n# BFS: Travessia por níveis usando Fila FIFO em tempo O(n)\ndef travessia_niveis(raiz: TreeNode | None) -> list[list[int]]:\n    if not raiz: return []\n    resultado, fila = [], deque([raiz])\n    \n    while fila:\n        nivel_atual = []\n        for _ in range(len(fila)):\n            no = fila.popleft()\n            nivel_atual.append(no.val)\n            if no.left: fila.append(no.left)\n            if no.right: fila.append(no.right)\n        resultado.append(nivel_atual)\n    return resultado"
         }
       ],
       "questions": [
@@ -1433,16 +1433,16 @@
       "summary": "Aprenda sobre Árvores.",
       "lesson": [
         {
-          "title": "Árvores Binárias e BST",
-          "body": "Árvores organizam dados hierarquicamente. Numa Árvore Binária de Busca (BST), a subárvore esquerda tem valores menores e a direita valores maiores, permitindo buscas em O(log n) na média.\n\nCompreender este fundamento é crucial em Estruturas de Dados e Algoritmos. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "class TreeNode:\n    def __init__(self, val=0):\n        self.val = val\n        self.left = None\n        self.right = None\n\ndef search_bst(root, val):\n    if not root or root.val == val:\n        return root\n    return search_bst(root.left, val) if val < root.val else search_bst(root.right, val)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Degeneração de Árvores em Listas O(n) e Necessidade de Balanceamento",
+          "body": "O grande calcanhar de Aquiles das Árvores de Busca Binária puras é o risco de degeneração estrutural quando os dados chegam ordenados ou quase ordenados.\n\nSe inserirmos sequencialmente [1, 2, 3, 4, 5], cada novo nó será adicionado como filho direito do anterior. A árvore resultante terá altura h = n em vez de h = log₂(n), degenerando completamente em uma lista encadeada. Nesse cenário patológico, a busca, inserção e deleção perdem sua eficiência logarítmica e degradam para tempo linear O(n), arruinando a performance do sistema.",
+          "tip": "Nunca utilize uma BST simples em produção para dados de fontes externas sem garantias de balanceamento automático. Um invasor pode enviar dados ordenados para forçar O(n).",
+          "code": "# Exemplo de árvore patológica degenerada em lista linear\n# 1 -> right: 2 -> right: 3 -> right: 4\nraiz_degenerada = TreeNode(1, None, TreeNode(2, None, TreeNode(3, None, TreeNode(4))))\n\n# A busca pelo valor 4 precisa visitar todos os 4 nós: O(n)\nprint(\"Profundidade máxima igual ao número total de elementos: O(n)\")"
         },
         {
-          "title": "Travessia: Inorder, Preorder e Postorder",
-          "body": "Travessia de árvore define a ordem de visita aos nós. Inorder (Esquerda-Raiz-Direita) visita os nós de uma BST em ordem crescente. Essencial para avaliar expressões matemáticas em árvores.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "def inorder_traversal(root):\n    res = []\n    def dfs(node):\n        if not node: return\n        dfs(node.left)\n        res.append(node.val)\n        dfs(node.right)\n    dfs(root)\n    return res",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Introdução a Árvores Auto-Balanceadas: AVL e Red-Black Trees",
+          "body": "Para impedir a degeneração, foram criadas as Árvores Auto-Balanceadas, com destaque para as Árvores AVL e as Árvores Rubro-Negras (Red-Black Trees).\n\nEssas estruturas monitoram continuamente a altura de cada subárvore. Sempre que uma inserção ou deleção provoca desequilíbrio além de uma tolerância estrita, a árvore executa Rotações de Nós (à esquerda ou à direita) em tempo O(1). As rotações reorganizam os ponteiros mantendo a invariante da BST, mas diminuindo a altura total para garantir que a altura permaneça sempre em O(log n) no pior caso absoluto.",
+          "tip": "Árvores Red-Black são usadas internamente nas implementações de std::map do C++, TreeMap do Java e no escalonador Completely Fair Scheduler (CFS) do kernel Linux.",
+          "code": "# Conceito de Rotação Simples à Esquerda para restaurar equilíbrio O(1)\ndef rotacao_esquerda(no_desbalanceado: TreeNode) -> TreeNode:\n    nova_raiz = no_desbalanceado.right\n    no_desbalanceado.right = nova_raiz.left\n    nova_raiz.left = no_desbalanceado\n    return nova_raiz  # Retorna a nova subárvore equilibrada"
         }
       ],
       "questions": [
@@ -1513,16 +1513,16 @@
       "summary": "Aprenda sobre Heaps e Priority Queue.",
       "lesson": [
         {
-          "title": "Heaps e Filas de Prioridade",
-          "body": "Min-Heap garante que o nó pai é sempre menor que os filhos (Raiz = mínimo). Ideal para Priority Queues onde processamos o elemento mais prioritário primeiro. Inserir/Extrair custa O(log n).\n\nCompreender este fundamento é crucial em Estruturas de Dados e Algoritmos. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "import heapq\n\n# Criando um Min-Heap em Python\nnums = [5, 7, 9, 1, 3]\nheapq.heapify(nums)       # O(n)\nmin_val = heapq.heappop(nums)  # Remove 1 em O(log n)\nheapq.heappush(nums, 2)   # Insere 2 em O(log n)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Heaps Binários: Propriedades Estrutural e de Ordem",
+          "body": "Um Heap Binário é uma árvore binária completa que respeita duas propriedades invioláveis: a propriedade de forma (estrutural) e a propriedade de ordem (heap property).\n\nA propriedade de forma exige que todos os níveis da árvore estejam completamente preenchidos, exceto possivelmente o último, que deve ser preenchido da esquerda para a direita. No Max-Heap, o valor de qualquer nó pai é sempre maior ou igual aos valores de seus filhos (maior elemento na raiz). No Min-Heap, o nó pai é sempre menor ou igual aos seus filhos (menor elemento na raiz).",
+          "tip": "Heaps NÃO são árvores de busca completas: eles não garantem ordenação entre irmãos esquerdo e direito, apenas garantem acesso imediato O(1) ao elemento extremo (mínimo ou máximo).",
+          "code": "import heapq\n\n# Python implementa Min-Heap nativamente sobre listas convencionais\nmin_heap = []\nheapq.heappush(min_heap, 40)\nheapq.heappush(min_heap, 10)\nheapq.heappush(min_heap, 30)\n\n# O menor valor sempre ocupa a posição 0 em tempo O(1)\nprint(f\"Menor elemento na raiz: {min_heap[0]}\")  # Saída: 10"
         },
         {
-          "title": "Encontrando os K Maiores Elementos",
-          "body": "Usar um Min-Heap de tamanho K nos permite achar os K maiores elementos de um array em O(n log k). Mantemos o heap do tamanho k e qualquer elemento no topo será o K-ésimo maior.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "import heapq\n\ndef find_kth_largest(nums, k):\n    min_heap = nums[:k]\n    heapq.heapify(min_heap)\n    for num in nums[k:]:\n        if num > min_heap[0]:\n            heapq.heappushpop(min_heap, num)\n    return min_heap[0]",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Mapeamento de Heaps Completos em Arrays Contíguos",
+          "body": "A grande genialidade do Heap Binário é que ele não utiliza nós com ponteiros na memória: ele é armazenado diretamente dentro de um Array Contíguo simples.\n\nPor ser uma árvore estritamente completa, as relações de parentesco são calculadas diretamente por índices matemáticos: para um nó no índice i, seu filho esquerdo fica em 2i + 1, seu filho direito fica em 2i + 2 e seu pai fica em (i - 1) // 2. Isso elimina 100% do overhead de memória com ponteiros e confere velocidade máxima de acesso à Cache L1 da CPU.",
+          "tip": "Mapear árvores em arrays é a técnica definitiva para compactar representações em memória. Em C/Rust, um heap de 1 milhão de inteiros consome apenas 4MB sem fragmentação.",
+          "code": "# Fórmulas de navegação direta em array sem alocação de ponteiros\ndef indice_pai(i: int) -> int: return (i - 1) // 2\ndef indice_filho_esq(i: int) -> int: return 2 * i + 1\ndef indice_filho_dir(i: int) -> int: return 2 * i + 2\n\n# Array representando o heap: [10, 30, 40]\n# Índice 0 (10) tem filho esq no índice 1 (30) e direito no índice 2 (40)\nprint(f\"Filho esquerdo da raiz: {indice_filho_esq(0)}\")  # Índice 1"
         }
       ],
       "questions": [
@@ -1593,16 +1593,16 @@
       "summary": "Aprenda sobre Heaps e Priority Queue.",
       "lesson": [
         {
-          "title": "Heaps e Filas de Prioridade",
-          "body": "Min-Heap garante que o nó pai é sempre menor que os filhos (Raiz = mínimo). Ideal para Priority Queues onde processamos o elemento mais prioritário primeiro. Inserir/Extrair custa O(log n).\n\nCompreender este fundamento é crucial em Estruturas de Dados e Algoritmos. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "import heapq\n\n# Criando um Min-Heap em Python\nnums = [5, 7, 9, 1, 3]\nheapq.heapify(nums)       # O(n)\nmin_val = heapq.heappop(nums)  # Remove 1 em O(log n)\nheapq.heappush(nums, 2)   # Insere 2 em O(log n)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Inserção com Heapify-Up (Bubble-Up) em O(log n)",
+          "body": "Inserir um novo elemento em um Heap Binário preserva rigorosamente a propriedade de forma e a propriedade de ordem através do processo de Heapify-Up (ou Bubble-Up).\n\nO novo elemento é adicionado no final do array (última posição disponível para respeitar a forma completa). Em seguida, ele é comparado com seu nó pai. Se a propriedade do heap for violada (por exemplo, novo elemento menor que o pai em um Min-Heap), eles trocam de posição. Esse processo sobe na árvore até a raiz, executando no máximo log₂(n) trocas, com custo temporal O(log n).",
+          "tip": "Como a altura de uma árvore binária completa de n elementos é estritamente ⌊log₂ n⌋, o caminho percorrido pelo bubble-up é sempre extremamente curto e previsível.",
+          "code": "# Conceito de Heapify-Up manual para Min-Heap\ndef heapify_up(heap: list[int], idx: int) -> None:\n    pai = (idx - 1) // 2\n    while idx > 0 and heap[idx] < heap[pai]:\n        # Troca com o pai para restaurar a ordem\n        heap[idx], heap[pai] = heap[pai], heap[idx]\n        idx = pai\n        pai = (idx - 1) // 2"
         },
         {
-          "title": "Encontrando os K Maiores Elementos",
-          "body": "Usar um Min-Heap de tamanho K nos permite achar os K maiores elementos de um array em O(n log k). Mantemos o heap do tamanho k e qualquer elemento no topo será o K-ésimo maior.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "import heapq\n\ndef find_kth_largest(nums, k):\n    min_heap = nums[:k]\n    heapq.heapify(min_heap)\n    for num in nums[k:]:\n        if num > min_heap[0]:\n            heapq.heappushpop(min_heap, num)\n    return min_heap[0]",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Extração de Raiz com Heapify-Down e Heapify Linear O(n)",
+          "body": "Remover o elemento de maior prioridade (a raiz do Heap) opera com o algoritmo de Heapify-Down (Bubble-Down).\n\nA raiz é extraída e substituída pelo último elemento do array para manter a árvore completa. Como esse elemento provavelmente quebra a ordem, ele é repetidamente comparado e trocado com o menor de seus filhos até se assentar na posição correta em O(log n). Notavelmente, construir um heap a partir de um array desordenado arbitrário usando build-heap de baixo para cima roda em tempo linear O(n), e não O(n log n).",
+          "tip": "Use a função heapq.heapify(lista) em Python para transformar uma lista inteira desordenada em heap em tempo O(n) estrito, em vez de fazer múltiplos heappush O(n log n).",
+          "code": "import heapq\n\nvalores = [50, 10, 80, 20, 5]\n# Transforma a lista desordenada em Min-Heap em tempo linear O(n)\nheapq.heapify(valores)\n\n# Extrai a raiz (menor valor) em O(log n) com heapify-down automático\nmenor = heapq.heappop(valores)\nprint(f\"Menor extraído: {menor}, Novo topo: {valores[0]}\")"
         }
       ],
       "questions": [
@@ -1673,16 +1673,16 @@
       "summary": "Aprenda sobre Heaps e Priority Queue.",
       "lesson": [
         {
-          "title": "Heaps e Filas de Prioridade",
-          "body": "Min-Heap garante que o nó pai é sempre menor que os filhos (Raiz = mínimo). Ideal para Priority Queues onde processamos o elemento mais prioritário primeiro. Inserir/Extrair custa O(log n).\n\nCompreender este fundamento é crucial em Estruturas de Dados e Algoritmos. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "import heapq\n\n# Criando um Min-Heap em Python\nnums = [5, 7, 9, 1, 3]\nheapq.heapify(nums)       # O(n)\nmin_val = heapq.heappop(nums)  # Remove 1 em O(log n)\nheapq.heappush(nums, 2)   # Insere 2 em O(log n)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Filas de Prioridade (Priority Queue) e Aplicação nos Top-K Elementos",
+          "body": "A Fila de Prioridade (Priority Queue) é um Tipo Abstrato de Dados onde cada elemento possui uma prioridade associada, sendo o item de maior prioridade sempre atendido primeiro.\n\nO Heap Binário é a estrutura canônica para implementar filas de prioridade. Um dos problemas mais frequentes em engenharia é encontrar os K Maiores Elementos de uma coleção de n itens: mantendo um Min-Heap de tamanho k, processamos cada item da entrada em O(n log k). Ao final, o heap contém exatamente os k maiores, economizando memória gigantesca quando n é na casa dos bilhões e k é pequeno.",
+          "tip": "Para encontrar os K MAIORES elementos de um fluxo contínuo, use um MIN-HEAP de tamanho k. Para os K MENORES elementos, use um MAX-HEAP de tamanho k.",
+          "code": "import heapq\n\n# Encontra os K maiores elementos com Min-Heap: O(n log k) tempo, O(k) espaço\ndef top_k_maiores(nums: list[int], k: int) -> list[int]:\n    min_heap = []\n    for num in nums:\n        heapq.heappush(min_heap, num)\n        if len(min_heap) > k:\n            heapq.heappop(min_heap)  # Descarta o menor dos k+1\n    return min_heap\n\nprint(top_k_maiores([3, 10, 5, 20, 1, 8, 15], 3))  # Saída: [10, 15, 20]"
         },
         {
-          "title": "Encontrando os K Maiores Elementos",
-          "body": "Usar um Min-Heap de tamanho K nos permite achar os K maiores elementos de um array em O(n log k). Mantemos o heap do tamanho k e qualquer elemento no topo será o K-ésimo maior.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "import heapq\n\ndef find_kth_largest(nums, k):\n    min_heap = nums[:k]\n    heapq.heapify(min_heap)\n    for num in nums[k:]:\n        if num > min_heap[0]:\n            heapq.heappushpop(min_heap, num)\n    return min_heap[0]",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Encontrando a Mediana de um Fluxo Contínuo com Dois Heaps",
+          "body": "Calcular a mediana de um fluxo contínuo e infinito de dados em tempo real é um desafio monumental se tentarmos ordenar o array a cada inserção O(n log n).\n\nA solução de engenharia elegante utiliza Dois Heaps balanceados: um Max-Heap para armazenar a metade inferior dos números e um Min-Heap para a metade superior. Mantendo o tamanho de ambos os heaps equilibrados (diferença máxima de 1 elemento), a mediana é sempre calculada instantaneamente em tempo O(1) inspecionando os topos dos dois heaps, enquanto cada nova inserção custa apenas O(log n).",
+          "tip": "Essa arquitetura de dois heaps é o padrão ouro da indústria para cálculo de percentis e medianas em streaming de telemetria de alta frequência.",
+          "code": "import heapq\n\nclass MedianFinder:\n    def __init__(self):\n        self.pequenos = []  # Max-Heap (armazena valores com sinal invertido)\n        self.grandes = []   # Min-Heap\n\n    def add_num(self, num: int) -> None:\n        # Adiciona e balanceia entre os dois heaps em O(log n)\n        heapq.heappush(self.pequenos, -num)\n        heapq.heappush(self.grandes, -heapq.heappop(self.pequenos))\n        if len(self.grandes) > len(self.pequenos):\n            heapq.heappush(self.pequenos, -heapq.heappop(self.grandes))\n\n    def find_median(self) -> float:\n        if len(self.pequenos) > len(self.grandes):\n            return float(-self.pequenos[0])\n        return (-self.pequenos[0] + self.grandes[0]) / 2.0"
         }
       ],
       "questions": [
@@ -1753,16 +1753,16 @@
       "summary": "Aprenda sobre Grafos.",
       "lesson": [
         {
-          "title": "Representação e BFS",
-          "body": "Grafos modelam conexões (ex: redes, mapas). A Busca em Largura (BFS) explora vizinhos nivel por nível usando uma Fila, sendo perfeita para achar o caminho mais curto em grafos sem peso.\n\nCompreender este fundamento é crucial em Estruturas de Dados e Algoritmos. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "from collections import deque\n\ndef bfs(graph, start):\n    visited, queue = set([start]), deque([start])\n    while queue:\n        node = queue.popleft()\n        print(node)\n        for neighbor in graph[node]:\n            if neighbor not in visited:\n                visited.add(neighbor)\n                queue.append(neighbor)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Fundamentos de Grafos: Vértices, Arestas, Direcionamento e Pesos",
+          "body": "Um Grafo G = (V, E) é uma estrutura matemática composta por um conjunto de Vértices (ou nós) e um conjunto de Arestas (ligações entre pares de vértices).\n\nOs grafos classificam-se de acordo com suas arestas: Grafos Direcionados (Dígrafos), onde cada aresta possui sentido definido de origem e destino (como seguir alguém no Twitter), e Grafos Não-Direcionados, com relações mútuas simétricas (amizade no Facebook). Podem também ser Ponderados (onde arestas carregam custos, distâncias ou latências) ou Não Ponderados.",
+          "tip": "Em sistemas distribuídos e microsserviços, dependências entre pacotes, rotas de rede, grafos de rede social e fluxogramas de tarefas de build são modelados como grafos.",
+          "code": "# Grafo ponderado e direcionado simples modelado conceitualmente\narestas = [\n    (\"Servidor_A\", \"Servidor_B\", 12),  # Nó origem, destino, latência ms\n    (\"Servidor_B\", \"Servidor_C\", 8),\n    (\"Servidor_A\", \"Servidor_C\", 45)\n]\nprint(f\"Total de conexões mapeadas: {len(arestas)}\")"
         },
         {
-          "title": "Busca em Profundidade (DFS) e Ciclos",
-          "body": "A DFS vai o mais fundo possível antes de retroceder, usando Pilha (ou recursão). Muito útil para encontrar componentes conectados, testar conexidade e detectar ciclos num grafo (O(V+E)).\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "def dfs(graph, node, visited=None):\n    if visited is None: visited = set()\n    visited.add(node)\n    print(node)\n    for neighbor in graph[node]:\n        if neighbor not in visited:\n            dfs(graph, neighbor, visited)\n    return visited",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Representações de Grafos: Matriz de Adjacência vs Lista de Adjacência",
+          "body": "A escolha de representação de um grafo em memória define o consumo de espaço e a velocidade de consulta de vizinhos do sistema.\n\nA Matriz de Adjacência é uma tabela bidimensional V x V onde matrix[u][v] indica se existe aresta entre u e v. Ela consome O(V²) de memória, ideal para grafos densos onde quase todos os nós se conectam. A Lista de Adjacência mapeia cada vértice para uma lista de seus vizinhos imediatos, consumindo apenas O(V + E) de espaço. Na esmagadora maioria dos problemas reais (grafos esparsos), a Lista de Adjacência é amplamente superior.",
+          "tip": "Se o seu grafo tem 1 milhão de usuários e cada um tem 100 amigos, a matriz precisaria de 1 trilhão de bytes (1 TB de RAM!). A lista de adjacência precisa de menos de 100 MB.",
+          "code": "# Lista de Adjacência usando dicionário de listas em Python\ngrafo_lista = {\n    \"A\": [\"B\", \"C\"],\n    \"B\": [\"A\", \"D\"],\n    \"C\": [\"A\"],\n    \"D\": [\"B\"]\n}\n\n# Consulta de vizinhos imediatos do vértice 'A' em tempo O(grau de A)\nprint(f\"Vizinhos de A: {grafo_lista['A']}\")"
         }
       ],
       "questions": [
@@ -1833,16 +1833,16 @@
       "summary": "Aprenda sobre Grafos.",
       "lesson": [
         {
-          "title": "Representação e BFS",
-          "body": "Grafos modelam conexões (ex: redes, mapas). A Busca em Largura (BFS) explora vizinhos nivel por nível usando uma Fila, sendo perfeita para achar o caminho mais curto em grafos sem peso.\n\nCompreender este fundamento é crucial em Estruturas de Dados e Algoritmos. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "from collections import deque\n\ndef bfs(graph, start):\n    visited, queue = set([start]), deque([start])\n    while queue:\n        node = queue.popleft()\n        print(node)\n        for neighbor in graph[node]:\n            if neighbor not in visited:\n                visited.add(neighbor)\n                queue.append(neighbor)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Busca em Largura (BFS) em Grafos e Menor Caminho Não Ponderado",
+          "body": "A Busca em Largura (Breadth-First Search - BFS) percorre o grafo explorando todos os vizinhos a uma distância d antes de avançar para qualquer vizinho a distância d + 1.\n\nO algoritmo utiliza uma Fila (Queue FIFO) e um conjunto de Visitados (Visited Set) para evitar loops infinitos provocados por ciclos no grafo. Uma propriedade matemática fundamental da BFS é que ela descobre comprovadamente o Menor Caminho (menor quantidade de arestas) entre o vértice de origem e qualquer outro nó acessível em grafos não ponderados, executando em tempo O(V + E).",
+          "tip": "Sempre adicione o nó ao conjunto `visitados` no instante exato em que ele é enfileirado na fila, nunca quando for desenfileirado. Isso evita enfileirar nós duplicados repetidas vezes.",
+          "code": "from collections import deque\n\n# BFS para menor caminho em grafo não ponderado: O(V + E)\ndef menor_caminho_bfs(grafo: dict, inicio: str, destino: str) -> int:\n    fila = deque([(inicio, 0)])  # Tupla (vertice, distancia)\n    visitados = {inicio}\n    \n    while fila:\n        atual, dist = fila.popleft()\n        if atual == destino: return dist\n        for vizinho in grafo.get(atual, []):\n            if vizinho not in visitados:\n                visitados.add(vizinho)\n                fila.append((vizinho, dist + 1))\n    return -1"
         },
         {
-          "title": "Busca em Profundidade (DFS) e Ciclos",
-          "body": "A DFS vai o mais fundo possível antes de retroceder, usando Pilha (ou recursão). Muito útil para encontrar componentes conectados, testar conexidade e detectar ciclos num grafo (O(V+E)).\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "def dfs(graph, node, visited=None):\n    if visited is None: visited = set()\n    visited.add(node)\n    print(node)\n    for neighbor in graph[node]:\n        if neighbor not in visited:\n            dfs(graph, neighbor, visited)\n    return visited",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Algoritmo de Dijkstra para Caminho Mínimo em Grafos Ponderados Positivos",
+          "body": "Quando as arestas do grafo possuem pesos (como distâncias em quilômetros ou latências de pacotes de rede), a BFS simples não encontra o menor caminho.\n\nO Algoritmo de Dijkstra soluciona o problema do caminho mínimo em grafos ponderados com pesos não negativos. Ele adota uma estratégia gulosa acelerada por uma Fila de Prioridade (Min-Heap): relaxa iterativamente as distâncias acumuladas a partir da origem, garantindo que o vértice mais próximo ainda não finalizado seja sempre processado em tempo O((V + E) log V).",
+          "tip": "Dijkstra não funciona corretamente em grafos com arestas de pesos negativos! Nesses casos raros, você deve utilizar o algoritmo de Bellman-Ford.",
+          "code": "import heapq\n\n# Algoritmo de Dijkstra com Min-Heap para menor caminho com pesos positivos\ndef dijkstra(grafo: dict, origem: str) -> dict:\n    distancias = {v: float('inf') for v in grafo}\n    distancias[origem] = 0\n    pq = [(0, origem)]  # (distancia_acumulada, vertice)\n    \n    while pq:\n        dist_atual, u = heapq.heappop(pq)\n        if dist_atual > distancias[u]: continue\n        for vizinho, peso in grafo[u]:\n            if distancias[u] + peso < distancias[vizinho]:\n                distancias[vizinho] = distancias[u] + peso\n                heapq.heappush(pq, (distancias[vizinho], vizinho))\n    return distancias"
         }
       ],
       "questions": [
@@ -1913,16 +1913,16 @@
       "summary": "Aprenda sobre Grafos.",
       "lesson": [
         {
-          "title": "Representação e BFS",
-          "body": "Grafos modelam conexões (ex: redes, mapas). A Busca em Largura (BFS) explora vizinhos nivel por nível usando uma Fila, sendo perfeita para achar o caminho mais curto em grafos sem peso.\n\nCompreender este fundamento é crucial em Estruturas de Dados e Algoritmos. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "from collections import deque\n\ndef bfs(graph, start):\n    visited, queue = set([start]), deque([start])\n    while queue:\n        node = queue.popleft()\n        print(node)\n        for neighbor in graph[node]:\n            if neighbor not in visited:\n                visited.add(neighbor)\n                queue.append(neighbor)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Busca em Profundidade (DFS) e Detecção de Ciclos com Cores de Vértices",
+          "body": "A Busca em Profundidade (Depth-First Search - DFS) explora um ramo do grafo até o nó mais distante possível antes de realizar o retrocesso (backtracking).\n\nA detecção de ciclos em grafos direcionados via DFS utiliza o algoritmo clássico das Três Cores (White-Gray-Black). Vértices Brancos ainda não foram visitados; Vértices Cinzas estão atualmente na pilha de recursão ativa do caminho corrente; Vértices Pretos foram totalmente explorados. Se durante a travessia alcançarmos um vértice Cinza, encontramos uma aresta de retorno (back-edge), confirmando a existência de um ciclo!",
+          "tip": "A detecção de ciclos em grafos é a base usada por sistemas operacionais para detectar deadlocks de processos competindo por recursos e por compilers para dependências circulares.",
+          "code": "# Detecção de ciclo em grafo direcionado com 3 estados (Branco, Cinza, Preto)\ndef tem_ciclo_direcionado(grafo: dict) -> bool:\n    BRANCO, CINZA, PRETO = 0, 1, 2\n    estado = {u: BRANCO for u in grafo}\n    \n    def dfs(u):\n        estado[u] = CINZA  # Entra na pilha de recursão\n        for v in grafo.get(u, []):\n            if estado[v] == CINZA: return True  # Ciclo detectado!\n            if estado[v] == BRANCO and dfs(v): return True\n        estado[u] = PRETO  # Totalmente explorado\n        return False\n        \n    return any(estado[u] == BRANCO and dfs(u) for u in grafo)"
         },
         {
-          "title": "Busca em Profundidade (DFS) e Ciclos",
-          "body": "A DFS vai o mais fundo possível antes de retroceder, usando Pilha (ou recursão). Muito útil para encontrar componentes conectados, testar conexidade e detectar ciclos num grafo (O(V+E)).\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "def dfs(graph, node, visited=None):\n    if visited is None: visited = set()\n    visited.add(node)\n    print(node)\n    for neighbor in graph[node]:\n        if neighbor not in visited:\n            dfs(graph, neighbor, visited)\n    return visited",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Ordenação Topológica em Grafos Acíclicos Direcionados (DAGs)",
+          "body": "A Ordenação Topológica de um Grafo Acíclico Direcionado (DAG) é uma ordenação linear de seus vértices tal que, para qualquer aresta orientada u -> v, o vértice u apareça antes de v.\n\nEssa estrutura é a resposta teórica para problemas de resolução de dependências, compilação de módulos em linguagens de programação e orquestração de pipelines de dados (ex: Apache Airflow). Pode ser calculada invertendo a ordem de saída de uma DFS pós-ordem ou através do Algoritmo de Kahn (baseado em remoção sucessiva de vértices com grau de entrada zero in-degree).",
+          "tip": "A ordenação topológica só existe se e somente se o grafo for estritamente acíclico (DAG). Se houver qualquer ciclo de dependência mútua, a ordenação topológica é matematicamente impossível.",
+          "code": "# Algoritmo de Kahn para Ordenação Topológica usando in-degree em O(V + E)\nfrom collections import deque\n\ndef ordenacao_topologica(num_tarefas: int, pre_requisitos: list[list[int]]) -> list[int]:\n    grau_entrada = [0] * num_tarefas\n    adj = [[] for _ in range(num_tarefas)]\n    for u, v in pre_requisitos:  # u deve ser executado antes de v\n        adj[u].append(v)\n        grau_entrada[v] += 1\n        \n    fila = deque([i for i in range(num_tarefas) if grau_entrada[i] == 0])\n    ordem = []\n    while fila:\n        u = fila.popleft()\n        ordem.append(u)\n        for v in adj[u]:\n            grau_entrada[v] -= 1\n            if grau_entrada[v] == 0: fila.append(v)\n            \n    return ordem if len(ordem) == num_tarefas else []  # Se menor, há ciclo!"
         }
       ],
       "questions": [
@@ -1993,16 +1993,16 @@
       "summary": "Aprenda sobre Algoritmos de Ordenação.",
       "lesson": [
         {
-          "title": "Ordenações Simples: Bubble e Insertion Sort",
-          "body": "Algoritmos O(n²) como Bubble Sort (trocas adjacentes contínuas) são lentos, mas fáceis de implementar. A estabilidade garante que elementos iguais não trocam sua ordem original relativa.\n\nCompreender este fundamento é crucial em Estruturas de Dados e Algoritmos. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "def bubble_sort(arr):\n    n = len(arr)\n    for i in range(n):\n        for j in range(0, n - i - 1):\n            if arr[j] > arr[j + 1]:\n                arr[j], arr[j + 1] = arr[j + 1], arr[j] # swap\n    return arr",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Ordenações Elementares O(n²): Bubble Sort e Selection Sort",
+          "body": "Algoritmos de ordenação elementares operam por meio de comparações e trocas sucessivas de elementos vizinhos ou seleções de valores extremos.\n\nO Bubble Sort flutua o maior elemento para o final do array a cada passagem completa comparando pares adjacentes. O Selection Sort divide o vetor em uma partição ordenada e outra desordenada: a cada iteração, ele varre a partição desordenada em busca do menor valor absoluto e o troca com a primeira posição não ordenada. Ambos têm complexidade de pior caso O(n²) e espaço auxiliar O(1).",
+          "tip": "Bubble Sort e Selection Sort têm finalidade puramente didática em cursos de introdução à ciência da computação; nunca devem ser utilizados em código de produção corporativo.",
+          "code": "# Selection Sort in-place: O(n²) tempo e O(1) espaço auxiliar\ndef selection_sort(arr: list[int]) -> None:\n    n = len(arr)\n    for i in range(n):\n        min_idx = i\n        for j in range(i + 1, n):\n            if arr[j] < arr[min_idx]:\n                min_idx = j\n        # Executa a troca in-place\n        arr[i], arr[min_idx] = arr[min_idx], arr[i]"
         },
         {
-          "title": "Ordenações Eficientes: Merge Sort O(n log n)",
-          "body": "Merge Sort divide o array pela metade recursivamente (Divide and Conquer) e então intercala as metades ordenadas. Garante O(n log n) no pior caso, mas requer O(n) de espaço extra.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "def merge_sort(arr):\n    if len(arr) <= 1: return arr\n    mid = len(arr) // 2\n    left = merge_sort(arr[:mid])\n    right = merge_sort(arr[mid:])\n    \n    res = []\n    while left and right:\n        if left[0] < right[0]: res.append(left.pop(0))\n        else: res.append(right.pop(0))\n    return res + left + right",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Insertion Sort: Eficiência em Quase-Ordenados e Estabilidade",
+          "body": "O Insertion Sort constrói a coleção ordenada final um elemento por vez, de maneira análoga a um jogador de cartas organizando seu baralho na mão.\n\nEle pega cada elemento não classificado e o compara com os anteriores, empurrando os maiores para a direita até encontrar o local correto de inserção. Embora seu pior caso seja O(n²), ele possui uma propriedade única: em arrays quase totalmente ordenados ou coleções minúsculas (n < 16), o Insertion Sort roda em tempo quase linear O(n) e supera amplamente algoritmos complexos.",
+          "tip": "A estabilidade do Insertion Sort preserva a ordem relativa original de elementos com chaves iguais, o que o torna a base do algoritmo Timsort (usado por padrão em Python e Java).",
+          "code": "# Insertion Sort in-place: O(n) no melhor caso, O(n²) no pior caso\ndef insertion_sort(arr: list[int]) -> None:\n    for i in range(1, len(arr)):\n        chave = arr[i]\n        j = i - 1\n        # Desloca elementos maiores que a chave para a direita\n        while j >= 0 and arr[j] > chave:\n            arr[j + 1] = arr[j]\n            j -= 1\n        arr[j + 1] = chave"
         }
       ],
       "questions": [
@@ -2073,16 +2073,16 @@
       "summary": "Aprenda sobre Algoritmos de Ordenação.",
       "lesson": [
         {
-          "title": "Ordenações Simples: Bubble e Insertion Sort",
-          "body": "Algoritmos O(n²) como Bubble Sort (trocas adjacentes contínuas) são lentos, mas fáceis de implementar. A estabilidade garante que elementos iguais não trocam sua ordem original relativa.\n\nCompreender este fundamento é crucial em Estruturas de Dados e Algoritmos. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "def bubble_sort(arr):\n    n = len(arr)\n    for i in range(n):\n        for j in range(0, n - i - 1):\n            if arr[j] > arr[j + 1]:\n                arr[j], arr[j + 1] = arr[j + 1], arr[j] # swap\n    return arr",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Divisão e Conquista: Merge Sort O(n log n) e Estabilidade",
+          "body": "O Merge Sort é o clássico algoritmo de ordenação fundamentado no paradigma de Divisão e Conquista (Divide and Conquer), concebido por John von Neumann.\n\nEle divide recursivamente o vetor de entrada pela metade até obter subvetores unitários triviais (log n divisões). Em seguida, conquista o problema intercalando (merge) os subvetores ordenados de baixo para cima. O Merge Sort oferece a garantia matemática inflexível de tempo O(n log n) em absolutamente todos os cenários: pior caso, caso médio e melhor caso, além de ser estritamente Estável.",
+          "tip": "A estabilidade de um algoritmo de ordenação garante que se você ordenar uma lista de pessoas por idade após ordená-la por nome, as pessoas de mesma idade continuarão em ordem alfabética.",
+          "code": "# Merge Sort recursivo clássico: O(n log n) tempo garantido\ndef merge_sort(arr: list[int]) -> list[int]:\n    if len(arr) <= 1: return arr\n    meio = len(arr) // 2\n    esquerda = merge_sort(arr[:meio])  # Divisão da metade esquerda\n    direita = merge_sort(arr[meio:])   # Divisão da metade direita\n    return intercalar(esquerda, direita)"
         },
         {
-          "title": "Ordenações Eficientes: Merge Sort O(n log n)",
-          "body": "Merge Sort divide o array pela metade recursivamente (Divide and Conquer) e então intercala as metades ordenadas. Garante O(n log n) no pior caso, mas requer O(n) de espaço extra.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "def merge_sort(arr):\n    if len(arr) <= 1: return arr\n    mid = len(arr) // 2\n    left = merge_sort(arr[:mid])\n    right = merge_sort(arr[mid:])\n    \n    res = []\n    while left and right:\n        if left[0] < right[0]: res.append(left.pop(0))\n        else: res.append(right.pop(0))\n    return res + left + right",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Algoritmo de Merge: Intercalação de Subvetores e Memória O(n)",
+          "body": "A etapa mais engenhosa e crítica do Merge Sort é a função de intercalação (merge) de dois subvetores já ordenados em um único resultado unificado.\n\nUtilizando dois ponteiros de varredura, comparam-se os elementos da cabeça de cada lista e transfere-se o menor para o vetor final em tempo linear O(n). A grande contrapartida arquitetural do Merge Sort tradicional é a exigência de memória auxiliar O(n) para acomodar os buffers transitórios durante a mesclagem, o que pode ser proibitivo em dispositivos embarcados com memória RAM extremamente limitada.",
+          "tip": "O princípio da intercalação do Merge Sort é exatamente o mesmo utilizado por bancos de dados distribuídos para unir fluxos de dados massivos armazenados em múltiplos discos rígidos.",
+          "code": "# Função de intercalação de duas listas já ordenadas em O(n)\ndef intercalar(esq: list[int], dir: list[int]) -> list[int]:\n    resultado = []\n    i = j = 0\n    while i < len(esq) and j < len(dir):\n        if esq[i] <= dir[j]:  # <= garante estabilidade\n            resultado.append(esq[i])\n            i += 1\n        else:\n            resultado.append(dir[j])\n            j += 1\n    resultado.extend(esq[i:])\n    resultado.extend(dir[j:])\n    return resultado"
         }
       ],
       "questions": [
@@ -2153,16 +2153,16 @@
       "summary": "Aprenda sobre Algoritmos de Ordenação.",
       "lesson": [
         {
-          "title": "Ordenações Simples: Bubble e Insertion Sort",
-          "body": "Algoritmos O(n²) como Bubble Sort (trocas adjacentes contínuas) são lentos, mas fáceis de implementar. A estabilidade garante que elementos iguais não trocam sua ordem original relativa.\n\nCompreender este fundamento é crucial em Estruturas de Dados e Algoritmos. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "def bubble_sort(arr):\n    n = len(arr)\n    for i in range(n):\n        for j in range(0, n - i - 1):\n            if arr[j] > arr[j + 1]:\n                arr[j], arr[j + 1] = arr[j + 1], arr[j] # swap\n    return arr",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Quick Sort: Estratégia de Particionamento (Lomuto vs Hoare)",
+          "body": "O Quick Sort é um dos algoritmos de ordenação mais celebrados da história da computação, famoso por sua velocidade prática inigualável e execução in-place.\n\nO algoritmo seleciona um elemento chamado Pivô e particiona o array: todos os itens menores que o pivô são deslocados para a sua esquerda, e os maiores para a sua direita. Os dois esquemas canônicos de particionamento são o Esquema de Lomuto (mais simples de codificar, com varredura unidirecional) e o Esquema de Hoare (mais rápido na prática, usando ponteiros bidirecionais que convergem).",
+          "tip": "O particionamento de Hoare realiza em média três vezes menos trocas (swaps) de memória do que o esquema de Lomuto, tornando-o o padrão em bibliotecas de alto desempenho.",
+          "code": "# Particionamento in-place de Lomuto: O(n) tempo e O(1) espaço\ndef particionar_lomuto(arr: list[int], low: int, high: int) -> int:\n    pivo = arr[high]  # Escolhe o último como pivô\n    i = low\n    for j in range(low, high):\n        if arr[j] < pivo:\n            arr[i], arr[j] = arr[j], arr[i]\n            i += 1\n    arr[i], arr[high] = arr[high], arr[i]  # Coloca pivô na posição final\n    return i"
         },
         {
-          "title": "Ordenações Eficientes: Merge Sort O(n log n)",
-          "body": "Merge Sort divide o array pela metade recursivamente (Divide and Conquer) e então intercala as metades ordenadas. Garante O(n log n) no pior caso, mas requer O(n) de espaço extra.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "def merge_sort(arr):\n    if len(arr) <= 1: return arr\n    mid = len(arr) // 2\n    left = merge_sort(arr[:mid])\n    right = merge_sort(arr[mid:])\n    \n    res = []\n    while left and right:\n        if left[0] < right[0]: res.append(left.pop(0))\n        else: res.append(right.pop(0))\n    return res + left + right",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Escolha do Pivô, Pior Caso O(n²) e Híbridos Modernos (Timsort/Introsort)",
+          "body": "Se o pivô escolhido no Quick Sort for reiteradamente o menor ou maior valor absoluto do array (como o primeiro item em um vetor já ordenado), a recursão não divide o problema pela metade e degenera para O(n²).\n\nPara evitar esse desastre, linguagens modernas adotam estratégias avançadas como a mediana de três ou algoritmos híbridos: o Introsort (usado no C++) inicia com Quick Sort, alterna para Heapsort O(n log n) se a profundidade da recursão atingir um limite perigoso, e usa Insertion Sort para blocos pequenos. Já o Timsort (Python e Java) combina Merge Sort com Insertion Sort.",
+          "tip": "Sempre randomize o pivô ou use a técnica de mediana de três (primeiro, meio e último). Isso anula ataques de worst-case forjados deliberadamente contra o seu sistema.",
+          "code": "# Quick Sort completo com caso médio O(n log n) e in-place\ndef quick_sort(arr: list[int], low: int, high: int) -> None:\n    if low < high:\n        pi = particionar_lomuto(arr, low, high)\n        quick_sort(arr, low, pi - 1)   # Ordena partição esquerda\n        quick_sort(arr, pi + 1, high)  # Ordena partição direita\n\nnums = [64, 34, 25, 12, 22, 11, 90]\nquick_sort(nums, 0, len(nums) - 1)\nprint(f\"Array ordenado: {nums}\")"
         }
       ],
       "questions": [
@@ -2233,16 +2233,16 @@
       "summary": "Aprenda sobre Projeto Final.",
       "lesson": [
         {
-          "title": "Resolução Integrada de Problemas",
-          "body": "Projetos finais combinam múltiplas estruturas. Por exemplo, achar caminhos mínimos com Dijkstra usa Grafos e Priority Queues. Sempre analise espaço vs tempo antes de codificar a solução final.\n\nCompreender este fundamento é crucial em Estruturas de Dados e Algoritmos. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "import heapq\n\ndef dijkstra(graph, start):\n    distances = {node: float('inf') for node in graph}\n    distances[start] = 0\n    pq = [(0, start)]\n    while pq:\n        curr_dist, curr_node = heapq.heappop(pq)\n        if curr_dist > distances[curr_node]: continue\n        for neighbor, weight in graph[curr_node].items():\n            dist = curr_dist + weight\n            if dist < distances[neighbor]:\n                distances[neighbor] = dist\n                heapq.heappush(pq, (dist, neighbor))\n    return distances",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Engenharia de Requisitos Algorítmicos e Trade-offs Espaço vs Tempo",
+          "body": "Projetar software de classe mundial exige dominar a arte dos trade-offs: nenhuma estrutura de dados é universalmente superior em todos os cenários possíveis.\n\nO chamado Space-Time Trade-off (compensação espaço-tempo) dita que quase sempre podemos acelerar uma operação de tempo consumindo mais memória (como pré-calcular índices em Tabelas Hash ou matrizes de prefixo), ou economizar memória ao custo de mais ciclos de CPU. A maturidade do engenheiro reside em ponderar volume de dados, padrões de concorrência e limitações de hardware.",
+          "tip": "Antes de escrever qualquer código, pergunte: a carga de trabalho do sistema é de Leitura Intensa (Read-Heavy) ou Escrita Intensa (Write-Heavy)? A resposta define sua estrutura de dados.",
+          "code": "# Matriz de Prefixo (Prefix Sum): gasta espaço O(n) para consultas O(1)\nclass PrefixSum:\n    def __init__(self, nums: list[int]):\n        self.pref = [0]\n        for n in nums: self.pref.append(self.pref[-1] + n)\n\n    def query(self, left: int, right: int) -> int:\n        # Retorna soma da fatia [left, right] em tempo O(1) instantâneo\n        return self.pref[right + 1] - self.pref[left]"
         },
         {
-          "title": "Refinamento e Otimização Constante",
-          "body": "Saber otimizar código é o ápice do conhecimento em DSA. Trocar uma Lista (O(n) para busca) por um Set (O(1)) pode reduzir horas de processamento para milissegundos em grandes datasets reais.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "def find_intersection(list1, list2):\n    # Converter para set torna a intersecção O(N + M)\n    # Usar apenas listas com 'in' seria O(N * M)\n    set1 = set(list1)\n    return [x for x in list2 if x in set1]",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Modelagem de Sistemas Complexos: Cache LRU com Hash Map e Doubly Linked List",
+          "body": "O Cache LRU (Least Recently Used) é um dos sistemas fundamentais mais elegantes da computação, presente em CPUs, navegadores web e bancos de dados como Redis.\n\nO requisito do LRU é rigoroso: get(key) e put(key, value) devem operar em tempo estritamente O(1), e ao atingir a capacidade máxima, o item menos recentemente acessado deve ser descartado. Essa proeza de engenharia é atingida combinando duas estruturas: uma Tabela Hash (que armazena ponteiros diretos para os nós na heap em O(1)) e uma Lista Duplamente Encadeada (que move e remove nós em O(1)).",
+          "tip": "A combinação de Hash Map com Lista Duplamente Encadeada é o segredo de estruturas como o LinkedHashMap do Java e OrderedDictionary do Python.",
+          "code": "# Estrutura híbrida clássica de Cache LRU com operações O(1)\nclass LRUNode:\n    def __init__(self, k=0, v=0):\n        self.k, self.v = k, v\n        self.prev = self.next = None\n\nclass LRUCache:\n    def __init__(self, capacity: int):\n        self.cap = capacity\n        self.cache = {}  # key -> LRUNode para busca O(1)\n        self.head, self.tail = LRUNode(), LRUNode()\n        self.head.next, self.tail.prev = self.tail, self.head"
         }
       ],
       "questions": [
@@ -2313,16 +2313,16 @@
       "summary": "Aprenda sobre Projeto Final.",
       "lesson": [
         {
-          "title": "Resolução Integrada de Problemas",
-          "body": "Projetos finais combinam múltiplas estruturas. Por exemplo, achar caminhos mínimos com Dijkstra usa Grafos e Priority Queues. Sempre analise espaço vs tempo antes de codificar a solução final.\n\nCompreender este fundamento é crucial em Estruturas de Dados e Algoritmos. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "import heapq\n\ndef dijkstra(graph, start):\n    distances = {node: float('inf') for node in graph}\n    distances[start] = 0\n    pq = [(0, start)]\n    while pq:\n        curr_dist, curr_node = heapq.heappop(pq)\n        if curr_dist > distances[curr_node]: continue\n        for neighbor, weight in graph[curr_node].items():\n            dist = curr_dist + weight\n            if dist < distances[neighbor]:\n                distances[neighbor] = dist\n                heapq.heappush(pq, (dist, neighbor))\n    return distances",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Algoritmos Gulosos (Greedy) vs Programação Dinâmica (Dynamic Programming)",
+          "body": "Dois dos paradigmas mais avançados na resolução de problemas computacionais complexos são a Estratégia Gulosa (Greedy) e a Programação Dinâmica (DP).\n\nUm Algoritmo Guloso faz a escolha localmente ótima a cada passo na esperança de alcançar o ótimo global, operando de forma rápida sem olhar para trás (ex: Algoritmo de Dijkstra, Huffman Coding). Contudo, muitos problemas não admitem soluções gulosas e exigem Programação Dinâmica: a quebra do problema em subproblemas sobrepostos com garantia matemática de otimalidade global explorando todos os caminhos viáveis sem recalcular ramos repetidos.",
+          "tip": "Se a escolha local do passo atual pode limitar opções melhores no futuro, a abordagem gulosa falhará: use Programação Dinâmica.",
+          "code": "# Problema do Troco: Abordagem gulosa falha com moedas não canônicas [1, 3, 4]\n# Troco de 6: Guloso daria 4 + 1 + 1 (3 moedas). O ótimo global é 3 + 3 (2 moedas)!\ndef troco_minimo_dp(moedas: list[int], quantia: int) -> int:\n    dp = [float('inf')] * (quantia + 1)\n    dp[0] = 0\n    for i in range(1, quantia + 1):\n        for m in moedas:\n            if i >= m: dp[i] = min(dp[i], dp[i - m] + 1)\n    return dp[quantia] if dp[quantia] != float('inf') else -1"
         },
         {
-          "title": "Refinamento e Otimização Constante",
-          "body": "Saber otimizar código é o ápice do conhecimento em DSA. Trocar uma Lista (O(n) para busca) por um Set (O(1)) pode reduzir horas de processamento para milissegundos em grandes datasets reais.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "def find_intersection(list1, list2):\n    # Converter para set torna a intersecção O(N + M)\n    # Usar apenas listas com 'in' seria O(N * M)\n    set1 = set(list1)\n    return [x for x in list2 if x in set1]",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Princípio da Subestrutura Ótima e Reconhecimento de Padrões DP",
+          "body": "A Programação Dinâmica fundamenta-se no Princípio da Subestrutura Ótima: uma solução ótima para o problema global contém em seu interior soluções ótimas para seus subproblemas.\n\nExistem dois estilos clássicos de implementação: Top-Down com Memoization (recursão natural com cache das respostas intermediárias) e Bottom-Up com Tabulação (preenchimento iterativo de uma tabela a partir dos casos-base menores). A transição para Bottom-Up elimina o consumo de stack frames da recursão e frequentemente permite otimizar o espaço auxiliar de O(n) para O(1).",
+          "tip": "Ao resolver problemas DP com tabulação, note se o estado dp[i] só depende de dp[i-1] e dp[i-2]. Se for o caso, descarte o array inteiro e use apenas duas variáveis numéricas.",
+          "code": "# Fibonacci com Tabulação Bottom-Up com Espaço O(1) e Tempo O(n)\ndef fib_espaco_otimizado(n: int) -> int:\n    if n <= 1: return n\n    prev2, prev1 = 0, 1\n    for _ in range(2, n + 1):\n        atual = prev1 + prev2\n        prev2 = prev1\n        prev1 = atual\n    return prev1"
         }
       ],
       "questions": [
@@ -2393,16 +2393,16 @@
       "summary": "Aprenda sobre Projeto Final.",
       "lesson": [
         {
-          "title": "Resolução Integrada de Problemas",
-          "body": "Projetos finais combinam múltiplas estruturas. Por exemplo, achar caminhos mínimos com Dijkstra usa Grafos e Priority Queues. Sempre analise espaço vs tempo antes de codificar a solução final.\n\nCompreender este fundamento é crucial em Estruturas de Dados e Algoritmos. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "import heapq\n\ndef dijkstra(graph, start):\n    distances = {node: float('inf') for node in graph}\n    distances[start] = 0\n    pq = [(0, start)]\n    while pq:\n        curr_dist, curr_node = heapq.heappop(pq)\n        if curr_dist > distances[curr_node]: continue\n        for neighbor, weight in graph[curr_node].items():\n            dist = curr_dist + weight\n            if dist < distances[neighbor]:\n                distances[neighbor] = dist\n                heapq.heappush(pq, (dist, neighbor))\n    return distances",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Profiling de Memória, Otimização de Garbage Collection e CPU Cache",
+          "body": "Levar algoritmos teóricos para produção em alta escala exige compreender como o hardware e os runtimes modernos executam o código compilado na prática.\n\nMesmo um algoritmo assintoticamente ótimo O(n) pode ser drasticamente mais lento que outro se provocar constantes cache misses na CPU ou gerar milhões de pequenos objetos de curta duração que sobrecarregam as pausas do Garbage Collector (Stop-The-World). O profiling de memória e CPU revela gargalos ocultos de alocação e permite aplicar otimizações como pooling de objetos e alinhamento de estruturas de dados.",
+          "tip": "Mensure sempre antes de otimizar! 'Premature optimization is the root of all evil' (Donald Knuth). Utilize profilers profissionais como cProfile, perf ou pprof.",
+          "code": "import cProfile\n\ndef algoritmo_critico():\n    # Processamento computacional pesado de exemplo\n    return sum(x * x for x in range(100_000))\n\n# Execução com profiling determinístico de chamadas e tempos de CPU\ncProfile.run('algoritmo_critico()')"
         },
         {
-          "title": "Refinamento e Otimização Constante",
-          "body": "Saber otimizar código é o ápice do conhecimento em DSA. Trocar uma Lista (O(n) para busca) por um Set (O(1)) pode reduzir horas de processamento para milissegundos em grandes datasets reais.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "def find_intersection(list1, list2):\n    # Converter para set torna a intersecção O(N + M)\n    # Usar apenas listas com 'in' seria O(N * M)\n    set1 = set(list1)\n    return [x for x in list2 if x in set1]",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Síntese de Algoritmos e Estruturas de Dados em Ambientes de Produção",
+          "body": "Dominar Estruturas de Dados e Algoritmos transforma um programador comum em um engenheiro sênior capaz de arquitetar sistemas resilientes e escaláveis.\n\nSaber quando empregar uma Tabela Hash, como balancear uma árvore, quando escolher um Deque sobre uma lista ou como modelar fluxos complexos em grafos é o diferencial que separa softwares frágeis de plataformas capazes de atender centenas de milhões de usuários globais com latências de milissegundos e consumo previsível de infraestrutura.",
+          "tip": "Trate algoritmos não como testes teóricos de entrevistas, mas como o kit de ferramentas definitivo da sua carreira para escrever software limpo, veloz, elegante e duradouro.",
+          "code": "# A sinfonia de um sistema robusto: elegância, clareza e previsibilidade assintótica\ndef pipeline_producao(dados: list[int]) -> dict:\n    return {\n        \"total_registros\": len(dados),\n        \"maximo\": max(dados) if dados else None,\n        \"status\": \"Pipeline executado com eficiência assintótica máxima O(n)\"\n    }\n\nprint(pipeline_producao([100, 250, 400]))"
         }
       ],
       "questions": [

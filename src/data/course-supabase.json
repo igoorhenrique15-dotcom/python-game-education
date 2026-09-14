@@ -74,15 +74,15 @@
       "lesson": [
         {
           "title": "O que é o Supabase?",
-          "body": "O Supabase é uma alternativa de código aberto ao Firebase. Ele fornece um backend completo como serviço (BaaS), oferecendo banco de dados Postgres, autenticação, armazenamento e funções edge, tudo configurado instantaneamente sem precisar gerenciar servidores, acelerando o desenvolvimento.\n\nCompreender este fundamento é crucial em Supabase. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "// Sem código necessário aqui\n// O Supabase foca em produtividade",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O Supabase é uma plataforma Backend-as-a-Service (BaaS) de código aberto construída sobre o PostgreSQL. Ao contrário do Firebase, que utiliza bancos NoSQL proprietários, o Supabase fornece uma instância completa e dedicada do PostgreSQL com autenticação integrada, APIs geradas instantaneamente via PostgREST, armazenamento de arquivos (Storage) e mensageria em tempo real sem prender o desenvolvedor a formatos proprietários.",
+          "tip": "Como o Supabase é 100% baseado em PostgreSQL padrão, você nunca fica preso (sem vendor lock-in): pode exportar seu banco para qualquer servidor a qualquer momento.",
+          "code": "-- No Supabase, toda a infraestrutura é PostgreSQL puro\nSELECT version();\n-- Você tem controle total com DDL relacional padrão"
         },
         {
           "title": "Por que usar Backend as a Service?",
-          "body": "Usar um BaaS elimina a necessidade de escrever código boilerplate (repetitivo) para conectar bancos de dados, gerenciar rotas de API REST e lidar com sessões de usuário. Com o Supabase, você foca inteiramente nas regras de negócio e no frontend, enquanto ele cuida da infraestrutura de forma escalável.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "// Foco no frontend!\nconst app = 'Seu App Incrível';",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Tradicionalmente, criar um backend para uma aplicação web ou mobile exige configurar servidores, provisionar bancos de dados, escrever rotas CRUD repetitivas em APIs REST, implementar autenticação JWT segura com refresh tokens e manter infraestrutura de WebSockets. O Supabase automatiza essas tarefas em minutos, permitindo que o time foque na experiência do usuário e regras de negócio essenciais do produto.",
+          "tip": "Utilize o Supabase para lançar MVPs ou escalar produtos sem a sobrecarga operacional de gerenciar servidores e pipelines de autenticação manuais.",
+          "code": "// Conexão inicial com o SDK do Supabase no frontend ou backend\nimport { createClient } from '@supabase/supabase-js';\n\nconst supabase = createClient(\n  process.env.SUPABASE_URL,\n  process.env.SUPABASE_ANON_KEY\n);"
         }
       ],
       "questions": [
@@ -154,15 +154,15 @@
       "lesson": [
         {
           "title": "Arquitetura baseada em Postgres",
-          "body": "Diferente de outras opções focadas em NoSQL, o Supabase é construído inteiramente sobre o PostgreSQL. Isso significa que você obtém todo o poder de um banco de dados relacional robusto e altamente escalável, com suporte nativo a constraints, relacionamentos e tipos avançados como JSONB.\n\nCompreender este fundamento é crucial em Supabase. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "CREATE TABLE perfis (\n  id uuid PRIMARY KEY,\n  nome text NOT NULL\n);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "No coração do Supabase reside o PostgreSQL empresarial, um dos motores de banco de dados relacionais mais avançados e estáveis do mundo. Cada projeto provisionado recebe uma instância isolada com suporte a transações ACID estritas, gatilhos (triggers), funções em PL/pgSQL, extensões analíticas e índices geoespaciais e vetoriais. Não há camadas de abstração obscuras entre sua aplicação e os dados reais.",
+          "tip": "Você pode se conectar ao Supabase tanto via SDK HTTP quanto por conexão direta TCP (pgbouncer) usando clientes como Prisma, Drizzle ou DBeaver.",
+          "code": "-- Conexão direta SQL com pooling de conexões (porta 6543)\n-- postgresql://postgres:[SUA_SENHA]@db.[REF].supabase.co:6543/postgres\nCREATE TABLE perfis (\n  id UUID PRIMARY KEY REFERENCES auth.users(id),\n  nome TEXT NOT NULL\n);"
         },
         {
           "title": "Ecossistema Open-source",
-          "body": "Cada peça da arquitetura do Supabase é open-source. Eles usam ferramentas consagradas da comunidade, como GoTrue para autenticação e PostgREST para transformar o Postgres em uma API RESTful. Isso evita o temido vendor lock-in e garante que você possa migrar ou hospedar o sistema por conta própria se desejar.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "SELECT ferramenta, tipo \nFROM ecossistema_supabase;",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O Supabase não é um monolito opaco: é uma composição harmoniosa de ferramentas open-source de alto desempenho. Ele combina PostgREST para transformar esquemas em APIs REST, GoTrue para gestão de autenticação, Realtime para streaming de WebSockets do banco, pg_graphql para queries GraphQL nativas e Kong como API Gateway unificado. Você pode rodar a stack completa localmente no Docker sem limitações.",
+          "tip": "Use o Supabase CLI localmente (`supabase init` e `supabase start`) para desenvolver e rodar testes automatizados sem gastar recursos da nuvem.",
+          "code": "# Inicializando a stack completa do Supabase localmente via Docker\nnpx supabase init\nnpx supabase start\n# Cria painel Studio, Postgres e APIs locais em portas dedicadas"
         }
       ],
       "questions": [
@@ -233,16 +233,16 @@
       "summary": "Entenda o fluxo básico de como um app usa o Supabase no dia a dia.",
       "lesson": [
         {
-          "title": "O painel de controle",
-          "body": "O Dashboard (painel) do Supabase é uma interface gráfica poderosa que permite visualizar e modificar os dados das tabelas, além de gerenciar usuários, políticas de segurança, logs de autenticação e métricas de desempenho. É praticamente um cliente SQL embutido no navegador, tornando a gestão intuitiva.\n\nCompreender este fundamento é crucial em Supabase. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "/* Pelo painel, essa query roda por baixo dos panos: */\nSELECT * FROM usuarios LIMIT 50;",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "O Painel de Controle (Studio)",
+          "body": "O Supabase Studio é uma interface web intuitiva que elimina a necessidade de instalar ferramentas externas de administração de banco. Nele, você pode inspecionar e editar tabelas visualmente, rodar queries SQL interativas, configurar políticas de segurança (RLS) com assistentes gráficos, gerenciar buckets de arquivos e monitorar métricas de uso de CPU, memória, latência e conexões ativas do banco.",
+          "tip": "Use o SQL Editor no Studio para testar queries e criar migrações antes de integrá-las ao código da aplicação cliente.",
+          "code": "-- O Studio permite rodar scripts complexos no editor SQL integrado\nSELECT tablename, schemaname \nFROM pg_tables \nWHERE schemaname = 'public'\nORDER BY tablename ASC;"
         },
         {
           "title": "Integração nativa com Client SDK",
-          "body": "O Supabase brilha quando utilizado junto ao seu Client SDK (ex: supabase-js). Ele abstrai requisições HTTP e permite que você acesse as APIs geradas automaticamente com comandos muito parecidos com SQL. Você interage com o backend quase como se o banco estivesse exposto localmente, mas de forma segura.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "import { createClient } from '@supabase/supabase-js'\nconst supabase = createClient(URL, KEY);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "A biblioteca `@supabase/supabase-js` oferece uma interface isomórfica fluente que funciona tanto no navegador quanto em ambientes Node.js, Deno, Bun e React Native. Ela lida automaticamente com o armazenamento e renovação de tokens JWT em cookies ou LocalStorage, serialização de parâmetros de consulta, cabeçalhos de autorização e reconexão de canais em tempo real após quedas de rede.",
+          "tip": "Instale o `@supabase/ssr` caso esteja trabalhando com frameworks modernos que usam Server Components, como Next.js App Router.",
+          "code": "// Leitura limpa e fortemente tipada pelo SDK\nconst { data, error } = await supabase\n  .from('produtos')\n  .select('id, nome, preco')\n  .order('preco', { ascending: false });\n\nif (error) console.error(error.message);"
         }
       ],
       "questions": [
@@ -314,15 +314,15 @@
       "lesson": [
         {
           "title": "Tabelas e Tipos de Dados",
-          "body": "No PostgreSQL, os dados são armazenados em tabelas estritas, onde cada coluna possui um tipo de dado específico. O Supabase facilita a criação de tabelas com tipos variados (Texto, Inteiro, UUID, Booleano, etc.), permitindo criar estruturas confiáveis e evitar o armazenamento de dados inconsistentes.\n\nCompreender este fundamento é crucial em Supabase. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "CREATE TABLE posts (\n  id bigint GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,\n  title text,\n  published boolean DEFAULT false\n);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "No Supabase, as tabelas residem no esquema `public` por padrão e herdam todo o poder do sistema de tipos nativo do PostgreSQL. Além de tipos primitivos como `integer`, `text` e `boolean`, o Postgres oferece suporte de primeira classe a colunas `jsonb` para dados semiestruturados, arrays nativos (`text[]`), identificadores universais `uuid` e coordenadas espaciais `geography` com suporte a indexação direta.",
+          "tip": "Prefira colunas `jsonb` em vez de `json` padrão; o `jsonb` armazena em binário decomposto e aceita índices GIN para buscas ultra-rápidas.",
+          "code": "-- Tabela combinando tipos relacionais fortes com coluna flexível jsonb\nCREATE TABLE pedidos (\n  id UUID DEFAULT gen_random_uuid() PRIMARY KEY,\n  cliente_id UUID NOT NULL,\n  metadados JSONB DEFAULT '{}'::jsonb,\n  criado_em TIMESTAMPTZ DEFAULT now()\n);"
         },
         {
-          "title": "A importância das Chaves Primárias",
-          "body": "Toda tabela no Supabase deve possuir uma Chave Primária (Primary Key) para identificar cada registro de forma única. O padrão recomendado é utilizar UUID (Universal Unique Identifier), pois ele garante unicidade global, sendo ideal para sistemas distribuídos e mais seguro contra adivinhação do que IDs sequenciais.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "CREATE TABLE users (\n  id uuid DEFAULT gen_random_uuid() PRIMARY KEY,\n  email text\n);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "A Importância das Chaves Primárias",
+          "body": "Chaves primárias são indispensáveis para que o Supabase consiga indexar registros, viabilizar mutações no painel Studio e sincronizar alterações via streaming Realtime. O padrão do ecossistema Supabase é utilizar `UUID` gerado pela função nativa `gen_random_uuid()`. Diferente de inteiros sequenciais (1, 2, 3), UUIDs não expõem o volume de negócios para invasores e podem ser gerados com segurança no próprio cliente antes do envio.",
+          "tip": "Utilize UUIDs como PK para tabelas públicas acessadas pela API; isso previne ataques de enumeração direta contra os recursos do seu sistema.",
+          "code": "-- Chave primária UUID com geração automática no Postgres\nCREATE TABLE tarefas (\n  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),\n  descricao TEXT NOT NULL,\n  concluida BOOLEAN DEFAULT false\n);"
         }
       ],
       "questions": [
@@ -394,15 +394,15 @@
       "lesson": [
         {
           "title": "Relacionamentos com Chaves Estrangeiras",
-          "body": "Um dos grandes poderes do Postgres é o relacionamento entre tabelas através de Chaves Estrangeiras (Foreign Keys). Elas garantem a integridade referencial dos dados, por exemplo, não permitindo que um 'comentário' exista se não estiver associado a um 'post' válido. O Supabase identifica e explora isso.\n\nCompreender este fundamento é crucial em Supabase. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "CREATE TABLE comments (\n  id bigint PRIMARY KEY,\n  post_id bigint REFERENCES posts(id) ON DELETE CASCADE,\n  content text\n);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Ao vincular tabelas com Chaves Estrangeiras no Postgres, o Supabase ganha o superpoder de entender o grafo de dados da sua aplicação. Isso permite que a API REST do PostgREST resolva consultas aninhadas automaticamente (similar ao GraphQL) sem que você precise escrever rotas especiais ou joins manuais no backend, retornando respostas JSON já aninhadas com hierarquia completa.",
+          "tip": "Defina Foreign Keys mesmo se usar um ORM externo; é a presença física da FK no catálogo do banco que habilita joins automáticos no SDK do Supabase.",
+          "code": "-- O PostgREST detecta a FK e permite queries aninhadas automáticas\nCREATE TABLE autores (\n  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),\n  nome TEXT NOT NULL\n);\n\nCREATE TABLE livros (\n  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),\n  titulo TEXT NOT NULL,\n  autor_id UUID REFERENCES autores(id) ON DELETE CASCADE\n);"
         },
         {
           "title": "Views e Consultas Complexas",
-          "body": "O Supabase permite a criação de Views no Postgres, que são 'tabelas virtuais' baseadas em consultas complexas. Elas são úteis para agregar dados de várias tabelas ou ocultar informações sensíveis antes de expô-las para a API. Assim, o SDK do frontend acessa a View como se fosse uma tabela normal.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "CREATE VIEW public_profiles AS \nSELECT id, username, avatar_url \nFROM users \nWHERE is_public = true;",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Views são consultas SQL pré-definidas que o banco expõe como se fossem tabelas virtuais. No Supabase, toda view criada no esquema `public` se torna instantaneamente um endpoint consultável pela API com suporte a filtros e ordenação pelo SDK. Isso permite encapsular cálculos pesados, agregações analíticas e joins complexos no lado do banco, mantendo o frontend limpo e performático.",
+          "tip": "Crie Views para expor resumos analíticos protegendo colunas sensíveis da tabela física subjacente.",
+          "code": "-- View exposta automaticamente como rota GET na API\nCREATE VIEW relatorio_vendas AS\nSELECT \n  a.nome AS autor,\n  COUNT(l.id) AS total_livros\nFROM autores a\nLEFT JOIN livros l ON l.autor_id = a.id\nGROUP BY a.nome;"
         }
       ],
       "questions": [
@@ -474,15 +474,15 @@
       "lesson": [
         {
           "title": "Gerenciamento de Migrations",
-          "body": "Embora o Table Editor do painel seja ótimo para prototipagem rápida, aplicações em produção devem usar Migrations. As Migrations são arquivos SQL sequenciais que rastreiam as mudanças de esquema no banco. O Supabase CLI facilita a criação, testes locais e aplicação segura no ambiente de produção.\n\nCompreender este fundamento é crucial em Supabase. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "supabase db diff -f add_users_table\nsupabase db push",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Conforme seu produto evolui, mudanças na estrutura do banco não devem ser feitas manualmente em produção. O Supabase CLI fornece um fluxo profissional de migrações declarativas onde cada alteração de DDL é gravada em arquivos SQL cronológicos na pasta `supabase/migrations`. Essas migrações são executadas em pipelines de CI/CD, garantindo que os ambientes de desenvolvimento, staging e produção permaneçam idênticos.",
+          "tip": "Nunca altere o banco de produção diretamente pelo Studio após o lançamento; gere migrations com `supabase db diff` e aplique com `supabase db push`.",
+          "code": "# Criando e aplicando migrações com o Supabase CLI\nnpx supabase migration new adicionar_coluna_telefone\n# O comando cria um arquivo SQL versionado com timestamp\nnpx supabase db push # Aplica as pendências no banco remoto"
         },
         {
           "title": "Extensões do Postgres",
-          "body": "O Supabase vem com suporte a dezenas de extensões do Postgres que adicionam funcionalidades avançadas. Por exemplo, a extensão 'pgcrypto' para criptografia, 'postgis' para dados geográficos e mapas, ou 'pg_trgm' para pesquisas textuais difusas (fuzzy search). Tudo a um clique no painel.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "CREATE EXTENSION IF NOT EXISTS postgis schema extensions;\n-- Habilita dados espaciais no banco",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Um dos maiores diferenciais do Supabase é o ecossistema de extensões do PostgreSQL acessíveis com um clique no Studio. Extensões como `pgvector` permitem armazenar e comparar embeddings vetoriais para Inteligência Artificial; `pg_trgm` habilita busca textual fuzzy ultrarrápida; e `pg_cron` agenda execuções periódicas de procedures SQL diretamente dentro do motor do banco de dados.",
+          "tip": "Habilite apenas as extensões necessárias para o seu caso de uso para manter o consumo de memória do Postgres sob controle.",
+          "code": "-- Ativando extensões nativas no PostgreSQL\nCREATE EXTENSION IF NOT EXISTS vector; -- Suporte para IA e busca semântica\nCREATE EXTENSION IF NOT EXISTS pg_trgm; -- Busca textual por aproximação\n\n-- Criando tabela com coluna vetorial de 1536 dimensões (OpenAI)\nCREATE TABLE documentos (\n  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),\n  conteudo TEXT,\n  embedding VECTOR(1536)\n);"
         }
       ],
       "questions": [
@@ -553,16 +553,16 @@
       "summary": "Entenda como o Supabase transforma cada tabela em uma API REST automaticamente.",
       "lesson": [
         {
-          "title": "O papel do PostgREST",
-          "body": "O Supabase utiliza a ferramenta PostgREST para inspecionar o esquema (schema) do seu banco Postgres e gerar dinamicamente uma API RESTful instantânea. Sempre que você cria, altera ou remove uma tabela, a API é atualizada automaticamente em milissegundos. Você não precisa escrever rotas HTTP ou controladores.\n\nCompreender este fundamento é crucial em Supabase. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "// Em vez de criar um endpoint GET /users, a API já existe:\n// fetch('https://[REF].supabase.co/rest/v1/users')",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "O Papel do PostgREST",
+          "body": "O PostgREST é um servidor web autônomo escrito em Haskell que lê o esquema do PostgreSQL e gera uma API RESTful completa em milissegundos. Cada tabela, view e procedure do esquema `public` é mapeada diretamente para rotas HTTP com verbos padronizados (GET, POST, PATCH, DELETE). Como o PostgREST delega autenticação e permissões integralmente ao banco, ele entrega latências na faixa de sub-milissegundos.",
+          "tip": "Você não precisa escrever controladores ou rotas CRUD no backend; o PostgREST traduz requisições HTTP em comandos SQL otimizados.",
+          "code": "// Uma tabela 'produtos' no banco se torna acessível imediatamente\n// GET https://xyz.supabase.co/rest/v1/produtos?select=id,nome,preco\nconst { data } = await supabase\n  .from('produtos')\n  .select('id, nome, preco');"
         },
         {
           "title": "Filtragem e Consultas via URL",
-          "body": "A API RESTful gerada pelo Supabase possui uma sintaxe poderosa e intuitiva para realizar filtros complexos diretamente pelos parâmetros da URL. Você pode usar operadores de igualdade, maior que, contido em um array, ou até consultas de texto completo, tudo sem alterar uma linha de código no backend.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "GET /posts?select=title,content&published=eq.true\nGET /users?age=gte.18",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O PostgREST possui uma gramática de operadores de consulta rica passada via parâmetros de URL. Operadores como `eq` (igual), `neq` (diferente), `gt` (maior que), `lt` (menor que) e `ilike` (busca textual) são traduzidos internamente em cláusulas WHERE do SQL. O SDK do Supabase encapsula essa sintaxe em métodos JavaScript limpos e autoexplicativos sem concatenações manuais de strings.",
+          "tip": "Use os operadores encadeados do SDK (`eq`, `gte`, `lte`) para construir filtros dinâmicos de busca sem risco de injeção de SQL.",
+          "code": "// Encadeando múltiplos operadores que o PostgREST converte em WHERE\nconst { data } = await supabase\n  .from('produtos')\n  .select('*')\n  .gte('preco', 50)\n  .lte('preco', 200)\n  .eq('disponivel', true);"
         }
       ],
       "questions": [
@@ -634,15 +634,15 @@
       "lesson": [
         {
           "title": "Relacionamentos Automáticos na API",
-          "body": "Graças às Chaves Estrangeiras (Foreign Keys), a API gerada detecta os relacionamentos do Postgres automaticamente. Isso significa que, com uma única requisição na API, você pode trazer dados de múltiplas tabelas conectadas. Isso elimina o temido problema de N+1 queries ou under-fetching comum em APIs REST simples.\n\nCompreender este fundamento é crucial em Supabase. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "// Equivalente no SDK do Supabase para fazer um JOIN na API:\nconst { data } = await supabase\n  .from('posts').select('title, author:users(name)')",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Graças às Foreign Keys declaradas no Postgres, o PostgREST permite aninhar recursos relacionados em uma única requisição HTTP usando a sintaxe de recurso embebido. Ao solicitar `select('id, titulo, autor:autores(nome)')`, o PostgREST executa um join interno no banco e retorna os dados do autor já estruturados como um objeto JSON filho dentro de cada livro, reduzindo múltiplas viagens de rede.",
+          "tip": "Reduza o problema de N+1 requisições no frontend aproveitando a seleção de tabelas relacionadas em uma só query do Supabase.",
+          "code": "// Busca pedidos com os dados do cliente e a lista de itens aninhados\nconst { data } = await supabase\n  .from('pedidos')\n  .select(`\n    id,\n    total,\n    cliente:clientes ( id, nome, email ),\n    itens:pedido_itens ( id, quantidade, preco_unitario )\n  `);"
         },
         {
-          "title": "Ordenação e Paginação nativas",
-          "body": "O PostgREST implementa paginação inteligente e ordenação nativa utilizando os cabeçalhos padrão HTTP ou parâmetros de URL. Você pode definir os limites e o offset dos registros devolvidos. Isso é ideal para construir listas de rolagem infinita e tabelas com muitos dados sem sobrecarregar o cliente ou o servidor.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "GET /items?select=*&order=created_at.desc&limit=10&offset=20",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Ordenação e Paginação Nativas",
+          "body": "Toda rota do Supabase suporta paginação e ordenação no nível de transporte sem que você precise implementar lógica customizada. Métodos como `.order('campo', { ascending: false })` e `.range(inicio, fim)` traduzem diretamente para `ORDER BY` e `OFFSET/LIMIT` no SQL gerado. Isso garante que coleções com dezenas de milhares de itens sejam consumidas de maneira incremental e econômica pela interface.",
+          "tip": "Ao implementar paginação infinita, use `.range(page * size, (page + 1) * size - 1)` para fatiar as requisições com exatidão.",
+          "code": "// Paginação da página 1 trazendo 10 registros ordenados por data\nconst { data, count } = await supabase\n  .from('artigos')\n  .select('id, titulo', { count: 'exact' })\n  .order('criado_em', { ascending: false })\n  .range(0, 9); // Primeiros 10 itens (índice inclusivo)"
         }
       ],
       "questions": [
@@ -713,16 +713,16 @@
       "summary": "Relacione os verbos HTTP às operações que eles fazem na API do Supabase.",
       "lesson": [
         {
-          "title": "Tratamento de Permissões",
-          "body": "Por padrão, a API REST gerada respeita todas as regras e funções do Postgres. Mesmo que as tabelas virem endpoints HTTP, o acesso direto a elas é inseguro se não configurado adequadamente. O Supabase fornece chaves de API (anon key e service_role key) que ajudam a controlar qual contexto está chamando o endpoint.\n\nCompreender este fundamento é crucial em Supabase. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "Headers:\napiKey: anon-key\nAuthorization: Bearer [USER_JWT]",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Tratamento de Permissões e Verbos HTTP",
+          "body": "O PostgREST mapeia os verbos HTTP para comandos SQL semânticos: GET executa SELECT; POST executa INSERT; PATCH executa UPDATE; e DELETE executa a exclusão de tuplas. Quando uma operação é disparada com o cabeçalho de autenticação do usuário, o PostgREST assume o papel de segurança do Postgres (Role) e avalia as regras de Row Level Security antes de permitir qualquer modificação no banco.",
+          "tip": "Use PATCH quando quiser atualizar apenas alguns campos do registro; o Supabase altera apenas as colunas especificadas no objeto.",
+          "code": "// Operação de atualização (PATCH) segura contra o banco\nconst { data, error } = await supabase\n  .from('usuarios')\n  .update({ status: 'ativo' })\n  .eq('id', usuarioId);\n\n// Operação de exclusão (DELETE)\nawait supabase.from('notificacoes').delete().eq('lida', true);"
         },
         {
           "title": "Chamando Stored Procedures (RPC)",
-          "body": "Às vezes as consultas são muito complexas ou precisam de lógicas e transações que a API REST padrão não consegue expressar facilmente. O Supabase resolve isso permitindo que você chame Stored Procedures (Funções do Postgres) através do endpoint /rpc. É a junção perfeita da flexibilidade SQL e consumo via REST.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "POST /rpc/calculate_taxes\nBody: { \"income\": 50000 }",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Quando uma operação de negócio requer regras transacionais complexas, múltiplos passos condicionais ou cálculos matemáticos pesados que não devem rodar no cliente, a solução ideal é criar uma função SQL no Postgres e invocá-la usando `supabase.rpc('nome_da_funcao', parametros)`. As RPCs rodam diretamente dentro do motor do banco com privilégios controlados e latência zero de rede interna.",
+          "tip": "Use RPC para transações atômicas de escrita, como debitar de uma carteira e creditar em outra dentro de uma única transação.",
+          "code": "-- Função SQL criada no Postgres para transferência atômica\nCREATE OR REPLACE FUNCTION transferir_pontos(remetente UUID, destinatario UUID, qtd INT)\nRETURNS VOID AS $$\nBEGIN\n  UPDATE contas SET pontos = pontos - qtd WHERE id = remetente;\n  UPDATE contas SET pontos = pontos + qtd WHERE id = destinatario;\nEND;\n$$ LANGUAGE plpgsql;\n\n// Invocação limpa pelo SDK do Supabase\nawait supabase.rpc('transferir_pontos', { remetente: '...', destinatario: '...', qtd: 50 });"
         }
       ],
       "questions": [
@@ -793,16 +793,16 @@
       "summary": "Entenda o que o módulo de Auth do Supabase já resolve para cadastro e login.",
       "lesson": [
         {
-          "title": "O motor GoTrue",
-          "body": "A autenticação no Supabase é baseada no GoTrue, um servidor em Go projetado originalmente pela Netlify. Ele lida perfeitamente com registro, login, recuperação de senhas, validação de e-mails, e também distribui e valida os JSON Web Tokens (JWT) que vão garantir o acesso seguro à API de banco de dados.\n\nCompreender este fundamento é crucial em Supabase. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "const { data, error } = await supabase.auth.signUp({\n  email: 'usuario@email.com',\n  password: 'senha_segura'\n})",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "O Motor GoTrue de Autenticação",
+          "body": "O módulo de autenticação do Supabase é construído sobre o GoTrue, um microsserviço independente que gerencia o ciclo de vida completo de identidade do usuário. Ele cuida do hash criptográfico de senhas usando algoritmos modernos como bcrypt, envio e confirmação de e-mails de ativação, fluxos de recuperação de senha e emissão padronizada de pares de tokens JWT de acesso (Access Token) e renovação (Refresh Token).",
+          "tip": "Nunca manipule senhas diretamente na tabela `users` do esquema `public`; deixe toda a gestão de senhas a cargo da API `supabase.auth`.",
+          "code": "// Cadastro de novo usuário com e-mail e senha\nconst { data, error } = await supabase.auth.signUp({\n  email: 'dev@empresa.com',\n  password: 'SenhaSuperSegura123!',\n  options: {\n    data: { nome: 'Carlos Eduardo' } // Metadados iniciais\n  }\n});"
         },
         {
           "title": "Tokens JWT e Sessões",
-          "body": "Após o login, o Supabase retorna um Token JWT contendo as informações do usuário (como o ID e o e-mail) assinado criptograficamente. O Client SDK anexa esse token a todas as requisições na API do banco. O Postgres usa as variáveis desse JWT para saber exatamente quem está fazendo a requisição e aplicar limites de acesso.",
-          "code": "// O payload do JWT decodificado fica assim:\n{\n  \"sub\": \"123e4567-e89b-12d3...\",\n  \"email\": \"usuario@email.com\",\n  \"role\": \"authenticated\"\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Após o login bem-sucedido, o Supabase emite um JSON Web Token (JWT) assinado criptograficamente com a chave secreta do seu projeto. Esse token contém o `sub` (ID do usuário), e-mail, metadados e papel (`authenticated`). Em cada requisição HTTP subsequente, o token é enviado no cabeçalho `Authorization: Bearer <token>`. O Postgres valida a assinatura matematicamente e disponibiliza o usuário na função `auth.uid()`.",
+          "tip": "O SDK do Supabase cuida da renovação automática de tokens expirados em segundo plano sem que o usuário perceba deslogamentos súbitos.",
+          "code": "// Login com e-mail e senha e obtenção da sessão ativa\nconst { data, error } = await supabase.auth.signInWithPassword({\n  email: 'dev@empresa.com',\n  password: 'SenhaSuperSegura123!'\n});\n\nconsole.log('ID do usuário autenticado:', data.user.id);\nconsole.log('JWT Token:', data.session.access_token);"
         }
       ],
       "questions": [
@@ -874,15 +874,15 @@
       "lesson": [
         {
           "title": "Login com Provedores Sociais (OAuth)",
-          "body": "O Supabase Auth possui integração nativa com dezenas de provedores sociais usando o padrão OAuth, incluindo Google, GitHub, Apple, Discord, etc. Com poucas configurações no painel, o SDK permite redirecionar o usuário para a tela de login do provedor escolhido, capturar os dados do perfil de volta e iniciar a sessão.\n\nCompreender este fundamento é crucial em Supabase. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "await supabase.auth.signInWithOAuth({\n  provider: 'github',\n});",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O Supabase simplifica a autenticação federada via OAuth com provedores externos como Google, GitHub, Apple, Azure, Discord e dezenas de outros. Toda a negociação complexa de trocas de chaves de autorização, redirecionamentos e verificação de assinaturas é tratada pelo Supabase. O usuário é autenticado pelo provedor e automaticamente inserido na tabela `auth.users` do seu projeto.",
+          "tip": "Configure as URLs de redirecionamento autorizadas (Redirect URLs) no painel do Supabase para evitar ataques de redirecionamento aberto.",
+          "code": "// Login com GitHub disparado em apenas uma linha no frontend\nconst { data, error } = await supabase.auth.signInWithOAuth({\n  provider: 'github',\n  options: {\n    redirectTo: 'https://meuapp.com/dashboard'\n  }\n});"
         },
         {
-          "title": "Magic Links e Login sem senha",
-          "body": "Esquecer a senha é o problema número um dos usuários. O Supabase simplifica isso ao oferecer 'Magic Links' (links mágicos) e One-Time Passwords (OTPs) por e-mail ou SMS. O usuário recebe um link ou código temporário e, ao confirmar, está logado instantaneamente, proporcionando uma experiência moderna e de baixo atrito.",
-          "code": "await supabase.auth.signInWithOtp({\n  email: 'usuario@email.com'\n})",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Magic Links e Login Sem Senha",
+          "body": "O login sem senha (Passwordless) por Magic Link ou códigos OTP via e-mail ou SMS (Twilio/MessageBird) reduz o atrito de entrada e elimina vulnerabilidades decorrentes de senhas fracas ou reutilizadas. O Supabase envia um link único com token temporal de validação de uso único; ao clicar no link, o navegador valida o token e estabelece a sessão autenticada com máxima segurança.",
+          "tip": "Adote Magic Links para fluxos de onboarding rápido em produtos onde a barreira de memorizar senhas prejudica a conversão.",
+          "code": "// Envio de Magic Link de acesso sem senha para o e-mail do usuário\nconst { data, error } = await supabase.auth.signInWithOtp({\n  email: 'usuario@dominio.com',\n  options: {\n    emailRedirectTo: 'https://meuapp.com/bem-vindo'\n  }\n});"
         }
       ],
       "questions": [
@@ -954,15 +954,15 @@
       "lesson": [
         {
           "title": "Sincronizando Usuários com o Postgres",
-          "body": "O Supabase armazena os dados sensíveis de credenciais em um schema isolado chamado `auth.users`. Como é recomendado manter dados de perfil (nome, avatar) acessíveis para sua aplicação no schema `public`, você pode usar Postgres Triggers para copiar automaticamente um usuário recém-registrado para a tabela `public.profiles`.",
-          "code": "CREATE TRIGGER on_auth_user_created\n  AFTER INSERT ON auth.users\n  FOR EACH ROW EXECUTE PROCEDURE public.handle_new_user();",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O Supabase separa os dados de login no esquema interno `auth.users`, inacessível diretamente pela API pública por razões óbvias de segurança. Para armazenar informações do perfil do usuário como avatar, biografia e permissões, a melhor prática arquitetural consiste em criar uma tabela `public.perfis` e sincronizá-la automaticamente via PostgreSQL Trigger sempre que um usuário for criado no `auth.users`.",
+          "tip": "Use uma Trigger no Postgres para criar o perfil público no mesmo milissegundo em que o usuário se cadastra no sistema de auth.",
+          "code": "-- Trigger automática que cria perfil público no cadastro\nCREATE FUNCTION public.handle_new_user()\nRETURNS TRIGGER AS $$\nBEGIN\n  INSERT INTO public.perfis (id, email, criado_em)\n  VALUES (new.id, new.email, now());\n  RETURN new;\nEND;\n$$ LANGUAGE plpgsql SECURITY DEFINER;\n\nCREATE TRIGGER on_auth_user_created\n  AFTER INSERT ON auth.users\n  FOR EACH ROW EXECUTE PROCEDURE public.handle_new_user();"
         },
         {
           "title": "Metadados de Usuário (User Metadata)",
-          "body": "Além das colunas tradicionais de autenticação, o objeto de usuário do Supabase permite que você passe dados arbitrários em JSON durante a inscrição, chamados de `user_metadata`. Isso é útil para capturar campos extras no formulário de registro, como o nome completo ou a aceitação dos termos de uso, e armazená-los sem tabelas extras no começo.",
-          "code": "await supabase.auth.signUp({\n  email: 'x@x.com',\n  password: '123',\n  options: { data: { first_name: 'João' } }\n})",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O objeto de usuário do Supabase suporta `user_metadata` (editável pelo próprio usuário através do SDK) e `app_metadata` (editável exclusivamente por chaves administrativas com privilégio de backend). Armazenar papéis de autorização como `role: 'admin'` dentro de `user_metadata` é uma falha grave de segurança, pois o usuário comum pode injetar esse campo em seu próprio perfil se você permitir.",
+          "tip": "Guarde cargos administrativos e permissões em `app_metadata` ou em tabelas relacionais protegidas por RLS, nunca em `user_metadata`.",
+          "code": "// Atualização segura de informações básicas pelo próprio usuário\nconst { data, error } = await supabase.auth.updateUser({\n  data: { display_name: 'Lucas Dev', preferencial_tema: 'dark' }\n});"
         }
       ],
       "questions": [
@@ -1034,15 +1034,15 @@
       "lesson": [
         {
           "title": "O que é Row Level Security (RLS)",
-          "body": "Row Level Security (RLS) é a funcionalidade mais importante do Postgres no ecossistema do Supabase. O RLS permite que você defina regras de permissões minuciosas diretamente no banco de dados. Em vez de depender do backend Node.js para checar se o usuário X pode ver a linha Y, o próprio banco filtra os resultados baseado no JWT do usuário.",
-          "code": "ALTER TABLE posts ENABLE ROW LEVEL SECURITY;\n-- Sem políticas (Policies), ninguém pode acessar!",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Por padrão, quando uma tabela é criada no PostgreSQL, qualquer cliente que se conecte com a chave anônima pública (`anon key`) tem leitura e escrita bloqueadas se o RLS estiver ativado. O Row Level Security é a muralha de defesa do Supabase: ele inspeciona cada linha do banco de dados no momento da query e decide se a transação do usuário atual tem autorização para ler, inserir ou modificar aquela tupla.",
+          "tip": "NUNCA desative o RLS em tabelas do esquema público; sem RLS, sua chave pública de frontend permite que qualquer pessoa esvazie o banco.",
+          "code": "-- Ativação obrigatória de RLS em qualquer tabela exposta\nALTER TABLE public.projetos ENABLE ROW LEVEL SECURITY;\n\n-- Sem políticas adicionadas, a tabela fica 100% inacessível por segurança"
         },
         {
           "title": "Anatomia de uma Política (Policy)",
-          "body": "As políticas (Policies) são as regras do RLS. Uma política diz: 'Permitir a ação Z na tabela TabelaA apenas se a condição C for verdadeira'. Você cria regras específicas para cada operação (SELECT, INSERT, UPDATE, DELETE). Se a condição lógica falhar para aquela linha do banco, o banco finge que a linha não existe para aquele usuário.",
-          "code": "CREATE POLICY \"Permitir SELECT público\" ON posts \nFOR SELECT USING ( true );",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Uma política de RLS é uma regra declarativa associada a um comando específico (SELECT, INSERT, UPDATE ou DELETE). Ela possui duas cláusulas fundamentais: `USING`, que filtra quais linhas existentes o usuário pode enxergar ou selecionar, e `WITH CHECK`, que valida se os novos dados que o usuário está tentando gravar ou atualizar satisfazem as exigências estipuladas pelo negócio.",
+          "tip": "Pense na cláusula USING como um WHERE automático invisível aplicado a todas as requisições que chegam pelo cliente.",
+          "code": "-- Política permitindo que qualquer pessoa leia artigos publicados\nCREATE POLICY \"Artigos públicos podem ser lidos por todos\"\nON public.artigos\nFOR SELECT\nUSING ( status = 'publicado' );"
         }
       ],
       "questions": [
@@ -1114,15 +1114,15 @@
       "lesson": [
         {
           "title": "Acessando o ID do Usuário (auth.uid)",
-          "body": "Para que o RLS seja efetivo, ele precisa saber quem está fazendo a requisição. O Supabase injeta variáveis do JWT na transação do banco. Com a função especial `auth.uid()`, o Postgres retorna o ID do usuário atualmente autenticado. Com isso, você pode comparar se o ID do autor do post é igual ao ID de quem está tentando deletar.",
-          "code": "CREATE POLICY \"Deletar próprios posts\" ON posts\nFOR DELETE USING ( auth.uid() = author_id );",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O Supabase disponibiliza funções especiais no Postgres para consultar os dados do token JWT durante a execução da política. A função `auth.uid()` extrai o UUID do usuário autenticado no momento da requisição HTTP. Ao criar uma política com a expressão `USING (user_id = auth.uid())`, garantimos matematicamente no nível do motor de dados que um usuário só pode visualizar suas próprias anotações ou documentos.",
+          "tip": "Use `auth.uid()` em suas policies para isolamento de dados de múltiplos inquilinos (multi-tenant) com zero linhas de código de backend.",
+          "code": "-- Política clássica: cada usuário só visualiza seus próprios registros\nCREATE POLICY \"Usuários acessam apenas suas anotações\"\nON public.anotacoes\nFOR SELECT\nUSING ( auth.uid() = usuario_id );"
         },
         {
-          "title": "Políticas com regras complexas (JOINs)",
-          "body": "As condições de RLS podem executar sub-consultas. Isso é útil para cenários de permissão baseados em papéis (Role-Based Access Control) ou times. Por exemplo, você pode verificar se o usuário atual pertence ao mesmo 'Time' que é dono do 'Projeto', executando uma query interna na tabela de membros durante a checagem do RLS.",
-          "code": "CREATE POLICY \"Ver projetos do time\" ON projects\nFOR SELECT USING (\n  EXISTS (SELECT 1 FROM team_members WHERE team_id = projects.team_id AND user_id = auth.uid())\n);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Políticas com Regras Complexas e Joins",
+          "body": "As políticas de RLS não se limitam a comparações simples de colunas. Você pode incluir subconsultas SQL completas, verificando se o usuário é membro de um time ou possui um cargo específico em uma tabela associativa. Como essas subqueries rodam para cada linha avaliada, é crucial criar índices nas colunas consultadas dentro da policy para evitar degradação de performance em tabelas grandes.",
+          "tip": "Sempre crie índices nas colunas usadas dentro de policies de RLS (como `usuario_id`), caso contrário o PostgreSQL fará scans lentos.",
+          "code": "-- Política baseada em permissão de membros em tabela de equipe\nCREATE POLICY \"Membros do time podem ler projetos da equipe\"\nON public.projetos\nFOR SELECT\nUSING (\n  EXISTS (\n    SELECT 1 FROM public.time_membros\n    WHERE time_membros.time_id = projetos.time_id\n      AND time_membros.usuario_id = auth.uid()\n  )\n);"
         }
       ],
       "questions": [
@@ -1193,16 +1193,16 @@
       "summary": "Aprenda a diferença entre políticas de leitura e escrita no RLS.",
       "lesson": [
         {
-          "title": "A Key de Serviço (Service Role Key)",
-          "body": "As regras de RLS são aplicadas para todos os clientes que utilizam a chave pública 'anon key'. No entanto, scripts administrativos do lado do servidor ou Cloud Functions podem precisar burlar essas regras para agir como super-usuários do sistema. É para isso que serve a `service_role key` no SDK, ignorando o RLS integralmente.",
-          "code": "const adminSupabase = createClient(URL, SERVICE_KEY);\n// Passa por cima das regras de RLS!",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "A Chave de Serviço (Service Role Key)",
+          "body": "O Supabase gera duas chaves de API: a chave anônima (`anon key`), feita para ser exposta no frontend público e restrita rigorosamente pelo RLS; e a chave de serviço (`service_role key`), que possui privilégios de superusuário e ignora completamente todas as políticas de RLS. A `service_role key` NUNCA deve ser incluída no frontend, no Git ou em código cliente, devendo ficar isolada em servidores seguros.",
+          "tip": "Guarde a `service_role key` apenas em variáveis de ambiente de servidores backend confidenciais para rotas administrativas.",
+          "code": "// Uso exclusivo em ambiente backend seguro (Node.js/Next.js API Route)\nimport { createClient } from '@supabase/supabase-js';\n\nconst adminSupabase = createClient(\n  process.env.SUPABASE_URL,\n  process.env.SUPABASE_SERVICE_ROLE_KEY // Bypassa o RLS!\n);"
         },
         {
-          "title": "Testando RLS de forma segura",
-          "body": "Um erro na regra RLS pode vazar dados de outros usuários ou bloquear sua aplicação. A recomendação é desenvolver as políticas utilizando a interface SQL do Supabase e simular o contexto do usuário. Usar migrações seguras (migrations CLI) e o painel Auth Logs ajuda a diagnosticar rapidamente quando uma regra negou acesso indevidamente.",
-          "code": "-- Simular usuário X no SQL Editor:\nset local role authenticated;\nset local request.jwt.claim.sub = 'user-uuid';",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Testando RLS de Forma Segura",
+          "body": "Antes de publicar uma aplicação, é mandatório testar as políticas de RLS simulando diferentes identidades de usuários. No SQL Editor do Supabase Studio, você pode usar as funções de impersonificação de sessão (`SET LOCAL ROLE authenticated;` e `SET LOCAL \"request.jwt.claim.sub\" = 'uuid';`) para rodar queries e validar se o usuário X realmente consegue ou não ler os dados do usuário Y.",
+          "tip": "Crie testes automatizados com o Supabase CLI simulando requisições com tokens anônimos e tokens de diferentes usuários para validar o RLS.",
+          "code": "-- Simulando requisição de um usuário comum no editor SQL para testar RLS\nSET LOCAL ROLE authenticated;\nSET LOCAL \"request.jwt.claim.sub\" = '11111111-1111-1111-1111-111111111111';\n\n-- Esta query retornará apenas as linhas que satisfazem a policy do usuário simulado\nSELECT * FROM public.anotacoes;"
         }
       ],
       "questions": [
@@ -1274,15 +1274,15 @@
       "lesson": [
         {
           "title": "Buckets no Supabase Storage",
-          "body": "O Supabase Storage permite que você armazene e sirva arquivos grandes como imagens, vídeos e documentos, funcionando como uma alternativa ao AWS S3. Os arquivos são organizados dentro de contêineres chamados 'Buckets'. Cada Bucket pode ser configurado como Público (arquivos acessíveis por URL direta) ou Privado (exige token).",
-          "code": "const { data, error } = await supabase\n  .storage\n  .createBucket('avatars', { public: true })",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O Supabase Storage fornece um serviço de armazenamento de objetos compatível com o padrão S3 para guardar mídias pesadas como avatares, imagens de produtos, documentos PDF e vídeos. Em vez de inflar o banco relacional salvando arquivos em colunas binárias pesadas (BLOB), os arquivos são armazenados no storage em alta velocidade, gravando no PostgreSQL apenas o caminho ou metadados de referência.",
+          "tip": "Organize seus arquivos em buckets temáticos (ex: 'avatares', 'documentos-privados') e defina limites de tamanho por arquivo no painel.",
+          "code": "-- Criando um bucket público para avatares via SQL\nINSERT INTO storage.buckets (id, name, public)\nVALUES ('avatares', 'avatares', true);"
         },
         {
-          "title": "Upload de arquivos com SDK",
-          "body": "Fazer upload de arquivos via front-end torna-se extremamente fácil com o método `upload()` do SDK. Você simplesmente fornece o Bucket, o caminho onde deseja salvar (com o nome do arquivo), e o próprio objeto File (obtido num input HTML do tipo file). O Storage cuida de toda a conversão de multipart/form-data nos bastidores.",
-          "code": "const file = event.target.files[0];\nawait supabase.storage.from('avatars').upload(`public/${file.name}`, file);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Upload de Arquivos com o SDK",
+          "body": "O método `supabase.storage.from('bucket').upload(caminho, arquivo)` simplifica o envio de mídias a partir do navegador ou backend. O SDK aceita objetos `File`, `Blob`, `ArrayBuffer` ou streams do Node.js. Ao enviar o arquivo, é possível configurar o tipo MIME (`contentType`), cabeçalhos de controle de cache (`cacheControl`) e a opção de sobrescrita atômica caso o arquivo já exista no diretório de destino.",
+          "tip": "Use nomes únicos com UUID para os arquivos (ex: `${userId}/${crypto.randomUUID()}.png`) para evitar conflitos de nomes no upload.",
+          "code": "// Upload de avatar a partir de um input de arquivo HTML\nconst file = document.querySelector('#avatarInput').files[0];\nconst filePath = `usuarios/${userId}/avatar.png`;\n\nconst { data, error } = await supabase.storage\n  .from('avatares')\n  .upload(filePath, file, {\n    cacheControl: '3600',\n    upsert: true // Sobrescreve se já existir\n  });"
         }
       ],
       "questions": [
@@ -1354,15 +1354,15 @@
       "lesson": [
         {
           "title": "Gerando URLs de Arquivos",
-          "body": "Para exibir as imagens nos seus aplicativos, você precisa das URLs. Se o Bucket for público, você usa o método `getPublicUrl` e a URL gerada durará para sempre e poderá ser distribuída em cache. Para Buckets privados, você deve criar URLs assinadas temporárias com `createSignedUrl`, que expiram após um tempo configurável por segurança.",
-          "code": "const { data } = supabase\n  .storage\n  .from('avatars')\n  .getPublicUrl('folder/avatar1.png')",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Após realizar o upload, a aplicação precisa exibir ou compartilhar o arquivo com o usuário. Se o bucket for público, a função `getPublicUrl(caminho)` retorna instantaneamente uma URL estática distribuída via CDN global da Cloudflare. Para buckets privados, é necessário gerar uma URL assinada temporária com validade limitada em segundos usando a função assíncrona `createSignedUrl(caminho, expires)`.",
+          "tip": "Nunca torne público um bucket que contenha contratos, comprovantes ou documentos sensíveis; use URLs assinadas de curta duração.",
+          "code": "// Obtendo URL pública para exibição em tag <img />\nconst { data: publicData } = supabase.storage\n  .from('avatares')\n  .getPublicUrl('usuarios/123/avatar.png');\nconsole.log(publicData.publicUrl);\n\n// Gerando URL assinada temporária de 60 segundos para download seguro\nconst { data: signedData } = await supabase.storage\n  .from('contratos')\n  .createSignedUrl('documentos/contrato_final.pdf', 60);"
         },
         {
-          "title": "Transformação de Imagens na nuvem",
-          "body": "O Supabase Storage Pro possui um recurso nativo de transformação de imagens. Isso evita baixar uma imagem pesada de 5MB apenas para exibi-la num avatar pequeno. Ao gerar a URL, você passa parâmetros de largura (width) e altura (height), e os servidores do Supabase cortam, redimensionam e otimizam as imagens (WebP) instantaneamente (on-the-fly).",
-          "code": "const { data } = supabase.storage.from('avatars').getPublicUrl('img.jpg', {\n  transform: { width: 100, height: 100 }\n})",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Transformação de Imagens na Nuvem",
+          "body": "O Supabase Storage possui um motor integrado de redimensionamento e otimização de imagens na borda. Em vez de processar thumbnails pesados no servidor ou trafegar fotos de 10 MB tiradas de câmeras modernas para dispositivos móveis, você pode passar parâmetros de transformação de largura (`width`), altura (`height`), qualidade (`quality`) e formato (`format: 'origin' | 'webp'`) direto na requisição de URL.",
+          "tip": "Utilize parâmetros de transformação de imagem do Supabase para servir imagens em WebP compactadas sob demanda sem servidores extras.",
+          "code": "// URL com transformação de imagem em tempo real na CDN\nconst { data } = supabase.storage\n  .from('produtos')\n  .getPublicUrl('fotos/notebook.jpg', {\n    transform: {\n      width: 400,\n      height: 300,\n      resize: 'cover',\n      quality: 80\n    }\n  });"
         }
       ],
       "questions": [
@@ -1433,16 +1433,16 @@
       "summary": "Diferencie como acessar um arquivo público de um arquivo protegido no Storage.",
       "lesson": [
         {
-          "title": "RLS no Storage",
-          "body": "As regras de acesso aos arquivos também utilizam o Postgres sob os panos! O Supabase gerencia metadados do Storage em uma tabela `storage.objects`. Portanto, toda a infraestrutura de Row Level Security (RLS) que aprendemos é aplicada aqui de forma idêntica, permitindo que você restrinja, por exemplo, que apenas o dono faça update do próprio avatar.",
-          "code": "CREATE POLICY \"Dono deleta imagem\" ON storage.objects\nFOR DELETE USING ( bucket_id = 'privado' AND auth.uid() = owner );",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "RLS no Storage do Supabase",
+          "body": "O sistema de arquivos do Supabase Storage é integrado diretamente ao PostgreSQL através da tabela `storage.objects`. Isso significa que as mesmas políticas de Row Level Security do banco protegem os arquivos físicos armazenados nos buckets! Você pode escrever policies em SQL que impedem downloads ou uploads se o usuário não for o proprietário do diretório ou se sua assinatura estiver expirada.",
+          "tip": "Use o padrão de pastas com o ID do usuário (ex: `pasta = auth.uid()`) para simplificar policies de upload seguro no Storage.",
+          "code": "-- Policy de RLS protegendo uploads de arquivos na pasta do próprio usuário\nCREATE POLICY \"Usuário só envia para sua própria pasta\"\nON storage.objects FOR INSERT TO authenticated\nWITH CHECK (\n  bucket_id = 'documentos'\n  AND (storage.foldername(name))[1] = auth.uid()::text\n);"
         },
         {
-          "title": "Uploads Resumíveis (TUS)",
-          "body": "Para arquivos gigantes (ex: vídeos de 1GB), conexões lentas podem interromper o processo na metade. O Supabase suporta Uploads Resumíveis de forma nativa utilizando o protocolo TUS. Se a internet cair em 50%, o envio é pausado e continua exatamente do ponto em que parou, sem precisar reiniciar do zero.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "// O SDK fornece integração com a biblioteca TUS-js-client\n// para lidar com a barra de progresso e falhas de rede.",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Uploads Resumíveis com Protocolo TUS",
+          "body": "Para arquivos de grande porte (vídeos de centenas de megabytes ou gigabytes), uploads tradicionais via requisições HTTP multipart comuns correm o risco constante de falhar no meio do progresso devido a instabilidades de rede móvel. O Supabase suporta nativamente o protocolo aberto TUS (Resumable Uploads), permitindo pausar e retomar transferências exatamente do byte onde foram interrompidas.",
+          "tip": "Adote a biblioteca `@tus/tus-js-client` em conjunto com o Supabase para gerenciar uploads de arquivos acima de 50 MB com barras de progresso reais.",
+          "code": "// Exemplo conceitual de upload resumível via TUS com Supabase\nimport * as tus from 'tus-js-client';\n\nconst upload = new tus.Upload(file, {\n  endpoint: `${supabaseUrl}/storage/v1/upload/resumable`,\n  headers: { Authorization: `Bearer ${session.access_token}` },\n  onError: (err) => console.error(err),\n  onProgress: (bytesUploaded, bytesTotal) => {\n    const percent = ((bytesUploaded / bytesTotal) * 100).toFixed(2);\n    console.log(`Progresso: ${percent}%`);\n  }\n});\nupload.start();"
         }
       ],
       "questions": [
@@ -1513,16 +1513,16 @@
       "summary": "Entenda como o Supabase Realtime permite ouvir mudanças no banco ao vivo.",
       "lesson": [
         {
-          "title": "Ouvindo mudanças no Postgres",
-          "body": "O Supabase Realtime permite transformar o Postgres em uma fonte de eventos reativa. Ele escuta o log de transações do banco (WAL) através da extensão `wal2json` e faz o envio imediato (broadcast) das inserções, atualizações ou deleções via WebSockets para todos os clientes conectados. É a magia que possibilita apps colaborativos em tempo real.",
-          "code": "ALTER PUBLICATION supabase_realtime ADD TABLE messages;\n-- Habilita o realtime na tabela",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Ouvindo Mudanças no Postgres (Realtime)",
+          "body": "O motor Supabase Realtime escuta o Write-Ahead Log (WAL) do PostgreSQL utilizando replicação lógica. Sempre que ocorre um INSERT, UPDATE ou DELETE em uma tabela configurada na publicação `supabase_realtime`, o servidor converte essa alteração de disco em uma mensagem JSON e a transmite via WebSockets para os clientes conectados em frações de segundo, sem exigir polling repetitivo.",
+          "tip": "Adicione apenas tabelas essenciais na publicação `supabase_realtime` para evitar tráfego excessivo e desperdício de CPU no banco.",
+          "code": "-- Habilitando publicação em tempo real para uma tabela específica no Postgres\nALTER PUBLICATION supabase_realtime ADD TABLE public.mensagens;"
         },
         {
-          "title": "Inscrevendo-se nos canais com o SDK",
-          "body": "A assinatura é feita utilizando 'Canais' (Channels). Você seleciona a tabela de interesse e passa as opções sobre os tipos de eventos (INSERT, UPDATE, DELETE ou *) que deseja ouvir. Quando uma alteração ocorre na tabela no banco, o callback definido na inscrição (`on`) é acionado no frontend trazendo o novo registro no objeto `payload`.",
-          "code": "supabase.channel('mensagens')\n  .on('postgres', { event: 'INSERT', schema: 'public', table: 'messages' }, (payload) => {\n    console.log('Nova msg:', payload.new)\n  }).subscribe()",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Inscrevendo-se nos Canais com o SDK",
+          "body": "No frontend, o método `supabase.channel('nome-do-canal')` abre um canal multiplexado sobre uma conexão WebSocket estável. Com o modificador `.on('postgres_changes', ...)`, você pode filtrar escutas por esquema, tabela ou até mesmo por eventos individuais (`event: 'INSERT'`). Quando a mutação ocorre no banco de dados, o callback é acionado imediatamente com o payload da linha adicionada ou modificada.",
+          "tip": "Sempre chame `supabase.removeChannel(canal)` na desmontagem de componentes (cleanup de useEffect no React) para evitar vazamento de memória.",
+          "code": "// Escutando novas mensagens em tempo real no React / Vue\nconst canal = supabase\n  .channel('mensagens-publicas')\n  .on('postgres_changes', {\n    event: 'INSERT',\n    schema: 'public',\n    table: 'mensagens'\n  }, (payload) => {\n    console.log('Nova mensagem recebida:', payload.new);\n  })\n  .subscribe();\n\n// Ao desmontar: supabase.removeChannel(canal);"
         }
       ],
       "questions": [
@@ -1594,15 +1594,15 @@
       "lesson": [
         {
           "title": "Segurança no Realtime e RLS",
-          "body": "A segurança do Realtime era um grande desafio, pois WebSockets precisavam saber quais dados o usuário conectado podia receber. Mas o Realtime do Supabase resolve isso interpretando o JWT da conexão e aplicando o Row Level Security (RLS) antes de despachar a notificação. Logo, usuários só recebem eventos via socket que tenham permissão no banco.",
-          "code": "// Se o RLS bloqueia o usuário para visualizar o chat privado X,\n// ele NUNCA receberá o evento do Realtime relacionado a esse chat.",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O Realtime do Supabase não envia dados indiscriminadamente: ele respeita rigorosamente as políticas de Row Level Security (RLS) configuradas no banco. Antes de emitir o evento WebSocket para um cliente conectado, o motor avalia as permissões do token JWT do usuário. Se o usuário não tiver privilégio de SELECT sobre aquele registro alterado, o payload não é transmitido, protegendo dados confidenciais.",
+          "tip": "Garanta que suas policies de SELECT estejam ativas e corretas; o streaming Realtime usa essas mesmas regras para filtrar os eventos enviados.",
+          "code": "-- Se o usuário não tiver permissão de SELECT nesta linha,\n-- o WebSocket simplesmente não despachará o evento para ele\nCREATE POLICY \"Apenas participantes recebem mensagens da sala\"\nON public.mensagens FOR SELECT\nUSING ( auth.uid() IN (SELECT usuario_id FROM sala_membros WHERE sala_id = mensagens.sala_id) );"
         },
         {
-          "title": "Filtragem de Eventos do lado do Cliente",
-          "body": "Para não encher seu canal websocket com alterações não relacionadas e economizar recursos do cliente, o Supabase permite aplicar filtros na própria inscrição. Assim, você escuta apenas mudanças em que a coluna `room_id` for igual à sala que o usuário está visualizando no momento (usando operadores como eq, in, ou neq).",
-          "code": "supabase.channel('quarto_3')\n  .on('postgres', { event: '*', schema: 'public', table: 'messages', filter: 'room_id=eq.3' },\n  payload => console.log('Mudança só na sala 3!'))",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Filtragem de Eventos do Lado do Cliente",
+          "body": "Além dos filtros gerais de tabela, o SDK permite restringir eventos diretamente na subscrição do canal passando o argumento `filter: 'coluna=eq.valor'`. Dessa forma, o cliente conectado em uma sala de suporte específica não consome banda de rede processando mensagens de outras salas que não lhe dizem respeito, garantindo escalabilidade e menor consumo de processamento no dispositivo móvel.",
+          "tip": "Adicione filtros de ID nas subscrições (`filter: 'chat_id=eq.123'`) para ouvir apenas os dados relevantes para a tela atual.",
+          "code": "// Inscrevendo-se apenas para alterações de um pedido específico\nconst canal = supabase\n  .channel('acompanhamento-pedido')\n  .on('postgres_changes', {\n    event: 'UPDATE',\n    schema: 'public',\n    table: 'pedidos',\n    filter: 'id=eq.d1b827e6-8c43-4e67-a64d-3b7c3d254e01'\n  }, (payload) => {\n    console.log('Status atualizado:', payload.new.status);\n  })\n  .subscribe();"
         }
       ],
       "questions": [
@@ -1674,15 +1674,15 @@
       "lesson": [
         {
           "title": "Broadcast e Troca de Mensagens Efêmeras",
-          "body": "Muitas vezes, você quer compartilhar estados com outros usuários, mas NÃO quer persistir esses dados no banco (como mostrar a posição do mouse de outro usuário ou ver quem está digitando). O Supabase Realtime possui o recurso de Broadcast, que serve como um barramento de mensagens direto (P2P), enviando eventos efêmeros a todos na mesma sala sem tocar no Postgres.",
-          "code": "channel.send({\n  type: 'broadcast',\n  event: 'cursor-pos',\n  payload: { x: 100, y: 200 }\n})",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Nem toda interação em tempo real precisa ser persistida no banco de dados. O recurso de Broadcast do Supabase Realtime permite que clientes troquem mensagens efêmeras de baixa latência diretamente via WebSockets, como posição do cursor em um editor colaborativo, indicadores de 'digitando...' em um chat ou sinais de WebRTC para chamadas de vídeo, sem gerar nenhuma gravação em disco no PostgreSQL.",
+          "tip": "Use Broadcast para dados que mudam várias vezes por segundo (como cursores de mouse); gravar isso no Postgres esgotaria o I/O do banco.",
+          "code": "// Enviando coordenadas do cursor para outros membros da sala\nconst canal = supabase.channel('quadro-branco');\ncanal.subscribe((status) => {\n  if (status === 'SUBSCRIBED') {\n    canal.send({\n      type: 'broadcast',\n      event: 'cursor-pos',\n      payload: { x: 140, y: 320, usuario: 'Ana' }\n    });\n  }\n});"
         },
         {
-          "title": "Presence (Presença de Usuários)",
-          "body": "O Realtime Presence é uma API baseada em CRDTs que gerencia estados altamente sincronizados entre usuários, sendo essencial para ver quem está 'Online', rastreando conexões e desconexões (se a guia do navegador for fechada ou a conexão cair). É o módulo por trás dos famosos avatares que aparecem no canto superior de editores simultâneos como o Figma.",
-          "code": "channel.track({ user_id: 1, status: 'online' })\nchannel.on('presence', { event: 'sync' }, () => {\n  const estado = channel.presenceState()\n})",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Presence: Monitorando Quem Está Online",
+          "body": "O recurso de Presence gerencia o estado de presença compartilhado entre clientes conectados em uma sala. Ele utiliza algoritmos de tipos de dados replicados sem conflito (CRDTs) para sincronizar listas de participantes online mesmo sob desconexões de rede momentâneas. Quando um usuário fecha a aba do navegador, seu estado é removido do grupo automaticamente e todos são notificados.",
+          "tip": "Implemente contadores de 'usuários ativos agora' utilizando o Presence do Supabase sem necessidade de bancos de cache Redis externos.",
+          "code": "// Rastreando presença online em tempo real\nconst canal = supabase.channel('sala-reuniao');\ncanal\n  .on('presence', { event: 'sync' }, () => {\n    const state = canal.presenceState();\n    console.log('Usuários online agora:', state);\n  })\n  .subscribe(async (status) => {\n    if (status === 'SUBSCRIBED') {\n      await canal.track({ online_at: new Date().toISOString(), usuario: 'Carlos' });\n    }\n  });"
         }
       ],
       "questions": [
@@ -1753,16 +1753,16 @@
       "summary": "Leia trechos de código que buscam dados de uma tabela usando o SDK.",
       "lesson": [
         {
-          "title": "O poder do supabase-js",
-          "body": "O `@supabase/supabase-js` é a biblioteca cliente oficial em JavaScript/TypeScript. Ele expõe uma API concisa, unificada e isomórfica que embrulha todos os microsserviços (Auth, Postgres, Realtime, Storage) através de uma única classe cliente. Com ele, as interações complexas viram chamadas assíncronas simples, com auto-completar na IDE e fortemente tipadas.",
-          "code": "import { createClient } from '@supabase/supabase-js'\nconst supabase = createClient(URL, KEY);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "O Poder do supabase-js",
+          "body": "O SDK `@supabase/supabase-js` combina simplicidade de uso com robustez enterprise. Ao contrário de ORMs pesados que traduzem modelos de objetos com overhead de memória no runtime, o cliente do Supabase gera diretamente chamadas HTTP otimizadas que batem no PostgREST. A API é intuitiva e encadeável, assemelhando-se à leitura natural de queries relacionais com total transparência.",
+          "tip": "Crie uma instância única (Singleton) do cliente do Supabase em um arquivo centralizado (`lib/supabase.ts`) e importe-a em todo o projeto.",
+          "code": "// lib/supabase.ts - Instância única reutilizável\nimport { createClient } from '@supabase/supabase-js';\n\nexport const supabase = createClient(\n  process.env.NEXT_PUBLIC_SUPABASE_URL!,\n  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!\n);"
         },
         {
-          "title": "Gerando Tipos TypeScript",
-          "body": "Uma das features que tornam o ecossistema Supabase amado é o gerador de Tipos TypeScript CLI. Ao rodar o comando contra seu banco na nuvem, ele inspeciona todas as tabelas e gera as interfaces Typescript precisas. Você as injeta na inicialização do Client SDK, garantindo inteligência no código, detectando erros de colunas inválidas antes mesmo de compilar o app.",
-          "code": "npx supabase gen types typescript --project-id abc > types.ts\n\n// No seu código:\nconst supabase = createClient<Database>(URL, KEY);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Gerando Tipos TypeScript com o CLI",
+          "body": "O Supabase CLI possui o comando `supabase gen types typescript`, que lê o catálogo do seu banco de dados PostgreSQL e produz um arquivo de definições de tipos (`Database`) contendo todas as tabelas, colunas, enums e views. Ao instanciar o SDK com esse tipo, todos os métodos `.from()`, `.select()` e `.insert()` passam a oferecer autocompletion estrito e validação estática de erros no VS Code.",
+          "tip": "Rode a geração de tipos TypeScript em seu pipeline de desenvolvimento para capturar erros de nomes de colunas antes do deploy.",
+          "code": "# Gera tipos TypeScript estritos a partir do banco remoto\nnpx supabase gen types typescript --project-id \"seu-id-de-projeto\" > types/supabase.ts\n\n// No código TypeScript:\nimport { Database } from './types/supabase';\nconst supabase = createClient<Database>(url, anonKey);\n// Agora 'from' e 'select' possuem autocompletion total de tabelas e colunas!"
         }
       ],
       "questions": [
@@ -1834,15 +1834,15 @@
       "lesson": [
         {
           "title": "Padrão de Respostas Data / Error",
-          "body": "O SDK adota o padrão de tratamento de erros, muito elogiado, inspirado no Go e similar à arquitetura Tuple: ele NÃO dispara exceções `throw` e por isso dispensa blocos aninhados de try/catch. Toda operação retorna sempre um objeto contendo a propriedade `data` (em caso de sucesso) e a propriedade `error` (se houver falhas), forçando o desenvolvedor a lidar logicamente.",
-          "code": "const { data, error } = await supabase.from('users').select()\nif (error) {\n  console.error('Falhou!', error.message)\n  return\n}\nconsole.log(data)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O SDK do Supabase não lança exceções inesperadas por padrão (não usa `throw`), adotando o padrão moderno inspirado em linguagens como Go e Rust: todas as operações assíncronas retornam um objeto contendo `{ data, error }`. Isso obriga o desenvolvedor a checar e tratar explicitamente eventuais falhas de validação, violação de constraints ou erros de conexão de rede antes de processar os dados.",
+          "tip": "Sempre faça `if (error) { ... }` logo após aguardar a Promise; ignorar o erro causará falhas silenciosas na interface.",
+          "code": "// Tratamento explícito e resiliente do retorno de mutações\nconst { data, error } = await supabase\n  .from('clientes')\n  .insert({ nome: 'Marina Santos', email: 'marina@empresa.com' })\n  .select()\n  .single();\n\nif (error) {\n  console.error('Falha ao inserir cliente:', error.message);\n  return;\n}\nconsole.log('Cliente persistido com sucesso, ID:', data.id);"
         },
         {
-          "title": "Encadeamento de Modificadores",
-          "body": "Para efetuar operações no banco com o SDK, utilizamos a sintaxe de Modificadores Encadeados (Chained Modifiers) no formato Query Builder. Primeiro, dizemos ao SDK a qual operação e tabela nos referimos, e em seguida adicionamos filtros, formatação e paginação. É equivalente à estrutura sintática lógica do próprio SQL (SELECT -> FROM -> WHERE).",
-          "code": "const { data } = await supabase\n  .from('produtos')\n  .select('nome, preco')\n  .gte('preco', 100)\n  .limit(10);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Encadeamento de Modificadores: .select() e .single()",
+          "body": "Por padrão, operações de INSERT ou UPDATE no PostgREST não retornam a linha criada para poupar banda de rede. Se você precisa do registro recém-gravado com seus valores gerados (como `id` e `criado_em`), basta encadear `.select()`. Se você espera exatamente uma única tupla em vez de uma lista, encadear `.single()` desempacota o array e formata o retorno direto como objeto único.",
+          "tip": "Utilize `.single()` quando buscar por chave primária ou colunas com constraint UNIQUE para receber um objeto limpo em vez de um array.",
+          "code": "// Busca um único registro com desempacotamento automático\nconst { data: usuario, error } = await supabase\n  .from('usuarios')\n  .select('id, nome, email')\n  .eq('id', 'e379471d-5226-4d26-b8e7-b695e1e19488')\n  .single();\n\nif (!error) console.log(usuario.nome); // Acesso direto ao atributo"
         }
       ],
       "questions": [
@@ -1914,15 +1914,15 @@
       "lesson": [
         {
           "title": "Múltiplas Inserções e Atualizações (Upsert)",
-          "body": "Ao invés de fazer requisições lentas em um loop, o SDK suporta enviar Arrays inteiros de objetos de uma só vez, criando uma Bulk Operation extremamente otimizada. Para situações de sincronização, usa-se a operação mágica `.upsert()`, que tentará Inserir o dado; mas caso a Chave Primária informada já exista no banco, ele Atualizará os dados restantes da linha de forma segura.",
-          "code": "const { error } = await supabase\n  .from('configs')\n  .upsert([ \n    { id: 1, theme: 'dark' }, \n    { id: 2, theme: 'light' } \n  ]);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O comando `upsert` (combinação de update e insert) resolve o problema de gravar dados sem saber se o registro já existe previamente. Se a chave primária ou restrição UNIQUE especificada for encontrada no banco, o Supabase atualiza a tupla existente; caso contrário, insere uma nova linha. Essa operação atômica substitui a lógica arriscada e propensa a concorrência de 'buscar primeiro, atualizar depois'.",
+          "tip": "Especifique o parâmetro `onConflict: 'coluna'` no upsert para ditar qual restrição única deve acionar a atualização.",
+          "code": "// Upsert atômico baseado no e-mail único do usuário\nconst { data, error } = await supabase\n  .from('preferencias')\n  .upsert({\n    usuario_id: userId,\n    tema: 'escuro',\n    notificacoes_push: true\n  }, { onConflict: 'usuario_id' });"
         },
         {
           "title": "Integração SSR com Next.js e Nuxt",
-          "body": "Desenvolver com Server-Side Rendering (SSR) torna o manuseio de sessões confuso, pois o servidor não tem o local storage do cliente, necessitando do uso de Cookies HTTP-only. Para resolver isso, o Supabase fornece pacotes específicos (como `@supabase/ssr`) que unificam e garantem uma gestão fluida das sessões Auth ao trafegar dados entre Servidor, Cliente e Middlewares.",
-          "code": "import { createServerClient } from '@supabase/ssr'\n// O cliente SSR permite injetar funções get e set de cookies",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Em frameworks modernos com Server-Side Rendering (SSR), o cliente não pode depender do LocalStorage para gerenciar a sessão de autenticação, pois o servidor Node.js/Edge não tem acesso a esse armazenamento. A biblioteca `@supabase/ssr` padroniza o ciclo de vida dos tokens armazenando-os em Cookies HTTP seguros, viabilizando autenticação perfeita tanto no servidor quanto no navegador.",
+          "tip": "Utilize Middleware no Next.js para ler a sessão via cookies e redirecionar usuários não autenticados antes mesmo da página começar a renderizar.",
+          "code": "// Exemplo de Middleware no Next.js App Router com @supabase/ssr\nimport { createServerClient } from '@supabase/ssr';\nimport { NextResponse } from 'next/server';\n\nexport async function middleware(req) {\n  let res = NextResponse.next();\n  const supabase = createServerClient(url, key, {\n    cookies: { getAll: () => req.cookies.getAll() }\n  });\n  const { data: { user } } = await supabase.auth.getUser();\n  if (!user && req.nextUrl.pathname.startsWith('/dashboard')) {\n    return NextResponse.redirect(new URL('/login', req.url));\n  }\n  return res;\n}"
         }
       ],
       "questions": [
@@ -1994,15 +1994,15 @@
       "lesson": [
         {
           "title": "O que são as Edge Functions",
-          "body": "Supabase Edge Functions são trechos de código TypeScript ou JavaScript (executados em Deno) que você escreve e o Supabase distribui globalmente em dezenas de servidores ao redor do mundo. Em vez de rodar o código do servidor apenas nos EUA, a função é executada no Edge (na borda, o servidor físico mais próximo da localização geográfica real do usuário), garantindo latência quase nula.",
-          "code": "import { serve } from \"https://deno.land/std/http/server.ts\"\nserve(async (req) => {\n  return new Response(\"Olá da Borda!\", { status: 200 })\n})",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "As Supabase Edge Functions são funções sem servidor (serverless) baseadas na runtime moderna Deno, distribuídas geograficamente em mais de 40 datacenters pela rede da Fastly. Isso significa que o código executa no ponto de presença mais próximo do usuário, proporcionando tempos de inicialização (cold starts) na faixa de 10 a 50 milissegundos — ordens de magnitude mais rápidos que lambdas tradicionais.",
+          "tip": "Use Edge Functions sempre que precisar executar código com chaves secretas (como pagamentos com Stripe) ou tarefas pesadas fora do navegador.",
+          "code": "// Edge Function escrita em TypeScript no ambiente Deno\nimport { serve } from \"https://deno.land/std@0.168.0/http/server.ts\";\n\nserve(async (req) => {\n  return new Response(JSON.stringify({ mensagem: \"Olá direto da borda!\" }), {\n    headers: { \"Content-Type\": \"application/json\" }\n  });\n});"
         },
         {
-          "title": "Casos de Uso para Servidor Próprio",
-          "body": "Por que precisamos de Edge Functions se o Supabase já gera APIs instantâneas? Porque as rotas normais não podem guardar segredos ou executar lógicas fechadas fora do banco. Você vai usá-las essencialmente para integrar provedores externos, como assinar transações de pagamento da Stripe, enviar disparos de e-mail (Resend) e consumir a API pesada da OpenAI para processamento de IA.",
-          "code": "// A Edge function fica com chaves que nunca vão para o cliente:\nconst STRIPE_SECRET_KEY = Deno.env.get('STRIPE_SECRET_KEY');",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Casos de Uso para Servidor Próprio vs Edge",
+          "body": "Embora o Supabase permita que boa parte do frontend converse diretamente com o banco via RLS, existem cenários onde uma função de borda é obrigatória: processar webhooks de plataformas de terceiros (como confirmação de pagamentos da Stripe), orquestrar chamadas a modelos de Inteligência Artificial da OpenAI sem expor sua chave de API, e gerar faturas em PDF ou e-mails transacionais em lote.",
+          "tip": "Nunca coloque chaves da OpenAI ou Stripe no frontend; invoque uma Edge Function no Supabase para intermediar a requisição com segurança.",
+          "code": "// Invocando uma Edge Function a partir do frontend pelo SDK\nconst { data, error } = await supabase.functions.invoke('processar-pagamento', {\n  body: { pedidoId: 'ped_123', metodo: 'pix' }\n});\n\nconsole.log('Resultado do processamento:', data);"
         }
       ],
       "questions": [
@@ -2073,16 +2073,16 @@
       "summary": "Comece a planejar as tabelas de um app de tarefas usando os conceitos vistos.",
       "lesson": [
         {
-          "title": "Executando em Deno",
-          "body": "Para a velocidade do ecossistema Edge e a leveza exigida, o Supabase Edge Functions roda usando o Deno (criado pelo mesmo autor do Node.js). O Deno oferece segurança nativa, suporte nativo maravilhoso ao TypeScript sem precisar de transpilação (Build steps) e utiliza o padrão moderno de Web APIs para a rede. Por isso, a assinatura base usa a classe `Response` global e importa módulos via URL.",
-          "code": "import { corsHeaders } from '../_shared/cors.ts'\n// Deno não tem NPM ou node_modules, os imports usam URLs completas",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Executando em Deno e TypeScript Nativo",
+          "body": "O ambiente Deno utilizado nas Edge Functions executa TypeScript nativamente sem etapas lentas de build ou transpile e oferece uma sandbox com segurança reforçada por padrão. O acesso a variáveis de ambiente (`Deno.env.get()`), chamadas de rede e leitura de arquivos requer permissões explícitas. Além disso, o Deno suporta tanto módulos ES via URL quanto pacotes do ecossistema npm padrão.",
+          "tip": "Você pode importar bibliotecas do npm direto nas Edge Functions usando o prefixo `npm:`, como `import Stripe from 'npm:stripe@^14'`;",
+          "code": "// Importação direta de pacote npm dentro de uma Edge Function Deno\nimport Stripe from 'npm:stripe@^14.0.0';\n\nconst stripe = new Stripe(Deno.env.get('STRIPE_SECRET_KEY')!, {\n  apiVersion: '2023-10-16'\n});"
         },
         {
-          "title": "Autenticação em Funções",
-          "body": "Ao chamar uma Edge Function através do front-end com o Client SDK, o SDK automaticamente embute e envia o JWT da sessão do usuário ativo no cabeçalho (Authorization) da requisição. Lá dentro da Edge Function, você inicializa o cliente Supabase utilizando este token para garantir que o código só opere em nome desse cliente restrito, honrando todas as políticas e limites de acesso do banco de dados (RLS).",
-          "code": "const authHeader = req.headers.get('Authorization')!\nconst supabaseClient = createClient(URL, ANON_KEY, { \n  global: { headers: { Authorization: authHeader } }\n})",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Autenticação em Funções com Cabeçalhos",
+          "body": "Ao invocar uma Edge Function, o cabeçalho `Authorization: Bearer <token>` do usuário conectado é encaminhado automaticamente. Dentro da função, você pode inicializar o cliente do Supabase passando esse cabeçalho; o cliente herdará o contexto do usuário e respeitará as políticas de RLS no banco, garantindo que o código serverless não execute nada além do que o usuário logado tem direito.",
+          "tip": "Instancie o cliente dentro da função com o token do cabeçalho da requisição para preservar a identidade do usuário nas queries.",
+          "code": "// Extraindo a identidade do usuário dentro da Edge Function\nconst authHeader = req.headers.get('Authorization')!;\nconst supabaseClient = createClient(\n  Deno.env.get('SUPABASE_URL')!,\n  Deno.env.get('SUPABASE_ANON_KEY')!,\n  { global: { headers: { Authorization: authHeader } } }\n);\n\nconst { data: { user } } = await supabaseClient.auth.getUser();"
         }
       ],
       "questions": [
@@ -2153,16 +2153,16 @@
       "summary": "Aplique RLS ao cenário do app de tarefas compartilhadas do projeto final.",
       "lesson": [
         {
-          "title": "Chamando Functions do SDK",
-          "body": "Chamar uma Edge Function no seu App front-end é super simples. Diferente das chamadas POST cruas com Fetch ou Axios, o pacote `@supabase/supabase-js` também inclui o namespace `functions`. Com o método `invoke()`, ele trata os cabeçalhos do JWT para você automaticamente, serializa o Payload e lida muito bem com o parse da resposta em JSON.",
-          "code": "const { data, error } = await supabase.functions.invoke('hello-world', {\n  body: { name: 'João' }\n})",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Chamando Functions do SDK com Tratamento",
+          "body": "A integração entre o SDK do Supabase e as Edge Functions ocorre através do método `supabase.functions.invoke('nome', opcoes)`. Essa chamada gerencia a serialização automática de payloads JSON, transmissão de cookies de autenticação e descompactação de respostas. O tratamento de erros de execução e falhas de rede no nível da função é capturado no objeto de erro retornado pela promise.",
+          "tip": "Configure cabeçalhos CORS adequados dentro da Edge Function para que ela possa ser invocada com sucesso por diferentes domínios de frontend.",
+          "code": "// Tratamento completo de resposta de uma Edge Function\nconst { data, error } = await supabase.functions.invoke('gerar-relatorio', {\n  body: { ano: 2026 }\n});\n\nif (error) {\n  console.error('Erro na execução da função serverless:', error);\n} else {\n  console.log('Dados processados:', data);\n}"
         },
         {
-          "title": "Aplicações Serverless de Background (Webhooks)",
-          "body": "As Edge Functions não precisam ser apenas chamadas pelo aplicativo do cliente! O Supabase Database Webhooks permite que o próprio banco de dados Postgres acione (trigger) uma requisição HTTP disparando uma Edge Function quando um evento crítico ocorre no banco de dados. Exemplo: sempre que um novo registro 'Pagamento_Efetuado' é inserido na tabela, execute a Edge function de enviar Recibo.",
-          "code": "-- Criado no painel, vincula um Trigger à sua função remota:\n-- INSERT ON public.pagamentos -> POST Edge Function (send_email)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Aplicações de Background: Database Webhooks",
+          "body": "Os Database Webhooks do Supabase permitem que eventos de escrita no PostgreSQL disparem automaticamente requisições HTTP para serviços externos ou Edge Functions. Por exemplo: sempre que um novo registro for inserido na tabela `pedidos`, um Webhook do banco aciona uma Edge Function para enviar um e-mail com comprovante em segundo plano, sem bloquear a resposta do cliente.",
+          "tip": "Utilize Database Webhooks para desacoplar ações secundárias de escrita (notificações, integrações CRM) do fluxo transacional principal.",
+          "code": "-- Webhook configurado no Postgres disparando requisição HTTP via pg_net\n-- Criação feita visualmente no painel em 'Database > Webhooks'\n-- Tabela: pedidos | Evento: INSERT | Destino: Edge Function 'enviar-recibo'"
         }
       ],
       "questions": [
@@ -2234,15 +2234,15 @@
       "lesson": [
         {
           "title": "Modelagem e Relacionamentos Base",
-          "body": "Para concluir o aprendizado, pense na modelagem completa. A base do seu app envolve pensar na arquitetura do banco. Você projeta tabelas primárias para identidades usando `auth.users` associada a uma `public.profiles`. Depois, pensa na escala do negócio. Entidades dependentes devem sempre se atrelar às entidades fortes usando chaves estrangeiras com regras 'ON DELETE CASCADE' para manter os dados perfeitamente limpos e as referências validadas.",
-          "code": "ALTER TABLE arquivos \nADD CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES profiles(id) ON DELETE CASCADE;",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Planejar a arquitetura de um projeto no Supabase exige desenhar os limites das entidades antes de escrever qualquer código. A divisão entre dados públicos e privados dita como as tabelas serão estruturadas e quais colunas receberão Foreign Keys para `auth.users(id)`. Um esquema bem modelado simplifica drasticamente a escrita de policies de RLS e viabiliza a geração de rotas REST intuitivas.",
+          "tip": "Vincule tabelas de dados privados à tabela `auth.users` via `REFERENCES auth.users(id) ON DELETE CASCADE` para limpar dados órfãos automaticamente.",
+          "code": "-- Estrutura relacional ideal com deleção em cascata integrada ao Auth\nCREATE TABLE public.assinaturas (\n  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),\n  usuario_id UUID NOT NULL REFERENCES auth.users(id) ON DELETE CASCADE,\n  plano TEXT NOT NULL,\n  status TEXT NOT NULL\n);"
         },
         {
           "title": "Camadas de Segurança em Cascata",
-          "body": "Um projeto maduro no Supabase emprega um padrão de defesa em profundidade (Defense in Depth). Não confie só no front-end. Sua primeira barreira são os Tipos de Dados rígidos e NOT NULL. A segunda é a tabela ter políticas RLS configuradas corretamente. A terceira é o Storage limitando o peso dos uploads. E a quarta, e última, Edge Functions validadas se as integrações com terceiros ocorrerem de forma autêntica e inalterada.",
-          "code": "-- Exemplo de restrição de segurança base\nALTER TABLE subscriptions ENABLE ROW LEVEL SECURITY;",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "A segurança em um aplicativo moderno com Supabase segue o princípio da defesa em profundidade com múltiplas camadas: validação de schemas de entrada no frontend/Edge (com Zod), autenticação de identidade rigorosa via JWT (GoTrue), controle de acesso linha a linha no banco (RLS) e restrições de integridade estrutural com constraints (CHECK, NOT NULL, FOREIGN KEY).",
+          "tip": "Mesmo com RLS, continue usando constraints como NOT NULL e CHECK no PostgreSQL; elas impedem estados inconsistentes causados por bugs.",
+          "code": "-- Validação de integridade profunda no nível do Postgres\nALTER TABLE public.assinaturas \n  ADD CONSTRAINT status_valido CHECK (status IN ('ativa', 'cancelada', 'pendente'));"
         }
       ],
       "questions": [
@@ -2313,16 +2313,16 @@
       "summary": "Percorra o caminho completo de uma requisição no app de tarefas do projeto final.",
       "lesson": [
         {
-          "title": "Estruturando os Ambientes",
-          "body": "O grande calcanhar de aquiles dos BaaS costuma ser a gestão de múltiplos ambientes de desenvolvimento. O Supabase CLI resolve isso estimulando fluxos avançados via GitHub Actions. O processo ideal (Boas práticas de CI/CD) é você escrever e debugar o esquema do banco rodando uma base conteinerizada (Supabase Start) local. Ao criar uma pull request aceita, o Github Action dispara o 'supabase db push' contra o projeto final de Produção.",
-          "code": "# Fluxo via CLI de CI/CD\nsupabase start\nsupabase migration new criar_tabela_vendas",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Estruturando os Ambientes (Local, Staging e Prod)",
+          "body": "Para projetos em produção, trabalhar diretamente no painel da nuvem é uma prática perigosa. O fluxo profissional recomendado pela documentação do Supabase baseia-se em: desenvolver localmente com o CLI e Docker, versionar migrações de esquema em arquivos SQL no repositório Git e utilizar GitHub Actions para aplicar migrações automaticamente no ambiente de homologação e produção durante o deploy.",
+          "tip": "Configure projetos separados no Supabase para 'Staging' e 'Produção'; nunca teste migrações arriscadas na mesma base onde seus clientes operam.",
+          "code": "# Workflow de deploy de migrations via GitHub Actions\n# - name: Deploy de Migrations no Supabase\n#   run: npx supabase db push\n#   env:\n#     SUPABASE_ACCESS_TOKEN: ${{ secrets.SUPABASE_ACCESS_TOKEN }}\n#     SUPABASE_DB_PASSWORD: ${{ secrets.SUPABASE_DB_PASSWORD }}"
         },
         {
-          "title": "Otimizando a Performance (Índices)",
-          "body": "Ao construir seu projeto final e ir para a produção, observe cuidadosamente a aba Database -> Query Performance. A API instantânea é rápida, mas conforme os dados crescem, queries complexas de filtros podem causar os infames lentos 'Sequential Scans'. Adicionar índices (INDEX) no Postgres para colunas bastante consultadas em WHERE vai fazer as respostas da sua API REST gerada saltarem de segundos para meros décimos de milissegundo.",
-          "code": "CREATE INDEX idx_compras_data ON compras (data_criacao);\n-- Acelera brutalmente filtros de datas!",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Otimizando a Performance com Índices",
+          "body": "À medida que suas tabelas acumulam milhares de registros, consultas lentas começam a degradar a experiência do usuário. O painel do Supabase Studio oferece uma seção de 'Database Reports' com métricas das queries mais pesadas e sugestões de índices ausentes. Criar índices em colunas utilizadas em cláusulas WHERE, JOINs frequentes e policies de RLS garante tempos de resposta em milissegundos.",
+          "tip": "Verifique o relatório de 'Slow Queries' no Studio periodicamente para identificar gargalos de CPU e criar índices preventivos.",
+          "code": "-- Índice B-Tree acelerando buscas e RLS na coluna usuario_id\nCREATE INDEX IF NOT EXISTS idx_assinaturas_usuario_id \nON public.assinaturas (usuario_id);"
         }
       ],
       "questions": [
@@ -2394,15 +2394,15 @@
       "lesson": [
         {
           "title": "Conectando Ferramentas Externas",
-          "body": "Às vezes, um cliente pode não confiar em BaaS, com receio de ficar travado nas limitações do serviço (Vendor Lock-in). Demonstre flexibilidade: O projeto real do Supabase é apenas um servidor Postgres. Como tal, você pode ignorar completamente as APIs REST dele e conectar qualquer framework de backend sólido, seja um ORM (Prisma), Node (Express), SpringBoot ou Django diretamente à porta da String de Conexão com sua senha poderosa.",
-          "code": "DATABASE_URL=\"postgres://postgres:[YOUR-PASSWORD]@db.[REF].supabase.co:5432/postgres\"",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Uma das grandes forças do Supabase é a interoperabilidade com o ecossistema global. Como a base é um PostgreSQL padrão, você pode conectar ferramentas analíticas de BI como Metabase e Apache Superset, replicar dados para data warehouses externos via Airbyte, e utilizar ferramentas de monitoramento de performance de banco como Datadog ou Prometheus conectando-se diretamente à porta do pooler.",
+          "tip": "Ao conectar ferramentas externas com muitas conexões simultâneas, conecte-se pela porta 6543 (PgBouncer/Supavisor) para evitar esgotar conexões do Postgres.",
+          "code": "-- Conexão direta com string de conexão poolada para alta concorrência\n-- postgresql://postgres.xyz:[SENHA]@aws-0-sa-east-1.pooler.supabase.com:6543/postgres\nSELECT 'Integração Global Concluída com Sucesso' AS status;"
         },
         {
-          "title": "Escalando de Forma Global",
-          "body": "Projetos em escala gigante têm necessidades difíceis. Para resolver o problema da velocidade em leituras distribuídas, você ativa recursos como o PgBouncer interno (Pool de conexões) nas URLs configuradas no Prisma, e liga a opção 'Read Replicas' do painel Supabase para duplicar seus bancos de dados em outras regiões com sincronização cruzada. Você construiu e protegeu uma base moderna que evolui com seu negócio e sem sustos.",
-          "code": "console.log('Seu projeto Supabase está preparado e no ar!');\n// Bem-vindo ao futuro open-source!",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Escalando de Forma Global e Manutenção Contínua",
+          "body": "Você concluiu a jornada completa pelo ecossistema do Supabase! Agora domina desde a modelagem relacional de esquemas e permissões estritas com Row Level Security até uploads de arquivos em buckets de storage, streams reativos em tempo real e computação serverless distribuída na borda com Edge Functions. Essa combinação entrega uma infraestrutura robusta e moderna capaz de suportar milhões de usuários.",
+          "tip": "Continue explorando recursos avançados como busca vetorial com pgvector e réplicas de leitura para acompanhar a evolução do Supabase.",
+          "code": "-- Parabéns! Sua stack de Backend as a Service está pronta para produção\nSELECT \n  'Supabase Expert' AS certificado,\n  now() AS emitido_em,\n  'Infraestrutura moderna e escalável pronta para o mundo real' AS mensagem;"
         }
       ],
       "questions": [

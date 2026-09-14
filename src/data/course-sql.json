@@ -74,15 +74,15 @@
       "lesson": [
         {
           "title": "O Problema dos Dados Desorganizados",
-          "body": "Quando armazenamos dados em planilhas ou arquivos de texto sem uma estrutura definida, enfrentamos problemas como duplicação, inconsistência e dificuldade de busca. O SQL resolve isso ao exigir que os dados sigam regras rígidas de organização, garantindo que a informação seja sempre confiável e fácil de encontrar em qualquer cenário.",
-          "code": "-- Em vez de textos soltos, usamos tabelas estruturadas\nSELECT * FROM clientes WHERE cidade = 'São Paulo';",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Quando aplicações armazenam dados em arquivos soltos como planilhas CSV ou textos sem esquema, surgem inconsistências críticas. Sem controle de concorrência, acessos simultâneos corrompem arquivos, dados duplicados ficam desatualizados e consultas simples exigem varreduras manuais exaustivas. Bancos de dados relacionais resolvem esse caos estruturando dados em esquemas rígidos com validações atômicas.",
+          "tip": "Nunca utilize arquivos de texto ou planilhas como fonte primária para dados concorrentes em produção; falhas de I/O causam perda irreparável.",
+          "code": "-- Em vez de ler um arquivo CSV linha a linha sem travas:\n-- O banco garante atomicidade e integridade no acesso\nSELECT id, nome, saldo FROM contas_bancarias WHERE id = 1042;"
         },
         {
           "title": "O Modelo Relacional",
-          "body": "O modelo relacional organiza os dados em tabelas (ou relações) que se conectam através de chaves. Essa abordagem elimina redundâncias, pois cada informação é armazenada em um único lugar. Com o SQL (Structured Query Language), podemos consultar e cruzar esses dados de forma padronizada, rápida e extremamente eficiente para aplicações reais.",
-          "code": "SELECT pedidos.id, clientes.nome \nFROM pedidos \nJOIN clientes ON pedidos.cliente_id = clientes.id;",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Proposto por Edgar F. Codd em 1970, o modelo relacional fundamenta-se na teoria dos conjuntos e na lógica de predicados. A informação é modelada em relações bidimensionais (tabelas compostas de tuplas e atributos). Essa abstração separa a representação lógica da forma física de armazenamento em disco, permitindo que a engine do banco otimize caminhos de execução sem alterar como o desenvolvedor consulta os dados.",
+          "tip": "Pense nas tabelas como conjuntos matemáticos de entidades únicas; cada linha deve ser identificável sem ambiguidades.",
+          "code": "-- Relação entre clientes e compras via identificadores relacionais\nSELECT clientes.nome, pedidos.valor_total\nFROM clientes\nINNER JOIN pedidos ON pedidos.cliente_id = clientes.id\nWHERE pedidos.status = 'pago';"
         }
       ],
       "questions": [
@@ -154,15 +154,15 @@
       "lesson": [
         {
           "title": "Tabelas e a Estrutura de Dados",
-          "body": "No banco de dados relacional, uma tabela funciona como uma planilha altamente estruturada que representa uma entidade específica, como 'Clientes' ou 'Produtos'. Cada tabela possui um nome único e regras próprias que ditam que tipo de informação pode ser armazenada ali, formando a base fundamental de onde os dados residem.",
-          "code": "SELECT nome, email FROM usuarios;",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Uma tabela relacional é uma entidade estruturada composta por um cabeçalho fixo com nomes e tipos de colunas e um corpo de registros mutáveis. Cada coluna define um domínio restrito de valores aceitos, como inteiros, textos com limites ou timestamps. Essa padronização impede que valores incongruentes entrem no sistema, garantindo previsibilidade de memória e consistência algorítmica para consultas analíticas.",
+          "tip": "Defina sempre tipos de dados estritos no momento de projetar a tabela para economizar espaço em disco e acelerar a indexação.",
+          "code": "-- Estrutura formal com domínios de tipos restritos\nCREATE TABLE usuarios (\n  id INT,\n  nome VARCHAR(100),\n  email VARCHAR(150),\n  ativo BOOLEAN\n);"
         },
         {
           "title": "Colunas e Linhas (Registros)",
-          "body": "As colunas (ou campos) definem os atributos dos dados, como nome, idade ou data de nascimento, e o tipo de dado de cada um. Já as linhas (ou registros) representam cada item individual contendo os valores reais para aquelas colunas. Entender essa grade é crucial para projetar bancos de dados robustos e fazer consultas eficientes com SQL.",
-          "code": "INSERT INTO usuarios (nome, email) \nVALUES ('Maria', 'maria@email.com');",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Em terminologia relacional formal, uma linha representa uma tupla — uma instância atômica do objeto no mundo real — enquanto cada coluna representa um atributo atômico desse objeto. Nenhuma linha deve depender da ordem física de armazenamento no disco para ter significado semântico. A recuperação de dados é declarativa: o desenvolvedor informa o que deseja recuperar, e o SGBD decide como escanear as páginas de dados.",
+          "tip": "Evite guardar múltiplos valores separados por vírgula em uma única coluna; isso quebra a primeira forma normal e anula a indexação.",
+          "code": "-- Cada linha representa uma tupla atômica completa\nINSERT INTO usuarios (id, nome, email, ativo)\nVALUES (1, 'Ana Silva', 'ana@empresa.com', true);\n\n-- Busca determinística por atributos da tupla\nSELECT nome FROM usuarios WHERE id = 1;"
         }
       ],
       "questions": [
@@ -234,15 +234,15 @@
       "lesson": [
         {
           "title": "O Papel do SGBD",
-          "body": "Um Sistema de Gerenciamento de Banco de Dados (SGBD), como MySQL, PostgreSQL ou SQL Server, é o software responsável por gerenciar como os dados são armazenados e acessados. Ele garante segurança, controle de concorrência (múltiplas pessoas acessando ao mesmo tempo) e recuperação de falhas, coisas que arquivos comuns não oferecem.",
-          "code": "-- O SGBD gerencia transações seguras\nBEGIN;\nUPDATE contas SET saldo = saldo - 100 WHERE id = 1;\nCOMMIT;",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O Sistema de Gerenciamento de Banco de Dados (SGBD) é o software intermediário responsável por abstrair operações de disco, garantir segurança de acesso, gerenciar memória compartilhada e coordenar transações concorrentes. Sem ele, cada desenvolvedor precisaria reescrever mecanismos de lock, journal de recuperação contra quedas de energia (WAL) e otimizadores de árvore de busca para cada software.",
+          "tip": "Confie a durabilidade ao motor do SGBD; gravar dados diretamente em arquivos pelo backend expõe seu app a race conditions.",
+          "code": "-- O SGBD gerencia locks de concorrência e buffer pool em segundo plano\nBEGIN;\nUPDATE contas SET saldo = saldo - 100 WHERE id = 1;\nUPDATE contas SET saldo = saldo + 100 WHERE id = 2;\nCOMMIT; -- Salva com segurança usando Write-Ahead Logging"
         },
         {
-          "title": "Vantagens na Prática",
-          "body": "Usar um SGBD significa que o desenvolvedor não precisa se preocupar com os detalhes físicos de onde o dado está salvo no disco. Você apenas escreve comandos SQL e o SGBD otimiza a busca, cuida da integridade dos dados e gerencia os backups, permitindo que os sistemas escalem e lidem com milhões de acessos sem corromper informações vitais.",
-          "code": "SELECT count(*) FROM acessos \nWHERE data >= '2023-01-01';",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Vantagens na Prática e Propriedades ACID",
+          "body": "Os SGBDs relacionais modernos garantem as propriedades ACID: Atomicidade (tudo ou nada), Consistência (regras e constraints respeitadas), Isolamento (transações simultâneas não interferem umas nas outras) e Durabilidade (dados confirmados sobrevivem a desligamentos repentinos). Esses pilares tornam os bancos relacionais a escolha definitiva para sistemas financeiros, e-commerces e cadastros críticos.",
+          "tip": "Use transações sempre que duas ou mais operações de escrita dependerem uma da outra para manter o estado do sistema válido.",
+          "code": "-- Se o segundo comando falhar por erro de rede ou constraint, nada é persistido\nBEGIN TRANSACTION;\nINSERT INTO pedidos (id, cliente_id, total) VALUES (55, 12, 350.00);\nINSERT INTO auditoria_log (evento) VALUES ('Pedido 55 criado');\nCOMMIT;"
         }
       ],
       "questions": [
@@ -314,15 +314,15 @@
       "lesson": [
         {
           "title": "Mapeando Entidades",
-          "body": "Ao modelar um banco de dados, o primeiro passo é identificar as Entidades, que são objetos ou conceitos do mundo real sobre os quais queremos guardar dados. Uma entidade pode ser algo físico (como um 'Produto') ou conceitual (como uma 'Venda'). Cada entidade geralmente se torna uma tabela distinta no seu banco de dados relacional.",
-          "code": "CREATE TABLE produtos (\n  -- Estrutura para a entidade 'produtos'\n);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Na modelagem conceitual, uma entidade é qualquer objeto do mundo real sobre o qual a aplicação precisa guardar informações históricas ou transacionais. Identificar entidades exige entender os substantivos essenciais do domínio de negócio: Cliente, Produto, Pedido ou Nota Fiscal. Uma modelagem falha que mistura conceitos em uma única entidade resulta em acoplamento destrutivo e anomalias de atualização.",
+          "tip": "Ao conversar com especialistas de negócio, destaque os substantivos principais; quase sempre eles se transformarão em entidades do banco.",
+          "code": "-- Entidades independentes bem delimitadas no esquema relacional\nCREATE TABLE clientes (\n  id INT PRIMARY KEY,\n  razao_social VARCHAR(150)\n);\n\nCREATE TABLE faturas (\n  id INT PRIMARY KEY,\n  cliente_id INT,\n  valor DECIMAL(10,2)\n);"
         },
         {
           "title": "Definindo Atributos",
-          "body": "Atributos são as características que descrevem uma Entidade. Para a entidade 'Produto', atributos seriam o nome, o preço e a quantidade em estoque. Na tabela, esses atributos se tornam as colunas. A escolha correta dos atributos determina o quão bem o seu banco de dados reflete as necessidades reais do negócio e facilita as consultas.",
-          "code": "CREATE TABLE produtos (\n  nome VARCHAR(100),\n  preco DECIMAL(10, 2),\n  estoque INT\n);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Atributos são as propriedades quantitativas ou qualitativas que descrevem as características da entidade. Ao modelar atributos, devemos analisar a atomicidade da informação: um campo de nome completo pode dificultar buscas por sobrenome, assim como um endereço em campo único impede filtros confiáveis por estado ou CEP. Dividir atributos na granularidade correta facilita indexações futuras.",
+          "tip": "Divida campos compostos (como endereço ou nome completo) em atributos específicos se o sistema precisar filtrar ou ordenar por eles.",
+          "code": "-- Atributos atômicos e granulares permitem buscas precisas por índice\nCREATE TABLE enderecos (\n  id INT PRIMARY KEY,\n  logradouro VARCHAR(120),\n  numero VARCHAR(20),\n  bairro VARCHAR(80),\n  cidade VARCHAR(80),\n  estado CHAR(2),\n  cep CHAR(8)\n);"
         }
       ],
       "questions": [
@@ -394,15 +394,15 @@
       "lesson": [
         {
           "title": "Identificação Única com Primary Key",
-          "body": "A Chave Primária (Primary Key) é uma coluna (ou conjunto de colunas) que identifica de forma única cada registro em uma tabela. Sem ela, o banco não conseguiria diferenciar dois clientes com o mesmo nome e idade. Ela garante que não haverá linhas duplicadas e é essencial para relacionar informações entre diferentes tabelas do sistema.",
-          "code": "CREATE TABLE clientes (\n  id INT PRIMARY KEY,\n  nome VARCHAR(100)\n);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "A chave primária (Primary Key ou PK) é uma restrição que garante que cada registro em uma tabela seja único e não nulo. O SGBD cria automaticamente um índice estruturado em árvore B+ sobre a chave primária, permitindo que buscas pelo identificador tenham complexidade de tempo de execução O(log N). Sem ela, atualizar ou deletar um registro específico sem afetar outros se torna uma tarefa perigosa.",
+          "tip": "Toda tabela sem exceção deve possuir uma chave primária explicitamente declarada para viabilizar replicação e integridade relacional.",
+          "code": "-- Definindo chave primária inteira autoincrementada\nCREATE TABLE produtos (\n  id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,\n  sku VARCHAR(50) NOT NULL UNIQUE,\n  titulo VARCHAR(200) NOT NULL\n);"
         },
         {
-          "title": "Boas Práticas de Chaves Primárias",
-          "body": "Geralmente usamos números inteiros com auto-incremento ou UUIDs (identificadores universais) como chaves primárias. Elas devem ser imutáveis (nunca mudam de valor), únicas e nunca nulas. Depender de atributos naturais, como CPF, pode ser arriscado se a regra de negócio mudar, então chaves artificiais (como um 'id' numérico) são recomendadas.",
-          "code": "CREATE TABLE clientes (\n  id SERIAL PRIMARY KEY, -- Auto-incremento\n  cpf VARCHAR(14) UNIQUE\n);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Chaves Naturais vs Chaves Artificiais (Surrogate)",
+          "body": "Uma chave natural usa um dado real do negócio como identificador primário (como CPF ou CNPJ), enquanto uma surrogate key usa um identificador artificial gerado pelo sistema (como um número sequencial ou UUID). Chaves naturais são arriscadas porque regras de negócio mudam e dados do mundo real podem sofrer correções cadastrais. Chaves substitutas mantêm a estabilidade das relações mesmo se os atributos externos mudarem.",
+          "tip": "Prefira UUIDs (v7 ou v4) ou BigInt sequencial como chave primária, deixando CPFs ou códigos comerciais apenas como colunas com UNIQUE.",
+          "code": "-- Surrogate key imutável + Unique constraint no dado do negócio\nCREATE TABLE fornecedores (\n  id BIGINT PRIMARY KEY,          -- Chave surrogate imutável\n  cnpj CHAR(14) NOT NULL UNIQUE,  -- Chave natural para busca\n  nome_fantasia VARCHAR(120)\n);"
         }
       ],
       "questions": [
@@ -474,15 +474,15 @@
       "lesson": [
         {
           "title": "Textos e Números no SQL",
-          "body": "Ao criar tabelas, devemos definir o tipo de dado de cada coluna. Para textos, usamos VARCHAR (tamanho variável) ou TEXT. Para números, temos INT (inteiros) e DECIMAL/NUMERIC (valores monetários exatos). Escolher o tipo correto economiza espaço de armazenamento e permite que o SGBD aplique funções matemáticas e de texto adequadamente.",
-          "code": "CREATE TABLE itens (\n  nome VARCHAR(50),\n  quantidade INT,\n  preco DECIMAL(8,2)\n);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "A escolha precisa dos tipos de dados afeta diretamente o consumo de I/O em disco, memória RAM do buffer pool e velocidade de busca. O tipo CHAR(N) possui tamanho fixo preenchido com espaços, enquanto VARCHAR(N) armazena apenas os bytes reais mais o cabeçalho de comprimento. Para números inteiros, SMALLINT (2 bytes), INT (4 bytes) e BIGINT (8 bytes) devem ser selecionados com base no teto de escala do negócio.",
+          "tip": "Use VARCHAR em vez de TEXT irrestrito quando houver um limite lógico claro para evitar inserções de payloads maliciosos gigantescos.",
+          "code": "-- Tipos numéricos e textuais alinhados com o tamanho dos dados reais\nCREATE TABLE catalogo (\n  codigo_departamento SMALLINT, -- Aceita de -32768 a 32767\n  identificador BIGINT,         -- Aceita quintilhões de linhas\n  sigla CHAR(3),                -- Tamanho fixo perfeito para siglas como 'BR'\n  descricao VARCHAR(255)        -- Tamanho variável até 255 caracteres\n);"
         },
         {
-          "title": "Datas e Booleanos",
-          "body": "Lidar com o tempo é vital. O SQL oferece tipos como DATE (apenas data), TIME (apenas hora) e TIMESTAMP/DATETIME (data e hora). Para valores lógicos (Verdadeiro ou Falso), usa-se o BOOLEAN. Usar tipos nativos para datas permite realizar consultas poderosas, como calcular a diferença de dias entre duas datas ou agrupar por meses e anos.",
-          "code": "CREATE TABLE eventos (\n  titulo VARCHAR(100),\n  ativo BOOLEAN,\n  data_inicio TIMESTAMP\n);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Datas, Booleanos e Precisão Monetária",
+          "body": "Representar dinheiro com tipos decimais de ponto flutuante como FLOAT ou REAL gera erros cumulativos de arredondamento causados pela representação binária fracionária IEEE 754. Sistemas corporativos exigem o tipo DECIMAL/NUMERIC para cálculo monetário com precisão exata. Para datas, TIMESTAMP WITH TIME ZONE (TIMESTAMPTZ) é o padrão da indústria para evitar ambiguidades com fusos horários e horário de verão.",
+          "tip": "Nunca utilize FLOAT ou DOUBLE para valores monetários; use DECIMAL(15,2) ou guarde o valor em centavos como BIGINT.",
+          "code": "-- Boas práticas para valores monetários e instantes no tempo\nCREATE TABLE transacoes (\n  id INT PRIMARY KEY,\n  valor DECIMAL(12, 2) NOT NULL, -- Precisão exata de centavos\n  estornada BOOLEAN DEFAULT FALSE,\n  criada_em TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP\n);"
         }
       ],
       "questions": [
@@ -554,15 +554,15 @@
       "lesson": [
         {
           "title": "Conectando Tabelas com Foreign Key",
-          "body": "A Chave Estrangeira (Foreign Key) é o elo que liga duas tabelas. Ela é uma coluna em uma tabela que faz referência à Chave Primária de outra tabela. É assim que o SQL cria relacionamentos: por exemplo, colocando o 'cliente_id' dentro da tabela de 'pedidos' para saber exatamente quem fez qual compra, unindo os dados logicamente.",
-          "code": "CREATE TABLE pedidos (\n  id INT PRIMARY KEY,\n  cliente_id INT,\n  FOREIGN KEY (cliente_id) REFERENCES clientes(id)\n);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "A chave estrangeira (Foreign Key ou FK) é uma restrição de integridade referencial que vincula uma coluna de uma tabela filha à chave primária de uma tabela pai. Essa relação física no esquema impede que sejam criados 'registros órfãos', como vendas apontando para clientes inexistentes. O SGBD recusa transações que tentem violar esse vínculo, garantindo que o grafo relacional permaneça sempre coerente.",
+          "tip": "Crie sempre índices nas colunas que atuam como chave estrangeira; isso evita scans completos em joins e validações de integridade.",
+          "code": "-- A chave estrangeira impede a inserção de pedidos para clientes fantasmas\nCREATE TABLE pedidos (\n  id INT PRIMARY KEY,\n  cliente_id INT NOT NULL,\n  data_pedido DATE NOT NULL,\n  CONSTRAINT fk_cliente FOREIGN KEY (cliente_id) REFERENCES clientes(id)\n);"
         },
         {
-          "title": "Integridade Referencial",
-          "body": "As chaves estrangeiras garantem a integridade referencial, ou seja, evitam que você crie um pedido para um cliente que não existe, ou que delete um cliente que ainda possui pedidos registrados. O SGBD bloqueia essas ações automaticamente, mantendo o banco de dados livre de registros 'órfãos' e inconsistências graves na sua aplicação.",
-          "code": "-- Tentar apagar falha se houver pedidos para o ID 5\nDELETE FROM clientes WHERE id = 5;",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Integridade Referencial e Ações em Cascata",
+          "body": "Ao deletar ou atualizar um registro em uma tabela pai, o SGBD precisa saber o que fazer com as linhas dependentes. As cláusulas ON DELETE e ON UPDATE definem esse comportamento: RESTRICT bloqueia a exclusão se houver dependentes; CASCADE propaga a exclusão para todas as linhas filhas; e SET NULL define o campo referenciado como nulo. O uso inadequado de CASCADE pode apagar históricos inteiros acidentalmente.",
+          "tip": "Evite ON DELETE CASCADE em tabelas de auditoria ou contábeis; utilize exclusão lógica (soft delete) ou bloqueie com ON DELETE RESTRICT.",
+          "code": "-- Exclusão controlada com bloqueio protetivo por padrão\nCREATE TABLE itens_pedido (\n  id INT PRIMARY KEY,\n  pedido_id INT,\n  produto_id INT,\n  CONSTRAINT fk_pedido FOREIGN KEY (pedido_id) REFERENCES pedidos(id) ON DELETE CASCADE,\n  CONSTRAINT fk_prod FOREIGN KEY (produto_id) REFERENCES produtos(id) ON DELETE RESTRICT\n);"
         }
       ],
       "questions": [
@@ -633,16 +633,16 @@
       "summary": "Compreenda o relacionamento mais comum entre tabelas: um-para-muitos.",
       "lesson": [
         {
-          "title": "O Relacionamento Mais Comum",
-          "body": "A relação Um-Para-Muitos (1:N) acontece quando um registro da Tabela A pode se relacionar com vários registros da Tabela B, mas o registro da Tabela B pertence apenas a um da Tabela A. O clássico exemplo: Um cliente pode fazer muitos pedidos, mas cada pedido pertence a apenas um cliente. Isso molda 80% das estruturas de banco de dados.",
-          "code": "-- Tabela de Pedidos tem o lado 'Muitos'\nSELECT * FROM pedidos WHERE cliente_id = 10;",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "O Relacionamento Mais Comum (1:N)",
+          "body": "A relação de um-para-muitos (1:N) é a espinha dorsal de quase todos os sistemas transacionais. Ela ocorre quando uma entidade pode estar associada a várias instâncias de outra entidade, mas cada instância dessa segunda entidade pertence a apenas uma da primeira. O lado 'muitos' sempre armazena a chave estrangeira referenciando a chave primária do lado 'um', espelhando a dependência natural do mundo real.",
+          "tip": "Identifique quem possui quem: a chave estrangeira sempre fica na tabela dependente (lado 'N'), nunca no lado '1'.",
+          "code": "-- 1 Departamento possui N Funcionários\nCREATE TABLE departamentos (\n  id INT PRIMARY KEY,\n  nome VARCHAR(60)\n);\n\nCREATE TABLE funcionarios (\n  id INT PRIMARY KEY,\n  departamento_id INT REFERENCES departamentos(id),\n  nome VARCHAR(100)\n);"
         },
         {
-          "title": "Implementação na Prática",
-          "body": "Para implementar um 1:N no SQL, basta adicionar uma chave estrangeira na tabela que representa o lado 'Muitos' apontando para a tabela 'Um'. Assim, evitamos duplicar os dados do cliente (como nome e endereço) em cada linha de pedido, consultando as informações através da operação de JOIN apenas quando for necessário exibi-las juntas.",
-          "code": "SELECT p.id, c.nome \nFROM pedidos p\nJOIN clientes c ON p.cliente_id = c.id;",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Implementação na Prática e Consultas",
+          "body": "Para navegar em uma relação 1:N, o motor do banco consulta o índice da chave estrangeira na tabela de destino. Por exemplo, ao buscar todos os comentários de uma publicação, o índice por `publicacao_id` localiza instantaneamente o lote de registros sem ler a tabela inteira. Se a cardinalidade for alta (milhões de registros no lado N), a modelagem deve incluir paginação eficiente para manter a latência baixa.",
+          "tip": "Lembre-se de adicionar paginação com LIMIT/OFFSET ao consultar o lado 'muitos' para não sobrecarregar a memória da aplicação.",
+          "code": "-- Consulta eficiente de 1:N utilizando índice na FK\nSELECT f.nome, d.nome AS setor\nFROM funcionarios f\nINNER JOIN departamentos d ON d.id = f.departamento_id\nWHERE d.id = 10\nORDER BY f.nome ASC;"
         }
       ],
       "questions": [
@@ -714,15 +714,15 @@
       "lesson": [
         {
           "title": "Quando Tudo se Conecta (N:N)",
-          "body": "A relação Muitos-Para-Muitos (N:N) ocorre quando vários registros de uma tabela se relacionam com vários de outra. Exemplo: um aluno pode se matricular em várias disciplinas, e uma disciplina pode ter vários alunos. Bancos relacionais não suportam N:N diretamente, exigindo uma técnica especial de modelagem para que isso funcione de verdade.",
-          "code": "-- Não podemos colocar a chave direto em alunos ou disciplinas\n-- Precisamos de uma tabela intermediária.",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Uma relação muitos-para-muitos (N:N) surge quando instâncias de ambas as entidades podem se associar a múltiplas instâncias da outra. Um aluno cursa várias disciplinas, e cada disciplina tem vários alunos. Bancos relacionais não permitem associar listas diretamente em colunas sem ferir as formas normais. A solução universal para resolver esse problema consiste em decompor a relação N:N em duas relações 1:N.",
+          "tip": "Nunca crie colunas de arrays ou strings separadas por vírgula para simular N:N; utilize sempre uma tabela associativa.",
+          "code": "-- Decomposição de Estudantes e Cursos em N:N\nCREATE TABLE estudantes ( id INT PRIMARY KEY, nome VARCHAR(100) );\nCREATE TABLE cursos ( id INT PRIMARY KEY, titulo VARCHAR(100) );"
         },
         {
-          "title": "A Tabela Associativa (Pivot)",
-          "body": "Para resolver um N:N, criamos uma terceira tabela, chamada de associativa ou pivot. Ela contém duas chaves estrangeiras, apontando para as tabelas principais. No exemplo de alunos e disciplinas, criamos a tabela 'matriculas'. Essa tabela intermediária quebra a relação N:N em duas relações de Um-Para-Muitos, resolvendo a questão elegantemente.",
-          "code": "CREATE TABLE matriculas (\n  aluno_id INT,\n  disciplina_id INT,\n  FOREIGN KEY (aluno_id) REFERENCES alunos(id),\n  FOREIGN KEY (disciplina_id) REFERENCES disciplinas(id)\n);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "A Tabela Associativa (Pivot ou Junção)",
+          "body": "A tabela de junção (ou associativa) atua como ponte contendo pelo menos duas chaves estrangeiras, cada uma referenciando uma das tabelas originais. A combinação das duas FKs geralmente forma uma chave primária composta, impedindo associações duplicadas. Além das chaves, essa tabela é o local ideal para armazenar atributos da própria associação, como a data da matrícula, notas ou status de conclusão.",
+          "tip": "Use uma chave primária composta (PK com ambas as FKs) para impedir que o mesmo par seja associado duas vezes acidentalmente.",
+          "code": "-- Tabela associativa com chave primária composta e atributo próprio\nCREATE TABLE matriculas (\n  estudante_id INT REFERENCES estudantes(id),\n  curso_id INT REFERENCES cursos(id),\n  data_matricula DATE DEFAULT CURRENT_DATE,\n  PRIMARY KEY (estudante_id, curso_id) -- Garante associação única\n);"
         }
       ],
       "questions": [
@@ -793,16 +793,16 @@
       "summary": "Aprenda a estrutura do comando CREATE TABLE para criar tabelas em SQL.",
       "lesson": [
         {
-          "title": "Nasce uma Tabela",
-          "body": "O comando CREATE TABLE é a instrução de DDL (Data Definition Language) usada para criar uma nova estrutura no banco. Nele, você define o nome da tabela, quais colunas ela terá e o tipo de dados de cada uma. É como construir a planta de uma casa antes de colocar os móveis; a definição precisa ser bem pensada antes de inserir os dados.",
-          "code": "CREATE TABLE categorias (\n  id INT PRIMARY KEY,\n  nome VARCHAR(50) NOT NULL\n);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Nasce uma Tabela: Sintaxe e DDL",
+          "body": "O comando CREATE TABLE faz parte do Data Definition Language (DDL) do SQL. Ele instrui o SGBD a alocar metadados no catálogo do sistema, reservar identificadores de página em disco e preparar as estruturas internas para receber dados. Cada definição requer o nome da coluna, seu tipo de dado e eventuais qualificadores de nulidade, formando o contrato rígido com o qual o sistema operará.",
+          "tip": "Escreva comandos DDL em scripts de migração versionados no Git (como flyway ou prisma) em vez de criá-los manualmente em ferramentas visuais.",
+          "code": "-- Definição estruturada formal com boas práticas DDL\nCREATE TABLE produtos (\n  id INT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,\n  sku VARCHAR(30) NOT NULL,\n  preco DECIMAL(10,2) NOT NULL,\n  criado_em TIMESTAMP DEFAULT CURRENT_TIMESTAMP\n);"
         },
         {
-          "title": "O Cuidado com a Estrutura",
-          "body": "Ao usar CREATE TABLE, é fundamental prever como os dados irão crescer. Alterar tipos de coluna depois que a tabela tem milhões de linhas pode ser muito custoso. Portanto, definir corretamente se uma coluna permite nulos, valores padrões e restrições desde o começo garante a saúde a longo prazo da sua aplicação baseada em banco de dados.",
-          "code": "CREATE TABLE produtos (\n  id SERIAL PRIMARY KEY,\n  preco DECIMAL(10,2) DEFAULT 0.00\n);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "O Cuidado com a Estrutura e Modificações",
+          "body": "Projetar tabelas requer visão de longo prazo. Adicionar colunas com valores default ou alterar tipos de colunas em tabelas de grande porte (milhões de linhas) pode gerar locks de exclusão de tabela inteira (Access Exclusive Lock), travando o sistema em produção. Por isso, a escolha correta dos nomes, tipos e limites no momento do CREATE inicial economiza migrações dolorosas e arriscadas no futuro.",
+          "tip": "Em Postgres, ao adicionar uma nova coluna com DEFAULT em tabelas enormes, use versões modernas (PG 11+) onde essa operação não reescreve a tabela.",
+          "code": "-- Criando tabela com verificações preventivas\nCREATE TABLE IF NOT EXISTS categorias (\n  id SMALLINT GENERATED BY DEFAULT AS IDENTITY PRIMARY KEY,\n  nome VARCHAR(50) NOT NULL UNIQUE,\n  ativo BOOLEAN NOT NULL DEFAULT true\n);"
         }
       ],
       "questions": [
@@ -873,16 +873,16 @@
       "summary": "Pratique a escolha de tipos de coluna adequados ao criar tabelas.",
       "lesson": [
         {
-          "title": "Tipos Otimizados",
-          "body": "Cada SGBD tem variações nos tipos de dados, mas todos oferecem formas de otimizar espaço. Usar VARCHAR(50) em vez de TEXT para nomes curtos poupa memória ram nas buscas. Usar SMALLINT para valores até 32 mil em vez de INT normal economiza disco. A escolha precisa e inteligente do tipo da coluna reflete em performance muito superior.",
-          "code": "CREATE TABLE configuracoes (\n  codigo CHAR(3), -- Tamanho fixo exato\n  ativo BOOLEAN\n);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Tipos Otimizados para Performance",
+          "body": "Escolher o menor tipo numérico que atenda com folga à regra de negócio reduz o volume de páginas de disco lidas em cada consulta e otimiza o uso do cache de memória RAM. Por exemplo, usar SMALLINT (2 bytes) para status em vez de BIGINT (8 bytes) economiza centenas de megabytes em tabelas com dezenas de milhões de registros. Essa economia reflete em menor latência nas leituras analíticas e em índices mais compactos.",
+          "tip": "Analise o limite de crescimento de cada campo: se um código nunca passará de 30 mil, SMALLINT é muito mais eficiente que INT ou BIGINT.",
+          "code": "-- Tabela otimizada com consumo mínimo de bytes por linha\nCREATE TABLE logs_acesso (\n  id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY, -- Suporta bilhões de logs\n  codigo_status SMALLINT NOT NULL,                    -- Status HTTP (ex: 200, 404)\n  ip_origem VARCHAR(45) NOT NULL                     -- Suporta IPv4 e IPv6\n);"
         },
         {
-          "title": "Lidando com Dinheiro e Precisão",
-          "body": "Para representar valores monetários ou dados financeiros no SQL, nunca use tipos de ponto flutuante como FLOAT ou REAL, pois eles podem perder precisão matemática causando problemas de arredondamento. Sempre use DECIMAL ou NUMERIC, especificando o número total de dígitos e as casas decimais (ex: DECIMAL(10,2)) para cálculos financeiros perfeitos.",
-          "code": "CREATE TABLE pagamentos (\n  valor DECIMAL(10, 2) NOT NULL,\n  data_pagamento DATE\n);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Lidando com Dinheiro e Precisão Numérica",
+          "body": "O tipo DECIMAL(M, D) (ou NUMERIC) recebe dois parâmetros: a precisão total M (número total de dígitos) e a escala D (quantidade de casas após a vírgula). Para transações financeiras, DECIMAL(12, 2) comporta valores até 9.999.999.999,99 com exatidão decimal estrita. Qualquer tentativa de cálculo com ponto flutuante binário (FLOAT) acumula resíduos como 0.0000000000000002, inaceitáveis em auditorias contábeis.",
+          "tip": "Para criptomoedas ou moedas de alta volatilidade com frações microscópicas, use DECIMAL(18, 8) para não perder satoshis por arredondamento.",
+          "code": "-- Precisão exata obrigatória para controle fiscal e financeiro\nCREATE TABLE saldos_carteira (\n  usuario_id INT PRIMARY KEY,\n  saldo_brl DECIMAL(14, 2) NOT NULL DEFAULT 0.00,  -- Moeda fiat padrão\n  saldo_btc DECIMAL(18, 8) NOT NULL DEFAULT 0.00000000 -- Precisão de cripto\n);"
         }
       ],
       "questions": [
@@ -954,15 +954,15 @@
       "lesson": [
         {
           "title": "Mantendo a Qualidade com Constraints",
-          "body": "Restrições (Constraints) são regras que aplicamos nas colunas para garantir a consistência e qualidade dos dados. O banco rejeita qualquer inserção que viole a regra. O NOT NULL obriga o preenchimento, e o UNIQUE garante que não haja valores repetidos (ideal para emails ou CPFs). Elas agem como os guardiões da integridade do seu banco.",
-          "code": "CREATE TABLE usuarios (\n  email VARCHAR(100) UNIQUE NOT NULL,\n  senha VARCHAR(255) NOT NULL\n);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "As restrições de integridade (Constraints) são sentinelas do banco que validam os dados na porta de entrada da persistência. As principais são NOT NULL (rejeita ausência de valor), UNIQUE (assegura que nenhuma duplicação ocorra na coluna) e FOREIGN KEY (mantém coerência relacional). Delegar a validação de regras de integridade estrutural unicamente ao backend expõe o banco a falhas se outro script ou serviço inserir dados.",
+          "tip": "Defina constraints no próprio esquema do banco; nunca confie exclusivamente que o frontend ou o backend farão todas as validações.",
+          "code": "-- Proteção em nível de banco com múltiplas restrições integradas\nCREATE TABLE contas (\n  id INT PRIMARY KEY,\n  numero_conta VARCHAR(20) NOT NULL UNIQUE,\n  saldo DECIMAL(12, 2) NOT NULL DEFAULT 0.00\n);"
         },
         {
-          "title": "A Regra CHECK e Valores Default",
-          "body": "A constraint CHECK permite validar regras de negócio simples, como proibir idades negativas. Já o DEFAULT preenche automaticamente a coluna caso você não envie um valor. Usar restrições nativas do SGBD é mais seguro que validar apenas no código backend, pois o banco de dados é a última e verdadeira linha de defesa da sua informação.",
-          "code": "CREATE TABLE produtos (\n  estoque INT DEFAULT 0 CHECK (estoque >= 0),\n  status VARCHAR(20) DEFAULT 'ativo'\n);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "A Regra CHECK e Valores DEFAULT",
+          "body": "A constraint CHECK permite registrar expressões lógicas que devem retornar verdadeiro para cada linha inserida ou atualizada. Se a condição for violada (por exemplo, um preço menor que zero ou uma data de nascimento no futuro), a transação é abortada com erro. Já o DEFAULT preenche valores automáticos na ausência de especificação no comando INSERT, como timestamps de auditoria e flags de status inicial.",
+          "tip": "Use CHECK constraints para validar regras de negócio estáticas (ex: descontos entre 0 e 100) para blindar seu banco contra bugs de aplicação.",
+          "code": "-- Validação condicional em nível de linha via CHECK\nCREATE TABLE contratos (\n  id INT PRIMARY KEY,\n  valor DECIMAL(10, 2) NOT NULL CHECK (valor > 0),\n  percentual_desconto INT DEFAULT 0 CHECK (percentual_desconto BETWEEN 0 AND 100),\n  status VARCHAR(20) DEFAULT 'rascunho'\n);"
         }
       ],
       "questions": [
@@ -1033,16 +1033,16 @@
       "summary": "Aprenda a estrutura do comando INSERT INTO para adicionar dados a uma tabela.",
       "lesson": [
         {
-          "title": "Inserindo Registros",
-          "body": "O INSERT INTO é o comando DML (Data Manipulation Language) que permite adicionar novas linhas (registros) a uma tabela. Você informa a tabela, a lista de colunas que quer preencher e os VALUES correspondentes. A ordem dos valores deve casar perfeitamente com a ordem das colunas declaradas para que a inserção funcione de maneira correta.",
-          "code": "INSERT INTO clientes (nome, email)\nVALUES ('João', 'joao@email.com');",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Inserindo Registros no Banco (DML)",
+          "body": "O comando INSERT INTO faz parte do Data Manipulation Language (DML) e é responsável por criar novas tuplas em uma relação existente. É altamente recomendável declarar explicitamente os nomes das colunas de destino. Omitir as colunas e depender da ordem física é um antipadrão perigoso: se o esquema da tabela for alterado com a adição ou reordenação de campos, comandos sem lista explícita quebrarão em produção.",
+          "tip": "Sempre liste as colunas explicitamente: `INSERT INTO tab (col1, col2) VALUES (...)`. Isso protege o código contra mudanças no esquema.",
+          "code": "-- Inserção explícita segura contra alterações futuras no esquema\nINSERT INTO usuarios (nome, email, ativo)\nVALUES ('Mariana Costa', 'mariana@tech.com', true);"
         },
         {
-          "title": "Inserções Múltiplas",
-          "body": "Para inserir vários registros de uma só vez, você pode separar os conjuntos de valores por vírgulas. Isso é muito mais performático do que rodar dezenas de comandos INSERT separados, pois o SGBD processa tudo em uma única transação, economizando tempo de rede e processamento interno durante a alimentação de dados no seu sistema.",
-          "code": "INSERT INTO categorias (nome)\nVALUES ('Eletrônicos'), ('Roupas'), ('Livros');",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Inserções Múltiplas e Eficiência de Lote",
+          "body": "Executar dezenas de milhares de comandos INSERT unitários em loops no backend gera um gargalo severo de latência de rede (round-trips) e overhead de transações individuais. O SQL suporta a inserção em lote (batch insert), passando múltiplas tuplas separadas por vírgula em uma única requisição. O SGBD executa o lote dentro de um único bloco transacional, reduzindo o tempo de gravação de minutos para milissegundos.",
+          "tip": "Em cargas massivas de dados, agrupe inserções em lotes de 500 a 1000 registros para maximizar a taxa de transferência de I/O.",
+          "code": "-- Inserção múltipla em lote executada em um único comando atômico\nINSERT INTO categorias (nome, ativo) VALUES\n  ('Eletrônicos', true),\n  ('Livros', true),\n  ('Vestuário', false);"
         }
       ],
       "questions": [
@@ -1113,16 +1113,16 @@
       "summary": "Aprenda a consultar dados de uma tabela com o comando SELECT.",
       "lesson": [
         {
-          "title": "O Poder da Consulta",
-          "body": "O comando SELECT é a ferramenta mais usada em SQL. Ele serve para ler e extrair informações do banco de dados. Você escolhe as colunas que deseja ler (ou * para todas) e especifica a tabela usando a palavra FROM. Ele não modifica os dados, apenas retorna um conjunto de resultados (result set) para a sua aplicação usar e exibir.",
-          "code": "SELECT nome, preco FROM produtos;",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "O Poder da Consulta Declarativa",
+          "body": "A instrução SELECT é o núcleo do SQL e exemplifica o paradigma declarativo: em vez de programar laços imperativos percorrendo matrizes na memória, o desenvolvedor apenas descreve quais atributos e relações deseja ver. O Query Planner interno do SGBD analisa estatísticas das tabelas, decide quais índices consultar e computa a projeção e os filtros pelo caminho computacional mais barato.",
+          "tip": "Evite utilizar `SELECT *` em sistemas de produção; projete apenas as colunas necessárias para reduzir consumo de memória e rede.",
+          "code": "-- Projeção explícita de colunas necessárias em vez de asterisco\nSELECT id, nome, preco \nFROM produtos\nWHERE ativo = true;"
         },
         {
-          "title": "Criando Apelidos com ALIAS",
-          "body": "As vezes os nomes reais das colunas não são amigáveis ou você precisa formatar dados juntos. O SQL permite usar 'AS' para dar apelidos (aliases) temporários às colunas ou tabelas no resultado da consulta. Isso deixa a resposta mais legível para a aplicação que vai consumir os dados, sem precisar alterar de fato a tabela original.",
-          "code": "SELECT nome_completo AS nome, data_nasc AS nascimento \nFROM funcionarios;",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Criando Apelidos com ALIAS (AS)",
+          "body": "A cláusula AS permite renomear colunas ou tabelas no contexto da consulta gerada. Essa técnica é indispensável para criar nomes amigáveis para campos calculados, evitar colisões de identificadores em junções entre tabelas que possuem colunas com o mesmo nome (como `id` ou `nome`) e simplificar a legibilidade de expressões matemáticas ou funções de agregação no retorno final.",
+          "tip": "Dê nomes claros para expressões calculadas com ALIAS; isso simplifica a desserialização do JSON ou objeto no backend.",
+          "code": "-- Apelidos para melhorar legibilidade e desambiguar retornos\nSELECT \n  nome AS nome_produto,\n  preco AS preco_tabela,\n  preco * 0.90 AS preco_com_desconto\nFROM produtos;"
         }
       ],
       "questions": [
@@ -1193,16 +1193,16 @@
       "summary": "Filtre resultados de uma consulta usando a cláusula WHERE.",
       "lesson": [
         {
-          "title": "Filtrando os Resultados",
-          "body": "A cláusula WHERE transforma um SELECT geral em uma busca cirúrgica, limitando as linhas retornadas apenas àquelas que satisfazem uma condição. Sem o WHERE, seu sistema puxaria milhões de registros do banco à toa. Podemos usar operadores matemáticos de comparação (=, >, <, !=) para criar regras que selecionam só aquilo que precisamos.",
-          "code": "SELECT * FROM pedidos WHERE status = 'pendente';",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Filtrando os Resultados na Fonte",
+          "body": "A cláusula WHERE aplica predicados booleanos de filtragem linha a linha antes que os dados sejam agrupados ou retornados para a aplicação. Trazer todo o banco para a memória do servidor da aplicação para filtrar no código é um erro grave de arquitetura que satura a banda de rede e esgota a memória RAM. Filtrar no SGBD permite que o motor aproveite índices criados especificamente para essa condição.",
+          "tip": "Sempre faça filtros restritivos no WHERE do banco; trafegar registros desnecessários para a aplicação é o principal vilão de lentidão.",
+          "code": "-- Filtro preciso executado no motor do banco via índice\nSELECT id, descricao, estoque\nFROM produtos\nWHERE preco >= 100.00 AND estoque > 0;"
         },
         {
-          "title": "Buscas Textuais com LIKE",
-          "body": "Para buscar pedaços de textos, usamos o operador LIKE junto com o caractere curinga '%', que substitui qualquer sequência de caracteres. Por exemplo, buscar por nomes que começam ou terminam com certa letra. É extremamente útil para barras de pesquisa na aplicação, embora requeira cuidados de performance em bases de dados muito grandes.",
-          "code": "SELECT nome FROM clientes WHERE email LIKE '%@gmail.com';",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Buscas Textuais com LIKE e ILIKE",
+          "body": "O operador LIKE avalia padrões textuais utilizando caracteres curinga: `%` substitui qualquer sequência de zero ou mais caracteres, enquanto `_` substitui exatamente um caractere. No PostgreSQL, o operador ILIKE realiza buscas sem distinção de maiúsculas e minúsculas (case-insensitive). Buscas que iniciam com `%termo` não conseguem aproveitar índices B-Tree padrão, exigindo índices especiais como GIN/GiST com trigramas.",
+          "tip": "Evite filtros no formato `LIKE '%termo%'` em tabelas gigantes sem índices de trigrama, pois causam varredura completa da tabela (Full Table Scan).",
+          "code": "-- Busca por sufixo ou trecho de texto\nSELECT id, nome, email \nFROM clientes \nWHERE email LIKE '%@gmail.com'\n  AND nome ILIKE 'carlos%';"
         }
       ],
       "questions": [
@@ -1273,16 +1273,16 @@
       "summary": "Aprenda a ordenar os resultados de uma consulta com ORDER BY.",
       "lesson": [
         {
-          "title": "Organizando a Saída",
-          "body": "Por padrão, o banco de dados não garante a ordem em que os registros são retornados em um SELECT. Para garantir que os dados cheguem organizados, devemos usar a cláusula ORDER BY. Podemos ordenar os resultados baseados em uma ou mais colunas, como organizar produtos por preço ou nome, tornando a experiência de exibição mais útil.",
-          "code": "SELECT nome, preco FROM produtos ORDER BY preco;",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Organizando a Saída de Dados",
+          "body": "No modelo relacional, conjuntos de dados retornados por um SELECT não possuem nenhuma ordem garantida a menos que a cláusula ORDER BY seja explicitamente declarada. Supor que o banco retornará registros na ordem de inserção física no disco é uma armadilha comum: migrações de páginas, atualizações de linhas (MVCC) ou consultas em paralelo alteram a ordem natural de recuperação física a qualquer momento.",
+          "tip": "Se sua aplicação depende da ordem dos dados para exibir listagens ou relatórios, sempre declare o ORDER BY de forma explícita.",
+          "code": "-- Ordem determinística garantida pelo SGBD\nSELECT id, nome, valor \nFROM faturas \nORDER BY valor DESC;"
         },
         {
-          "title": "Ascendente e Descendente",
-          "body": "Você pode controlar a direção da ordenação com ASC (ascendente, o padrão) e DESC (descendente). Quer ver os itens mais caros primeiro? Use DESC. Quer ver os registros mais recentes de um blog? Ordene pela data de publicação de forma descendente. O banco cuida de toda a mágica da ordenação de forma altamente otimizada internamente.",
-          "code": "SELECT titulo, data_criacao FROM artigos \nORDER BY data_criacao DESC;",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Ordenação Múltipla: ASC e DESC",
+          "body": "O SQL permite encadear múltiplos critérios de ordenação separados por vírgula. O SGBD avalia as expressões da esquerda para a direita: se houver empate de valores no primeiro critério, ele recorre ao segundo atributo para desempatar, e assim por diante. Cada critério pode receber modificadores independentes como ASC (ascendente, padrão) ou DESC (descendente), além de instruções para tratamento de valores nulos (NULLS FIRST/LAST).",
+          "tip": "Em paginações de interface, inclua sempre a chave primária como último critério de desempate no ORDER BY para evitar inconsistências visuais.",
+          "code": "-- Critérios encadeados com controle de desempate e tratamento de nulos\nSELECT departamento, salario, nome\nFROM colaboradores\nORDER BY \n  departamento ASC, \n  salario DESC, \n  id ASC;"
         }
       ],
       "questions": [
@@ -1353,16 +1353,16 @@
       "summary": "Restrinja a quantidade de linhas retornadas por uma consulta usando LIMIT.",
       "lesson": [
         {
-          "title": "Restringindo a Quantidade",
-          "body": "A cláusula LIMIT (ou TOP, dependendo do SGBD) restringe o número máximo de registros que a sua consulta pode retornar. Isso é essencial em sistemas reais, pois evita travar a aplicação quando uma tabela gigante tem buscas muito abrangentes. Combinado com ORDER BY, ele permite pegar, por exemplo, 'os 5 produtos mais vendidos da loja'.",
-          "code": "SELECT nome, preco FROM produtos \nORDER BY preco DESC LIMIT 5;",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Restringindo a Quantidade de Resultados",
+          "body": "A cláusula LIMIT restringe o número máximo de tuplas transferidas pelo banco de dados para a aplicação. Ela é crucial para prevenir estouros de memória e tráfego massivo acidental em tabelas que contêm milhões de linhas. Em junção com o ORDER BY, o LIMIT transforma uma consulta exaustiva em uma busca top-N altamente otimizada, permitindo que o SGBD interrompa a varredura assim que a cota for preenchida.",
+          "tip": "Sempre combine LIMIT com ORDER BY; executar LIMIT sem ordenação retorna um conjunto imprevisível de registros.",
+          "code": "-- Obtendo os 5 produtos mais caros de forma determinística\nSELECT nome, preco \nFROM produtos \nORDER BY preco DESC \nLIMIT 5;"
         },
         {
-          "title": "O Segredo da Paginação com OFFSET",
-          "body": "O maior uso do LIMIT é junto com o OFFSET, criando a paginação que vemos em sites e aplicativos. O LIMIT define o tamanho da página, e o OFFSET pula os primeiros registros. Por exemplo, LIMIT 10 OFFSET 20 significa 'pule os primeiros 20 resultados e traga os 10 seguintes', implementando facilmente a famosa página 3 da sua aplicação.",
-          "code": "SELECT * FROM clientes ORDER BY nome LIMIT 10 OFFSET 20;",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Paginação com OFFSET e Seus Gargalos",
+          "body": "A combinação clássica `LIMIT N OFFSET M` pula os primeiros M registros para entregar a página desejada. No entanto, em valores altos de OFFSET (como páginas avançadas), o banco precisa ler e descartar todos os M registros anteriores na memória antes de retornar os N solicitados. Para tabelas de alta escala, a alternativa de alta performance é a paginação por cursor (keyset pagination), filtrando diretamente pelo último ID visto.",
+          "tip": "Para grandes volumes, substitua `OFFSET 10000` por `WHERE id > ultimo_id_da_pagina LIMIT 20`; a resposta será instantânea usando o índice.",
+          "code": "-- Paginação clássica (simples, mas lenta para páginas altas)\nSELECT id, titulo FROM artigos ORDER BY id ASC LIMIT 10 OFFSET 20;\n\n-- Paginação por cursor (escalável e constante em O(1))\nSELECT id, titulo FROM artigos WHERE id > 540 ORDER BY id ASC LIMIT 10;"
         }
       ],
       "questions": [
@@ -1433,16 +1433,16 @@
       "summary": "Combine condições em uma consulta usando os operadores lógicos AND, OR e IN.",
       "lesson": [
         {
-          "title": "Condições Múltiplas",
-          "body": "Muitas vezes, uma única regra no WHERE não é suficiente. Usamos operadores lógicos como AND (E) e OR (OU) para combinar várias condições. O AND exige que todas as regras sejam verdadeiras simultaneamente, enquanto o OR pede que apenas uma seja verdadeira. O uso de parênteses é crucial para garantir a prioridade da avaliação lógica.",
-          "code": "SELECT * FROM produtos WHERE preco < 50 AND estoque > 0;",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Condições Múltiplas e Precedência Lógica",
+          "body": "Na álgebra booleana aplicada ao SQL, o operador AND exige que ambas as expressões sejam verdadeiras, enquanto o OR requer apenas uma. Um detalhe crítico é a precedência de operadores: na ausência de parênteses, o AND é avaliado antes do OR pelo compilador do SQL. Não usar parênteses explicitamente para agrupar regras condicionais mistas é uma das principais fontes de bugs silenciosos em filtros de relatórios.",
+          "tip": "Sempre envolva blocos com OR em parênteses ao combiná-los com AND: `WHERE status = 'A' AND (tipo = 1 OR tipo = 2)`.",
+          "code": "-- Uso correto de parênteses para ditar a precedência dos filtros\nSELECT id, cliente, valor, status\nFROM pedidos\nWHERE status = 'pendente' \n  AND (valor > 1000 OR cliente_vip = true);"
         },
         {
-          "title": "Listas de Valores com IN",
-          "body": "Quando você precisa verificar se um valor é igual a várias opções, ficar escrevendo vários OR fica cansativo e ruim de ler. O operador IN simplifica a verificação de valores contra uma lista, deixando a query elegante. É como perguntar 'A categoria é uma destas: eletrônicos, roupas ou sapatos?'. O ganho de leitura no código é tremendo.",
-          "code": "SELECT * FROM clientes WHERE estado IN ('SP', 'RJ', 'MG');",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Listas de Valores com o Operador IN",
+          "body": "O operador IN testa se o valor de uma coluna pertence a uma lista finita de opções literais ou ao resultado produzido por uma subquery. Ele funciona como uma simplificação semântica de múltiplos predicados OR encadeados (`col = A OR col = B OR col = C`). Além de tornar o código mais limpo e legível, o SGBD consegue otimizar cláusulas IN convertendo-as internamente em lookups eficientes via índice hash ou B-Tree.",
+          "tip": "Substitua cadeias longas de `x = 1 OR x = 2 OR x = 3` por `x IN (1, 2, 3)` para simplificar o plano de execução e o código.",
+          "code": "-- Filtro compacto com IN contra lista fixa de identificadores\nSELECT id, nome, uf \nFROM clientes \nWHERE uf IN ('SP', 'RJ', 'MG', 'PR')\n  AND categoria_id IN (1, 3, 5);"
         }
       ],
       "questions": [
@@ -1513,16 +1513,16 @@
       "summary": "Combine dados de duas tabelas relacionadas usando INNER JOIN.",
       "lesson": [
         {
-          "title": "Juntando Tudo com INNER JOIN",
-          "body": "Como o modelo relacional divide as informações em várias tabelas para evitar repetições, precisamos reuni-las para o usuário final. O INNER JOIN funde linhas de duas tabelas baseando-se em uma condição de igualdade entre elas (geralmente chave primária e estrangeira), retornando APENAS as linhas que possuem correspondência em AMBAS as tabelas.",
-          "code": "SELECT pedidos.id, clientes.nome \nFROM pedidos\nINNER JOIN clientes ON pedidos.cliente_id = clientes.id;",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Juntando Tabelas com INNER JOIN",
+          "body": "O INNER JOIN é a operação relacional fundamental que cruza registros de duas tabelas com base em uma condição de igualdade (geralmente entre uma Foreign Key e uma Primary Key). O resultado inclui exclusivamente as linhas que satisfazem o predicado ON em ambos os lados. Se houver clientes sem pedidos ou pedidos sem cliente vinculado, essas linhas são omitidas do conjunto retornado.",
+          "tip": "Sempre declare a condição de cruzamento na cláusula ON; nunca cruze tabelas na cláusula WHERE com vírgulas (padrão antigo e propenso a erros).",
+          "code": "-- Cruzamento estrito de dados relacionados\nSELECT \n  pedidos.id AS pedido_id,\n  pedidos.data_compra,\n  clientes.nome AS cliente_nome\nFROM pedidos\nINNER JOIN clientes ON clientes.id = pedidos.cliente_id;"
         },
         {
-          "title": "Múltiplos JOINs na mesma Query",
-          "body": "Você não está limitado a unir apenas duas tabelas. É possível encadear vários INNER JOINs para reconstruir informações espalhadas. Por exemplo, juntar cliente, pedido, os itens do pedido e, finalmente, os produtos para gerar uma fatura completa. Desde que as relações existam e as chaves batam, o SQL processa a união de forma formidável.",
-          "code": "SELECT c.nome, p.id, i.quantidade, prod.nome \nFROM pedidos p\nJOIN clientes c ON p.cliente_id = c.id\nJOIN itens i ON p.id = i.pedido_id\nJOIN produtos prod ON i.produto_id = prod.id;",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Múltiplos JOINs e Algoritmos Internos",
+          "body": "Consultas corporativas frequentemente cruzam várias tabelas no mesmo SELECT. O otimizador de consultas do SGBD seleciona internamente o melhor algoritmo para cada junção: Nested Loop (ideal para tabelas pequenas indexadas), Hash Join (para grandes volumes não indexados) ou Merge Join (quando ambos os lados já estão ordenados). Manter as chaves estrangeiras indexadas é o segredo para garantir que o otimizador escolha planos rápidos.",
+          "tip": "Use apelidos curtos para as tabelas (ex: `p` para pedidos, `c` para clientes) para manter consultas complexas com vários joins legíveis.",
+          "code": "-- Encadeamento de múltiplos joins para compor a visão do pedido\nSELECT \n  p.id AS pedido_id,\n  c.nome AS cliente,\n  pr.descricao AS produto,\n  ip.quantidade\nFROM pedidos p\nINNER JOIN clientes c ON c.id = p.cliente_id\nINNER JOIN itens_pedido ip ON ip.pedido_id = p.id\nINNER JOIN produtos pr ON pr.id = ip.produto_id;"
         }
       ],
       "questions": [
@@ -1593,16 +1593,16 @@
       "summary": "Entenda quando usar LEFT JOIN para manter registros mesmo sem correspondência.",
       "lesson": [
         {
-          "title": "Mantendo os Dados do Lado Esquerdo",
-          "body": "O LEFT JOIN (ou LEFT OUTER JOIN) funciona como o Inner Join, mas garante que TODOS os registros da primeira tabela (a da esquerda do join) apareçam no resultado, mesmo que não encontrem nenhum registro correspondente na tabela da direita. Nessas situações onde falta correspondência, as colunas da tabela da direita virão preenchidas com valor nulo.",
-          "code": "SELECT c.nome, p.data \nFROM clientes c\nLEFT JOIN pedidos p ON c.id = p.cliente_id;",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Mantendo os Dados com LEFT JOIN",
+          "body": "O LEFT JOIN (ou LEFT OUTER JOIN) preserva todas as linhas da tabela situada à esquerda da declaração, independentemente de haver correspondência na tabela da direita. Quando um registro do lado esquerdo não encontra par no lado direito, as colunas da tabela da direita são preenchidas com valores NULL no resultado final. Ele é indispensável para gerar listagens completas que não podem ocultar itens vazios.",
+          "tip": "Use LEFT JOIN quando precisar listar todos os registros de uma entidade principal, mesmo que ela ainda não tenha histórico associado.",
+          "code": "-- Todos os clientes aparecem, mesmo aqueles que nunca compraram nada\nSELECT \n  c.id, \n  c.nome, \n  p.id AS pedido_id\nFROM clientes c\nLEFT JOIN pedidos p ON p.cliente_id = c.id;"
         },
         {
-          "title": "Descobrindo quem NÃO fez algo",
-          "body": "Uma técnica poderosa usando o LEFT JOIN é encontrar registros órfãos ou inativos. Ao trazer todos da esquerda, podemos usar o WHERE para procurar onde o valor da direita é NULL. Assim, conseguimos, por exemplo, listar facilmente todos os clientes cadastrados que nunca fizeram sequer uma compra, ótimo para campanhas de marketing.",
-          "code": "SELECT c.nome \nFROM clientes c\nLEFT JOIN pedidos p ON c.id = p.cliente_id\nWHERE p.id IS NULL;",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Descobrindo Ausências com LEFT JOIN e IS NULL",
+          "body": "Uma das aplicações mais poderosas do LEFT JOIN é identificar registros que NÃO possuem vínculo com outra tabela (operação conhecida como anti-join). Ao solicitar todas as linhas da tabela esquerda e adicionar o filtro `WHERE direita.id IS NULL`, o SGBD isola exatamente os itens sem nenhuma correspondência. Esse padrão é amplamente utilizado em campanhas de marketing, limpezas cadastrais e reconciliações financeiras.",
+          "tip": "Para encontrar registros órfãos ou inativos (ex: usuários sem login), faça `LEFT JOIN ... WHERE foreign_key IS NULL`.",
+          "code": "-- Localiza todos os clientes inativos que nunca realizaram nenhum pedido\nSELECT \n  c.id,\n  c.nome,\n  c.email\nFROM clientes c\nLEFT JOIN pedidos p ON p.cliente_id = c.id\nWHERE p.id IS NULL;"
         }
       ],
       "questions": [
@@ -1673,16 +1673,16 @@
       "summary": "Comece a modelar o banco de dados de uma loja simples: produtos, clientes e pedidos.",
       "lesson": [
         {
-          "title": "Consolidando a Modelagem",
-          "body": "Neste ponto do projeto de loja, reunimos os conceitos: identificar as entidades (Cliente, Produto, Pedido), desenhar os relacionamentos (1:N, N:N com tabela associativa de Itens), definir chaves e criar as estruturas com tipos corretos. Esse planejamento cuidadoso previne dores de cabeça futuras e garante a escalabilidade dos dados.",
-          "code": "-- Criação da base do projeto\nCREATE TABLE clientes (\n  id SERIAL PRIMARY KEY,\n  nome VARCHAR(100)\n);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Consolidando a Modelagem da Loja",
+          "body": "No projeto prático de uma loja, integramos os fundamentos relacionais em um esquema coeso: clientes, categorias, produtos, pedidos e itens de pedidos. A correta separação de responsabilidades e o uso de chaves estrangeiras com constraints evitam anomalias graves de dados, como vender itens de produtos deletados ou aplicar preços desatualizados retroativamente sobre compras passadas já concluídas.",
+          "tip": "Ao modelar itens de pedido, guarde sempre o preço unitário praticado no momento da venda; nunca confie no preço atual da tabela de produtos.",
+          "code": "-- Esquema robusto de vendas com congelamento de preço histórico\nCREATE TABLE pedido_itens (\n  pedido_id INT REFERENCES pedidos(id),\n  produto_id INT REFERENCES produtos(id),\n  quantidade INT NOT NULL CHECK (quantidade > 0),\n  preco_unitario DECIMAL(10,2) NOT NULL, -- Preço congelado no momento da compra\n  PRIMARY KEY (pedido_id, produto_id)\n);"
         },
         {
-          "title": "Iniciando as Transações Práticas",
-          "body": "Com a estrutura de loja montada, praticar inserts interligados consolida o aprendizado. Ao registrar uma venda real, precisamos inserir o pedido, depois usar o ID gerado para inserir os múltiplos itens da compra, mantendo a integridade referencial através das chaves estrangeiras. É a ponte entre a teoria SQL e o desenvolvimento web real.",
-          "code": "INSERT INTO pedidos (cliente_id, data) VALUES (1, CURRENT_DATE);\nINSERT INTO itens_pedido (pedido_id, produto_id, qtd) VALUES (1, 5, 2);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Integridade de Dados e Transações de Venda",
+          "body": "A criação de um pedido exige atomicidade estrita: registrar o cabeçalho da venda, inserir os itens individuais e dar baixa nas quantidades em estoque. Se qualquer uma dessas três operações falhar (por exemplo, falta de saldo ou concorrência esgotando o produto), a transação inteira deve sofrer ROLLBACK para evitar inconsistências contábeis e físicas no armazém da empresa.",
+          "tip": "Toda operação de checkout deve ser envolvida em um bloco `BEGIN ... COMMIT` para blindar o sistema contra inconsistências parciais.",
+          "code": "-- Fluxo transacional atômico de checkout\nBEGIN;\nINSERT INTO pedidos (id, cliente_id, total) VALUES (101, 4, 189.90);\nINSERT INTO pedido_itens (pedido_id, produto_id, quantidade, preco_unitario)\n  VALUES (101, 15, 2, 94.95);\nUPDATE produtos SET estoque = estoque - 2 WHERE id = 15;\nCOMMIT;"
         }
       ],
       "questions": [
@@ -1754,15 +1754,15 @@
       "lesson": [
         {
           "title": "O Poder da Agregação Numérica",
-          "body": "As funções de agregação, como SUM (soma) e AVG (média), permitem calcular informações matemáticas a partir de um conjunto de linhas, transformando dados brutos em indicadores úteis (KPIs). Em vez de baixar milhares de registros para somar o faturamento no código da aplicação, você deixa o poderoso motor do banco de dados fazer a matemática rapidamente.",
-          "code": "SELECT SUM(valor_total) AS faturamento, AVG(valor_total) AS ticket_medio \nFROM pedidos;",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Funções de agregação processam múltiplos valores de uma coluna e os reduzem a um único valor escalar resumido. `SUM(coluna)` calcula o somatório aritmético total; `AVG(coluna)` calcula a média aritmética ignorando valores nulos; e `MIN()` / `MAX()` localizam os extremos da distribuição. Elas operam diretamente sobre as páginas de dados do banco, sendo ordens de magnitude mais rápidas que somar matrizes na aplicação.",
+          "tip": "Valores NULL são sumariamente ignorados no cálculo de AVG e SUM; se precisar tratar nulos como zero, use COALESCE(coluna, 0).",
+          "code": "-- Métricas financeiras consolidadas com funções de agregação\nSELECT \n  SUM(valor) AS faturamento_total,\n  AVG(valor) AS ticket_medio,\n  MIN(valor) AS menor_venda,\n  MAX(valor) AS maior_venda\nFROM vendas\nWHERE status = 'aprovada';"
         },
         {
-          "title": "Contando Linhas com COUNT",
-          "body": "O COUNT é usado para descobrir quantos registros existem que atendem a um critério. Você pode contar o total da tabela (COUNT(*)) ou contar apenas onde uma coluna específica não é nula (COUNT(coluna)). É indispensável para fazer métricas em dashboards de sistemas, como contar quantos novos clientes se cadastraram no mês atual.",
-          "code": "SELECT COUNT(*) AS total_pedidos_hoje \nFROM pedidos WHERE data_pedido = CURRENT_DATE;",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Contando Linhas: COUNT(*) vs COUNT(coluna)",
+          "body": "Existe uma diferença técnica vital entre `COUNT(*)` e `COUNT(nome_coluna)`. A instrução `COUNT(*)` conta todas as linhas retornadas pela consulta, independentemente do conteúdo das colunas. Já `COUNT(nome_coluna)` avalia cada valor e conta exclusivamente as linhas onde aquela coluna específica não é nula (NOT NULL). Usar `COUNT(coluna)` sem necessidade pode degradar o desempenho de cache do otimizador.",
+          "tip": "Use `COUNT(*)` para contar registros da tabela; use `COUNT(coluna)` apenas quando sua intenção explícita for ignorar valores NULL.",
+          "code": "-- COUNT(*) conta todas as tuplas; COUNT(coluna) descarta NULLs\nSELECT \n  COUNT(*) AS total_usuarios,\n  COUNT(telefone) AS usuarios_com_telefone_cadastrado\nFROM usuarios;"
         }
       ],
       "questions": [
@@ -1833,16 +1833,16 @@
       "summary": "Agrupe linhas com valores em comum usando GROUP BY, combinando com funções de agregação.",
       "lesson": [
         {
-          "title": "Agrupando Informações",
-          "body": "Enquanto as funções de agregação (SUM, COUNT) sozinhas resumem a tabela inteira numa só linha, a cláusula GROUP BY permite criar subgrupos. Você pode agrupar vendas por cidade, quantidade por categoria de produto, e calcular o total para CADA um desses grupos. É a ferramenta base para criação de relatórios analíticos em qualquer sistema.",
-          "code": "SELECT status, COUNT(*) as qtd \nFROM pedidos GROUP BY status;",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Agrupando Informações em Balanços",
+          "body": "A cláusula GROUP BY divide as linhas retornadas em subconjuntos com base na igualdade de valores de uma ou mais colunas especificadas, aplicando em seguida as funções de agregação individualmente sobre cada grupo. Em vez de calcular métricas globais para a tabela inteira, o GROUP BY permite gerar relatórios segmentados, como total faturado por categoria, vendas por mês ou média salarial por setor.",
+          "tip": "Sempre que usar funções de agregação com colunas normais no SELECT, todas as colunas normais devem obrigatoriamente estar no GROUP BY.",
+          "code": "-- Agrupamento de métricas por departamento de colaboradores\nSELECT \n  departamento,\n  COUNT(*) AS total_funcionarios,\n  AVG(salario) AS salario_medio\nFROM funcionarios\nGROUP BY departamento;"
         },
         {
-          "title": "A Regra de Ouro do Agrupamento",
-          "body": "Ao utilizar o GROUP BY, há uma regra essencial no SQL: no SELECT, você só pode exibir as colunas que estão na cláusula GROUP BY ou colunas processadas por funções de agregação. Qualquer outra coluna solta gerará um erro, pois o banco não saberia qual valor individual mostrar para um grupo onde várias linhas foram unificadas em uma.",
-          "code": "SELECT cliente_id, SUM(valor) \nFROM pedidos GROUP BY cliente_id;",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "A Regra de Ouro do Agrupamento Relacional",
+          "body": "A regra fundamental do SQL relacional determina que qualquer coluna presente na lista de projeção do SELECT que não esteja dentro de uma função de agregação DEVE obrigatoriamente fazer parte da cláusula GROUP BY. O motivo lógico é óbvio: se o banco agrupa 50 linhas em uma só, ele não pode escolher arbitrariamente qual dos 50 nomes individuais exibir ao lado do total consolidado sem violar o determinismo.",
+          "tip": "Se o SGBD disparar o erro 'column must appear in the GROUP BY clause', verifique qual campo do SELECT você esqueceu de incluir no GROUP BY.",
+          "code": "-- Agrupando por múltiplos atributos sem ambiguidades de projeção\nSELECT \n  categoria_id,\n  status,\n  COUNT(*) AS total_itens,\n  SUM(preco * estoque) AS patrimonio_alocado\nFROM produtos\nGROUP BY categoria_id, status;"
         }
       ],
       "questions": [
@@ -1913,16 +1913,16 @@
       "summary": "Filtre grupos já agregados usando a cláusula HAVING.",
       "lesson": [
         {
-          "title": "Filtrando Depois do Agrupamento",
-          "body": "Onde o WHERE filtra linhas ANTES de agrupar, o HAVING filtra os resultados DEPOIS de agrupados. Se você precisa saber quais clientes compraram mais de 5 vezes, você não pode usar WHERE COUNT > 5, pois a contagem ainda não foi feita. A cláusula HAVING entra em cena permitindo impor condições baseadas nas funções de agregação.",
-          "code": "SELECT cliente_id, COUNT(*) as total_compras \nFROM pedidos \nGROUP BY cliente_id HAVING COUNT(*) > 5;",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Filtrando Depois do Agrupamento com HAVING",
+          "body": "Enquanto a cláusula WHERE filtra tuplas individuais ANTES que qualquer agregação aconteça, a cláusula HAVING filtra os grupos consolidados DEPOIS que o agrupamento e os cálculos agregados foram executados. Escrever `WHERE COUNT(*) > 5` resulta em erro de compilação SQL, porque no momento em que o WHERE é executado pelo motor, os grupos ainda nem foram sintetizados na memória de trabalho.",
+          "tip": "Lembre-se da sequência mental de processamento: WHERE filtra linhas individuais; HAVING filtra grupos agregados.",
+          "code": "-- HAVING descarta categorias que possuem menos de 10 produtos cadastrados\nSELECT \n  categoria_id,\n  COUNT(*) AS total_produtos,\n  AVG(preco) AS preco_medio\nFROM produtos\nGROUP BY categoria_id\nHAVING COUNT(*) >= 10;"
         },
         {
-          "title": "Combinando WHERE e HAVING",
-          "body": "Você pode e deve usar WHERE e HAVING na mesma consulta. O fluxo correto é: usar WHERE para descartar dados indesejados antes (como vendas canceladas), usar GROUP BY para unificar o que sobrou (por vendedor), e usar HAVING para filtrar os grupos gerados (vendedores que bateram meta acima de R$ 10.000).\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "SELECT vendedor_id, SUM(valor) FROM vendas \nWHERE status = 'concluido' \nGROUP BY vendedor_id HAVING SUM(valor) > 10000;",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Combinando WHERE e HAVING na Prática",
+          "body": "Consultas analíticas refinadas combinam as duas cláusulas em harmonia estratégica. Primeiro, o WHERE reduz o universo de dados lidos em disco descartando registros irrelevantes (como vendas canceladas ou dados antigos). Em seguida, o GROUP BY consolida as tuplas remanescentes e o HAVING descarta os grupos que não batem a meta estipulada. Essa divisão de tarefas economiza memória e acelera o processamento.",
+          "tip": "Filtre o máximo de dados possível no WHERE para aliviar o volume de processamento na fase de agrupamento do GROUP BY.",
+          "code": "-- WHERE descarta cancelamentos antes; HAVING filtra faturamentos expressivos\nSELECT \n  vendedor_id,\n  SUM(valor) AS faturamento_liquido\nFROM pedidos\nWHERE status = 'concluido' AND data >= '2026-01-01' -- Filtro preliminar de linhas\nGROUP BY vendedor_id\nHAVING SUM(valor) > 50000.00;                       -- Filtro do grupo resultante"
         }
       ],
       "questions": [
@@ -1993,16 +1993,16 @@
       "summary": "Aprenda a modificar e remover dados existentes com UPDATE e DELETE, sempre usando WHERE.",
       "lesson": [
         {
-          "title": "Modificando Dados Existentes",
-          "body": "O comando UPDATE é utilizado para alterar registros que já existem na tabela. Você define a tabela, usa a palavra SET para apontar qual coluna receberá o novo valor. A parte crucial é nunca esquecer da cláusula WHERE; caso contrário, você atualizará todas as linhas da tabela de uma só vez, um erro clássico que já derrubou muitos sistemas.",
-          "code": "UPDATE produtos SET preco = 59.90, estoque = 15 \nWHERE id = 42;",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Modificando Dados Existentes (UPDATE)",
+          "body": "O comando UPDATE modifica os valores de colunas em registros já existentes. A cláusula WHERE é estritamente indispensável: executar um UPDATE sem WHERE altera indistintamente todas as linhas de toda a tabela, provocando catástrofes que exigem recuperação de backups. Em bancos com controle de concorrência multiversão (MVCC), o UPDATE grava uma nova versão da tupla e marca a anterior como morta.",
+          "tip": "Antes de executar um UPDATE arriscado, execute a mesma condição em um `SELECT ... WHERE` para inspecionar exatamente quais linhas serão alteradas.",
+          "code": "-- Atualização condicional controlada e restrita a um único ID\nUPDATE produtos\nSET preco = preco * 1.05,\n    atualizado_em = CURRENT_TIMESTAMP\nWHERE categoria_id = 2 AND ativo = true;"
         },
         {
-          "title": "Excluindo Registros com Cuidado",
-          "body": "O DELETE é usado para apagar linhas inteiras do banco. Semelhante ao UPDATE, esquecer o WHERE significa esvaziar a tabela completa e perder dados preciosos. Por segurança, muitos sistemas modernos nunca usam DELETE de verdade (Hard Delete), optando por um UPDATE de uma coluna booleana 'ativo = falso' para esconder os dados (Soft Delete).",
-          "code": "DELETE FROM clientes WHERE id = 105;",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Excluindo Registros com Cuidado (DELETE vs TRUNCATE)",
+          "body": "O comando DELETE remove linhas específicas avaliadas pelo WHERE, disparando triggers e checando restrições de integridade referencial para cada linha. Já o comando TRUNCATE é uma operação DDL de alta velocidade que desvincula páginas inteiras do disco de uma só vez, zerando a tabela sem registrar exclusões individuais no log. Por segurança, a maioria das aplicações modernas adota 'soft delete' com flag de inativação.",
+          "tip": "Em tabelas de produção com dependências críticas, use exclusão lógica com `deleted_at TIMESTAMP` em vez de DELETE físico destrutivo.",
+          "code": "-- Soft delete profissional preserva histórico para auditoria e inteligência\nUPDATE clientes\nSET deletado_em = CURRENT_TIMESTAMP,\n    ativo = false\nWHERE id = 502;"
         }
       ],
       "questions": [
@@ -2073,16 +2073,16 @@
       "summary": "Entenda por que normalizar dados evita duplicação e inconsistências.",
       "lesson": [
         {
-          "title": "Ocultando Redundâncias",
-          "body": "A Normalização é o processo matemático de organizar o banco para evitar anomalias e repetição inútil de dados. Dividimos o processo em Formas Normais. A 1ª Forma Normal dita que toda coluna deve ser atômica: não devemos guardar múltiplos valores numa mesma célula. O telefone deve estar em linhas separadas e não em uma string com vírgulas.",
-          "code": "-- Errado: telefones = '119999, 118888'\n-- Certo: Tabela separada 'telefones_cliente'",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Ocultando Redundâncias: 1FN e 2FN",
+          "body": "A normalização de dados é uma metodologia formal para estruturar tabelas eliminando redundâncias e evitando anomalias de inserção, atualização e exclusão. A Primeira Forma Normal (1FN) exige atomicidade: cada coluna guarda um único valor indivisível, sem listas ou repetições. A Segunda Forma Normal (2FN) exige que toda coluna não chave dependa integralmente de toda a chave primária, eliminando dependências parciais.",
+          "tip": "Se você tem colunas como `telefone1`, `telefone2` ou salva arrays em texto, seu banco está violando a 1FN.",
+          "code": "-- Estrutura normalizada (1FN): cada telefone é um registro atômico\nCREATE TABLE cliente_telefones (\n  id INT PRIMARY KEY,\n  cliente_id INT REFERENCES clientes(id),\n  numero VARCHAR(20) NOT NULL,\n  tipo VARCHAR(15) -- 'celular', 'residencial'\n);"
         },
         {
-          "title": "Avançando para a 2FN e 3FN",
-          "body": "As Formas Normais seguintes exigem que os dados não apenas dependam das chaves, mas somente delas. Por exemplo, guardar o 'Nome da Categoria' dentro da tabela de 'Produtos' repete o nome para cada item. Criar uma tabela separada de Categorias resolve isso, permitindo atualizar o nome num lugar só. Isso previne falhas de atualização gigantescas.",
-          "code": "CREATE TABLE categorias (id INT, nome VARCHAR(50));\n-- Produtos agora aponta apenas para o id da categoria.",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "A Terceira Forma Normal (3FN) e Desnormalização",
+          "body": "A Terceira Forma Normal (3FN) estipula que nenhuma coluna não-chave pode depender de outra coluna não-chave (eliminação de dependências transitivas). Exemplo: não guarde o nome da cidade e a alíquota de imposto se a alíquota é determinada puramente pelo estado. Normalizar até a 3FN é a regra em bancos OLTP transacionais. Em data warehouses OLAP, porém, adota-se a desnormalização controlada para acelerar consultas analíticas.",
+          "tip": "Mantenha seus bancos transacionais (OLTP) na 3FN para garantir integridade; use réplicas ou star schema para analytics pesados.",
+          "code": "-- 3FN estrita: o imposto depende do estado, que tem sua própria tabela\nCREATE TABLE estados (\n  sigla CHAR(2) PRIMARY KEY,\n  aliquota_icms DECIMAL(4,2) NOT NULL\n);\n\nCREATE TABLE filiais (\n  id INT PRIMARY KEY,\n  nome VARCHAR(100),\n  uf CHAR(2) REFERENCES estados(sigla) -- Evita duplicar a alíquota aqui\n);"
         }
       ],
       "questions": [
@@ -2154,15 +2154,15 @@
       "lesson": [
         {
           "title": "O Ponto Crítico da Modelagem de Pedidos",
-          "body": "Ao modelar o projeto final, um grande desafio é preservar os valores históricos. Se o preço do produto aumentar na tabela principal, o valor dos pedidos feitos no mês passado não pode mudar. Por isso, a tabela de 'itens_pedido' precisa registrar uma cópia do valor cobrado no exato momento da venda, além da chave para o produto original.",
-          "code": "CREATE TABLE itens_pedido (\n  pedido_id INT, produto_id INT,\n  qtd INT, preco_unitario DECIMAL(10,2)\n);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Modelar o relacionamento entre produtos e pedidos exige atenção redobrada à volatilidade de preços e estoques. Um erro comum é referenciar o produto apenas com uma Foreign Key simples e multiplicar a quantidade pelo preço cadastrado na tabela de produtos. Como os preços dos produtos mudam com o tempo, consultas futuras em pedidos passados calcularão valores incorretos, gerando inconsistências fiscais.",
+          "tip": "Congele sempre o preço unitário e o percentual de imposto na tabela associativa do pedido no exato instante do fechamento da compra.",
+          "code": "-- Tabela de itens persistindo o valor praticado no momento exato do checkout\nCREATE TABLE itens_pedido (\n  pedido_id INT REFERENCES pedidos(id),\n  produto_id INT REFERENCES produtos(id),\n  quantidade INT NOT NULL,\n  preco_unitario_gravado DECIMAL(10,2) NOT NULL,\n  PRIMARY KEY (pedido_id, produto_id)\n);"
         },
         {
-          "title": "Calculando Subtotais por Linha",
-          "body": "Neste projeto também aplicamos cálculos em tempo de execução das consultas. Para saber o custo de uma linha de pedido, multiplicamos a quantidade pelo preço unitário registrado. A flexibilidade do SQL permite que esses cálculos matemáticos simples sejam resolvidos pela própria engine no momento do retorno, direto no lado do banco de dados.",
-          "code": "SELECT p.nome, i.qtd, i.preco_unitario, (i.qtd * i.preco_unitario) AS subtotal \nFROM itens_pedido i \nJOIN produtos p ON i.produto_id = p.id;",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Calculando Subtotais por Linha e Totais de Venda",
+          "body": "Com a modelagem de itens consolidada, consultas analíticas podem extrair a receita exata multiplicando a quantidade pelo preço histórico registrado na linha do item. Esse cálculo pode ser sintetizado com `SUM(quantidade * preco_unitario_gravado)` agrupado pelo identificador do pedido. Essa abordagem garante fidelidade contábil inabalável mesmo que o catálogo de produtos sofra reajustes inflacionários no futuro.",
+          "tip": "Valide se o total do cabeçalho do pedido bate exatamente com a soma dos subtotais dos itens para manter integridade contábil.",
+          "code": "-- Cálculo preciso do total do pedido baseado no histórico dos itens\nSELECT \n  p.id AS pedido_id,\n  p.criado_em,\n  SUM(ip.quantidade * ip.preco_unitario_gravado) AS total_calculado\nFROM pedidos p\nINNER JOIN itens_pedido ip ON ip.pedido_id = p.id\nGROUP BY p.id, p.criado_em\nORDER BY total_calculado DESC;"
         }
       ],
       "questions": [
@@ -2233,16 +2233,16 @@
       "summary": "Combine JOIN, GROUP BY e HAVING para responder perguntas de negócio sobre a loja.",
       "lesson": [
         {
-          "title": "Respondendo Perguntas de Negócio",
-          "body": "Com os dados estruturados e inseridos no projeto prático, testamos as habilidades de extração. Usamos JOINs, GROUP BY e SUM em conjunto para responder as perguntas mais vitais dos gerentes de uma loja real, como o balanço financeiro por período, ticket médio e o ranking de produtos mais lucrativos, provando o imenso valor do SQL.",
-          "code": "SELECT prod.nome, SUM(i.qtd * i.preco_unitario) AS receita \nFROM itens_pedido i\nJOIN produtos prod ON i.produto_id = prod.id \nGROUP BY prod.nome ORDER BY receita DESC;",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Respondendo Perguntas de Negócio com SQL",
+          "body": "O objetivo final de um banco relacional em uma empresa é transformar dados brutos em decisões de negócios inteligentes. Perguntas como 'Quais foram os 10 produtos mais vendidos no último trimestre?', 'Qual cliente possui maior lifetime value (LTV)?' e 'Qual categoria tem o menor giro de estoque?' são respondidas cruzando múltiplas tabelas com filtros temporais, joins estratégicos e agregações agrupadas.",
+          "tip": "Construa consultas analíticas complexas passo a passo: primeiro faça os joins, depois os filtros no WHERE e por fim o GROUP BY.",
+          "code": "-- Relatório dos 5 produtos líderes em faturamento líquido\nSELECT \n  pr.id,\n  pr.descricao,\n  SUM(ip.quantidade) AS unidades_vendidas,\n  SUM(ip.quantidade * ip.preco_unitario_gravado) AS receita_total\nFROM produtos pr\nINNER JOIN itens_pedido ip ON ip.produto_id = pr.id\nGROUP BY pr.id, pr.descricao\nORDER BY receita_total DESC\nLIMIT 5;"
         },
         {
-          "title": "Agrupamento por Datas Múltiplas",
-          "body": "Uma necessidade corriqueira das lojas é consolidar as vendas por mês ou ano. Para isso, aplicamos funções nativas de extração de data e agrupamos o conjunto. Extraímos a parte do mês da data da venda e somamos o total, permitindo a fácil geração de gráficos de performance financeira para a diretoria, tudo resolvido com uma rápida consulta SQL.",
-          "code": "SELECT EXTRACT(MONTH FROM data_venda) AS mes, SUM(total) AS vendas\nFROM pedidos GROUP BY mes;",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Agrupamento por Datas e Janelas Temporais",
+          "body": "Para analisar séries temporais e faturamento mensal ou anual, usamos funções que truncam ou extraem componentes de datas, como `DATE_TRUNC('month', data)` no PostgreSQL ou `strftime()` no SQLite. Esse agrupamento temporal permite que a gestão identifique sazonalidades de vendas, picos de tráfego e tendências de crescimento percentual mês a mês (MoM) sem transferir dados para softwares externos.",
+          "tip": "Utilize `DATE_TRUNC` para agrupar dados por dia, mês ou ano de forma muito mais rápida do que manipular strings de data.",
+          "code": "-- Faturamento consolidado mês a mês utilizando DATE_TRUNC\nSELECT \n  DATE_TRUNC('month', data_criacao) AS mes_ano,\n  COUNT(*) AS total_pedidos,\n  SUM(valor_total) AS faturamento\nFROM pedidos\nWHERE status = 'pago'\nGROUP BY DATE_TRUNC('month', data_criacao)\nORDER BY mes_ano ASC;"
         }
       ],
       "questions": [
@@ -2313,16 +2313,16 @@
       "summary": "Revise o modelo completo da loja e identifique melhorias e possíveis erros de modelagem.",
       "lesson": [
         {
-          "title": "Analisando Possíveis Gargalos",
-          "body": "Antes de fechar o projeto, é a hora de revisar a normalização e aplicar índices. Se uma loja tem milhões de clientes, pesquisar pelo email via string será dolorosamente lento se não criarmos um INDEX (Índice) nessa coluna. Índices aceleram as leituras drasticamente (buscas WHERE e JOINs), trocando um pouco de espaço em disco por enorme velocidade.",
-          "code": "CREATE INDEX idx_cliente_email ON clientes (email);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Analisando Possíveis Gargalos com EXPLAIN",
+          "body": "À medida que as tabelas crescem, consultas antes instantâneas começam a ficar lentas. O comando `EXPLAIN ANALYZE` é a ferramenta definitiva para inspecionar o plano de execução compilado pelo otimizador do SGBD. Ele revela se o banco está realizando um 'Seq Scan' (varredura sequencial em todas as páginas do disco) ou um 'Index Scan' (navegação direta pela árvore B+ do índice), exibindo tempos reais de CPU e I/O.",
+          "tip": "Sempre rode `EXPLAIN ANALYZE` antes de colocar uma consulta complexa em produção para validar se os índices estão sendo utilizados.",
+          "code": "-- Inspeção do custo de planejamento e execução do banco\nEXPLAIN ANALYZE\nSELECT * FROM pedidos \nWHERE cliente_id = 9520 AND data_criacao >= '2026-01-01';"
         },
         {
-          "title": "Refatorações Inteligentes",
-          "body": "Na fase final de modelagem, podemos perceber que tabelas ficaram inchadas ou campos nulos sobraram. Mover lógicas secundárias (como múltiplos endereços de entrega) para novas tabelas garante um sistema robusto e preparado para o crescimento do mundo corporativo moderno, solidificando as raízes do banco de dados relacional e escalável.",
-          "code": "CREATE TABLE enderecos (id SERIAL, cliente_id INT, logradouro VARCHAR(100));",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Refatorações Inteligentes e Criação de Índices",
+          "body": "Índices funcionam como sumários de livros: aceleram leituras dramaticamente, mas custam espaço em disco e impõem sobretaxa de escrita em cada INSERT, UPDATE e DELETE. Criar índices compostos (cobrindo múltiplos campos comumente consultados juntos) e eliminar índices redundantes ou não utilizados é parte vital da manutenção e governança contínua de qualquer arquitetura de banco de dados corporativa.",
+          "tip": "No PostgreSQL, use `CREATE INDEX CONCURRENTLY` em produção para criar novos índices sem travar a escrita nas tabelas durante o processo.",
+          "code": "-- Criação segura de índice composto sem indisponibilidade\nCREATE INDEX CONCURRENTLY idx_pedidos_cliente_data \nON pedidos (cliente_id, data_criacao DESC);"
         }
       ],
       "questions": [
@@ -2394,15 +2394,15 @@
       "lesson": [
         {
           "title": "A Jornada Relacional Concluída",
-          "body": "Dominar SQL é entender que os dados são o coração imortal de qualquer aplicação de software. Código backend muda, frameworks de front-end vêm e vão, mas o banco de dados permanece por décadas guardando as riquezas de uma empresa. Saber extrair, inserir e modelar eficientemente essas tabelas com SQL é o diferencial dos grandes engenheiros.",
-          "code": "-- Verificando o estado geral e total de cadastros do projeto:\nSELECT COUNT(*) FROM clientes;",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Dominar o modelo relacional e a linguagem SQL confere uma vantagem duradoura na carreira de engenharia de software. Compreender modelagem lógica, constraints de integridade, álgebra relacional com joins, operações atômicas ACID e estratégias de agregação permite projetar aplicações resilientes que suportam crescimento de escala sem corrupção de dados ou custos astronômicos de infraestrutura.",
+          "tip": "Mesmo utilizando frameworks modernos e ORMs no dia a dia, sempre inspecione e compreenda o SQL gerado sob o capô da aplicação.",
+          "code": "-- Uma base relacional sólida sustenta sistemas de qualquer escala\nSELECT \n  'SQL Master' AS status,\n  CURRENT_TIMESTAMP AS conclusao,\n  'SGBDs relacionais continuam sendo a base da computação moderna' AS reflexao;"
         },
         {
-          "title": "Próximos Passos de Aperfeiçoamento",
-          "body": "Agora que a base fundamental e analítica está formada, o aprofundamento pode envolver a criação de Views (consultas salvas), Triggers (gatilhos de automação) e Procedures (programação avançada interna). Além disso, aprender como as transações (ACID) funcionam sob o capô garantirá que seus sistemas bancários ou e-commerces nunca percam informações.",
-          "code": "CREATE VIEW clientes_ativos AS \nSELECT nome, email FROM clientes WHERE ativo = true;",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Próximos Passos: Do Transacional ao Analítico",
+          "body": "Com a fundação do SQL consolidada, os próximos passos envolvem recursos avançados: Window Functions (`ROW_NUMBER()`, `RANK()`), Common Table Expressions (`WITH`), Views Materializadas, controle de concorrência com isolamento transacional estrito (Serializable) e extensões de busca vetorial como pgvector para integrar bancos relacionais com Inteligência Artificial e sistemas de busca semântica modernos.",
+          "tip": "Aprofunde-se em CTEs e Window Functions; elas são o divisor de águas entre o desenvolvedor júnior e o especialista em dados.",
+          "code": "-- Exemplo de recurso avançado: CTE com Window Function analítica\nWITH RankingVendas AS (\n  SELECT \n    vendedor_id,\n    valor,\n    ROW_NUMBER() OVER (PARTITION BY vendedor_id ORDER BY valor DESC) as pos\n  FROM pedidos\n)\nSELECT * FROM RankingVendas WHERE pos <= 3;"
         }
       ],
       "questions": [

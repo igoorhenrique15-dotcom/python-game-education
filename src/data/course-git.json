@@ -73,16 +73,16 @@
       "summary": "Entenda por que precisamos de controle de versão ao trabalhar com código.",
       "lesson": [
         {
-          "title": "O caos sem controle de versão",
-          "body": "Antes do Git, programadores salvavam versões de arquivos copiando pastas (projeto_v1, projeto_final, projeto_final_mesmo). Isso gerava confusão, perda de código e tornava o trabalho em equipe um pesadelo. O Git resolve isso criando uma linha do tempo segura para o seu código, onde toda alteração é rastreada e nada é perdido acidentalmente.",
-          "code": "# Imagine o caos de pastas antigas:\n# projeto_v1/\n# projeto_v2/\n# projeto_final/",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "O Caos sem Controle de Versão e a Abordagem por Snapshots",
+          "body": "Antes dos sistemas de controle de versão (VCS), equipes recorriam a cópias manuais de pastas com sufixos confusos como 'projeto_v1', 'versao_final' ou 'final_mesmo'. Esse modelo gerava perda frequente de código, sobrescritas acidentais e total opacidade sobre quem alterou o quê e por quê. O Git revolucionou essa dinâmica ao tratar o histórico não como uma lista de diferenças (deltas), mas como um fluxo contínuo de snapshots completos de todo o projeto ao longo do tempo. Se um arquivo não mudou, o Git apenas cria um link para o arquivo idêntico anterior, economizando espaço e garantindo máxima integridade.",
+          "tip": "Nunca use pastas duplicadas no seu computador para manter backups manuais; confie no histórico do Git para recuperar qualquer ponto no tempo com precisão cirúrgica.",
+          "code": "# Checando a versão instalada do motor Git\ngit --version\n\n# O Git rastreia o histórico de cada arquivo do seu repositório\ngit status"
         },
         {
-          "title": "Controle de versão distribuído",
-          "body": "Diferente de sistemas antigos centralizados, o Git é distribuído. Isso significa que todo desenvolvedor tem uma cópia completa do histórico do projeto na sua máquina. Você pode trabalhar offline, criar versões alternativas do código rapidamente e, se o servidor central cair, qualquer computador da equipe tem um backup completo de tudo.",
-          "code": "git --version\n# Verifica se o Git está instalado na sua máquina",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Arquitetura Distribuída vs Centralizada",
+          "body": "Diferente de sistemas legados centralizados como SVN ou CVS — onde existia um único servidor central e qualquer falha de rede impedia commits ou inspeções de histórico —, o Git adota uma arquitetura estritamente distribuída (DVCS). Isso significa que cada desenvolvedor que clona um repositório obtém uma cópia local exata e integral de todo o banco de dados do projeto, incluindo cada versão, branch e commit já registrado. Essa descentralização permite trabalhar com velocidade instantânea em modo 100% offline, além de transformar cada máquina de colaborador em um backup completo e redundante do sistema.",
+          "tip": "Como todas as operações de log, commit e diff ocorrem localmente sem consultar a rede, o fluxo de trabalho diário no Git é quase instantâneo.",
+          "code": "# Exibe os remotos configurados no seu repositório local\ngit remote -v\n\n# Cada desenvolvedor tem um clone idêntico com todo o grafo de commits"
         }
       ],
       "questions": [
@@ -153,16 +153,16 @@
       "summary": "Veja como o Git organiza cada alteração em registros chamados commits.",
       "lesson": [
         {
-          "title": "A linha do tempo do seu projeto",
-          "body": "O Git atua como uma máquina do tempo para o seu código. Ele não apenas salva a versão atual, mas grava exatamente o que mudou, quando mudou e quem fez a mudança em cada arquivo. Se uma nova funcionalidade quebrar o sistema, você pode voltar rapidamente no tempo para uma versão que funcionava perfeitamente, sem medo de perder arquivos.",
-          "code": "git log\n# Exibe a linha do tempo do projeto",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "O Grafo Acíclico Dirigido (DAG) do Histórico",
+          "body": "Internamente, o histórico do Git não é uma fita linear simples, mas um Grafo Acíclico Dirigido (DAG - Directed Acyclic Graph). Cada commit representa um nó imutável no grafo e armazena ponteiros explícitos para um ou mais commits pais (ancestrais). A propriedade 'acíclica' garante que o tempo se move sempre em uma direção: nenhum commit pode ser seu próprio antepassado. Esse modelo baseado em grafos permite que múltiplos ramos de desenvolvimento existam simultaneamente, se ramifiquem com facilidade e depois sejam reintegrados com precisão matemática.",
+          "tip": "Pense em branches como simples etiquetas móveis que apontam para nós específicos desse grande grafo acíclico.",
+          "code": "# Visualiza o grafo do histórico em formato gráfico e resumido\ngit log --graph --oneline --all\n\n# Cada linha no grafo ilustra a conexão entre os nós (commits)"
         },
         {
-          "title": "Snapshots em vez de diferenças",
-          "body": "Sistemas mais antigos guardavam a lista de mudanças feitas em cada arquivo. O Git é diferente: a cada salvamento, ele tira uma 'foto' (snapshot) do estado atual de todos os seus arquivos. Se um arquivo não mudou, o Git apenas cria um link para a versão anterior idêntica. Isso torna o Git incrivelmente rápido e eficiente em grandes projetos.",
-          "code": "# O Git pensa em dados como uma série de snapshots\n# [Snapshot 1] -> [Snapshot 2] -> [Snapshot 3]",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Integridade Criptográfica com Hashes SHA",
+          "body": "Cada objeto dentro do Git — seja um arquivo (blob), uma pasta (tree) ou um snapshot (commit) — é identificado unicamente por um hash criptográfico SHA de 40 caracteres hexadecimais (SHA-1 ou SHA-256 em versões mais recentes). Esse hash funciona como uma impressão digital calculada a partir do conteúdo exato do objeto e de seus metadados. Se um único caractere for modificado em um arquivo antigo, o hash daquele objeto muda, o que altera em cascata o hash da árvore e de todos os commits subsequentes. Essa estrutura de Merkle Tree torna o histórico do Git absolutamente inviolável e imutável.",
+          "tip": "Os primeiros 7 caracteres do hash SHA costumam ser suficientes para identificar um commit de forma única na maioria dos comandos cotidianos.",
+          "code": "# O hash identifica univocamente o estado exato daquele momento\n# Exemplo de identificador SHA-1 de 40 caracteres:\n# 2a4f6d89b01c3e5a7b8c9d0e1f2a3b4c5d6e7f8a\n\ngit show 2a4f6d8"
         }
       ],
       "questions": [
@@ -233,16 +233,16 @@
       "summary": "Entenda a diferença entre a ferramenta Git e a plataforma GitHub.",
       "lesson": [
         {
-          "title": "A ferramenta de linha de comando: Git",
-          "body": "O Git é o software de controle de versão que roda no seu computador local. Ele é responsável por rastrear as mudanças nos arquivos, gerenciar ramificações (branches) e salvar o histórico. Ele funciona perfeitamente sem internet e não precisa de nenhum serviço online para fazer o trabalho principal de versionar o seu código fonte no dia a dia.",
-          "code": "git commit -m \"Salvando mudanças localmente\"",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "O Motor de Controle vs A Plataforma em Nuvem",
+          "body": "Uma das confusões mais frequentes entre iniciantes é acreditar que Git e GitHub são a mesma coisa. O Git é um software utilitário de linha de comando, de código aberto, criado por Linus Torvalds em 2005 para gerenciar versões localmente no seu computador. Já o GitHub é um serviço comercial em nuvem mantido pela Microsoft que hospeda repositórios Git remotos na web. O Git funciona perfeitamente sem nenhuma conexão à internet e sem o GitHub; o GitHub, por sua vez, depende do protocolo do Git para fornecer uma interface gráfica rica, hospedagem segura e colaboração social.",
+          "tip": "Você pode usar o Git com qualquer outra plataforma remota (como GitLab, Bitbucket ou servidor próprio SSH), ou até sem servidor nenhum.",
+          "code": "# Git: ferramenta de terminal que opera no seu disco local\ngit log -n 1\n\n# GitHub: acessado via navegador web ou API para sincronizar repositórios\n# https://github.com/usuario/repositorio.git"
         },
         {
-          "title": "A plataforma de hospedagem: GitHub",
-          "body": "O GitHub é um serviço na nuvem (um site) que hospeda repositórios Git. Enquanto o Git cuida das versões localmente, o GitHub permite que você sincronize esse repositório na internet, colaborando com outras pessoas. Pense no Git como o motor do seu carro e no GitHub como as estradas e estacionamentos por onde você e seus amigos trafegam.",
-          "code": "git push origin main\n# Envia seu código local (Git) para a nuvem (GitHub)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Recursos de Colaboração e Ecossistema do GitHub",
+          "body": "Enquanto o Git cuida exclusivamente do armazenamento de objetos, branches e resolução de merges, o GitHub acrescenta uma camada inteira de gerenciamento colaborativo sobre esse motor. Recursos fundamentais do fluxo de trabalho em equipes corporativas e projetos de código aberto — como Pull Requests, revisões de código com comentários em linha, issues para acompanhamento de tarefas e bugs, wikis de documentação e automações de CI/CD com GitHub Actions — são tecnologias proprietárias da plataforma GitHub, e não comandos nativos do Git.",
+          "tip": "Dominar o Git local no terminal é essencial para entender o que o GitHub está executando por baixo dos panos na interface gráfica.",
+          "code": "# O Git local sincroniza suas branches com a nuvem do GitHub\ngit push origin main\ngit fetch origin\n\n# Abertura de Pull Requests e Issues é realizada na camada do GitHub"
         }
       ],
       "questions": [
@@ -313,16 +313,16 @@
       "summary": "Aprenda a criar um repositório Git em uma pasta do seu computador.",
       "lesson": [
         {
-          "title": "O despertar de um repositório",
-          "body": "Para começar a usar o Git em um projeto, você precisa inicializá-lo. O comando git init cria uma pasta oculta chamada .git dentro do seu diretório. É lá que o Git guarda todo o histórico, configurações e snapshots do seu código. A partir desse momento, a pasta deixa de ser um diretório comum e passa a ser monitorada pelo Git.",
-          "code": "git init",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "A Criação do Repositório e a Pasta .git",
+          "body": "Quando você executa o comando `git init` dentro de uma pasta do seu sistema operacional, o Git transforma aquele diretório comum em um repositório versionado (Working Tree). Ele faz isso criando um subdiretório oculto chamado `.git`. Essa pasta mágica contém toda a estrutura interna do banco de dados do Git: a pasta `objects` (onde ficam blobs, trees e commits), a pasta `refs` (onde ficam guardados os ponteiros de branches e tags), o arquivo de configuração local `config` e o ponteiro especial `HEAD`. Nunca apague a pasta `.git`, pois ela é o coração de todo o seu repositório.",
+          "tip": "A pasta de trabalho visível (Working Directory) é apenas uma visualização extraída da pasta `.git`; deletar a pasta `.git` destrói todo o histórico de versões.",
+          "code": "# Inicializa um novo repositório Git no diretório atual\ngit init\n\n# Inspeciona os arquivos internos criados pelo Git\nls -la .git"
         },
         {
-          "title": "A anatomia da pasta .git",
-          "body": "Você não deve alterar os arquivos da pasta .git manualmente. Ela contém os objetos do banco de dados do Git, referências para branches e arquivos de configuração essenciais. Se você apagar essa pasta, os seus arquivos de código não serão apagados, mas você perderá todo o histórico de versões e o projeto deixará de ser um repositório Git.",
-          "code": "ls -a\n# Lista todos os arquivos, incluindo a pasta oculta .git",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Configuração de Identidade e Metadados do Autor",
+          "body": "Antes de gravar qualquer snapshot no histórico, o Git exige que você defina a identidade do autor das alterações. Todo commit carrega permanentemente o nome e o e-mail de quem o criou. Essas credenciais são configuradas através do comando `git config`. Você pode definir essas propriedades globalmente no seu sistema operacional (usando o modificador `--global`, gravando em `~/.gitconfig`) ou apenas para o repositório corrente (sem a flag, gravando em `.git/config`). Ter o e-mail correto garante que serviços como o GitHub vinculem seus commits ao seu perfil de usuário.",
+          "tip": "Configure sempre seu e-mail corporativo em repositórios da empresa e seu e-mail pessoal em projetos open source usando configurações locais.",
+          "code": "# Configura o nome e o e-mail do autor globalmente na sua máquina\ngit config --global user.name \"Seu Nome\"\ngit config --global user.email \"seu.email@exemplo.com\"\n\n# Verifica as configurações ativas no momento\ngit config --list"
         }
       ],
       "questions": [
@@ -393,16 +393,16 @@
       "summary": "Entenda como preparar arquivos para serem registrados em um commit.",
       "lesson": [
         {
-          "title": "A área de preparação (Staging Area)",
-          "body": "No Git, salvar uma mudança acontece em dois passos. O primeiro é adicionar os arquivos modificados à 'Staging Area' com o comando git add. Isso indica quais alterações você quer que façam parte do próximo salvamento (commit). É como colocar produtos no carrinho de compras antes de ir ao caixa para finalizar e registrar a compra.",
-          "code": "git add index.html\n# Adiciona o arquivo modificado ao staging area",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "As Três Áreas do Git e o Staging Index",
+          "body": "O Git organiza o ciclo de vida dos arquivos em três áreas fundamentais: o Diretório de Trabalho (Working Directory), onde você edita arquivos no VS Code; a Área de Preparação (Staging Area ou Index), onde você organiza o próximo snapshot; e o Repositório (.git directory), onde os commits são salvos em definitivo. O comando `git add` é a ponte entre o Working Directory e o Index. Ele permite selecionar cirurgicamente quais modificações farão parte do próximo commit, viabilizando commits coesos e lógicos em vez de salvar alterações desconexas em bloco.",
+          "tip": "Evite usar `git add .` às cegas sem conferir o `git status`, para não incluir arquivos indesejados, como arquivos de log ou credenciais.",
+          "code": "# Adiciona um arquivo específico para a área de staging (Index)\ngit add src/app.js\n\n# Adiciona todas as modificações do diretório atual\ngit add ."
         },
         {
-          "title": "Selecionando o que salvar",
-          "body": "Você pode ter modificado dez arquivos, mas quer separar as mudanças em dois blocos lógicos diferentes. O comando git add permite que você adicione arquivos específicos, ou até partes de arquivos, para preparar um salvamento limpo e focado. Para adicionar tudo de uma vez, você pode usar um atalho poderoso que prepara todo o diretório atual.",
-          "code": "git add .\n# Adiciona todas as modificações do diretório atual à staging area",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "A Criação de Objetos Blob no Object Database",
+          "body": "Ao rodar `git add`, o Git não apenas anota o nome do arquivo em uma lista. Por baixo dos panos, ele lê o conteúdo do arquivo, calcula o hash SHA-1 desse conteúdo compactado via zlib e grava um novo objeto do tipo 'blob' (binary large object) dentro do diretório `.git/objects`. Em seguida, o Git atualiza o arquivo de índice binário `.git/index` com o mapeamento entre o caminho do arquivo no disco e o SHA-1 do blob recém-criado. É por isso que o `git add` é rápido: todo o trabalho pesado de compactação e hash já é realizado nessa etapa preparatória.",
+          "tip": "Se você editar um arquivo novamente após rodar `git add`, precisará rodar `git add` outra vez para atualizar o blob no Index com o novo conteúdo.",
+          "code": "# Edita o arquivo e adiciona ao staging\ngit add index.html\n\n# O Git cria o blob no repositório de objetos e atualiza o index\ngit status"
         }
       ],
       "questions": [
@@ -473,16 +473,16 @@
       "summary": "Aprenda a registrar mudanças com commit e a checar o estado do repositório.",
       "lesson": [
         {
-          "title": "Verificando o estado com Status",
-          "body": "O comando git status é o seu melhor amigo. Ele mostra o estado atual do repositório: quais arquivos foram modificados, quais estão na staging area (prontos para commit) e quais arquivos novos não estão sendo rastreados pelo Git. Sempre execute git status antes de commitar para ter certeza absoluta do que está prestes a salvar no histórico.",
-          "code": "git status\n# Mostra arquivos modificados e staged",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "A Criação do Snapshot e o Objeto Commit",
+          "body": "Quando você executa `git commit`, o Git eterniza o conteúdo atual da área de Staging em um novo commit imutável no DAG. O processo cria primeiramente um objeto 'tree', que reflete a hierarquia de diretórios e aponta para os blobs daquele momento. Em seguida, cria um objeto 'commit', contendo o hash dessa tree raiz, o hash do commit pai (a versão imediatamente anterior), o autor, o timestamp e a mensagem descritiva fornecida com `-m`. O ponteiro da branch atual avança automaticamente para apontar para esse novo commit recém-gerado.",
+          "tip": "Escreva mensagens de commit claras e imperativas (ex.: 'corrige cálculo de frete' em vez de 'arrumado'), explicando o motivo da alteração.",
+          "code": "# Registra um novo snapshot definitivo no histórico\ngit commit -m \"feat: implementa autenticação com JWT\"\n\n# Exibe o hash gerado e o sumário de arquivos alterados"
         },
         {
-          "title": "O registro permanente com Commit",
-          "body": "Um commit no Git é como bater o martelo para finalizar uma versão. Ele pega tudo que está na staging area e cria um novo ponto fixo no histórico. Todo commit exige uma mensagem explicativa. Boas mensagens de commit são claras e no imperativo, explicando o que aquela mudança faz no sistema, facilitando a vida de quem ler o histórico no futuro.",
-          "code": "git commit -m \"Adiciona botão de login\"\n# Salva as mudanças na linha do tempo",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Inspecionando o Ciclo de Vida com git status",
+          "body": "O comando `git status` é a ferramenta de diagnóstico mais importante do fluxo de trabalho diário. Ele compara os três estados do repositório em tempo real: compara o Working Tree com o Index (identificando arquivos 'Untracked' ou modificados não estagiados) e compara o Index com o último commit do HEAD (identificando alterações prontas para serem commitadas). Saber interpretar a saída do `git status` garante total previsibilidade, evitando que você cometa erros como commitar arquivos pela metade ou deixar scripts temporários soltos no repositório.",
+          "tip": "Use `git status -s` (short format) para visualizar uma saída concisa com códigos de status de duas colunas (M para modificado, ?? para untracked).",
+          "code": "# Verifica o estado completo das três áreas\ngit status\n\n# Visualização resumida e rápida\ngit status -s"
         }
       ],
       "questions": [
@@ -553,16 +553,16 @@
       "summary": "Aprenda a consultar o histórico de commits de um repositório.",
       "lesson": [
         {
-          "title": "Explorando a linha do tempo",
-          "body": "O comando git log exibe o histórico de commits do seu projeto em ordem cronológica reversa (os mais recentes primeiro). Cada commit mostra um código hash único (identificador), o autor, a data e a mensagem. É a ferramenta essencial para entender a evolução do projeto, descobrir quem fez qual alteração e encontrar pontos antigos para restaurar.",
-          "code": "git log\n# Lista o histórico completo com detalhes",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Navegando no DAG e Rastreando a Linha do Tempo",
+          "body": "O comando `git log` é o explorador do histórico do repositório. A partir do commit apontado atualmente pelo `HEAD`, ele percorre retroativamente os ponteiros dos commits pais nó por nó no DAG, listando autor, data e mensagem de cada snapshot em ordem cronológica reversa. Ele é fundamental para auditoria, compreensão da evolução da base de código e localização de pontos estáveis para restauração. Sem parâmetros adicionais, ele exibe os detalhes completos de cada commit em formato de texto paginado via terminal.",
+          "tip": "Pressione a tecla 'q' no terminal para sair da paginação do log quando a saída for longa e travar a tela.",
+          "code": "# Exibe o histórico completo a partir do commit atual\ngit log\n\n# Limita a exibição aos 3 últimos commits\ngit log -n 3"
         },
         {
-          "title": "Visualização simplificada",
-          "body": "Em projetos grandes, o git log padrão pode mostrar muita informação e ser difícil de ler. Você pode usar parâmetros para formatar a saída, mostrando apenas uma linha por commit, desenhando um gráfico das ramificações ou filtrando por autor. Esses atalhos são ótimos para ter uma visão geral rápida do que aconteceu recentemente no código.",
-          "code": "git log --oneline --graph\n# Mostra um gráfico compacto das versões",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Visualizações Sintéticas com --oneline e --graph",
+          "body": "Em projetos reais com múltiplos ramos e dezenas de colaboradores, o log padrão de várias linhas por commit torna a visualização cansativa. Para obter uma visão panorâmica e legível do fluxo, combinamos opções poderosas como `--oneline` (que condensa cada commit em uma única linha com os 7 dígitos do SHA e a mensagem) e `--graph` (que desenha as linhas de branches e merges com caracteres ASCII). Essa combinação permite enxergar instantaneamente bifurcações, fusões e a posição relativa de cada branch local e remota no grafo.",
+          "tip": "Crie um alias no seu Git (`git config --global alias.lg \"log --oneline --graph --all\"`) para acessar esse mapa visual com um comando curto.",
+          "code": "# Visão panorâmica condensada com representação visual em grafo\ngit log --oneline --graph --decorate --all\n\n# Mostra apenas os commits que alteraram um arquivo específico\ngit log -p src/index.js"
         }
       ],
       "questions": [
@@ -633,16 +633,16 @@
       "summary": "Aprenda a comparar diferenças entre versões de arquivos.",
       "lesson": [
         {
-          "title": "Comparando alterações pendentes",
-          "body": "Enquanto git status diz quais arquivos mudaram, git diff mostra exatamente QUAIS LINHAS foram alteradas. Ele exibe o que foi adicionado (em verde) e removido (em vermelho) desde o último commit. É fundamental usar o git diff antes do git add para revisar o seu próprio código, garantindo que não está enviando erros ou código esquecido (como console.log).",
-          "code": "git diff\n# Mostra as diferenças não adicionadas ao staging area",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Comparando Áreas: Working Tree vs Staging vs HEAD",
+          "body": "O comando `git diff` calcula a diferença exata, linha por linha, entre os diferentes estados do seu repositório. Por padrão, rodar `git diff` sem nenhum argumento compara o seu Working Directory com a Área de Staging (Index), mostrando tudo o que você alterou no código mas ainda não adicionou com `git add`. Por outro lado, para comparar o que já está na Área de Staging com o último commit registrado (HEAD), usa-se `git diff --staged` (ou `--cached`). Entender essa distinção é a chave para inspecionar exatamente o que entrará no seu próximo commit.",
+          "tip": "Sempre rode `git diff --staged` antes de executar `git commit` para revisar pessoalmente cada linha de código que você está prestes a eternizar.",
+          "code": "# Exibe alterações não adicionadas ao staging\ngit diff\n\n# Exibe alterações já preparadas no staging prontas para commit\ngit diff --staged"
         },
         {
-          "title": "Diferenças entre versões específicas",
-          "body": "O poder do diff vai além do código não salvo. Você pode usá-lo para comparar qualquer ponto do seu histórico. É possível comparar a staging area com o último commit, comparar dois branches diferentes ou até mesmo comparar dois commits antigos. Isso é extremamente útil para investigar quando um bug foi introduzido e o que exatamente mudou naquele arquivo.",
-          "code": "git diff HEAD~1 HEAD\n# Compara o penúltimo commit com o mais recente",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Comparando Commits e Ramos Arbitrários",
+          "body": "Além de comparar arquivos locais não commitados, o `git diff` permite comparar quaisquer dois pontos arbitrários do Grafo Acíclico Dirigido. Ao fornecer dois identificadores de commit ou nomes de branches separados por espaço ou dois pontos (ex.: `git diff main feature`), o Git calcula o conjunto de modificações entre esses dois estados. Esse recurso é vital antes de realizar merges ou pull requests, permitindo antecipar conflitos e revisar detalhadamente o impacto acumulado de dezenas de alterações feitas em uma branch isolada.",
+          "tip": "Use `git diff --stat` para obter um resumo estatístico das alterações, listando quais arquivos mudaram e a contagem de linhas adicionadas e removidas.",
+          "code": "# Compara a branch atual com a branch main\ngit diff main\n\n# Exibe apenas o resumo de linhas e arquivos modificados\ngit diff --stat main..feature-login"
         }
       ],
       "questions": [
@@ -713,16 +713,16 @@
       "summary": "Aprenda a desfazer alterações em um arquivo que ainda não foram commitadas.",
       "lesson": [
         {
-          "title": "Desfazendo na área de trabalho",
-          "body": "Às vezes fazemos modificações em um arquivo para testar algo, não dá certo, e queremos voltar ao estado do último commit. Você pode descartar facilmente mudanças em arquivos que ainda não foram para a staging area. O Git substitui o arquivo na sua pasta pela versão que está gravada no último commit, apagando suas modificações não salvas permanentemente.",
-          "code": "git checkout -- index.html\n# O mais moderno git restore index.html faz o mesmo",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Descartando Alterações com git restore",
+          "body": "Durante o desenvolvimento, é comum realizar testes e depois desejar descartar as alterações locais que não deram certo. Nas versões modernas do Git (a partir da 2.23), o comando canônico para essa operação é `git restore`. Se você modificou um arquivo no Working Tree e quer retornar ao estado do último commit, basta executar `git restore arquivo.ext`. Para remover um arquivo da Área de Staging sem perder as modificações feitas no disco, usa-se a flag `--staged` (`git restore --staged arquivo.ext`). Essa abordagem separa claramente restauração de navegação de branches.",
+          "tip": "Tenha cautela ao rodar `git restore` no Working Tree: alterações não commitadas e não salvas no Staging são excluídas permanentemente do disco.",
+          "code": "# Descarta alterações não salvas de um arquivo específico no disco\ngit restore src/app.js\n\n# Remove o arquivo do Staging, mantendo as alterações no disco\ngit restore --staged src/app.js"
         },
         {
-          "title": "Tirando arquivos da staging area",
-          "body": "Se você fez um 'git add' em um arquivo por engano, você pode removê-lo da staging area sem perder as modificações que fez no código. Isso é chamado de 'unstage'. O arquivo volta para o estado de modificado não-preparado. É o equivalente a tirar um produto do carrinho de compras antes de pagar, deixando-o na prateleira para depois.",
-          "code": "git reset HEAD index.html\n# Ou o comando moderno: git restore --staged index.html",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Revertendo Commits no Histórico: revert vs reset",
+          "body": "Quando uma alteração já foi commitada e precisa ser desfeita, existem duas abordagens distintas. O comando `git revert <hash>` é a opção segura e colaborativa: ele não apaga o passado, mas calcula a operação inversa e cria um novo commit que anula as mudanças anteriores, mantendo a integridade do histórico público. Já o comando `git reset` move o ponteiro da branch atual para trás no tempo. O `git reset --hard` é perigoso porque sobrescreve o Working Tree e descarta commits órfãos, devendo ser evitado em branches compartilhadas na nuvem.",
+          "tip": "Se o commit problemático já foi enviado ao GitHub com `git push`, use SEMPRE `git revert` para não reescrever o histórico compartilhado com a equipe.",
+          "code": "# Cria um novo commit seguro que desfaz as alterações do commit indicado\ngit revert 2a4f6d8\n\n# Move a branch local para o commit anterior mantendo os arquivos no disco\ngit reset --soft HEAD~1"
         }
       ],
       "questions": [
@@ -793,16 +793,16 @@
       "summary": "Aprenda a criar e trocar entre branches (ramificações) no Git.",
       "lesson": [
         {
-          "title": "Ramificações para trabalho isolado",
-          "body": "Um branch (ramificação) no Git é uma linha independente de desenvolvimento. Quando você cria um branch, está essencialmente duplicando o estado do projeto naquele momento para experimentar novas ideias ou desenvolver funcionalidades sem afetar o código principal (geralmente chamado de 'main' ou 'master'). É o superpoder para trabalhar em equipe em segurança.",
-          "code": "git branch nova-funcionalidade\n# Cria um branch, mas não muda para ele",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "A Natureza Interna das Branches no Git",
+          "body": "Em muitos sistemas legados, criar uma branch significava duplicar fisicamente toda a pasta do projeto no disco, um processo lento e pesado. No Git, criar uma branch é uma operação instantânea e de custo zero. Internamente, uma branch não passa de um simples arquivo de texto de 41 bytes armazenado em `.git/refs/heads/<nome-da-branch>`, contendo apenas o hash SHA de 40 caracteres do commit para o qual ela aponta, seguido de uma quebra de linha. Criar uma branch consiste simplesmente em escrever um ponteiro novo apontando para o commit atual do HEAD.",
+          "tip": "Como branches em Git são tão leves e baratas, a boa prática recomenda criar uma branch dedicada para cada tarefa, bug ou experimento.",
+          "code": "# Cria uma nova branch a partir do commit atual\ngit branch feature-pagamento\n\n# Lista todas as branches locais existentes no repositório\ngit branch"
         },
         {
-          "title": "A leveza dos branches no Git",
-          "body": "Diferente de sistemas antigos que criavam cópias físicas de todos os arquivos, os branches no Git são apenas ponteiros leves para um commit específico. Criar um branch é instantâneo e não gasta espaço em disco extra. Isso incentiva o uso de branches descartáveis para qualquer pequena tarefa, bugfix ou experimento, tornando o desenvolvimento organizado.",
-          "code": "git branch\n# Lista todos os branches locais e destaca o atual",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Estratégias e Nomenclatura Semântica de Branches",
+          "body": "Em ambientes profissionais, a desorganização de branches pode gerar confusão e perda de contexto. Por isso, equipes adotam convenções de nomenclatura padronizadas baseadas em prefixos que comunicam imediatamente o propósito daquele ramo: `feature/` para novas funcionalidades, `bugfix/` ou `fix/` para correções de defeitos, `hotfix/` para correções críticas urgentes em produção, e `chore/` para tarefas de manutenção ou infraestrutura. Manter as branches pequenas, com propósito único e ciclo de vida curto reduz drasticamente o risco de conflitos complexos no merge.",
+          "tip": "Evite nomes genéricos como 'teste' ou 'alteracoes'; prefira nomes descritivos como 'feature/login-com-google'.",
+          "code": "# Cria branches com convenções semânticas profissionais\ngit branch feature/carrinho-compras\ngit branch bugfix/erro-calculo-desconto\n\n# Exibe as branches com seus últimos commits associados\ngit branch -v"
         }
       ],
       "questions": [
@@ -873,16 +873,16 @@
       "summary": "Pratique a troca entre branches e entenda o que acontece com os arquivos.",
       "lesson": [
         {
-          "title": "Navegando entre realidades",
-          "body": "Após criar um branch, você precisa dizer ao Git para mudar seu ambiente de trabalho para ele. Ao trocar de branch, os arquivos no seu computador são automaticamente modificados pelo Git para refletir o estado exato daquela ramificação. Você pode pular instantaneamente do desenvolvimento de um novo recurso para corrigir um bug na versão principal.",
-          "code": "git checkout nova-funcionalidade\n# Ou o comando moderno: git switch nova-funcionalidade",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "O Ponteiro Especial HEAD e o git switch",
+          "body": "Para que o Git saiba em qual ramo de trabalho você está operando no momento, ele utiliza um ponteiro especial chamado `HEAD` (armazenado em `.git/HEAD`). Na maioria dos casos, o `HEAD` é uma referência simbólica que aponta para uma branch local (como `ref: refs/heads/main`). O comando moderno `git switch` serve especificamente para mover o `HEAD` de uma branch para outra, atualizando simultaneamente os arquivos do seu Working Tree para corresponder exatamente ao snapshot do commit apontado pela nova branch selecionada.",
+          "tip": "Use `git switch -c nova-branch` para criar a branch e já alternar para ela em um único comando atômico.",
+          "code": "# Alterna o ambiente de trabalho para uma branch já existente\ngit switch feature-pagamento\n\n# Cria uma nova branch e alterna imediatamente para ela\ngit switch -c feature-notificacoes"
         },
         {
-          "title": "Criar e trocar em um único passo",
-          "body": "Criar um branch e mudar para ele em seguida é uma das ações mais comuns no dia a dia. Para facilitar, o Git oferece atalhos para combinar esses dois comandos em um só. Você usa a mesma ferramenta de troca, mas passando um parâmetro especial que instrui o Git a criar a nova ramificação caso ela não exista, poupando tempo valioso.",
-          "code": "git checkout -b arrumar-bug\n# Ou moderno: git switch -c arrumar-bug",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "O Estado Detached HEAD e Cuidados na Troca",
+          "body": "O estado 'Detached HEAD' (cabeça desanexada) ocorre quando você faz checkout diretamente de um hash de commit específico ou de uma tag, em vez de apontar para o nome de uma branch. Nesse estado, o arquivo `.git/HEAD` armazena o SHA direto do commit. Se você fizer novos commits enquanto estiver em detached HEAD, eles não pertencerão a nenhuma branch e, ao mudar para outro ramo, esses novos commits ficarão órfãos e vulneráveis à limpeza do Garbage Collector (`git gc`). Para salvar o trabalho feito em detached HEAD, basta criar uma nova branch imediatamente a partir daquele ponto.",
+          "tip": "Se o Git avisar que você está em 'detached HEAD', crie uma branch com `git switch -c nome-para-salvar` antes de mudar de lugar.",
+          "code": "# Navega para um commit histórico específico (fica em detached HEAD)\ngit checkout 2a4f6d8\n\n# Cria uma nova branch a partir do estado atual para não perder nada\ngit switch -c resgate-alteracoes"
         }
       ],
       "questions": [
@@ -953,16 +953,16 @@
       "summary": "Entenda o valor estratégico de usar branches em equipes e projetos reais.",
       "lesson": [
         {
-          "title": "Protegendo a versão de produção",
-          "body": "Isolar o trabalho em branches garante que o código principal (main) esteja sempre estável, limpo e pronto para ser publicado para os usuários (deploy). Se todos commitassem na mesma linha, o projeto ficaria quebrado a maior parte do tempo por códigos incompletos. O isolamento garante que as novidades só cheguem à produção quando estiverem prontas e testadas.",
-          "code": "# A regra de ouro:\n# Nunca commite código incompleto ou quebrado diretamente na 'main'",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Protegendo a Estabilidade da Branch Principal",
+          "body": "A branch principal (geralmente chamada de `main` ou `master`) deve representar a versão estável, testada e pronta para implantação da sua aplicação. Trabalhar diretamente na branch principal é uma prática arriscada, pois qualquer código experimental incompleto ou bug introduzido pode quebrar a aplicação para toda a equipe ou interromper deploys em produção. Isolar cada trabalho em sua própria branch garante que a `main` permaneça permanentemente saudável e protegida contra regressões acidentais enquanto o desenvolvimento avança.",
+          "tip": "Configure proteção de branch no GitHub para proibir commits diretos na `main`, exigindo Pull Requests e aprovações formais.",
+          "code": "# Nunca desenvolva experimentos direto na main estável\ngit switch main\ngit pull\n\n# Crie uma branch isolada para manter seu experimento seguro\ngit switch -c exp/novo-layout"
         },
         {
-          "title": "Facilitando o desenvolvimento paralelo",
-          "body": "Com branches, múltiplos desenvolvedores podem trabalhar em partes diferentes do mesmo projeto simultaneamente. A pessoa A pode refatorar o banco de dados em um branch, enquanto a pessoa B muda o design do botão em outro. O trabalho de um não interfere no do outro até o momento em que decidirem juntar as modificações, acelerando a entrega de valor.",
-          "code": "# Dev A: git switch -c feat-database\n# Dev B: git switch -c feat-ui",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Paralelismo e Feedback Precoce em Equipes",
+          "body": "Em equipes com múltiplos desenvolvedores, o isolamento por branches permite que diferentes pessoas trabalhem simultaneamente em partes distintas do sistema sem interferirem umas nas outras. Enquanto um desenvolvedor cria o módulo de faturamento em `feature/faturamento`, outro pode corrigir uma falha de segurança urgente em `hotfix/token-expirado`. Ambas as frentes evoluem em paralelo no DAG e podem ser revisadas, testadas por pipelines automatizados e entregues de forma independente assim que estiverem concluídas.",
+          "tip": "Quanto menor o tempo de vida de uma branch antes de ser integrada à `main`, menores e mais simples serão os merges.",
+          "code": "# Múltiplas frentes de trabalho isoladas e ativas simultaneamente\ngit branch -a\n# * feature/relatorio-vendas\n#   hotfix/ajuste-cors\n#   main"
         }
       ],
       "questions": [
@@ -1033,16 +1033,16 @@
       "summary": "Aprenda a unir o histórico de duas branches com o comando merge.",
       "lesson": [
         {
-          "title": "Juntando ramificações separadas",
-          "body": "Quando o trabalho em um branch está concluído, é hora de integrar essas mudanças de volta à linha principal. O comando git merge une o histórico de uma ramificação ao branch em que você está atualmente. O Git analisa de forma inteligente os dois históricos e combina as alterações automaticamente na maioria das vezes, sem que você precise copiar código.",
-          "code": "git checkout main\ngit merge nova-funcionalidade\n# Junta 'nova-funcionalidade' dentro da 'main'",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Fast-Forward vs Three-Way Merge",
+          "body": "O `git merge` unifica históricos de duas branches distintas. Se a branch de destino não recebeu novos commits desde a bifurcação, o Git realiza um merge 'Fast-Forward': ele simplesmente move o ponteiro da branch de destino para a frente até o commit da feature branch, sem criar nenhum commit extra. No entanto, se ambas as branches avançaram de forma independente (histórico divergente), o Git não pode apenas mover o ponteiro. Ele identifica o ancestral comum das duas branches e executa uma unificação de três vias (Three-Way Merge), gerando um novo commit especial de merge.",
+          "tip": "Use a flag `--no-ff` (`git merge --no-ff feature`) se desejar sempre criar um commit explícito de merge, registrando a história da junção no grafo.",
+          "code": "# Alterna para a branch receptora antes de executar a fusão\ngit switch main\n\n# Incorpora os commits da feature branch na main\ngit merge feature-carrinho"
         },
         {
-          "title": "Fast-forward e Merge Commits",
-          "body": "Se o branch principal não teve commits desde que você criou seu branch derivado, o Git faz um 'fast-forward', apenas movendo o ponteiro para frente. Se houve commits paralelos em ambos, o Git criará um 'Merge Commit' especial que une as duas histórias, preservando o contexto de onde e quando aquelas linhas de desenvolvimento separadas se encontraram.",
-          "code": "git merge --no-ff feature\n# Força um merge commit para preservar histórico da ramificação",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "A Estrutura de um Merge Commit com Múltiplos Pais",
+          "body": "Um commit comum no Git possui exatamente um commit pai (o snapshot anterior). A grande particularidade do commit gerado por um Three-Way Merge é que ele possui dois (ou mais) commits pais registrados em seus metadados. Um pai aponta para a ponta da branch receptora (por exemplo, `main`) e o outro pai aponta para a ponta da branch que foi integrada (por exemplo, `feature-carrinho`). Essa convergência no Grafo Acíclico Dirigido documenta historicamente o momento exato em que as duas linhagens independentes de desenvolvimento foram harmonizadas.",
+          "tip": "Se o merge puder ser resolvido sem intervenção humana, o Git abre o editor de texto para você confirmar a mensagem padrão do merge commit.",
+          "code": "# Verifica que o commit de merge une dois pais no histórico\ngit log -n 1 --parents\n\n# Cancela um processo de merge antes de concluí-lo, se necessário\ngit merge --abort"
         }
       ],
       "questions": [
@@ -1113,16 +1113,16 @@
       "summary": "Entenda por que e quando um conflito de merge acontece.",
       "lesson": [
         {
-          "title": "A colisão de mudanças paralelas",
-          "body": "O Git é inteligente para mesclar arquivos, mas ele para quando a mesma linha do mesmo arquivo é modificada de formas diferentes em dois branches distintos. Nesses casos, o Git não sabe qual versão escolher (a sua ou a do outro desenvolvedor) e declara um conflito de merge. A junção é pausada, e o trabalho agora requer a intervenção humana para decidir.",
-          "code": "# Conflito ocorre durante git merge ou git pull\n# Ex: Branch A muda linha 10 para vermelho, Branch B para azul.",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "A Causa Raiz dos Conflitos no Algoritmo 3-Way",
+          "body": "O Git é extremamente inteligente na resolução de fusões automáticas: se duas branches alteraram arquivos diferentes, ou até mesmo partes distantes do mesmo arquivo, o algoritmo de Three-Way Merge mescla tudo sozinho e com sucesso. Um conflito de merge surge exclusivamente quando duas branches alteram as mesmas linhas exatas do mesmo arquivo de maneiras distintas a partir do commit ancestral comum, ou quando uma branch apaga um arquivo que a outra branch editou. Nessas situações, o Git interrompe o processo e solicita a decisão humana.",
+          "tip": "Conflitos não são erros do sistema, mas um mecanismo de segurança do Git para impedir a perda silenciosa de código conflitante.",
+          "code": "# Tentativa de merge que resulta em conflito de código\ngit merge feature-preco\n# Retorno do Git:\n# CONFLICT (content): Merge conflict in configuracao.env\n# Automatic merge failed; fix conflicts and then commit the result."
         },
         {
-          "title": "Marcadores de conflito",
-          "body": "Quando ocorre um conflito, o Git injeta marcações textuais diretamente no arquivo afetado (<<<<<<<, =======, >>>>>>>). A parte superior mostra a versão do código no branch atual, o sinal de igual separa, e a parte inferior mostra a versão que está chegando. Você precisa abrir o arquivo, ler as opções e decidir qual código deve permanecer no final.",
-          "code": "<<<<<<< HEAD\n<button>Azul</button>\n=======\n<button>Vermelho</button>\n>>>>>>> feature-cor",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Decodificando os Marcadores de Conflito no Arquivo",
+          "body": "Ao encontrar um conflito, o Git insere marcadores visuais no arquivo para expor as duas versões conflitantes. O trecho delimitado entre `<<<<<<< HEAD` e `=======` mostra o código que estava presente na branch onde você está posicionado atualmente. O separador central `=======` divide as duas versões. Por fim, o trecho entre `=======` e `>>>>>>> nome-da-branch` exibe a versão proposta pela branch que você está tentando mesclar. Para resolver o conflito, você deve apagar manualmente esses marcadores e definir a versão final desejada.",
+          "tip": "Jamais comite um arquivo com os marcadores `<<<<<<<`, `=======` ou `>>>>>>>` ainda presentes, pois isso quebrará o código da sua aplicação.",
+          "code": "# Trecho dentro do arquivo em conflito:\n<<<<<<< HEAD\npreco = 100\n=======\npreco = 150\n>>>>>>> feature-preco\n# O desenvolvedor deve escolher uma das opções ou combinar ambas"
         }
       ],
       "questions": [
@@ -1193,16 +1193,16 @@
       "summary": "Aprenda o passo a passo para resolver um conflito de merge.",
       "lesson": [
         {
-          "title": "A decisão humana",
-          "body": "Para resolver o conflito, você edita manualmente o arquivo. Você deve remover os marcadores inseridos pelo Git (<<<<<<<, =======, >>>>>>>) e deixar o código exatamente como ele deve ficar na versão final. Pode ser mantendo apenas a sua versão, apenas a do colega, ou até mesmo escrevendo uma terceira opção que una a intenção de ambos de forma correta.",
-          "code": "git status\n# Lista os arquivos 'both modified' que precisam de sua atenção",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "O Procedimento Passo a Passo de Resolução Manual",
+          "body": "Resolver um conflito de merge é um processo metódico em três passos. Primeiro, abra os arquivos sinalizados com conflito no seu editor de código (como o VS Code, que oferece atalhos como 'Accept Current Change', 'Accept Incoming Change' ou 'Accept Both'). Segundo, edite o código para manter a lógica correta do negócio e remova rigorosamente todas as marcações de conflito geradas pelo Git. Terceiro, salve o arquivo, execute testes ou a compilação do projeto para garantir que nada foi quebrado durante a intervenção manual.",
+          "tip": "Utilize a ferramenta nativa de resolução visual do Git digitando `git mergetool` caso prefira um editor de três painéis para inspecionar o código.",
+          "code": "# Edita o arquivo removendo os marcadores e mantendo a regra correta:\n# preco = 150\n\n# Executa testes locais para garantir o funcionamento correto da lógica\nnpm test"
         },
         {
-          "title": "Finalizando o Merge",
-          "body": "Após editar os arquivos e resolver todos os conflitos logicamente, você precisa avisar ao Git que o problema foi solucionado. Para fazer isso, você usa o comando 'git add' naqueles arquivos específicos e, em seguida, executa 'git commit' para gerar o Merge Commit definitivo. Com isso, o conflito estará resolvido e a integração estará completa no histórico.",
-          "code": "git add arquivo_resolvido.js\ngit commit\n# Confirma a resolução do conflito e termina o merge",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Marcando Conflitos como Resolvidos e Finalizando o Merge",
+          "body": "Uma vez corrigido o conteúdo do arquivo no disco, você precisa comunicar formalmente ao Git que o conflito foi superado. Isso é feito executando o comando `git add <arquivo>`. Ao adicionar o arquivo modificado ao Staging, o Git remove o status de conflito pendente daquele caminho no Index. Quando todos os arquivos conflitantes estiverem estagiados, você conclui a fusão executando simplesmente `git commit` (sem passar a flag `-m`), o que abrirá o editor com a mensagem padrão de conclusão do merge commit preenchida.",
+          "tip": "Se perceber que a resolução está confusa demais ou tomou o rumo errado, use `git merge --abort` para restaurar o estado limpo pré-merge.",
+          "code": "# Marca o arquivo em conflito como resolvido no Staging\ngit add config.txt\n\n# Finaliza o processo gravando o commit de merge\ngit commit"
         }
       ],
       "questions": [
@@ -1273,16 +1273,16 @@
       "summary": "Entenda o que é um repositório remoto e como ele se relaciona com o local.",
       "lesson": [
         {
-          "title": "Além do seu computador",
-          "body": "Até agora o Git funcionou apenas na sua máquina local. Um Repositório Remoto é uma versão do seu projeto hospedada na internet (no GitHub, GitLab, etc). Ele serve como um hub central para backup e colaboração. Todos os desenvolvedores da equipe se conectam a esse repositório remoto para enviar o próprio código e baixar as atualizações dos colegas.",
-          "code": "git remote -v\n# Lista as conexões remotas do seu repositório local",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Topologia de Repositórios Remotos e Colaboração",
+          "body": "Um repositório local reside exclusivamente no sistema de arquivos do seu computador. Um repositório remoto é uma versão do seu projeto hospedada em outro computador ou servidor centralizado na rede ou na nuvem (como GitHub, GitLab ou servidor SSH corporativo). Ter um repositório remoto não é obrigatório para utilizar os recursos de versionamento do Git, mas é fundamental para duas finalidades essenciais da engenharia de software moderna: backup seguro fora da sua máquina e colaboração em equipe com sincronização contínua.",
+          "tip": "Você pode trabalhar semanas offline criando commits localmente e só conectar a um repositório remoto quando desejar sincronizar com a equipe.",
+          "code": "# Adiciona um vínculo com um repositório remoto sob o alias 'origin'\ngit remote add origin https://github.com/usuario/meu-projeto.git\n\n# Lista os repositórios remotos cadastrados com suas respectivas URLs\ngit remote -v"
         },
         {
-          "title": "Vinculando o local à nuvem",
-          "body": "Para que seu repositório local saiba para onde enviar os dados, você adiciona um 'remote'. Esse comando cria uma referência, um atalho, que liga a sua pasta na máquina ao endereço URL do repositório no servidor. É como salvar um contato na agenda do celular: você dá um nome para não ter que digitar a URL completa toda vez que for sincronizar os códigos.",
-          "code": "git remote add origin https://github.com/usuario/projeto.git\n# Adiciona o remoto principal",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Gerenciamento e Inspeção de Remotes com git remote",
+          "body": "O comando `git remote` permite inspecionar e gerenciar as conexões do repositório local com o mundo externo. Ao executar `git remote -v`, o Git exibe os endereços URL associados tanto para operações de leitura/busca (fetch) quanto para escrita/envio (push). O Git não impõe limite de remotos: você pode configurar múltiplos servidores remotos no mesmo projeto, o que é muito comum ao contribuir para projetos de código aberto onde você possui seu próprio repositório remoto (origin) e acompanha o repositório oficial (upstream).",
+          "tip": "Se o endereço do seu repositório mudar no GitHub, atualize-o localmente com `git remote set-url origin <nova-url>`.",
+          "code": "# Inspeciona detalhes profundos de branches e configurações do remote\ngit remote show origin\n\n# Renomeia um repositório remoto configurado\ngit remote rename origin backup-servidor"
         }
       ],
       "questions": [
@@ -1353,16 +1353,16 @@
       "summary": "Aprenda os três comandos principais para sincronizar com o GitHub.",
       "lesson": [
         {
-          "title": "Sincronizando com Push e Pull",
-          "body": "Para enviar seus commits locais para a nuvem, você empurra o código com o git push. Para baixar as novidades que seus colegas enviaram, você puxa o código com o git pull (que baixa e já faz o merge no seu branch atual). Esses são os comandos do dia a dia para manter o seu trabalho alinhado com o da equipe e garantir que seu código esteja seguro na nuvem.",
-          "code": "git push origin main\n# Envia código\ngit pull origin main\n# Atualiza código",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Clonando Repositórios com git clone",
+          "body": "Quando você deseja trabalhar em um projeto existente que já reside em um servidor remoto, o primeiro passo é o comando `git clone <url>`. O clone realiza três tarefas de forma totalmente automatizada: inicializa um novo repositório local na sua máquina, faz o download integral de todos os objetos, commits, branches e tags de todo o histórico do projeto, e configura automaticamente um repositório remoto apontando para a URL fornecida, nomeando-o convencionalmente como `origin` e fazendo checkout da branch padrão.",
+          "tip": "Use `git clone --depth 1 <url>` (shallow clone) para baixar apenas o último commit caso precise de um download ultra-rápido para CI/CD sem histórico antigo.",
+          "code": "# Clona um repositório completo do GitHub para sua máquina local\ngit clone https://github.com/empresa/sistema-financeiro.git\n\n# A pasta do projeto é criada localmente com todo o histórico .git"
         },
         {
-          "title": "O início de tudo com Clone",
-          "body": "Quando você entra em um projeto que já existe no GitHub, não precisa fazer 'git init' e vincular remotos manualmente. O comando git clone faz todo o trabalho de uma vez: baixa a pasta do projeto da internet, já configurada como repositório Git, conectada ao remoto original e com o histórico completo na sua máquina, pronta para você começar a programar.",
-          "code": "git clone https://github.com/usuario/projeto.git\n# Copia um repositório remoto para a sua máquina",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "O Ciclo de Sincronização: git push e git pull",
+          "body": "O comando `git push` transfere seus commits locais recém-criados para a branch correspondente no repositório remoto. Commits feitos localmente permanecem estritamente no seu computador até que o push seja executado. Por outro lado, o comando `git pull` busca os novos commits disponibilizados por outros membros da equipe no repositório remoto e os incorpora imediatamente na sua branch de trabalho atual. Na prática, `git pull` é a combinação automatizada de dois comandos: `git fetch` (que baixa os dados remotos) seguido de `git merge` (que une os históricos).",
+          "tip": "Rode `git pull` sempre no início do dia de trabalho antes de começar a codificar, para garantir que você está partindo da versão mais atualizada da equipe.",
+          "code": "# Envia os novos commits locais para a branch remota correspondente\ngit push\n\n# Busca novidades do remoto e integra na sua branch local ativa\ngit pull"
         }
       ],
       "questions": [
@@ -1433,16 +1433,16 @@
       "summary": "Entenda o papel do apelido 'origin' na relação entre local e remoto.",
       "lesson": [
         {
-          "title": "O nome padrão do destino remoto",
-          "body": "Quando você usa 'git remote add origin' ou clona um projeto, a palavra 'origin' (origem) não tem nenhum poder mágico no Git; é apenas o nome padrão convencionado pela comunidade para identificar o repositório remoto principal do projeto. É um apelido (alias) para a URL do GitHub, para que você possa digitar 'origin' em vez da URL longa e complicada toda vez.",
-          "code": "git push origin main\n# Envia para a URL que o apelido 'origin' guarda",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "A Convenção do Nome origin no Git",
+          "body": "A palavra 'origin' não é um comando do Git nem uma palavra reservada mágica da linguagem. Ela é simplesmente o nome padrão (alias amigável) que o Git atribui automaticamente ao repositório remoto de onde você clonou o projeto pela primeira vez. Em vez de obrigar o desenvolvedor a digitar a URL completa (como `https://github.com/usuario/repositorio.git`) a cada comando de sincronização, o Git permite usar o atalho textual `origin`. Se você quiser, pode renomear esse remote para `github`, `servidor` ou qualquer outro nome que desejar.",
+          "tip": "'origin' é apenas um apelido para uma URL remota gravada internamente no arquivo `.git/config` do seu projeto.",
+          "code": "# Exibe a URL para a qual o apelido 'origin' está apontando\ngit remote get-url origin\n\n# Envia commits para a branch main do repositório apelidado de origin\ngit push origin main"
         },
         {
-          "title": "Múltiplos remotos",
-          "body": "Um projeto local pode estar conectado a vários repositórios remotos simultaneamente. Você poderia ter um remoto chamado 'origin' (seu servidor oficial), outro chamado 'teste' (para um servidor de homologação) e um 'upstream' (o repositório original de um open-source). O Git permite que você empurre ou puxe dados livremente de qualquer um desses destinos.",
-          "code": "git remote add producao https://servidor.com/app.git\ngit push producao main",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Remote-Tracking Branches e a Flag -u",
+          "body": "Quando você cria uma branch local pela primeira vez e tenta enviar seus commits com `git push`, o Git pode solicitar a configuração de rastreamento. Ao rodar `git push -u origin main` (onde `-u` é o atalho para `--set-upstream`), o Git vincula formalmente a sua branch local `main` à branch remota `origin/main` (conhecida como remote-tracking branch). Uma vez estabelecido esse vínculo, os próximos envios e buscas tornam-se simplificados: basta digitar simplesmente `git push` ou `git pull`, e o Git saberá exatamente qual ramo remoto sincronizar.",
+          "tip": "O vínculo de tracking permite que o `git status` informe com precisão se sua branch local está à frente ou atrás da remota.",
+          "code": "# Estabelece o vínculo upstream no primeiro envio da branch\ngit push -u origin feature-pagamento\n\n# Nas próximas vezes, a sincronização é direta sem argumentos adicionais\ngit push\ngit pull"
         }
       ],
       "questions": [
@@ -1513,16 +1513,16 @@
       "summary": "Entenda o que é um fork e quando ele é usado no GitHub.",
       "lesson": [
         {
-          "title": "Uma cópia na sua conta pessoal",
-          "body": "O Fork não é um comando do Git, mas um recurso de plataformas como o GitHub. Fazer um Fork significa criar uma cópia exata de um repositório de terceiros diretamente na sua própria conta do GitHub. Como você tem permissão total no seu Fork, pode fazer as alterações que quiser sem afetar o projeto original onde você não tem direitos de escrita diretos.",
-          "code": "# Fork é um botão no GitHub.\n# Depois você clona o SEU fork para o seu computador.",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "O Conceito de Fork no Ecossistema GitHub",
+          "body": "Em projetos de código aberto ou repositórios corporativos restritos, desenvolvedores externos não possuem permissão direta de escrita para fazer `git push` nas branches do repositório original. Para contornar essa restrição mantendo a colaboração segura, o GitHub disponibiliza o recurso de Fork. Um Fork é uma cópia completa, independente e vinculada do repositório no servidor do GitHub, salva diretamente sob a sua conta pessoal de usuário. No seu fork, você tem controle administrativo total e pode criar branches e commitar livremente.",
+          "tip": "Fazer um fork não altera em nada o repositório original; suas modificações ficam isoladas no seu perfil até você propor a inclusão.",
+          "code": "# O fork é criado através do botão 'Fork' na interface do GitHub\n# Em seguida, você clona a sua cópia pessoal para seu computador:\ngit clone https://github.com/seu-usuario/projeto-open-source.git"
         },
         {
-          "title": "A base do código livre (Open Source)",
-          "body": "O fluxo de Fork é essencial para projetos de código aberto. Você acha uma biblioteca interessante, faz um fork para a sua conta, clona localmente, conserta um bug e envia (push) de volta para o seu Fork. Agora você tem uma versão corrigida sob o seu controle e está pronto para pedir que os criadores originais aceitem a sua melhoria no código oficial.",
-          "code": "git clone https://github.com/SEU-USER/fork-do-projeto.git",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "A Relação entre Fork, Upstream e Pull Request",
+          "body": "O fork serve como a base de lançamento para propostas de contribuição. O fluxo de trabalho padrão consiste em: criar o fork no GitHub, clonar sua cópia para a máquina local, criar uma branch de feature, commitar as melhorias e enviar a branch para o seu próprio fork com `git push`. A partir do seu fork na interface web, você abre um Pull Request propondo que os mantenedores do projeto original incorporem suas melhorias. Para manter seu fork atualizado com o projeto pai, você configura um remote extra chamado convencionalmente de `upstream`.",
+          "tip": "Mantenha sempre o remote `upstream` configurado localmente para sincronizar novas versões do projeto original antes de abrir novos Pull Requests.",
+          "code": "# Adiciona o repositório oficial como remote secundário 'upstream'\ngit remote add upstream https://github.com/organizacao/projeto-oficial.git\n\n# Sincroniza a branch main local com as atualizações do projeto oficial\ngit fetch upstream\ngit merge upstream/main"
         }
       ],
       "questions": [
@@ -1593,16 +1593,16 @@
       "summary": "Aprenda o que é um pull request e para que ele serve na colaboração.",
       "lesson": [
         {
-          "title": "O pedido de integração formal",
-          "body": "Um Pull Request (PR) é um pedido feito no GitHub para que o mantenedor de um projeto integre (faça o merge) do código do seu branch ou Fork no branch principal dele. O PR cria um espaço dedicado na plataforma onde a equipe pode ver exatamente o que mudou (o diff), discutir as alterações linha por linha de forma estruturada e sugerir melhorias antes de aprovar.",
-          "code": "# O PR não é um comando terminal, mas uma ação no GitHub\n# Você envia os commits via 'git push' e abre o PR pelo site.",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "A Estrutura e o Propósito de um Pull Request",
+          "body": "Um Pull Request (PR) — ou Merge Request em plataformas como GitLab — é uma solicitação formal criada na interface gráfica do repositório para que os mantenedores façam o merge de uma branch com alterações na branch principal do projeto. O PR exibe o diff consolidado de todas as linhas adicionadas e removidas, a lista completa de commits propostos e abre um espaço para discussão técnica detalhada. Ele funciona como uma câmara de validação e garantia de qualidade antes que qualquer código chegue à base estável de produção.",
+          "tip": "Mantenha Pull Requests pequenos e com escopo focado; PRs com centenas de arquivos alterados são difíceis de revisar e demoram muito para aprovação.",
+          "code": "# O PR compara duas branches na interface do GitHub:\n# Base: branch destino oficial (ex.: main)\n# Compare: sua branch de funcionalidade (ex.: feature-auth)\n\n# Novos commits na sua branch atualizam o PR automaticamente:\ngit commit -m \"fix: trata exceção de token nulo\"\ngit push origin feature-auth"
         },
         {
-          "title": "Qualidade e Colaboração",
-          "body": "Pull Requests transformaram a forma como o software é feito. Eles atuam como um filtro de qualidade que impede a entrada de código ruim na base principal. O PR não fecha até que todos estejam satisfeitos com o código. Você pode continuar fazendo novos commits na sua máquina e empurrando (push) para o mesmo branch, e o PR no GitHub será atualizado automaticamente.",
-          "code": "git push origin minha-feature\n# Abre o link que o terminal exibe para criar o PR no navegador",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Ciclo de Feedback e Atualização de Pull Requests",
+          "body": "Quando um Pull Request é aberto, raramente ele é aceito de imediato sem comentários. Revisores de código analisam a implementação, fazem perguntas e podem solicitar melhorias arquiteturais ou correções de bugs. Uma das grandes vantagens do modelo do GitHub é que você não precisa fechar o PR nem abrir outro para atender aos pedidos dos revisores. Basta continuar trabalhando na mesma branch local onde você iniciou a funcionalidade, fazer novos commits com as correções solicitadas e dar `git push`. O PR no GitHub é atualizado em tempo real.",
+          "tip": "Responda aos comentários dos revisores com respeito e clareza, explicando as decisões técnicas adotadas ou agradecendo pelas correções apontadas.",
+          "code": "# Fazendo a correção solicitada pelos revisores na mesma branch\ngit switch feature-auth\n# edita o código...\ngit add src/auth.js\ngit commit -m \"refactor: ajusta validação conforme sugestão do review\"\ngit push origin feature-auth"
         }
       ],
       "questions": [
@@ -1673,16 +1673,16 @@
       "summary": "Entenda a prática de code review e seu papel na qualidade do projeto.",
       "lesson": [
         {
-          "title": "A cultura do Code Review",
-          "body": "Revisão de Código (Code Review) é o processo onde os desenvolvedores avaliam o Pull Request de um colega antes que ele seja mesclado. O objetivo não é apenas caçar bugs, mas garantir que o código segue os padrões do projeto, é fácil de ler e otimizado. É uma das formas mais poderosas de compartilhar conhecimento entre a equipe de desenvolvimento.",
-          "code": "# Ao revisar, foque na lógica e em padrões.\n# Automatize checagens estéticas (lint) para não perder tempo.",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "A Cultura e os Benefícios do Code Review",
+          "body": "A Revisão de Código (Code Review) é uma das práticas mais eficazes da engenharia de software contemporânea para elevar a qualidade do produto. Trata-se de uma auditoria técnica em pares onde colegas de equipe examinam cuidadosamente o código proposto no Pull Request antes que ele seja incorporado à branch principal. O objetivo não é fiscalizar ou apontar culpados, mas sim detectar falhas de segurança precocemente, identificar problemas de desempenho, garantir aderência aos padrões de arquitetura do time e compartilhar conhecimento entre membros seniores e juniores.",
+          "tip": "Encare o code review como uma oportunidade de aprendizado mútuo; tanto quem revisa quanto quem recebe feedback aprimora suas competências técnicas.",
+          "code": "# No GitHub, revisores podem selecionar linhas específicas e adicionar comentários\n# Exemplo de comentário construtivo:\n# \"Seria prudente validar se o parâmetro 'email' não é nulo aqui para evitar NullPointerException.\""
         },
         {
-          "title": "Feedback construtivo e iterativo",
-          "body": "Se o revisor achar que algo deve melhorar, ele deixa comentários no GitHub e solicita mudanças. O autor original lê, corrige o código na sua máquina, faz um novo commit e envia. A revisão continua até a aprovação. Uma boa cultura de review é baseada em empatia e sugestões claras, nunca em críticas pessoais ao autor do código.",
-          "code": "git commit -m \"Ajusta regras conforme revisão no PR\"",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Regras de Proteção de Branch e Aprovações Obrigatórias",
+          "body": "Em repositórios gerenciados com boas práticas de governança, a branch `main` conta com 'Branch Protection Rules' configuradas no GitHub. Essas regras impedem que qualquer membro da equipe, inclusive desenvolvedores seniores, façam merge de um Pull Request sem que determinadas exigências sejam satisfeitas: uma quantidade mínima de revisores deve aprovar formalmente o código ('Approve'), todos os testes automatizados do CI devem passar com sucesso e todos os tópicos de discussão devem ser marcados como resolvidos.",
+          "tip": "Nunca force a integração de um Pull Request ignorando feedbacks pendentes de revisores, pois isso introduz vulnerabilidades e desrespeita a dinâmica da equipe.",
+          "code": "# Status da Branch Protection no GitHub:\n# [x] Require a pull request before merging (1 approval required)\n# [x] Require status checks to pass before merging (CI tests)\n# [x] Do not allow bypassing the above settings"
         }
       ],
       "questions": [
@@ -1753,16 +1753,16 @@
       "summary": "Aprenda a organizar tarefas e problemas usando issues e labels no GitHub.",
       "lesson": [
         {
-          "title": "O rastreamento de problemas (Issues)",
-          "body": "As Issues do GitHub são como um quadro de tarefas e fórum integrado ao repositório. Elas servem para relatar bugs, planejar novas funcionalidades ou discutir grandes mudanças na arquitetura antes de escrever qualquer código. É a forma padrão de organizar o que precisa ser feito, delegar tarefas e vincular Pull Requests às suas respectivas demandas originais.",
-          "code": "# Dica: No commit, use 'Fixes #42' para fechar\n# automaticamente a Issue 42 quando fizer o merge.",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Rastreamento de Trabalho e Demandas com Issues",
+          "body": "As Issues do GitHub funcionam como um sistema integrado de gerenciamento de itens de trabalho, tarefas e relatórios de bugs. Qualquer colaborador ou usuário pode abrir uma issue para descrever um defeito encontrado no sistema (com passos para reprodução, prints e comportamento esperado) ou para sugerir o desenvolvimento de uma nova funcionalidade técnica. Ao centralizar as discussões diretamente no repositório, a equipe mantém o contexto do problema imediatamente associado ao código-fonte responsável por sua resolução.",
+          "tip": "Ao abrir uma issue de bug, inclua sempre os passos exatos para reproduzir a falha e o ambiente onde ela ocorreu (navegador, SO, versão).",
+          "code": "# Título claro de uma Issue no GitHub:\n# \"Bug: Botão de checkout não responde ao clique em navegadores Safari\"\n\n# Corpo contendo passos de reprodução, comportamento esperado e logs"
         },
         {
-          "title": "Categorização visual com Labels",
-          "body": "As Labels são etiquetas coloridas que categorizam as Issues e Pull Requests (ex: bug, feature, documentação, prioridade-alta). Em projetos com centenas de relatos, as labels são indispensáveis para que mantenedores filtrem o trabalho mais urgente ou para que iniciantes em código aberto achem tarefas adequadas, como problemas marcados como 'good first issue'.",
-          "code": "# Labels são gerenciadas na interface do GitHub\n# Ajudam a organizar o roadmap do produto",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Organização com Labels e Fechamento Automático",
+          "body": "Para gerenciar dezenas ou centenas de tarefas simultâneas, o GitHub oferece o sistema de Labels (etiquetas coloridas categorizadoras). Uma issue pode receber múltiplas labels simultaneamente, como `bug`, `enhancement`, `documentation`, `priority: high` ou `good first issue` (ideal para atrair novos contribuidores). Além disso, o GitHub suporta palavras-chave especiais na mensagem de commits ou no corpo do Pull Request (como `Closes #42` ou `Fixes #15`), que fecham automaticamente a issue referenciada assim que o PR é mesclado na `main`.",
+          "tip": "Vincule sempre seus Pull Requests às issues correspondentes usando `Fixes #numero` para manter o backlog do projeto atualizado com zero trabalho manual.",
+          "code": "# Mensagem de commit que referencia e fecha a issue número 42 automaticamente\ngit commit -m \"fix: valida expiração de token na rota auth (Closes #42)\"\ngit push origin bugfix/auth-token"
         }
       ],
       "questions": [
@@ -1833,16 +1833,16 @@
       "summary": "Entenda o papel do arquivo README na apresentação de um projeto.",
       "lesson": [
         {
-          "title": "A vitrine do seu projeto",
-          "body": "O arquivo README.md é o cartão de visitas do seu repositório. O GitHub o renderiza automaticamente na página inicial do projeto usando Markdown. Um bom README explica o que o projeto faz, por que ele é útil e como outras pessoas podem instalá-lo e usá-lo. Um código excelente com um README ruim dificilmente será notado ou utilizado por outros desenvolvedores.",
-          "code": "# Meu Projeto Fantástico\n\nEste repositório contém a melhor API de gestão.",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "O Cartão de Visitas do Repositório: README.md",
+          "body": "O arquivo `README.md` localizado na raiz de um repositório é o documento mais importante para a apresentação do projeto. O GitHub o renderiza automaticamente como a página inicial de visualização daquele repositório. Escrito na sintaxe simples do Markdown (`.md`), ele atua como a porta de entrada para qualquer pessoa que chegue ao projeto — sejam novos desenvolvedores do time, recrutadores ou usuários finais —, explicando com clareza o que a aplicação faz, por que foi construída e quais problemas ela se propõe a resolver.",
+          "tip": "Um repositório sem README passa a impressão de abandono ou desleixo técnico; mantenha sempre um README informativo na raiz.",
+          "code": "# Estrutura inicial de um README.md em Markdown:\n# Minha Aplicação Incrível\nSistema de monitoramento e alertas em tempo real.\n\n## Tecnologias\n- Go 1.22\n- PostgreSQL\n- Docker"
         },
         {
-          "title": "Documentação viva em Markdown",
-          "body": "Ao escrever o README, usamos Markdown, uma linguagem leve de marcação. Ela permite formatar o texto com cabeçalhos, listas, links e blocos de código com destaque de sintaxe, tudo usando texto simples. Manter o README atualizado a cada nova versão ou Pull Request importante é uma prática fundamental para o sucesso e manutenção de qualquer software.",
-          "code": "## Como rodar\n```bash\nnpm install\nnpm start\n```",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Estrutura Profissional e Guia de Inicialização",
+          "body": "Um `README.md` profissional deve ser conciso, porém completo. Uma estrutura padrão inclui: título e descrição objetiva, badges de status de build e cobertura de testes, pré-requisitos de software (versão do Node, Go, Rust ou Docker), instruções passo a passo para clonar, configurar variáveis de ambiente e rodar o projeto localmente (`Quickstart`), exemplos de uso ou documentação de rotas da API, instruções de como rodar a suíte de testes e orientações sobre como contribuir para o repositório.",
+          "tip": "Adicione seções com blocos de código formatados com crases triplas (```bash) para facilitar a cópia de comandos de instalação pelos desenvolvedores.",
+          "code": "<!-- Trecho de instruções de instalação no README.md -->\n## Como Executar\n\n```bash\ngit clone https://github.com/usuario/projeto.git\ncd projeto\nnpm install\nnpm run dev\n```"
         }
       ],
       "questions": [
@@ -1913,16 +1913,16 @@
       "summary": "Aprenda a evitar que arquivos indesejados sejam versionados com o .gitignore.",
       "lesson": [
         {
-          "title": "Escondendo o lixo do Git",
-          "body": "Nem todos os arquivos da sua pasta devem ir para o Git. Arquivos temporários, dependências enormes (como a pasta node_modules), logs de erro, e o mais importante, arquivos contendo senhas e chaves de API, devem ser ignorados. O arquivo .gitignore resolve isso: você escreve nele os padrões e nomes do que o Git deve fingir que não existe.",
-          "code": "echo \"node_modules/\" >> .gitignore\n# Adiciona a pasta de pacotes pesados à lista de ignorados",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Mantendo o Repositório Limpo com .gitignore",
+          "body": "Em qualquer projeto de software, o processo de desenvolvimento gera uma grande quantidade de arquivos que não devem ser salvos no controle de versão: diretórios de dependências baixadas (como `node_modules/` ou pacotes externos), arquivos binários compilados executáveis (`.exe`, `.so`), logs de execução, arquivos temporários do sistema operacional (`.DS_Store`, `Thumbs.db`) e diretórios de build (`dist/`, `target/`). O arquivo `.gitignore`, colocado na raiz do projeto, contém regras e padrões de texto que instruem o Git a ignorar silenciosamente esses arquivos.",
+          "tip": "Adicione sempre as pastas de dependências (como `node_modules/`) no `.gitignore` antes de dar o primeiro commit para não poluir o repositório com milhares de arquivos alheios.",
+          "code": "# Exemplo de arquivo .gitignore profissional na raiz do projeto:\nnode_modules/\ndist/\ntarget/\n*.log\n.DS_Store\n.env"
         },
         {
-          "title": "Segurança e performance",
-          "body": "Committar dependências torna o download do seu projeto demorado e incha o banco de dados do Git desnecessariamente. E committar senhas, mesmo que você as apague num commit futuro, significa que a senha ficou registrada no histórico eterno do projeto para qualquer um ver. O .gitignore garante velocidade e segurança, prevenindo vazamentos gravíssimos.",
-          "code": "*.log\n.env\n# Ignora todos arquivos de log e o arquivo de variáveis sensíveis",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Proteção de Segredos e Remoção de Arquivos Rastreados",
+          "body": "O arquivo `.gitignore` possui papel fundamental na segurança: ele impede que arquivos de variáveis de ambiente contendo segredos críticos (como `.env`, chaves de API, senhas de banco de dados e certificados privados) sejam acidentalmente commitados no histórico. Uma armadilha muito frequente: se um arquivo sensível já foi commitado no passado, adicioná-lo ao `.gitignore` posteriormente NÃO o removerá do rastreamento. O Git continuará vigiando o arquivo. Nesses casos, é obrigatório desrastreá-lo explicitamente com o comando `git rm --cached <arquivo>`.",
+          "tip": "Se vazar um token ou senha confidencial no Git, considere a credencial imediatamente comprometida e revogue-a de imediato nos servidores.",
+          "code": "# Remove o arquivo sensível do índice do Git sem apagá-lo do disco local\ngit rm --cached .env\n\n# Em seguida, confirme a remoção com um novo commit\ngit commit -m \"chore: remove .env do versionamento e protege segredos\""
         }
       ],
       "questions": [
@@ -1993,16 +1993,16 @@
       "summary": "Entenda o conceito de integração e entrega contínuas.",
       "lesson": [
         {
-          "title": "Integração Contínua (CI)",
-          "body": "CI (Continuous Integration) é a prática de integrar frequentemente pequenas alterações de código na base principal. Em vez de juntar tudo no fim do mês gerando um caos, os devs enviam (push) código várias vezes ao dia. Servidores automatizados capturam esse código e rodam testes (lint, testes unitários) imediatamente, detectando erros no segundo em que ocorrem.",
-          "code": "# CI impede que código quebrado seja mergeado\n# O servidor valida o Pull Request automaticamente.",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Integração Contínua (CI): Qualidade em Tempo Real",
+          "body": "Integração Contínua (CI - Continuous Integration) é uma prática de engenharia de software em que os membros de uma equipe integram seu código no repositório compartilhado com frequência — normalmente várias vezes ao dia. Cada integração é verificada automaticamente por um servidor de automação que executa a compilação do projeto, ferramentas de análise estática de código (linters) e a suíte completa de testes automatizados. O objetivo da CI é detectar defeitos e conflitos de integração o mais cedo possível (fail fast), evitando que bugs cheguem à produção.",
+          "tip": "Se o pipeline de CI quebrar no seu Pull Request, a prioridade máxima deve ser consertar a falha antes de avançar com novas funcionalidades.",
+          "code": "# Fluxo ideal da Integração Contínua (CI):\n# 1. Desenvolvedor faz commit e push na branch\n# 2. Servidor de CI executa: Lint -> Compilação -> Testes Unitários -> Testes E2E\n# 3. Relatório de aprovação ou falha é exibido no Pull Request"
         },
         {
-          "title": "Entrega/Implantação Contínua (CD)",
-          "body": "CD (Continuous Deployment/Delivery) é o passo seguinte ao CI. Se a alteração de código passar por todos os testes automáticos sem erro, o CD automatiza o processo de enviar essa nova versão para os servidores de produção (onde os usuários acessam). Isso elimina falhas humanas de deploy manual e permite que as empresas lancem novidades dezenas de vezes por dia de forma segura.",
-          "code": "# Deploy automático ao dar merge na main:\n# Código testado -> Build -> Produção",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Entrega e Implantação Contínua (CD)",
+          "body": "Enquanto a Integração Contínua (CI) garante que o código está compilando e com testes passando, a Entrega Contínua (Continuous Delivery) e a Implantação Contínua (Continuous Deployment) automatizam as etapas seguintes de empacotamento e publicação do software. Na Entrega Contínua, a aplicação é empacotada automaticamente (por exemplo, gerando uma imagem Docker ou binário otimizado) e fica pronta para ser lançada a qualquer momento mediante aprovação manual. Já no Continuous Deployment, qualquer alteração que passe por todos os testes na branch `main` vai direto para produção.",
+          "tip": "A automação de CD elimina o erro humano em deploys manuais e acaba com o pavor de realizar implantações nas sextas-feiras.",
+          "code": "# Pipeline completo de CI/CD:\n# [Código] -> [CI: Testes & Build] -> [Registro de Imagem] -> [CD: Deploy Nuvem]\n# Sem intervenção humana manual via SSH em servidores de produção."
         }
       ],
       "questions": [
@@ -2073,16 +2073,16 @@
       "summary": "Entenda a ideia geral de um workflow automatizado no GitHub Actions.",
       "lesson": [
         {
-          "title": "Automação no ecossistema GitHub",
-          "body": "O GitHub Actions é a ferramenta de CI/CD nativa da plataforma. Ele permite que você crie fluxos de trabalho (workflows) executados em servidores em nuvem, desencadeados por eventos do Git, como um push, abertura de uma issue, ou agendamento diário. Você pode configurar rotinas complexas que executam testes, publicam pacotes, notificam equipes e fazem deploy automático.",
-          "code": "name: CI Node.js\non: [push]\n# Evento que dispara a Action (qualquer push)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "A Arquitetura de Automação do GitHub Actions",
+          "body": "O GitHub Actions é a plataforma nativa de CI/CD embutida diretamente no GitHub. Sua arquitetura é fundamentada em três conceitos: Workflows (processos automatizados descritos em arquivos YAML salvos na pasta `.github/workflows/`), Triggers ou Eventos (como `on: [push, pull_request]`, que disparam a execução quando algo ocorre no repositório) e Runners (máquinas virtuais Linux, Windows ou macOS gerenciadas pelo GitHub que executam as tarefas na nuvem). Cada workflow pode conter múltiplos Jobs que rodam em paralelo ou em sequência.",
+          "tip": "Todos os arquivos de workflow do GitHub Actions devem obrigatoriamente estar salvos sob o diretório `.github/workflows/` com extensão `.yml` ou `.yaml`.",
+          "code": "# .github/workflows/ci.yml\nname: Pipeline de Testes CI\non:\n  push:\n    branches: [ main ]\n  pull_request:\n    branches: [ main ]"
         },
         {
-          "title": "Workflows como código",
-          "body": "Os fluxos do Actions são escritos em arquivos YAML armazenados diretamente no seu repositório, na pasta .github/workflows. Isso significa que as regras da sua automação também são versionadas pelo Git! Você define os passos (steps) que o servidor deve executar, desde instalar dependências, compilar o software, até enviar mensagens via Slack se algo falhar na construção.",
-          "code": "steps:\n  - uses: actions/checkout@v3\n  - run: npm test\n# Passos YAML que testam o projeto",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Definindo Jobs, Steps e Actions Reutilizáveis",
+          "body": "Dentro de um arquivo de workflow, um Job é composto por uma sequência de Steps (passos individuais) que rodam no mesmo Runner virtual. Os steps podem executar comandos shell simples (com a diretiva `run: npm test`) ou utilizar 'Actions' prontas criadas pela comunidade através da palavra-chave `uses:`. Um exemplo onipresente é a action `actions/checkout@v4`, que clona o código do repositório para dentro do runner virtual para que os passos seguintes possam compilar o projeto e rodar os testes.",
+          "tip": "O ecossistema do GitHub Marketplace possui milhares de actions prontas para configurar linguagens, enviar notificações no Slack e fazer deploy na AWS.",
+          "code": "jobs:\n  testar:\n    runs-on: ubuntu-latest\n    steps:\n      - name: Baixar o código do repositório\n        uses: actions/checkout@v4\n      - name: Instalar dependências e rodar testes\n        run: |\n          npm ci\n          npm test"
         }
       ],
       "questions": [
@@ -2153,16 +2153,16 @@
       "summary": "Revise o início do fluxo de colaboração: do fork até a criação de uma branch.",
       "lesson": [
         {
-          "title": "Isolando de ponta a ponta",
-          "body": "O fluxo ideal em projetos de código aberto combina Forks e Branches. Você faz o fork do projeto original para a sua conta para obter direitos de escrita seguros. No seu fork local, você jamais desenvolve diretamente na 'main'; você cria um branch descritivo para a nova funcionalidade. Isso mantém sua main alinhada ao projeto original, e cada branch gera um Pull Request independente.",
-          "code": "git clone <url-do-seu-fork>\ngit checkout -b feat-novo-botao\n# Criação de um ambiente limpo para o desenvolvimento",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Primeiro Passo da Contribuição: Fork e Clone",
+          "body": "Contribuir para projetos externos ou de código aberto segue um ritual consagrado que garante a segurança e a organização do repositório mantenedor. A primeira ação é sempre clicar no botão 'Fork' no GitHub para gerar sua própria cópia na nuvem. Em seguida, você clona essa cópia para o seu disco rígido local (`git clone <url-do-seu-fork>`). O repositório local resultante terá o remote `origin` apontando para o seu fork pessoal, onde você possui plenos direitos de escrita e onde enviará seu trabalho.",
+          "tip": "Antes de começar a programar no seu clone, configure imediatamente o remote `upstream` apontando para o projeto original para manter tudo sincronizado.",
+          "code": "# Clona seu fork pessoal recém-criado\ngit clone https://github.com/seu-usuario/projeto-comunitario.git\ncd projeto-comunitario\n\n# Configura o upstream oficial para acompanhar atualizações futuras\ngit remote add upstream https://github.com/organizacao/projeto-comunitario.git"
         },
         {
-          "title": "Sincronia constante com Upstream",
-          "body": "Enquanto você trabalha no seu branch, o projeto original pode receber atualizações. Para não ficar para trás, você deve configurar um remoto apontando para o original, chamado convencionalmente de 'upstream'. Periodicamente, você baixa as novidades de lá (fetch/pull) para o seu branch main e, a partir dali, traz para o seu branch atual, evitando pesadelos de integração no futuro.",
-          "code": "git remote add upstream <url-projeto-original>\ngit pull upstream main",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Criando a Branch Dedicada para a Contribuição",
+          "body": "Um erro gravíssimo cometido por iniciantes é começar a codificar diretamente na branch `main` do seu fork. Se você fizer alterações na `main`, você contaminará seu ramo base e terá enormes dificuldades para sincronizar seu fork com novas versões do projeto original no futuro, além de inviabilizar a abertura de múltiplos Pull Requests simultâneos para funcionalidades diferentes. A regra de ouro é: mantenha sua `main` estritamente limpa e crie SEMPRE uma branch com nome descritivo para cada contribuição pretendida.",
+          "tip": "Use `git switch -c feature-ajusta-layout` logo após clonar o projeto para trabalhar dentro de um ambiente seguro e isolado.",
+          "code": "# Garante que está na main limpa e cria a branch de contribuição\ngit switch main\ngit switch -c feature-ajusta-layout\n\n# Confirma que está na nova branch isolada antes de iniciar as edições\ngit branch"
         }
       ],
       "questions": [
@@ -2233,16 +2233,16 @@
       "summary": "Revise a etapa de registrar e enviar as mudanças feitas na branch.",
       "lesson": [
         {
-          "title": "Commits atômicos e descritivos",
-          "body": "No fluxo ideal de desenvolvimento corporativo, você não faz um commit gigantesco chamado 'dia de trabalho'. Em vez disso, realiza commits atômicos: pequenos agrupamentos de mudanças logicamente relacionadas. Se você consertou um bug e alterou uma cor na UI, devem ser dois commits. Isso facilita revisões de código granulares e reverter mudanças caso introduzam defeitos pontuais.",
-          "code": "git add auth.js\ngit commit -m \"Corrige erro de validação de token\"\n# Um commit, uma única responsabilidade lógica",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Construindo Commits Atômicos e Bem Documentados",
+          "body": "Após realizar as alterações de código necessárias para resolver a demanda na sua branch de funcionalidade, é hora de registrá-las. A boa prática prega a criação de commits 'atômicos': cada commit deve conter um conjunto coeso de alterações que cumpre um único propósito lógico bem definido. Evite agrupar correções de bug, refatorações visuais e alterações em documentação em um mesmo commit gigante. Utilize `git add <arquivos>` de forma seletiva e escreva mensagens descritivas seguindo padrões como Conventional Commits.",
+          "tip": "Commits atômicos facilitam enormemente a revisão no Pull Request e permitem reverter pontualmente uma alteração sem quebrar outras partes do sistema.",
+          "code": "# Seleciona apenas os arquivos modificados relativos àquela tarefa\ngit add src/components/Header.jsx\ngit add src/styles/header.css\n\n# Registra o commit atômico com mensagem clara\ngit commit -m \"style: ajusta espaçamento e responsividade do header\""
         },
         {
-          "title": "Atualizando a nuvem regularmente",
-          "body": "Fazer commits locais mantém seu histórico seguro, mas só fazer o push no fim da semana arrisca a perda de dados caso sua máquina pife. O fluxo recomendado é enviar seus commits para o seu branch remoto (push) com frequência, ao menos diariamente. Isso atua como um backup de segurança instantâneo e permite que outros membros da equipe vejam no que você está trabalhando, caso necessário.",
-          "code": "git push origin feat-login\n# Mantém o trabalho salvo na nuvem frequentemente",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Enviando a Branch Específica para o Fork Remoto",
+          "body": "Depois de gravar seus commits localmente, você deve enviá-los para o seu repositório remoto no GitHub para disponibilizá-los na web. É fundamental enviar a branch específica em que você trabalhou, e nunca a branch `main`. O comando canônico é `git push -u origin <nome-da-branch>`. Se você rodar o push sem antes ter commitado as alterações locais com `git commit`, o Git não enviará nada, pois o push só transmite commits efetivamente gravados no DAG local. Uma vez concluído o push, o GitHub disponibiliza o botão para abrir o Pull Request.",
+          "tip": "Ao dar push com sucesso de uma nova branch, o terminal do Git frequentemente imprime um link direto no console para você clicar e abrir o PR na web.",
+          "code": "# Envia a branch com suas alterações para o seu fork remoto no GitHub\ngit push -u origin feature-ajusta-layout\n\n# O comando exibe:\n# * [new branch] feature-ajusta-layout -> feature-ajusta-layout"
         }
       ],
       "questions": [
@@ -2313,16 +2313,16 @@
       "summary": "Revise a etapa final: abertura do pull request, revisão e merge.",
       "lesson": [
         {
-          "title": "Evitando o Merge do Caos",
-          "body": "Quando seu Pull Request está aprovado, a forma como o merge é feito importa. O fluxo profissional evita merges sujos na main. Algumas equipes preferem o Squash Merge, que amassa todos os pequenos commits (e eventuais errinhos arrumados) do seu PR em um único e limpo commit na branch principal. Isso garante que a história da main seja uma narrativa perfeitamente legível de novas entregas.",
-          "code": "# Squash ocorre geralmente via interface do GitHub na aprovação do PR.\n# Transforma 5 commits de testes em 1 commit definitivo.",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Abrindo o Pull Request no Repositório Original",
+          "body": "Após o envio da branch para o seu fork remoto, o próximo passo do fluxo colaborativo é a criação formal do Pull Request. Na interface do repositório original (ou no aviso automático que surge no seu fork), você clica em 'Compare & pull request'. Você seleciona a branch de destino do projeto oficial (Base: `main`) e a branch de origem do seu fork (Head/Compare: `feature-ajusta-layout`). Escreva um título descritivo e um resumo das mudanças propostas, incluindo testes manuais realizados e eventuais issues relacionadas.",
+          "tip": "Revise o diff gerado na tela do GitHub antes de clicar em 'Create pull request' para se certificar de que nenhum arquivo estranho escapou no envio.",
+          "code": "# No GitHub:\n# Base repository: organizacao/projeto (base: main)\n# Head repository: seu-usuario/projeto (compare: feature-ajusta-layout)\n# Clique em 'Create Pull Request' para submeter a revisão técnica."
         },
         {
-          "title": "Limpeza pós-integração",
-          "body": "O ciclo de vida de uma funcionalidade termina na limpeza. Quando o Pull Request é integrado à branch principal, o branch de desenvolvimento cumpriu sua missão. Uma boa prática do fluxo é deletar o branch do servidor remoto (GitHub) e também apagá-lo na sua máquina local. Isso mantém a lista de branches curta, apenas com os trabalhos em andamento reais.",
-          "code": "git branch -d feat-login\n# Deleta o branch localmente, mantendo o histórico de versões limpo",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Atendendo ao Review e Concluindo com o Merge",
+          "body": "Após submeter o Pull Request, os mantenedores do projeto realizam a revisão de código e os testes de CI rodam automaticamente. Caso os revisores solicitem qualquer alteração ou melhoria antes de aceitar a contribuição, você não deve fechar o PR. Basta fazer as alterações no seu computador na mesma branch local, rodar `git add`, `git commit` e dar `git push`. O PR no GitHub é atualizado de forma transparente. Assim que for aprovado, o mantenedor realiza o merge, incorporando definitivamente seu código ao projeto original.",
+          "tip": "Após o merge bem-sucedido do seu PR no projeto oficial, você pode apagar com segurança a branch de funcionalidade tanto localmente quanto no seu fork.",
+          "code": "# Respondendo a um pedido de ajuste na mesma branch aberta\ngit switch feature-ajusta-layout\n# ajusta o código conforme o feedback...\ngit commit -am \"fix: corrige alinhamento em telas móveis\"\ngit push origin feature-ajusta-layout"
         }
       ],
       "questions": [
@@ -2393,16 +2393,16 @@
       "summary": "Revise o fluxo completo de colaboração no Git e no GitHub, do início ao fim.",
       "lesson": [
         {
-          "title": "Unindo todas as peças",
-          "body": "O ciclo completo do Git e GitHub para um desenvolvedor moderno é um ritual harmonioso. Começamos com a clonagem e configuração local, passamos pela criação de branches limpos, commits atômicos descritivos e uso estratégico da staging area. Cada passo dado constrói uma rede de segurança para a sua produtividade e documenta exatamente como a mente de sua equipe funciona e evolui.",
-          "code": "# Clonar -> Branch -> Add/Commit -> Push -> Pull Request -> CI -> Merge\n# O ritual sagrado do desenvolvimento de software seguro.",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "A Síntese do Ciclo Ponta a Ponta no Git",
+          "body": "Dominar o Git e o GitHub consiste em integrar com naturalidade todas as peças que compõem o fluxo de desenvolvimento moderno: clonagem e configuração de remotes (`origin` e `upstream`), disciplina de isolamento estrito com branches semânticas, manipulação refinada do Staging Area com `git add`, gravação de commits atômicos com mensagens padronizadas, testes contínuos com GitHub Actions, colaboração via Pull Requests com code review construtivo e resolução madura de eventuais conflitos no merge.",
+          "tip": "Esse ciclo de vida profissional é exatamente o mesmo utilizado por times de alto desempenho nas maiores empresas de tecnologia do mundo.",
+          "code": "# O ciclo contínuo de trabalho profissional:\n# Fork -> Clone -> Branch -> Code -> Add -> Commit -> Push -> PR -> Review -> CI -> Merge!"
         },
         {
-          "title": "Controle de versão no longo prazo",
-          "body": "No começo, aprender Git exige atenção a detalhes e decoração de comandos, e pode parecer complexo. Com prática contínua, esses fluxos tornam-se memória muscular. Dominar Git não é apenas saber recuperar arquivos apagados, mas ter confiança plena para refatorar sistemas inteiros sem medo, sabendo que a máquina do tempo do repositório sempre guardará suas costas de qualquer desastre.",
-          "code": "git status\n# Sua bússola eterna em qualquer projeto de software.",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "title": "Higiene e Manutenção Contínua do Repositório",
+          "body": "Após a conclusão e integração de um projeto ou funcionalidade, um bom engenheiro de software pratica a higiene do repositório. Isso inclui atualizar a sua branch `main` local com as novidades mescladas no `upstream`, deletar branches de features antigas já integradas (`git branch -d nome-da-branch`) para manter a lista de referências limpa e podar referências remotas que deixaram de existir com `git fetch --prune`. Manter o repositório organizado evita confusão e assegura que a próxima tarefa se inicie sobre bases sólidas.",
+          "tip": "Execute periodicamente `git fetch --prune` para limpar referências de branches que já foram apagadas no repositório remoto.",
+          "code": "# Sincroniza a main com o upstream e remove a branch concluída\ngit switch main\ngit pull upstream main\ngit push origin main\ngit branch -d feature-ajusta-layout\ngit fetch --prune"
         }
       ],
       "questions": [
