@@ -73,14 +73,14 @@
       "summary": "Entenda o esqueleto de toda página HTML: doctype, html, head e body.",
       "lesson": [
         {
-          "title": "O esqueleto de uma página",
-          "body": "Todo arquivo HTML começa com <!DOCTYPE html>, que avisa ao navegador qual versão do HTML usar. Depois vem a tag <html>, que envolve tudo. Dentro dela ficam <head> (informações da página, não visíveis) e <body> (o conteúdo visível).",
-          "code": "<!DOCTYPE html>\n<html>\n  <head>\n    <title>Minha página</title>\n  </head>\n  <body>\n    <h1>Olá, mundo!</h1>\n  </body>\n</html>"
+          "title": "O esqueleto fundamental",
+          "body": "Todo documento HTML precisa de uma estrutura para ser interpretado. A tag <!DOCTYPE html> informa a versão. A <html> engloba o <head> (metadados) e o <body> (conteúdo visual).",
+          "code": "<!DOCTYPE html>\n<html>\n<head><title>Olá</title></head>\n<body><h1>Oi</h1></body>\n</html>"
         },
         {
-          "title": "O que vai em cada parte",
-          "body": "O <head> guarda metadados: título da aba (<title>), charset, links para CSS. O <body> guarda tudo que aparece na tela: textos, imagens, botões. Só existe um <body> por página.",
-          "code": "<head>\n  <meta charset=\"UTF-8\">\n  <title>Loja Online</title>\n</head>"
+          "title": "Cabeçalho e Corpo",
+          "body": "O <head> guarda configurações como codificação e título. O <body> é onde colocamos tudo que o usuário realmente vê na tela. Sem o <body>, nossa página fica completamente em branco.",
+          "code": "<head>\n  <meta charset=\"UTF-8\">\n  <title>Teste</title>\n</head>\n<body>\n  <p>Texto</p>\n</body>"
         }
       ],
       "questions": [
@@ -151,14 +151,14 @@
       "summary": "Aprenda como tags se abrem, fecham e se aninham para formar elementos.",
       "lesson": [
         {
-          "title": "Abrindo e fechando tags",
-          "body": "A maioria das tags tem abertura e fechamento: <p>texto</p>. O conjunto de tag de abertura + conteúdo + tag de fechamento forma um elemento. Elementos podem conter outros elementos dentro deles — isso se chama aninhamento.",
-          "code": "<p>Este texto tem <strong>uma parte em negrito</strong> dentro do parágrafo.</p>"
+          "title": "Anatomia das Tags",
+          "body": "Elementos HTML são formados por tags de abertura e fechamento. O aninhamento permite colocar caixas dentro de caixas, sempre fechando primeiro a que foi aberta por último.",
+          "code": "<div>\n  <p>Isso é <strong>importante</strong></p>\n</div>"
         },
         {
-          "title": "Elementos vazios",
-          "body": "Algumas tags não têm conteúdo nem fechamento, como <img>, <br> e <input>. Elas são chamadas de elementos vazios (ou auto-fechados) e carregam toda informação em seus atributos.",
-          "code": "<img src=\"logo.png\" alt=\"Logo\">\n<br>\n<input type=\"text\">"
+          "title": "Elementos Vazios",
+          "body": "Algumas tags, como as de imagens e quebras de linha, não contêm texto interno e não precisam ser fechadas. São chamadas de elementos vazios ou auto-fechados.",
+          "code": "<img src=\"foto.jpg\" alt=\"Minha foto\">\n<br>\n<input type=\"text\">"
         }
       ],
       "questions": [
@@ -229,14 +229,14 @@
       "summary": "Use atributos para dar informações extras às tags, como id, class e src.",
       "lesson": [
         {
-          "title": "O que é um atributo",
-          "body": "Atributos ficam dentro da tag de abertura e dão informações extras ao elemento, no formato nome=\"valor\". Todo elemento pode ter vários atributos, separados por espaço.",
-          "code": "<a href=\"https://exemplo.com\" target=\"_blank\">Visitar site</a>"
+          "title": "O poder dos Atributos",
+          "body": "Atributos vão na tag de abertura e modificam seu comportamento. Eles seguem o formato nome=\"valor\", indicando endereços de links ou a origem de arquivos de imagem na página.",
+          "code": "<a href=\"https://google.com\">Ir para o Google</a>\n<img src=\"img.png\" width=\"100\">"
         },
         {
-          "title": "id e class",
-          "body": "id identifica um único elemento na página (não pode repetir). class pode ser usada em vários elementos e serve para agrupá-los, geralmente para aplicar o mesmo estilo com CSS.",
-          "code": "<div id=\"cabecalho\">\n  <p class=\"destaque\">Oferta especial</p>\n  <p class=\"destaque\">Só hoje</p>\n</div>"
+          "title": "Identificadores e Classes",
+          "body": "Os atributos class e id são os mais usados. O id deve ser único em toda a página, como um CPF, enquanto a class pode se repetir, ideal para estilizar vários botões iguais no CSS.",
+          "code": "<div id=\"topo\">\n  <p class=\"texto\">P1</p>\n  <p class=\"texto\">P2</p>\n</div>"
         }
       ],
       "questions": [
@@ -307,14 +307,14 @@
       "summary": "Organize o texto da página com títulos, parágrafos e ênfase.",
       "lesson": [
         {
-          "title": "Hierarquia de títulos",
-          "body": "HTML tem seis níveis de título: <h1> até <h6>. <h1> é o mais importante (geralmente só um por página) e a importância vai diminuindo até <h6>. Use a ordem certa para organizar o conteúdo, não só pelo tamanho da fonte.",
-          "code": "<h1>Loja de Roupas</h1>\n<h2>Novidades</h2>\n<h3>Camisetas</h3>"
+          "title": "Hierarquia de Títulos",
+          "body": "Use h1 a h6 para estruturar a importância do conteúdo. O h1 deve ser o título principal da página (apenas um por arquivo) e os demais definem subseções logicamente.",
+          "code": "<h1>Assunto Principal</h1>\n<h2>Subtópico</h2>\n<h3>Detalhe</h3>"
         },
         {
-          "title": "Parágrafos e ênfase",
-          "body": "Use <p> para blocos de texto. Para dar ênfase, <strong> deixa o texto em negrito com importância semântica, e <em> deixa em itálico indicando ênfase. Prefira essas tags a <b> e <i>, que são só visuais.",
-          "code": "<p>Este produto está com <strong>50% de desconto</strong> apenas hoje.</p>"
+          "title": "Ênfase no Texto",
+          "body": "A tag p é para parágrafos. Use strong para dar peso semântico e visual de negrito, e em para aplicar itálico. Ambas ajudam leitores de tela a entender a entonação.",
+          "code": "<p>Hoje tem <strong>promoção</strong>!</p>\n<p>Estou <em>muito</em> feliz.</p>"
         }
       ],
       "questions": [
@@ -385,14 +385,14 @@
       "summary": "Conecte páginas com a tag <a> e o atributo href.",
       "lesson": [
         {
-          "title": "Criando um link",
-          "body": "A tag <a> cria um link (âncora). O atributo href define para onde ele leva: outra página, outro site ou até uma parte da mesma página. O texto entre <a> e </a> é o que fica clicável.",
-          "code": "<a href=\"contato.html\">Fale conosco</a>\n<a href=\"https://exemplo.com\">Site externo</a>"
+          "title": "Navegação Web",
+          "body": "Os links, criados com a tag a, conectam a internet. O atributo href aponta o destino do clique. Pode ser um site externo ou outra página do seu próprio projeto, conectando os arquivos.",
+          "code": "<a href=\"sobre.html\">Sobre nós</a>\n<a href=\"https://site.com\">Site Externo</a>"
         },
         {
-          "title": "Links internos e âncoras",
-          "body": "Para pular para uma parte da mesma página, use href=\"#id-do-elemento\", apontando para um elemento com esse id. É útil em páginas longas com sumário.",
-          "code": "<a href=\"#secao-precos\">Ver preços</a>\n...\n<h2 id=\"secao-precos\">Preços</h2>"
+          "title": "Âncoras e Pulos Internos",
+          "body": "Para rolar a tela até um ponto específico, colocamos no href o símbolo # seguido do id do elemento de destino. É assim que botões de voltar ao topo funcionam perfeitamente na página.",
+          "code": "<a href=\"#rodape\">Ir para o fim</a>\n...\n<h2 id=\"rodape\">Fim do artigo</h2>"
         }
       ],
       "questions": [
@@ -463,14 +463,14 @@
       "summary": "Organize itens com listas não ordenadas e ordenadas.",
       "lesson": [
         {
-          "title": "Listas não ordenadas",
-          "body": "<ul> cria uma lista sem ordem numérica (com marcadores). Cada item vai dentro de <li>. É ótima para menus, ingredientes, características de um produto.",
-          "code": "<ul>\n  <li>Leite</li>\n  <li>Ovos</li>\n  <li>Farinha</li>\n</ul>"
+          "title": "Listas Não Ordenadas",
+          "body": "Se a ordem dos itens não importa (ex: compras), usamos ul. Seus itens internos recebem a tag li e ganham pequenas bolinhas à esquerda por padrão na maioria dos navegadores web.",
+          "code": "<ul>\n  <li>Maçã</li>\n  <li>Pêra</li>\n</ul>"
         },
         {
-          "title": "Listas ordenadas",
-          "body": "<ol> cria uma lista numerada automaticamente, útil para passo a passo. Os itens também usam <li>. Listas podem ser aninhadas, colocando uma <ul> ou <ol> dentro de um <li>.",
-          "code": "<ol>\n  <li>Misture os ingredientes</li>\n  <li>Asse por 30 minutos</li>\n  <li>Deixe esfriar</li>\n</ol>"
+          "title": "Listas Numeradas",
+          "body": "Listas feitas com ol inserem números sequenciais automaticamente. São ótimas para tutoriais e receitas. Se adicionar um item no meio, a contagem se ajusta sozinha no HTML inteiro.",
+          "code": "<ol>\n  <li>Corte a cebola</li>\n  <li>Frite</li>\n</ol>"
         }
       ],
       "questions": [
@@ -541,14 +541,14 @@
       "summary": "Insira imagens com <img> e escreva textos alternativos úteis.",
       "lesson": [
         {
-          "title": "Inserindo uma imagem",
-          "body": "<img> é um elemento vazio que exibe uma imagem. O atributo src indica o caminho do arquivo (local ou uma URL), e é obrigatório para a imagem aparecer.",
-          "code": "<img src=\"produto.jpg\">\n<img src=\"https://exemplo.com/logo.png\">"
+          "title": "Inserindo Imagens",
+          "body": "A tag vazia img é responsável por exibir gráficos e fotos. Sem o atributo src com o caminho correto do arquivo, a imagem não carregará, exibindo apenas um ícone quebrado na interface.",
+          "code": "<img src=\"assets/logo.png\">"
         },
         {
-          "title": "O atributo alt",
-          "body": "alt descreve a imagem em texto. É essencial para acessibilidade (leitores de tela) e aparece se a imagem não carregar. Toda imagem com significado deve ter um alt descritivo.",
-          "code": "<img src=\"gato.jpg\" alt=\"Gato laranja dormindo no sofá\">"
+          "title": "Acessibilidade com Alt",
+          "body": "O texto no atributo alt garante que cegos que usam leitores de tela saibam o que é a imagem. Também serve para SEO e aparece caso a conexão caia durante o carregamento dos recursos gráficos.",
+          "code": "<img src=\"dog.jpg\" alt=\"Cachorro marrom brincando\">"
         }
       ],
       "questions": [
@@ -619,14 +619,14 @@
       "summary": "Organize dados em linhas e colunas com <table>.",
       "lesson": [
         {
-          "title": "Estrutura de uma tabela",
-          "body": "<table> envolve a tabela inteira. <tr> cria uma linha (table row). Dentro de cada linha, <td> cria uma célula de dado (table data).",
-          "code": "<table>\n  <tr>\n    <td>Camiseta</td>\n    <td>R$ 49,90</td>\n  </tr>\n</table>"
+          "title": "A Estrutura da Tabela",
+          "body": "Para organizar dados, iniciamos com table. Cada tr cria uma linha horizontal. Dentro da linha, o td cria a célula. Tabelas não devem ser usadas para fazer layout de páginas modernas!",
+          "code": "<table>\n  <tr>\n    <td>Item 1</td>\n    <td>R$ 10</td>\n  </tr>\n</table>"
         },
         {
-          "title": "Cabeçalho da tabela",
-          "body": "<th> cria uma célula de cabeçalho, geralmente em negrito e centralizada, usada para nomear as colunas. Use-a na primeira linha para explicar o que cada coluna representa.",
-          "code": "<table>\n  <tr>\n    <th>Produto</th>\n    <th>Preço</th>\n  </tr>\n  <tr>\n    <td>Camiseta</td>\n    <td>R$ 49,90</td>\n  </tr>\n</table>"
+          "title": "Cabeçalhos Claros",
+          "body": "Para definir o título de uma coluna ou linha, trocamos o td por th. Essa marcação centraliza e deixa o texto em negrito, informando aos leitores que aquilo descreve uma categorização de dados.",
+          "code": "<table>\n  <tr>\n    <th>Nome</th>\n    <th>Idade</th>\n  </tr>\n</table>"
         }
       ],
       "questions": [
@@ -697,14 +697,14 @@
       "summary": "Colete informações do usuário com <form>, <input> e <button>.",
       "lesson": [
         {
-          "title": "A tag <form>",
-          "body": "<form> agrupa campos que coletam dados do usuário, como em um cadastro ou login. Dentro dela ficam elementos como <input> e <button>.",
-          "code": "<form>\n  <input type=\"text\">\n  <button>Enviar</button>\n</form>"
+          "title": "Caixa de Coleta",
+          "body": "A tag form agrupa dados do usuário para serem enviados. Tudo inserido dentro dele (botões, caixas de texto) vira um pacote disparado para o servidor de uma só vez quando submetido.",
+          "code": "<form action=\"/envia\" method=\"POST\">\n  <!-- inputs aqui -->\n</form>"
         },
         {
-          "title": "Campos de entrada",
-          "body": "<input> é o elemento mais usado em formulários. O atributo type define o tipo de campo, como texto, senha ou e-mail. <button> cria um botão clicável, geralmente para enviar o formulário.",
-          "code": "<input type=\"text\" placeholder=\"Seu nome\">\n<input type=\"password\" placeholder=\"Senha\">\n<button>Entrar</button>"
+          "title": "Inputs e Botões",
+          "body": "O elemento input recebe dados, variando pelo tipo. Com o type=\"password\", o que se digita fica oculto. Usamos o botão no final para confirmar e enviar tudo que foi digitado acima.",
+          "code": "<input type=\"text\" placeholder=\"Seu login\">\n<input type=\"password\">\n<button>Logar</button>"
         }
       ],
       "questions": [
@@ -775,14 +775,14 @@
       "summary": "Explore os diferentes tipos de campo: email, number, checkbox e radio.",
       "lesson": [
         {
-          "title": "Tipos comuns",
-          "body": "Além de text e password, existem tipos como email (valida formato de e-mail), number (só aceita números) e date (seletor de data). O navegador ajuda a validar automaticamente cada tipo.",
-          "code": "<input type=\"email\" placeholder=\"seu@email.com\">\n<input type=\"number\" min=\"1\" max=\"10\">"
+          "title": "Validação Básica",
+          "body": "O HTML moderno verifica campos antes de enviar. Inputs do type email exigem a arroba e o formato certo, enquanto number permite escolher valores numéricos entre mínimo e máximo configurados.",
+          "code": "<input type=\"email\" placeholder=\"a@b.com\">\n<input type=\"number\" min=\"1\" max=\"10\">"
         },
         {
-          "title": "Checkbox e radio",
-          "body": "checkbox permite marcar várias opções independentes. radio permite escolher apenas uma opção entre um grupo — para isso, todos os radios do grupo devem ter o mesmo atributo name.",
-          "code": "<input type=\"checkbox\"> Aceito os termos\n\n<input type=\"radio\" name=\"plano\"> Mensal\n<input type=\"radio\" name=\"plano\"> Anual"
+          "title": "Alternativas e Seleção",
+          "body": "Checkbox deixa marcar várias opções (ex: interesses). O Radio cria um grupo onde apenas um é selecionável por vez, ideal para perguntas como Sim ou Não. Precisam do atributo name em comum.",
+          "code": "<input type=\"radio\" name=\"sn\" value=\"s\"> Sim\n<input type=\"radio\" name=\"sn\" value=\"n\"> Não"
         }
       ],
       "questions": [
@@ -853,14 +853,14 @@
       "summary": "Use <label> para acessibilidade e required para validação simples.",
       "lesson": [
         {
-          "title": "Conectando label ao input",
-          "body": "<label> descreve um campo. Usando o atributo for com o mesmo valor do id do input, clicar no texto do label foca automaticamente o campo — ótimo para acessibilidade e usabilidade.",
-          "code": "<label for=\"nome\">Nome completo</label>\n<input id=\"nome\" type=\"text\">"
+          "title": "Ampliando a área de clique",
+          "body": "O elemento label se conecta a um campo através do id. Isso faz com que clicar no texto da palavra foque diretamente na caixinha de input. Ajuda absurdamente a usabilidade no celular.",
+          "code": "<label for=\"nome\">Nome:</label>\n<input type=\"text\" id=\"nome\">"
         },
         {
-          "title": "Validação simples com required",
-          "body": "O atributo required impede o envio do formulário se o campo estiver vazio, sem precisar de JavaScript. É uma validação básica feita pelo próprio navegador.",
-          "code": "<label for=\"email\">E-mail</label>\n<input id=\"email\" type=\"email\" required>"
+          "title": "Impedindo o envio vazio",
+          "body": "Pela tag form, podemos travar campos em branco aplicando o atributo required direto no input. O sistema exibe um aviso se o usuário esquecer de preenchê-lo antes de confirmar os dados.",
+          "code": "<form>\n  <input type=\"text\" required>\n  <button>Salvar</button>\n</form>"
         }
       ],
       "questions": [
@@ -931,14 +931,14 @@
       "summary": "Use tags que descrevem o significado das seções, não só a aparência.",
       "lesson": [
         {
-          "title": "Por que usar tags semânticas",
-          "body": "Em vez de usar só <div> para tudo, HTML5 tem tags que descrevem a função de cada área: <header> (cabeçalho), <nav> (navegação), <main> (conteúdo principal) e <footer> (rodapé). Isso ajuda buscadores e leitores de tela a entender a página.",
-          "code": "<header>\n  <h1>Minha Loja</h1>\n  <nav>...</nav>\n</header>\n<main>...</main>\n<footer>...</footer>"
+          "title": "Fim do festival de divs",
+          "body": "HTML Semântico é usar as tags certas. Usar header para o topo e footer para rodapés indica aos robôs do Google e a deficientes visuais as delimitações exatas de cada parte do documento.",
+          "code": "<header>Logo e Menu</header>\n<main>Conteúdo Principal</main>\n<footer>© 2023</footer>"
         },
         {
-          "title": "section e article",
-          "body": "<section> agrupa uma parte temática do conteúdo, geralmente com seu próprio título. <article> representa um conteúdo independente, que faria sentido sozinho, como um post de blog ou notícia.",
-          "code": "<section>\n  <h2>Últimas notícias</h2>\n  <article>\n    <h3>Título da notícia</h3>\n    <p>Resumo do conteúdo...</p>\n  </article>\n</section>"
+          "title": "Cortando Conteúdos",
+          "body": "As sections criam divisões temáticas. O article isola conteúdos autossuficientes, que fariam sentido se lidos fora daquela página (como uma notícia). Evita-se divs quando há sentido descritivo.",
+          "code": "<article>\n  <h2>Notícia do Dia</h2>\n  <p>Detalhes...</p>\n</article>"
         }
       ],
       "questions": [
@@ -1009,14 +1009,14 @@
       "summary": "Conecte estilos ao HTML com CSS externo, interno ou inline.",
       "lesson": [
         {
-          "title": "As três formas de aplicar CSS",
-          "body": "CSS pode ser: inline (atributo style direto na tag), interno (dentro de <style> no <head>) ou externo (arquivo .css separado, ligado com <link>). O externo é o mais usado, pois separa conteúdo de estilo e pode ser reaproveitado em várias páginas.",
-          "code": "<link rel=\"stylesheet\" href=\"estilos.css\">"
+          "title": "A Importação do Estilo",
+          "body": "A tag vazia link busca um arquivo CSS (folha de estilo) na internet ou pasta local para embelezar o HTML. Separar os papéis mantém o código enxuto, muito mais elegante e fácil de manter.",
+          "code": "<head>\n  <link rel=\"stylesheet\" href=\"style.css\">\n</head>"
         },
         {
-          "title": "Seletor básico",
-          "body": "Um seletor escolhe quais elementos receberão o estilo. O seletor de tag aplica a todos os elementos daquele tipo, como p { } para todos os parágrafos.",
-          "code": "p {\n  color: blue;\n}\n\nh1 {\n  color: darkred;\n}"
+          "title": "Estilos Locais Inflexíveis",
+          "body": "Podemos colocar uma tag style no cabeçalho, ou digitar style=\"color:red\" dentro de um elemento para pintar algo isolado. Porém, estilos inline não são reaproveitáveis e sujam o código html purista.",
+          "code": "<p style=\"color: blue;\">Azul!</p>"
         }
       ],
       "questions": [
@@ -1087,14 +1087,14 @@
       "summary": "Controle cores de texto, fundo e a fonte usada na página.",
       "lesson": [
         {
-          "title": "Definindo cores",
-          "body": "color define a cor do texto. background-color define a cor de fundo. Cores podem ser escritas por nome (red), hexadecimal (#ff0000) ou rgb(255, 0, 0).",
-          "code": "h1 {\n  color: #1e293b;\n  background-color: #fef3c7;\n}"
+          "title": "Cores de fundo e texto",
+          "body": "A propriedade color pinta letras, enquanto o background-color pinta a cor do espaço do elemento todo. Podem ser textuais (red) ou os complexos valores hexadecimais em RGB (ex: #00ff00 para verde limão).",
+          "code": "h1 {\n  color: #ff0000;\n  background-color: black;\n}"
         },
         {
-          "title": "Fontes",
-          "body": "font-family escolhe a fonte usada. É comum listar várias opções separadas por vírgula, como reserva caso a primeira não esteja disponível. font-size controla o tamanho do texto.",
-          "code": "body {\n  font-family: Arial, Helvetica, sans-serif;\n  font-size: 16px;\n}"
+          "title": "Afinando as Tipografias",
+          "body": "Font-family troca a fonte (Arial, Helvetica), e pode engatar alternativas se a primeira falhar. Font-size dita a grandeza, enquanto font-weight decide se a letra será normal ou robustamente negritada.",
+          "code": "p {\n  font-family: sans-serif;\n  font-size: 16px;\n}"
         }
       ],
       "questions": [
@@ -1165,14 +1165,14 @@
       "summary": "Entenda como margin, border, padding e o conteúdo formam cada elemento.",
       "lesson": [
         {
-          "title": "As quatro camadas",
-          "body": "Todo elemento HTML é uma caixa com quatro camadas, de dentro para fora: conteúdo, padding (espaço interno), border (borda) e margin (espaço externo, entre elementos).",
-          "code": "div {\n  padding: 16px;\n  border: 2px solid black;\n  margin: 24px;\n}"
+          "title": "Caixas de Dimensões",
+          "body": "Na web, tudo são retângulos formatados pelo Box Model. O objeto é formado por largura, espaçamento interno (padding), borda desenhada (border) e o respiro externo empurrador vizinho (margin).",
+          "code": ".caixa {\n  padding: 10px;\n  border: 1px solid black;\n  margin: 5px;\n}"
         },
         {
-          "title": "padding vs margin",
-          "body": "padding empurra o conteúdo para dentro da própria caixa (afeta o espaço interno). margin empurra a caixa inteira para longe de outros elementos (afeta o espaço externo). Confundir os dois é um erro comum.",
-          "code": "/* padding: espaço DENTRO da borda */\n/* margin: espaço FORA da borda */"
+          "title": "A diferença entre Margem e Padding",
+          "body": "O padding funciona como uma espuma de parede, estufando o bloco por dentro, afastando texto da linha. O margin age forçando o vizinho pra longe pelo lado de fora sem alterar a pintura da caixa em si.",
+          "code": ".btn {\n  padding: 15px; /* Cresce a área pintada */\n  margin-top: 20px; /* Empurra pra afastar */\n}"
         }
       ],
       "questions": [
@@ -1243,14 +1243,14 @@
       "summary": "Combine classes, ids e descendentes para mirar elementos com precisão.",
       "lesson": [
         {
-          "title": "Classe e id no CSS",
-          "body": "Para selecionar por classe, use um ponto antes do nome: .destaque. Para selecionar por id, use uma cerquilha: #cabecalho. Classes são reutilizáveis; ids devem ser únicos.",
-          "code": ".destaque {\n  color: red;\n}\n\n#cabecalho {\n  background: black;\n}"
+          "title": "A magia dos Seletores",
+          "body": "Escrever o nome do elemento aplica a todos. Se colocarmos ponto (.card), afetamos só componentes daquela classe (reutilizável). O hashtag (#logo) estiliza especificamente apenas aquele ID pontual exclusivo.",
+          "code": "p { color: gray; }\n.aviso { border: red; }\n#unico { width: 10px; }"
         },
         {
-          "title": "Seletor descendente",
-          "body": "Colocar dois seletores separados por espaço seleciona elementos que estão dentro de outro. nav a seleciona apenas links <a> que estão dentro de um <nav>, não todos os links da página.",
-          "code": "nav a {\n  color: white;\n  text-decoration: none;\n}"
+          "title": "Agrupamentos e Filtros",
+          "body": "Unimos tags com vírgula para dar o mesmo estilo sem redigitar tudo. Podemos ainda buscar só um item dentro do outro: \"nav a\" afeta apenas e tão somente os links soltos dentro de contêineres nav.",
+          "code": "h1, h2 { color: black; }\n.menu a { text-decoration: none; }"
         }
       ],
       "questions": [
@@ -1321,14 +1321,14 @@
       "summary": "Controle como elementos ocupam espaço com display e position.",
       "lesson": [
         {
-          "title": "block, inline e inline-block",
-          "body": "Elementos block (como <div>, <p>) ocupam toda a largura disponível e começam em nova linha. Elementos inline (como <span>, <a>) ficam na mesma linha e só ocupam o espaço do conteúdo. inline-block mistura os dois: fica na linha, mas aceita largura e altura.",
-          "code": "span {\n  display: inline-block;\n  width: 100px;\n}"
+          "title": "Manipulando o bloco no fluxo",
+          "body": "A propriedade display é fundamental. Blocos normais (block) empurram outros para a próxima linha e ocupam tudo. Elementos como texto em linha (inline) seguem lado a lado espremidos ocupando só seu volume e dispensando metrificação.",
+          "code": ".caixa { display: block; }\n.texto { display: inline; }"
         },
         {
-          "title": "position básico",
-          "body": "position: relative move o elemento em relação à sua posição normal, sem tirar o espaço que ele ocupava. position: absolute tira o elemento do fluxo normal e o posiciona em relação ao ancestral posicionado mais próximo.",
-          "code": ".card {\n  position: relative;\n}\n.badge {\n  position: absolute;\n  top: 8px;\n  right: 8px;\n}"
+          "title": "Fugindo da linha gravitacional",
+          "body": "O position fixed prega um cabeçalho no teto, não sendo rolado com a página nunca. Já o absolute desloca as peças pelas cordenadas matemáticas fixas sobre as demais retirando ele do engarrafamento do fluxo original nativo.",
+          "code": ".header { position: fixed; top: 0; }"
         }
       ],
       "questions": [
@@ -1399,14 +1399,14 @@
       "summary": "Alinhe elementos em linha ou coluna com display: flex.",
       "lesson": [
         {
-          "title": "Ativando o flexbox",
-          "body": "display: flex transforma um elemento em um container flexível: seus filhos diretos se organizam automaticamente em linha, um ao lado do outro, sem precisar de float ou position.",
-          "code": ".menu {\n  display: flex;\n}"
+          "title": "Poder do eixo Flexbox",
+          "body": "Aplicar display flex no pai transforma seus filhos, que antes empilhavam, a fluir um ao lado do outro flexivelmente. Ele resolve antigas dores pesadas de alinhamentos na tela perfeitamente e alinha tudo.",
+          "code": ".container {\n  display: flex;\n}"
         },
         {
-          "title": "Alinhando os itens",
-          "body": "justify-content alinha os itens no eixo horizontal (space-between, center, flex-end...). align-items alinha no eixo vertical dentro do container (center, flex-start, stretch...).",
-          "code": ".menu {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}"
+          "title": "Dobrando direções",
+          "body": "O flex naturalmente distribui horizontal (flex-direction: row). Mas se precisar que caixas desçam formatadas sem quebrar as facilidades da malha, usamos column, alterando o sentido lógico primário ativo sem danificar formatações.",
+          "code": ".menu { display: flex; flex-direction: column; }"
         }
       ],
       "questions": [
@@ -1477,14 +1477,14 @@
       "summary": "Use flex-direction, flex-wrap e gap para montar layouts reais.",
       "lesson": [
         {
-          "title": "Direção e quebra de linha",
-          "body": "flex-direction: column empilha os itens verticalmente, em vez da linha padrão. flex-wrap: wrap permite que os itens quebrem para a próxima linha quando não cabem mais, em vez de espremer tudo.",
-          "code": ".galeria {\n  display: flex;\n  flex-wrap: wrap;\n}"
+          "title": "O Alinhamento Absoluto",
+          "body": "Justify-content controla o espaçamento e disposição na linha vital principal de fluxo flex. Align-items alinha o bloco cruzado, perfeitamente útil pra colocar caixas retas no centro vertical absoluto exato no layout em renderizações originais.",
+          "code": ".nav {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n}"
         },
         {
-          "title": "Espaçamento com gap",
-          "body": "gap define o espaço entre os itens flex, sem precisar de margin em cada um individualmente. É a forma moderna e mais simples de espaçar itens dentro de um flex container.",
-          "code": ".galeria {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 16px;\n}"
+          "title": "Buracos e Quebras Limpas",
+          "body": "No flex, o comando gap insere espaço só entre peças, limpando formatações com margens laterais indesejadas em sobras laterais pontuais nas telas ativas em redimensionamento na adaptação na visualização original limpa plástica global fluída flexível da div.",
+          "code": ".galeria { display: flex; gap: 10px; flex-wrap: wrap; }"
         }
       ],
       "questions": [
@@ -1555,14 +1555,14 @@
       "summary": "Crie layouts em grade com display: grid e grid-template-columns.",
       "lesson": [
         {
-          "title": "Ativando o grid",
-          "body": "display: grid transforma um elemento em um container de grade. grid-template-columns define quantas colunas existem e a largura de cada uma.",
-          "code": ".produtos {\n  display: grid;\n  grid-template-columns: 1fr 1fr 1fr;\n  gap: 16px;\n}"
+          "title": "As grades bidimensionais nativas",
+          "body": "Enquanto o flex se dá bem com linhas ou colunas, usar display grid habilita formatações tridimensionais poderosas onde dividimos espaços em cruzamentos reais fixados de colunas passíveis dinâmicas lógicas exatas e ativas.",
+          "code": ".grid { display: grid; }"
         },
         {
-          "title": "A unidade fr",
-          "body": "fr representa uma fração do espaço disponível. grid-template-columns: 1fr 1fr 1fr cria três colunas de larguras iguais. 2fr 1fr criaria duas colunas, a primeira com o dobro da largura da segunda.",
-          "code": ".layout {\n  display: grid;\n  grid-template-columns: 2fr 1fr;\n}"
+          "title": "Distribuindo espaços com frações lógicas",
+          "body": "Desenhamos trilhas ativadas no grid-template-columns. Usar 1fr é dar uma fração livre ao espaço sobrando no painel de ponta a ponta perfeitamente ativando proporções automáticas base em cálculos exatos estruturais estritos lógicos nativos passivos base.",
+          "code": ".layout {\n  display: grid;\n  grid-template-columns: 200px 1fr;\n}"
         }
       ],
       "questions": [
@@ -1633,14 +1633,14 @@
       "summary": "Combine linhas, colunas e alinhamento para montar telas completas.",
       "lesson": [
         {
-          "title": "Linhas e responsividade simples",
-          "body": "Além das colunas, dá para definir grid-template-rows para a altura das linhas. auto-fit e minmax() ajudam a criar grades que se ajustam sozinhas ao espaço disponível, sem media queries.",
-          "code": ".galeria {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));\n  gap: 12px;\n}"
+          "title": "Fundindo peças pelo Grid",
+          "body": "O grid-column dita onde o item estampa sua marca, furando células nativas orgânicas. Dizer 1 / 3 avisa pro bloco esticar seu limite visual englobando todo perímetro ativando o contêiner dinamicamente sem fraturas estéticas.",
+          "code": ".topo { grid-column: 1 / 3; }"
         },
         {
-          "title": "Alinhando itens no grid",
-          "body": "Assim como no flexbox, justify-items e align-items alinham o conteúdo dentro de cada célula da grade. place-items é um atalho que define os dois de uma vez.",
-          "code": ".card-grid {\n  display: grid;\n  place-items: center;\n}"
+          "title": "Automatizando os cartões",
+          "body": "Telas de loja inteiras surgem de grid-template-columns usando repeat(auto-fit, ...). Ela encaixa sozinho centenas de imagens nativas estruturadas plásticas, mantendo a largura do minmax() em qualquer redimensionamento na largura sem perder limite limpo flexível.",
+          "code": ".cards {\n  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));\n}"
         }
       ],
       "questions": [
@@ -1711,14 +1711,14 @@
       "summary": "Escolha entre px, %, em, rem e unidades de viewport.",
       "lesson": [
         {
-          "title": "Unidades fixas e relativas",
-          "body": "px é uma unidade fixa: sempre o mesmo tamanho. % é relativa ao elemento pai. rem é relativa ao tamanho de fonte da página inteira (raiz), o que a torna previsível mesmo em componentes aninhados.",
-          "code": "html {\n  font-size: 16px;\n}\np {\n  font-size: 1rem; /* 16px */\n}"
+          "title": "Pixels vs Medidas Percentuais",
+          "body": "O px trava larguras engessadas insensíveis ao tamanho da tela. Uma width percentual garante limite elástico reativo nas paredes estruturais de preenchimento plástico passivo flexível, adaptando-se sem estourar e criando um layout base fluído.",
+          "code": ".fixo { width: 500px; }\n.fluido { width: 100%; }"
         },
         {
-          "title": "Unidades de viewport",
-          "body": "vw e vh são relativas ao tamanho da janela do navegador: 1vw é 1% da largura da tela, 1vh é 1% da altura. São úteis para elementos que devem ocupar uma fração da tela, como um banner de altura total.",
-          "code": ".banner {\n  height: 50vh;\n  width: 100vw;\n}"
+          "title": "Medidas relativas REM e Viewport",
+          "body": "O rem multiplica pelo texto natural da máquina gerando interfaces amigáveis e flexíveis lógicas ativas. O vw/vh absorve puramente fatias diretas da totalidade nativa autêntica passiva da tela aberta, garantindo ocupações exatas referenciadas globais.",
+          "code": "h1 { font-size: 2rem; }\n.hero { height: 100vh; }"
         }
       ],
       "questions": [
@@ -1789,14 +1789,14 @@
       "summary": "Aplique estilos diferentes conforme o tamanho da tela.",
       "lesson": [
         {
-          "title": "A sintaxe básica",
-          "body": "@media (max-width: 768px) { } aplica o CSS de dentro apenas quando a tela tem 768px de largura ou menos. É a base da responsividade: layouts diferentes para celular, tablet e desktop.",
-          "code": "@media (max-width: 768px) {\n  .menu {\n    flex-direction: column;\n  }\n}"
+          "title": "Media Queries: Gatilhos de Tela",
+          "body": "A regra media query aplica estilos condicionalmente conforme as características do dispositivo (como min-width). Isso nos permite ter diferentes layouts dependendo se o usuário está no computador ou no celular, reestruturando todo cenário.",
+          "code": ".box { background: red; }\n@media(min-width: 768px) { .box { background: blue; } }"
         },
         {
-          "title": "Mobile first",
-          "body": "Na abordagem mobile first, o CSS padrão (sem media query) já é pensado para telas pequenas. Depois, media queries com min-width vão adicionando ajustes para telas maiores, em vez de remover estilos de telas grandes.",
-          "code": ".menu {\n  flex-direction: column;\n}\n@media (min-width: 768px) {\n  .menu {\n    flex-direction: row;\n  }\n}"
+          "title": "Estratégia Mobile First",
+          "body": "A regra de ouro: comece criando seu CSS pensando primeiro no celular, sem media queries. Depois, adicione blocos de min-width progressivos para readaptar e expandir os componentes aos poucos conforme a tela do desktop exija complexidades.",
+          "code": ".menu { display: none; }\n@media(min-width: 900px) { .menu { display: flex; } }"
         }
       ],
       "questions": [
@@ -1867,14 +1867,14 @@
       "summary": "Evite imagens quebrando o layout com max-width e boas práticas.",
       "lesson": [
         {
-          "title": "Imagens que se ajustam",
-          "body": "max-width: 100% impede que uma imagem fique maior que seu container, encolhendo proporcionalmente em telas menores, sem esticar além do espaço disponível.",
-          "code": "img {\n  max-width: 100%;\n  height: auto;\n}"
+          "title": "Controle Flexível de Imagens",
+          "body": "Fotos não sabem se limitar. Injetar max-width: 100% permite que a imagem se reduza caso o contêiner encolha (como no celular), mas impede que ela cresça além do seu tamanho original, evitando imagens absurdamente esticadas e feias.",
+          "code": "img { max-width: 100%; height: auto; }"
         },
         {
-          "title": "height: auto e proporção",
-          "body": "Combinar max-width: 100% com height: auto mantém a proporção original da imagem enquanto ela encolhe, evitando que fique distorcida (esticada ou achatada).",
-          "code": ".card img {\n  max-width: 100%;\n  height: auto;\n  display: block;\n}"
+          "title": "Limitando as Caixas Extensas",
+          "body": "Parágrafos não devem se esticar de ponta a ponta em monitores gigantes, pois dificulta a leitura. Usar width: 100% com um max-width: 800px cria componentes fluídos, mas com um teto máximo saudável, centrados belamente na interface global.",
+          "code": ".wrap { width: 100%; max-width: 800px; margin: 0 auto; }"
         }
       ],
       "questions": [
@@ -1945,14 +1945,14 @@
       "summary": "Estilize elementos conforme interação: hover, focus e active.",
       "lesson": [
         {
-          "title": "hover e focus",
-          "body": ":hover aplica um estilo quando o mouse está sobre o elemento. :focus aplica quando o elemento está selecionado (por clique ou tab do teclado) — essencial para quem navega sem mouse.",
-          "code": "button:hover {\n  background: #1cb0f6;\n}\nbutton:focus {\n  outline: 2px solid #58cc02;\n}"
+          "title": "Interações Visuais com Hover",
+          "body": "A pseudo-classe :hover reage ao momento em que o ponteiro do mouse cruza a área do elemento. Isso altera regras do CSS pontualmente e gera feedback instantâneo para botões e links. Ajuda imensamente a percepção de que aquilo é clicável na página.",
+          "code": ".btn:hover { background: gray; }"
         },
         {
-          "title": "active e outras pseudo-classes",
-          "body": ":active aplica um estilo no instante em que o elemento é clicado (pressionado). Existem outras úteis como :first-child (primeiro filho) e :nth-child() (filho em posição específica).",
-          "code": "button:active {\n  transform: scale(0.97);\n}\nli:first-child {\n  font-weight: bold;\n}"
+          "title": "Acessibilidade pelo Teclado",
+          "body": "Nem todo mundo usa mouse! O :focus reage quando o elemento é focado pela tecla TAB. Dar um contorno visual (outline) claro ao elemento focado não é apenas estética, mas inclusão indispensável para usuários com mobilidade motora restrita na web.",
+          "code": "input:focus { outline: 2px solid blue; }"
         }
       ],
       "questions": [
@@ -2023,14 +2023,14 @@
       "summary": "Suavize mudanças de estado com transition e crie animações com @keyframes.",
       "lesson": [
         {
-          "title": "transition",
-          "body": "transition anima a mudança de uma propriedade ao longo do tempo, em vez de trocar instantaneamente. Definindo transition: background-color 0.2s, uma mudança de cor no hover fica suave.",
-          "code": "button {\n  background: #58cc02;\n  transition: background-color 0.2s ease;\n}\nbutton:hover {\n  background: #46a302;\n}"
+          "title": "Suavizando com Transições",
+          "body": "Mudanças secas geram atrito e perdem sofisticação estética. A propriedade transition diz ao elemento para trocar sua cor ou posição vagarosamente ao longo de um tempo específico (ex: 0.3s), garantindo fluidez e uma percepção orgânica elegante.",
+          "code": ".cartao { transition: all 0.3s; }\n.cartao:hover { transform: scale(1.1); }"
         },
         {
-          "title": "@keyframes",
-          "body": "@keyframes define uma animação com vários pontos no tempo (0%, 50%, 100%...). Depois, a propriedade animation aplica essa animação a um elemento, controlando duração e repetição.",
-          "code": "@keyframes pulsar {\n  0%, 100% { transform: scale(1); }\n  50% { transform: scale(1.05); }\n}\n.badge {\n  animation: pulsar 1.5s infinite;\n}"
+          "title": "Animações Completas em CSS",
+          "body": "Se você precisa de algo contínuo que não dependa do mouse, use keyframes para criar trilhas independentes de animação. Você as dispara no elemento através da propriedade animation, controlando se rodarão uma vez ou infinitamente no layout da página.",
+          "code": "@keyframes subir { 50% { top: -10px; } }\n.caixa { animation: subir 2s infinite; }"
         }
       ],
       "questions": [
@@ -2101,14 +2101,14 @@
       "summary": "Escreva páginas que funcionam bem para todo mundo, com boas práticas simples.",
       "lesson": [
         {
-          "title": "Contraste e leitura",
-          "body": "Texto com pouco contraste em relação ao fundo é difícil de ler para muitas pessoas, incluindo quem tem baixa visão. Prefira combinações de cor com contraste forte, especialmente em textos importantes.",
-          "code": "/* Bom contraste */\np {\n  color: #1e293b;\n  background: #ffffff;\n}"
+          "title": "Contraste e Boa Leitura",
+          "body": "Acessibilidade básica começa pela escolha de cor. Textos precisam ter forte contraste com os fundos para que daltônicos ou pessoas com baixa visão consigam ler sua página sob qualquer luz. Fuja de tons de cinza muito claros em fundos brancos.",
+          "code": "<!-- Use bom contraste -->\n<p style=\"color: black; background: white;\">Legível</p>"
         },
         {
-          "title": "Estrutura acessível",
-          "body": "Usar tags semânticas, alt em imagens, label em campos de formulário e uma hierarquia de títulos organizada já resolve boa parte da acessibilidade básica. São práticas simples com grande impacto para quem usa leitores de tela.",
-          "code": "<img src=\"grafico.png\" alt=\"Gráfico de vendas crescendo em 20% no trimestre\">"
+          "title": "O apoio invisível das tags",
+          "body": "Quando temos botões gráficos sem texto explicativo, como um ícone de três linhas para menu, adicionamos aria-label=\"Menu\". Esse atributo fica oculto na tela, mas é lido em voz alta por leitores de tela ajudando pessoas com deficiência visual intensa.",
+          "code": "<button aria-label=\"Menu Principal\">\n  ☰\n</button>"
         }
       ],
       "questions": [
@@ -2179,14 +2179,14 @@
       "summary": "Estruture pastas e separe HTML, CSS e imagens de forma clara.",
       "lesson": [
         {
-          "title": "Uma estrutura simples",
-          "body": "Um projeto organizado costuma separar arquivos por tipo: index.html na raiz, uma pasta css/ para estilos, e uma pasta images/ (ou assets/) para imagens. Isso facilita encontrar e manter os arquivos conforme o projeto cresce.",
-          "code": "projeto/\n  index.html\n  css/\n    estilos.css\n  images/\n    logo.png"
+          "title": "Arquitetura Limpa de Pastas",
+          "body": "Em projetos grandes, deixar todos arquivos soltos juntos é caótico e escalável negativamente. Cria-se subpastas dedicadas (como css, js, img). O HTML mora na raiz e puxa esses recursos, mantendo seu servidor extremamente compreensível e organizado sempre.",
+          "code": "src/\n  css/\n    style.css\n  img/\n    bg.jpg\n  index.html"
         },
         {
-          "title": "Caminhos relativos",
-          "body": "Ao referenciar arquivos de outras pastas, use caminhos relativos à posição do arquivo atual. De dentro do HTML na raiz, css/estilos.css aponta para o arquivo dentro da pasta css.",
-          "code": "<link rel=\"stylesheet\" href=\"css/estilos.css\">\n<img src=\"images/logo.png\" alt=\"Logo\">"
+          "title": "Caminhos Relativos no Código",
+          "body": "Para navegar entre pastas no seu HTML, o ./ busca na pasta onde o HTML atual está, enquanto o ../ força o código a voltar/subir uma pasta inteira. Dominar isso impede falhas grotescas de imagem quebrada e links fantasmas quando postarmos online.",
+          "code": "<link rel=\"stylesheet\" href=\"./css/style.css\">\n<img src=\"../img/foto.jpg\">"
         }
       ],
       "questions": [
@@ -2257,14 +2257,14 @@
       "summary": "Aprenda hábitos simples para deixar a página mais rápida.",
       "lesson": [
         {
-          "title": "Otimizando imagens",
-          "body": "Imagens muito grandes deixam a página lenta para carregar. Usar formatos modernos (como WebP), comprimir imagens antes de subir e definir width/height ajudam bastante na performance.",
-          "code": "<img src=\"banner.webp\" alt=\"Banner promocional\" width=\"800\" height=\"400\">"
+          "title": "Peso dos Arquivos",
+          "body": "A regra número um de performance: reduza as fotos. Imagens geram o maior peso de download. Trocar formatos velhos por WebP e redimensionar arquivos gigantes corta drasticamente o tráfego brutal de internet que os usuários de celular teriam que suportar.",
+          "code": "<img src=\"leve.webp\" alt=\"Produto\">"
         },
         {
-          "title": "Reduzindo requisições",
-          "body": "Cada arquivo CSS, imagem ou fonte é uma requisição extra ao servidor. Reduzir o número de arquivos separados, quando possível, e evitar recursos não utilizados ajuda o site a carregar mais rápido.",
-          "code": "<!-- Prefira poucos arquivos CSS bem organizados a muitos arquivos pequenos -->\n<link rel=\"stylesheet\" href=\"css/estilos.css\">"
+          "title": "Carregamento Sob Demanda",
+          "body": "A tag img com o atributo loading=\"lazy\" não força o download imediato de imagens ocultas. A foto no fim da página só é solicitada ao servidor quando o usuário rolar a tela, salvando dados preciosos de carregamento inicial inútil do layout básico.",
+          "code": "<img src=\"grande.jpg\" loading=\"lazy\">"
         }
       ],
       "questions": [
@@ -2335,14 +2335,14 @@
       "summary": "Entenda os passos gerais para colocar um site estático no ar.",
       "lesson": [
         {
-          "title": "O que é hospedagem estática",
-          "body": "Um site feito só com HTML, CSS e (opcionalmente) JavaScript, sem um servidor que gera páginas dinamicamente, é chamado de site estático. Ele pode ser hospedado em serviços gratuitos como GitHub Pages, que servem os arquivos diretamente.",
-          "code": "projeto/\n  index.html\n  css/\n  images/\n# Esses arquivos podem ser publicados diretamente"
+          "title": "Teste de Rotas Locais",
+          "body": "Antes de subir para produção mundial, verifique se nenhum link local aponta diretamente para o seu disco C:/. Usando caminhos absolutos web (/contato) ou relativos (./sobre), você assegura conexões perfeitas em qualquer servidor independente do formato base.",
+          "code": "<!-- Use caminhos web padronizados, evite caminhos vitais C:/ -->\n<a href=\"/contato.html\">Contato</a>"
         },
         {
-          "title": "Passos gerais de publicação",
-          "body": "De forma resumida: organizar os arquivos do projeto, enviá-los para um serviço de hospedagem (como GitHub Pages, Netlify ou Vercel) e apontar o serviço para o arquivo index.html como página inicial.",
-          "code": "# Fluxo típico:\n# 1. Organizar arquivos\n# 2. Enviar para o serviço de hospedagem\n# 3. Apontar index.html como página inicial"
+          "title": "Lançando na Nuvem",
+          "body": "Para ir ao ar e ser clicável, seu projeto local deve ser subido em serviços estáticos robustos (Github Pages, Vercel ou Netlify). Eles distribuem os arquivos originais nos servidores globais e geram URLs válidos, colocando todo seu projeto no mapa mundo real.",
+          "code": "/* A partir daqui, seu projeto tem uma URL web mundial. Sucesso total na publicação! */"
         }
       ],
       "questions": [

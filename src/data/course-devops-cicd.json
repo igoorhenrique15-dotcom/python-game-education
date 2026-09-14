@@ -73,14 +73,14 @@
       "summary": "Resumo prático da stage 1.",
       "lesson": [
         {
-          "title": "A União de Dev e Ops",
-          "body": "DevOps é uma cultura que une o desenvolvimento (Dev) e a operação (Ops). Seu principal objetivo é quebrar os silos entre as equipes, melhorando a colaboração e a comunicação. Isso permite entregas de software mais rápidas, confiáveis e seguras, focando sempre em gerar valor para o cliente final.",
-          "code": "# O DevOps foca na colaboração ao invés de ferramentas isoladas\necho \"Dev + Ops = Maior agilidade e confiabilidade\""
+          "title": "Cultura DevOps e CALMS",
+          "body": "DevOps não é apenas um cargo ou ferramenta, mas uma cultura que une Desenvolvimento e Operações. O framework CALMS resume seus pilares: Culture (Cultura de colaboração), Automation (Automação de processos), Lean (Redução de desperdícios), Measurement (Medição de resultados) e Sharing (Compartilhamento).",
+          "code": "# Não há código para a cultura em si, mas a mentalidade muda.\n# Foco em comunicação e feedback contínuo."
         },
         {
-          "title": "O Framework CALMS",
-          "body": "O modelo CALMS resume os pilares do DevOps: Culture (Cultura de colaboração), Automation (Automatizar tudo que for possível), Lean (Processos enxutos), Measurement (Medir resultados) e Sharing (Compartilhar conhecimentos). Ele serve como um guia para avaliar a maturidade DevOps de uma organização.",
-          "code": "Culture, Automation, Lean, Measurement, Sharing\necho \"Esses são os pilares para uma verdadeira transformação DevOps\""
+          "title": "Feedback Loops Curtos",
+          "body": "Um dos grandes objetivos do DevOps é criar 'feedback loops' curtos. Quanto mais rápido um desenvolvedor souber que seu código quebrou algo ou causou impacto positivo, melhor. Isso é atingido automatizando testes, integrações e entregas, permitindo correções ágeis.",
+          "code": "echo 'Desenvolver -> Testar -> Publicar -> Monitorar -> Planejar'"
         }
       ],
       "questions": [
@@ -151,14 +151,14 @@
       "summary": "Resumo prático da stage 2.",
       "lesson": [
         {
-          "title": "A Importância da Automação",
-          "body": "A automação é essencial no DevOps para reduzir tarefas manuais repetitivas e sujeitas a falhas. Desde testes até o deploy, ferramentas automatizam processos, garantindo consistência. Isso libera os profissionais para focarem em tarefas estratégicas e inovação, acelerando o ciclo de vida do software.",
-          "code": "# Exemplo de automação com script bash simples\n#!/bin/bash\necho \"Iniciando build automatizado...\"\nnpm run build"
+          "title": "Silos entre Dev e Ops",
+          "body": "Tradicionalmente, Dev focava em entregar features rápido, enquanto Ops focava em manter a estabilidade do sistema. Isso criava conflitos e 'silos' de informação. DevOps surge para alinhar esses objetivos, tornando todos responsáveis pela qualidade e estabilidade da entrega em produção.",
+          "code": "Problema: 'Na minha máquina funciona, o problema é de infra!'\nSolução: 'Nós construímos, nós mantemos!'"
         },
         {
-          "title": "Processos Enxutos (Lean)",
-          "body": "Inspirado na manufatura, o pilar Lean foca em eliminar desperdícios no desenvolvimento de software. A ideia é trabalhar em lotes menores, limitar o trabalho em progresso (WIP) e otimizar o fluxo de valor do início ao fim. Identificar gargalos e agir rapidamente é fundamental para manter o fluxo.",
-          "code": "# Comando ilustrativo para verificar recursos, evitando desperdícios\ndocker stats --no-stream"
+          "title": "Responsabilidade Compartilhada",
+          "body": "A responsabilidade compartilhada quebra barreiras. Quando os desenvolvedores participam da operação (como estar de plantão/on-call) e as operações participam do desenvolvimento (como provisionar infraestrutura como código), os sistemas tornam-se mais resilientes e as entregas mais previsíveis.",
+          "code": "# Exemplo de pensamento DevOps\n- Planejamento conjunto\n- Testes automatizados desde o início\n- Monitoramento integrado"
         }
       ],
       "questions": [
@@ -229,14 +229,14 @@
       "summary": "Resumo prático da stage 3.",
       "lesson": [
         {
-          "title": "Feedback Loops Rápidos",
-          "body": "No DevOps, obter feedback rápido sobre o código é crucial. Feedback loops curtos permitem que desenvolvedores descubram bugs e problemas de integração imediatamente, geralmente através de CI/CD e monitoramento. Quanto mais cedo a falha é detectada (shift-left), mais barato e fácil é corrigi-la.",
-          "code": "# Falhando rápido com um teste de sintaxe\nnpm run lint || echo \"Falha no linting. Corrija antes de prosseguir.\""
+          "title": "Introdução à Automação",
+          "body": "A automação é o coração da cultura técnica do DevOps. Tarefas repetitivas e manuais são propensas a erros e não escalam. Automatizar desde testes unitários, builds até o provisionamento da infraestrutura garante que o processo seja previsível, consistente e seguro.",
+          "code": "# Automação de um script simples de build\n#!/bin/bash\necho \"Limpando diretório...\"\nrm -rf ./build\necho \"Compilando...\"\nnpm run build"
         },
         {
-          "title": "Compartilhamento de Conhecimento (Sharing)",
-          "body": "Uma verdadeira cultura DevOps incentiva o compartilhamento de ideias, problemas e soluções entre todas as equipes. Cultivar a empatia e a transparência ajuda a quebrar barreiras. Práticas como post-mortems sem culpa (blameless) garantem que os incidentes virem oportunidades de aprendizado coletivo.",
-          "code": "# Registrando aprendizados em um arquivo Markdown compartilhado\necho \"# Incidente 001 - Aprendizados\" > post-mortem.md"
+          "title": "O que é CI/CD?",
+          "body": "CI (Integração Contínua) garante que o código seja integrado várias vezes ao dia, validado por builds e testes automatizados. CD (Entrega/Deploy Contínuo) garante que a aplicação seja empacotada e, se passar nos testes, entregue em produção ou homologação de forma automatizada e sem atrito.",
+          "code": "# Fluxo simplificado CI/CD\nGit Push -> CI(Build + Tests) -> CD(Deploy para Homologação) -> CD(Aprovação Manual) -> CD(Deploy para Produção)"
         }
       ],
       "questions": [
@@ -307,14 +307,14 @@
       "summary": "Resumo prático da stage 4.",
       "lesson": [
         {
-          "title": "O Fluxo de Trabalho Git Flow",
-          "body": "O Git Flow é um modelo de branch estruturado que utiliza branches específicas para desenvolvimento, features, releases e hotfixes. Ele é ideal para projetos com ciclos de release bem definidos, ajudando a organizar o trabalho paralelo de grandes equipes e garantindo que o branch master/main esteja sempre estável.",
-          "code": "git checkout -b feature/nova-tela develop\n# Desenvolve a feature\ngit checkout develop\ngit merge feature/nova-tela"
+          "title": "Git Flow vs Trunk Based",
+          "body": "O controle de versão é crucial. No Git Flow, usam-se branches de longa duração (develop, release, master), o que pode gerar conflitos difíceis. Trunk Based Development foca em commits frequentes direto na main ou branches muito curtas, integrando código constantemente e evitando 'merge hell'.",
+          "code": "# Exemplo Trunk Based Development\ngit checkout -b feat-login\n# Desenvolve rapidamente (horas)\ngit commit -m \"feat: implementa tela de login\"\ngit push\n# Faz merge rápido para a main"
         },
         {
-          "title": "Trunk Based Development (TBD)",
-          "body": "No Trunk Based Development, os desenvolvedores integram seu código com frequência em uma única branch principal (trunk ou main), geralmente várias vezes ao dia. Isso evita os temidos conflitos de merge de longa duração (merge hell) e é considerado um pré-requisito essencial para o sucesso da Integração Contínua (CI).",
-          "code": "git checkout main\ngit pull origin main\n# Faça commits pequenos e integre rapidamente\ngit push origin main"
+          "title": "Controle de Versão Descentralizado",
+          "body": "Git revolucionou a maneira como times colaboram. Com ele, o histórico inteiro fica na máquina do desenvolvedor, permitindo commits offline e ramificações rápidas. O uso adequado de commits semânticos ajuda ferramentas automatizadas a determinar versões e gerar changelogs de modo seguro.",
+          "code": "git commit -m \"fix(api): resolve timeout na rota de usuários\"\ngit commit -m \"feat(ui): adiciona botão de exportação para CSV\""
         }
       ],
       "questions": [
@@ -385,14 +385,14 @@
       "summary": "Resumo prático da stage 5.",
       "lesson": [
         {
-          "title": "Utilizando Feature Flags",
-          "body": "Feature flags (ou toggles) permitem ativar ou desativar funcionalidades em tempo de execução sem modificar o código. Elas são excelentes aliadas do Trunk Based Development, pois você pode fazer o merge de um código inacabado para a main, mas mantê-lo invisível para os usuários finais até que esteja completamente pronto.",
-          "code": "if (featureFlags.isEnabled(\"novo-checkout\")) {\n  renderNovoCheckout();\n} else {\n  renderCheckoutAntigo();\n}"
+          "title": "Feature Flags",
+          "body": "Para usar Trunk Based e entregar código rapidamente sem quebrar produção, usamos Feature Flags (Toggles). Com elas, o código novo vai para produção, mas permanece oculto aos usuários até estar pronto. Isso separa o 'Deploy' (instalar o código) do 'Release' (liberar a funcionalidade).",
+          "code": "if (featureFlags.isEnable('NEW_CHECKOUT')) {\n  renderNewCheckout();\n} else {\n  renderOldCheckout();\n}"
         },
         {
-          "title": "A Importância de Commits Semânticos",
-          "body": "Conventional Commits, ou commits semânticos, padronizam as mensagens de commit (ex: feat:, fix:, docs:). Essa prática facilita a leitura do histórico do projeto e permite a geração automática de changelogs, além de ajudar a calcular automaticamente o próximo número de versão baseado no tipo da mudança.",
-          "code": "git commit -m \"feat(auth): adiciona login social com Google\"\ngit commit -m \"fix(ui): corrige desalinhamento do botão principal\""
+          "title": "Branches e CI",
+          "body": "O pipeline de CI deve ser acionado a cada push para qualquer branch. Ao integrar continuamente, a CI verifica a saúde do código através de linters e testes, fornecendo confiança antes mesmo da criação do Pull Request. Branches curtas garantem uma resposta mais rápida do pipeline.",
+          "code": "on:\n  push:\n    branches:\n      - '**' # Roda em todas as branches\njobs:\n  test:\n    runs-on: ubuntu-latest"
         }
       ],
       "questions": [
@@ -463,14 +463,14 @@
       "summary": "Resumo prático da stage 6.",
       "lesson": [
         {
-          "title": "Pull Requests e Code Review",
-          "body": "Pull Requests (PRs) ou Merge Requests são solicitações para integrar código de uma branch para outra. Eles são o momento ideal para realizar Code Reviews (revisões de código). Um bom PR é pequeno, tem descrição clara e serve para manter a qualidade do software, além de disseminar conhecimento entre os pares.",
-          "code": "# Após subir a branch para o repositório remoto, crie o PR via CLI (ex: GitHub CLI)\ngh pr create --title \"feat: novo dashboard\" --body \"Adiciona gráficos\""
+          "title": "Revisão de Código (Pull Requests)",
+          "body": "Pull Requests não servem apenas para aprovar código, mas para disseminar conhecimento, discutir arquitetura e manter qualidade. No modelo DevOps, PRs devem ser pequenos e rápidos. Deixar um PR aberto por dias desacelera a entrega e desmotiva o time, além de aumentar as chances de conflitos.",
+          "code": "# Boa prática para PRs:\n- Pequeno (menos de 200 linhas)\n- Descritivo (O quê e por que?)\n- Contextualiza o revisor"
         },
         {
-          "title": "Resolvendo Conflitos de Merge",
-          "body": "Conflitos ocorrem quando o Git não consegue integrar as mudanças de duas branches automaticamente, geralmente porque as mesmas linhas de um arquivo foram alteradas. Para resolver, é necessário editar o arquivo manualmente, escolher a versão correta do código, adicionar a resolução e finalizar o merge com um commit.",
-          "code": "git merge feature/nova-api\n# CONFLITO (conteúdo): conflito de mesclagem em api.js\ngit add api.js\ngit commit -m \"chore: resolve conflito no arquivo api.js\""
+          "title": "Merge Strategies",
+          "body": "Diferentes estratégias de merge ajudam a manter a árvore de histórico limpa. 'Squash e Merge' combina todos os commits da feature branch em um só na main, mantendo um histórico linear e fácil de ler. 'Rebase' reescreve a branch a partir do topo da main, evitando commits de merge poluídos.",
+          "code": "# Fazendo Squash em um PR\ngit merge --squash feature-branch\ngit commit -m \"feat: nova funcionalidade X (#123)\""
         }
       ],
       "questions": [
@@ -542,13 +542,13 @@
       "lesson": [
         {
           "title": "Introdução ao GitHub Actions",
-          "body": "O GitHub Actions permite automatizar workflows diretamente no seu repositório. Um workflow é definido em um arquivo YAML no diretório .github/workflows/. Ele orquestra como seu código é construído, testado e feito o deploy, funcionando de maneira totalmente integrada aos eventos do seu projeto no GitHub.",
-          "code": "name: CI Básico\n\non: [push]\n\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - run: echo \"Rodando o primeiro Actions!\""
+          "body": "O GitHub Actions permite automatizar workflows diretamente do repositório. Um arquivo YAML na pasta `.github/workflows` define todo o pipeline. É composto por 'workflows' que reagem a 'events' (como push), executando 'jobs' compostos por 'steps' em servidores virtuais ('runners').",
+          "code": "name: CI Pipeline\non: [push]\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - run: echo \"Olá, Actions!\""
         },
         {
-          "title": "O Gatilho (on:) e os Eventos",
-          "body": "A chave \"on\" em um workflow do GitHub Actions define quais eventos acionarão o pipeline. Você pode configurá-lo para rodar em pushes na branch main, ao criar Pull Requests, em horários agendados (cron) ou até mesmo dispará-lo manualmente. Isso dá flexibilidade total sobre quando a automação deve acontecer.",
-          "code": "on:\n  push:\n    branches:\n      - main\n  pull_request:\n    branches:\n      - main"
+          "title": "Gatilhos (Events no on:)",
+          "body": "A chave `on:` no GitHub Actions define quando o workflow deve rodar. Pode ser num `push`, na criação de um `pull_request`, ou até mesmo com uma agenda `schedule` (como o cron). Isso permite extrema flexibilidade para rodar testes a cada push e deploy em cada release criada.",
+          "code": "on:\n  push:\n    branches: [ main ]\n  pull_request:\n    branches: [ main ]\n  schedule:\n    - cron: '0 0 * * *' # Todo dia à meia-noite"
         }
       ],
       "questions": [
@@ -619,14 +619,14 @@
       "summary": "Resumo prático da stage 8.",
       "lesson": [
         {
-          "title": "Estruturando Jobs em Paralelo",
-          "body": "Um workflow pode ter múltiplos jobs que, por padrão, rodam em paralelo em runners (máquinas virtuais) separados. Isso é excelente para rodar testes e linting ao mesmo tempo, economizando tempo. Para que um job dependa do sucesso de outro, você deve utilizar a palavra-chave \"needs\", criando uma sequência lógica.",
-          "code": "jobs:\n  lint:\n    runs-on: ubuntu-latest\n    steps: [ ... ]\n  test:\n    needs: lint\n    runs-on: ubuntu-latest\n    steps: [ ... ]"
+          "title": "Jobs e Steps",
+          "body": "Cada workflow tem um ou mais `jobs` que, por padrão, rodam em paralelo. Dentro de cada job, temos `steps` (passos) que rodam sequencialmente no mesmo runner. Um step pode rodar um comando shell via `run:` ou utilizar uma action empacotada pela comunidade através da palavra-chave `uses:`.",
+          "code": "jobs:\n  testar:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v3\n      - run: npm install\n      - run: npm test"
         },
         {
-          "title": "Utilizando Actions de Terceiros (uses:)",
-          "body": "Não é preciso reinventar a roda. O ecossistema do GitHub Marketplace possui milhares de actions prontas, referenciadas com a chave \"uses\". Actions oficiais como actions/checkout (para baixar seu código) e actions/setup-node (para instalar o Node.js) são amplamente utilizadas para preparar o ambiente rapidamente.",
-          "code": "steps:\n  - name: Faz o checkout do código\n    uses: actions/checkout@v4\n  - name: Configura o Node.js\n    uses: actions/setup-node@v4\n    with:\n      node-version: \"20\""
+          "title": "A Action de Checkout",
+          "body": "A primeira coisa que um job de CI precisa fazer é baixar o código do repositório para o runner. A action `actions/checkout` faz exatamente isso. Sem ela, o container estaria vazio e não haveria código para testar, compilar ou fazer deploy. Quase todos os workflows começam por ela.",
+          "code": "steps:\n  # Baixa o repositório para o ambiente de execução\n  - name: Fazer Checkout do Código\n    uses: actions/checkout@v3"
         }
       ],
       "questions": [
@@ -697,14 +697,14 @@
       "summary": "Resumo prático da stage 9.",
       "lesson": [
         {
-          "title": "Executando Comandos com (run:)",
-          "body": "A instrução \"run\" é utilizada para executar comandos do sistema operacional ou scripts dentro do runner. Você pode rodar comandos únicos ou escrever um script bash de múltiplas linhas. É no \"run\" que ferramentas como npm, docker ou comandos de shell entram em cena para construir ou testar a aplicação.",
-          "code": "steps:\n  - name: Instala dependências\n    run: npm ci\n  - name: Executa script customizado\n    run: |\n      echo \"Iniciando o build...\"\n      npm run build"
+          "title": "Gerenciamento de Secrets",
+          "body": "Nunca coloque senhas, chaves de API ou tokens de banco de dados diretamente no código ou no pipeline. O GitHub fornece o 'Secrets', um cofre seguro onde as credenciais ficam criptografadas. No pipeline, elas são injetadas de forma segura através do objeto `${{ secrets.NOME_DO_SECRET }}`.",
+          "code": "steps:\n  - name: Deploy para a Nuvem\n    run: ./deploy.sh\n    env:\n      API_TOKEN: ${{ secrets.MY_CLOUD_TOKEN }}\n      DB_PASS: ${{ secrets.DATABASE_PASSWORD }}"
         },
         {
-          "title": "Gerenciamento Seguro de Secrets",
-          "body": "Tokens, senhas e chaves de API nunca devem ser expostos no código. O GitHub Secrets é o cofre criptografado onde essas informações ficam salvas. Dentro do seu workflow, você referencia o segredo usando a sintaxe de expressão, injetando-o com segurança como uma variável de ambiente para que seja usado pelos scripts.",
-          "code": "steps:\n  - name: Realiza deploy com senha\n    run: ./deploy.sh\n    env:\n      API_TOKEN: ${{ secrets.PROD_API_TOKEN }}"
+          "title": "Variáveis de Ambiente (env)",
+          "body": "O bloco `env` pode ser definido no nível do workflow, do job ou de um step específico. Isso é útil para parametrizar o pipeline, definindo variáveis de configuração não sensíveis. Assim, você pode reutilizar os mesmos comandos, mas com valores diferentes dependendo do ambiente.",
+          "code": "env:\n  NODE_ENV: production\njobs:\n  build:\n    runs-on: ubuntu-latest\n    steps:\n      - run: echo \"Construindo para $NODE_ENV\""
         }
       ],
       "questions": [
@@ -775,14 +775,14 @@
       "summary": "Resumo prático da stage 10.",
       "lesson": [
         {
-          "title": "Testes Automatizados no CI",
-          "body": "Rodar testes no pipeline de Integração Contínua (CI) garante que o código novo não quebre a aplicação. Quando um desenvolvedor envia código, ferramentas como Jest (JS), Pytest (Python) ou JUnit (Java) são executadas automaticamente. Se um teste falhar, o pipeline para, bloqueando o merge e protegendo o projeto.",
-          "code": "steps:\n  - name: Executar suite de testes\n    run: npm test\n    # Se esse comando retornar um exit code de erro, o job falha"
+          "title": "Testes Automatizados no Pipeline",
+          "body": "A CI só é verdadeiramente contínua se houver testes. Executar frameworks como Jest, pytest ou JUnit no pipeline garante que mudanças não quebrem funcionalidades existentes. Se os testes falharem, o job falha imediatamente, impedindo que o código defeituoso siga adiante ou faça merge.",
+          "code": "steps:\n  - uses: actions/checkout@v3\n  - uses: actions/setup-node@v3\n    with:\n      node-version: '18'\n  - run: npm ci\n  - run: npm test"
         },
         {
-          "title": "A Prática do Fail Fast (Falha Rápida)",
-          "body": "Fail fast é um princípio importante em pipelines: descubra o erro o quanto antes. Para não desperdiçar minutos e recursos de máquina esperando um erro no final, programe o CI para rodar verificações rápidas primeiro (como linting e testes unitários). Só após o sucesso, passe para os testes mais lentos e pesados.",
-          "code": "# O comando set -e no bash faz o script parar imediatamente em caso de erro\n#!/bin/bash\nset -e\nnpm run lint\nnpm run test:unit"
+          "title": "Fail Fast",
+          "body": "O princípio 'Fail Fast' em CI/CD significa detectar erros o mais cedo possível para economizar tempo e recursos de computação. Por exemplo, rodar linters estáticos antes dos testes unitários, e estes antes dos testes end-to-end. Se o linter falhar, não há motivo para rodar testes pesados.",
+          "code": "jobs:\n  lint:\n    runs-on: ubuntu-latest\n    steps: [ {run: npm run lint} ]\n  test:\n    needs: lint # Só executa se o lint passar\n    runs-on: ubuntu-latest"
         }
       ],
       "questions": [
@@ -853,14 +853,14 @@
       "summary": "Resumo prático da stage 11.",
       "lesson": [
         {
-          "title": "Testes de Cobertura (Coverage)",
-          "body": "A cobertura de testes mede a porcentagem do código-fonte que foi executada durante os testes. No pipeline, você pode definir que o CI deve falhar caso a cobertura seja menor que um valor aceitável (ex: 80%). Relatórios de cobertura ajudam a equipe a identificar partes críticas do sistema que estão sem validação.",
-          "code": "# Gerando cobertura com Jest\nnpm test -- --coverage\n# O relatório fica disponível na pasta coverage/"
+          "title": "Artefatos de Pipeline (Artifacts)",
+          "body": "Muitas vezes, a saída de um processo de build precisa ser passada para outro job (ex: build no job A, deploy no job B) ou salva para o usuário baixar. A action `upload-artifact` salva arquivos (como binários ou relatórios de cobertura) que podem ser resgatados com `download-artifact`.",
+          "code": "- name: Salvar build\n  uses: actions/upload-artifact@v3\n  with:\n    name: build-folder\n    path: ./dist/"
         },
         {
-          "title": "Salvando Test Artifacts",
-          "body": "Quando testes falham (como os de integração ou end-to-end), é muito útil ter evidências do que aconteceu. Arquivos de log, vídeos ou screenshots gerados pelo teste podem ser salvos como Artifacts. Isso permite que você baixe os arquivos após o fim da execução no GitHub Actions e facilite muito o processo de depuração.",
-          "code": "steps:\n  - uses: actions/upload-artifact@v4\n    if: failure()\n    with:\n      name: cypress-screenshots\n      path: cypress/screenshots/"
+          "title": "Relatórios de Teste e Cobertura",
+          "body": "Além de saber se passou ou falhou, é importante visualizar a cobertura (coverage) dos testes. Ferramentas como o Codecov ou SonarQube podem ser integradas no CI para analisar a qualidade do código, bloquear o PR se a cobertura cair abaixo do limiar (ex: 80%) e gerar relatórios visuais.",
+          "code": "- run: npm run test:coverage\n- name: Enviar para Codecov\n  uses: codecov/codecov-action@v3\n  with:\n    token: ${{ secrets.CODECOV_TOKEN }}"
         }
       ],
       "questions": [
@@ -931,14 +931,14 @@
       "summary": "Resumo prático da stage 12.",
       "lesson": [
         {
-          "title": "Testes de Integração em Containers",
-          "body": "Muitas vezes seus testes precisam de um banco de dados ou serviço externo (como Redis). Para o CI não depender de infraestrutura externa, utiliza-se contêineres Docker (ou services no GitHub Actions) para subir instâncias efêmeras dessas dependências. Os testes rodam integrados a elas, garantindo um ambiente limpo.",
-          "code": "services:\n  postgres:\n    image: postgres:15\n    env:\n      POSTGRES_PASSWORD: root\n    ports:\n      - 5432:5432"
+          "title": "Matriz de Build (Build Matrix)",
+          "body": "Para garantir que seu software roda em múltiplos sistemas e versões, usamos uma 'Strategy Matrix'. O GitHub Actions pode rodar o mesmo job várias vezes, variando variáveis. Isso é ideal para testar bibliotecas contra várias versões do Node.js ou em sistemas operacionais como Linux e Windows simultaneamente.",
+          "code": "strategy:\n  matrix:\n    node-version: [14, 16, 18]\n    os: [ubuntu-latest, windows-latest]\nsteps:\n  - uses: actions/setup-node@v3\n    with:\n      node-version: ${{ matrix.node-version }}"
         },
         {
-          "title": "Otimização de Testes com Matrix Build",
-          "body": "A estratégia de Matrix (matriz) permite rodar a mesma suite de testes simultaneamente em várias configurações diferentes, como versões variadas do Node.js ou diferentes sistemas operacionais. Isso aumenta a confiança de que sua biblioteca ou aplicação funcionará corretamente em diversos ambientes sem escrever código repetido.",
-          "code": "strategy:\n  matrix:\n    node-version: [16, 18, 20]\nsteps:\n  - uses: actions/setup-node@v4\n    with:\n      node-version: ${{ matrix.node-version }}"
+          "title": "Paralelismo e Desempenho",
+          "body": "Pipelines lentos matam a produtividade de DevOps. Rodar jobs independentes em paralelo economiza tempo de espera. Ao dividir uma bateria gigantesca de testes e-2-e em diversos nós através da matriz de execução (sharding), você recebe feedback da CI em poucos minutos, ao invés de horas.",
+          "code": "jobs:\n  unit-tests: ...\n  e2e-tests:\n    strategy:\n      matrix: { shard: [1, 2, 3, 4] }\n    steps:\n      - run: npx playwright test --shard=${{ matrix.shard }}/4"
         }
       ],
       "questions": [
@@ -1009,14 +1009,14 @@
       "summary": "Resumo prático da stage 13.",
       "lesson": [
         {
-          "title": "A Etapa de Build",
-          "body": "Após os testes serem aprovados, a etapa de build (compilação) é acionada. Em aplicações frontend, o código fonte é transpilado e empacotado (webpack, vite); em backend (Go, Java), o código é compilado em binários. O objetivo do build é transformar o código-fonte humano no artefato otimizado pronto para produção.",
-          "code": "# Exemplo de build de uma aplicação React usando Vite\nnpm install\nnpm run build\n# O resultado será colocado no diretório dist/"
+          "title": "Processo de Build e Compilação",
+          "body": "O step de Build transforma código-fonte em artefatos executáveis ou prontos para distribuição. Para linguagens compiladas como Go, é o executável. Para o frontend moderno, é o processo de transpilação (Babel, Webpack, Vite) que gera os arquivos estáticos minimizados e otimizados.",
+          "code": "steps:\n  - run: npm install\n  - run: npm run build # Gera a pasta dist/\n  - run: ls -la dist/"
         },
         {
-          "title": "Minificação e Otimização",
-          "body": "A minificação é o processo de remover espaços em branco, quebras de linha, comentários e encurtar nomes de variáveis do código (JS/CSS). Isso não afeta o funcionamento, mas reduz drasticamente o tamanho dos arquivos gerados. Um tamanho menor significa downloads mais rápidos para o usuário e menos uso de banda no servidor.",
-          "code": "# Comando ilustrativo de uma ferramenta CLI de minificação\nesbuild src/app.js --minify --outfile=dist/app.min.js"
+          "title": "Dependências Constantes com Lockfiles",
+          "body": "Em pipelines de CI, a instalação de pacotes deve ser exata, reproduzindo 100% o que rodou localmente. Ferramentas fornecem comandos específicos para isso (ex: `npm ci` ao invés de `npm install`), que leem o arquivo `.lock` rigorosamente e evitam que novas versões de pacotes quebrem a build silenciosamente.",
+          "code": "# Ao invés de usar `npm install` que pode atualizar versões...\n- name: Instala dependências exatas\n  run: npm ci"
         }
       ],
       "questions": [
@@ -1087,14 +1087,14 @@
       "summary": "Resumo prático da stage 14.",
       "lesson": [
         {
-          "title": "O que são Artefatos de Software?",
-          "body": "Artefatos são os arquivos finais gerados pela etapa de build que têm valor para o próximo passo do pipeline. Podem ser arquivos ZIP, pacotes npm (.tgz), arquivos JAR, binários executáveis ou até imagens Docker. No CI/CD, você gera o artefato uma única vez e o reutiliza nas etapas de deploy para diferentes ambientes.",
-          "code": "steps:\n  - name: Salvar pacote como artefato\n    uses: actions/upload-artifact@v4\n    with:\n      name: app-dist\n      path: dist/"
+          "title": "Semantic Versioning (SemVer)",
+          "body": "Versionamento semântico (MAJOR.MINOR.PATCH) é um padrão vital para builds. MAJOR significa mudanças que quebram retrocompatibilidade. MINOR adiciona funcionalidades sem quebrar. PATCH corrige bugs. Seguir isso permite automatizar a criação de tags, releases e changelogs sem intervenção manual.",
+          "code": "v1.0.0 -> Versão inicial\nv1.0.1 -> Correção de bug em login (Patch)\nv1.1.0 -> Nova tela de perfil (Minor)\nv2.0.0 -> Nova API (Major/Breaking Change)"
         },
         {
-          "title": "Versionamento Semântico (SemVer)",
-          "body": "O Versionamento Semântico adota o formato MAJOR.MINOR.PATCH (ex: 2.1.4). MAJOR é incrementado em mudanças que quebram compatibilidade, MINOR adiciona novas funcionalidades de forma retrocompatível, e PATCH é para correção de bugs. Essa convenção clara ajuda desenvolvedores e pipelines a saberem o impacto de uma atualização.",
-          "code": "# Aumentando a versão patch usando npm e gerando uma tag git\nnpm version patch -m \"chore: atualiza versão para %s\""
+          "title": "Automação de Release e Tags",
+          "body": "Quando código faz merge na branch main, o pipeline pode usar o histórico de commits para descobrir qual deve ser a próxima versão. Ferramentas como o 'semantic-release' criam a nova tag Git e publicam um release note (changelog) automaticamente, liberando a equipe dessa burocracia manual.",
+          "code": "steps:\n  - name: Semantic Release\n    uses: cycjimmy/semantic-release-action@v3\n    env:\n      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}"
         }
       ],
       "questions": [
@@ -1165,14 +1165,14 @@
       "summary": "Resumo prático da stage 15.",
       "lesson": [
         {
-          "title": "Build de Imagens Docker no CI",
-          "body": "Construir a aplicação em uma imagem Docker diretamente no pipeline garante imutabilidade: a mesma imagem gerada pelo CI será a imagem executada no ambiente de produção. O Dockerfile encapsula as dependências, e a imagem serve como o \"artefato\" final, pronto para ser empurrado (push) para um Container Registry.",
-          "code": "# Construindo a imagem e marcando com a versão do commit\ndocker build -t minha-app:${{ github.sha }} ."
+          "title": "Criando o Dockerfile",
+          "body": "Docker padroniza o empacotamento da aplicação para que ela rode igual em qualquer lugar. O `Dockerfile` é a receita para essa imagem. Ele começa por uma imagem base, define dependências, copia o código-fonte e especifica o comando que será executado quando o contêiner iniciar.",
+          "code": "FROM node:18-alpine\nWORKDIR /app\nCOPY package*.json ./\nRUN npm ci --only=production\nCOPY . .\nCMD [\"node\", \"server.js\"]"
         },
         {
-          "title": "Automação de Releases (Tags)",
-          "body": "Uma prática recomendada é que pipelines de build e deploy para produção sejam ativados não em todo commit, mas quando uma Release (ou Git Tag) for criada. A tag (ex: v1.0.0) marca um momento histórico estável do código, gerando notas de lançamento automatizadas e subindo o artefato para um local permanente.",
-          "code": "on:\n  push:\n    tags:\n      - \"v*.*.*\" # Dispara o pipeline ao criar tags como v1.2.0"
+          "title": "Vantagens do Docker em DevOps",
+          "body": "A 'conteinerização' resolve o problema da matriz infernal de dependências de SO. Como a imagem contém o código e o runtime (ex: Node.js ou Python), o servidor de produção precisa ter apenas o Docker rodando, e não bibliotecas específicas da linguagem. Isso facilita o CD absurdda e seguramente.",
+          "code": "docker build -t meu-app:v1 .\ndocker run -p 8080:80 meu-app:v1"
         }
       ],
       "questions": [
@@ -1243,14 +1243,14 @@
       "summary": "Resumo prático da stage 16.",
       "lesson": [
         {
-          "title": "Trabalhando com Container Registry",
-          "body": "Um Container Registry (como Docker Hub, GitHub Packages ou AWS ECR) é um repositório centralizado onde as imagens Docker são armazenadas após serem construídas no CI. O pipeline faz o login, constrói a imagem e dá o comando de push, tornando-a disponível para que servidores de produção a baixem.",
-          "code": "# Exemplo de push de uma imagem para o Docker Hub\ndocker login -u user -p $DOCKER_PASS\ndocker push meuusuario/minha-app:latest"
+          "title": "Multi-stage Builds no Docker",
+          "body": "Imagens Docker gigantes são lentas para transferir e vulneráveis. 'Multi-stage builds' resolvem isso usando uma imagem grande para compilar o projeto (com ferramentas de build) e depois copiando apenas o artefato final para uma imagem super pequena e enxuta, otimizando muito o deploy.",
+          "code": "FROM golang:1.20 as builder\nWORKDIR /src\nCOPY . .\nRUN go build -o app main.go\n\nFROM alpine:latest\nCOPY --from=builder /src/app /app\nCMD [\"/app\"]"
         },
         {
-          "title": "Vantagens do Multi-stage Build",
-          "body": "O Docker multi-stage build permite usar várias imagens base no mesmo Dockerfile. Uma fase pode ter ferramentas pesadas de build (como o SDK do Go ou Node completo), enquanto a fase final usa uma imagem minúscula (como Alpine) contendo apenas o binário gerado. O resultado é uma imagem de produção muito mais leve e segura.",
-          "code": "FROM golang:1.21 AS builder\nRUN go build -o /app main.go\n\nFROM alpine:latest\nCOPY --from=builder /app /app\nCMD [\"/app\"]"
+          "title": "Cache de Layers (Camadas)",
+          "body": "Cada linha de um Dockerfile cria um layer (camada). Se o layer não mudar, o Docker usa um cache para evitar recriá-lo. Por isso, sempre copiamos apenas os arquivos de dependência (`package.json`) antes do resto do código-fonte. Isso evita reinstalar dependências quando apenas o código muda.",
+          "code": "# Boa prática para aproveitar cache\nCOPY package*.json ./ # Layer 1\nRUN npm install        # Layer 2 (Lento, mas sofre cache)\nCOPY . .               # Layer 3 (Muda com frequência)"
         }
       ],
       "questions": [
@@ -1321,14 +1321,14 @@
       "summary": "Resumo prático da stage 17.",
       "lesson": [
         {
-          "title": "Otimização com Cache de Layers",
-          "body": "No Docker, cada comando gera uma camada (layer). Se nada mudar nas dependências de um projeto (ex: package.json não foi alterado), o Docker pode reutilizar as camadas cacheadas de builds anteriores. No CI, habilitar o cache de camadas reduz o tempo de build em minutos, tornando o processo extremamente eficiente.",
-          "code": "# A ordem importa! Copie arquivos de dependência primeiro\nCOPY package.json .\nRUN npm install\n# Só depois copie o código fonte, otimizando o cache\nCOPY . ."
+          "title": "Docker Build no CI",
+          "body": "No GitHub Actions, o passo subsequente aos testes normalmente é empacotar a aplicação em uma imagem Docker. Para fazer isso no runner, utilizamos ações oficiais do Docker, que configuram buildx e permitem usar cache do GitHub Actions para acelerar consideravelmente as criações da imagem.",
+          "code": "- name: Build Docker Image\n  uses: docker/build-push-action@v4\n  with:\n    context: .\n    push: false\n    tags: meu-app:latest"
         },
         {
-          "title": "Segurança e Vulnerabilidades de Imagem",
-          "body": "Garantir a segurança dos containers é um passo essencial no DevSecOps. Ferramentas de escaneamento de vulnerabilidades (como Trivy ou Clair) podem ser integradas ao pipeline CI. Se elas encontrarem pacotes com falhas conhecidas (CVEs) de nível crítico ou alto, o pipeline deve falhar imediatamente, bloqueando o deploy.",
-          "code": "steps:\n  - name: Escanear imagem com Trivy\n    uses: aquasecurity/trivy-action@master\n    with:\n      image-ref: minha-app:latest\n      exit-code: 1"
+          "title": "Tags de Imagem Docker",
+          "body": "Taguear (marcar) a imagem adequadamente é fundamental para o CD. A prática recomendada é taguear a imagem sempre com o SHA do commit (para rastreabilidade exata) ou com a versão SemVer (ex: 1.2.0). A tag `latest` deve ser usada apenas como conveniência, mas nunca como âncora de deploy em produção.",
+          "code": "# Variável do GitHub Actions com o hash do commit curto\n- run: docker build -t meu-app:${GITHUB_SHA::7} ."
         }
       ],
       "questions": [
@@ -1399,14 +1399,14 @@
       "summary": "Resumo prático da stage 18.",
       "lesson": [
         {
-          "title": "Tags Mutáveis vs Imutáveis",
-          "body": "Usar a tag \":latest\" na imagem Docker é perigoso, pois é mutável; você nunca tem certeza do que está rodando. O ideal em CI/CD é adotar tags imutáveis usando o hash do commit (SHA) ou o número exato da versão. Dessa forma, é possível rastrear facilmente qual código exato está rodando em qual servidor e facilitar rollbacks.",
-          "code": "# Boa prática: Taguear com o SHA do commit do Git\ndocker build -t minha-app:${{ github.sha }} .\ndocker push minha-app:${{ github.sha }}"
+          "title": "Autenticando no Container Registry",
+          "body": "Antes de salvar (push) a imagem construída, o pipeline precisa se autenticar em um Registry de imagens, como o Docker Hub, AWS ECR ou GitHub Container Registry (GHCR). Utilizamos os 'secrets' do repositório para injetar as credenciais e garantir acesso seguro à hospedagem de imagens.",
+          "code": "- name: Login no Docker Hub\n  uses: docker/login-action@v2\n  with:\n    username: ${{ secrets.DOCKER_USER }}\n    password: ${{ secrets.DOCKER_PASS }}"
         },
         {
-          "title": "Usando Docker Buildx",
-          "body": "O Docker Buildx é um plugin avançado que permite criar imagens para diferentes arquiteturas (como ARM64 para Apple Silicon e AMD64 para servidores tradicionais) a partir do mesmo build. Além disso, ele gerencia melhor caches distribuídos, sendo a ferramenta padrão recomendada para pipelines robustos no GitHub Actions.",
-          "code": "steps:\n  - name: Set up Docker Buildx\n    uses: docker/setup-buildx-action@v3\n  - name: Build and push\n    uses: docker/build-push-action@v5"
+          "title": "Push da Imagem Docker",
+          "body": "Com o pipeline autenticado e a imagem gerada e tagueada, o passo final do CI é fazer o Push (envio) para o Registry. Após o push, a imagem fica disponível e imutável no Registry, aguardando que as ferramentas de CD (Delivery/Deploy) façam o download (pull) nos servidores de produção.",
+          "code": "- name: Build e Push\n  uses: docker/build-push-action@v4\n  with:\n    push: true\n    tags: usuario/meu-app:${{ github.sha }}"
         }
       ],
       "questions": [
@@ -1477,14 +1477,14 @@
       "summary": "Resumo prático da stage 19.",
       "lesson": [
         {
-          "title": "O Princípio da Entrega Contínua (CD)",
-          "body": "A Entrega Contínua (Continuous Delivery - CD) garante que o código, após passar pela CI, esteja sempre pronto para ser lançado. Na prática, o deploy automatizado evita intervenções manuais via FTP, scripts isolados ou SSH em servidores. Ao unir o commit ao servidor, tudo acontece com transparência, rapidez e com menos risco de erro humano.",
-          "code": "# Deploy simples e automatizado para um provedor serverless como Vercel\nnpx vercel --prod --token $VERCEL_TOKEN"
+          "title": "Continuous Deployment vs Delivery",
+          "body": "Continuous Delivery significa que cada alteração no código principal está em estado perfeitamente 'deployável' a qualquer momento, aguardando uma aprovação manual (clique). Continuous Deployment vai além: toda mudança que passa nos testes é enviada para produção de forma 100% automática, sem clique manual.",
+          "code": "# Delivery: requer intervenção humana\n# Deployment: direto para o cliente se o CI ficar verde."
         },
         {
-          "title": "Estratégia de Ambientes (Environments)",
-          "body": "Bons pipelines são separados por ambientes: Development, Staging e Production. O ambiente de Staging (Homologação) é um clone idêntico da produção, mas voltado para testes finais. Essa separação permite isolar mudanças e validar integrações com segurança antes de expor a funcionalidade para os clientes reais.",
-          "code": "# Exemplo de deploy para o ambiente de staging via Heroku\nheroku git:remote -a meu-app-staging\ngit push heroku main"
+          "title": "Environments (Ambientes)",
+          "body": "Trabalhamos com diferentes estágios. 'Dev' para testes dos engenheiros, 'Staging/Homologação' onde rodamos testes e-2-e no ambiente quase idêntico à produção, e finalmente 'Produção'. O GitHub Actions permite usar a flag `environment` nos jobs, rastreando em qual ambiente o deploy foi feito.",
+          "code": "jobs:\n  deploy-prod:\n    runs-on: ubuntu-latest\n    environment: production\n    steps: [ { run: \"./deploy.sh prod\" } ]"
         }
       ],
       "questions": [
@@ -1555,14 +1555,14 @@
       "summary": "Resumo prático da stage 20.",
       "lesson": [
         {
-          "title": "Aprovações Manuais para Produção",
-          "body": "Embora o ideal seja o Continuous Deployment (tudo automatizado até a produção), muitas empresas necessitam de uma validação de negócio final ou testes manuais de QA no ambiente de Staging. Para isso, usa-se as Aprovações (Approvals) no pipeline, exigindo que um responsável clique em \"Aprovar\" para a etapa de produção prosseguir.",
-          "code": "jobs:\n  deploy-prod:\n    environment: production # Requer aprovação configurada no repositório\n    runs-on: ubuntu-latest"
+          "title": "Aprovações Manuais",
+          "body": "Em sistemas críticos, o Continuous Deployment direto pode não ser ideal, seja por regulamentação ou cautela. O GitHub permite configurar 'Required Reviewers' no ambiente de Produção. O pipeline fará tudo, mas pausará o job antes do deploy até que um gerente/líder clique para aprovar ou rejeitar a ação.",
+          "code": "# Configurado diretamente nas configurações do repositório\n# (Settings -> Environments -> production -> Required reviewers)\n# O job ficará com status 'Waiting' até ser aprovado."
         },
         {
-          "title": "Estratégia Blue/Green Deploy",
-          "body": "No modelo Blue/Green, você possui dois ambientes produtivos idênticos (Azul e Verde). O ambiente Azul está ativo servindo o tráfego atual, enquanto você faz o deploy da nova versão no Verde. Após os testes, o tráfego da rede é desviado do Azul para o Verde instantaneamente (zero-downtime). Se der erro, basta voltar o tráfego pro Azul.",
-          "code": "# Alterando o balanceador de carga para o novo ambiente\naws elbv2 modify-listener --listener-arn $ARN --default-actions Type=forward,TargetGroupArn=$GREEN_TARGET"
+          "title": "Estratégia Blue-Green Deployment",
+          "body": "Blue-Green é uma estratégia de CD super segura com downtime zero. Mantemos dois ambientes de produção idênticos (Azul e Verde). Se a versão atual (Azul) recebe o tráfego de usuários, a versão nova é instalada na Verde. Uma vez validada, alteramos o balanceador de carga para apontar para o Verde instantaneamente.",
+          "code": "# Router alterando o tráfego 100% da versão V1 para V2\nset_traffic_routing --active-color green"
         }
       ],
       "questions": [
@@ -1634,13 +1634,13 @@
       "lesson": [
         {
           "title": "Canary Releases",
-          "body": "Canary Release (lançamento canário) consiste em liberar a nova versão da aplicação gradualmente. Primeiro, apenas uma pequena parcela dos usuários (ex: 5%) é direcionada para a nova versão. Se não houver aumento de erros ou piora de performance, a porcentagem de tráfego é gradualmente aumentada até atingir os 100%.",
-          "code": "# Roteamento usando Kubernetes Ingress NGINX\nnginx.ingress.kubernetes.io/canary: \"true\"\nnginx.ingress.kubernetes.io/canary-weight: \"5\""
+          "body": "No padrão Canary (Canário na mina), o deploy da nova versão não vai para todos os usuários de uma vez. Ela é liberada para uma pequena porcentagem, digamos 5% do tráfego. O pipeline então aguarda e analisa os logs: se a taxa de erros não subir, ele gradualmente expande para 100%.",
+          "code": "# Configuração hipotética do balanceador para Canary\napiVersion: networking/v1\nkind: Ingress\nmetadata:\n  annotations:\n    nginx.ingress.kubernetes.io/canary: \"true\"\n    nginx.ingress.kubernetes.io/canary-weight: \"5\""
         },
         {
-          "title": "Plano de Rollback Rápido",
-          "body": "A capacidade de voltar a uma versão anterior rapidamente (Rollback) é vital. Como os artefatos (ou imagens Docker) são imutáveis e já foram validados no passado, o rollback consiste simplesmente em pegar a versão (tag) anterior e fazer o deploy dela por cima da que apresentou problemas, estabilizando o sistema imediatamente.",
-          "code": "# Fazendo um rollback de imagem em um deployment do Kubernetes\nkubectl set image deployment/meu-app meu-app=minha-app:v1.0.1"
+          "title": "Rollback Automatizado",
+          "body": "A confiança para realizar deploys dezenas de vezes ao dia depende de um mecanismo de Rollback veloz. Se um deploy Blue-Green ou Canary falhar, a reversão é quase instantânea (apontar o router de volta para a versão antiga). Nunca deve ser necessário reconstruir a imagem anterior para restaurar produção.",
+          "code": "# Reversão instantânea do tráfego para a versão anterior\n# Rollback (Green para Blue)\nrouter.setTarget('blue-version')"
         }
       ],
       "questions": [
@@ -1711,14 +1711,14 @@
       "summary": "Resumo prático da stage 22.",
       "lesson": [
         {
-          "title": "A Importância da Observabilidade",
-          "body": "Enquanto o monitoramento nos diz que um sistema está falhando, a observabilidade nos ajuda a entender por que ele está falhando, baseando-se em três pilares: Logs, Métricas e Traces. No DevOps, a equipe precisa dessas informações valiosas não só em produção, mas alimentando um feedback loop contínuo que orienta o desenvolvimento.",
-          "code": "console.error(JSON.stringify({\n  event: \"PaymentFailed\",\n  userId: 123,\n  reason: \"Timeout no gateway\"\n}));"
+          "title": "O que é Observabilidade?",
+          "body": "Observabilidade vai além do monitoramento. Monitorar é saber *quando* um sistema falhou (ex: CPU em 100%). Observabilidade é entender e debugar o *porquê* o sistema falhou baseado nos seus sinais vitais, medidos através de três pilares fundamentais: Logs, Métricas e Traces (rastreamento).",
+          "code": "# A base para a estabilidade de DevOps\n1. Metrics (Métricas como CPU, Memória, Latência)\n2. Logs (Registro detalhado de eventos e erros)\n3. Traces (Jornada da requisição pelos microserviços)"
         },
         {
           "title": "Logs Estruturados",
-          "body": "Logs em texto puro (como \"Erro no banco de dados, falhou\") são difíceis de buscar. Logs estruturados (geralmente em formato JSON) contêm propriedades padronizadas (nível, timestamp, ID do request, serviço). Isso permite que ferramentas de análise (como ELK Stack ou Datadog) filtrem e agrupem problemas com grande precisão.",
-          "code": "# Saída de um log estruturado em JSON\n{\"level\":\"error\",\"msg\":\"falha na conexão\",\"service\":\"auth\",\"time\":\"2026-09-13\"}"
+          "body": "Ao invés de logar strings de texto puro (`Usuário X comprou`), o padrão na cultura DevOps é escrever 'Logs Estruturados' em JSON. Eles podem ser facilmente processados e filtrados em plataformas como Elasticsearch ou Datadog, permitindo buscar rapidamente pelos logs específicos de um Request-ID.",
+          "code": "// Log ruim:\nconsole.log(`Erro ao buscar: ${userId} as ${time}`);\n\n// Log Estruturado (JSON):\nlogger.error(\"user_fetch_error\", { userId: 123, retry: 2 });"
         }
       ],
       "questions": [
@@ -1789,14 +1789,14 @@
       "summary": "Resumo prático da stage 23.",
       "lesson": [
         {
-          "title": "Métricas e Prometheus",
-          "body": "Métricas representam o comportamento do sistema numérico ao longo do tempo, como uso de CPU, número de requisições por segundo e latência. O Prometheus é a ferramenta open source padrão para coletar (scraping) essas métricas, que são expostas pela aplicação em um formato específico em endpoints HTTP (geralmente /metrics).",
-          "code": "# Exemplo de formato de métrica exposta pelo Prometheus\nhttp_requests_total{method=\"GET\",endpoint=\"/api/users\"} 405\nprocess_cpu_seconds_total 12.34"
+          "title": "Métricas com Prometheus",
+          "body": "O Prometheus é o padrão de fato da indústria para métricas (Time Series Database). Onde sistemas legados empurravam logs para um servidor central, o Prometheus faz um 'pull', fazendo scrape de endpoints `/metrics` das aplicações periodicamente e guardando valores numéricos como a contagem total de requisições HTTP.",
+          "code": "# Exemplo de métrica exposta para o Prometheus em texto simples\nhttp_requests_total{method=\"GET\", status=\"200\"} 1053\nhttp_requests_total{method=\"POST\", status=\"500\"} 12"
         },
         {
-          "title": "Visualização com Grafana",
-          "body": "Grafana é uma ferramenta poderosa para visualização de dados. Ele se conecta ao Prometheus e permite a criação de dashboards interativos. Acompanhar a saúde da aplicação por meio de gráficos claros e centralizados facilita a tomada de decisão rápida e a análise visual de incidentes por toda a equipe (Ops e Devs).",
-          "code": "# O Grafana usa a linguagem PromQL para consultar as métricas\nrate(http_requests_total{status=\"500\"}[5m])\n# Gráfico: Taxa de erros 500 nos últimos 5 minutos"
+          "title": "Visualização e Alertas (Grafana)",
+          "body": "O Prometheus captura dados, mas quem os transforma em painéis de gráficos e alertas lindíssimos é o Grafana. Ele é o local onde a equipe DevOps cria os Dashboards operacionais. Baseado nas métricas, você configura alertas precisos, como disparar mensagens no Slack se a taxa de erro superar 1%.",
+          "code": "# Uma query PromQL simples usada no Grafana:\n# Calcula a taxa de erros 500 dos últimos 5 minutos\nrate(http_requests_total{status=\"500\"}[5m])"
         }
       ],
       "questions": [
@@ -1867,14 +1867,14 @@
       "summary": "Resumo prático da stage 24.",
       "lesson": [
         {
-          "title": "Gestão de Alertas e PagerDuty",
-          "body": "Não basta gerar gráficos; o sistema deve avisar quando algo quebra. Ferramentas (como Prometheus Alertmanager) avaliam regras e enviam alertas para o Slack ou sistemas de gestão de incidentes on-call (como PagerDuty). Um bom sistema de alertas foca em anomalias reais, evitando alertas ruidosos que causam fadiga na equipe.",
-          "code": "groups:\n- name: alertas\n  rules:\n  - alert: UsoAltoCPU\n    expr: process_cpu_seconds_total > 90\n    for: 2m"
+          "title": "SLA, SLO e SLI",
+          "body": "SLA é o contrato de disponibilidade (ex: 99.9%) prometido ao cliente. SLO é a meta interna, sempre mais rígida (ex: 99.95%), que o time de DevOps foca para nunca quebrar o SLA. SLI é o indicador real e medido hoje, como a porcentagem de requisições que retornaram sucesso nas últimas 24 horas.",
+          "code": "SLA: O que a equipe de vendas vendeu\nSLO: O que a equipe de Engenharia almeja (O Target)\nSLI: A métrica real sendo extraída do Prometheus"
         },
         {
-          "title": "SLO, SLA e SLI",
-          "body": "SLA (Service Level Agreement) é o contrato comercial de disponibilidade (ex: 99.9%). O SLO (Objective) é a meta interna, que sempre deve ser mais rigorosa (ex: 99.95%) do que o acordo. Já o SLI (Indicator) é a métrica real que você está medindo agora para ver se vai atingir o objetivo (ex: porcentagem de requisições sem erro).",
-          "code": "# SLI: (Requisições bem sucedidas / Total de requisições) * 100\necho \"SLI atual: 99.98% - Dentro da meta do SLO!\""
+          "title": "Error Budgets (Orçamento de Erro)",
+          "body": "Se o SLO de disponibilidade de um serviço é 99.9%, significa que há uma margem aceitável de 0.1% de erro no mês. Isso é o seu 'Error Budget'. Na cultura SRE/DevOps, enquanto houver orçamento de erro, novas features são publicadas rápido. Se esgotar, congela-se lançamentos para focar na estabilidade.",
+          "code": "Total requisições/mês = 1.000.000\nSLO = 99.9%\nError Budget = 1.000 requisições que podem falhar\nGastou o budget? Pare as features e melhore os testes!"
         }
       ],
       "questions": [
@@ -1945,14 +1945,14 @@
       "summary": "Resumo prático da stage 25.",
       "lesson": [
         {
-          "title": "O Poder da Infraestrutura como Código",
-          "body": "Infraestrutura como Código (IaC) significa provisionar servidores, bancos de dados e redes utilizando código ao invés de cliques manuais em painéis web. Isso torna a infraestrutura versionável (no Git), auditável e reproduzível. Criar um ambiente completo de staging passa a ser tão simples quanto executar um único comando.",
-          "code": "# Sem IaC: Clicar manualmente no painel da AWS para criar um S3\n# Com IaC: Definir os recursos no código e aplicar tudo de uma vez"
+          "title": "Infraestrutura como Código (IaC)",
+          "body": "No passado, provisionar um servidor significava clicar em painéis na nuvem ou rodar comandos isolados. Com IaC, a infraestrutura (redes, máquinas, load balancers) é definida num arquivo texto, versionada no Git e provisionada automaticamente de forma segura e repetível, o que é fundamental em DevOps.",
+          "code": "# Exemplo de vantagens do IaC\n- Versionamento e Histórico de mudanças da infra\n- Possibilidade de testes e code review\n- Disaster recovery instantâneo"
         },
         {
-          "title": "Fundamentos do Terraform",
-          "body": "O Terraform é uma ferramenta de IaC declarativa, utilizando a linguagem HCL. O bloco inicial de configuração é o \"provider\", que informa ao Terraform com qual API ele vai se comunicar (AWS, Azure, Google Cloud). A partir daí, utiliza-se a palavra \"resource\" para descrever exatamente o que deve ser criado.",
-          "code": "provider \"aws\" {\n  region = \"us-east-1\"\n}\n\nresource \"aws_s3_bucket\" \"meu_bucket\" {\n  bucket = \"meu-balde-arquivos-123\"\n}"
+          "title": "Terraform Providers e HCL",
+          "body": "O Terraform é a ferramenta de IaC dominante. Ele utiliza arquivos descritivos no formato HCL. Ele usa 'Providers' como conectores para as APIs das nuvens (AWS, GCP, Azure). Você declara de forma declarativa 'O QUE' você quer, e o Terraform descobre, em sua inteligência interna, 'COMO' criar os recursos.",
+          "code": "provider \"aws\" {\n  region = \"us-east-1\"\n}\n\nresource \"aws_s3_bucket\" \"meu_bucket\" {\n  bucket = \"curso-devops-blackbuster\"\n}"
         }
       ],
       "questions": [
@@ -2023,14 +2023,14 @@
       "summary": "Resumo prático da stage 26.",
       "lesson": [
         {
-          "title": "Plan e Apply no Terraform",
-          "body": "O fluxo básico do Terraform envolve dois comandos críticos. O \"terraform plan\" analisa seu código, compara com o estado atual da nuvem e exibe um relatório de tudo que será criado, modificado ou destruído. Somente após revisar esse plano de execução (plan), você roda o \"terraform apply\" para aplicar efetivamente as mudanças.",
-          "code": "terraform init   # Baixa os plugins\nterraform plan   # Mostra o que vai mudar\nterraform apply  # Executa a mudança real"
+          "title": "Terraform Plan e Apply",
+          "body": "O fluxo de trabalho do Terraform é baseado em dois passos críticos. `terraform plan` lê seu código HCL e verifica contra o estado atual da nuvem, mostrando uma prévia (um diff) exato do que será criado, alterado ou destruído. Após revisar essa saída e garantir a segurança, usamos `terraform apply` para aplicar.",
+          "code": "$ terraform plan\n# + aws_instance.web será criado\n\n$ terraform apply\n# Confirma e envia requisições para a API da nuvem criar o recurso."
         },
         {
-          "title": "O Estado (State File)",
-          "body": "O Terraform cria um arquivo de estado (terraform.tfstate) que serve como fonte da verdade da sua infraestrutura. É por meio dele que a ferramenta mapeia os recursos criados no código com os recursos reais na nuvem. Em projetos profissionais, o state é guardado remotamente em um bucket seguro para o uso compartilhado do time.",
-          "code": "terraform {\n  backend \"s3\" {\n    bucket = \"meu-estado-terraform\"\n    key    = \"prod/terraform.tfstate\"\n  }\n}"
+          "title": "Terraform State (O Estado)",
+          "body": "Para saber o que já foi criado ou não, o Terraform armazena tudo em um arquivo de estado (`terraform.tfstate`). Em pipelines de CI e trabalho em equipe, esse estado jamais deve ficar no repositório local, mas num backend remoto (como um Bucket S3 da AWS com lock em banco), garantindo a fonte da verdade.",
+          "code": "terraform {\n  backend \"s3\" {\n    bucket = \"meu-bucket-estado\"\n    key    = \"dev/terraform.tfstate\"\n    region = \"us-east-1\"\n  }\n}"
         }
       ],
       "questions": [
@@ -2101,14 +2101,14 @@
       "summary": "Resumo prático da stage 27.",
       "lesson": [
         {
-          "title": "Ansible para Gerenciamento de Configuração",
-          "body": "Enquanto o Terraform é excelente para criar (provisionar) infraestrutura, o Ansible foca na configuração dos servidores que já existem. O Ansible instala pacotes, atualiza sistemas e modifica configurações dentro das máquinas via SSH, utilizando arquivos YAML fáceis de ler chamados Playbooks, e seguindo princípios de idempotência.",
-          "code": "- name: Instalar o Nginx\n  hosts: webservers\n  tasks:\n    - name: Garante que o Nginx está atualizado\n      apt:\n        name: nginx\n        state: latest"
+          "title": "Gerência de Configuração com Ansible",
+          "body": "Enquanto o Terraform é excelente para criar os servidores e redes (provisionamento de infra), o Ansible brilha para configurar o SO das máquinas criadas, instalar pacotes, atualizar regras do firewall e aplicar configurações (gerência de configuração), usando a linguagem YAML sem exigir agentes instalados.",
+          "code": "# Playbook Ansible instalando NGINX via SSH\n- hosts: servidores_web\n  tasks:\n    - name: Instalar o Nginx\n      apt:\n        name: nginx\n        state: present"
         },
         {
-          "title": "Integração de IaC no Pipeline CI/CD",
-          "body": "A IaC também deve participar da Integração Contínua. Pipelines de IaC executam linters de código e formatadores, depois rodam um \"terraform plan\" para validações a cada Pull Request. O deploy da infra (terraform apply) pode ser automatizado no momento do merge para a branch main, atualizando os ambientes sem intervenção humana.",
-          "code": "steps:\n  - run: terraform fmt -check\n  - run: terraform validate\n  - run: terraform plan"
+          "title": "IaC no CI/CD",
+          "body": "Assim como a aplicação tem um pipeline de CI/CD, a infraestrutura tem também (chamado às vezes de GitOps). Ao abrir um PR mudando o Terraform, o GitHub Actions roda o `terraform plan` e publica o plano no comentário do PR. Quando o código é mergiado, ele roda `terraform apply`, atualizando a produção com zero clique.",
+          "code": "steps:\n  - run: terraform init\n  - run: terraform plan -out=tfplan\n  - run: terraform apply -auto-approve tfplan\n  # Roda apenas na main branch!"
         }
       ],
       "questions": [
@@ -2179,14 +2179,14 @@
       "summary": "Resumo prático da stage 28.",
       "lesson": [
         {
-          "title": "Unindo todas as Peças do DevOps",
-          "body": "Um pipeline maduro end-to-end passa pelo build, executa testes robustos automatizados, empacota a aplicação de forma segura e realiza o deploy. A cultura DevOps suporta tudo isso, garantindo que Devs e Ops compartilhem a responsabilidade pela aplicação, apoiando-se em IaC, CI/CD, monitoramento ativo e ciclos curtos de entrega.",
-          "code": "# O fluxo completo de integração e entrega\n# Code -> Commit -> Test -> Build -> Docker -> Deploy -> Monitor"
+          "title": "Integração do Pipeline End-to-End",
+          "body": "O clímax do DevOps ocorre quando o pipeline une tudo. O código feito passa pelo Linter e Testes Unitários. Em seguida, a build compila os binários (ou gera assets de front). Depois os testes de integração provam o empacotamento, e a Imagem Docker recém-construída é finalmente enviada para o Registry.",
+          "code": "name: Pipeline E2E\njobs:\n  teste-e-build: ...\n  docker-push: ...\n  deploy-staging: ...\n  deploy-prod: ..."
         },
         {
-          "title": "Preparação do Pipeline Final",
-          "body": "Neste estágio final do projeto, definimos as premissas do pipeline: a infraestrutura deve estar pronta via Terraform e as secrets configuradas com segurança. O workflow é projetado de forma declarativa para abranger múltiplos jobs dependentes, garantindo que cada nova alteração de código percorra o caminho até a produção com segurança.",
-          "code": "name: Pipeline de Produção\non:\n  push:\n    branches: [ main ]\n# O pipeline completo começará a orquestrar os jobs"
+          "title": "Segurança Contínua (DevSecOps)",
+          "body": "O 'Sec' dentro do DevOps. Segurança não deve ser pensada no final. Ferramentas são integradas ao CI (Shift-Left) para realizar SAST (Análise Estática de código em busca de vulnerabilidades) e fazer scan na imagem Docker antes mesmo do deploy. Caso algo crítico seja achado na lib, o CI quebra (fails the build).",
+          "code": "- name: Scan da Imagem Docker com Trivy\n  uses: aquasecurity/trivy-action@master\n  with:\n    image-ref: 'meu-app:${{ github.sha }}'\n    severity: 'CRITICAL'"
         }
       ],
       "questions": [
@@ -2257,14 +2257,14 @@
       "summary": "Resumo prático da stage 29.",
       "lesson": [
         {
-          "title": "Executando o CI: Teste e Build",
-          "body": "O projeto final executa os jobs de Integração Contínua (CI). O código baixado é checado via lint, validado por testes unitários e de integração (falhando rapidamente caso algo quebre). Se os testes passarem, o código é compilado e uma nova imagem Docker, devidamente tagueada com o SHA do commit, é enviada para o Registry.",
-          "code": "jobs:\n  ci-build:\n    runs-on: ubuntu-latest\n    steps:\n      - run: npm test\n      - run: docker build -t minha-app:${{ github.sha }} ."
+          "title": "Provisionamento Dinâmico de Ambientes",
+          "body": "Tendo o IaC automatizado no CD, times DevOps maduros podem, a cada Pull Request aberto, instanciar um ambiente exclusivo temporário. Eles sobem novos bancos e containers apenas para testar esse PR em específico (Preview Environments). Ao fazer o Merge e fechar o PR, tudo é destruído e você economiza dinheiro.",
+          "code": "# Ao abrir um PR para a branch xyz\nterraform apply -var='ambiente=pr-123'\n# Depois do merge\nterraform destroy -var='ambiente=pr-123'"
         },
         {
-          "title": "O Job de Deploy para Produção",
-          "body": "O job de CD aguarda o sucesso do job de CI (utilizando \"needs\"). Ele faz o login seguro nos servidores na nuvem (usando credenciais salvas em secrets) e atualiza a aplicação para a nova versão da imagem. Esse deploy automatizado ocorre de forma isolada, diminuindo o risco de erro humano e concluindo a entrega com rapidez.",
-          "code": "jobs:\n  cd-deploy:\n    needs: ci-build\n    runs-on: ubuntu-latest\n    steps:\n      - run: ./deploy.sh minha-app:${{ github.sha }}"
+          "title": "Documentação Viva",
+          "body": "No fluxo ideal, o código ser legível, as dependências versionadas no `package.json`, o pipeline definido no `.github/workflows` e a arquitetura detalhada no Terraform significam que a documentação é a própria base de código, que está viva. Não usamos mais planilhas manuais para registrar endereços IPs.",
+          "code": "A infraestrutura em `main.tf` É a verdade sobre o sistema agora.\nNenhuma intervenção manual significa nenhuma discrepância documental."
         }
       ],
       "questions": [
@@ -2335,14 +2335,14 @@
       "summary": "Resumo prático da stage 30.",
       "lesson": [
         {
-          "title": "Validação e Notificação Pós-Deploy",
-          "body": "Imediatamente após o deploy, o pipeline não termina; ele pode rodar scripts rápidos para fazer requisições HTTP e validar que a aplicação de fato subiu saudável na nuvem. Em seguida, ferramentas de chatops entram em ação, enviando uma notificação via Slack ou Discord informando a equipe inteira sobre o sucesso do lançamento.",
-          "code": "steps:\n  - name: Check health\n    run: curl -f https://meu-app.com/health || exit 1\n  - name: Notificar Slack\n    uses: rtCamp/action-slack-notify@v2"
+          "title": "Conclusão: O Valor do DevOps",
+          "body": "Você integrou CI, CD, Containers, Monitoramento e Infra como Código. Mas o real valor disso não está nas ferramentas, mas na paz de espírito. Quando o 'Deploy em sexta-feira' deixa de ser um meme assustador e vira algo monótono e entediante, você atingiu a excelência da cultura DevOps.",
+          "code": "while (cultura == 'DevOps') {\n  colaboracao();\n  automacao();\n  entregas++;\n  stress--;\n}"
         },
         {
-          "title": "Evolução Contínua",
-          "body": "DevOps não é um destino final, mas uma prática contínua de melhorias. Você deve observar os gráficos do Grafana sobre a performance do novo deploy e ouvir o feedback dos usuários. As lições aprendidas geram novas tarefas e automações. É esse aprendizado constante (sharing e measurement) que consolida a excelência no desenvolvimento.",
-          "code": "# O ciclo recomeça, melhor a cada iteração\necho \"Deploy finalizado. Hora de monitorar e planejar as próximas melhorias!\""
+          "title": "Próximos Passos e Kubernetes",
+          "body": "Agora que a base do CI/CD, Terraform, Containers e Actions está sólida, o horizonte se expande para a orquestração massiva. Ferramentas poderosas como Kubernetes, Helm, Service Meshes e a cultura pura de GitOps com ArgoCD são as fronteiras naturais para escalar essa fundação resiliente e moderna que construímos.",
+          "code": "echo 'Pronto para dominar Kubernetes, Helm e SRE!'\n# Obrigado por concluir a trilha DevOps & CI/CD no Black Buster!"
         }
       ],
       "questions": [
