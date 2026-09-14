@@ -74,15 +74,13 @@
       "lesson": [
         {
           "title": "Constantes e Variáveis",
-          "body": "Em Swift, usamos `let` para declarar constantes (valores que não mudam) e `var` para variáveis (valores mutáveis). O compilador infere o tipo automaticamente na maioria das vezes, tornando o código mais limpo e seguro.\n\nCompreender este fundamento é crucial em Swift. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "let nome = \"Swift\"\nvar versao = 5.9\nversao = 6.0 // Permitido pois é var",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Em Swift, usamos `let` para declarar constantes (valores que não mudam) e `var` para variáveis (valores mutáveis). O compilador infere o tipo automaticamente na maioria das vezes, tornando o código mais limpo e seguro.\n\nlet cria uma constante, cujo valor não pode ser alterado após a atribuição inicial; var cria uma variável, que pode ser reatribuída. A Apple recomenda usar let sempre que possível, tornando mutações explícitas e intencionais no código.",
+          "code": "let nome = \"Swift\"\nvar versao = 5.9\nversao = 6.0 // Permitido pois é var"
         },
         {
           "title": "Tipos Básicos",
-          "body": "Os tipos básicos incluem Int (inteiros), Double (decimais), String (texto) e Bool (verdadeiro/falso). A tipagem em Swift é forte, o que significa que o compilador evita que você misture tipos acidentalmente, prevenindo erros.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "let idade: Int = 30\nlet preco: Double = 99.90\nlet ativo: Bool = true\nlet saudacao: String = \"Olá, Mundo!\"",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Os tipos básicos incluem Int (inteiros), Double (decimais), String (texto) e Bool (verdadeiro/falso). A tipagem em Swift é forte, o que significa que o compilador evita que você misture tipos acidentalmente, prevenindo erros.\n\nSwift possui inferência de tipos: ao escrever let idade = 25, o compilador deduz automaticamente que idade é do tipo Int, sem necessidade de anotação explícita, mantendo a segurança de tipos estáticos com sintaxe concisa.",
+          "code": "let idade: Int = 30\nlet preco: Double = 99.90\nlet ativo: Bool = true\nlet saudacao: String = \"Olá, Mundo!\""
         }
       ],
       "questions": [
@@ -154,15 +152,13 @@
       "lesson": [
         {
           "title": "Interpolação de Strings",
-          "body": "A interpolação permite inserir valores de variáveis e constantes diretamente dentro de uma String, usando barras invertidas e parênteses `\\()`. É uma forma muito mais legível de construir textos do que concatenar pedaços.\n\nCompreender este fundamento é crucial em Swift. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "let usuario = \"Ana\"\nlet pontos = 450\nprint(\"A jogadora \\(usuario) marcou \\(pontos) pontos!\")",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "A interpolação permite inserir valores de variáveis e constantes diretamente dentro de uma String, usando barras invertidas e parênteses `\\()`. É uma forma muito mais legível de construir textos do que concatenar pedaços.\n\nA sintaxe \\(variavel) insere o valor de uma expressão diretamente dentro de uma string, convertendo automaticamente o resultado para texto, similar à interpolação de outras linguagens modernas como Ruby ou JavaScript.",
+          "code": "let usuario = \"Ana\"\nlet pontos = 450\nprint(\"A jogadora \\(usuario) marcou \\(pontos) pontos!\")"
         },
         {
           "title": "Type Annotations",
-          "body": "Embora o Swift use inferência de tipo para adivinhar o tipo da sua variável, você pode ser explícito usando anotações de tipo. Isso é útil quando a variável não tem um valor inicial ou quando você quer forçar um tipo específico, como Float em vez de Double.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "var pontuacaoMaxima: Int\npontuacaoMaxima = 1000\n\nvar taxaDeJuros: Float = 5.5",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Embora o Swift use inferência de tipo para adivinhar o tipo da sua variável, você pode ser explícito usando anotações de tipo. Isso é útil quando a variável não tem um valor inicial ou quando você quer forçar um tipo específico, como Float em vez de Double.\n\nAnotações de tipo explícitas (let nome: String = \"Ana\") são úteis quando o compilador não consegue inferir o tipo sozinho, ou quando se quer deixar a intenção do tipo mais clara para quem lê o código.",
+          "code": "var pontuacaoMaxima: Int\npontuacaoMaxima = 1000\n\nvar taxaDeJuros: Float = 5.5"
         }
       ],
       "questions": [
@@ -234,15 +230,13 @@
       "lesson": [
         {
           "title": "Tuplas (Tuples)",
-          "body": "Tuplas agrupam múltiplos valores em um único valor composto. Elas podem conter tipos diferentes e são perfeitas para retornar múltiplos valores de uma função sem precisar criar uma Struct ou Class específica.\n\nCompreender este fundamento é crucial em Swift. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "let respostaHttp = (404, \"Not Found\")\nlet (codigo, mensagem) = respostaHttp\nprint(\"Erro \\(codigo): \\(mensagem)\")",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Tuplas agrupam múltiplos valores em um único valor composto. Elas podem conter tipos diferentes e são perfeitas para retornar múltiplos valores de uma função sem precisar criar uma Struct ou Class específica.\n\nUma tupla agrupa múltiplos valores, possivelmente de tipos diferentes, em um único valor composto: let ponto = (x: 10, y: 20). É útil para retornar múltiplos valores de uma função sem criar uma struct dedicada.",
+          "code": "let respostaHttp = (404, \"Not Found\")\nlet (codigo, mensagem) = respostaHttp\nprint(\"Erro \\(codigo): \\(mensagem)\")"
         },
         {
           "title": "Type Aliases",
-          "body": "O Type Alias permite criar um apelido ou nome alternativo para um tipo existente. Isso é muito útil para tornar o código mais legível e claro, especialmente ao lidar com tipos complexos ou closures.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "typealias AudioSample = UInt16\nvar maxAmplitude: AudioSample = AudioSample.max\nprint(maxAmplitude)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O Type Alias permite criar um apelido ou nome alternativo para um tipo existente. Isso é muito útil para tornar o código mais legível e claro, especialmente ao lidar com tipos complexos ou closures.\n\ntypealias cria um nome alternativo para um tipo existente, útil para simplificar tipos complexos ou tornar o código mais legível semanticamente, como typealias Coordenada = (Double, Double).",
+          "code": "typealias AudioSample = UInt16\nvar maxAmplitude: AudioSample = AudioSample.max\nprint(maxAmplitude)"
         }
       ],
       "questions": [
@@ -314,15 +308,13 @@
       "lesson": [
         {
           "title": "Estruturas Condicionais: if",
-          "body": "A instrução `if` é usada para executar código apenas se uma condição for verdadeira. Ao contrário de outras linguagens, os parênteses ao redor da condição não são obrigatórios em Swift, mas as chaves `{}` são, melhorando a clareza.\n\nCompreender este fundamento é crucial em Swift. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "let temperatura = 25\nif temperatura > 30 {\n    print(\"Está muito quente!\")\n} else {\n    print(\"Clima agradável.\")\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "A instrução `if` é usada para executar código apenas se uma condição for verdadeira. Ao contrário de outras linguagens, os parênteses ao redor da condição não são obrigatórios em Swift, mas as chaves `{}` são, melhorando a clareza.\n\nO bloco if em Swift exige que a condição seja estritamente do tipo Bool — diferente de C ou JavaScript, não existe conversão implícita de números ou strings para verdadeiro/falso.",
+          "code": "let temperatura = 25\nif temperatura > 30 {\n    print(\"Está muito quente!\")\n} else {\n    print(\"Clima agradável.\")\n}"
         },
         {
           "title": "Saída Antecipada: guard",
-          "body": "O `guard` é semelhante ao `if`, mas é projetado para lidar com saídas antecipadas (early exit). Ele exige que a condição seja verdadeira para continuar. Caso contrário, o bloco `else` é executado, sendo obrigatório sair do escopo com `return`, `break`, etc.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "func verificarIdade(idade: Int) {\n    guard idade >= 18 else {\n        print(\"Menor de idade\")\n        return\n    }\n    print(\"Acesso permitido\")\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O `guard` é semelhante ao `if`, mas é projetado para lidar com saídas antecipadas (early exit). Ele exige que a condição seja verdadeira para continuar. Caso contrário, o bloco `else` é executado, sendo obrigatório sair do escopo com `return`, `break`, etc.\n\nguard inverte a lógica do if: valida uma condição e, se ela falhar, executa o bloco else (que deve sair da função com return). É a forma idiomática de tratar pré-condições no início de uma função.",
+          "code": "func verificarIdade(idade: Int) {\n    guard idade >= 18 else {\n        print(\"Menor de idade\")\n        return\n    }\n    print(\"Acesso permitido\")\n}"
         }
       ],
       "questions": [
@@ -394,15 +386,13 @@
       "lesson": [
         {
           "title": "O Poder do Switch",
-          "body": "O `switch` em Swift é incrivelmente versátil e seguro. Ele deve ser exaustivo (cobrir todos os casos possíveis) e não requer a palavra-chave `break` no final de cada `case`, pois não continua a execução para o próximo por padrão (no fallthrough).\n\nCompreender este fundamento é crucial em Swift. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "let vogal: Character = \"a\"\nswitch vogal {\ncase \"a\", \"e\", \"i\", \"o\", \"u\":\n    print(\"É uma vogal\")\ndefault:\n    print(\"Não é vogal\")\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O `switch` em Swift é incrivelmente versátil e seguro. Ele deve ser exaustivo (cobrir todos os casos possíveis) e não requer a palavra-chave `break` no final de cada `case`, pois não continua a execução para o próximo por padrão (no fallthrough).\n\nO switch em Swift não tem fallthrough implícito entre casos (diferente de C), exige exaustividade de todos os casos possíveis, e pode combinar múltiplos valores em um único case separado por vírgula.",
+          "code": "let vogal: Character = \"a\"\nswitch vogal {\ncase \"a\", \"e\", \"i\", \"o\", \"u\":\n    print(\"É uma vogal\")\ndefault:\n    print(\"Não é vogal\")\n}"
         },
         {
           "title": "Switch com Intervalos (Ranges)",
-          "body": "Você pode usar o `switch` junto com intervalos (ranges) para testar se um valor numérico cai dentro de uma faixa específica, simplificando bastante a lógica que exigiria múltiplos `if/else` complexos.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "let nota = 85\nswitch nota {\ncase 90...100:\n    print(\"Nota A\")\ncase 80..<90:\n    print(\"Nota B\")\ndefault:\n    print(\"Outra nota\")\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Você pode usar o `switch` junto com intervalos (ranges) para testar se um valor numérico cai dentro de uma faixa específica, simplificando bastante a lógica que exigiria múltiplos `if/else` complexos.\n\nUm case dentro de um switch pode testar se um valor está dentro de um intervalo, como case 0...9, tornando a comparação de faixas de valores muito mais expressiva do que uma cadeia de if/else if.",
+          "code": "let nota = 85\nswitch nota {\ncase 90...100:\n    print(\"Nota A\")\ncase 80..<90:\n    print(\"Nota B\")\ndefault:\n    print(\"Outra nota\")\n}"
         }
       ],
       "questions": [
@@ -474,15 +464,13 @@
       "lesson": [
         {
           "title": "Laço de Repetição: for-in",
-          "body": "O loop `for-in` é usado para iterar sobre sequências, como itens em um array, caracteres de uma string, ou intervalos numéricos. É seguro, não usa índices suscetíveis a erro e deixa o código muito mais expressivo.\n\nCompreender este fundamento é crucial em Swift. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "let frutas = [\"Maçã\", \"Banana\", \"Laranja\"]\nfor fruta in frutas {\n    print(\"Gosto de \\(fruta)\")\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O loop `for-in` é usado para iterar sobre sequências, como itens em um array, caracteres de uma string, ou intervalos numéricos. É seguro, não usa índices suscetíveis a erro e deixa o código muito mais expressivo.\n\nfor item in colecao itera diretamente sobre os elementos de arrays, dicionários, sets ou ranges, sendo a forma preferida de iteração em Swift por sua clareza e segurança contra índices inválidos.",
+          "code": "let frutas = [\"Maçã\", \"Banana\", \"Laranja\"]\nfor fruta in frutas {\n    print(\"Gosto de \\(fruta)\")\n}"
         },
         {
           "title": "Laços while e repeat-while",
-          "body": "O `while` repete um bloco de código enquanto a condição for verdadeira. O `repeat-while` é similar ao `do-while` de outras linguagens: ele executa o bloco pelo menos uma vez antes de avaliar a condição, garantindo a execução inicial.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "var contador = 3\nwhile contador > 0 {\n    print(contador)\n    contador -= 1\n}\n\nrepeat {\n    print(\"Executa ao menos uma vez\")\n} while false",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O `while` repete um bloco de código enquanto a condição for verdadeira. O `repeat-while` é similar ao `do-while` de outras linguagens: ele executa o bloco pelo menos uma vez antes de avaliar a condição, garantindo a execução inicial.\n\nwhile verifica a condição antes de cada iteração, podendo nunca executar; repeat-while (equivalente ao do-while de outras linguagens) executa o bloco pelo menos uma vez antes de verificar a condição.",
+          "code": "var contador = 3\nwhile contador > 0 {\n    print(contador)\n    contador -= 1\n}\n\nrepeat {\n    print(\"Executa ao menos uma vez\")\n} while false"
         }
       ],
       "questions": [
@@ -554,15 +542,13 @@
       "lesson": [
         {
           "title": "Definindo Funções (func)",
-          "body": "Funções são blocos de código encapsulados para realizar uma tarefa específica. Em Swift, usamos `func` para declará-las. Parâmetros e tipos de retorno são especificados claramente, tornando a assinatura da função auto-explicativa.\n\nCompreender este fundamento é crucial em Swift. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "func saudar(nome: String) -> String {\n    return \"Olá, \\(nome)!\"\n}\nlet mensagem = saudar(nome: \"Maria\")",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Funções são blocos de código encapsulados para realizar uma tarefa específica. Em Swift, usamos `func` para declará-las. Parâmetros e tipos de retorno são especificados claramente, tornando a assinatura da função auto-explicativa.\n\nFunções em Swift são declaradas com func nome(parametro: Tipo) -> TipoDeRetorno; se a função não retorna nada, o -> TipoDeRetorno pode ser omitido, já que o retorno implícito é Void.",
+          "code": "func saudar(nome: String) -> String {\n    return \"Olá, \\(nome)!\"\n}\nlet mensagem = saudar(nome: \"Maria\")"
         },
         {
           "title": "Rótulos de Argumentos (Argument Labels)",
-          "body": "Swift permite que os parâmetros das funções tenham dois nomes: um rótulo para quem chama a função (tornando a leitura semelhante a inglês natural) e um nome interno para uso dentro do corpo da função. Use `_` para omitir o rótulo externo.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "func adicionar(_ a: Int, a b: Int) -> Int {\n    return a + b\n}\nlet soma = adicionar(5, a: 3)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Swift permite que os parâmetros das funções tenham dois nomes: um rótulo para quem chama a função (tornando a leitura semelhante a inglês natural) e um nome interno para uso dentro do corpo da função. Use `_` para omitir o rótulo externo.\n\nSwift permite definir um rótulo externo diferente do nome interno do parâmetro (func saudar(para nome: String)), tornando as chamadas de função mais legíveis como frases em linguagem natural.",
+          "code": "func adicionar(_ a: Int, a b: Int) -> Int {\n    return a + b\n}\nlet soma = adicionar(5, a: 3)"
         }
       ],
       "questions": [
@@ -634,15 +620,13 @@
       "lesson": [
         {
           "title": "O que são Closures?",
-          "body": "Closures são blocos de código autônomos que podem ser passados e usados no seu código, semelhantes a lambdas. Em Swift, elas podem capturar e armazenar referências a qualquer constante ou variável do contexto em que foram definidas.\n\nCompreender este fundamento é crucial em Swift. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "let multiplicar = { (a: Int, b: Int) -> Int in\n    return a * b\n}\nprint(multiplicar(4, 5))",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Closures são blocos de código autônomos que podem ser passados e usados no seu código, semelhantes a lambdas. Em Swift, elas podem capturar e armazenar referências a qualquer constante ou variável do contexto em que foram definidas.\n\nClosures são blocos de funcionalidade autocontidos que podem ser passados e usados no código, capturando valores do contexto onde foram definidos — equivalentes a lambdas ou funções anônimas em outras linguagens.",
+          "code": "let multiplicar = { (a: Int, b: Int) -> Int in\n    return a * b\n}\nprint(multiplicar(4, 5))"
         },
         {
           "title": "Trailing Closures",
-          "body": "Se o último parâmetro de uma função for uma closure, você pode usar a sintaxe de \"trailing closure\", escrevendo a closure fora dos parênteses da chamada da função. Isso melhora bastante a legibilidade, especialmente ao usar métodos de Array.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "let numeros = [1, 2, 3]\nlet dobrados = numeros.map { numero in\n    return numero * 2\n}\nprint(dobrados)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Se o último parâmetro de uma função for uma closure, você pode usar a sintaxe de \"trailing closure\", escrevendo a closure fora dos parênteses da chamada da função. Isso melhora bastante a legibilidade, especialmente ao usar métodos de Array.\n\nQuando o último argumento de uma função é uma closure, Swift permite escrevê-la fora dos parênteses da chamada, tornando a sintaxe mais limpa: numeros.map { $0 * 2 } em vez de numeros.map({ $0 * 2 }).",
+          "code": "let numeros = [1, 2, 3]\nlet dobrados = numeros.map { numero in\n    return numero * 2\n}\nprint(dobrados)"
         }
       ],
       "questions": [
@@ -714,15 +698,13 @@
       "lesson": [
         {
           "title": "Parâmetros inout",
-          "body": "Por padrão, os parâmetros de uma função em Swift são constantes (não podem ser alterados internamente). Se você precisar modificar o valor original passado para a função, use a palavra-chave `inout` e passe o argumento com um `&`.\n\nCompreender este fundamento é crucial em Swift. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "func trocar(_ a: inout Int, _ b: inout Int) {\n    let temp = a\n    a = b\n    b = temp\n}\nvar x = 1, y = 2\ntrocar(&x, &y)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Por padrão, os parâmetros de uma função em Swift são constantes (não podem ser alterados internamente). Se você precisar modificar o valor original passado para a função, use a palavra-chave `inout` e passe o argumento com um `&`.\n\nO modificador inout permite que uma função modifique diretamente o valor de uma variável passada como argumento no escopo de quem chamou, exigindo o operador & na chamada para indicar essa passagem por referência.",
+          "code": "func trocar(_ a: inout Int, _ b: inout Int) {\n    let temp = a\n    a = b\n    b = temp\n}\nvar x = 1, y = 2\ntrocar(&x, &y)"
         },
         {
           "title": "Closures com Sintaxe Curta",
-          "body": "O Swift oferece recursos de inferência que permitem simplificar bastante a escrita de closures. Você pode omitir os tipos, o `return` e até os nomes dos parâmetros, usando os atalhos `$0`, `$1`, etc., para acessar os argumentos.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "let nomes = [\"Zeca\", \"Ana\", \"Bia\"]\nlet ordenados = nomes.sorted(by: { $0 < $1 })\nprint(ordenados) // [\"Ana\", \"Bia\", \"Zeca\"]",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O Swift oferece recursos de inferência que permitem simplificar bastante a escrita de closures. Você pode omitir os tipos, o `return` e até os nomes dos parâmetros, usando os atalhos `$0`, `$1`, etc., para acessar os argumentos.\n\nSwift permite omitir os tipos dos parâmetros e usar nomes automáticos ($0, $1) dentro de closures curtas, reduzindo drasticamente a verbosidade quando o contexto já deixa os tipos claros.",
+          "code": "let nomes = [\"Zeca\", \"Ana\", \"Bia\"]\nlet ordenados = nomes.sorted(by: { $0 < $1 })\nprint(ordenados) // [\"Ana\", \"Bia\", \"Zeca\"]"
         }
       ],
       "questions": [
@@ -794,15 +776,13 @@
       "lesson": [
         {
           "title": "A Magia dos Optionals",
-          "body": "Optionals são um dos recursos mais marcantes de Swift, usados para lidar com a ausência de valor. Uma variável do tipo `String?` (Optional de String) pode conter uma String válida ou simplesmente `nil` (nada). Isso evita falhas catastróficas comuns em outras linguagens (NullPointerException).\n\nCompreender este fundamento é crucial em Swift. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "var apelido: String? = nil\napelido = \"Zezinho\"\nprint(apelido) // Exibe: Optional(\"Zezinho\")",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Optionals são um dos recursos mais marcantes de Swift, usados para lidar com a ausência de valor. Uma variável do tipo `String?` (Optional de String) pode conter uma String válida ou simplesmente `nil` (nada). Isso evita falhas catastróficas comuns em outras linguagens (NullPointerException).\n\nUm Optional (String?) representa um valor que pode existir ou ser nil (ausência de valor), obrigando o desenvolvedor a tratar explicitamente essa possibilidade antes de usar o valor, evitando crashes por referências nulas.",
+          "code": "var apelido: String? = nil\napelido = \"Zezinho\"\nprint(apelido) // Exibe: Optional(\"Zezinho\")"
         },
         {
           "title": "Desembrulhando com if let",
-          "body": "Para usar o valor dentro de um Optional com segurança, fazemos o \"unwrapping\" (desembrulho). A técnica `if let` permite verificar se o Optional tem um valor e, em caso afirmativo, atribui-lo a uma constante temporária disponível apenas dentro daquele bloco.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "let email: String? = \"teste@apple.com\"\nif let emailValido = email {\n    print(\"O email é: \\(emailValido)\")\n} else {\n    print(\"Sem email.\")\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Para usar o valor dentro de um Optional com segurança, fazemos o \"unwrapping\" (desembrulho). A técnica `if let` permite verificar se o Optional tem um valor e, em caso afirmativo, atribui-lo a uma constante temporária disponível apenas dentro daquele bloco.\n\nif let valor = optional { ... } desembrulha um Optional de forma segura, executando o bloco apenas se o valor existir, vinculando-o a uma constante não-opcional dentro desse escopo.",
+          "code": "let email: String? = \"teste@apple.com\"\nif let emailValido = email {\n    print(\"O email é: \\(emailValido)\")\n} else {\n    print(\"Sem email.\")\n}"
         }
       ],
       "questions": [
@@ -874,15 +854,13 @@
       "lesson": [
         {
           "title": "Desembrulho com guard let",
-          "body": "Semelhante ao `if let`, o `guard let` também desembrulha Optionals. Porém, ele foca no \"caminho feliz\" e sai da função imediatamente se o valor for `nil`. Isso mantém o fluxo de código principal no nível de indentação base, melhorando a leitura (evitando o \"Pyramid of Doom\").\n\nCompreender este fundamento é crucial em Swift. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "func processar(dado: String?) {\n    guard let valor = dado else {\n        return\n    }\n    print(\"Processando: \\(valor)\")\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Semelhante ao `if let`, o `guard let` também desembrulha Optionals. Porém, ele foca no \"caminho feliz\" e sai da função imediatamente se o valor for `nil`. Isso mantém o fluxo de código principal no nível de indentação base, melhorando a leitura (evitando o \"Pyramid of Doom\").\n\nguard let valor = optional else { return } desembrulha o Optional e, caso seja nil, sai imediatamente da função — mantendo o valor desembrulhado disponível no restante do escopo da função, diferente do if let.",
+          "code": "func processar(dado: String?) {\n    guard let valor = dado else {\n        return\n    }\n    print(\"Processando: \\(valor)\")\n}"
         },
         {
           "title": "Operador de Coalescência Nula (??)",
-          "body": "O operador `??` (Nil Coalescing) fornece uma forma rápida e elegante de desembrulhar um Optional fornecendo um valor padrão ou de fallback (reserva) caso o Optional seja `nil`. É excelente para evitar `if-else` desnecessários.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "let corPreferida: String? = nil\n// Se for nil, usa \"Azul\"\nlet corParaUI = corPreferida ?? \"Azul\"\nprint(corParaUI)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O operador `??` (Nil Coalescing) fornece uma forma rápida e elegante de desembrulhar um Optional fornecendo um valor padrão ou de fallback (reserva) caso o Optional seja `nil`. É excelente para evitar `if-else` desnecessários.\n\nO operador ?? fornece um valor padrão caso o Optional à esquerda seja nil: let nome = apelido ?? \"Anônimo\", evitando a verbosidade de um if let apenas para definir um valor alternativo.",
+          "code": "let corPreferida: String? = nil\n// Se for nil, usa \"Azul\"\nlet corParaUI = corPreferida ?? \"Azul\"\nprint(corParaUI)"
         }
       ],
       "questions": [
@@ -954,15 +932,13 @@
       "lesson": [
         {
           "title": "Force Unwrapping (!)",
-          "body": "Usar `!` desembrulha o Optional à força (force unwrap). É o jeito de dizer ao compilador \"eu tenho certeza que não é nil\". No entanto, se você estiver errado e o valor for `nil`, o programa irá travar instantaneamente. Use com extrema cautela.\n\nCompreender este fundamento é crucial em Swift. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "let numeroString = \"123\"\nlet numeroConvertido = Int(numeroString)\n// Perigoso, mas funciona se o valor for numérico:\nprint(numeroConvertido! + 10)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Usar `!` desembrulha o Optional à força (force unwrap). É o jeito de dizer ao compilador \"eu tenho certeza que não é nil\". No entanto, se você estiver errado e o valor for `nil`, o programa irá travar instantaneamente. Use com extrema cautela.\n\nAdicionar ! após um Optional força seu desembrulho, assumindo que ele definitivamente contém um valor; se estiver errado e o valor for nil, o aplicativo trava imediatamente (crash), por isso deve ser usado com extrema cautela.",
+          "code": "let numeroString = \"123\"\nlet numeroConvertido = Int(numeroString)\n// Perigoso, mas funciona se o valor for numérico:\nprint(numeroConvertido! + 10)"
         },
         {
           "title": "Optional Chaining (?.)",
-          "body": "O Encadeamento Opcional (Optional Chaining) permite chamar propriedades, métodos ou subscripts de uma classe/struct que seja um Optional. Se o Optional contiver um valor, a chamada prossegue. Se for `nil`, a chamada inteira falha graciosamente e retorna `nil` sem travar o app.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "class Pessoa { var casa: Casa? }\nclass Casa { var quartos = 2 }\n\nlet joao = Pessoa()\nlet numQuartos = joao.casa?.quartos // numQuartos é Int? (nil)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O Encadeamento Opcional (Optional Chaining) permite chamar propriedades, métodos ou subscripts de uma classe/struct que seja um Optional. Se o Optional contiver um valor, a chamada prossegue. Se for `nil`, a chamada inteira falha graciosamente e retorna `nil` sem travar o app.\n\nO encadeamento opcional (objeto?.propriedade?.metodo()) permite acessar propriedades e métodos aninhados de forma segura, retornando nil automaticamente na cadeia inteira se qualquer elo intermediário for nil.",
+          "code": "class Pessoa { var casa: Casa? }\nclass Casa { var quartos = 2 }\n\nlet joao = Pessoa()\nlet numQuartos = joao.casa?.quartos // numQuartos é Int? (nil)"
         }
       ],
       "questions": [
@@ -1034,15 +1010,13 @@
       "lesson": [
         {
           "title": "Arrays (Listas Ordenadas)",
-          "body": "Arrays são coleções ordenadas de valores do mesmo tipo. Eles são indexados (começando do zero) e podem conter valores duplicados. O Swift otimiza internamente o gerenciamento de memória dos arrays para garantir alta performance e acesso rápido.\n\nCompreender este fundamento é crucial em Swift. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "var alunos: [String] = [\"Carlos\", \"Diana\"]\nalunos.append(\"Eduardo\")\nlet primeiro = alunos[0]\nprint(\"Total de alunos: \\(alunos.count)\")",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Arrays são coleções ordenadas de valores do mesmo tipo. Eles são indexados (começando do zero) e podem conter valores duplicados. O Swift otimiza internamente o gerenciamento de memória dos arrays para garantir alta performance e acesso rápido.\n\nArrays em Swift são fortemente tipados ([Int], [String]) e, quando declarados com let, tornam-se completamente imutáveis — nem o conteúdo nem o tamanho podem ser alterados após a criação.",
+          "code": "var alunos: [String] = [\"Carlos\", \"Diana\"]\nalunos.append(\"Eduardo\")\nlet primeiro = alunos[0]\nprint(\"Total de alunos: \\(alunos.count)\")"
         },
         {
           "title": "Dictionaries (Dicionários)",
-          "body": "Dicionários armazenam associações de chave-valor não ordenadas. Cada valor é associado a uma chave única, usada como um identificador para esse valor. São essenciais para mapear e recuperar rapidamente dados, como IDs de banco de dados.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "var perfis = [\"admin\": 1, \"guest\": 2]\nperfis[\"editor\"] = 3\n\nif let id = perfis[\"admin\"] {\n    print(\"O ID do admin é \\(id)\")\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Dicionários armazenam associações de chave-valor não ordenadas. Cada valor é associado a uma chave única, usada como um identificador para esse valor. São essenciais para mapear e recuperar rapidamente dados, como IDs de banco de dados.\n\nUm Dictionary armazena pares chave-valor únicos, tipados como [TipoChave: TipoValor]; o acesso a uma chave retorna um Optional, já que a chave pode não existir no dicionário.",
+          "code": "var perfis = [\"admin\": 1, \"guest\": 2]\nperfis[\"editor\"] = 3\n\nif let id = perfis[\"admin\"] {\n    print(\"O ID do admin é \\(id)\")\n}"
         }
       ],
       "questions": [
@@ -1114,15 +1088,13 @@
       "lesson": [
         {
           "title": "Sets (Conjuntos Únicos)",
-          "body": "Sets são coleções não ordenadas de elementos únicos. Eles são ideais quando a ordem dos itens não importa, mas garantir que não haja duplicatas é crucial. Sets são extremamente rápidos para verificar se um elemento específico existe na coleção.\n\nCompreender este fundamento é crucial em Swift. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "var generos: Set<String> = [\"Rock\", \"Pop\"]\ngeneros.insert(\"Jazz\")\ngeneros.insert(\"Rock\") // Ignorado, já existe\nprint(generos.contains(\"Pop\")) // true",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Sets são coleções não ordenadas de elementos únicos. Eles são ideais quando a ordem dos itens não importa, mas garantir que não haja duplicatas é crucial. Sets são extremamente rápidos para verificar se um elemento específico existe na coleção.\n\nUm Set armazena elementos únicos sem ordem garantida, ideal para verificar rapidamente se um item já existe em uma coleção (operação O(1)) e para operações matemáticas como união e interseção.",
+          "code": "var generos: Set<String> = [\"Rock\", \"Pop\"]\ngeneros.insert(\"Jazz\")\ngeneros.insert(\"Rock\") // Ignorado, já existe\nprint(generos.contains(\"Pop\")) // true"
         },
         {
           "title": "High-Order Functions: map",
-          "body": "Métodos nativos de coleções em Swift reduzem a necessidade de escrever loops manualmente. O método `map` itera sobre os elementos de um Array e aplica uma transformação a cada um deles, retornando um novo Array resultante sem alterar o original.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "let valores = [10, 20, 30]\nlet emDolares = valores.map { \"U$\\( $0 )\" }\nprint(emDolares) // [\"U$10\", \"U$20\", \"U$30\"]",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Métodos nativos de coleções em Swift reduzem a necessidade de escrever loops manualmente. O método `map` itera sobre os elementos de um Array e aplica uma transformação a cada um deles, retornando um novo Array resultante sem alterar o original.\n\nmap transforma cada elemento de uma coleção aplicando uma closure e retorna um novo array com os resultados, sem modificar a coleção original, seguindo o padrão de programação funcional presente em toda a stdlib do Swift.",
+          "code": "let valores = [10, 20, 30]\nlet emDolares = valores.map { \"U$\\( $0 )\" }\nprint(emDolares) // [\"U$10\", \"U$20\", \"U$30\"]"
         }
       ],
       "questions": [
@@ -1194,15 +1166,13 @@
       "lesson": [
         {
           "title": "High-Order Functions: filter",
-          "body": "O método `filter` avalia cada elemento de uma coleção com base em uma condição lógica (closure que retorna um Bool). Ele retorna um novo Array apenas com os elementos que passaram no teste, sendo muito limpo para filtrar dados num app.\n\nCompreender este fundamento é crucial em Swift. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "let notas = [5.0, 7.5, 9.0, 4.2]\nlet aprovados = notas.filter { $0 >= 7.0 }\nprint(aprovados) // [7.5, 9.0]",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O método `filter` avalia cada elemento de uma coleção com base em uma condição lógica (closure que retorna um Bool). Ele retorna um novo Array apenas com os elementos que passaram no teste, sendo muito limpo para filtrar dados num app.\n\nfilter retorna um novo array contendo apenas os elementos para os quais a closure fornecida retorna true, permitindo expressar condições de seleção de forma declarativa e concisa.",
+          "code": "let notas = [5.0, 7.5, 9.0, 4.2]\nlet aprovados = notas.filter { $0 >= 7.0 }\nprint(aprovados) // [7.5, 9.0]"
         },
         {
           "title": "High-Order Functions: reduce",
-          "body": "O `reduce` é usado para combinar todos os elementos de uma coleção em um único valor final. Você passa um valor inicial (como 0) e uma closure descrevendo como combinar esse acumulador com o próximo elemento (por exemplo, somando todos eles).\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "let despesas = [12.50, 8.00, 30.00]\nlet total = despesas.reduce(0) { acumulador, item in\n    return acumulador + item\n}\nprint(total) // 50.5",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O `reduce` é usado para combinar todos os elementos de uma coleção em um único valor final. Você passa um valor inicial (como 0) e uma closure descrevendo como combinar esse acumulador com o próximo elemento (por exemplo, somando todos eles).\n\nreduce combina todos os elementos de uma coleção em um único valor acumulado, aplicando repetidamente uma closure: numeros.reduce(0) { $0 + $1 } soma todos os elementos do array.",
+          "code": "let despesas = [12.50, 8.00, 30.00]\nlet total = despesas.reduce(0) { acumulador, item in\n    return acumulador + item\n}\nprint(total) // 50.5"
         }
       ],
       "questions": [
@@ -1274,15 +1244,13 @@
       "lesson": [
         {
           "title": "Entendendo Structs",
-          "body": "Structs são construções essenciais em Swift. Diferente de outras linguagens onde Classes dominam, Swift encoraja o uso intenso de Structs para criar tipos de dados. Elas recebem automaticamente um inicializador (init) com todas as suas propriedades.\n\nCompreender este fundamento é crucial em Swift. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "struct Retangulo {\n    var largura: Double\n    var altura: Double\n}\n// O init(largura:altura:) é gerado gratuitamente\nlet ret = Retangulo(largura: 10, altura: 5)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Structs são construções essenciais em Swift. Diferente de outras linguagens onde Classes dominam, Swift encoraja o uso intenso de Structs para criar tipos de dados. Elas recebem automaticamente um inicializador (init) com todas as suas propriedades.\n\nStructs são o tipo de dado fundamental em Swift (até String, Array e Dictionary são structs); ao contrário de classes, são tipos de valor, o que significa que são copiadas ao serem atribuídas ou passadas para uma função.",
+          "code": "struct Retangulo {\n    var largura: Double\n    var altura: Double\n}\n// O init(largura:altura:) é gerado gratuitamente\nlet ret = Retangulo(largura: 10, altura: 5)"
         },
         {
           "title": "Value Types (Tipos de Valor)",
-          "body": "Structs (assim como Enums e Strings/Arrays) são Value Types. Isso significa que, ao passá-los para uma função ou atribuí-los a uma nova variável, eles são COPIADOS. Alterar a cópia não altera a instância original, tornando o código mais previsível e livre de side-effects.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "struct Ponto { var x: Int }\nvar p1 = Ponto(x: 10)\nvar p2 = p1\np2.x = 50\nprint(\"p1:\\(p1.x), p2:\\(p2.x)\") // p1:10, p2:50",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Structs (assim como Enums e Strings/Arrays) são Value Types. Isso significa que, ao passá-los para uma função ou atribuí-los a uma nova variável, eles são COPIADOS. Alterar a cópia não altera a instância original, tornando o código mais previsível e livre de side-effects.\n\nQuando uma struct é atribuída a outra variável, uma cópia independente é criada — alterar a cópia não afeta o original, diferente de tipos de referência como classes, que compartilham a mesma instância na memória.",
+          "code": "struct Ponto { var x: Int }\nvar p1 = Ponto(x: 10)\nvar p2 = p1\np2.x = 50\nprint(\"p1:\\(p1.x), p2:\\(p2.x)\") // p1:10, p2:50"
         }
       ],
       "questions": [
@@ -1354,15 +1322,13 @@
       "lesson": [
         {
           "title": "Trabalhando com Classes",
-          "body": "Classes em Swift suportam características tradicionais de Programação Orientada a Objetos, como Herança. Diferente das Structs, elas não ganham um inicializador automático completo; você deve escrever o método `init` se não fornecer valores iniciais para as propriedades.\n\nCompreender este fundamento é crucial em Swift. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "class Veiculo {\n    var rodas: Int\n    init(rodas: Int) {\n        self.rodas = rodas\n    }\n}\nlet carro = Veiculo(rodas: 4)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Classes em Swift suportam características tradicionais de Programação Orientada a Objetos, como Herança. Diferente das Structs, elas não ganham um inicializador automático completo; você deve escrever o método `init` se não fornecer valores iniciais para as propriedades.\n\nClasses suportam herança, são tipos de referência e permitem múltiplas variáveis apontarem para a mesma instância na memória, sendo indicadas quando identidade e compartilhamento de estado são necessários.",
+          "code": "class Veiculo {\n    var rodas: Int\n    init(rodas: Int) {\n        self.rodas = rodas\n    }\n}\nlet carro = Veiculo(rodas: 4)"
         },
         {
           "title": "Reference Types (Tipos de Referência)",
-          "body": "Classes são Reference Types. Quando você atribui uma classe a outra variável, ambas apontam para o MESMO espaço de memória. Alterar uma propriedade através de uma variável afetará a outra, exigindo cautela e atenção ao gerenciamento de estado.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "class Usuario { var nome = \"João\" }\nvar u1 = Usuario()\nvar u2 = u1\nu2.nome = \"Maria\"\nprint(u1.nome) // \"Maria\"",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Classes são Reference Types. Quando você atribui uma classe a outra variável, ambas apontam para o MESMO espaço de memória. Alterar uma propriedade através de uma variável afetará a outra, exigindo cautela e atenção ao gerenciamento de estado.\n\nAo atribuir uma instância de classe a outra variável, ambas passam a referenciar o mesmo objeto na memória; alterar uma propriedade através de uma delas é visto através da outra também.",
+          "code": "class Usuario { var nome = \"João\" }\nvar u1 = Usuario()\nvar u2 = u1\nu2.nome = \"Maria\"\nprint(u1.nome) // \"Maria\""
         }
       ],
       "questions": [
@@ -1434,15 +1400,13 @@
       "lesson": [
         {
           "title": "Herança com Classes",
-          "body": "Classes podem herdar características de outra classe pai. A classe filha (subclass) herda propriedades e métodos da superclass e pode adicionar novos ou sobrescrever os existentes usando a palavra-chave `override`. Structs, no entanto, não suportam herança.\n\nCompreender este fundamento é crucial em Swift. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "class Animal {\n    func som() { print(\"Barulho\") }\n}\nclass Cachorro: Animal {\n    override func som() { print(\"Latido\") }\n}\nlet dog = Cachorro()\ndog.som()",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Classes podem herdar características de outra classe pai. A classe filha (subclass) herda propriedades e métodos da superclass e pode adicionar novos ou sobrescrever os existentes usando a palavra-chave `override`. Structs, no entanto, não suportam herança.\n\nclass Filha: Pai estabelece herança de classe, herdando propriedades e métodos; o modificador override é obrigatório ao sobrescrever um método herdado, tornando explícita a intenção de substituir o comportamento.",
+          "code": "class Animal {\n    func som() { print(\"Barulho\") }\n}\nclass Cachorro: Animal {\n    override func som() { print(\"Latido\") }\n}\nlet dog = Cachorro()\ndog.som()"
         },
         {
           "title": "Propriedades Computadas",
-          "body": "Em vez de armazenar um valor estático (Stored Properties), Classes e Structs podem ter propriedades computadas (Computed Properties) que calculam um valor no momento exato em que são acessadas usando métodos `get` e (opcionalmente) `set`.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "struct Quadrado {\n    var lado: Double\n    var area: Double {\n        return lado * lado\n    }\n}\nlet q = Quadrado(lado: 4)\nprint(q.area) // 16.0",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Em vez de armazenar um valor estático (Stored Properties), Classes e Structs podem ter propriedades computadas (Computed Properties) que calculam um valor no momento exato em que são acessadas usando métodos `get` e (opcionalmente) `set`.\n\nUma propriedade computada não armazena um valor diretamente, mas calcula-o dinamicamente através de um bloco get (e opcionalmente set), permitindo derivar valores a partir de outras propriedades armazenadas.",
+          "code": "struct Quadrado {\n    var lado: Double\n    var area: Double {\n        return lado * lado\n    }\n}\nlet q = Quadrado(lado: 4)\nprint(q.area) // 16.0"
         }
       ],
       "questions": [
@@ -1514,15 +1478,13 @@
       "lesson": [
         {
           "title": "O que são Protocolos?",
-          "body": "Um Protocolo define um modelo (contrato) de métodos, propriedades e requisitos que se adaptam a uma tarefa particular. Qualquer Class, Struct ou Enum que adote o protocolo deve fornecer as implementações, promovendo código flexível e desacoplado.\n\nCompreender este fundamento é crucial em Swift. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "protocol Identificavel {\n    var id: String { get }\n    func imprimirId()\n}\nstruct Produto: Identificavel {\n    let id: String\n    func imprimirId() { print(id) }\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Um Protocolo define um modelo (contrato) de métodos, propriedades e requisitos que se adaptam a uma tarefa particular. Qualquer Class, Struct ou Enum que adote o protocolo deve fornecer as implementações, promovendo código flexível e desacoplado.\n\nUm protocolo define um contrato de métodos e propriedades que um tipo deve implementar, similar a uma interface; qualquer struct, classe ou enum pode adotar um protocolo através da conformidade (conformance).",
+          "code": "protocol Identificavel {\n    var id: String { get }\n    func imprimirId()\n}\nstruct Produto: Identificavel {\n    let id: String\n    func imprimirId() { print(id) }\n}"
         },
         {
           "title": "Protocolos de Biblioteca Padrão",
-          "body": "Swift traz protocolos fantásticos embutidos, como o `Equatable` (permite usar `==` para comparar objetos) e o `Comparable` (permite usar `<`, `>`, ou ordernar listas). Ao fazer suas Structs adotarem `Equatable`, muitas vezes o compilador implementa a lógica sozinho!\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "struct Jogador: Equatable {\n    let nome: String\n    let score: Int\n}\nlet j1 = Jogador(nome: \"Bob\", score: 10)\nlet j2 = Jogador(nome: \"Bob\", score: 10)\nprint(j1 == j2) // true",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Swift traz protocolos fantásticos embutidos, como o `Equatable` (permite usar `==` para comparar objetos) e o `Comparable` (permite usar `<`, `>`, ou ordernar listas). Ao fazer suas Structs adotarem `Equatable`, muitas vezes o compilador implementa a lógica sozinho!\n\nProtocolos como Equatable, Hashable e Codable, presentes na biblioteca padrão do Swift, podem ser adotados via #[derive]-like conformance automática (protocolo Equatable: Equatable {}) na maioria dos casos simples.",
+          "code": "struct Jogador: Equatable {\n    let nome: String\n    let score: Int\n}\nlet j1 = Jogador(nome: \"Bob\", score: 10)\nlet j2 = Jogador(nome: \"Bob\", score: 10)\nprint(j1 == j2) // true"
         }
       ],
       "questions": [
@@ -1594,15 +1556,13 @@
       "lesson": [
         {
           "title": "Extensions (Extensões)",
-          "body": "Extensions adicionam novas funcionalidades a Classes, Structs, Enums ou Protocolos existentes. Isso inclui tipos sobre os quais você não tem acesso ao código fonte, como String ou Int, permitindo injetar métodos utilitários que melhoram seu ecossistema.\n\nCompreender este fundamento é crucial em Swift. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "extension Double {\n    var emReais: String {\n        return \"R$ \\(self)\"\n    }\n}\nlet preco: Double = 19.99\nprint(preco.emReais)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Extensions adicionam novas funcionalidades a Classes, Structs, Enums ou Protocolos existentes. Isso inclui tipos sobre os quais você não tem acesso ao código fonte, como String ou Int, permitindo injetar métodos utilitários que melhoram seu ecossistema.\n\nextension adiciona novas funcionalidades a um tipo já existente (mesmo tipos da biblioteca padrão como Int ou String), sem precisar modificar o código-fonte original desse tipo.",
+          "code": "extension Double {\n    var emReais: String {\n        return \"R$ \\(self)\"\n    }\n}\nlet preco: Double = 19.99\nprint(preco.emReais)"
         },
         {
           "title": "Organizando Código com Extensions",
-          "body": "Uma prática muito comum em Swift é usar Extensions para organizar seu código em blocos lógicos. Por exemplo, a estrutura de dados principal fica no escopo original, mas a adoção e implementação de protocolos específicos vão para extensões separadas do mesmo arquivo.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "struct Usuario {\n    var nome: String\n}\n\n// Extensão só para lógica de exibição\nextension Usuario: CustomStringConvertible {\n    var description: String { \"Usuário: \\(nome)\" }\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Uma prática muito comum em Swift é usar Extensions para organizar seu código em blocos lógicos. Por exemplo, a estrutura de dados principal fica no escopo original, mas a adoção e implementação de protocolos específicos vão para extensões separadas do mesmo arquivo.\n\nUsar extensions para separar a conformidade de um tipo a diferentes protocolos em blocos distintos é uma prática comum em Swift para organizar e modularizar a implementação de tipos complexos.",
+          "code": "struct Usuario {\n    var nome: String\n}\n\n// Extensão só para lógica de exibição\nextension Usuario: CustomStringConvertible {\n    var description: String { \"Usuário: \\(nome)\" }\n}"
         }
       ],
       "questions": [
@@ -1674,15 +1634,13 @@
       "lesson": [
         {
           "title": "Protocolo Codable",
-          "body": "O `Codable` é um dos recursos mais poderosos do Swift para converter instâncias em dados externos (JSON) e vice-versa, sem exigir código massante de parsing. Ao declarar conformidade com o `Codable`, o `JSONEncoder` faz todo o trabalho duro pra você.\n\nCompreender este fundamento é crucial em Swift. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "struct Filme: Codable {\n    let titulo: String\n    let ano: Int\n}\n// Se recebermos um JSON {\"titulo\":\"Matrix\", \"ano\": 1999},\n// a conversão é automática via JSONDecoder.",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O `Codable` é um dos recursos mais poderosos do Swift para converter instâncias em dados externos (JSON) e vice-versa, sem exigir código massante de parsing. Ao declarar conformidade com o `Codable`, o `JSONEncoder` faz todo o trabalho duro pra você.\n\nCodable combina Encodable e Decodable, permitindo que uma struct seja automaticamente convertida de/para JSON usando JSONEncoder e JSONDecoder, sem necessidade de escrever lógica de parsing manual.",
+          "code": "struct Filme: Codable {\n    let titulo: String\n    let ano: Int\n}\n// Se recebermos um JSON {\"titulo\":\"Matrix\", \"ano\": 1999},\n// a conversão é automática via JSONDecoder."
         },
         {
           "title": "Extensions em Protocolos",
-          "body": "Você pode escrever Extensions para os próprios Protocolos! Isso permite fornecer implementações Padrão (default) para os métodos. Dessa forma, quem adota o protocolo não é obrigado a implementar aquele método, já que herda automaticamente o comportamento padrão.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "protocol Falante {\n    func falar()\n}\nextension Falante {\n    func falar() { print(\"Som padrão\") }\n}\nstruct Alien: Falante {} // Herda método default",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Você pode escrever Extensions para os próprios Protocolos! Isso permite fornecer implementações Padrão (default) para os métodos. Dessa forma, quem adota o protocolo não é obrigado a implementar aquele método, já que herda automaticamente o comportamento padrão.\n\nExtensions em protocolos permitem fornecer implementações padrão (default implementations) para métodos do protocolo, que os tipos conformantes herdam automaticamente, podendo sobrescrevê-las se necessário.",
+          "code": "protocol Falante {\n    func falar()\n}\nextension Falante {\n    func falar() { print(\"Som padrão\") }\n}\nstruct Alien: Falante {} // Herda método default"
         }
       ],
       "questions": [
@@ -1754,15 +1712,13 @@
       "lesson": [
         {
           "title": "Representando Erros com Enums",
-          "body": "Em Swift, o tratamento de erros começa criando uma Enumeração (enum) que se conforme ao protocolo genérico `Error`. Isso permite categorizar facilmente todas as falhas e problemas específicos que podem ocorrer no seu aplicativo (Ex: erro de rede, erro de login).\n\nCompreender este fundamento é crucial em Swift. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "enum ErroBancario: Error {\n    case saldoInsuficiente\n    case limiteDiarioExcedido\n    case contaBloqueada\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Em Swift, o tratamento de erros começa criando uma Enumeração (enum) que se conforme ao protocolo genérico `Error`. Isso permite categorizar facilmente todas as falhas e problemas específicos que podem ocorrer no seu aplicativo (Ex: erro de rede, erro de login).\n\nErros customizados em Swift são tipicamente modelados como enums que adotam o protocolo Error, com cada caso representando um tipo específico de falha possível na operação.",
+          "code": "enum ErroBancario: Error {\n    case saldoInsuficiente\n    case limiteDiarioExcedido\n    case contaBloqueada\n}"
         },
         {
           "title": "Lançando Erros (throws e throw)",
-          "body": "Para indicar que uma função pode falhar e disparar um erro, usamos a palavra `throws` em sua assinatura, antes do tipo de retorno. Dentro dela, avaliamos condições e usamos `throw` seguido do nosso enum de erro para interromper e notificar o problema.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "func sacar(valor: Double, saldo: Double) throws -> Double {\n    guard valor <= saldo else {\n        throw ErroBancario.saldoInsuficiente\n    }\n    return saldo - valor\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Para indicar que uma função pode falhar e disparar um erro, usamos a palavra `throws` em sua assinatura, antes do tipo de retorno. Dentro dela, avaliamos condições e usamos `throw` seguido do nosso enum de erro para interromper e notificar o problema.\n\nUma função marcada com throws pode usar throw para lançar um erro em vez de retornar normalmente; quem a chama deve usar try e tratar o possível erro explicitamente.",
+          "code": "func sacar(valor: Double, saldo: Double) throws -> Double {\n    guard valor <= saldo else {\n        throw ErroBancario.saldoInsuficiente\n    }\n    return saldo - valor\n}"
         }
       ],
       "questions": [
@@ -1834,15 +1790,13 @@
       "lesson": [
         {
           "title": "Tratando Erros com do-catch",
-          "body": "Ao chamar uma função que lança erro (marcada com `throws`), devemos usar a instrução `try`. Para lidar ativamente com as falhas, colocamos a chamada dentro de um bloco `do` e capturamos e tratamos qualquer erro no bloco `catch`, de forma muito segura.\n\nCompreender este fundamento é crucial em Swift. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "do {\n    let novoSaldo = try sacar(valor: 100, saldo: 50)\n    print(\"Saque efetuado. Saldo: \\(novoSaldo)\")\n} catch ErroBancario.saldoInsuficiente {\n    print(\"Você não tem dinheiro suficiente.\")\n} catch {\n    print(\"Erro desconhecido: \\(error)\")\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Ao chamar uma função que lança erro (marcada com `throws`), devemos usar a instrução `try`. Para lidar ativamente com as falhas, colocamos a chamada dentro de um bloco `do` e capturamos e tratamos qualquer erro no bloco `catch`, de forma muito segura.\n\nO bloco do { try funcaoQuePodeFalhar() } catch { ... } captura qualquer erro lançado dentro do bloco do, permitindo tratar diferentes tipos de erro em blocos catch específicos.",
+          "code": "do {\n    let novoSaldo = try sacar(valor: 100, saldo: 50)\n    print(\"Saque efetuado. Saldo: \\(novoSaldo)\")\n} catch ErroBancario.saldoInsuficiente {\n    print(\"Você não tem dinheiro suficiente.\")\n} catch {\n    print(\"Erro desconhecido: \\(error)\")\n}"
         },
         {
           "title": "Omitindo Erros (try? e try!)",
-          "body": "Se você não precisa saber qual foi exatamente o erro, apenas quer o valor em caso de sucesso, use `try?`, que converte o resultado em um Optional (retornando nil se falhar). Se você tem certeza absoluta que a função nunca falhará, pode forçar a execução com `try!`.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "func carregarDados() throws -> String { return \"Dados\" }\n\n// Retorna um Optional (String?)\nlet arquivoValido = try? carregarDados()\n\n// Crasha se lançar erro\nlet dadoCrucial = try! carregarDados()",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Se você não precisa saber qual foi exatamente o erro, apenas quer o valor em caso de sucesso, use `try?`, que converte o resultado em um Optional (retornando nil se falhar). Se você tem certeza absoluta que a função nunca falhará, pode forçar a execução com `try!`.\n\ntry? converte o resultado em um Optional, retornando nil se ocorrer erro; try! assume que a operação nunca falhará, causando um crash imediato do aplicativo caso um erro seja lançado.",
+          "code": "func carregarDados() throws -> String { return \"Dados\" }\n\n// Retorna um Optional (String?)\nlet arquivoValido = try? carregarDados()\n\n// Crasha se lançar erro\nlet dadoCrucial = try! carregarDados()"
         }
       ],
       "questions": [
@@ -1914,15 +1868,13 @@
       "lesson": [
         {
           "title": "O Tipo Result",
-          "body": "O tipo genérico `Result<Success, Failure>` é um enum nativo poderoso usado para expressar claramente o resultado de uma operação assíncrona. Ele tem dois casos: `.success` contendo o dado, e `.failure` contendo o Erro. Muito utilizado em requisições de rede.\n\nCompreender este fundamento é crucial em Swift. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "func fetchUser(completion: (Result<String, Error>) -> Void) {\n    // Simulando sucesso de rede\n    completion(.success(\"Steve Jobs\"))\n}\n\n// No call site, usa-se switch para tratar",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O tipo genérico `Result<Success, Failure>` é um enum nativo poderoso usado para expressar claramente o resultado de uma operação assíncrona. Ele tem dois casos: `.success` contendo o dado, e `.failure` contendo o Erro. Muito utilizado em requisições de rede.\n\nResult<Success, Failure> representa explicitamente o resultado de uma operação assíncrona ou que pode falhar, com os casos .success(valor) e .failure(erro), sendo muito usado em APIs baseadas em closures.",
+          "code": "func fetchUser(completion: (Result<String, Error>) -> Void) {\n    // Simulando sucesso de rede\n    completion(.success(\"Steve Jobs\"))\n}\n\n// No call site, usa-se switch para tratar"
         },
         {
           "title": "Encadeando Result",
-          "body": "O tipo `Result` vem com métodos de alta ordem (map, flatMap) muito similares aos de Optional e Array. Com isso, se você obtém sucesso de uma API, pode usar um `.map` para processar e transformar esse dado de sucesso diretamente de forma limpa e encadeada.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "let respostaAPI: Result<Int, Error> = .success(200)\n\n// O map só opera no valor de sucesso (200), \n// se fosse erro, ele ignoraria e manteria o erro.\nlet stringResult = respostaAPI.map { \"Código \\($0)\" }",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O tipo `Result` vem com métodos de alta ordem (map, flatMap) muito similares aos de Optional e Array. Com isso, se você obtém sucesso de uma API, pode usar um `.map` para processar e transformar esse dado de sucesso diretamente de forma limpa e encadeada.\n\nMétodos como map, flatMap e mapError permitem transformar o valor de sucesso ou o erro dentro de um Result sem precisar desembrulhá-lo manualmente antes, mantendo o código funcional e legível.",
+          "code": "let respostaAPI: Result<Int, Error> = .success(200)\n\n// O map só opera no valor de sucesso (200), \n// se fosse erro, ele ignoraria e manteria o erro.\nlet stringResult = respostaAPI.map { \"Código \\($0)\" }"
         }
       ],
       "questions": [
@@ -1994,15 +1946,13 @@
       "lesson": [
         {
           "title": "Concorrência com async",
-          "body": "O Swift moderno introduziu as palavras-chave `async` e `await` para lidar com código assíncrono (como chamadas de API ou carregamento de arquivos) de maneira estruturada, substituindo os antigos e confusos callbacks de fechamento (closures e completion handlers).\n\nCompreender este fundamento é crucial em Swift. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "func baixarImagem() async throws -> String {\n    // Faz um trabalho pesado em background...\n    return \"ImagemBaixada.png\"\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O Swift moderno introduziu as palavras-chave `async` e `await` para lidar com código assíncrono (como chamadas de API ou carregamento de arquivos) de maneira estruturada, substituindo os antigos e confusos callbacks de fechamento (closures e completion handlers).\n\nUma função marcada com async pode executar operações assíncronas suspendendo sua execução sem bloquear a thread, sendo o padrão moderno do Swift para substituir closures de callback aninhadas.",
+          "code": "func baixarImagem() async throws -> String {\n    // Faz um trabalho pesado em background...\n    return \"ImagemBaixada.png\"\n}"
         },
         {
           "title": "Aguardando com await",
-          "body": "Quando invocamos uma função assíncrona (marcada com `async`), usamos `await` (e `try` se ela lançar erro) para suspender a execução do código de forma não-bloqueante até que o resultado esteja pronto. O sistema cuida da thread enquanto o app não trava.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "func carregarPerfil() async {\n    do {\n        let foto = try await baixarImagem()\n        print(\"Perfil carregado: \\(foto)\")\n    } catch {\n        print(\"Erro na rede\")\n    }\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Quando invocamos uma função assíncrona (marcada com `async`), usamos `await` (e `try` se ela lançar erro) para suspender a execução do código de forma não-bloqueante até que o resultado esteja pronto. O sistema cuida da thread enquanto o app não trava.\n\nawait suspende a execução da função até que a operação assíncrona chamada seja concluída, sem bloquear a thread principal, permitindo escrever código assíncrono com a clareza de código síncrono.",
+          "code": "func carregarPerfil() async {\n    do {\n        let foto = try await baixarImagem()\n        print(\"Perfil carregado: \\(foto)\")\n    } catch {\n        print(\"Erro na rede\")\n    }\n}"
         }
       ],
       "questions": [
@@ -2074,15 +2024,13 @@
       "lesson": [
         {
           "title": "Criando Tasks",
-          "body": "Funções `async` não podem ser chamadas diretamente de um ambiente não-assíncrono, como em uma viewDidLoad de interface. Para iniciar um trabalho paralelo, usamos a estrutura `Task { }`, criando um novo ambiente assíncrono onde o `await` pode ser usado.\n\nCompreender este fundamento é crucial em Swift. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "func exibirHome() {\n    print(\"Carregando UI...\")\n    Task {\n        // Executa em paralelo de forma assíncrona\n        let foto = try? await baixarImagem()\n        print(\"Foto pronta!\")\n    }\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Funções `async` não podem ser chamadas diretamente de um ambiente não-assíncrono, como em uma viewDidLoad de interface. Para iniciar um trabalho paralelo, usamos a estrutura `Task { }`, criando um novo ambiente assíncrono onde o `await` pode ser usado.\n\nTask { ... } cria uma nova unidade de trabalho assíncrona que pode ser executada de forma independente, sendo o ponto de entrada para iniciar código async a partir de um contexto síncrono.",
+          "code": "func exibirHome() {\n    print(\"Carregando UI...\")\n    Task {\n        // Executa em paralelo de forma assíncrona\n        let foto = try? await baixarImagem()\n        print(\"Foto pronta!\")\n    }\n}"
         },
         {
           "title": "Actors (Atores)",
-          "body": "Actors são novos tipos de referência (como classes), mas desenhados especificamente para serem seguros na concorrência da era async/await. Eles evitam \"data races\" (corrupção de dados) garantindo que apenas uma tarefa (Task) por vez acesse suas propriedades.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "actor ContaBancaria {\n    var saldo: Double = 0\n    // Este método é thread-safe\n    func depositar(_ valor: Double) {\n        saldo += valor\n    }\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Actors são novos tipos de referência (como classes), mas desenhados especificamente para serem seguros na concorrência da era async/await. Eles evitam \"data races\" (corrupção de dados) garantindo que apenas uma tarefa (Task) por vez acesse suas propriedades.\n\nUm actor protege seu estado interno contra acesso concorrente simultâneo, serializando automaticamente o acesso às suas propriedades, eliminando data races em código concorrente sem locks manuais.",
+          "code": "actor ContaBancaria {\n    var saldo: Double = 0\n    // Este método é thread-safe\n    func depositar(_ valor: Double) {\n        saldo += valor\n    }\n}"
         }
       ],
       "questions": [
@@ -2154,15 +2102,13 @@
       "lesson": [
         {
           "title": "TaskGroup para Paralelismo",
-          "body": "Se você tiver múltiplas chamadas assíncronas (ex: baixar 3 imagens independentes), usar múltiplos awaits seguidos os fará executar sequencialmente. O `TaskGroup` permite lançar várias Tasks em paralelo, ganhando desempenho enorme e retornando os dados juntos.\n\nCompreender este fundamento é crucial em Swift. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "func buscarFotos() async -> [String] {\n    return await withTaskGroup(of: String.self) { group in\n        group.addTask { await processar(\"img1\") }\n        group.addTask { await processar(\"img2\") }\n        var results = [String]()\n        for await res in group { results.append(res) }\n        return results\n    }\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Se você tiver múltiplas chamadas assíncronas (ex: baixar 3 imagens independentes), usar múltiplos awaits seguidos os fará executar sequencialmente. O `TaskGroup` permite lançar várias Tasks em paralelo, ganhando desempenho enorme e retornando os dados juntos.\n\nwithTaskGroup permite disparar múltiplas tarefas assíncronas em paralelo e aguardar todas concluírem, sendo ideal para processar coleções de itens de forma concorrente e coletar os resultados.",
+          "code": "func buscarFotos() async -> [String] {\n    return await withTaskGroup(of: String.self) { group in\n        group.addTask { await processar(\"img1\") }\n        group.addTask { await processar(\"img2\") }\n        var results = [String]()\n        for await res in group { results.append(res) }\n        return results\n    }\n}"
         },
         {
           "title": "MainActor",
-          "body": "Sempre que trabalhamos com concorrência em desenvolvimento iOS/macOS e precisamos atualizar a interface (UI), devemos garantir que isso ocorra na \"Thread Principal\". O atributo `@MainActor` assegura automaticamente que funções assíncronas sejam roteadas de volta à thread segura.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "@MainActor\nclass ViewModel {\n    var titulo = \"\"\n    func carregar() async {\n        let dados = try? await api.fetch()\n        self.titulo = dados ?? \"\" // Seguro, executado na UI Thread\n    }\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Sempre que trabalhamos com concorrência em desenvolvimento iOS/macOS e precisamos atualizar a interface (UI), devemos garantir que isso ocorra na \"Thread Principal\". O atributo `@MainActor` assegura automaticamente que funções assíncronas sejam roteadas de volta à thread segura.\n\n@MainActor garante que um código específico sempre execute na thread principal, essencial para atualizações de interface do usuário em UIKit ou SwiftUI, que exigem execução na main thread.",
+          "code": "@MainActor\nclass ViewModel {\n    var titulo = \"\"\n    func carregar() async {\n        let dados = try? await api.fetch()\n        self.titulo = dados ?? \"\" // Seguro, executado na UI Thread\n    }\n}"
         }
       ],
       "questions": [
@@ -2234,15 +2180,13 @@
       "lesson": [
         {
           "title": "Revisando Arquitetura MVVM",
-          "body": "No desenvolvimento moderno de Swift, a arquitetura MVVM (Model-View-ViewModel) e SwiftUI formam uma dupla perfeita. Você separa a lógica de negócios e os dados da interface gráfica. Modelos (Structs) definem o domínio, ViewModels (Classes) buscam e transformam os dados.\n\nCompreender este fundamento é crucial em Swift. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "struct Tarefa { var nome: String }\n\nclass TarefaViewModel: ObservableObject {\n    @Published var tarefas: [Tarefa] = []\n    func adicionar() { tarefas.append(Tarefa(nome: \"Nova\")) }\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "No desenvolvimento moderno de Swift, a arquitetura MVVM (Model-View-ViewModel) e SwiftUI formam uma dupla perfeita. Você separa a lógica de negócios e os dados da interface gráfica. Modelos (Structs) definem o domínio, ViewModels (Classes) buscam e transformam os dados.\n\nNo padrão MVVM (Model-View-ViewModel), a View observa mudanças de estado no ViewModel, que por sua vez contém a lógica de apresentação e se comunica com o Model, mantendo a interface desacoplada da lógica de negócio.",
+          "code": "struct Tarefa { var nome: String }\n\nclass TarefaViewModel: ObservableObject {\n    @Published var tarefas: [Tarefa] = []\n    func adicionar() { tarefas.append(Tarefa(nome: \"Nova\")) }\n}"
         },
         {
           "title": "Property Wrappers",
-          "body": "Atributos precedidos pelo `@` (como `@State`, `@Published`, `@AppStorage`) são chamados de Property Wrappers. Eles adicionam comportamentos ocultos complexos a variáveis simples, facilitando muito o gerenciamento de estados, salvamento de dados locais e atualizações de UI no Swift.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "import SwiftUI\n\nstruct ConfigView: View {\n    // Salva automaticamente no UserDefaults\n    @AppStorage(\"modoEscuro\") var modoEscuro = false\n    var body: some View { Toggle(\"Dark\", isOn: $modoEscuro) }\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Atributos precedidos pelo `@` (como `@State`, `@Published`, `@AppStorage`) são chamados de Property Wrappers. Eles adicionam comportamentos ocultos complexos a variáveis simples, facilitando muito o gerenciamento de estados, salvamento de dados locais e atualizações de UI no Swift.\n\nProperty wrappers, como @State e @Published, encapsulam lógica reutilizável de armazenamento e observação de propriedades por trás de uma anotação simples, sendo amplamente usados em SwiftUI para gerenciar estado reativo.",
+          "code": "import SwiftUI\n\nstruct ConfigView: View {\n    // Salva automaticamente no UserDefaults\n    @AppStorage(\"modoEscuro\") var modoEscuro = false\n    var body: some View { Toggle(\"Dark\", isOn: $modoEscuro) }\n}"
         }
       ],
       "questions": [
@@ -2314,15 +2258,13 @@
       "lesson": [
         {
           "title": "Gerenciamento de Memória (ARC)",
-          "body": "O Swift usa a Contagem Automática de Referências (ARC) para gerenciar a memória de Classes. Ocasionalmente, duas classes podem referenciar fortemente uma à outra (Retain Cycle), causando vazamento de memória. Usamos `weak var` para quebrar esse ciclo fatal.\n\nCompreender este fundamento é crucial em Swift. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "class Usuario {\n    weak var dispositivo: Dispositivo?\n}\nclass Dispositivo {\n    var dono: Usuario?\n}\n// O \"weak\" garante que eles possam ser desalocados da memória",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O Swift usa a Contagem Automática de Referências (ARC) para gerenciar a memória de Classes. Ocasionalmente, duas classes podem referenciar fortemente uma à outra (Retain Cycle), causando vazamento de memória. Usamos `weak var` para quebrar esse ciclo fatal.\n\nAutomatic Reference Counting (ARC) libera automaticamente a memória de instâncias de classes quando não há mais referências fortes apontando para elas, sem necessidade de um coletor de lixo em tempo de execução.",
+          "code": "class Usuario {\n    weak var dispositivo: Dispositivo?\n}\nclass Dispositivo {\n    var dono: Usuario?\n}\n// O \"weak\" garante que eles possam ser desalocados da memória"
         },
         {
           "title": "Capture Lists em Closures",
-          "body": "Da mesma forma que as classes causam vazamento de memória, Closures capturam o contexto (`self`) fortemente. Dentro de closures assíncronas duradouras (como chamadas de rede), declaramos um `[weak self]` na assinatura para instruir o ARC a não segurar a classe mãe indevidamente.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "class Downloader {\n    var url = \"...\"\n    func start() {\n        api.fetch(completion: { [weak self] data in\n            guard let self = self else { return }\n            print(self.url) // Acesso seguro a self\n        })\n    }\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Da mesma forma que as classes causam vazamento de memória, Closures capturam o contexto (`self`) fortemente. Dentro de closures assíncronas duradouras (como chamadas de rede), declaramos um `[weak self]` na assinatura para instruir o ARC a não segurar a classe mãe indevidamente.\n\nCapture lists ([weak self] in ...) evitam ciclos de retenção de memória (retain cycles) ao capturar self como referência fraca dentro de closures armazenadas, prevenindo vazamentos de memória comuns em iOS.",
+          "code": "class Downloader {\n    var url = \"...\"\n    func start() {\n        api.fetch(completion: { [weak self] data in\n            guard let self = self else { return }\n            print(self.url) // Acesso seguro a self\n        })\n    }\n}"
         }
       ],
       "questions": [
@@ -2394,15 +2336,13 @@
       "lesson": [
         {
           "title": "Padrão Delegation (Delegates)",
-          "body": "A Delegação é um padrão de projeto da Apple extremamente comum, baseado no uso de Protocolos. Basicamente, um objeto repassa (delega) uma responsabilidade ou decisão a outro objeto encarregado de executá-la, mantendo o controle desacoplado das implementações.\n\nCompreender este fundamento é crucial em Swift. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "protocol AcaoDelegate: AnyObject {\n    func acaoCompletada()\n}\nclass TarefaController {\n    weak var delegate: AcaoDelegate?\n    func finalizar() { delegate?.acaoCompletada() }\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "A Delegação é um padrão de projeto da Apple extremamente comum, baseado no uso de Protocolos. Basicamente, um objeto repassa (delega) uma responsabilidade ou decisão a outro objeto encarregado de executá-la, mantendo o controle desacoplado das implementações.\n\nO padrão delegate define um protocolo que um objeto (o delegado) implementa para receber notificações e responder a eventos de outro objeto, sendo um padrão fundamental em frameworks como UIKit.",
+          "code": "protocol AcaoDelegate: AnyObject {\n    func acaoCompletada()\n}\nclass TarefaController {\n    weak var delegate: AcaoDelegate?\n    func finalizar() { delegate?.acaoCompletada() }\n}"
         },
         {
           "title": "Swift Package Manager (SPM)",
-          "body": "O SPM é o gerenciador de dependências nativo do ecossistema Apple. Integrado fortemente ao Xcode e à linguagem Swift, permite que você adicione pacotes externos, bibliotecas e frameworks de terceiros, como Alamofire ou ferramentas de banco de dados, com extrema facilidade de configuração.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "// No manifesto Package.swift de uma biblioteca:\ndependencies: [\n    .package(url: \"https://github.com/Alamofire/Alamofire.git\", .upToNextMajor(from: \"5.6.1\"))\n]",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O SPM é o gerenciador de dependências nativo do ecossistema Apple. Integrado fortemente ao Xcode e à linguagem Swift, permite que você adicione pacotes externos, bibliotecas e frameworks de terceiros, como Alamofire ou ferramentas de banco de dados, com extrema facilidade de configuração.\n\nSPM é o gerenciador de dependências oficial da Apple, integrado nativamente ao Xcode, permitindo declarar e resolver pacotes de terceiros diretamente através de um arquivo Package.swift.",
+          "code": "// No manifesto Package.swift de uma biblioteca:\ndependencies: [\n    .package(url: \"https://github.com/Alamofire/Alamofire.git\", .upToNextMajor(from: \"5.6.1\"))\n]"
         }
       ],
       "questions": [

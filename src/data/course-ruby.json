@@ -74,15 +74,13 @@
       "lesson": [
         {
           "title": "Boas-vindas ao Ruby",
-          "body": "Ruby é uma linguagem dinâmica e focada na simplicidade e produtividade. Em Ruby, tudo é um objeto, e métodos como 'puts' são usados para exibir dados no terminal, enquanto 'gets' permite receber entrada do usuário de forma interativa.\n\nCompreender este fundamento é crucial em Ruby. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "puts 'Bem-vindo ao Ruby!'\nnome = gets.chomp\nputs 'Olá, ' + nome",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Ruby é uma linguagem dinâmica e focada na simplicidade e produtividade. Em Ruby, tudo é um objeto, e métodos como 'puts' são usados para exibir dados no terminal, enquanto 'gets' permite receber entrada do usuário de forma interativa.\n\nO método puts sempre adiciona uma quebra de linha ao final da saída, enquanto print não adiciona. Já gets bloqueia a execução até o usuário digitar algo e pressionar Enter, retornando a string com a quebra de linha incluída — por isso é comum encadear .chomp para removê-la.",
+          "code": "puts 'Bem-vindo ao Ruby!'\nnome = gets.chomp\nputs 'Olá, ' + nome"
         },
         {
           "title": "Variáveis e Tipagem Dinâmica",
-          "body": "Ruby tem tipagem dinâmica, o que significa que você não precisa declarar o tipo da variável. Basta atribuir um valor e o Ruby entende. Variáveis locais começam com letra minúscula ou underscore.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "idade = 25\nnome = 'Ana'\npreco = 19.99\nputs \"#{nome} tem #{idade} anos.\"",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Ruby tem tipagem dinâmica, o que significa que você não precisa declarar o tipo da variável. Basta atribuir um valor e o Ruby entende. Variáveis locais começam com letra minúscula ou underscore.\n\nIsso é diferente de linguagens estaticamente tipadas como Java, onde o tipo é fixado na declaração. Em Ruby, uma mesma variável pode receber um Integer e, em seguida, uma String, pois o tipo pertence ao objeto referenciado, não à variável.",
+          "code": "idade = 25\nnome = 'Ana'\npreco = 19.99\nputs \"#{nome} tem #{idade} anos.\""
         }
       ],
       "questions": [
@@ -154,15 +152,13 @@
       "lesson": [
         {
           "title": "Tipos de Dados Básicos",
-          "body": "Em Ruby, os tipos mais comuns são Integers, Floats, Strings, Booleans e Nil. Sendo puramente orientada a objetos, até mesmo números são objetos que possuem métodos úteis prontos para uso.\n\nCompreender este fundamento é crucial em Ruby. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "numero = 10\nputs numero.even? # true\nputs numero.odd?  # false",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Em Ruby, os tipos mais comuns são Integers, Floats, Strings, Booleans e Nil. Sendo puramente orientada a objetos, até mesmo números são objetos que possuem métodos úteis prontos para uso.\n\nInteger e Float são subclasses de Numeric; Ruby converte automaticamente entre eles em operações mistas (por exemplo, 5 / 2.0 retorna 2.5). Booleans são as instâncias únicas TrueClass e FalseClass, e nil representa ausência de valor, sendo o único objeto, além de false, considerado falso em condicionais.",
+          "code": "numero = 10\nputs numero.even? # true\nputs numero.odd?  # false"
         },
         {
           "title": "Trabalhando com Variáveis",
-          "body": "Você pode reatribuir valores de tipos diferentes para a mesma variável. O Ruby gerencia a memória automaticamente (Garbage Collection). Utilize variáveis descritivas para código limpo.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "valor = 100\nputs valor.class # Integer\nvalor = 'cem'\nputs valor.class # String",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Você pode reatribuir valores de tipos diferentes para a mesma variável. O Ruby gerencia a memória automaticamente (Garbage Collection). Utilize variáveis descritivas para código limpo.\n\nVariáveis em Ruby armazenam referências a objetos, não os valores diretamente. Ao atribuir uma variável a outra (b = a), ambas passam a apontar para o mesmo objeto na memória, o que é relevante ao trabalhar com objetos mutáveis como Arrays e Strings.",
+          "code": "valor = 100\nputs valor.class # Integer\nvalor = 'cem'\nputs valor.class # String"
         }
       ],
       "questions": [
@@ -234,15 +230,13 @@
       "lesson": [
         {
           "title": "Entrada e Saída Padrão",
-          "body": "Além do 'puts', temos o 'print' (que não adiciona quebra de linha) e o 'p' (que mostra a estrutura do objeto, útil para debug). O método 'gets.chomp' é o padrão para ler texto sem a quebra de linha final.\n\nCompreender este fundamento é crucial em Ruby. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "print 'Digite algo: '\ntexto = gets.chomp\np texto # Exibe a string com aspas",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Além do 'puts', temos o 'print' (que não adiciona quebra de linha) e o 'p' (que mostra a estrutura do objeto, útil para debug). O método 'gets.chomp' é o padrão para ler texto sem a quebra de linha final.\n\nO método gets sempre retorna uma String, mesmo que o usuário digite um número — por isso é comum usar .to_i ou .to_f para converter a entrada antes de realizar operações matemáticas com ela.",
+          "code": "print 'Digite algo: '\ntexto = gets.chomp\np texto # Exibe a string com aspas"
         },
         {
           "title": "Convenções de Nomenclatura",
-          "body": "No ecossistema Ruby, usamos snake_case para variáveis e métodos (minhas_variaveis), e CamelCase para classes (MinhaClasse). Constantes começam com letra maiúscula.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "taxa_de_juros = 0.05\nMAX_TENTATIVAS = 3\nputs taxa_de_juros",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "No ecossistema Ruby, usamos snake_case para variáveis e métodos (minhas_variaveis), e CamelCase para classes (MinhaClasse). Constantes começam com letra maiúscula.\n\nMétodos e variáveis usam snake_case (minúsculas com underscore), classes e módulos usam CamelCase, e constantes usam SCREAMING_SNAKE_CASE. Seguir essas convenções é essencial para manter o código idiomático e legível para outros desenvolvedores Ruby.",
+          "code": "taxa_de_juros = 0.05\nMAX_TENTATIVAS = 3\nputs taxa_de_juros"
         }
       ],
       "questions": [
@@ -314,15 +308,13 @@
       "lesson": [
         {
           "title": "Estruturas Condicionais (If)",
-          "body": "O 'if' avalia uma condição e executa o bloco de código se for verdadeira (qualquer coisa diferente de nil ou false). Opcionalmente, pode ser seguido por 'elsif' e 'else' para múltiplos casos.\n\nCompreender este fundamento é crucial em Ruby. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "nota = 8\nif nota >= 7\n  puts 'Aprovado'\nelsif nota >= 5\n  puts 'Recuperação'\nelse\n  puts 'Reprovado'\nend",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O 'if' avalia uma condição e executa o bloco de código se for verdadeira (qualquer coisa diferente de nil ou false). Opcionalmente, pode ser seguido por 'elsif' e 'else' para múltiplos casos.\n\nEm Ruby, apenas false e nil são considerados falsy; todo o resto — incluindo 0 e strings vazias — é truthy, diferente de linguagens como JavaScript ou Python. O bloco if/elsif/else é finalizado com a palavra-chave end.",
+          "code": "nota = 8\nif nota >= 7\n  puts 'Aprovado'\nelsif nota >= 5\n  puts 'Recuperação'\nelse\n  puts 'Reprovado'\nend"
         },
         {
           "title": "A Beleza do Unless",
-          "body": "O 'unless' é o inverso do 'if': ele executa o bloco apenas se a condição for FALSA. Isso torna o código mais natural de ler em situações como 'faça isso a menos que...'.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "logado = false\nunless logado\n  puts 'Por favor, faça o login primeiro.'\nend",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O 'unless' é o inverso do 'if': ele executa o bloco apenas se a condição for FALSA. Isso torna o código mais natural de ler em situações como 'faça isso a menos que...'.\n\nunless condicao equivale a if !condicao, mas é preferido quando a legibilidade melhora ao evitar negações duplas. Por convenção, evita-se usar unless com else, pois isso tende a confundir a leitura.",
+          "code": "logado = false\nunless logado\n  puts 'Por favor, faça o login primeiro.'\nend"
         }
       ],
       "questions": [
@@ -394,15 +386,13 @@
       "lesson": [
         {
           "title": "Condicionais em Uma Linha",
-          "body": "Uma característica marcante do Ruby são os modificadores (inline conditionals). Você pode colocar um 'if' ou 'unless' no final da linha, deixando a sintaxe muito mais expressiva e direta.\n\nCompreender este fundamento é crucial em Ruby. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "saldo = 100\nputs 'Saldo positivo' if saldo > 0\nputs 'Aviso: saldo zerado' unless saldo > 0",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Uma característica marcante do Ruby são os modificadores (inline conditionals). Você pode colocar um 'if' ou 'unless' no final da linha, deixando a sintaxe muito mais expressiva e direta.\n\nA forma modificadora (expressao if condicao) é usada quando há apenas uma instrução a executar, tornando o código mais conciso. Ela é equivalente a um bloco if completo, mas sem a necessidade da palavra end.",
+          "code": "saldo = 100\nputs 'Saldo positivo' if saldo > 0\nputs 'Aviso: saldo zerado' unless saldo > 0"
         },
         {
           "title": "O Operador Ternário",
-          "body": "Para condições simples de verdadeiro ou falso, o operador ternário 'condição ? verdadeiro : falso' permite atribuir ou retornar valores rapidamente em uma única linha.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "idade = 18\nstatus = idade >= 18 ? 'Maior' : 'Menor'\nputs status",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Para condições simples de verdadeiro ou falso, o operador ternário 'condição ? verdadeiro : falso' permite atribuir ou retornar valores rapidamente em uma única linha.\n\nA sintaxe condicao ? valor_se_verdadeiro : valor_se_falso avalia e retorna um valor diretamente, sendo útil para atribuições condicionais simples sem a verbosidade de um bloco if/else completo.",
+          "code": "idade = 18\nstatus = idade >= 18 ? 'Maior' : 'Menor'\nputs status"
         }
       ],
       "questions": [
@@ -474,15 +464,13 @@
       "lesson": [
         {
           "title": "Seleção com Case When",
-          "body": "O 'case' é o 'switch' do Ruby, mas muito mais poderoso. Ele pode comparar valores exatos, intervalos (ranges) e até tipos de classes sem precisar usar 'break' no final de cada caso.\n\nCompreender este fundamento é crucial em Ruby. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "dia = 'sabado'\ncase dia\nwhen 'sabado', 'domingo'\n  puts 'Fim de semana'\nelse\n  puts 'Dia de semana'\nend",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O 'case' é o 'switch' do Ruby, mas muito mais poderoso. Ele pode comparar valores exatos, intervalos (ranges) e até tipos de classes sem precisar usar 'break' no final de cada caso.\n\nO case when compara o valor do case com cada when usando o operador === por trás dos panos, o que permite comparações poderosas como intervalos (1..10) ou classes (String), não apenas igualdade simples.",
+          "code": "dia = 'sabado'\ncase dia\nwhen 'sabado', 'domingo'\n  puts 'Fim de semana'\nelse\n  puts 'Dia de semana'\nend"
         },
         {
           "title": "Loops Básicos: While e Until",
-          "body": "O 'while' repete enquanto a condição for verdadeira. O 'until' repete até que a condição seja verdadeira. Além disso, a palavra-chave 'loop' cria um loop infinito que deve ser quebrado com 'break'.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "contador = 0\nwhile contador < 3\n  puts contador\n  contador += 1\nend",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O 'while' repete enquanto a condição for verdadeira. O 'until' repete até que a condição seja verdadeira. Além disso, a palavra-chave 'loop' cria um loop infinito que deve ser quebrado com 'break'.\n\nwhile repete enquanto a condição for verdadeira, e until repete enquanto a condição for falsa (o oposto de while). Ambos verificam a condição antes de cada iteração, podendo nunca executar o bloco se a condição inicial já falhar.",
+          "code": "contador = 0\nwhile contador < 3\n  puts contador\n  contador += 1\nend"
         }
       ],
       "questions": [
@@ -554,15 +542,13 @@
       "lesson": [
         {
           "title": "Definindo Métodos",
-          "body": "Métodos são definidos com a palavra-chave 'def'. Em Ruby, não é necessário declarar os tipos dos argumentos. O retorno do método é sempre a avaliação da última linha de código (return implícito).\n\nCompreender este fundamento é crucial em Ruby. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "def saudacao(nome)\n  \"Olá, #{nome}!\" # O return é automático\nend\nputs saudacao('Carlos')",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Métodos são definidos com a palavra-chave 'def'. Em Ruby, não é necessário declarar os tipos dos argumentos. O retorno do método é sempre a avaliação da última linha de código (return implícito).\n\nMétodos são definidos com def nome_do_metodo ... end. Por convenção, um método cujo nome termina com ? deve retornar um valor booleano, e um método terminado com ! geralmente modifica o objeto original (mutação) em vez de retornar uma cópia.",
+          "code": "def saudacao(nome)\n  \"Olá, #{nome}!\" # O return é automático\nend\nputs saudacao('Carlos')"
         },
         {
           "title": "Retorno Explícito",
-          "body": "Apesar do retorno ser implícito, você pode usar a palavra 'return' para sair do método antecipadamente. Isso é útil como cláusula de guarda (guard clause) para tratar exceções no início do método.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "def dividir(a, b)\n  return 'Erro' if b == 0\n  a / b\nend\nputs dividir(10, 2)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Apesar do retorno ser implícito, você pode usar a palavra 'return' para sair do método antecipadamente. Isso é útil como cláusula de guarda (guard clause) para tratar exceções no início do método.\n\nRuby retorna implicitamente o valor da última expressão avaliada no método, tornando a palavra-chave return opcional na maioria dos casos. Usar return explicitamente é útil para sair antecipadamente do método sob certas condições.",
+          "code": "def dividir(a, b)\n  return 'Erro' if b == 0\n  a / b\nend\nputs dividir(10, 2)"
         }
       ],
       "questions": [
@@ -634,15 +620,13 @@
       "lesson": [
         {
           "title": "Parâmetros Opcionais e Nomeados",
-          "body": "Você pode definir valores padrão para argumentos. O Ruby 2.0 introduziu os 'keyword arguments' (argumentos nomeados), que deixam a chamada do método muito mais legível quando há múltiplos parâmetros.\n\nCompreender este fundamento é crucial em Ruby. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "def criar_perfil(nome, idade: 18, ativo: true)\n  puts \"#{nome}, #{idade}, ativo: #{ativo}\"\nend\ncriar_perfil('Ana', ativo: false)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Você pode definir valores padrão para argumentos. O Ruby 2.0 introduziu os 'keyword arguments' (argumentos nomeados), que deixam a chamada do método muito mais legível quando há múltiplos parâmetros.\n\nParâmetros opcionais recebem um valor padrão (def saudacao(nome = 'visitante')), usado somente se o argumento não for passado. Parâmetros nomeados (keyword arguments) tornam as chamadas mais explícitas e evitam erros de ordem.",
+          "code": "def criar_perfil(nome, idade: 18, ativo: true)\n  puts \"#{nome}, #{idade}, ativo: #{ativo}\"\nend\ncriar_perfil('Ana', ativo: false)"
         },
         {
           "title": "O Poder dos Blocos",
-          "body": "Blocos são pedaços de código anônimos envoltos em do..end ou {}. Eles podem ser passados para qualquer método e são a base da iteração no Ruby, substituindo a necessidade da maioria dos loops 'for'.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "3.times do |i|\n  puts \"Contando: #{i}\"\nend",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Blocos são pedaços de código anônimos envoltos em do..end ou {}. Eles podem ser passados para qualquer método e são a base da iteração no Ruby, substituindo a necessidade da maioria dos loops 'for'.\n\nUm bloco é um trecho de código anônimo passado a um método, delimitado por chaves {} (uma linha) ou do...end (múltiplas linhas). Métodos como each e map usam blocos para executar lógica customizada sobre cada elemento.",
+          "code": "3.times do |i|\n  puts \"Contando: #{i}\"\nend"
         }
       ],
       "questions": [
@@ -714,15 +698,13 @@
       "lesson": [
         {
           "title": "Yield: Chamando Blocos",
-          "body": "Dentro de um método, a palavra-chave 'yield' pausa a execução, roda o bloco que foi passado na chamada do método e depois retoma. O 'yield' também pode passar argumentos para o bloco.\n\nCompreender este fundamento é crucial em Ruby. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "def executar_com_tempo\n  inicio = Time.now\n  yield\n  puts \"Levou #{Time.now - inicio}s\"\nend\nexecutar_com_tempo { sleep(1) }",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Dentro de um método, a palavra-chave 'yield' pausa a execução, roda o bloco que foi passado na chamada do método e depois retoma. O 'yield' também pode passar argumentos para o bloco.\n\nA palavra-chave yield transfere o controle de execução para o bloco associado à chamada do método, permitindo passar valores para ele. block_given? verifica se um bloco foi de fato fornecido antes de chamá-lo com yield.",
+          "code": "def executar_com_tempo\n  inicio = Time.now\n  yield\n  puts \"Levou #{Time.now - inicio}s\"\nend\nexecutar_com_tempo { sleep(1) }"
         },
         {
           "title": "Procs e Lambdas",
-          "body": "Quando você precisa armazenar um bloco em uma variável para reuso, você usa Procs ou Lambdas. Lambdas checam o número de argumentos estritamente, enquanto Procs são mais tolerantes.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "dobro = -> (x) { x * 2 } # Sintaxe lambda\nputs dobro.call(5)\nputs dobro[10]",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Quando você precisa armazenar um bloco em uma variável para reuso, você usa Procs ou Lambdas. Lambdas checam o número de argumentos estritamente, enquanto Procs são mais tolerantes.\n\nProc.new e lambda criam objetos que encapsulam blocos de código reutilizáveis. A diferença principal é que lambdas verificam o número exato de argumentos e o return dentro delas encerra apenas a lambda, enquanto em uma Proc o return encerra o método que a chamou.",
+          "code": "dobro = -> (x) { x * 2 } # Sintaxe lambda\nputs dobro.call(5)\nputs dobro[10]"
         }
       ],
       "questions": [
@@ -794,15 +776,13 @@
       "lesson": [
         {
           "title": "Introdução a Arrays",
-          "body": "Arrays são coleções ordenadas que podem armazenar qualquer tipo de objeto (até misturados). Podem ser criados com [] e indexados começando pelo 0. Índices negativos acessam de trás para frente.\n\nCompreender este fundamento é crucial em Ruby. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "frutas = ['Maçã', 'Banana', 'Uva']\nputs frutas[0]  # Maçã\nputs frutas[-1] # Uva",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Arrays são coleções ordenadas que podem armazenar qualquer tipo de objeto (até misturados). Podem ser criados com [] e indexados começando pelo 0. Índices negativos acessam de trás para frente.\n\nArrays em Ruby são listas ordenadas e indexadas a partir de zero, capazes de armazenar objetos de tipos diferentes simultaneamente. Métodos como push, pop, first e last manipulam os elementos nas extremidades da coleção.",
+          "code": "frutas = ['Maçã', 'Banana', 'Uva']\nputs frutas[0]  # Maçã\nputs frutas[-1] # Uva"
         },
         {
           "title": "Manipulando Arrays",
-          "body": "Você pode adicionar elementos com push (ou <<), remover com pop (retira o último) ou shift (retira o primeiro). Métodos como 'include?' verificam se algo existe no array.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "numeros = [1, 2]\nnumeros << 3 # Adiciona ao final\nultimo = numeros.pop\nputs numeros.inspect",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Você pode adicionar elementos com push (ou <<), remover com pop (retira o último) ou shift (retira o primeiro). Métodos como 'include?' verificam se algo existe no array.\n\nMétodos como <<, delete, include? e index permitem, respectivamente, adicionar elementos, removê-los por valor, verificar presença e localizar a posição de um item dentro do array.",
+          "code": "numeros = [1, 2]\nnumeros << 3 # Adiciona ao final\nultimo = numeros.pop\nputs numeros.inspect"
         }
       ],
       "questions": [
@@ -874,15 +854,13 @@
       "lesson": [
         {
           "title": "Hashes: Estruturas de Chave-Valor",
-          "body": "Hashes funcionam como dicionários (ou objetos JSON). Você mapeia chaves para valores. A partir do Ruby 1.9, a sintaxe de chaves usando símbolos (chave: 'valor') ficou muito mais enxuta e legível.\n\nCompreender este fundamento é crucial em Ruby. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "pessoa = { nome: 'João', idade: 30 }\nputs pessoa[:nome]\npessoa[:cidade] = 'Rio'",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Hashes funcionam como dicionários (ou objetos JSON). Você mapeia chaves para valores. A partir do Ruby 1.9, a sintaxe de chaves usando símbolos (chave: 'valor') ficou muito mais enxuta e legível.\n\nUm Hash associa chaves únicas a valores, como {nome: 'Ana', idade: 25}. Desde o Ruby 1.9, símbolos como chave usam a sintaxe curta chave: valor em vez de :chave => valor.",
+          "code": "pessoa = { nome: 'João', idade: 30 }\nputs pessoa[:nome]\npessoa[:cidade] = 'Rio'"
         },
         {
           "title": "Iteração com each",
-          "body": "O método 'each' é a forma primária de iterar sobre coleções em Ruby, sendo muito preferido ao 'for'. Em Hashes, o bloco do each recebe a chave e o valor a cada iteração.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "config = { tema: 'escuro', fonte: 'Arial' }\nconfig.each do |chave, valor|\n  puts \"#{chave} = #{valor}\"\nend",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O método 'each' é a forma primária de iterar sobre coleções em Ruby, sendo muito preferido ao 'for'. Em Hashes, o bloco do each recebe a chave e o valor a cada iteração.\n\nO método each percorre cada elemento da coleção executando o bloco fornecido, mas sempre retorna a coleção original inalterada — diferente de map, que retorna uma nova coleção transformada.",
+          "code": "config = { tema: 'escuro', fonte: 'Arial' }\nconfig.each do |chave, valor|\n  puts \"#{chave} = #{valor}\"\nend"
         }
       ],
       "questions": [
@@ -954,15 +932,13 @@
       "lesson": [
         {
           "title": "Transformando com Map",
-          "body": "O 'map' (ou 'collect') percorre um array ou hash, executa o bloco e retorna uma NOVA coleção contendo o resultado da última linha do bloco para cada elemento.\n\nCompreender este fundamento é crucial em Ruby. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "valores = [1, 2, 3, 4]\nquadrados = valores.map { |v| v * v }\nputs quadrados.inspect",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O 'map' (ou 'collect') percorre um array ou hash, executa o bloco e retorna uma NOVA coleção contendo o resultado da última linha do bloco para cada elemento.\n\nmap (ou seu alias collect) aplica o bloco a cada elemento e retorna um novo array com os resultados transformados, sem alterar o array original, seguindo o princípio de imutabilidade funcional.",
+          "code": "valores = [1, 2, 3, 4]\nquadrados = valores.map { |v| v * v }\nputs quadrados.inspect"
         },
         {
           "title": "Filtrando: Select e Reject",
-          "body": "Os métodos 'select' (filtra o que for verdadeiro) e 'reject' (remove o que for verdadeiro) são extremamente úteis. Arrays possuem dezenas de métodos assim vindos do módulo Enumerable.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "notas = [5, 7, 8, 4, 9]\naprovados = notas.select { |n| n >= 7 }\nputs aprovados.inspect",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Os métodos 'select' (filtra o que for verdadeiro) e 'reject' (remove o que for verdadeiro) são extremamente úteis. Arrays possuem dezenas de métodos assim vindos do módulo Enumerable.\n\nselect retorna um novo array contendo apenas os elementos para os quais o bloco retorna verdadeiro; reject faz o oposto, mantendo os elementos para os quais o bloco retorna falso.",
+          "code": "notas = [5, 7, 8, 4, 9]\naprovados = notas.select { |n| n >= 7 }\nputs aprovados.inspect"
         }
       ],
       "questions": [
@@ -1034,15 +1010,13 @@
       "lesson": [
         {
           "title": "Aspas Simples vs Duplas",
-          "body": "Strings com aspas simples ('texto') são literais absolutos. As duplas (\"texto\") permitem o uso de sequências de escape (como \\n) e a poderosa interpolação de variáveis e expressões.\n\nCompreender este fundamento é crucial em Ruby. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "nome = 'Mundo'\nputs \"Olá #{nome}!\"\nputs 'Olá #{nome}!' # Não funciona interpolação",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Strings com aspas simples ('texto') são literais absolutos. As duplas (\"texto\") permitem o uso de sequências de escape (como \\n) e a poderosa interpolação de variáveis e expressões.\n\nStrings com aspas duplas suportam interpolação (#{variavel}) e sequências de escape como \\n; aspas simples tratam o conteúdo de forma literal, sem interpretar essas sequências especiais.",
+          "code": "nome = 'Mundo'\nputs \"Olá #{nome}!\"\nputs 'Olá #{nome}!' # Não funciona interpolação"
         },
         {
           "title": "Interpolação Avançada",
-          "body": "Dentro de #{} em strings duplas, você pode colocar qualquer código Ruby válido, não apenas nomes de variáveis. Expressões matemáticas ou chamadas de método funcionam perfeitamente.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "a = 5\nb = 3\nputs \"A soma de #{a} e #{b} é #{a + b}\"",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Dentro de #{} em strings duplas, você pode colocar qualquer código Ruby válido, não apenas nomes de variáveis. Expressões matemáticas ou chamadas de método funcionam perfeitamente.\n\nDentro de #{}, qualquer expressão Ruby válida pode ser avaliada, incluindo chamadas de método e operações matemáticas, e o resultado é automaticamente convertido para String via to_s.",
+          "code": "a = 5\nb = 3\nputs \"A soma de #{a} e #{b} é #{a + b}\""
         }
       ],
       "questions": [
@@ -1114,15 +1088,13 @@
       "lesson": [
         {
           "title": "Manipulação e Modificação",
-          "body": "Strings possuem muitos métodos úteis: upcase (maiúsculas), downcase, capitalize, reverse e length. Métodos terminados em '!' (bang methods) alteram o objeto original diretamente na memória.\n\nCompreender este fundamento é crucial em Ruby. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "texto = 'ruby'\nputs texto.upcase   # Retorna 'RUBY'\ntexto.capitalize!   # Altera 'texto' para 'Ruby'\nputs texto",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Strings possuem muitos métodos úteis: upcase (maiúsculas), downcase, capitalize, reverse e length. Métodos terminados em '!' (bang methods) alteram o objeto original diretamente na memória.\n\nMétodos como upcase, downcase e capitalize retornam novas strings modificadas; suas versões com ! (upcase!, downcase!) alteram a string original diretamente, quando disponíveis.",
+          "code": "texto = 'ruby'\nputs texto.upcase   # Retorna 'RUBY'\ntexto.capitalize!   # Altera 'texto' para 'Ruby'\nputs texto"
         },
         {
           "title": "Limpando Espaços com Strip",
-          "body": "O método 'strip' remove espaços em branco (e quebras de linha) do começo e do final da string. Útil ao lidar com dados de entrada ('gets' ou formulários).\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "entrada = \"  dado do usuario  \\n\"\nlimpo = entrada.strip\nputs \"('#{limpo}')\" # ('dado do usuario')",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O método 'strip' remove espaços em branco (e quebras de linha) do começo e do final da string. Útil ao lidar com dados de entrada ('gets' ou formulários).\n\nstrip remove espaços em branco do início e do fim da string; lstrip e rstrip removem apenas do início ou do fim, respectivamente, sendo úteis ao processar entradas de usuário via gets.",
+          "code": "entrada = \"  dado do usuario  \\n\"\nlimpo = entrada.strip\nputs \"('#{limpo}')\" # ('dado do usuario')"
         }
       ],
       "questions": [
@@ -1194,15 +1166,13 @@
       "lesson": [
         {
           "title": "Substituição com gsub",
-          "body": "Para buscar e substituir partes de uma string, usamos o 'gsub' (global substitution). Ele aceita textos simples ou Expressões Regulares (Regex) para encontrar os padrões desejados.\n\nCompreender este fundamento é crucial em Ruby. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "frase = 'Eu gosto de Java e Java'\nnova_frase = frase.gsub('Java', 'Ruby')\nputs nova_frase",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Para buscar e substituir partes de uma string, usamos o 'gsub' (global substitution). Ele aceita textos simples ou Expressões Regulares (Regex) para encontrar os padrões desejados.\n\ngsub (global substitution) substitui todas as ocorrências de um padrão na string; sub substitui apenas a primeira ocorrência. Ambos aceitam expressões regulares como padrão de busca.",
+          "code": "frase = 'Eu gosto de Java e Java'\nnova_frase = frase.gsub('Java', 'Ruby')\nputs nova_frase"
         },
         {
           "title": "Dividindo Strings com Split",
-          "body": "O 'split' divide uma string em um array com base em um delimitador (por padrão, espaço em branco). O inverso, para juntar um array em uma string, é o método 'join'.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "csv = 'dado1,dado2,dado3'\narray = csv.split(',')\nputs array.join(' - ')",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O 'split' divide uma string em um array com base em um delimitador (por padrão, espaço em branco). O inverso, para juntar um array em uma string, é o método 'join'.\n\nsplit divide uma string em um array de substrings com base em um delimitador (por padrão, espaços em branco), sendo amplamente usado para processar dados como CSV ou entradas separadas por vírgula.",
+          "code": "csv = 'dado1,dado2,dado3'\narray = csv.split(',')\nputs array.join(' - ')"
         }
       ],
       "questions": [
@@ -1274,15 +1244,13 @@
       "lesson": [
         {
           "title": "Classes e Objetos",
-          "body": "Em Ruby, criar uma classe é a receita para instanciar objetos. Uma classe define comportamentos (métodos) e o estado interno (variáveis de instância). Instanciamos usando 'Classe.new'.\n\nCompreender este fundamento é crucial em Ruby. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "class Carro\n  def buzinar\n    puts 'Bip bip!'\n  end\nend\nmeu_carro = Carro.new\nmeu_carro.buzinar",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Em Ruby, criar uma classe é a receita para instanciar objetos. Uma classe define comportamentos (métodos) e o estado interno (variáveis de instância). Instanciamos usando 'Classe.new'.\n\nUma classe é um molde que define atributos e comportamentos comuns a um conjunto de objetos; cada objeto criado a partir dela (uma instância) possui seu próprio estado independente armazenado em variáveis de instância (@atributo).",
+          "code": "class Carro\n  def buzinar\n    puts 'Bip bip!'\n  end\nend\nmeu_carro = Carro.new\nmeu_carro.buzinar"
         },
         {
           "title": "O Método Initialize",
-          "body": "O 'initialize' é o construtor da classe. Ele é chamado automaticamente ao executar o '.new' e é o local ideal para definir variáveis de instância (que começam com o símbolo @).\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "class Pessoa\n  def initialize(nome)\n    @nome = nome\n  end\n  def falar\n    puts \"Sou #{@nome}\"\n  end\nend",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O 'initialize' é o construtor da classe. Ele é chamado automaticamente ao executar o '.new' e é o local ideal para definir variáveis de instância (que começam com o símbolo @).\n\ninitialize é o construtor chamado automaticamente ao executar NomeDaClasse.new(...), responsável por definir o estado inicial do objeto através de variáveis de instância.",
+          "code": "class Pessoa\n  def initialize(nome)\n    @nome = nome\n  end\n  def falar\n    puts \"Sou #{@nome}\"\n  end\nend"
         }
       ],
       "questions": [
@@ -1354,15 +1322,13 @@
       "lesson": [
         {
           "title": "Acessores: attr_accessor",
-          "body": "Variáveis de instância (@nome) são privadas por padrão. Para acessá-las de fora, usamos os macros: attr_reader (apenas leitura), attr_writer (escrita) e attr_accessor (ambos).\n\nCompreender este fundamento é crucial em Ruby. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "class Produto\n  attr_accessor :preco, :nome\nend\np = Produto.new\np.nome = 'Livro'\nputs p.nome",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Variáveis de instância (@nome) são privadas por padrão. Para acessá-las de fora, usamos os macros: attr_reader (apenas leitura), attr_writer (escrita) e attr_accessor (ambos).\n\nattr_accessor gera automaticamente métodos getter e setter para um atributo; attr_reader gera apenas o getter (somente leitura) e attr_writer apenas o setter (somente escrita).",
+          "code": "class Produto\n  attr_accessor :preco, :nome\nend\np = Produto.new\np.nome = 'Livro'\nputs p.nome"
         },
         {
           "title": "Encapsulamento e Métodos Privados",
-          "body": "Para proteger o funcionamento interno da classe, utilizamos a palavra 'private'. Métodos abaixo do private não podem ser chamados fora do escopo da própria instância.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "class Conta\n  def sacar\n    descontar_taxa\n  end\n\n  private\n  def descontar_taxa\n    puts 'Taxa descontada'\n  end\nend",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Para proteger o funcionamento interno da classe, utilizamos a palavra 'private'. Métodos abaixo do private não podem ser chamados fora do escopo da própria instância.\n\nMétodos declarados após a palavra-chave private só podem ser chamados internamente pelo próprio objeto (sem receptor explícito), protegendo detalhes de implementação do acesso externo direto.",
+          "code": "class Conta\n  def sacar\n    descontar_taxa\n  end\n\n  private\n  def descontar_taxa\n    puts 'Taxa descontada'\n  end\nend"
         }
       ],
       "questions": [
@@ -1434,15 +1400,13 @@
       "lesson": [
         {
           "title": "Herança",
-          "body": "A herança permite que uma classe filha herde os comportamentos de uma classe pai usando o operador '<'. Isso promove reaproveitamento de código em classes que são subtipos.\n\nCompreender este fundamento é crucial em Ruby. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "class Animal\n  def respirar; puts 'Respirando'; end\nend\nclass Cachorro < Animal\n  def latir; puts 'Au au'; end\nend\nCachorro.new.respirar",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "A herança permite que uma classe filha herde os comportamentos de uma classe pai usando o operador '<'. Isso promove reaproveitamento de código em classes que são subtipos.\n\nA sintaxe class Filha < Pai estabelece herança, fazendo com que a subclasse herde todos os métodos e atributos da superclasse, podendo sobrescrevê-los (override) conforme necessário.",
+          "code": "class Animal\n  def respirar; puts 'Respirando'; end\nend\nclass Cachorro < Animal\n  def latir; puts 'Au au'; end\nend\nCachorro.new.respirar"
         },
         {
           "title": "A Palavra Super",
-          "body": "Quando você sobrescreve um método na classe filha, mas ainda quer executar a lógica do método pai, você chama 'super'. Ele aciona o método de mesmo nome na classe progenitora.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "class Funcionario\n  def base; 1000; end\nend\nclass Gerente < Funcionario\n  def base\n    super + 500\n  end\nend\nputs Gerente.new.base",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Quando você sobrescreve um método na classe filha, mas ainda quer executar a lógica do método pai, você chama 'super'. Ele aciona o método de mesmo nome na classe progenitora.\n\nsuper chama a implementação do método de mesmo nome na superclasse. Usado sem parênteses, repassa automaticamente todos os argumentos recebidos; usado com super(), não passa nenhum argumento.",
+          "code": "class Funcionario\n  def base; 1000; end\nend\nclass Gerente < Funcionario\n  def base\n    super + 500\n  end\nend\nputs Gerente.new.base"
         }
       ],
       "questions": [
@@ -1514,15 +1478,13 @@
       "lesson": [
         {
           "title": "Módulos como Namespaces",
-          "body": "Módulos servem para agrupar métodos e constantes sob um 'nome', evitando conflito (colisões) de nomes. Diferente de classes, módulos não podem ser instanciados com .new.\n\nCompreender este fundamento é crucial em Ruby. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "module Matematica\n  PI = 3.1415\n  def self.somar(a, b)\n    a + b\n  end\nend\nputs Matematica::PI",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Módulos servem para agrupar métodos e constantes sob um 'nome', evitando conflito (colisões) de nomes. Diferente de classes, módulos não podem ser instanciados com .new.\n\nMódulos (module) agrupam classes, métodos e constantes relacionadas sob um namespace comum, evitando colisões de nomes entre bibliotecas diferentes, e não podem ser instanciados diretamente.",
+          "code": "module Matematica\n  PI = 3.1415\n  def self.somar(a, b)\n    a + b\n  end\nend\nputs Matematica::PI"
         },
         {
           "title": "Mixins com Include",
-          "body": "Ruby suporta herança simples. Para compartilhar métodos comuns em várias classes, criamos Módulos e usamos 'include'. Isso adiciona os métodos do módulo como métodos de instância da classe.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "module Nadador\n  def nadar; puts 'Nadando...'; end\nend\nclass Pato\n  include Nadador\nend\nPato.new.nadar",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Ruby suporta herança simples. Para compartilhar métodos comuns em várias classes, criamos Módulos e usamos 'include'. Isso adiciona os métodos do módulo como métodos de instância da classe.\n\ninclude incorpora os métodos de instância de um módulo em uma classe, funcionando como uma forma de herança múltipla de comportamento, já que Ruby só permite uma superclasse direta por herança tradicional.",
+          "code": "module Nadador\n  def nadar; puts 'Nadando...'; end\nend\nclass Pato\n  include Nadador\nend\nPato.new.nadar"
         }
       ],
       "questions": [
@@ -1594,15 +1556,13 @@
       "lesson": [
         {
           "title": "Mixins com Extend",
-          "body": "Enquanto o 'include' injeta os métodos como instâncias da classe, o 'extend' injeta os métodos do módulo diretamente na própria classe (criando métodos de classe, análogos a estáticos).\n\nCompreender este fundamento é crucial em Ruby. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "module Rastreador\n  def buscar_todos; puts 'Buscando...'; end\nend\nclass Usuario\n  extend Rastreador\nend\nUsuario.buscar_todos",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Enquanto o 'include' injeta os métodos como instâncias da classe, o 'extend' injeta os métodos do módulo diretamente na própria classe (criando métodos de classe, análogos a estáticos).\n\nextend incorpora os métodos de um módulo como métodos de classe (estáticos), diferente de include, que os incorpora como métodos de instância disponíveis em cada objeto.",
+          "code": "module Rastreador\n  def buscar_todos; puts 'Buscando...'; end\nend\nclass Usuario\n  extend Rastreador\nend\nUsuario.buscar_todos"
         },
         {
           "title": "O Poder do Enumerable",
-          "body": "Enumerable é o módulo mais famoso do Ruby. Ao incluir Enumerable na sua classe e implementar um método chamado 'each', sua classe ganha map, select, reject, reduce, entre dezenas de outros grátis!\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "class Equipe\n  include Enumerable\n  def each(&bloco)\n    ['Ana', 'Bia'].each(&bloco)\n  end\nend\nputs Equipe.new.map(&:upcase)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Enumerable é o módulo mais famoso do Ruby. Ao incluir Enumerable na sua classe e implementar um método chamado 'each', sua classe ganha map, select, reject, reduce, entre dezenas de outros grátis!\n\nO módulo Enumerable fornece métodos como map, select, reduce e sort a qualquer classe que implemente each e inclua Enumerable, sendo a base de praticamente todas as coleções em Ruby.",
+          "code": "class Equipe\n  include Enumerable\n  def each(&bloco)\n    ['Ana', 'Bia'].each(&bloco)\n  end\nend\nputs Equipe.new.map(&:upcase)"
         }
       ],
       "questions": [
@@ -1674,15 +1634,13 @@
       "lesson": [
         {
           "title": "O Módulo Comparable",
-          "body": "Semelhante ao Enumerable, o módulo Comparable requer apenas que a classe implemente o método '<=>' (spaceship operator) comparando objetos, para liberar >, <, ==, between? gratuitamente.\n\nCompreender este fundamento é crucial em Ruby. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "class Carta\n  include Comparable\n  attr_reader :valor\n  def initialize(v); @valor = v; end\n  def <=>(outra); valor <=> outra.valor; end\nend",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Semelhante ao Enumerable, o módulo Comparable requer apenas que a classe implemente o método '<=>' (spaceship operator) comparando objetos, para liberar >, <, ==, between? gratuitamente.\n\nAo incluir Comparable e implementar o método <=>, uma classe ganha automaticamente os operadores <, >, ==, <= e >=, além do método between?, permitindo comparar instâncias diretamente.",
+          "code": "class Carta\n  include Comparable\n  attr_reader :valor\n  def initialize(v); @valor = v; end\n  def <=>(outra); valor <=> outra.valor; end\nend"
         },
         {
           "title": "Composição vs Herança",
-          "body": "Com Módulos (Mixins), a linguagem favorece a Composição em vez de Herança profunda, mantendo a árvore de objetos simples. Você pode compor uma classe incluindo dezenas de módulos específicos.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "class Smartphone\n  include Telefonico\n  include Camera\n  include NavegadorWeb\nend",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Com Módulos (Mixins), a linguagem favorece a Composição em vez de Herança profunda, mantendo a árvore de objetos simples. Você pode compor uma classe incluindo dezenas de módulos específicos.\n\nComposição consiste em construir objetos combinando outros objetos como atributos (has-a), em vez de herdar comportamento (is-a); geralmente resulta em código mais flexível e menos acoplado.",
+          "code": "class Smartphone\n  include Telefonico\n  include Camera\n  include NavegadorWeb\nend"
         }
       ],
       "questions": [
@@ -1754,15 +1712,13 @@
       "lesson": [
         {
           "title": "Capturando Exceções",
-          "body": "Para lidar com erros que podem travar o programa, usamos o bloco begin...rescue...end. Quando ocorre um erro na parte 'begin', a execução salta para o 'rescue', mantendo o programa vivo.\n\nCompreender este fundamento é crucial em Ruby. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "begin\n  10 / 0\nrescue ZeroDivisionError => e\n  puts \"Erro detectado: #{e.message}\"\nend",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Para lidar com erros que podem travar o programa, usamos o bloco begin...rescue...end. Quando ocorre um erro na parte 'begin', a execução salta para o 'rescue', mantendo o programa vivo.\n\nO bloco begin...rescue...end captura exceções levantadas durante a execução; rescue pode especificar o tipo da exceção (rescue ZeroDivisionError => e) para tratar erros específicos de forma diferente.",
+          "code": "begin\n  10 / 0\nrescue ZeroDivisionError => e\n  puts \"Erro detectado: #{e.message}\"\nend"
         },
         {
           "title": "O Bloco Ensure",
-          "body": "O 'ensure' é executado SEMPRE, independentemente de um erro ter ocorrido ou não no bloco begin. Muito útil para fechar conexões de banco de dados, arquivos ou streams que precisam ser liberados.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "arquivo = File.open('teste.txt', 'w')\nbegin\n  arquivo.write('Olá')\nensure\n  arquivo.close\n  puts 'Arquivo fechado'\nend",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O 'ensure' é executado SEMPRE, independentemente de um erro ter ocorrido ou não no bloco begin. Muito útil para fechar conexões de banco de dados, arquivos ou streams que precisam ser liberados.\n\nO bloco ensure é executado sempre, independentemente de uma exceção ter sido levantada ou não, sendo ideal para liberar recursos como arquivos ou conexões abertas.",
+          "code": "arquivo = File.open('teste.txt', 'w')\nbegin\n  arquivo.write('Olá')\nensure\n  arquivo.close\n  puts 'Arquivo fechado'\nend"
         }
       ],
       "questions": [
@@ -1834,15 +1790,13 @@
       "lesson": [
         {
           "title": "Levantando Exceções com Raise",
-          "body": "Você pode lançar seus próprios erros intencionalmente usando a palavra-chave 'raise'. Isso é excelente para validações ou quando o código não deve prosseguir dado certo estado inválido.\n\nCompreender este fundamento é crucial em Ruby. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "def validar_idade(idade)\n  raise 'Idade inválida' if idade < 0\n  puts 'Idade Ok'\nend\nvalidar_idade(-5) rescue puts 'Falhou'",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Você pode lançar seus próprios erros intencionalmente usando a palavra-chave 'raise'. Isso é excelente para validações ou quando o código não deve prosseguir dado certo estado inválido.\n\nraise interrompe a execução normal e levanta uma exceção, podendo receber a classe do erro e uma mensagem personalizada: raise ArgumentError, 'valor inválido'.",
+          "code": "def validar_idade(idade)\n  raise 'Idade inválida' if idade < 0\n  puts 'Idade Ok'\nend\nvalidar_idade(-5) rescue puts 'Falhou'"
         },
         {
           "title": "Classes de Erros Customizados",
-          "body": "Você pode criar suas próprias classes de Exceção herdando de StandardError. Isso permite um rescue mais específico no seu sistema para diferentes falhas de negócio.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "class SaldoInsuficienteError < StandardError; end\n\nraise SaldoInsuficienteError, 'Saldo R$ 0'\nrescue SaldoInsuficienteError => e\nputs e.message",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Você pode criar suas próprias classes de Exceção herdando de StandardError. Isso permite um rescue mais específico no seu sistema para diferentes falhas de negócio.\n\nCriar uma classe que herda de StandardError permite definir exceções específicas do domínio da aplicação, tornando o tratamento de erros mais expressivo e granular.",
+          "code": "class SaldoInsuficienteError < StandardError; end\n\nraise SaldoInsuficienteError, 'Saldo R$ 0'\nrescue SaldoInsuficienteError => e\nputs e.message"
         }
       ],
       "questions": [
@@ -1914,15 +1868,13 @@
       "lesson": [
         {
           "title": "O Else no Rescue",
-          "body": "Existe também o 'else' no fluxo de exceção, que é executado apenas se NENHUM erro ocorrer no begin. Ajuda a separar o 'caminho feliz' do código que pode estourar a exceção.\n\nCompreender este fundamento é crucial em Ruby. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "begin\n  puts 'Fazendo algo arriscado'\nrescue\n  puts 'Deu ruim'\nelse\n  puts 'Tudo ocorreu bem, continuando...'\nend",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Existe também o 'else' no fluxo de exceção, que é executado apenas se NENHUM erro ocorrer no begin. Ajuda a separar o 'caminho feliz' do código que pode estourar a exceção.\n\nUm bloco else dentro de begin/rescue é executado apenas quando nenhuma exceção ocorreu, útil para separar claramente o código que só deve rodar em caso de sucesso.",
+          "code": "begin\n  puts 'Fazendo algo arriscado'\nrescue\n  puts 'Deu ruim'\nelse\n  puts 'Tudo ocorreu bem, continuando...'\nend"
         },
         {
           "title": "Rescue Modificador Inline",
-          "body": "Como o 'if', o 'rescue' pode ser usado no final de uma linha para fornecer um fallback (valor padrão) caso uma operação falhe, resultando em um código bem limpo para atribuições.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "numero = Integer('texto') rescue 0\nputs numero # 0, pois falhou ao converter a string para int",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Como o 'if', o 'rescue' pode ser usado no final de uma linha para fornecer um fallback (valor padrão) caso uma operação falhe, resultando em um código bem limpo para atribuições.\n\nA forma expressao rescue valor_padrao captura qualquer exceção StandardError na mesma linha, retornando valor_padrao caso ocorra, sendo útil para conversões simples e seguras.",
+          "code": "numero = Integer('texto') rescue 0\nputs numero # 0, pois falhou ao converter a string para int"
         }
       ],
       "questions": [
@@ -1994,15 +1946,13 @@
       "lesson": [
         {
           "title": "O Gerenciador RubyGems",
-          "body": "Gems são as bibliotecas (pacotes) da comunidade Ruby. O comando 'gem install' baixa e instala extensões para uso. Existe uma gem para quase tudo: HTTP, Parsing, Autenticação, etc.\n\nCompreender este fundamento é crucial em Ruby. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "# No terminal: gem install httparty\nrequire 'httparty'\n\nresponse = HTTParty.get('https://api.github.com')\nputs response.code",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Gems são as bibliotecas (pacotes) da comunidade Ruby. O comando 'gem install' baixa e instala extensões para uso. Existe uma gem para quase tudo: HTTP, Parsing, Autenticação, etc.\n\nRubyGems é o gerenciador de pacotes padrão do Ruby; o comando gem install nome_da_gem baixa e instala bibliotecas de terceiros disponíveis no repositório público rubygems.org.",
+          "code": "# No terminal: gem install httparty\nrequire 'httparty'\n\nresponse = HTTParty.get('https://api.github.com')\nputs response.code"
         },
         {
           "title": "O Bundler e o Gemfile",
-          "body": "Para projetos sérios, usamos o Bundler. Ele gerencia as dependências do projeto baseado em um arquivo chamado 'Gemfile', garantindo que todos os devs usem as versões exatas de cada gem.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "# Gemfile\nsource 'https://rubygems.org'\n\ngem 'sinatra'\ngem 'rspec', group: :test",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Para projetos sérios, usamos o Bundler. Ele gerencia as dependências do projeto baseado em um arquivo chamado 'Gemfile', garantindo que todos os devs usem as versões exatas de cada gem.\n\nBundler gerencia as dependências de um projeto listadas no arquivo Gemfile, garantindo que todos os desenvolvedores usem exatamente as mesmas versões das gems através do arquivo Gemfile.lock.",
+          "code": "# Gemfile\nsource 'https://rubygems.org'\n\ngem 'sinatra'\ngem 'rspec', group: :test"
         }
       ],
       "questions": [
@@ -2074,15 +2024,13 @@
       "lesson": [
         {
           "title": "Lendo e Escrevendo Arquivos",
-          "body": "A classe File facilita muito a manipulação I/O. Você pode ler o conteúdo de um arquivo inteiro em uma string ou iterar linha a linha para não sobrecarregar a memória em arquivos gigantes.\n\nCompreender este fundamento é crucial em Ruby. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "File.open('saudacao.txt', 'w') do |f|\n  f.puts 'Hello Ruby!'\nend\nputs File.read('saudacao.txt')",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "A classe File facilita muito a manipulação I/O. Você pode ler o conteúdo de um arquivo inteiro em uma string ou iterar linha a linha para não sobrecarregar a memória em arquivos gigantes.\n\nFile.open pode receber um bloco que fecha o arquivo automaticamente ao final; os modos 'r', 'w' e 'a' controlam, respectivamente, leitura, escrita (sobrescrevendo) e escrita (anexando ao final).",
+          "code": "File.open('saudacao.txt', 'w') do |f|\n  f.puts 'Hello Ruby!'\nend\nputs File.read('saudacao.txt')"
         },
         {
           "title": "Parseamento de JSON",
-          "body": "A biblioteca padrão do Ruby inclui a manipulação de JSON. Com 'require \"json\"', você pode converter hashes em strings JSON (.to_json) ou parsear JSON de volta em Hashes para trabalhar os dados.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "require 'json'\n\ndados = { lang: 'Ruby', ver: 3 }\nstr = dados.to_json\nputs JSON.parse(str)['lang']",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "A biblioteca padrão do Ruby inclui a manipulação de JSON. Com 'require \"json\"', você pode converter hashes em strings JSON (.to_json) ou parsear JSON de volta em Hashes para trabalhar os dados.\n\nA biblioteca padrão json fornece JSON.parse para converter uma string JSON em estruturas Ruby (Hash/Array) e JSON.generate (ou to_json) para o caminho inverso.",
+          "code": "require 'json'\n\ndados = { lang: 'Ruby', ver: 3 }\nstr = dados.to_json\nputs JSON.parse(str)['lang']"
         }
       ],
       "questions": [
@@ -2154,15 +2102,13 @@
       "lesson": [
         {
           "title": "Conceitos de Testes (RSpec)",
-          "body": "A cultura Ruby é forte em testes. O RSpec é o framework BDD mais utilizado. Ele descreve o comportamento esperado do código usando linguagem quase natural: 'describe' e 'it'.\n\nCompreender este fundamento é crucial em Ruby. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "require 'rspec'\n\ndescribe 'Soma' do\n  it 'soma dois números' do\n    expect(1 + 1).to eq(2)\n  end\nend",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "A cultura Ruby é forte em testes. O RSpec é o framework BDD mais utilizado. Ele descreve o comportamento esperado do código usando linguagem quase natural: 'describe' e 'it'.\n\nRSpec é o framework de testes mais popular do ecossistema Ruby, organizando testes em blocos describe e it, com expectativas escritas de forma legível via expect(resultado).to eq(esperado).",
+          "code": "require 'rspec'\n\ndescribe 'Soma' do\n  it 'soma dois números' do\n    expect(1 + 1).to eq(2)\n  end\nend"
         },
         {
           "title": "Ruby para Web: Sinatra e Rails",
-          "body": "Ruby brilha no backend web! Enquanto o Ruby on Rails é o framework gigante e completo (baterias inclusas), o Sinatra é um micro-framework maravilhoso para APIs pequenas e diretas.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "# script.rb\nrequire 'sinatra'\n\nget '/' do\n  'Olá mundo via web no Sinatra!'\nend\n# Rode 'ruby script.rb' e acesse localhost:4567",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Ruby brilha no backend web! Enquanto o Ruby on Rails é o framework gigante e completo (baterias inclusas), o Sinatra é um micro-framework maravilhoso para APIs pequenas e diretas.\n\nSinatra é um microframework minimalista para APIs e apps simples, enquanto Rails é um framework completo (MVC) com convenções fortes, ideal para aplicações web robustas e escaláveis.",
+          "code": "# script.rb\nrequire 'sinatra'\n\nget '/' do\n  'Olá mundo via web no Sinatra!'\nend\n# Rode 'ruby script.rb' e acesse localhost:4567"
         }
       ],
       "questions": [
@@ -2234,15 +2180,13 @@
       "lesson": [
         {
           "title": "Organizando um Script",
-          "body": "Ao escrever ferramentas em Ruby, agrupar lógica em métodos e classes torna o código manutenível. Um padrão comum é criar uma classe CLI ou Executor e instanciá-la no fim do arquivo.\n\nCompreender este fundamento é crucial em Ruby. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "class MinhaFerramenta\n  def rodar\n    puts 'Iniciando processamento...'\n  end\nend\nMinhaFerramenta.new.rodar if __FILE__ == $0",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Ao escrever ferramentas em Ruby, agrupar lógica em métodos e classes torna o código manutenível. Um padrão comum é criar uma classe CLI ou Executor e instanciá-la no fim do arquivo.\n\nSeparar o código em métodos pequenos e bem nomeados, e usar require_relative para dividir a lógica em múltiplos arquivos, melhora a manutenibilidade conforme o script cresce.",
+          "code": "class MinhaFerramenta\n  def rodar\n    puts 'Iniciando processamento...'\n  end\nend\nMinhaFerramenta.new.rodar if __FILE__ == $0"
         },
         {
           "title": "Argumentos de Linha de Comando",
-          "body": "Quando você executa 'ruby app.rb var1', o Ruby preenche a constante especial ARGV com os argumentos passados. Útil para scripts que processam arquivos ou recebem parâmetros dinâmicos.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "nome_arquivo = ARGV[0]\nif nome_arquivo\n  puts \"Processando arquivo: #{nome_arquivo}\"\nelse\n  puts \"Informe o nome do arquivo\"\nend",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Quando você executa 'ruby app.rb var1', o Ruby preenche a constante especial ARGV com os argumentos passados. Útil para scripts que processam arquivos ou recebem parâmetros dinâmicos.\n\nO array global ARGV contém os argumentos passados ao executar um script Ruby pelo terminal (ruby script.rb arg1 arg2), permitindo scripts configuráveis sem interação via gets.",
+          "code": "nome_arquivo = ARGV[0]\nif nome_arquivo\n  puts \"Processando arquivo: #{nome_arquivo}\"\nelse\n  puts \"Informe o nome do arquivo\"\nend"
         }
       ],
       "questions": [
@@ -2314,15 +2258,13 @@
       "lesson": [
         {
           "title": "O poder do Enumerable na Prática",
-          "body": "Em um mini projeto, frequentemente carregamos dados, processamos e extraímos resultados. Combinações fluídas como map + select + sum deixam algoritmos complexos legíveis.\n\nCompreender este fundamento é crucial em Ruby. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "vendas = [120.5, 45.0, 300.2, 80.0]\naltas = vendas.select { |v| v > 100 }\n              .sum\nputs \"Total Vendas Altas: #{altas}\"",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Em um mini projeto, frequentemente carregamos dados, processamos e extraímos resultados. Combinações fluídas como map + select + sum deixam algoritmos complexos legíveis.\n\nEncadear métodos do Enumerable, como array.select { ... }.map { ... }.reduce(:+), permite expressar transformações complexas de dados de forma declarativa e legível em poucas linhas.",
+          "code": "vendas = [120.5, 45.0, 300.2, 80.0]\naltas = vendas.select { |v| v > 100 }\n              .sum\nputs \"Total Vendas Altas: #{altas}\""
         },
         {
           "title": "Integrando Classes Diferentes",
-          "body": "Sistemas complexos combinam objetos que colaboram. Um Carrinho possui Produtos, e um Checkout orquestra tudo. Essa divisão de responsabilidades (SOLID) é base em POO com Ruby.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "class Produto; attr_accessor :preco; end\nclass Carrinho\n  def initialize(itens); @itens = itens; end\n  def total; @itens.sum(&:preco); end\nend",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Sistemas complexos combinam objetos que colaboram. Um Carrinho possui Produtos, e um Checkout orquestra tudo. Essa divisão de responsabilidades (SOLID) é base em POO com Ruby.\n\nObjetos de classes distintas podem colaborar entre si trocando mensagens (chamando métodos uns dos outros), o que é a essência da programação orientada a objetos: comportamento emergindo da interação entre objetos.",
+          "code": "class Produto; attr_accessor :preco; end\nclass Carrinho\n  def initialize(itens); @itens = itens; end\n  def total; @itens.sum(&:preco); end\nend"
         }
       ],
       "questions": [
@@ -2394,15 +2336,13 @@
       "lesson": [
         {
           "title": "Refatoração e Boas Práticas",
-          "body": "Rubyist's valorizam código elegante. Não tenha medo de extrair blocos longos em métodos menores bem nomeados, utilizar rubocop (linter) e remover aninhamentos profundos usando return antecipado.\n\nCompreender este fundamento é crucial em Ruby. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "def aprovar?(user)\n  return false if user.nil?\n  return false unless user.ativo?\n  user.saldo >= 50\nend",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Rubyist's valorizam código elegante. Não tenha medo de extrair blocos longos em métodos menores bem nomeados, utilizar rubocop (linter) e remover aninhamentos profundos usando return antecipado.\n\nRefatorar significa melhorar a estrutura interna do código sem alterar seu comportamento externo observável, geralmente extraindo métodos menores e eliminando duplicação para aumentar a legibilidade.",
+          "code": "def aprovar?(user)\n  return false if user.nil?\n  return false unless user.ativo?\n  user.saldo >= 50\nend"
         },
         {
           "title": "Fim da Jornada",
-          "body": "Parabéns por completar o curso! O ecossistema Ruby oferece uma sintaxe deliciosa focada na felicidade do programador (MINASWAN). O próximo passo lógico é dominar Ruby on Rails.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "curso = 'Ruby Básico'\nstatus = :completo\nputs \"Jornada do #{curso} está #{status}!\"\nputs 'Feliz codificação!'",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Parabéns por completar o curso! O ecossistema Ruby oferece uma sintaxe deliciosa focada na felicidade do programador (MINASWAN). O próximo passo lógico é dominar Ruby on Rails.\n\nDominar Ruby abre portas para frameworks como Rails, automação de tarefas e scripts DevOps, além de consolidar princípios de orientação a objetos aplicáveis a outras linguagens.",
+          "code": "curso = 'Ruby Básico'\nstatus = :completo\nputs \"Jornada do #{curso} está #{status}!\"\nputs 'Feliz codificação!'"
         }
       ],
       "questions": [

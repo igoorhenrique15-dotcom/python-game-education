@@ -74,15 +74,13 @@
       "lesson": [
         {
           "title": "Por que testar seu código?",
-          "body": "Testar software não é só encontrar bugs, mas prevenir que eles aconteçam. Um bug encontrado em produção custa muito mais caro para ser corrigido do que um pego durante o desenvolvimento. Além disso, testes dão segurança para refatorar o código sem medo de quebrar algo que já funcionava.\n\nCompreender este fundamento é crucial em Testes Automatizados. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "// Um teste automatizado garante que a função faz o que promete\nconst soma = (a, b) => a + b;\n\ntest('soma 1 + 2 para ser 3', () => {\n  expect(soma(1, 2)).toBe(3);\n});",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Testar software não é só encontrar bugs, mas prevenir que eles aconteçam. Um bug encontrado em produção custa muito mais caro para ser corrigido do que um pego durante o desenvolvimento. Além disso, testes dão segurança para refatorar o código sem medo de quebrar algo que já funcionava.\n\nTestes automatizados executam em segundos e podem rodar centenas de vezes por dia, enquanto testar manualmente cada fluxo a cada alteração é lento, sujeito a erro humano e simplesmente inviável em sistemas grandes.",
+          "code": "// Um teste automatizado garante que a função faz o que promete\nconst soma = (a, b) => a + b;\n\ntest('soma 1 + 2 para ser 3', () => {\n  expect(soma(1, 2)).toBe(3);\n});"
         },
         {
           "title": "Testes Manuais vs Automatizados",
-          "body": "Testes manuais exigem que um humano clique e interaja com o sistema. São lentos e sujeitos a falhas. Testes automatizados são scripts que rodam em frações de segundo, validando regras de negócio continuamente (CI/CD), permitindo escalar o desenvolvimento com confiança.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "// Imagine rodar centenas de testes assim em menos de 1 segundo:\ntest('calcula o frete corretamente', () => {\n  const carrinho = { total: 100, distancia: 50 };\n  expect(calcularFrete(carrinho)).toBe(15);\n});",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Testes manuais exigem que um humano clique e interaja com o sistema. São lentos e sujeitos a falhas. Testes automatizados são scripts que rodam em frações de segundo, validando regras de negócio continuamente (CI/CD), permitindo escalar o desenvolvimento com confiança.\n\nTestes manuais dependem de alguém clicar repetidamente na aplicação e verificar visualmente o resultado; testes automatizados codificam essas verificações uma vez e as reexecutam de forma confiável e consistente.",
+          "code": "// Imagine rodar centenas de testes assim em menos de 1 segundo:\ntest('calcula o frete corretamente', () => {\n  const carrinho = { total: 100, distancia: 50 };\n  expect(calcularFrete(carrinho)).toBe(15);\n});"
         }
       ],
       "questions": [
@@ -154,15 +152,13 @@
       "lesson": [
         {
           "title": "Prevenção de Regressão",
-          "body": "Você já arrumou um bug e, sem querer, criou outro? Isso é chamado de regressão. Testes automatizados são a melhor defesa contra isso. Se um comportamento é testado e validado, qualquer mudança que quebre essa regra fará o teste falhar imediatamente, avisando você antes de ir para o cliente.\n\nCompreender este fundamento é crucial em Testes Automatizados. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "test('não deve permitir saque maior que o saldo', () => {\n  const conta = { saldo: 100 };\n  const erro = () => sacar(conta, 150);\n  expect(erro).toThrow('Saldo insuficiente');\n});",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Você já arrumou um bug e, sem querer, criou outro? Isso é chamado de regressão. Testes automatizados são a melhor defesa contra isso. Se um comportamento é testado e validado, qualquer mudança que quebre essa regra fará o teste falhar imediatamente, avisando você antes de ir para o cliente.\n\nUma regressão é quando uma alteração nova quebra silenciosamente uma funcionalidade que já funcionava antes; uma suíte de testes abrangente detecta essas quebras imediatamente, antes que cheguem à produção.",
+          "code": "test('não deve permitir saque maior que o saldo', () => {\n  const conta = { saldo: 100 };\n  const erro = () => sacar(conta, 150);\n  expect(erro).toThrow('Saldo insuficiente');\n});"
         },
         {
           "title": "Testes como Documentação",
-          "body": "Bons testes funcionam como uma documentação viva do seu sistema. Ao ler os testes de uma função, outro desenvolvedor consegue entender exatamente o que ela faz, quais parâmetros recebe e quais resultados são esperados em diferentes cenários, sem precisar ler a implementação interna.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "describe('Função de Login', () => {\n  it('deve retornar token se a senha estiver correta', () => { /* ... */ });\n  it('deve bloquear a conta após 3 tentativas falhas', () => { /* ... */ });\n});",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Bons testes funcionam como uma documentação viva do seu sistema. Ao ler os testes de uma função, outro desenvolvedor consegue entender exatamente o que ela faz, quais parâmetros recebe e quais resultados são esperados em diferentes cenários, sem precisar ler a implementação interna.\n\nUm bom teste descreve, através do seu próprio nome e estrutura, exatamente o comportamento esperado de uma função — servindo como documentação viva que nunca fica desatualizada, ao contrário de comentários.",
+          "code": "describe('Função de Login', () => {\n  it('deve retornar token se a senha estiver correta', () => { /* ... */ });\n  it('deve bloquear a conta após 3 tentativas falhas', () => { /* ... */ });\n});"
         }
       ],
       "questions": [
@@ -234,15 +230,13 @@
       "lesson": [
         {
           "title": "O Custo Oculto dos Bugs",
-          "body": "Consertar um bug na fase de design é barato. No desenvolvimento, custa um pouco mais. Mas se o bug chegar em produção, o custo dispara: envolve suporte, perda de vendas, imagem da empresa e interrupção do time. Investir tempo criando testes economiza horas de dor de cabeça no futuro.\n\nCompreender este fundamento é crucial em Testes Automatizados. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "// Prevenindo um bug crítico com um teste simples\ntest('desconto de black friday não pode zerar o preço', () => {\n  const precoFinal = aplicarDesconto(100, 'BLACKFRIDAY');\n  expect(precoFinal).toBeGreaterThan(0);\n});",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Consertar um bug na fase de design é barato. No desenvolvimento, custa um pouco mais. Mas se o bug chegar em produção, o custo dispara: envolve suporte, perda de vendas, imagem da empresa e interrupção do time. Investir tempo criando testes economiza horas de dor de cabeça no futuro.\n\nSegundo estudos de engenharia de software, o custo de corrigir um bug cresce exponencialmente quanto mais tarde ele é encontrado — um bug pego em desenvolvimento custa muito menos que um encontrado em produção.",
+          "code": "// Prevenindo um bug crítico com um teste simples\ntest('desconto de black friday não pode zerar o preço', () => {\n  const precoFinal = aplicarDesconto(100, 'BLACKFRIDAY');\n  expect(precoFinal).toBeGreaterThan(0);\n});"
         },
         {
           "title": "Confiança na Entrega (Deploy)",
-          "body": "A maior vantagem de uma suíte de testes robusta é a paz de espírito. Quando você tem alta cobertura e testes bem escritos, fazer deploy na sexta-feira deixa de ser um tabu. O processo se torna apenas clicar num botão e deixar a integração contínua (CI) garantir que tudo está certo.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "// Scripts no package.json\n\"scripts\": {\n  \"test\": \"jest\",\n  \"deploy\": \"npm run test && npm run build && node release.js\"\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "A maior vantagem de uma suíte de testes robusta é a paz de espírito. Quando você tem alta cobertura e testes bem escritos, fazer deploy na sexta-feira deixa de ser um tabu. O processo se torna apenas clicar num botão e deixar a integração contínua (CI) garantir que tudo está certo.\n\nUma suíte de testes robusta e verde (passando) dá à equipe confiança para publicar mudanças com frequência, sabendo que qualquer quebra de comportamento crítico seria capturada antes do deploy chegar ao usuário final.",
+          "code": "// Scripts no package.json\n\"scripts\": {\n  \"test\": \"jest\",\n  \"deploy\": \"npm run test && npm run build && node release.js\"\n}"
         }
       ],
       "questions": [
@@ -314,15 +308,13 @@
       "lesson": [
         {
           "title": "A Pirâmide de Testes",
-          "body": "A pirâmide de testes é um conceito que define a proporção ideal de testes. A base são os Testes Unitários (rápidos e numerosos). O meio são os Testes de Integração. O topo são os Testes End-to-End (E2E), que são lentos, caros, mas simulam o usuário real. Quanto mais baixo, mais testes devemos ter.\n\nCompreender este fundamento é crucial em Testes Automatizados. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "// Exemplo da base da pirâmide (Unitário)\n// Rápido e focado em apenas uma função isolada\nexpect(formatarData('2023-01-01')).toBe('01/01/2023');",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "A pirâmide de testes é um conceito que define a proporção ideal de testes. A base são os Testes Unitários (rápidos e numerosos). O meio são os Testes de Integração. O topo são os Testes End-to-End (E2E), que são lentos, caros, mas simulam o usuário real. Quanto mais baixo, mais testes devemos ter.\n\nA pirâmide de testes sugere ter muitos testes unitários (rápidos e baratos) na base, uma quantidade média de testes de integração no meio, e poucos testes end-to-end (lentos e caros) no topo.",
+          "code": "// Exemplo da base da pirâmide (Unitário)\n// Rápido e focado em apenas uma função isolada\nexpect(formatarData('2023-01-01')).toBe('01/01/2023');"
         },
         {
           "title": "Testes Unitários na Prática",
-          "body": "Testes unitários verificam a menor parte testável do código, como uma função ou método isolado. Eles não devem acessar banco de dados, rede ou arquivos reais. O objetivo é garantir que a lógica pura daquela unidade funciona com diferentes entradas e casos extremos.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "test('valida e-mail corretamente', () => {\n  expect(isEmailValido('teste@teste.com')).toBe(true);\n  expect(isEmailValido('invalido.com')).toBe(false);\n  expect(isEmailValido('')).toBe(false);\n});",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Testes unitários verificam a menor parte testável do código, como uma função ou método isolado. Eles não devem acessar banco de dados, rede ou arquivos reais. O objetivo é garantir que a lógica pura daquela unidade funciona com diferentes entradas e casos extremos.\n\nUm teste unitário verifica uma única unidade de código (geralmente uma função) isoladamente, sem depender de banco de dados, rede ou sistema de arquivos reais, tornando-o extremamente rápido de executar.",
+          "code": "test('valida e-mail corretamente', () => {\n  expect(isEmailValido('teste@teste.com')).toBe(true);\n  expect(isEmailValido('invalido.com')).toBe(false);\n  expect(isEmailValido('')).toBe(false);\n});"
         }
       ],
       "questions": [
@@ -394,15 +386,13 @@
       "lesson": [
         {
           "title": "Testes de Integração",
-          "body": "Diferente do unitário, o teste de integração junta várias partes do sistema e verifica se elas conversam bem entre si. Pode envolver a comunicação entre um Controller e um Service, ou verificar se o seu código consegue salvar dados corretamente em um banco de dados real ou em memória.\n\nCompreender este fundamento é crucial em Testes Automatizados. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "test('cria usuário no banco de dados', async () => {\n  const user = await UserService.create('João', 'joao@email.com');\n  const dbUser = await db.query('SELECT * FROM users WHERE id = ?', [user.id]);\n  expect(dbUser.nome).toBe('João');\n});",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Diferente do unitário, o teste de integração junta várias partes do sistema e verifica se elas conversam bem entre si. Pode envolver a comunicação entre um Controller e um Service, ou verificar se o seu código consegue salvar dados corretamente em um banco de dados real ou em memória.\n\nTestes de integração verificam se múltiplas partes do sistema funcionam corretamente juntas, como uma função que interage com um banco de dados real (ou em memória), capturando problemas que testes unitários isolados não veem.",
+          "code": "test('cria usuário no banco de dados', async () => {\n  const user = await UserService.create('João', 'joao@email.com');\n  const dbUser = await db.query('SELECT * FROM users WHERE id = ?', [user.id]);\n  expect(dbUser.nome).toBe('João');\n});"
         },
         {
           "title": "Testes End-to-End (E2E)",
-          "body": "E2E, ou ponta a ponta, testa o sistema inteiro exatamente como um usuário faria. Ele abre um navegador real, clica em botões, preenche formulários e verifica se a interface muda corretamente. São essenciais para caminhos críticos (como fluxo de compra), mas demoram para rodar.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "// Exemplo de sintaxe (Cypress)\nit('deve fazer login e ver o dashboard', () => {\n  cy.visit('/login');\n  cy.get('#email').type('user@test.com');\n  cy.get('#senha').type('123456');\n  cy.get('button').click();\n  cy.contains('Bem-vindo ao Dashboard');\n});",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "E2E, ou ponta a ponta, testa o sistema inteiro exatamente como um usuário faria. Ele abre um navegador real, clica em botões, preenche formulários e verifica se a interface muda corretamente. São essenciais para caminhos críticos (como fluxo de compra), mas demoram para rodar.\n\nTestes E2E simulam a jornada completa de um usuário real, do início ao fim, através da interface da aplicação (geralmente um navegador automatizado), validando o sistema inteiro de ponta a ponta.",
+          "code": "// Exemplo de sintaxe (Cypress)\nit('deve fazer login e ver o dashboard', () => {\n  cy.visit('/login');\n  cy.get('#email').type('user@test.com');\n  cy.get('#senha').type('123456');\n  cy.get('button').click();\n  cy.contains('Bem-vindo ao Dashboard');\n});"
         }
       ],
       "questions": [
@@ -474,15 +464,13 @@
       "lesson": [
         {
           "title": "Quando usar qual teste?",
-          "body": "Use unitário para lógicas de negócio, cálculos, formatações e validações isoladas. Use integração para APIs, rotas e consultas complexas de banco de dados. Use E2E apenas para os fluxos mais críticos e vitais do seu sistema (ex: Login, Checkout, Cadastro principal) para não lentificar a esteira.\n\nCompreender este fundamento é crucial em Testes Automatizados. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "// Escolhendo o teste certo\n// Lógica pura -> Unitário\nexpect(calcularIR(5000)).toBe(505.64);\n\n// Rota da API -> Integração\nconst res = await request(app).get('/api/users/1');",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Use unitário para lógicas de negócio, cálculos, formatações e validações isoladas. Use integração para APIs, rotas e consultas complexas de banco de dados. Use E2E apenas para os fluxos mais críticos e vitais do seu sistema (ex: Login, Checkout, Cadastro principal) para não lentificar a esteira.\n\nA escolha do tipo de teste depende do que se quer verificar: lógica de negócio isolada pede testes unitários; integração entre componentes pede testes de integração; fluxos críticos do usuário pedem E2E.",
+          "code": "// Escolhendo o teste certo\n// Lógica pura -> Unitário\nexpect(calcularIR(5000)).toBe(505.64);\n\n// Rota da API -> Integração\nconst res = await request(app).get('/api/users/1');"
         },
         {
           "title": "O Anti-padrão do Sorvete",
-          "body": "Se você tem muitos testes E2E e manuais no topo, e quase nenhum teste unitário na base, você tem a 'Casquinha de Sorvete' (Ice Cream Cone). Isso deixa a suíte de testes extremamente lenta, instável e difícil de manter. Inverta isso construindo uma base sólida de unitários.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "// O segredo é isolar a lógica para testar rápido\n// Em vez de testar o cálculo de juros via E2E preenchendo form:\nconst juros = calculaJurosCompostos(1000, 0.05, 12);\nexpect(juros).toBeCloseTo(1795.85, 2);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Se você tem muitos testes E2E e manuais no topo, e quase nenhum teste unitário na base, você tem a 'Casquinha de Sorvete' (Ice Cream Cone). Isso deixa a suíte de testes extremamente lenta, instável e difícil de manter. Inverta isso construindo uma base sólida de unitários.\n\nA 'pirâmide de sorvete invertida' ocorre quando um projeto tem muitos testes E2E lentos e poucos testes unitários rápidos, resultando em uma suíte de testes lenta, frágil e cara de manter.",
+          "code": "// O segredo é isolar a lógica para testar rápido\n// Em vez de testar o cálculo de juros via E2E preenchendo form:\nconst juros = calculaJurosCompostos(1000, 0.05, 12);\nexpect(juros).toBeCloseTo(1795.85, 2);"
         }
       ],
       "questions": [
@@ -554,15 +542,13 @@
       "lesson": [
         {
           "title": "Iniciando com o Jest",
-          "body": "O Jest é um dos frameworks de testes mais populares para JavaScript. Ele já vem com tudo que você precisa: runner, matchers (assertions), mocks e coverage. Para instalar e rodar, basta adicionar via npm e usar a extensão '.test.js' nos seus arquivos para o Jest encontrá-los automaticamente.\n\nCompreender este fundamento é crucial em Testes Automatizados. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "// npm install -D jest\n// No arquivo soma.test.js\nconst soma = require('./soma');\n\ntest('soma 2 e 2', () => {\n  expect(soma(2, 2)).toBe(4);\n});",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O Jest é um dos frameworks de testes mais populares para JavaScript. Ele já vem com tudo que você precisa: runner, matchers (assertions), mocks e coverage. Para instalar e rodar, basta adicionar via npm e usar a extensão '.test.js' nos seus arquivos para o Jest encontrá-los automaticamente.\n\nJest é um framework de testes JavaScript que inclui test runner, biblioteca de asserções e suporte a mocks embutidos, dispensando a instalação de múltiplas ferramentas separadas para começar a testar.",
+          "code": "// npm install -D jest\n// No arquivo soma.test.js\nconst soma = require('./soma');\n\ntest('soma 2 e 2', () => {\n  expect(soma(2, 2)).toBe(4);\n});"
         },
         {
           "title": "Blocos de Teste: test e it",
-          "body": "No Jest, você define um teste usando a função `test` ou seu alias `it`. Ambos fazem exatamente a mesma coisa. O primeiro argumento é uma descrição clara do que está sendo testado, e o segundo é a função de callback que contém a lógica e as asserções do teste.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "it('deve retornar verdadeiro se o número for par', () => {\n  const resultado = ehPar(4);\n  expect(resultado).toBe(true);\n});\n\ntest('também funciona usando test em vez de it', () => {\n  expect(ehPar(3)).toBe(false);\n});",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "No Jest, você define um teste usando a função `test` ou seu alias `it`. Ambos fazem exatamente a mesma coisa. O primeiro argumento é uma descrição clara do que está sendo testado, e o segundo é a função de callback que contém a lógica e as asserções do teste.\n\ntest() e it() são funções equivalentes no Jest usadas para declarar um caso de teste individual, recebendo uma descrição textual do comportamento esperado e uma função contendo as verificações.",
+          "code": "it('deve retornar verdadeiro se o número for par', () => {\n  const resultado = ehPar(4);\n  expect(resultado).toBe(true);\n});\n\ntest('também funciona usando test em vez de it', () => {\n  expect(ehPar(3)).toBe(false);\n});"
         }
       ],
       "questions": [
@@ -634,15 +620,13 @@
       "lesson": [
         {
           "title": "Agrupando testes com describe",
-          "body": "Quando você tem vários testes relacionados à mesma função ou componente, pode usar o `describe` para criar um bloco de agrupamento. Isso organiza a saída no terminal, tornando-a muito mais legível. Você pode aninhar quantos `describe` quiser para estruturar melhor o escopo.\n\nCompreender este fundamento é crucial em Testes Automatizados. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "describe('Calculadora', () => {\n  describe('Operação de Soma', () => {\n    it('soma números inteiros', () => { expect(1+1).toBe(2) });\n    it('soma números negativos', () => { expect(-1+-1).toBe(-2) });\n  });\n});",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Quando você tem vários testes relacionados à mesma função ou componente, pode usar o `describe` para criar um bloco de agrupamento. Isso organiza a saída no terminal, tornando-a muito mais legível. Você pode aninhar quantos `describe` quiser para estruturar melhor o escopo.\n\ndescribe() agrupa testes relacionados sob um contexto comum, organizando a saída dos resultados e permitindo compartilhar configuração (setup) entre os testes daquele grupo específico.",
+          "code": "describe('Calculadora', () => {\n  describe('Operação de Soma', () => {\n    it('soma números inteiros', () => { expect(1+1).toBe(2) });\n    it('soma números negativos', () => { expect(-1+-1).toBe(-2) });\n  });\n});"
         },
         {
           "title": "Setup e Teardown",
-          "body": "Geralmente precisamos preparar dados antes dos testes rodarem e limpá-los depois. O Jest fornece ganchos (hooks) como `beforeEach` e `afterEach` para rodar códigos antes ou depois de cada teste de um bloco, evitando duplicação de configuração nos testes.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "let bancoDeDados;\n\nbeforeEach(() => {\n  bancoDeDados = iniciarBancoMemoria();\n});\n\nafterEach(() => {\n  bancoDeDados.limparDados();\n});\n\nit('deve salvar no banco limpo', () => { /* teste */ });",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Geralmente precisamos preparar dados antes dos testes rodarem e limpá-los depois. O Jest fornece ganchos (hooks) como `beforeEach` e `afterEach` para rodar códigos antes ou depois de cada teste de um bloco, evitando duplicação de configuração nos testes.\n\nSetup prepara o estado necessário antes de um teste rodar (como criar dados de exemplo); teardown limpa esse estado depois, garantindo que um teste não interfira no resultado do próximo.",
+          "code": "let bancoDeDados;\n\nbeforeEach(() => {\n  bancoDeDados = iniciarBancoMemoria();\n});\n\nafterEach(() => {\n  bancoDeDados.limparDados();\n});\n\nit('deve salvar no banco limpo', () => { /* teste */ });"
         }
       ],
       "questions": [
@@ -714,15 +698,13 @@
       "lesson": [
         {
           "title": "Hooks: beforeAll e afterAll",
-          "body": "Enquanto beforeEach roda para *cada* it(), o `beforeAll` e `afterAll` rodam apenas uma vez para o arquivo ou bloco inteiro. São muito úteis para tarefas pesadas de inicialização que podem ser compartilhadas por todos os testes, como subir um servidor real ou abrir uma conexão global.\n\nCompreender este fundamento é crucial em Testes Automatizados. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "beforeAll(async () => {\n  await connectarAoMongoDB();\n});\n\nafterAll(async () => {\n  await desconectarDoMongoDB();\n});\n\nit('testa consulta 1', async () => { /* ... */ });\nit('testa consulta 2', async () => { /* ... */ });",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Enquanto beforeEach roda para *cada* it(), o `beforeAll` e `afterAll` rodam apenas uma vez para o arquivo ou bloco inteiro. São muito úteis para tarefas pesadas de inicialização que podem ser compartilhadas por todos os testes, como subir um servidor real ou abrir uma conexão global.\n\nbeforeAll executa uma única vez antes de todos os testes de um bloco describe; afterAll executa uma única vez depois de todos eles, sendo ideais para operações custosas como abrir uma conexão de banco.",
+          "code": "beforeAll(async () => {\n  await connectarAoMongoDB();\n});\n\nafterAll(async () => {\n  await desconectarDoMongoDB();\n});\n\nit('testa consulta 1', async () => { /* ... */ });\nit('testa consulta 2', async () => { /* ... */ });"
         },
         {
           "title": "Testando Código Assíncrono",
-          "body": "Para testar Promises ou código async/await, você pode simplesmente usar `async` no callback do seu teste e aguardar a resolução com `await`. O Jest entende isso nativamente e esperará a Promise ser resolvida antes de finalizar o teste.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "it('deve buscar os dados do usuário pela API', async () => {\n  // A palavra-chave async permite usar o await\n  const usuario = await buscarUsuario(1);\n  \n  expect(usuario.nome).toBe('Maria');\n});",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Para testar Promises ou código async/await, você pode simplesmente usar `async` no callback do seu teste e aguardar a resolução com `await`. O Jest entende isso nativamente e esperará a Promise ser resolvida antes de finalizar o teste.\n\nTestes de código assíncrono devem usar async/await ou retornar a Promise diretamente no corpo do test, garantindo que o Jest aguarde a resolução antes de considerar o teste concluído.",
+          "code": "it('deve buscar os dados do usuário pela API', async () => {\n  // A palavra-chave async permite usar o await\n  const usuario = await buscarUsuario(1);\n  \n  expect(usuario.nome).toBe('Maria');\n});"
         }
       ],
       "questions": [
@@ -794,15 +776,13 @@
       "lesson": [
         {
           "title": "Matchers de Igualdade",
-          "body": "As assertions (ou matchers) são como o Jest verifica se os valores estão corretos. O `toBe` checa igualdade estrita (===), ideal para números, strings e booleanos. Já o `toEqual` é usado para objetos e arrays, pois ele verifica os valores internos recursivamente ao invés da referência em memória.\n\nCompreender este fundamento é crucial em Testes Automatizados. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "it('toBe para primitivos, toEqual para objetos', () => {\n  expect(10).toBe(10);\n  expect('olá').toBe('olá');\n  \n  // Arrays e Objetos precisam do toEqual\n  expect({ id: 1 }).toEqual({ id: 1 });\n  expect([1, 2, 3]).toEqual([1, 2, 3]);\n});",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "As assertions (ou matchers) são como o Jest verifica se os valores estão corretos. O `toBe` checa igualdade estrita (===), ideal para números, strings e booleanos. Já o `toEqual` é usado para objetos e arrays, pois ele verifica os valores internos recursivamente ao invés da referência em memória.\n\ntoBe() verifica igualdade estrita de referência (===), ideal para primitivos; toEqual() verifica igualdade estrutural profunda (deep equality), comparando o conteúdo de objetos e arrays em vez da referência.",
+          "code": "it('toBe para primitivos, toEqual para objetos', () => {\n  expect(10).toBe(10);\n  expect('olá').toBe('olá');\n  \n  // Arrays e Objetos precisam do toEqual\n  expect({ id: 1 }).toEqual({ id: 1 });\n  expect([1, 2, 3]).toEqual([1, 2, 3]);\n});"
         },
         {
           "title": "Truthy e Falsy",
-          "body": "Na programação, vários valores são avaliados como falsos (0, nulo, undefined, string vazia). Para testar booleanos ou valores lógicos de forma explícita no Jest, usamos `toBeTruthy()` e `toBeFalsy()`. Há também os específicos `toBeNull()` e `toBeUndefined()`.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "it('verifica valores booleanos e nuláveis', () => {\n  const ehAtivo = true;\n  expect(ehAtivo).toBeTruthy();\n  \n  const usuarioAusente = null;\n  expect(usuarioAusente).toBeNull();\n  expect(usuarioAusente).toBeFalsy();\n});",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Na programação, vários valores são avaliados como falsos (0, nulo, undefined, string vazia). Para testar booleanos ou valores lógicos de forma explícita no Jest, usamos `toBeTruthy()` e `toBeFalsy()`. Há também os específicos `toBeNull()` e `toBeUndefined()`.\n\nMatchers como toBeTruthy() e toBeFalsy() verificam se um valor se comporta como verdadeiro ou falso em um contexto booleano, úteis quando o valor exato não importa, apenas sua veracidade lógica.",
+          "code": "it('verifica valores booleanos e nuláveis', () => {\n  const ehAtivo = true;\n  expect(ehAtivo).toBeTruthy();\n  \n  const usuarioAusente = null;\n  expect(usuarioAusente).toBeNull();\n  expect(usuarioAusente).toBeFalsy();\n});"
         }
       ],
       "questions": [
@@ -874,15 +854,13 @@
       "lesson": [
         {
           "title": "Verificando Arrays e Strings",
-          "body": "Para verificar se um elemento existe dentro de um array ou se uma substring está contida em outra string, use o `toContain`. Se você quer checar padrões complexos em strings através de Expressões Regulares (Regex), pode usar o poderoso `toMatch`.\n\nCompreender este fundamento é crucial em Testes Automatizados. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "it('busca itens em arrays e texto', () => {\n  const frutas = ['maçã', 'banana', 'uva'];\n  expect(frutas).toContain('banana');\n  \n  const frase = 'O Jest é muito rápido';\n  expect(frase).toMatch(/rápido/);\n});",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Para verificar se um elemento existe dentro de um array ou se uma substring está contida em outra string, use o `toContain`. Se você quer checar padrões complexos em strings através de Expressões Regulares (Regex), pode usar o poderoso `toMatch`.\n\ntoContain() verifica se um array ou string contém um elemento ou substring específica; toMatch() verifica se uma string corresponde a uma expressão regular, sendo útil para validar formatos.",
+          "code": "it('busca itens em arrays e texto', () => {\n  const frutas = ['maçã', 'banana', 'uva'];\n  expect(frutas).toContain('banana');\n  \n  const frase = 'O Jest é muito rápido';\n  expect(frase).toMatch(/rápido/);\n});"
         },
         {
           "title": "Testando Tamanhos",
-          "body": "Muitas vezes precisamos garantir que uma lista retornou a quantidade exata de itens, ou que uma string não está vazia. O Jest possui o matcher `toHaveLength`, que verifica automaticamente a propriedade `.length` de um array ou de uma string para você.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "it('verifica o tamanho de arrays e strings', () => {\n  const tarefas = ['estudar', 'testar'];\n  expect(tarefas).toHaveLength(2);\n  \n  const senha = 'admin';\n  expect(senha).toHaveLength(5);\n});",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Muitas vezes precisamos garantir que uma lista retornou a quantidade exata de itens, ou que uma string não está vazia. O Jest possui o matcher `toHaveLength`, que verifica automaticamente a propriedade `.length` de um array ou de uma string para você.\n\ntoHaveLength() verifica o tamanho de um array ou string; combinado com dados de teste bem definidos, garante que operações como filtragem ou paginação retornem exatamente a quantidade esperada de itens.",
+          "code": "it('verifica o tamanho de arrays e strings', () => {\n  const tarefas = ['estudar', 'testar'];\n  expect(tarefas).toHaveLength(2);\n  \n  const senha = 'admin';\n  expect(senha).toHaveLength(5);\n});"
         }
       ],
       "questions": [
@@ -954,15 +932,13 @@
       "lesson": [
         {
           "title": "Testando Exceções",
-          "body": "Como você garante que sua função vai estourar um erro quando o dado for inválido? Usando o `toThrow`. Mas atenção: a função que lança o erro deve ser passada encapsulada (como callback) para o `expect`, senão o erro irá parar a execução do seu teste antes do Jest conseguir verificá-lo.\n\nCompreender este fundamento é crucial em Testes Automatizados. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "function lancarErro() {\n  throw new Error('Deu ruim');\n}\n\nit('verifica se o erro foi lançado', () => {\n  // Passamos a referência da função ou uma arrow function\n  expect(() => lancarErro()).toThrow('Deu ruim');\n});",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Como você garante que sua função vai estourar um erro quando o dado for inválido? Usando o `toThrow`. Mas atenção: a função que lança o erro deve ser passada encapsulada (como callback) para o `expect`, senão o erro irá parar a execução do seu teste antes do Jest conseguir verificá-lo.\n\nO matcher toThrow() verifica se uma função lança um erro ao ser executada; a função deve ser passada como uma referência (não invocada diretamente) para que o Jest capture a exceção corretamente.",
+          "code": "function lancarErro() {\n  throw new Error('Deu ruim');\n}\n\nit('verifica se o erro foi lançado', () => {\n  // Passamos a referência da função ou uma arrow function\n  expect(() => lancarErro()).toThrow('Deu ruim');\n});"
         },
         {
           "title": "O Inverso das Assertions: .not",
-          "body": "Qualquer matcher do Jest pode ser negado adicionando a palavra `.not` antes dele. Isso é extremamente útil para verificar se uma propriedade NÃO está presente, se um valor NÃO é nulo, ou se um estado indesejado foi evitado com sucesso.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "it('garante que o resultado não é indesejado', () => {\n  const valorFinal = 100;\n  \n  expect(valorFinal).not.toBe(0);\n  expect(valorFinal).not.toBeNull();\n  \n  const blacklist = ['spam', 'virus'];\n  expect(blacklist).not.toContain('legal');\n});",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Qualquer matcher do Jest pode ser negado adicionando a palavra `.not` antes dele. Isso é extremamente útil para verificar se uma propriedade NÃO está presente, se um valor NÃO é nulo, ou se um estado indesejado foi evitado com sucesso.\n\nEncadear .not antes de qualquer matcher inverte a verificação, como expect(valor).not.toBe(null), permitindo expressar que um resultado específico não deve ocorrer.",
+          "code": "it('garante que o resultado não é indesejado', () => {\n  const valorFinal = 100;\n  \n  expect(valorFinal).not.toBe(0);\n  expect(valorFinal).not.toBeNull();\n  \n  const blacklist = ['spam', 'virus'];\n  expect(blacklist).not.toContain('legal');\n});"
         }
       ],
       "questions": [
@@ -1034,15 +1010,13 @@
       "lesson": [
         {
           "title": "O que é um Mock?",
-          "body": "Mocks são simulações. Num teste unitário, você não quer acessar um banco de dados real ou chamar uma API externa paga. Para isolar a unidade, substituímos essas dependências por funções falsas (mocks) que retornam dados controlados e previsíveis, simulando o comportamento real.\n\nCompreender este fundamento é crucial em Testes Automatizados. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "// Criando uma função mock simples no Jest\nconst mockCallback = jest.fn();\n\n// Chamamos o mock\nmockCallback('um parâmetro');\n\n// Verificamos se ele foi chamado corretamente\nexpect(mockCallback).toHaveBeenCalledWith('um parâmetro');",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Mocks são simulações. Num teste unitário, você não quer acessar um banco de dados real ou chamar uma API externa paga. Para isolar a unidade, substituímos essas dependências por funções falsas (mocks) que retornam dados controlados e previsíveis, simulando o comportamento real.\n\nUm mock substitui uma dependência real (como uma chamada de API ou banco de dados) por uma versão controlada e previsível, isolando o código testado do comportamento externo real durante o teste.",
+          "code": "// Criando uma função mock simples no Jest\nconst mockCallback = jest.fn();\n\n// Chamamos o mock\nmockCallback('um parâmetro');\n\n// Verificamos se ele foi chamado corretamente\nexpect(mockCallback).toHaveBeenCalledWith('um parâmetro');"
         },
         {
           "title": "Retornando Valores com Mock",
-          "body": "Um `jest.fn()` por si só não retorna nada (undefined). Para simular o comportamento de uma dependência, podemos dizer ao mock exatamente o que ele deve retornar usando `mockReturnValue` para retornos síncronos, ou `mockResolvedValue` para simular requisições assíncronas (Promises).\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "const calcularPrecoMock = jest.fn();\ncalcularPrecoMock.mockReturnValue(50.00);\n\nexpect(calcularPrecoMock()).toBe(50.00);\n\nconst buscarNoBancoMock = jest.fn();\nbuscarNoBancoMock.mockResolvedValue({ id: 1, nome: 'Ana' });",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Um `jest.fn()` por si só não retorna nada (undefined). Para simular o comportamento de uma dependência, podemos dizer ao mock exatamente o que ele deve retornar usando `mockReturnValue` para retornos síncronos, ou `mockResolvedValue` para simular requisições assíncronas (Promises).\n\njest.fn().mockReturnValue(valor) cria uma função mock que sempre retorna um valor específico quando chamada, permitindo simular o comportamento de uma dependência sem executá-la de verdade.",
+          "code": "const calcularPrecoMock = jest.fn();\ncalcularPrecoMock.mockReturnValue(50.00);\n\nexpect(calcularPrecoMock()).toBe(50.00);\n\nconst buscarNoBancoMock = jest.fn();\nbuscarNoBancoMock.mockResolvedValue({ id: 1, nome: 'Ana' });"
         }
       ],
       "questions": [
@@ -1114,15 +1088,13 @@
       "lesson": [
         {
           "title": "Mockando Módulos Inteiros",
-          "body": "E se a sua função importa a biblioteca 'axios' para fazer chamadas HTTP? Você pode mockar o módulo inteiro usando `jest.mock('modulo')`. O Jest automaticamente substitui todas as funções daquele arquivo por mocks, permitindo que você controle os retornos sem fazer chamadas de rede.\n\nCompreender este fundamento é crucial em Testes Automatizados. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "const axios = require('axios');\njest.mock('axios'); // Substitui o axios por mocks\n\nit('deve buscar dados da API fake', async () => {\n  axios.get.mockResolvedValue({ data: 'fake data' });\n  const resposta = await getDados();\n  expect(axios.get).toHaveBeenCalledTimes(1);\n});",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "E se a sua função importa a biblioteca 'axios' para fazer chamadas HTTP? Você pode mockar o módulo inteiro usando `jest.mock('modulo')`. O Jest automaticamente substitui todas as funções daquele arquivo por mocks, permitindo que você controle os retornos sem fazer chamadas de rede.\n\njest.mock('./modulo') substitui automaticamente todas as exportações de um módulo por versões mock, permitindo isolar completamente o código sob teste de suas dependências externas reais.",
+          "code": "const axios = require('axios');\njest.mock('axios'); // Substitui o axios por mocks\n\nit('deve buscar dados da API fake', async () => {\n  axios.get.mockResolvedValue({ data: 'fake data' });\n  const resposta = await getDados();\n  expect(axios.get).toHaveBeenCalledTimes(1);\n});"
         },
         {
           "title": "Espiões com jest.spyOn",
-          "body": "Diferente do mock total, o `spyOn` permite 'espionar' um método de um objeto (como `Math.random` ou `console.log`) mantendo sua implementação original ou substituindo-a. É muito útil quando você quer apenas saber se um método nativo foi chamado durante a execução do seu código.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "it('deve logar um aviso de erro', () => {\n  // Espionamos o console.error\n  const logSpy = jest.spyOn(console, 'error').mockImplementation(() => {});\n  \n  funcaoQueDaErro();\n  expect(logSpy).toHaveBeenCalledWith('Algo deu errado');\n  \n  logSpy.mockRestore(); // Restaura o original\n});",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Diferente do mock total, o `spyOn` permite 'espionar' um método de um objeto (como `Math.random` ou `console.log`) mantendo sua implementação original ou substituindo-a. É muito útil quando você quer apenas saber se um método nativo foi chamado durante a execução do seu código.\n\njest.spyOn observa chamadas a um método existente sem substituir completamente sua implementação, permitindo verificar se e como ele foi chamado enquanto mantém (ou não) seu comportamento original.",
+          "code": "it('deve logar um aviso de erro', () => {\n  // Espionamos o console.error\n  const logSpy = jest.spyOn(console, 'error').mockImplementation(() => {});\n  \n  funcaoQueDaErro();\n  expect(logSpy).toHaveBeenCalledWith('Algo deu errado');\n  \n  logSpy.mockRestore(); // Restaura o original\n});"
         }
       ],
       "questions": [
@@ -1194,15 +1166,13 @@
       "lesson": [
         {
           "title": "Limpando Mocks (Clear vs Reset)",
-          "body": "Mocks guardam o histórico de quantas vezes foram chamados e com quais argumentos. Se você usa o mesmo mock em vários testes, o estado vai se misturar. Use `mockClear()` para limpar o histórico e `mockReset()` para limpar o histórico E remover o valor de retorno configurado.\n\nCompreender este fundamento é crucial em Testes Automatizados. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "const mockFuncao = jest.fn();\n\nbeforeEach(() => {\n  // Zera as chamadas entre um teste e outro\n  mockFuncao.mockClear();\n});\n\nit('teste 1', () => { mockFuncao(); });\nit('teste 2', () => { expect(mockFuncao).toHaveBeenCalledTimes(0); });",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Mocks guardam o histórico de quantas vezes foram chamados e com quais argumentos. Se você usa o mesmo mock em vários testes, o estado vai se misturar. Use `mockClear()` para limpar o histórico e `mockReset()` para limpar o histórico E remover o valor de retorno configurado.\n\nmockClear() apaga o histórico de chamadas registradas de um mock; mockReset() faz o mesmo e também remove qualquer implementação customizada definida, retornando o mock ao estado inicial vazio.",
+          "code": "const mockFuncao = jest.fn();\n\nbeforeEach(() => {\n  // Zera as chamadas entre um teste e outro\n  mockFuncao.mockClear();\n});\n\nit('teste 1', () => { mockFuncao(); });\nit('teste 2', () => { expect(mockFuncao).toHaveBeenCalledTimes(0); });"
         },
         {
           "title": "Verificando Argumentos",
-          "body": "Para ter certeza de que sua função não está apenas chamando o banco de dados, mas sim enviando os dados certos, os mocks ajudam a verificar a assinatura da chamada. Com `toHaveBeenCalledWith`, o teste falha se a sua dependência for chamada com os parâmetros incorretos.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "it('deve enviar o email de boas vindas correto', () => {\n  const emailService = { enviar: jest.fn() };\n  cadastrarUsuario({ nome: 'Leo' }, emailService);\n  \n  // Verificamos exatamente o que a função recebeu\n  expect(emailService.enviar).toHaveBeenCalledWith(\n    'leo@email', 'Boas vindas, Leo!'\n  );\n});",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Para ter certeza de que sua função não está apenas chamando o banco de dados, mas sim enviando os dados certos, os mocks ajudam a verificar a assinatura da chamada. Com `toHaveBeenCalledWith`, o teste falha se a sua dependência for chamada com os parâmetros incorretos.\n\ntoHaveBeenCalledWith() verifica com quais argumentos exatos uma função mock foi chamada, permitindo confirmar não apenas que uma dependência foi usada, mas que foi usada corretamente.",
+          "code": "it('deve enviar o email de boas vindas correto', () => {\n  const emailService = { enviar: jest.fn() };\n  cadastrarUsuario({ nome: 'Leo' }, emailService);\n  \n  // Verificamos exatamente o que a função recebeu\n  expect(emailService.enviar).toHaveBeenCalledWith(\n    'leo@email', 'Boas vindas, Leo!'\n  );\n});"
         }
       ],
       "questions": [
@@ -1274,15 +1244,13 @@
       "lesson": [
         {
           "title": "Testando APIs Node com Supertest",
-          "body": "O Supertest é uma biblioteca essencial para testes de integração em APIs Node.js (como Express). Ele permite subir sua aplicação em memória, simular requisições HTTP reais (GET, POST) e validar o status code e corpo da resposta sem precisar abrir um servidor real em uma porta fixa.\n\nCompreender este fundamento é crucial em Testes Automatizados. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "const request = require('supertest');\nconst app = require('./app'); // Servidor express\n\nit('deve retornar status 200 na rota GET /users', async () => {\n  const response = await request(app).get('/users');\n  expect(response.statusCode).toBe(200);\n  expect(response.body).toBeInstanceOf(Array);\n});",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O Supertest é uma biblioteca essencial para testes de integração em APIs Node.js (como Express). Ele permite subir sua aplicação em memória, simular requisições HTTP reais (GET, POST) e validar o status code e corpo da resposta sem precisar abrir um servidor real em uma porta fixa.\n\nSupertest permite fazer requisições HTTP simuladas diretamente contra uma aplicação Express (sem precisar de um servidor rodando de verdade), verificando status codes, headers e corpo da resposta.",
+          "code": "const request = require('supertest');\nconst app = require('./app'); // Servidor express\n\nit('deve retornar status 200 na rota GET /users', async () => {\n  const response = await request(app).get('/users');\n  expect(response.statusCode).toBe(200);\n  expect(response.body).toBeInstanceOf(Array);\n});"
         },
         {
           "title": "Testando Rotas POST e Payload",
-          "body": "Com o Supertest, é muito fácil enviar dados (JSON) para rotas POST e garantir que a aplicação trate esses dados corretamente. Podemos encadear o método `.send()` e validar se a criação funcionou ou se os middlewares de erro rejeitaram payloads incompletos.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "it('deve criar um produto e retornar 201', async () => {\n  const res = await request(app)\n    .post('/produtos')\n    .send({ nome: 'Teclado', preco: 150 });\n    \n  expect(res.statusCode).toBe(201);\n  expect(res.body.nome).toBe('Teclado');\n});",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Com o Supertest, é muito fácil enviar dados (JSON) para rotas POST e garantir que a aplicação trate esses dados corretamente. Podemos encadear o método `.send()` e validar se a criação funcionou ou se os middlewares de erro rejeitaram payloads incompletos.\n\nTestar uma rota POST envolve enviar um corpo de requisição (payload) via .send() e verificar tanto o código de status retornado quanto se os dados foram processados e persistidos corretamente.",
+          "code": "it('deve criar um produto e retornar 201', async () => {\n  const res = await request(app)\n    .post('/produtos')\n    .send({ nome: 'Teclado', preco: 150 });\n    \n  expect(res.statusCode).toBe(201);\n  expect(res.body.nome).toBe('Teclado');\n});"
         }
       ],
       "questions": [
@@ -1354,15 +1322,13 @@
       "lesson": [
         {
           "title": "Bancos de Dados em Memória",
-          "body": "Ao rodar testes de integração, rodar num banco relacional de produção/dev é perigoso e lento. A solução comum é usar bancos de dados em memória (como SQLite na memória) ou contêineres Docker descartáveis. Eles iniciam vazios em milissegundos e são destruídos após a suíte rodar.\n\nCompreender este fundamento é crucial em Testes Automatizados. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "beforeAll(async () => {\n  // Sobe um banco rápido que vive apenas na RAM\n  await connection.create({ type: 'sqlite', database: ':memory:' });\n  await connection.runMigrations();\n});\n\nit('salva real', async () => { /* test database insert */ });",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Ao rodar testes de integração, rodar num banco relacional de produção/dev é perigoso e lento. A solução comum é usar bancos de dados em memória (como SQLite na memória) ou contêineres Docker descartáveis. Eles iniciam vazios em milissegundos e são destruídos após a suíte rodar.\n\nBancos como SQLite em memória ou o pacote mongodb-memory-server permitem rodar testes de integração contra um banco real, isolado e descartável, sem depender de infraestrutura externa compartilhada.",
+          "code": "beforeAll(async () => {\n  // Sobe um banco rápido que vive apenas na RAM\n  await connection.create({ type: 'sqlite', database: ':memory:' });\n  await connection.runMigrations();\n});\n\nit('salva real', async () => { /* test database insert */ });"
         },
         {
           "title": "Isolamento de Dados no Banco",
-          "body": "O maior problema em testes de integração com banco de dados é um teste afetar o outro. Para resolver isso, usamos o hook `afterEach` ou `beforeEach` para limpar as tabelas ou fazer rollback nas transações após cada bloco, garantindo que todo teste comece em um ambiente limpo.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "afterEach(async () => {\n  // Remove todos os registros criados durante o teste atual\n  await Usuario.destroy({ where: {}, truncate: true });\n});\n\nit('cria maria', () => { /* Maria fica sozinha na tabela */ });",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O maior problema em testes de integração com banco de dados é um teste afetar o outro. Para resolver isso, usamos o hook `afterEach` ou `beforeEach` para limpar as tabelas ou fazer rollback nas transações após cada bloco, garantindo que todo teste comece em um ambiente limpo.\n\nCada teste deve começar com um estado de banco conhecido e limpo, geralmente recriando o esquema ou limpando as tabelas no beforeEach, evitando que um teste seja afetado por dados deixados por outro.",
+          "code": "afterEach(async () => {\n  // Remove todos os registros criados durante o teste atual\n  await Usuario.destroy({ where: {}, truncate: true });\n});\n\nit('cria maria', () => { /* Maria fica sozinha na tabela */ });"
         }
       ],
       "questions": [
@@ -1434,15 +1400,13 @@
       "lesson": [
         {
           "title": "Autenticação em Testes de Integração",
-          "body": "Quando a rota da API requer autenticação (ex: JWT), você não precisa testar a rota de login toda vez. A melhor prática em testes de integração é gerar um token artificial válido para um usuário fake e injetá-lo no cabeçalho das requisições via Supertest (`.set('Authorization', token)`).\n\nCompreender este fundamento é crucial em Testes Automatizados. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "it('acessa rota protegida com token válido', async () => {\n  // Gera um token válido para testes\n  const token = jwt.sign({ id: 1 }, process.env.SECRET);\n  \n  const res = await request(app)\n    .get('/perfil')\n    .set('Authorization', `Bearer ${token}`);\n    \n  expect(res.statusCode).toBe(200);\n});",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Quando a rota da API requer autenticação (ex: JWT), você não precisa testar a rota de login toda vez. A melhor prática em testes de integração é gerar um token artificial válido para um usuário fake e injetá-lo no cabeçalho das requisições via Supertest (`.set('Authorization', token)`).\n\nTestar rotas protegidas exige gerar um token válido (ou mockar o middleware de autenticação) antes da requisição de teste, simulando um usuário autenticado sem precisar passar por um fluxo de login completo.",
+          "code": "it('acessa rota protegida com token válido', async () => {\n  // Gera um token válido para testes\n  const token = jwt.sign({ id: 1 }, process.env.SECRET);\n  \n  const res = await request(app)\n    .get('/perfil')\n    .set('Authorization', `Bearer ${token}`);\n    \n  expect(res.statusCode).toBe(200);\n});"
         },
         {
           "title": "Tratando e Testando Erros",
-          "body": "Testar o caminho feliz é apenas 50% do trabalho em testes de integração. É fundamental enviar requisições propositalmente ruins para testar se seus middlewares de validação (ex: Zod, Joi) estão funcionando e devolvendo status adequados (ex: 400 Bad Request, 404 Not Found).\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "it('deve retornar 400 se o email for inválido', async () => {\n  const res = await request(app)\n    .post('/usuarios')\n    .send({ email: 'email.errado', senha: '123' });\n    \n  expect(res.statusCode).toBe(400);\n  expect(res.body.erro).toMatch(/email inválido/i);\n});",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Testar o caminho feliz é apenas 50% do trabalho em testes de integração. É fundamental enviar requisições propositalmente ruins para testar se seus middlewares de validação (ex: Zod, Joi) estão funcionando e devolvendo status adequados (ex: 400 Bad Request, 404 Not Found).\n\nTestar caminhos de erro (como enviar dados inválidos ou tentar acessar um recurso inexistente) é tão importante quanto testar o caminho feliz, garantindo que a API responda com os códigos e mensagens corretos.",
+          "code": "it('deve retornar 400 se o email for inválido', async () => {\n  const res = await request(app)\n    .post('/usuarios')\n    .send({ email: 'email.errado', senha: '123' });\n    \n  expect(res.statusCode).toBe(400);\n  expect(res.body.erro).toMatch(/email inválido/i);\n});"
         }
       ],
       "questions": [
@@ -1514,15 +1478,13 @@
       "lesson": [
         {
           "title": "O que é TDD?",
-          "body": "O Test-Driven Development (Desenvolvimento Orientado a Testes) é uma metodologia onde os testes são escritos ANTES do código. Isso inverte a lógica tradicional: você foca primeiro no design e no resultado esperado da função, e só depois se preocupa em como implementar a lógica para atingi-lo.\n\nCompreender este fundamento é crucial em Testes Automatizados. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "// No TDD, você começa assim (e o teste falha):\ntest('calcula o dobro', () => {\n  expect(dobro(5)).toBe(10);\n});\n\n// E só depois escreve o código para passar:\n// const dobro = (n) => n * 2;",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O Test-Driven Development (Desenvolvimento Orientado a Testes) é uma metodologia onde os testes são escritos ANTES do código. Isso inverte a lógica tradicional: você foca primeiro no design e no resultado esperado da função, e só depois se preocupa em como implementar a lógica para atingi-lo.\n\nTest-Driven Development é uma metodologia onde o teste é escrito antes do código de produção, guiando o design da solução através de pequenos ciclos incrementais de escrita de teste e implementação.",
+          "code": "// No TDD, você começa assim (e o teste falha):\ntest('calcula o dobro', () => {\n  expect(dobro(5)).toBe(10);\n});\n\n// E só depois escreve o código para passar:\n// const dobro = (n) => n * 2;"
         },
         {
           "title": "O Ciclo Red, Green, Refactor",
-          "body": "O TDD funciona num ciclo rápido de 3 passos: Red (escreva um teste que falha porque o código não existe), Green (escreva o código mais simples e 'sujo' possível apenas para fazer o teste passar) e Refactor (melhore a qualidade do código com segurança de que nada quebrou).\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "// 1. Red: falha, funcao nao existe.\n// 2. Green: return 10; (só para passar o expect(5)).\n// 3. Refactor:\nconst dobro = (n) => {\n  if (typeof n !== 'number') throw new Error();\n  return n * 2;\n};",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O TDD funciona num ciclo rápido de 3 passos: Red (escreva um teste que falha porque o código não existe), Green (escreva o código mais simples e 'sujo' possível apenas para fazer o teste passar) e Refactor (melhore a qualidade do código com segurança de que nada quebrou).\n\nO ciclo do TDD tem três etapas: Red (escrever um teste que falha), Green (escrever o código mínimo para o teste passar) e Refactor (melhorar o código mantendo os testes passando).",
+          "code": "// 1. Red: falha, funcao nao existe.\n// 2. Green: return 10; (só para passar o expect(5)).\n// 3. Refactor:\nconst dobro = (n) => {\n  if (typeof n !== 'number') throw new Error();\n  return n * 2;\n};"
         }
       ],
       "questions": [
@@ -1594,15 +1556,13 @@
       "lesson": [
         {
           "title": "Por que começar falhando? (Red)",
-          "body": "A etapa Red do TDD é crucial. Ver um teste falhar primeiro garante que o teste é válido e realmente capaz de capturar um erro. Se você escreve um teste e ele passa de primeira, pode ser um 'falso positivo'—um teste mal escrito que passa independente do código estar certo ou não.\n\nCompreender este fundamento é crucial em Testes Automatizados. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "// ❌ CUIDADO: Falso positivo\nit('teste inútil', () => {\n  const resultado = true;\n  expect(resultado).toBe(true); // Sempre passa, não testa nada do seu sistema!\n});",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "A etapa Red do TDD é crucial. Ver um teste falhar primeiro garante que o teste é válido e realmente capaz de capturar um erro. Se você escreve um teste e ele passa de primeira, pode ser um 'falso positivo'—um teste mal escrito que passa independente do código estar certo ou não.\n\nVer o teste falhar antes de implementar a funcionalidade confirma que o teste realmente está testando algo — um teste que nunca falha pode estar mal escrito e não detectar bugs reais.",
+          "code": "// ❌ CUIDADO: Falso positivo\nit('teste inútil', () => {\n  const resultado = true;\n  expect(resultado).toBe(true); // Sempre passa, não testa nada do seu sistema!\n});"
         },
         {
           "title": "A regra do Código Mínimo (Green)",
-          "body": "Durante a etapa Green do TDD, a regra é não tentar fazer o código final perfeito logo de cara. Escreva apenas o necessário para aquele caso específico passar, mesmo que signifique retornar um valor fixo. Depois, adicione mais cenários de teste para forçar uma implementação genérica.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "// 1º Teste forçou isso:\n// function fib(n) { return 1; }\n\n// 2º Teste (fib(3) === 2) nos força a evoluir:\nfunction fib(n) {\n  if(n <= 2) return 1;\n  return fib(n-1) + fib(n-2);\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Durante a etapa Green do TDD, a regra é não tentar fazer o código final perfeito logo de cara. Escreva apenas o necessário para aquele caso específico passar, mesmo que signifique retornar um valor fixo. Depois, adicione mais cenários de teste para forçar uma implementação genérica.\n\nNa etapa Green, o objetivo é escrever apenas o código suficiente para fazer o teste passar, resistindo à tentação de adicionar funcionalidades extras que ainda não têm um teste correspondente.",
+          "code": "// 1º Teste forçou isso:\n// function fib(n) { return 1; }\n\n// 2º Teste (fib(3) === 2) nos força a evoluir:\nfunction fib(n) {\n  if(n <= 2) return 1;\n  return fib(n-1) + fib(n-2);\n}"
         }
       ],
       "questions": [
@@ -1674,15 +1634,13 @@
       "lesson": [
         {
           "title": "A Magia da Refatoração (Refactor)",
-          "body": "O passo Refactor é onde a verdadeira engenharia de software brilha. Com a etapa Green garantindo que os requisitos de negócio estão atendidos pelos testes, você pode otimizar a performance, mudar nomes, extrair funções ou trocar algoritmos, tendo certeza imediata de que não estragou nada.\n\nCompreender este fundamento é crucial em Testes Automatizados. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "// O teste expect(somaArray([1,2,3])).toBe(6) continua passando!\n// Antes: loop for extenso\n// Refatorado:\nconst somaArray = (arr) => arr.reduce((acc, curr) => acc + curr, 0);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O passo Refactor é onde a verdadeira engenharia de software brilha. Com a etapa Green garantindo que os requisitos de negócio estão atendidos pelos testes, você pode otimizar a performance, mudar nomes, extrair funções ou trocar algoritmos, tendo certeza imediata de que não estragou nada.\n\nCom os testes passando como uma rede de segurança, é possível refatorar o código livremente — renomear, extrair funções, simplificar lógica — com confiança de que qualquer quebra será detectada imediatamente.",
+          "code": "// O teste expect(somaArray([1,2,3])).toBe(6) continua passando!\n// Antes: loop for extenso\n// Refatorado:\nconst somaArray = (arr) => arr.reduce((acc, curr) => acc + curr, 0);"
         },
         {
           "title": "TDD vs Design Over-engineering",
-          "body": "Uma grande vantagem do TDD é que ele previne o 'Over-engineering' (escrever código excessivo e desnecessário). Você cria apenas as funções e os métodos que os testes exigem para passar. O sistema se molda puramente ao redor dos requisitos reais, mantendo o código enxuto e pragmático.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "// O TDD foca na interface de uso, não na complexidade interna:\nit('formata cpf', () => {\n  // Foca em O QUE a função faz, não importa se ela usa\n  // Regex super complexo ou um split simples internamente.\n  expect(formata('12345678900')).toBe('123.456.789-00');\n});",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Uma grande vantagem do TDD é que ele previne o 'Over-engineering' (escrever código excessivo e desnecessário). Você cria apenas as funções e os métodos que os testes exigem para passar. O sistema se molda puramente ao redor dos requisitos reais, mantendo o código enxuto e pragmático.\n\nTDD naturalmente favorece designs simples e testáveis, pois código difícil de testar (muito acoplado, com muitas dependências) é um sinal de alerta que aparece cedo no processo, antes de virar dívida técnica.",
+          "code": "// O TDD foca na interface de uso, não na complexidade interna:\nit('formata cpf', () => {\n  // Foca em O QUE a função faz, não importa se ela usa\n  // Regex super complexo ou um split simples internamente.\n  expect(formata('12345678900')).toBe('123.456.789-00');\n});"
         }
       ],
       "questions": [
@@ -1754,15 +1712,13 @@
       "lesson": [
         {
           "title": "O que é Code Coverage?",
-          "body": "A Cobertura de Código (Coverage) é uma métrica que indica qual porcentagem do seu código-fonte está sendo executada (coberta) pelos testes automatizados. O Jest possui uma ferramenta embutida (Istanbul) para rastrear linhas, funções e branches (ifs) e gerar relatórios visuais.\n\nCompreender este fundamento é crucial em Testes Automatizados. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "// Rodando com coverage no terminal\n// npx jest --coverage\n\n// Saída:\n// Statements: 85% | Branches: 70% \n// Functions: 100% | Lines: 85%",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "A Cobertura de Código (Coverage) é uma métrica que indica qual porcentagem do seu código-fonte está sendo executada (coberta) pelos testes automatizados. O Jest possui uma ferramenta embutida (Istanbul) para rastrear linhas, funções e branches (ifs) e gerar relatórios visuais.\n\nCode coverage mede a porcentagem de linhas, branches ou funções do código-fonte que são executadas ao rodar a suíte de testes, sendo uma métrica indireta de quão testado o código está.",
+          "code": "// Rodando com coverage no terminal\n// npx jest --coverage\n\n// Saída:\n// Statements: 85% | Branches: 70% \n// Functions: 100% | Lines: 85%"
         },
         {
           "title": "Lendo o Relatório do Jest",
-          "body": "O Jest cria uma pasta 'coverage/lcov-report' contendo um site HTML estático. Ao abrir o 'index.html', você pode navegar pelo seu projeto e ver exatamente quais linhas estão marcadas em vermelho. As linhas vermelhas são ramificações do seu código que os testes nunca alcançaram.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "function aprovado(nota) {\n  if (nota >= 7) {\n    return true; // Coberto por: expect(aprovado(8)).toBe(true);\n  }\n  return false; // 🔴 LINHA NÃO COBERTA! Faltou testar nota < 7.\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O Jest cria uma pasta 'coverage/lcov-report' contendo um site HTML estático. Ao abrir o 'index.html', você pode navegar pelo seu projeto e ver exatamente quais linhas estão marcadas em vermelho. As linhas vermelhas são ramificações do seu código que os testes nunca alcançaram.\n\nO relatório de cobertura do Jest mostra colunas para % Stmts (instruções), % Branch (ramificações condicionais), % Funcs (funções) e % Lines (linhas), cada uma medindo uma dimensão diferente da cobertura.",
+          "code": "function aprovado(nota) {\n  if (nota >= 7) {\n    return true; // Coberto por: expect(aprovado(8)).toBe(true);\n  }\n  return false; // 🔴 LINHA NÃO COBERTA! Faltou testar nota < 7.\n}"
         }
       ],
       "questions": [
@@ -1834,15 +1790,13 @@
       "lesson": [
         {
           "title": "Branches (Ramificações)",
-          "body": "Muitos devs buscam 100% de cobertura de Linhas (Lines), mas esquecem da cobertura de Ramificações (Branches). Cada 'if', 'else', e operador ternário cria um caminho diferente no código. Para ter uma alta cobertura de branches, você precisa testar cenários de sucesso E de erro nas condicionais.\n\nCompreender este fundamento é crucial em Testes Automatizados. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "// Para cobrir 100% das branches desta função,\n// precisamos de NO MÍNIMO dois testes.\nfunction ehMaiorDeIdade(idade) {\n  return idade >= 18 ? 'Sim' : 'Não';\n}\n// Teste 1: ehMaiorDeIdade(20)\n// Teste 2: ehMaiorDeIdade(15)",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Muitos devs buscam 100% de cobertura de Linhas (Lines), mas esquecem da cobertura de Ramificações (Branches). Cada 'if', 'else', e operador ternário cria um caminho diferente no código. Para ter uma alta cobertura de branches, você precisa testar cenários de sucesso E de erro nas condicionais.\n\nCobertura de branch verifica se cada caminho possível de uma condição (if verdadeiro E if falso) foi exercitado por algum teste, sendo uma métrica mais rigorosa que apenas cobertura de linha.",
+          "code": "// Para cobrir 100% das branches desta função,\n// precisamos de NO MÍNIMO dois testes.\nfunction ehMaiorDeIdade(idade) {\n  return idade >= 18 ? 'Sim' : 'Não';\n}\n// Teste 1: ehMaiorDeIdade(20)\n// Teste 2: ehMaiorDeIdade(15)"
         },
         {
           "title": "Ignorando Arquivos do Coverage",
-          "body": "Nem tudo precisa ser medido. Arquivos de configuração, mocks, scripts de build ou dependências não devem entrar no seu relatório. Você pode configurar o arquivo `jest.config.js` para ignorar esses caminhos usando a propriedade `coveragePathIgnorePatterns`.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "// jest.config.js\nmodule.exports = {\n  collectCoverage: true,\n  coveragePathIgnorePatterns: [\n    '/node_modules/',\n    '/config/',\n    '.mock.js$'\n  ]\n};",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Nem tudo precisa ser medido. Arquivos de configuração, mocks, scripts de build ou dependências não devem entrar no seu relatório. Você pode configurar o arquivo `jest.config.js` para ignorar esses caminhos usando a propriedade `coveragePathIgnorePatterns`.\n\nArquivos de configuração, tipos ou código gerado automaticamente geralmente são excluídos do cálculo de cobertura via configuração (collectCoverageFrom no Jest), pois não fazem sentido testar diretamente.",
+          "code": "// jest.config.js\nmodule.exports = {\n  collectCoverage: true,\n  coveragePathIgnorePatterns: [\n    '/node_modules/',\n    '/config/',\n    '.mock.js$'\n  ]\n};"
         }
       ],
       "questions": [
@@ -1914,15 +1868,13 @@
       "lesson": [
         {
           "title": "A Falácia dos 100% de Cobertura",
-          "body": "Atingir 100% de cobertura é legal, mas não garante que o software não tem bugs. A cobertura mede apenas se a linha de código foi executada; não avalia se as asserções (expects) faziam sentido lógico. Buscar 80% de testes bem escritos e úteis é melhor que 100% de testes genéricos e frágeis.\n\nCompreender este fundamento é crucial em Testes Automatizados. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "// Uma linha 100% coberta mas mal testada:\nit('teste enganoso', () => {\n  sacaDinheiro(100); \n  // A linha executou, vai dar 100% de coverage!\n  // Mas esquecemos de checar (expect) se o saldo diminuiu.\n});",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Atingir 100% de cobertura é legal, mas não garante que o software não tem bugs. A cobertura mede apenas se a linha de código foi executada; não avalia se as asserções (expects) faziam sentido lógico. Buscar 80% de testes bem escritos e úteis é melhor que 100% de testes genéricos e frágeis.\n\n100% de cobertura não garante ausência de bugs — o código pode ser executado pelo teste sem que nenhuma asserção realmente verifique o comportamento correto, dando uma falsa sensação de segurança.",
+          "code": "// Uma linha 100% coberta mas mal testada:\nit('teste enganoso', () => {\n  sacaDinheiro(100); \n  // A linha executou, vai dar 100% de coverage!\n  // Mas esquecemos de checar (expect) se o saldo diminuiu.\n});"
         },
         {
           "title": "Thresholds de Cobertura em CI",
-          "body": "Em grandes times, para evitar que desenvolvedores subam códigos novos sem escrever testes, configura-se limites (thresholds) no Jest. Se a cobertura global cair abaixo do estabelecido (ex: 80%), o Jest falha com erro e a esteira de CI barra o Merge Request (PR) automaticamente.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "// jest.config.js\nmodule.exports = {\n  coverageThreshold: {\n    global: {\n      branches: 80,\n      functions: 80,\n      lines: 80\n    }\n  }\n};",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Em grandes times, para evitar que desenvolvedores subam códigos novos sem escrever testes, configura-se limites (thresholds) no Jest. Se a cobertura global cair abaixo do estabelecido (ex: 80%), o Jest falha com erro e a esteira de CI barra o Merge Request (PR) automaticamente.\n\nDefinir um limite mínimo de cobertura (coverageThreshold) que falha o pipeline de CI se não for atingido impede que a cobertura do projeto diminua gradualmente ao longo do tempo sem ser percebido.",
+          "code": "// jest.config.js\nmodule.exports = {\n  coverageThreshold: {\n    global: {\n      branches: 80,\n      functions: 80,\n      lines: 80\n    }\n  }\n};"
         }
       ],
       "questions": [
@@ -1994,15 +1946,13 @@
       "lesson": [
         {
           "title": "O Universo End-to-End",
-          "body": "Testes E2E carregam a aplicação inteira em um navegador real e simulam cliques, digitação e navegação de um usuário. Como avaliam o frontend integrado com o backend (e o banco real), são muito resilientes a refatorações internas de código, falhando apenas se a funcionalidade visível quebrar.\n\nCompreender este fundamento é crucial em Testes Automatizados. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "// O foco é a perspectiva do usuário final, não o código interno:\nit('deve adicionar item ao carrinho', () => {\n  cy.visit('/');\n  cy.contains('Comprar').click();\n  cy.get('.cart-badge').should('contain', '1');\n});",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Testes E2E carregam a aplicação inteira em um navegador real e simulam cliques, digitação e navegação de um usuário. Como avaliam o frontend integrado com o backend (e o banco real), são muito resilientes a refatorações internas de código, falhando apenas se a funcionalidade visível quebrar.\n\nFerramentas E2E como Cypress e Playwright controlam um navegador real, clicando, digitando e navegando exatamente como um usuário faria, validando o sistema completo integrado (frontend, backend e banco).",
+          "code": "// O foco é a perspectiva do usuário final, não o código interno:\nit('deve adicionar item ao carrinho', () => {\n  cy.visit('/');\n  cy.contains('Comprar').click();\n  cy.get('.cart-badge').should('contain', '1');\n});"
         },
         {
           "title": "Cypress vs Playwright",
-          "body": "Existem várias ferramentas no mercado. O Cypress se destacou por sua interface incrível de debug, 'time travel' visual e foco forte no frontend. Mais recentemente, o Playwright (da Microsoft) ganhou muita tração por rodar testes paralelizados, suporte nativo multi-abas e WebKit.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "// Exemplo simples no Playwright usando API moderna\ntest('verifica título e navegação', async ({ page }) => {\n  await page.goto('https://minhaloja.com');\n  await expect(page).toHaveTitle(/Loja/);\n  await page.click('text=Ver Produtos');\n});",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Existem várias ferramentas no mercado. O Cypress se destacou por sua interface incrível de debug, 'time travel' visual e foco forte no frontend. Mais recentemente, o Playwright (da Microsoft) ganhou muita tração por rodar testes paralelizados, suporte nativo multi-abas e WebKit.\n\nCypress roda dentro do navegador com uma API amigável e depuração visual poderosa; Playwright, da Microsoft, suporta múltiplos navegadores (Chromium, Firefox, WebKit) nativamente e é mais rápido em suítes grandes.",
+          "code": "// Exemplo simples no Playwright usando API moderna\ntest('verifica título e navegação', async ({ page }) => {\n  await page.goto('https://minhaloja.com');\n  await expect(page).toHaveTitle(/Loja/);\n  await page.click('text=Ver Produtos');\n});"
         }
       ],
       "questions": [
@@ -2074,15 +2024,13 @@
       "lesson": [
         {
           "title": "Melhores Seletores E2E",
-          "body": "A regra de ouro nos testes de interface é criar testes robustos. Não selecione elementos usando classes CSS ligadas à aparência (ex: `.btn-blue`) ou XPath complexos, pois qualquer refatoração visual quebrará o teste (flaky test). A melhor prática é usar atributos de dados customizados (ex: `data-testid`).\n\nCompreender este fundamento é crucial em Testes Automatizados. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "<!-- HTML Ruim para teste -->\n<button class=\"bg-red text-white absolute\">Deletar</button>\n\n<!-- HTML Bom para teste -->\n<button data-testid=\"btn-delete-user\">Deletar</button>\n\n// Cypress: cy.get('[data-testid=\"btn-delete-user\"]').click();",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "A regra de ouro nos testes de interface é criar testes robustos. Não selecione elementos usando classes CSS ligadas à aparência (ex: `.btn-blue`) ou XPath complexos, pois qualquer refatoração visual quebrará o teste (flaky test). A melhor prática é usar atributos de dados customizados (ex: `data-testid`).\n\nUsar atributos dedicados como data-testid em vez de classes CSS ou texto visível torna os testes E2E resistentes a mudanças de estilo ou copy, que não deveriam quebrar a suíte de testes.",
+          "code": "<!-- HTML Ruim para teste -->\n<button class=\"bg-red text-white absolute\">Deletar</button>\n\n<!-- HTML Bom para teste -->\n<button data-testid=\"btn-delete-user\">Deletar</button>\n\n// Cypress: cy.get('[data-testid=\"btn-delete-user\"]').click();"
         },
         {
           "title": "Interceptando Requisições",
-          "body": "Testes E2E podem ser demorados ou instáveis devido à rede. Para testes mais previsíveis no frontend, frameworks E2E permitem 'interceptar' chamadas HTTP que a página faria para o backend, retornando dados falsos instantaneamente. Isso isola a UI e testa como ela lida com diferentes cenários (ex: erro 500).\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "it('exibe mensagem de erro quando API falha', () => {\n  // Intercepta e simula falha do servidor\n  cy.intercept('GET', '/api/users', { statusCode: 500 });\n  \n  cy.visit('/usuarios');\n  cy.contains('Erro ao carregar sistema. Tente novamente.');\n});",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Testes E2E podem ser demorados ou instáveis devido à rede. Para testes mais previsíveis no frontend, frameworks E2E permitem 'interceptar' chamadas HTTP que a página faria para o backend, retornando dados falsos instantaneamente. Isso isola a UI e testa como ela lida com diferentes cenários (ex: erro 500).\n\nInterceptar chamadas de rede (cy.intercept no Cypress) permite simular respostas de API específicas durante um teste E2E, tornando os testes determinísticos e independentes da disponibilidade do backend real.",
+          "code": "it('exibe mensagem de erro quando API falha', () => {\n  // Intercepta e simula falha do servidor\n  cy.intercept('GET', '/api/users', { statusCode: 500 });\n  \n  cy.visit('/usuarios');\n  cy.contains('Erro ao carregar sistema. Tente novamente.');\n});"
         }
       ],
       "questions": [
@@ -2154,15 +2102,13 @@
       "lesson": [
         {
           "title": "Fixtures em Testes E2E",
-          "body": "Fixtures são arquivos estáticos (normalmente JSONs) usados para popular testes de interface ou mocks de rede. Em vez de escrever arrays gigantes dentro do arquivo de teste, você guarda os dados numa pasta específica e o framework carrega isso limpo no momento do teste.\n\nCompreender este fundamento é crucial em Testes Automatizados. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "// Cypress lendo de cypress/fixtures/produtos.json\nit('lista produtos', () => {\n  cy.intercept('GET', '/api/produtos', { fixture: 'produtos.json' });\n  \n  cy.visit('/catalogo');\n  cy.get('.product-card').should('have.length', 3);\n});",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Fixtures são arquivos estáticos (normalmente JSONs) usados para popular testes de interface ou mocks de rede. Em vez de escrever arrays gigantes dentro do arquivo de teste, você guarda os dados numa pasta específica e o framework carrega isso limpo no momento do teste.\n\nFixtures são arquivos de dados de exemplo (geralmente JSON) reutilizados entre testes para simular respostas de API ou popular formulários, mantendo os dados de teste centralizados e fáceis de manter.",
+          "code": "// Cypress lendo de cypress/fixtures/produtos.json\nit('lista produtos', () => {\n  cy.intercept('GET', '/api/produtos', { fixture: 'produtos.json' });\n  \n  cy.visit('/catalogo');\n  cy.get('.product-card').should('have.length', 3);\n});"
         },
         {
           "title": "Testes Flaky (Instáveis)",
-          "body": "O maior inimigo dos testes E2E é a instabilidade. Um 'Flaky Test' é aquele que passa 9 vezes e falha 1 vez sem ninguém mudar o código, normalmente por causa de lentidão na rede ou animações da UI. Bons frameworks aguardam automaticamente a página estabilizar antes de interagir.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "// Anti-padrão (Flaky): Esperar tempo fixo.\n// cy.wait(2000);\n\n// Correto: Esperar que o elemento atinja um estado específico.\ncy.get('.loading-spinner').should('not.exist');\ncy.get('#dados-carregados').should('be.visible');",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O maior inimigo dos testes E2E é a instabilidade. Um 'Flaky Test' é aquele que passa 9 vezes e falha 1 vez sem ninguém mudar o código, normalmente por causa de lentidão na rede ou animações da UI. Bons frameworks aguardam automaticamente a página estabilizar antes de interagir.\n\nUm teste flaky passa ou falha de forma inconsistente sem mudanças no código, geralmente causado por condições de corrida ou tempos de espera fixos; corrigir a causa raiz é preferível a simplesmente re-executar o teste.",
+          "code": "// Anti-padrão (Flaky): Esperar tempo fixo.\n// cy.wait(2000);\n\n// Correto: Esperar que o elemento atinja um estado específico.\ncy.get('.loading-spinner').should('not.exist');\ncy.get('#dados-carregados').should('be.visible');"
         }
       ],
       "questions": [
@@ -2234,15 +2180,13 @@
       "lesson": [
         {
           "title": "Arquitetura Testável",
-          "body": "Projetos maduros desenham a arquitetura pensando nos testes. Padrões como Injeção de Dependências e Ports & Adapters permitem desconectar rapidamente camadas do projeto (como o Banco de Dados ou Gateways de Pagamento) tornando o domínio principal (regras de negócio) extremamente fácil de testar.\n\nCompreender este fundamento é crucial em Testes Automatizados. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "// Injetando dependências facilita o teste unitário\nclass Checkout {\n  constructor(pagamentoService) { this.pag = pagamentoService; }\n  finalizar() { return this.pag.cobrar(); }\n}\n// No teste passamos um mock falso.\nconst checkout = new Checkout(mockPagamento);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Projetos maduros desenham a arquitetura pensando nos testes. Padrões como Injeção de Dependências e Ports & Adapters permitem desconectar rapidamente camadas do projeto (como o Banco de Dados ou Gateways de Pagamento) tornando o domínio principal (regras de negócio) extremamente fácil de testar.\n\nSeparar lógica de negócio de detalhes de infraestrutura (como acesso a banco ou APIs externas) através de injeção de dependência torna o código mais fácil de testar isoladamente, sem mocks excessivos.",
+          "code": "// Injetando dependências facilita o teste unitário\nclass Checkout {\n  constructor(pagamentoService) { this.pag = pagamentoService; }\n  finalizar() { return this.pag.cobrar(); }\n}\n// No teste passamos um mock falso.\nconst checkout = new Checkout(mockPagamento);"
         },
         {
           "title": "Suite de Testes Completa",
-          "body": "Um projeto real de backend com Express não vive só de uma camada de teste. Normalmente ele tem uma pasta `tests/unit` cobrindo as lógicas dos controllers e services isoladamente, e uma pasta `tests/integration` usando Supertest + SQLite em memória para garantir o fluxo completo até o banco.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "// Estrutura de pastas profissional:\n// src/\n// ├── controllers/\n// ├── services/\n// tests/\n// ├── integration/\n// │   └── user.api.test.js\n// ├── unit/\n// │   └── user.service.test.js",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Um projeto real de backend com Express não vive só de uma camada de teste. Normalmente ele tem uma pasta `tests/unit` cobrindo as lógicas dos controllers e services isoladamente, e uma pasta `tests/integration` usando Supertest + SQLite em memória para garantir o fluxo completo até o banco.\n\nUma suíte de testes saudável combina as três camadas da pirâmide — muitos testes unitários rápidos, testes de integração para os pontos de contato críticos e poucos E2E para os fluxos mais importantes do produto.",
+          "code": "// Estrutura de pastas profissional:\n// src/\n// ├── controllers/\n// ├── services/\n// tests/\n// ├── integration/\n// │   └── user.api.test.js\n// ├── unit/\n// │   └── user.service.test.js"
         }
       ],
       "questions": [
@@ -2314,15 +2258,13 @@
       "lesson": [
         {
           "title": "Pipeline de Integração Contínua (CI)",
-          "body": "De nada adianta criar testes se o time esquece de rodá-los. Para projetos finais, configuramos pipelines em ferramentas como GitHub Actions ou GitLab CI. Toda vez que alguém der um 'push' ou abrir um Pull Request, a nuvem baixa o código, instala dependências e roda o comando `npm run test`.\n\nCompreender este fundamento é crucial em Testes Automatizados. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "# .github/workflows/testes.yml\nname: Rodar Testes\non: [pull_request]\njobs:\n  test:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v2\n      - run: npm install\n      - run: npm test",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "De nada adianta criar testes se o time esquece de rodá-los. Para projetos finais, configuramos pipelines em ferramentas como GitHub Actions ou GitLab CI. Toda vez que alguém der um 'push' ou abrir um Pull Request, a nuvem baixa o código, instala dependências e roda o comando `npm run test`.\n\nUm pipeline de CI executa automaticamente a suíte de testes a cada push ou pull request, bloqueando o merge de código que quebra algum teste, garantindo que a branch principal permaneça sempre estável.",
+          "code": "# .github/workflows/testes.yml\nname: Rodar Testes\non: [pull_request]\njobs:\n  test:\n    runs-on: ubuntu-latest\n    steps:\n      - uses: actions/checkout@v2\n      - run: npm install\n      - run: npm test"
         },
         {
           "title": "Banco de Testes Separado",
-          "body": "Ao construir um projeto final com banco real (como PostgreSQL), nunca aponte seus scripts de teste para o banco de desenvolvimento. Crie um banco específico de testes (ex: `meuapp_test`). Use variáveis de ambiente (como `.env.test`) para que o Jest se conecte a esse ambiente isolado.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "// cross-env define NODE_ENV para testes\n// package.json:\n\"scripts\": {\n  \"test\": \"cross-env NODE_ENV=test jest\",\n}\n\n// No arquivo de conexão (knex/sequelize):\nconst dbName = process.env.NODE_ENV === 'test' ? 'db_test' : 'db_dev';",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Ao construir um projeto final com banco real (como PostgreSQL), nunca aponte seus scripts de teste para o banco de desenvolvimento. Crie um banco específico de testes (ex: `meuapp_test`). Use variáveis de ambiente (como `.env.test`) para que o Jest se conecte a esse ambiente isolado.\n\nUsar um banco de dados dedicado exclusivamente para o ambiente de CI, separado do banco de desenvolvimento ou produção, evita que a execução dos testes interfira ou corrompa dados reais.",
+          "code": "// cross-env define NODE_ENV para testes\n// package.json:\n\"scripts\": {\n  \"test\": \"cross-env NODE_ENV=test jest\",\n}\n\n// No arquivo de conexão (knex/sequelize):\nconst dbName = process.env.NODE_ENV === 'test' ? 'db_test' : 'db_dev';"
         }
       ],
       "questions": [
@@ -2394,15 +2336,13 @@
       "lesson": [
         {
           "title": "Continuous Deployment (CD) Seguro",
-          "body": "A glória máxima dos testes automatizados é atingir o Deploy Contínuo. Se sua pipeline de testes passa cobrindo lógicas, integrações e E2E cruciais sem falhas, o código pode ir automaticamente para produção, sem intervenção manual. É assim que empresas grandes atualizam sites 50 vezes ao dia.\n\nCompreender este fundamento é crucial em Testes Automatizados. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "// Resumo da Pipeline dos sonhos:\n// 1. Lint checking (ESLint)\n// 2. Testes Unitários + Integração (Jest)\n// 3. Verifica limite de Coverage > 80%\n// 4. Testes E2E Críticos (Cypress)\n// 5. Build & Deploy -> Vercel/AWS",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "A glória máxima dos testes automatizados é atingir o Deploy Contínuo. Se sua pipeline de testes passa cobrindo lógicas, integrações e E2E cruciais sem falhas, o código pode ir automaticamente para produção, sem intervenção manual. É assim que empresas grandes atualizam sites 50 vezes ao dia.\n\nDeploy contínuo automatiza a publicação em produção assim que os testes passam no pipeline; isso só é seguro quando a suíte de testes é confiável o suficiente para detectar qualquer regressão antes do deploy.",
+          "code": "// Resumo da Pipeline dos sonhos:\n// 1. Lint checking (ESLint)\n// 2. Testes Unitários + Integração (Jest)\n// 3. Verifica limite de Coverage > 80%\n// 4. Testes E2E Críticos (Cypress)\n// 5. Build & Deploy -> Vercel/AWS"
         },
         {
           "title": "Revisão Final e Conclusão",
-          "body": "Parabéns! Você chegou ao fim. Entendeu a teoria da Pirâmide, criou testes com Jest, explorou mocks profundos para isolamento e tocou em automações end-to-end. O segredo agora é adotar testes como cultura no dia-a-dia. Quanto mais você pratica, mais rápido a escrita de testes se torna natural.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "describe('Sua Jornada em Testes', () => {\n  it('deve dominar as bases e se sentir seguro', () => {\n    const devs = { confianca: 100, medoDeRefatorar: false };\n    expect(devs.confianca).toBeGreaterThan(90);\n    expect(devs.medoDeRefatorar).toBeFalsy();\n  });\n});",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Parabéns! Você chegou ao fim. Entendeu a teoria da Pirâmide, criou testes com Jest, explorou mocks profundos para isolamento e tocou em automações end-to-end. O segredo agora é adotar testes como cultura no dia-a-dia. Quanto mais você pratica, mais rápido a escrita de testes se torna natural.\n\nTestes automatizados não eliminam a necessidade de revisão de código e boas práticas de arquitetura, mas formam a rede de segurança que permite evoluir um sistema com confiança e velocidade sustentável ao longo do tempo.",
+          "code": "describe('Sua Jornada em Testes', () => {\n  it('deve dominar as bases e se sentir seguro', () => {\n    const devs = { confianca: 100, medoDeRefatorar: false };\n    expect(devs.confianca).toBeGreaterThan(90);\n    expect(devs.medoDeRefatorar).toBeFalsy();\n  });\n});"
         }
       ],
       "questions": [

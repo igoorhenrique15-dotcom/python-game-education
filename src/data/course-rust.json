@@ -74,15 +74,13 @@
       "lesson": [
         {
           "title": "Variáveis São Imutáveis",
-          "body": "Em Rust, variáveis declaradas com `let` são imutáveis por padrão. Isso significa que, uma vez que um valor é atribuído, ele não pode ser alterado. Essa decisão de design foca em segurança de memória e concorrência, prevenindo bugs onde o valor muda inesperadamente.\n\nCompreender este fundamento é crucial em Rust. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "let nome = \"Alice\";\n// nome = \"Bob\"; // Erro de compilação!\nprintln!(\"Nome: {}\", nome);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Em Rust, variáveis declaradas com `let` são imutáveis por padrão. Isso significa que, uma vez que um valor é atribuído, ele não pode ser alterado. Essa decisão de design foca em segurança de memória e concorrência, prevenindo bugs onde o valor muda inesperadamente.\n\nEssa imutabilidade padrão é uma decisão deliberada do design de Rust: o compilador impede reatribuições acidentais, eliminando uma classe inteira de bugs comuns em outras linguagens onde variáveis mudam de valor sem aviso.",
+          "code": "let nome = \"Alice\";\n// nome = \"Bob\"; // Erro de compilação!\nprintln!(\"Nome: {}\", nome);"
         },
         {
           "title": "Tornando Variáveis Mutáveis",
-          "body": "Para permitir que uma variável tenha seu valor alterado posteriormente, você deve explicitamente adicionar a palavra-chave `mut` após `let`. Isso avisa ao compilador e aos desenvolvedores que aquele valor pode sofrer mutações de estado ao longo do tempo.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "let mut contador = 0;\ncontador += 1;\nprintln!(\"Contador: {}\", contador);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Para permitir que uma variável tenha seu valor alterado posteriormente, você deve explicitamente adicionar a palavra-chave `mut` após `let`. Isso avisa ao compilador e aos desenvolvedores que aquele valor pode sofrer mutações de estado ao longo do tempo.\n\nA palavra-chave mut deve ser explícita (let mut x = 5), tornando visível no código exatamente onde o estado pode mudar. Isso facilita revisar e raciocinar sobre o fluxo de dados em programas concorrentes.",
+          "code": "let mut contador = 0;\ncontador += 1;\nprintln!(\"Contador: {}\", contador);"
         }
       ],
       "questions": [
@@ -154,15 +152,13 @@
       "lesson": [
         {
           "title": "Tipos de Dados Escalares",
-          "body": "Rust possui tipos de dados escalares que representam um único valor: inteiros (como `i32`, `u64`), pontos flutuantes (`f32`, `f64`), booleanos (`bool`) e caracteres Unicode (`char`). O tipo é geralmente inferido pelo compilador, mas pode ser anotado explicitamente.\n\nCompreender este fundamento é crucial em Rust. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "let numero: i32 = -42;\nlet pi: f64 = 3.1415;\nlet ativo: bool = true;\nlet letra: char = 'R';",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Rust possui tipos de dados escalares que representam um único valor: inteiros (como `i32`, `u64`), pontos flutuantes (`f32`, `f64`), booleanos (`bool`) e caracteres Unicode (`char`). O tipo é geralmente inferido pelo compilador, mas pode ser anotado explicitamente.\n\nRust possui quatro tipos escalares principais: inteiros, ponto flutuante, booleanos e caracteres (char, que representa um valor Unicode de 4 bytes, diferente de uma String de um byte por caractere ASCII).",
+          "code": "let numero: i32 = -42;\nlet pi: f64 = 3.1415;\nlet ativo: bool = true;\nlet letra: char = 'R';"
         },
         {
           "title": "Inteiros com e sem Sinal",
-          "body": "Tipos numéricos como `i32` são 'signed' (com sinal) e podem armazenar números negativos, enquanto `u32` são 'unsigned' (sem sinal) e guardam apenas valores positivos, dobrando a capacidade máxima positiva no mesmo espaço de memória.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "let negativo: i8 = -10;\nlet positivo: u8 = 250;\nprintln!(\"{} e {}\", negativo, positivo);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Tipos numéricos como `i32` são 'signed' (com sinal) e podem armazenar números negativos, enquanto `u32` são 'unsigned' (sem sinal) e guardam apenas valores positivos, dobrando a capacidade máxima positiva no mesmo espaço de memória.\n\nTipos com sinal (i8, i16, i32, i64) armazenam valores negativos e positivos; tipos sem sinal (u8, u16, u32, u64) armazenam apenas valores não negativos, dobrando a faixa positiva disponível no mesmo número de bits.",
+          "code": "let negativo: i8 = -10;\nlet positivo: u8 = 250;\nprintln!(\"{} e {}\", negativo, positivo);"
         }
       ],
       "questions": [
@@ -234,15 +230,13 @@
       "lesson": [
         {
           "title": "Definição de Funções",
-          "body": "Funções em Rust são declaradas usando a palavra-chave `fn`. O tipo de cada parâmetro deve ser declarado obrigatoriamente. Isso permite que o compilador faça verificações rígidas de tipo sempre que a função for chamada em qualquer lugar do programa.\n\nCompreender este fundamento é crucial em Rust. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "fn saudar(nome: &str) {\n    println!(\"Olá, {}!\", nome);\n}\n\nfn main() {\n    saudar(\"Mundo\");\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Funções em Rust são declaradas usando a palavra-chave `fn`. O tipo de cada parâmetro deve ser declarado obrigatoriamente. Isso permite que o compilador faça verificações rígidas de tipo sempre que a função for chamada em qualquer lugar do programa.\n\nFunções são declaradas com fn nome(parametro: Tipo) -> TipoDeRetorno. Diferente de variáveis, o tipo dos parâmetros e do retorno deve ser sempre explícito, pois o compilador não infere assinaturas de função.",
+          "code": "fn saudar(nome: &str) {\n    println!(\"Olá, {}!\", nome);\n}\n\nfn main() {\n    saudar(\"Mundo\");\n}"
         },
         {
           "title": "Retorno de Expressões",
-          "body": "O retorno de uma função em Rust é, por padrão, o valor da última expressão do seu bloco. Diferente de instruções (statements), expressões avaliam um valor e NÃO terminam com ponto e vírgula. Também é possível usar `return` explicitamente.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "fn somar(a: i32, b: i32) -> i32 {\n    a + b // Sem ponto e vírgula no final!\n}\n\nlet resultado = somar(5, 7);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O retorno de uma função em Rust é, por padrão, o valor da última expressão do seu bloco. Diferente de instruções (statements), expressões avaliam um valor e NÃO terminam com ponto e vírgula. Também é possível usar `return` explicitamente.\n\nEm Rust, a última expressão de um bloco (sem ponto e vírgula) é retornada implicitamente. Adicionar um ponto e vírgula transforma a expressão em uma instrução, que retorna o tipo unit () em vez do valor esperado.",
+          "code": "fn somar(a: i32, b: i32) -> i32 {\n    a + b // Sem ponto e vírgula no final!\n}\n\nlet resultado = somar(5, 7);"
         }
       ],
       "questions": [
@@ -314,15 +308,13 @@
       "lesson": [
         {
           "title": "A Estrutura IF Clássica",
-          "body": "A estrutura de controle `if` avalia uma condição que deve ser estritamente do tipo booleano (`bool`). Diferente de linguagens como C ou JS, o Rust não converte números ou strings para booleano implicitamente, evitando comportamentos inesperados (falsy/truthy).\n\nCompreender este fundamento é crucial em Rust. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "let numero = 5;\nif numero > 0 {\n    println!(\"Positivo\");\n} else {\n    println!(\"Negativo ou zero\");\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "A estrutura de controle `if` avalia uma condição que deve ser estritamente do tipo booleano (`bool`). Diferente de linguagens como C ou JS, o Rust não converte números ou strings para booleano implicitamente, evitando comportamentos inesperados (falsy/truthy).\n\nA condição de um if em Rust deve ser obrigatoriamente do tipo bool — diferente de C ou JavaScript, não existe conversão implícita de inteiros para booleano, o que evita bugs sutis de condição.",
+          "code": "let numero = 5;\nif numero > 0 {\n    println!(\"Positivo\");\n} else {\n    println!(\"Negativo ou zero\");\n}"
         },
         {
           "title": "IF Utilizado Como Expressão",
-          "body": "Em Rust, `if` é uma expressão, não apenas uma instrução. Isso significa que você pode usá-lo para retornar valores e atribuí-los a uma variável (similar ao operador ternário). Todos os blocos do `if` e `else` devem obrigatoriamente retornar o mesmo tipo.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "let condicao = true;\n// O tipo de 'numero' é inferido como i32\nlet numero = if condicao { 10 } else { 0 };\nprintln!(\"Número: {}\", numero);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Em Rust, `if` é uma expressão, não apenas uma instrução. Isso significa que você pode usá-lo para retornar valores e atribuí-los a uma variável (similar ao operador ternário). Todos os blocos do `if` e `else` devem obrigatoriamente retornar o mesmo tipo.\n\nComo if é uma expressão, ele pode retornar um valor: let numero = if condicao { 5 } else { 6 };. Os dois braços devem obrigatoriamente retornar o mesmo tipo, garantido em tempo de compilação.",
+          "code": "let condicao = true;\n// O tipo de 'numero' é inferido como i32\nlet numero = if condicao { 10 } else { 0 };\nprintln!(\"Número: {}\", numero);"
         }
       ],
       "questions": [
@@ -394,15 +386,13 @@
       "lesson": [
         {
           "title": "Repetição com LOOP e BREAK",
-          "body": "A instrução `loop` cria um laço de repetição infinito em Rust. Ele é frequentemente usado junto com `break` para sair do loop quando uma condição for alcançada. O `break` também pode ser usado para retornar um valor final da expressão `loop`.\n\nCompreender este fundamento é crucial em Rust. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "let mut contador = 0;\nlet resultado = loop {\n    contador += 1;\n    if contador == 10 {\n        break contador * 2;\n    }\n};\nprintln!(\"Resultado: {}\", resultado);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "A instrução `loop` cria um laço de repetição infinito em Rust. Ele é frequentemente usado junto com `break` para sair do loop quando uma condição for alcançada. O `break` também pode ser usado para retornar um valor final da expressão `loop`.\n\nloop cria um laço infinito que só termina com break; diferente de while ou for, break dentro de um loop pode retornar um valor (break valor), que se torna o resultado da expressão loop inteira.",
+          "code": "let mut contador = 0;\nlet resultado = loop {\n    contador += 1;\n    if contador == 10 {\n        break contador * 2;\n    }\n};\nprintln!(\"Resultado: {}\", resultado);"
         },
         {
           "title": "Repetição Condicional com WHILE",
-          "body": "Para situações onde a repetição deve ocorrer apenas enquanto uma condição for verdadeira, Rust fornece o laço `while`. A condição é checada antes de cada iteração, tornando-o ideal para repetições em que o número de vezes não é conhecido de antemão.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "let mut numero = 3;\nwhile numero != 0 {\n    println!(\"{}...\", numero);\n    numero -= 1;\n}\nprintln!(\"Fogo!\");",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Para situações onde a repetição deve ocorrer apenas enquanto uma condição for verdadeira, Rust fornece o laço `while`. A condição é checada antes de cada iteração, tornando-o ideal para repetições em que o número de vezes não é conhecido de antemão.\n\nwhile repete o bloco enquanto a condição permanecer verdadeira, verificando-a antes de cada iteração; é útil quando o número de repetições depende de uma condição dinâmica, não conhecida de antemão.",
+          "code": "let mut numero = 3;\nwhile numero != 0 {\n    println!(\"{}...\", numero);\n    numero -= 1;\n}\nprintln!(\"Fogo!\");"
         }
       ],
       "questions": [
@@ -474,15 +464,13 @@
       "lesson": [
         {
           "title": "O Poderoso Laço FOR",
-          "body": "O laço `for` é a forma mais segura e comum de iterar sobre coleções de dados ou intervalos numéricos em Rust. Ele elimina os riscos de acessar índices fora dos limites da matriz, comuns em laços manuais como o `while` com um contador de índice.\n\nCompreender este fundamento é crucial em Rust. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "let colecao = [10, 20, 30, 40];\nfor elemento in colecao {\n    println!(\"O valor é: {}\", elemento);\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O laço `for` é a forma mais segura e comum de iterar sobre coleções de dados ou intervalos numéricos em Rust. Ele elimina os riscos de acessar índices fora dos limites da matriz, comuns em laços manuais como o `while` com um contador de índice.\n\nfor item in colecao itera diretamente sobre os elementos de uma coleção, sendo a forma mais segura e idiomática de iteração em Rust, pois evita erros de índice fora dos limites (out of bounds).",
+          "code": "let colecao = [10, 20, 30, 40];\nfor elemento in colecao {\n    println!(\"O valor é: {}\", elemento);\n}"
         },
         {
           "title": "Iterando com Ranges Numéricos",
-          "body": "Para iterar um número específico de vezes, usamos `for` em combinação com um Range. A notação `a..b` itera de `a` até `b - 1` (exclusivo), enquanto `a..=b` inclui o valor limite `b` (inclusivo). Também permite reverter a ordem encadeando `.rev()`.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "for numero in (1..=3).rev() {\n    println!(\"{}...\", numero);\n}\nprintln!(\"Decolagem!\");",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Para iterar um número específico de vezes, usamos `for` em combinação com um Range. A notação `a..b` itera de `a` até `b - 1` (exclusivo), enquanto `a..=b` inclui o valor limite `b` (inclusivo). Também permite reverter a ordem encadeando `.rev()`.\n\nA sintaxe for i in 0..5 gera um intervalo exclusivo (0 a 4); usar 0..=5 cria um intervalo inclusivo que também percorre o número 5, sendo útil para contagens precisas.",
+          "code": "for numero in (1..=3).rev() {\n    println!(\"{}...\", numero);\n}\nprintln!(\"Decolagem!\");"
         }
       ],
       "questions": [
@@ -554,15 +542,13 @@
       "lesson": [
         {
           "title": "A Regra de Ouro do Ownership",
-          "body": "A gestão de memória em Rust é feita por regras de Ownership (posse). Todo valor tem uma variável que atua como seu 'dono'. Só pode haver um dono por vez. Quando o dono sai do escopo de execução, a memória associada ao valor é imediatamente liberada (drop).\n\nCompreender este fundamento é crucial em Rust. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "{\n    let texto = String::from(\"Olá\");\n    // texto é dono do valor alocado na heap\n} // texto sai de escopo e a memória é liberada",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "A gestão de memória em Rust é feita por regras de Ownership (posse). Todo valor tem uma variável que atua como seu 'dono'. Só pode haver um dono por vez. Quando o dono sai do escopo de execução, a memória associada ao valor é imediatamente liberada (drop).\n\nCada valor em Rust tem um único dono (owner) por vez; quando o dono sai de escopo, o valor é automaticamente liberado da memória (drop), sem necessidade de garbage collector nem liberação manual.",
+          "code": "{\n    let texto = String::from(\"Olá\");\n    // texto é dono do valor alocado na heap\n} // texto sai de escopo e a memória é liberada"
         },
         {
           "title": "Segurança de Memória sem GC",
-          "body": "O compilador aplica as regras de Ownership durante a compilação, prevenindo erros como acessos inválidos ou 'double free'. Essa característica única garante a velocidade de linguagens como C e C++, sem a necessidade de um Garbage Collector em tempo de execução.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "fn main() {\n    let t1 = String::from(\"Teste\");\n    let _t2 = t1;\n    // A propriedade passou para t2. O código fica limpo e sem vazamentos.\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O compilador aplica as regras de Ownership durante a compilação, prevenindo erros como acessos inválidos ou 'double free'. Essa característica única garante a velocidade de linguagens como C e C++, sem a necessidade de um Garbage Collector em tempo de execução.\n\nEsse sistema de ownership, verificado em tempo de compilação pelo borrow checker, é o que permite a Rust garantir segurança de memória e ausência de data races sem o custo de performance de um coletor de lixo em tempo de execução.",
+          "code": "fn main() {\n    let t1 = String::from(\"Teste\");\n    let _t2 = t1;\n    // A propriedade passou para t2. O código fica limpo e sem vazamentos.\n}"
         }
       ],
       "questions": [
@@ -634,15 +620,13 @@
       "lesson": [
         {
           "title": "Movendo a Posse de Valores",
-          "body": "Tipos complexos que alocam memória na Heap, como `String` e `Vec`, têm sua posse movida na atribuição. Se `a = b`, `a` recebe o ownership e `b` torna-se inválido. Esse mecanismo, chamado de Move Semantics, previne vazamentos de memória e cópias custosas implícitas.\n\nCompreender este fundamento é crucial em Rust. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "let s1 = String::from(\"Rust\");\nlet s2 = s1;\n// println!(\"{}\", s1); // ERRO: valor foi movido para s2\nprintln!(\"{}\", s2);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Tipos complexos que alocam memória na Heap, como `String` e `Vec`, têm sua posse movida na atribuição. Se `a = b`, `a` recebe o ownership e `b` torna-se inválido. Esse mecanismo, chamado de Move Semantics, previne vazamentos de memória e cópias custosas implícitas.\n\nAo atribuir um valor de tipo não-Copy (como String) a outra variável, a posse é movida (move), e a variável original deixa de ser válida — tentar usá-la depois gera um erro de compilação.",
+          "code": "let s1 = String::from(\"Rust\");\nlet s2 = s1;\n// println!(\"{}\", s1); // ERRO: valor foi movido para s2\nprintln!(\"{}\", s2);"
         },
         {
           "title": "Cópia Simples com Trait Copy",
-          "body": "Tipos primitivos e escalares (`i32`, `bool`, etc.), que residem totalmente na Stack, implementam a Trait especial `Copy`. Quando são atribuídos a outra variável, uma cópia bit-a-bit é feita. Portanto, a variável original continua acessível após a atribuição.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "let x = 5;\nlet y = x; // Como i32 é Copy, o valor 5 é copiado para y\nprintln!(\"x: {}, y: {}\", x, y); // Ambos são válidos e independentes",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Tipos primitivos e escalares (`i32`, `bool`, etc.), que residem totalmente na Stack, implementam a Trait especial `Copy`. Quando são atribuídos a outra variável, uma cópia bit-a-bit é feita. Portanto, a variável original continua acessível após a atribuição.\n\nTipos simples e de tamanho fixo, como inteiros e booleanos, implementam a trait Copy, o que faz com que a atribuição copie o valor em vez de mover a posse, mantendo ambas as variáveis válidas.",
+          "code": "let x = 5;\nlet y = x; // Como i32 é Copy, o valor 5 é copiado para y\nprintln!(\"x: {}, y: {}\", x, y); // Ambos são válidos e independentes"
         }
       ],
       "questions": [
@@ -714,15 +698,13 @@
       "lesson": [
         {
           "title": "Transferindo Ownership para Funções",
-          "body": "Passar uma variável como argumento de função segue as mesmas regras de movimentação (move) ou cópia (copy) das atribuições. Passar uma estrutura alocada na Heap, como uma `String`, transfere seu Ownership para o parâmetro da função.\n\nCompreender este fundamento é crucial em Rust. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "fn toma_posse(s: String) {\n    println!(\"{}\", s);\n}\nlet texto = String::from(\"Olá\");\ntoma_posse(texto);\n// println!(\"{}\", texto); // Erro! Ownership foi movido.",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Passar uma variável como argumento de função segue as mesmas regras de movimentação (move) ou cópia (copy) das atribuições. Passar uma estrutura alocada na Heap, como uma `String`, transfere seu Ownership para o parâmetro da função.\n\nPassar uma variável não-Copy como argumento para uma função move a posse dela para dentro da função; após a chamada, a variável original no escopo de quem chamou não pode mais ser usada.",
+          "code": "fn toma_posse(s: String) {\n    println!(\"{}\", s);\n}\nlet texto = String::from(\"Olá\");\ntoma_posse(texto);\n// println!(\"{}\", texto); // Erro! Ownership foi movido."
         },
         {
           "title": "Retornando e Restaurando Ownership",
-          "body": "Da mesma forma que funções podem tomar posse dos dados, elas podem devolver o Ownership ao final da execução. Retornar um valor transfere a posse do escopo da função de volta para a variável que a chamou, evitando perdas definitivas dos dados manipulados.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "fn devolve_posse() -> String {\n    let s = String::from(\"Devolvido\");\n    s // O ownership é transferido para o chamador\n}\nlet s_recebida = devolve_posse();",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Da mesma forma que funções podem tomar posse dos dados, elas podem devolver o Ownership ao final da execução. Retornar um valor transfere a posse do escopo da função de volta para a variável que a chamou, evitando perdas definitivas dos dados manipulados.\n\nUma função pode devolver a posse de um valor através do seu retorno, permitindo reatribuí-lo a uma variável no escopo de origem e continuar usando o dado normalmente após a chamada.",
+          "code": "fn devolve_posse() -> String {\n    let s = String::from(\"Devolvido\");\n    s // O ownership é transferido para o chamador\n}\nlet s_recebida = devolve_posse();"
         }
       ],
       "questions": [
@@ -794,15 +776,13 @@
       "lesson": [
         {
           "title": "Emprestando Valores com Referências",
-          "body": "Nem sempre queremos transferir permanentemente a posse ao chamar funções. Referências em Rust (usando o símbolo `&`) permitem que outras partes do código 'emprestem' e leiam os dados sem assumir sua posse, mantendo a variável original perfeitamente acessível.\n\nCompreender este fundamento é crucial em Rust. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "fn tamanho(s: &String) -> usize {\n    s.len()\n}\nlet txt = String::from(\"Rust\");\nlet len = tamanho(&txt); // Empréstimo imutável\nprintln!(\"Tamanho de '{}' é {}\", txt, len);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Nem sempre queremos transferir permanentemente a posse ao chamar funções. Referências em Rust (usando o símbolo `&`) permitem que outras partes do código 'emprestem' e leiam os dados sem assumir sua posse, mantendo a variável original perfeitamente acessível.\n\nUma referência (&valor) permite acessar um dado sem tomar posse dele — a chamada é chamada de 'empréstimo' (borrow). Isso evita cópias desnecessárias e mantém o dono original válido após a chamada.",
+          "code": "fn tamanho(s: &String) -> usize {\n    s.len()\n}\nlet txt = String::from(\"Rust\");\nlet len = tamanho(&txt); // Empréstimo imutável\nprintln!(\"Tamanho de '{}' é {}\", txt, len);"
         },
         {
           "title": "Múltiplas Referências de Leitura",
-          "body": "Você pode criar inúmeras referências imutáveis simultaneamente. Como elas servem estritamente para leitura e o valor fonte não pode ser modificado através delas, o compilador de Rust assegura que todas as leituras são puramente seguras e livres de condições de corrida.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "let x = 10;\nlet ref1 = &x;\nlet ref2 = &x;\nprintln!(\"Leituras concorrentes: {}, {}\", ref1, ref2);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Você pode criar inúmeras referências imutáveis simultaneamente. Como elas servem estritamente para leitura e o valor fonte não pode ser modificado através delas, o compilador de Rust assegura que todas as leituras são puramente seguras e livres de condições de corrida.\n\nRust permite qualquer número de referências imutáveis (&T) simultâneas a um mesmo valor, pois leitura concorrente não gera risco de inconsistência — apenas escrita concorrente é restrita.",
+          "code": "let x = 10;\nlet ref1 = &x;\nlet ref2 = &x;\nprintln!(\"Leituras concorrentes: {}, {}\", ref1, ref2);"
         }
       ],
       "questions": [
@@ -874,15 +854,13 @@
       "lesson": [
         {
           "title": "Referências Mutáveis",
-          "body": "Ao emprestar um valor para edição sem perder a propriedade final, utiliza-se a referência mutável com a anotação explícita `&mut`. Para isso, a própria variável de origem também precisa ser previamente declarada como mutável (`let mut`).\n\nCompreender este fundamento é crucial em Rust. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "fn altera(s: &mut String) {\n    s.push_str(\", mundo!\");\n}\nlet mut texto = String::from(\"Olá\");\naltera(&mut texto);\nprintln!(\"{}\", texto);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Ao emprestar um valor para edição sem perder a propriedade final, utiliza-se a referência mutável com a anotação explícita `&mut`. Para isso, a própria variável de origem também precisa ser previamente declarada como mutável (`let mut`).\n\nUma referência mutável (&mut valor) permite alterar o dado emprestado; diferente das referências imutáveis, apenas uma referência mutável pode existir por vez para um mesmo valor em um dado escopo.",
+          "code": "fn altera(s: &mut String) {\n    s.push_str(\", mundo!\");\n}\nlet mut texto = String::from(\"Olá\");\naltera(&mut texto);\nprintln!(\"{}\", texto);"
         },
         {
           "title": "A Regra de Mutabilidade Única",
-          "body": "Para evitar corridas de dados (data races) em cenários concorrentes, Rust impõe uma regra rigorosa: só é permitido existir no máximo UMA referência mutável para um dado escopo ou múltiplas referências imutáveis, nunca as duas simultaneamente.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "let mut num = 5;\nlet r1 = &mut num;\n// let r2 = &mut num; // ERRO: Mais de uma referência mutável ao mesmo tempo\n*r1 += 1;\nprintln!(\"Novo valor: {}\", num);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Para evitar corridas de dados (data races) em cenários concorrentes, Rust impõe uma regra rigorosa: só é permitido existir no máximo UMA referência mutável para um dado escopo ou múltiplas referências imutáveis, nunca as duas simultaneamente.\n\nNão é permitido ter uma referência mutável e outra imutável ativas ao mesmo tempo para o mesmo valor — essa regra, verificada em tempo de compilação, é o que elimina data races estruturalmente.",
+          "code": "let mut num = 5;\nlet r1 = &mut num;\n// let r2 = &mut num; // ERRO: Mais de uma referência mutável ao mesmo tempo\n*r1 += 1;\nprintln!(\"Novo valor: {}\", num);"
         }
       ],
       "questions": [
@@ -954,15 +932,13 @@
       "lesson": [
         {
           "title": "Prevenção de Dangling Pointers",
-          "body": "Um 'dangling pointer' (ou referência solta) ocorre quando você tenta referenciar uma região da memória que já foi limpa ou alocada para outra coisa. Rust resolve isso checando Lifetimes, garantindo em compilação que nenhum dado expire antes das suas referências.\n\nCompreender este fundamento é crucial em Rust. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "fn erro_dangling() /* -> &String */ {\n    let s = String::from(\"Escopo morto\");\n    // &s // ERRO: O valor 's' será liberado no fim desta função\n}\n// O compilador impede o retorno da referência solta.",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Um 'dangling pointer' (ou referência solta) ocorre quando você tenta referenciar uma região da memória que já foi limpa ou alocada para outra coisa. Rust resolve isso checando Lifetimes, garantindo em compilação que nenhum dado expire antes das suas referências.\n\nO compilador rejeita código que retornaria uma referência a um valor já liberado da memória (dangling reference), garantindo que toda referência válida sempre aponte para dados ainda vivos.",
+          "code": "fn erro_dangling() /* -> &String */ {\n    let s = String::from(\"Escopo morto\");\n    // &s // ERRO: O valor 's' será liberado no fim desta função\n}\n// O compilador impede o retorno da referência solta."
         },
         {
           "title": "Lifetimes e Análise de Escopos",
-          "body": "Através da análise de escopo léxico, o 'Borrow Checker' do Rust sabe exatamente onde variáveis nascem, vivem e morrem. Quando o fim do escopo aniquila uma variável, qualquer referência previamente tirada dela é reportada como erro caso alguém tente usá-la.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "let refer_solta;\n{\n    let n = 42;\n    // refer_solta = &n; // ERRO: 'n' não vive o suficiente\n}\n// refer_solta apontaria para lixo de memória aqui",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Através da análise de escopo léxico, o 'Borrow Checker' do Rust sabe exatamente onde variáveis nascem, vivem e morrem. Quando o fim do escopo aniquila uma variável, qualquer referência previamente tirada dela é reportada como erro caso alguém tente usá-la.\n\nLifetimes são anotações (como 'a) que descrevem por quanto tempo uma referência é válida, permitindo ao compilador verificar que nenhuma referência sobrevive além do dado a que se refere.",
+          "code": "let refer_solta;\n{\n    let n = 42;\n    // refer_solta = &n; // ERRO: 'n' não vive o suficiente\n}\n// refer_solta apontaria para lixo de memória aqui"
         }
       ],
       "questions": [
@@ -1034,15 +1010,13 @@
       "lesson": [
         {
           "title": "Agrupando Dados com Structs",
-          "body": "As `structs` em Rust permitem agrupar múltiplos dados relacionados em uma única entidade coesa. Parecido com objetos em outras linguagens, as Structs dão semântica ao tipo, e acessamos ou modificamos os seus respectivos campos usando a sintaxe ponto (`.`).\n\nCompreender este fundamento é crucial em Rust. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "struct Usuario {\n    ativo: bool,\n    nome: String,\n}\nlet u = Usuario {\n    ativo: true,\n    nome: String::from(\"Alice\"),\n};\nprintln!(\"Nome: {}\", u.nome);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "As `structs` em Rust permitem agrupar múltiplos dados relacionados em uma única entidade coesa. Parecido com objetos em outras linguagens, as Structs dão semântica ao tipo, e acessamos ou modificamos os seus respectivos campos usando a sintaxe ponto (`.`).\n\nUma struct agrupa campos nomeados relacionados em um único tipo customizado: struct Usuario { nome: String, idade: u8 }, sendo a base para modelar dados estruturados em Rust.",
+          "code": "struct Usuario {\n    ativo: bool,\n    nome: String,\n}\nlet u = Usuario {\n    ativo: true,\n    nome: String::from(\"Alice\"),\n};\nprintln!(\"Nome: {}\", u.nome);"
         },
         {
           "title": "Atualização Simplificada de Structs",
-          "body": "Frequentemente, você precisará criar uma nova instância de uma struct aproveitando os mesmos valores de outra já existente. A sintaxe de atualização (`..instancia`) copia os valores dos campos não especificados, simplificando imensamente a manipulação de dados parciais.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "struct Ponto { x: i32, y: i32, z: i32 }\nlet p1 = Ponto { x: 10, y: 20, z: 30 };\nlet p2 = Ponto { x: 50, ..p1 }; // Copia y e z de p1\nprintln!(\"p2.y = {}\", p2.y);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Frequentemente, você precisará criar uma nova instância de uma struct aproveitando os mesmos valores de outra já existente. A sintaxe de atualização (`..instancia`) copia os valores dos campos não especificados, simplificando imensamente a manipulação de dados parciais.\n\nA sintaxe de atualização ..outra_instancia permite criar uma nova struct reaproveitando os campos de outra já existente, sobrescrevendo apenas os campos explicitamente informados.",
+          "code": "struct Ponto { x: i32, y: i32, z: i32 }\nlet p1 = Ponto { x: 10, y: 20, z: 30 };\nlet p2 = Ponto { x: 50, ..p1 }; // Copia y e z de p1\nprintln!(\"p2.y = {}\", p2.y);"
         }
       ],
       "questions": [
@@ -1114,15 +1088,13 @@
       "lesson": [
         {
           "title": "Métodos Associados a Structs",
-          "body": "Em Rust, a lógica associada às Structs não é definida dentro de sua declaração principal, e sim em um bloco `impl` dedicado. Métodos recebem explicitamente uma referência `&self`, representando a instância exata do objeto a partir da qual o método foi chamado.\n\nCompreender este fundamento é crucial em Rust. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "struct Retangulo { larg: u32, alt: u32 }\nimpl Retangulo {\n    fn area(&self) -> u32 {\n        self.larg * self.alt\n    }\n}\nlet r = Retangulo { larg: 10, alt: 5 };\nprintln!(\"Área: {}\", r.area());",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Em Rust, a lógica associada às Structs não é definida dentro de sua declaração principal, e sim em um bloco `impl` dedicado. Métodos recebem explicitamente uma referência `&self`, representando a instância exata do objeto a partir da qual o método foi chamado.\n\nMétodos são definidos em um bloco impl para a struct, recebendo &self como primeiro parâmetro para acessar os campos da instância, similar ao this em outras linguagens orientadas a objetos.",
+          "code": "struct Retangulo { larg: u32, alt: u32 }\nimpl Retangulo {\n    fn area(&self) -> u32 {\n        self.larg * self.alt\n    }\n}\nlet r = Retangulo { larg: 10, alt: 5 };\nprintln!(\"Área: {}\", r.area());"
         },
         {
           "title": "Funções Associadas (Estáticas)",
-          "body": "O bloco `impl` também pode abrigar funções que não recebem `&self`. Conhecidas como Funções Associadas, se comportam de forma similar a métodos estáticos (static) e frequentemente atuam como construtores ou inicializadores de novas instâncias do tipo.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "struct Retangulo { larg: u32, alt: u32 }\nimpl Retangulo {\n    fn quadrado(tam: u32) -> Retangulo {\n        Retangulo { larg: tam, alt: tam }\n    }\n}\nlet q = Retangulo::quadrado(10);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O bloco `impl` também pode abrigar funções que não recebem `&self`. Conhecidas como Funções Associadas, se comportam de forma similar a métodos estáticos (static) e frequentemente atuam como construtores ou inicializadores de novas instâncias do tipo.\n\nFunções associadas dentro de um impl que não recebem self (como Struct::new()) funcionam como construtores ou funções utilitárias, chamadas usando :: em vez de um ponto.",
+          "code": "struct Retangulo { larg: u32, alt: u32 }\nimpl Retangulo {\n    fn quadrado(tam: u32) -> Retangulo {\n        Retangulo { larg: tam, alt: tam }\n    }\n}\nlet q = Retangulo::quadrado(10);"
         }
       ],
       "questions": [
@@ -1194,15 +1166,13 @@
       "lesson": [
         {
           "title": "Definição de Tipos Enum",
-          "body": "As Enumerações (`enum`) expressam um tipo de dado que obrigatoriamente se enquadra em uma única de suas possíveis variantes. Muito mais ricas do que enums clássicos do C, permitem que cada variante contenha seus próprios conjuntos de valores internos.\n\nCompreender este fundamento é crucial em Rust. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "enum Direcao {\n    Cima,\n    Baixo,\n    Esquerda,\n    Direita,\n}\nlet passo = Direcao::Cima;",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "As Enumerações (`enum`) expressam um tipo de dado que obrigatoriamente se enquadra em uma única de suas possíveis variantes. Muito mais ricas do que enums clássicos do C, permitem que cada variante contenha seus próprios conjuntos de valores internos.\n\nUm enum define um tipo que pode assumir um conjunto fixo de variantes nomeadas, como enum Direcao { Norte, Sul, Leste, Oeste }, garantindo em compilação que apenas valores válidos sejam usados.",
+          "code": "enum Direcao {\n    Cima,\n    Baixo,\n    Esquerda,\n    Direita,\n}\nlet passo = Direcao::Cima;"
         },
         {
           "title": "Enums Carregando Dados Heterogêneos",
-          "body": "Diferentes variantes de um enum podem armazenar dados diretamente atrelados a elas (como `String`, `i32` ou Tuplas), consolidando informações sobretudo para representar estados lógicos de operações ou estruturas de redes sem perder tipagem rigorosa.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "enum IP {\n    V4(u8, u8, u8, u8),\n    V6(String),\n}\nlet host = IP::V4(127, 0, 0, 1);\nlet web = IP::V6(String::from(\"::1\"));",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Diferentes variantes de um enum podem armazenar dados diretamente atrelados a elas (como `String`, `i32` ou Tuplas), consolidando informações sobretudo para representar estados lógicos de operações ou estruturas de redes sem perder tipagem rigorosa.\n\nCada variante de um enum pode carregar seus próprios dados associados de tipos diferentes, como enum Mensagem { Mover { x: i32, y: i32 }, Escrever(String) }, tornando enums muito mais expressivos que em outras linguagens.",
+          "code": "enum IP {\n    V4(u8, u8, u8, u8),\n    V6(String),\n}\nlet host = IP::V4(127, 0, 0, 1);\nlet web = IP::V6(String::from(\"::1\"));"
         }
       ],
       "questions": [
@@ -1274,15 +1244,13 @@
       "lesson": [
         {
           "title": "Controle de Fluxo com Match",
-          "body": "A construção de fluxo de execução `match` avalia um valor e executa códigos diferentes caso esse valor corresponda aos padrões definidos nas ramificações (braços). Ele força verificações exaustivas, o que assegura que todas as alternativas sejam cobertas e tratadas.\n\nCompreender este fundamento é crucial em Rust. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "enum Moeda { Real, Euro, Dolar }\nfn valor(moeda: Moeda) -> f64 {\n    match moeda {\n        Moeda::Real => 1.0,\n        Moeda::Dolar => 5.20,\n        Moeda::Euro => 5.50,\n    }\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "A construção de fluxo de execução `match` avalia um valor e executa códigos diferentes caso esse valor corresponda aos padrões definidos nas ramificações (braços). Ele força verificações exaustivas, o que assegura que todas as alternativas sejam cobertas e tratadas.\n\nmatch compara um valor contra uma série de padrões e executa o código correspondente; o compilador exige exaustividade, obrigando a tratar todas as variantes possíveis (ou usar _ como coringa).",
+          "code": "enum Moeda { Real, Euro, Dolar }\nfn valor(moeda: Moeda) -> f64 {\n    match moeda {\n        Moeda::Real => 1.0,\n        Moeda::Dolar => 5.20,\n        Moeda::Euro => 5.50,\n    }\n}"
         },
         {
           "title": "Extração de Dados Internos com Match",
-          "body": "O padrão `match` consegue não só comparar variantes, mas também desestruturar e extrair de forma segura valores que estejam embutidos diretamente nessas variantes do Enum. Isso propicia manipulação refinada de estados complexos de modo semântico.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "enum MSG { Quit, Write(String) }\nlet acao = MSG::Write(String::from(\"Salve\"));\nmatch acao {\n    MSG::Quit => println!(\"Saindo\"),\n    MSG::Write(txt) => println!(\"Texto: {}\", txt),\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O padrão `match` consegue não só comparar variantes, mas também desestruturar e extrair de forma segura valores que estejam embutidos diretamente nessas variantes do Enum. Isso propicia manipulação refinada de estados complexos de modo semântico.\n\nmatch pode desestruturar diretamente os dados internos de uma variante de enum, vinculando-os a variáveis locais dentro do próprio braço do match, sem necessidade de acesso manual posterior.",
+          "code": "enum MSG { Quit, Write(String) }\nlet acao = MSG::Write(String::from(\"Salve\"));\nmatch acao {\n    MSG::Quit => println!(\"Saindo\"),\n    MSG::Write(txt) => println!(\"Texto: {}\", txt),\n}"
         }
       ],
       "questions": [
@@ -1354,15 +1322,13 @@
       "lesson": [
         {
           "title": "O Padrão Option para Nulos",
-          "body": "Rust aboliu o conceito clássico e problemático do `null`. Para os cenários em que um valor pode estar ausente ou inválido, utiliza-se a enumeração genérica padrão `Option<T>`. Seus possíveis estados explícitos são `Some(valor)` e `None` (Ausente).\n\nCompreender este fundamento é crucial em Rust. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "let x: Option<i32> = Some(5);\nlet ausente: Option<i32> = None;\n\nmatch x {\n    Some(val) => println!(\"Valor existe: {}\", val),\n    None => println!(\"Nenhum valor presente\"),\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Rust aboliu o conceito clássico e problemático do `null`. Para os cenários em que um valor pode estar ausente ou inválido, utiliza-se a enumeração genérica padrão `Option<T>`. Seus possíveis estados explícitos são `Some(valor)` e `None` (Ausente).\n\nRust não possui null; em vez disso, usa o enum Option<T> com as variantes Some(valor) e None, forçando o desenvolvedor a tratar explicitamente a ausência de valor em tempo de compilação.",
+          "code": "let x: Option<i32> = Some(5);\nlet ausente: Option<i32> = None;\n\nmatch x {\n    Some(val) => println!(\"Valor existe: {}\", val),\n    None => println!(\"Nenhum valor presente\"),\n}"
         },
         {
           "title": "Desempacotando Valores com Segurança",
-          "body": "A imposição rigorosa do `Option` faz com que o desenvolvedor resolva incertezas imediatamente, já em tempo de compilação. Para usar o dado interno do pacote `Option`, o programa é forçado a tratar obrigatoriamente a circunstância de nulidade associada ao `None`.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "let valor_opcional = Some(10);\n// let calc = valor_opcional + 2; // Erro! Tipos incompatíveis\nlet seguro = match valor_opcional {\n    Some(n) => n + 2,\n    None => 0,\n};\nprintln!(\"{}\", seguro);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "A imposição rigorosa do `Option` faz com que o desenvolvedor resolva incertezas imediatamente, já em tempo de compilação. Para usar o dado interno do pacote `Option`, o programa é forçado a tratar obrigatoriamente a circunstância de nulidade associada ao `None`.\n\nMétodos como unwrap_or fornecem um valor padrão caso a Option seja None, enquanto match ou if let permitem tratar cada caso explicitamente sem risco de pânico em tempo de execução.",
+          "code": "let valor_opcional = Some(10);\n// let calc = valor_opcional + 2; // Erro! Tipos incompatíveis\nlet seguro = match valor_opcional {\n    Some(n) => n + 2,\n    None => 0,\n};\nprintln!(\"{}\", seguro);"
         }
       ],
       "questions": [
@@ -1434,15 +1400,13 @@
       "lesson": [
         {
           "title": "Sintaxe Resumida if let",
-          "body": "O bloco genérico `match` pode se provar excessivamente verboso se quisermos tratar um único padrão isolado, ignorando os remanescentes. O construto `if let` atua como um `match` simplificado. Se o padrão for satisfeito e desestruturado, executa o bloco em questão.\n\nCompreender este fundamento é crucial em Rust. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "let opcional = Some(3);\n// Executa o bloco se e somente se houver Some\nif let Some(numero) = opcional {\n    println!(\"Foi encontrado o número {}\", numero);\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O bloco genérico `match` pode se provar excessivamente verboso se quisermos tratar um único padrão isolado, ignorando os remanescentes. O construto `if let` atua como um `match` simplificado. Se o padrão for satisfeito e desestruturado, executa o bloco em questão.\n\nif let Some(valor) = opcao { ... } é uma forma concisa de tratar apenas um padrão específico de um enum, evitando a verbosidade de um match completo quando os outros casos não importam.",
+          "code": "let opcional = Some(3);\n// Executa o bloco se e somente se houver Some\nif let Some(numero) = opcional {\n    println!(\"Foi encontrado o número {}\", numero);\n}"
         },
         {
           "title": "if let combinando com else",
-          "body": "Com a conveniência sintática do `if let` vem também a capacidade opcional de um encadeamento extra de controle com um bloco final `else`. Esta estrutura lidará com todos os outros padrões da enumeração que não corresponderam à correspondência inicial especificada.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "let conf = None;\nif let Some(max) = conf {\n    println!(\"Configuração máxima: {}\", max);\n} else {\n    println!(\"Configuração nula aplicada padrão\");\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Com a conveniência sintática do `if let` vem também a capacidade opcional de um encadeamento extra de controle com um bloco final `else`. Esta estrutura lidará com todos os outros padrões da enumeração que não corresponderam à correspondência inicial especificada.\n\nif let pode ser combinado com else para tratar o caso em que o padrão não corresponde, funcionando como uma alternativa mais enxuta a um match com apenas duas variantes relevantes.",
+          "code": "let conf = None;\nif let Some(max) = conf {\n    println!(\"Configuração máxima: {}\", max);\n} else {\n    println!(\"Configuração nula aplicada padrão\");\n}"
         }
       ],
       "questions": [
@@ -1514,15 +1478,13 @@
       "lesson": [
         {
           "title": "Vetores Alocados Dinamicamente",
-          "body": "Matrizes estáticas (Arrays) possuem tamanhos pré-definidos inalteráveis em Rust. A resposta ágil a coleções de tamanho dinâmico baseia-se na `Vec<T>`, uma coleção de tamanho variável locada diretamente na Heap que acomoda adição flexível e infinita de itens.\n\nCompreender este fundamento é crucial em Rust. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "let mut idades: Vec<i32> = Vec::new();\nidades.push(18);\nidades.push(22);\nprintln!(\"Temos {} idades no registro.\", idades.len());",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Matrizes estáticas (Arrays) possuem tamanhos pré-definidos inalteráveis em Rust. A resposta ágil a coleções de tamanho dinâmico baseia-se na `Vec<T>`, uma coleção de tamanho variável locada diretamente na Heap que acomoda adição flexível e infinita de itens.\n\nVec<T> é uma coleção de tamanho variável alocada no heap, diferente de arrays de tamanho fixo; métodos como push e pop adicionam e removem elementos, redimensionando o vetor automaticamente.",
+          "code": "let mut idades: Vec<i32> = Vec::new();\nidades.push(18);\nidades.push(22);\nprintln!(\"Temos {} idades no registro.\", idades.len());"
         },
         {
           "title": "Lendo Dados e Acessos Protegidos",
-          "body": "Enquanto buscar índices diretos através de chaves exatas via colchetes (`v[0]`) gera pânico imediato no código se o índice não existir, usar o método nativo `.get(index)` entrega de modo imune um `Option<T>`, protegendo o programa de travamentos agressivos e abortos.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "let v = vec![1, 2, 3];\nmatch v.get(5) {\n    Some(val) => println!(\"Encontrado: {}\", val),\n    None => println!(\"Posição vazia sem crash!\"),\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Enquanto buscar índices diretos através de chaves exatas via colchetes (`v[0]`) gera pânico imediato no código se o índice não existir, usar o método nativo `.get(index)` entrega de modo imune um `Option<T>`, protegendo o programa de travamentos agressivos e abortos.\n\nO acesso via colchetes (vec[i]) causa pânico se o índice for inválido; o método get(i) retorna uma Option<&T>, permitindo tratar índices fora dos limites de forma segura, sem travar o programa.",
+          "code": "let v = vec![1, 2, 3];\nmatch v.get(5) {\n    Some(val) => println!(\"Encontrado: {}\", val),\n    None => println!(\"Posição vazia sem crash!\"),\n}"
         }
       ],
       "questions": [
@@ -1594,15 +1556,13 @@
       "lesson": [
         {
           "title": "Iteração Eficiente com For",
-          "body": "A exploração e leitura iterativa de um longo `Vec<T>` é preferencialmente resolvida usando um `for`. Passar referências do Vector à condição iterativa (`&v`) possibilita analisar item após item sem remover prematuramente e de vez seu ownership.\n\nCompreender este fundamento é crucial em Rust. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "let v = vec![100, 200, 300];\nfor i in &v {\n    println!(\"Dado imutável: {}\", i);\n}\n// O vetor original continua existindo intacto aqui",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "A exploração e leitura iterativa de um longo `Vec<T>` é preferencialmente resolvida usando um `for`. Passar referências do Vector à condição iterativa (`&v`) possibilita analisar item após item sem remover prematuramente e de vez seu ownership.\n\nIterar com for item in &vetor percorre referências aos elementos sem consumir o vetor, permitindo reutilizá-lo depois do laço, diferente de for item in vetor, que toma posse dele.",
+          "code": "let v = vec![100, 200, 300];\nfor i in &v {\n    println!(\"Dado imutável: {}\", i);\n}\n// O vetor original continua existindo intacto aqui"
         },
         {
           "title": "Mudança Iterativa em Mutáveis",
-          "body": "Quando a iterabilidade requer operações transformadoras aplicadas, os desenvolvedores declaram referências flexivelmente mutáveis `&mut v`. Isso destrava um caminho conciso e desferindo mutação em lotes e escalonável nos dados encapsulados daquela determinada Coleção.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "let mut numeros = vec![1, 2, 3];\nfor num in &mut numeros {\n    *num += 50; // Desreferenciação forçada de ponteiro com *\n}\nprintln!(\"{:?}\", numeros); // [51, 52, 53]",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Quando a iterabilidade requer operações transformadoras aplicadas, os desenvolvedores declaram referências flexivelmente mutáveis `&mut v`. Isso destrava um caminho conciso e desferindo mutação em lotes e escalonável nos dados encapsulados daquela determinada Coleção.\n\nfor item in &mut vetor fornece referências mutáveis a cada elemento, permitindo alterar os valores do vetor diretamente durante a iteração usando o operador de desreferência (*item).",
+          "code": "let mut numeros = vec![1, 2, 3];\nfor num in &mut numeros {\n    *num += 50; // Desreferenciação forçada de ponteiro com *\n}\nprintln!(\"{:?}\", numeros); // [51, 52, 53]"
         }
       ],
       "questions": [
@@ -1674,15 +1634,13 @@
       "lesson": [
         {
           "title": "Chave-Valor com HashMap",
-          "body": "Associação relacional bidirecional do estilo Chave-Valor se faz através do `HashMap<K, V>`. As chaves exclusivas de identificação referenciam e armazenam valores associados. Os HashMaps ficam invariavelmente na Heap, ideais para cache, contadores lógicos e buscas de performance.\n\nCompreender este fundamento é crucial em Rust. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "use std::collections::HashMap;\nlet mut notas = HashMap::new();\nnotas.insert(String::from(\"Maria\"), 10);\nnotas.insert(String::from(\"João\"), 7);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Associação relacional bidirecional do estilo Chave-Valor se faz através do `HashMap<K, V>`. As chaves exclusivas de identificação referenciam e armazenam valores associados. Os HashMaps ficam invariavelmente na Heap, ideais para cache, contadores lógicos e buscas de performance.\n\nHashMap<K, V> armazena pares chave-valor sem ordem garantida; o método insert adiciona ou atualiza uma entrada, e é necessário importar std::collections::HashMap explicitamente antes de usá-lo.",
+          "code": "use std::collections::HashMap;\nlet mut notas = HashMap::new();\nnotas.insert(String::from(\"Maria\"), 10);\nnotas.insert(String::from(\"João\"), 7);"
         },
         {
           "title": "Extração Segura do Dicionário",
-          "body": "Obter valores de dicionários pressupõe inerentemente que as próprias chaves buscam por itens possivelmente perdidos e inexistentes. Acessar o mapeamento via chave aciona retornos em estilo `Option<&V>`, requerendo abordagens imunes contra chaves defeituosas.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "use std::collections::HashMap;\nlet mut map = HashMap::new();\nmap.insert(\"chave\", 42);\n\nif let Some(valor) = map.get(\"chave\") {\n    println!(\"Resgatado valor de {}\", valor);\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Obter valores de dicionários pressupõe inerentemente que as próprias chaves buscam por itens possivelmente perdidos e inexistentes. Acessar o mapeamento via chave aciona retornos em estilo `Option<&V>`, requerendo abordagens imunes contra chaves defeituosas.\n\nO método get de um HashMap retorna uma Option<&V>, evitando pânico ao buscar uma chave inexistente; entry(chave).or_insert(valor) é o padrão idiomático para inserir apenas se a chave ainda não existir.",
+          "code": "use std::collections::HashMap;\nlet mut map = HashMap::new();\nmap.insert(\"chave\", 42);\n\nif let Some(valor) = map.get(\"chave\") {\n    println!(\"Resgatado valor de {}\", valor);\n}"
         }
       ],
       "questions": [
@@ -1754,15 +1712,13 @@
       "lesson": [
         {
           "title": "Encerramentos Abruptos (Panic)",
-          "body": "Bugs lógicos irrecuperáveis ou inconsistências inaceitáveis paralisam o programa preventivamente através da macro diretiva `panic!()`. Ao entrar nesse estágio caótico, a Thread encerra todas as execuções e começa a limpeza sistemática imediata e desenrolada do processo na Stack.\n\nCompreender este fundamento é crucial em Rust. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "fn dividir(a: i32, b: i32) -> i32 {\n    if b == 0 {\n        panic!(\"Divisão absurda e fatal por zero!\");\n    }\n    a / b\n}\n// dividir(10, 0);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Bugs lógicos irrecuperáveis ou inconsistências inaceitáveis paralisam o programa preventivamente através da macro diretiva `panic!()`. Ao entrar nesse estágio caótico, a Thread encerra todas as execuções e começa a limpeza sistemática imediata e desenrolada do processo na Stack.\n\npanic! interrompe imediatamente a execução do programa e desenrola a pilha, exibindo uma mensagem de erro; é reservado para situações verdadeiramente irrecuperáveis, não para erros esperados do domínio.",
+          "code": "fn dividir(a: i32, b: i32) -> i32 {\n    if b == 0 {\n        panic!(\"Divisão absurda e fatal por zero!\");\n    }\n    a / b\n}\n// dividir(10, 0);"
         },
         {
           "title": "Os Perigos de Unwrap e Expect",
-          "body": "Embora retornos no estilo `Option` possam ser processados destrinchando-os semanticamente, atalhos impacientes como `.unwrap()` acionam automaticamente e imprevisivelmente um `panic!` devastador nos bastidores, perante a circunstância incontrolável de estar processando valor ausente (`None`).\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "let pacote_ok: Option<i32> = Some(15);\nprintln!(\"{}\", pacote_ok.unwrap());\n\n// let vazio: Option<i32> = None;\n// vazio.unwrap(); // Provocará encerramento letal",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Embora retornos no estilo `Option` possam ser processados destrinchando-os semanticamente, atalhos impacientes como `.unwrap()` acionam automaticamente e imprevisivelmente um `panic!` devastador nos bastidores, perante a circunstância incontrolável de estar processando valor ausente (`None`).\n\nunwrap() extrai o valor de uma Option ou Result, mas causa panic! se for None ou Err; expect() faz o mesmo, porém permite customizar a mensagem de erro exibida, facilitando a depuração.",
+          "code": "let pacote_ok: Option<i32> = Some(15);\nprintln!(\"{}\", pacote_ok.unwrap());\n\n// let vazio: Option<i32> = None;\n// vazio.unwrap(); // Provocará encerramento letal"
         }
       ],
       "questions": [
@@ -1834,15 +1790,13 @@
       "lesson": [
         {
           "title": "A Robusta Solução Result<T, E>",
-          "body": "Onde `Option` trata o 'pode não existir', as falhas em que realmente importa a 'causa do erro' requerem as enumerativas estruturais de `Result<T, E>`. Possui ramificações de resiliência: `Ok(valor)` demarcando o sucesso pretendido e `Err(erro)` revelando especificidades da quebra técnica.\n\nCompreender este fundamento é crucial em Rust. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "use std::fs::File;\n// Abertura com possibilidade intrínseca de falha IOError\nlet arq = File::open(\"nao_existe.txt\");\nmatch arq {\n    Ok(arquivo) => println!(\"Sucesso, abrindo!\"),\n    Err(erro) => println!(\"Houve falha e bloqueio: {:?}\", erro),\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Onde `Option` trata o 'pode não existir', as falhas em que realmente importa a 'causa do erro' requerem as enumerativas estruturais de `Result<T, E>`. Possui ramificações de resiliência: `Ok(valor)` demarcando o sucesso pretendido e `Err(erro)` revelando especificidades da quebra técnica.\n\nResult<T, E> representa uma operação que pode falhar, com as variantes Ok(valor) e Err(erro), sendo o mecanismo idiomático de Rust para tratamento de erros recuperáveis, sem exceções.",
+          "code": "use std::fs::File;\n// Abertura com possibilidade intrínseca de falha IOError\nlet arq = File::open(\"nao_existe.txt\");\nmatch arq {\n    Ok(arquivo) => println!(\"Sucesso, abrindo!\"),\n    Err(erro) => println!(\"Houve falha e bloqueio: {:?}\", erro),\n}"
         },
         {
           "title": "Extraindo Motivos de Erros Internos",
-          "body": "Quando confrontados com as barreiras limitantes da leitura ou do recebimento, o bloco analítico do `match` processa calmamente não apenas a natureza superficial da adversidade, mas o seu enraizamento primário codificado, decidindo de imediato fluxos resolutivos variados.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "fn avaliar(n: i32) -> Result<i32, String> {\n    if n < 0 { Err(String::from(\"Negativo\")) }\n    else { Ok(n) }\n}\nmatch avaliar(-1) {\n    Ok(v) => println!(\"Passou: {}\", v),\n    Err(e) => println!(\"Erro capturado: {}\", e),\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Quando confrontados com as barreiras limitantes da leitura ou do recebimento, o bloco analítico do `match` processa calmamente não apenas a natureza superficial da adversidade, mas o seu enraizamento primário codificado, decidindo de imediato fluxos resolutivos variados.\n\nUsar match sobre um Result permite acessar tanto o valor de sucesso quanto os detalhes específicos do erro na variante Err, possibilitando tratamento diferenciado conforme o tipo de falha ocorrida.",
+          "code": "fn avaliar(n: i32) -> Result<i32, String> {\n    if n < 0 { Err(String::from(\"Negativo\")) }\n    else { Ok(n) }\n}\nmatch avaliar(-1) {\n    Ok(v) => println!(\"Passou: {}\", v),\n    Err(e) => println!(\"Erro capturado: {}\", e),\n}"
         }
       ],
       "questions": [
@@ -1914,15 +1868,13 @@
       "lesson": [
         {
           "title": "Açúcar Sintático com Operador ?",
-          "body": "Propagar hierarquicamente as incertezas aos agentes chamadores era notoriamente maçante. Adotou-se o milagroso operador de curto-circuito condicionado `?`. Se for um êxito resolutivo `Ok()`, o programa entrega o item interno velozmente; caso caia em retornos de `Err()`, a função finaliza preventivamente e já se autopropaga ao escopo da chamada superior.",
-          "code": "use std::fs::read_to_string;\nuse std::io::Result;\n\n// A função inteira delega a incumbência de retorno fatal ao próprio autor da requisição\nfn ler_texto() -> Result<String> {\n    let texto = read_to_string(\"lorem.txt\")?;\n    Ok(texto)\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Propagar hierarquicamente as incertezas aos agentes chamadores era notoriamente maçante. Adotou-se o milagroso operador de curto-circuito condicionado `?`. Se for um êxito resolutivo `Ok()`, o programa entrega o item interno velozmente; caso caia em retornos de `Err()`, a função finaliza preventivamente e já se autopropaga ao escopo da chamada superior.\n\nO operador ? propaga automaticamente um erro: se o Result for Err, a função retorna esse erro imediatamente; se for Ok, o valor interno é extraído e a execução continua normalmente.",
+          "code": "use std::fs::read_to_string;\nuse std::io::Result;\n\n// A função inteira delega a incumbência de retorno fatal ao próprio autor da requisição\nfn ler_texto() -> Result<String> {\n    let texto = read_to_string(\"lorem.txt\")?;\n    Ok(texto)\n}"
         },
         {
           "title": "As Condições Estruturais do ?",
-          "body": "Os atalhos práticos promovidos através de `?` exigem restrições de formatação: eles podem despontar estritamente de escopos de Funções que reportem abertamente à sua assinatura correspondentes tipos `Result`, garantindo consistência rígida na entrega mútua entre as camadas integradas da aplicação.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "fn main() -> Result<(), std::io::Error> {\n    use std::fs::File;\n    let _f = File::open(\"inexistente.txt\")?;\n    // O ? força a função Main a abortar repassando o Erro originado do Sistema\n    Ok(())\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Os atalhos práticos promovidos através de `?` exigem restrições de formatação: eles podem despontar estritamente de escopos de Funções que reportem abertamente à sua assinatura correspondentes tipos `Result`, garantindo consistência rígida na entrega mútua entre as camadas integradas da aplicação.\n\nPara usar ?, a função que o contém deve ter como tipo de retorno um Result (ou Option) compatível com o erro propagado, permitindo que o operador funcione corretamente na assinatura da função.",
+          "code": "fn main() -> Result<(), std::io::Error> {\n    use std::fs::File;\n    let _f = File::open(\"inexistente.txt\")?;\n    // O ? força a função Main a abortar repassando o Erro originado do Sistema\n    Ok(())\n}"
         }
       ],
       "questions": [
@@ -1994,15 +1946,13 @@
       "lesson": [
         {
           "title": "Modelando Contratos com Traits",
-          "body": "O conceito funcional análogo às Interfaces reside estritamente nas instâncias de definições `trait`. Esse construtor exige dos desenvolvedores o estabelecimento coeso das assinaturas estruturais abstratas que todos os implementadores vinculativos subsequentes se submeterão imperativamente a compilar de modo unificado e coeso.",
-          "code": "pub trait Resumivel {\n    fn resumo(&self) -> String;\n}\n// Agora basta apenas os implementadores seguirem rigorosamente tal molde.",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "O conceito funcional análogo às Interfaces reside estritamente nas instâncias de definições `trait`. Esse construtor exige dos desenvolvedores o estabelecimento coeso das assinaturas estruturais abstratas que todos os implementadores vinculativos subsequentes se submeterão imperativamente a compilar de modo unificado e coeso.\n\nUma trait define um conjunto de métodos que um tipo deve implementar, funcionando como um contrato de comportamento — similar a interfaces em outras linguagens, mas com suporte a implementações padrão.",
+          "code": "pub trait Resumivel {\n    fn resumo(&self) -> String;\n}\n// Agora basta apenas os implementadores seguirem rigorosamente tal molde."
         },
         {
           "title": "Implementação Formalizada das Traits",
-          "body": "No momento enraizado de adoção das regras de negócios de uma dada Trait predefinida, processam-se logicamente todas as vinculações necessárias daquela classe em torno da instrução unificadora `impl Trait for Struct`, destravando acesso às capacidades herdáveis padronizadas em massa do escopo.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "struct Post { msg: String }\npub trait Resumivel { fn resumo(&self) -> String; }\n\nimpl Resumivel for Post {\n    fn resumo(&self) -> String {\n        format!(\"Post:\", self.msg)\n    }\n}\nlet p = Post { msg: String::from(\"Lendo\") };",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "No momento enraizado de adoção das regras de negócios de uma dada Trait predefinida, processam-se logicamente todas as vinculações necessárias daquela classe em torno da instrução unificadora `impl Trait for Struct`, destravando acesso às capacidades herdáveis padronizadas em massa do escopo.\n\nA sintaxe impl NomeDaTrait for NomeDoTipo { ... } implementa os métodos exigidos pela trait para um tipo específico, permitindo que o tipo seja usado onde essa trait é exigida.",
+          "code": "struct Post { msg: String }\npub trait Resumivel { fn resumo(&self) -> String; }\n\nimpl Resumivel for Post {\n    fn resumo(&self) -> String {\n        format!(\"Post:\", self.msg)\n    }\n}\nlet p = Post { msg: String::from(\"Lendo\") };"
         }
       ],
       "questions": [
@@ -2074,15 +2024,13 @@
       "lesson": [
         {
           "title": "Abstração de Argumentos por Trait",
-          "body": "Graças à herança polimórfica impulsionada pela adoção abstracionista, as funções delegantes assumem o parâmetro não sob a restrição do tipo base unificado, e sim baseando-se estritamente pela compatibilidade vinculativa dos contornos `impl Trait`. A maleabilidade destrava as chamadas indiscriminadas aos componentes alheios.",
-          "code": "pub trait Notificar { fn msg(&self); }\nstruct Email;\nimpl Notificar for Email { fn msg(&self) { println!(\"Mail\") } }\n\nfn alerta(item: &impl Notificar) {\n    item.msg();\n}\nlet e = Email;\nalerta(&e);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Graças à herança polimórfica impulsionada pela adoção abstracionista, as funções delegantes assumem o parâmetro não sob a restrição do tipo base unificado, e sim baseando-se estritamente pela compatibilidade vinculativa dos contornos `impl Trait`. A maleabilidade destrava as chamadas indiscriminadas aos componentes alheios.\n\nUma função pode aceitar qualquer tipo que implemente uma trait específica usando a sintaxe fn processar(item: &impl MinhaTrait), tornando o código polimórfico sem depender de herança de classes.",
+          "code": "pub trait Notificar { fn msg(&self); }\nstruct Email;\nimpl Notificar for Email { fn msg(&self) { println!(\"Mail\") } }\n\nfn alerta(item: &impl Notificar) {\n    item.msg();\n}\nlet e = Email;\nalerta(&e);"
         },
         {
           "title": "Os Vínculos Restritivos Trait Bounds",
-          "body": "Limitações de tipo superavançadas sob formatação de restrições generificadas `Trait Bounds` consolidam escopos rigorosíssimos para parâmetros que possivelmente devam pertencer obrigatoriamente e paralelamente a vários universos conceituais variados (múltiplas heranças de Trait), acionando `T: Trait1 + Trait2`.\n\nInternamente, este mecanismo otimiza a execução e simplifica a manutenção dos fluxos de dados. Ao dominar estes princípios teóricos, você adquire a base necessária para analisar problemas com senso crítico, escolhendo as estruturas adequadas e garantindo alta performance no produto final.",
-          "code": "use std::fmt::Display;\npub trait Sumario { fn extra(&self) -> i32; }\n\n// T precisa obrigatoriamente possuir Display E Sumario\nfn relatorio<T: Display + Sumario>(item: &T) {\n    println!(\"{}\", item);\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Limitações de tipo superavançadas sob formatação de restrições generificadas `Trait Bounds` consolidam escopos rigorosíssimos para parâmetros que possivelmente devam pertencer obrigatoriamente e paralelamente a vários universos conceituais variados (múltiplas heranças de Trait), acionando `T: Trait1 + Trait2`.\n\nTrait bounds (T: MinhaTrait) restringem os tipos genéricos aceitos por uma função, garantindo em tempo de compilação que apenas tipos com o comportamento necessário sejam usados.",
+          "code": "use std::fmt::Display;\npub trait Sumario { fn extra(&self) -> i32; }\n\n// T precisa obrigatoriamente possuir Display E Sumario\nfn relatorio<T: Display + Sumario>(item: &T) {\n    println!(\"{}\", item);\n}"
         }
       ],
       "questions": [
@@ -2154,15 +2102,13 @@
       "lesson": [
         {
           "title": "Gerações Instantâneas e Automáticas",
-          "body": "Evitando atritos e abstenção desastrosos da formatação de blocos padronizados recorrentes para debug e clones, o Rust disponibilizou eficientemente a diretiva acoplável `#[derive(Trait)]`. As Macros preenchem semântica interna repetitiva autogerando magicamente o comportamento padronizado nas bases associativas subjacentes.",
-          "code": "#[derive(Debug, Clone)]\nstruct Configuracao {\n    dark_mode: bool,\n    fonte: i32,\n}\nlet config = Configuracao { dark_mode: true, fonte: 12 };\n// O Debug deriva a saída em tela com `{:?}` \nprintln!(\"{:?}\", config);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Evitando atritos e abstenção desastrosos da formatação de blocos padronizados recorrentes para debug e clones, o Rust disponibilizou eficientemente a diretiva acoplável `#[derive(Trait)]`. As Macros preenchem semântica interna repetitiva autogerando magicamente o comportamento padronizado nas bases associativas subjacentes.\n\nTraits como Debug, Clone e PartialEq podem ser implementadas automaticamente com #[derive(Debug, Clone)], gerando o código repetitivo dessas implementações sem escrevê-lo manualmente.",
+          "code": "#[derive(Debug, Clone)]\nstruct Configuracao {\n    dark_mode: bool,\n    fonte: i32,\n}\nlet config = Configuracao { dark_mode: true, fonte: 12 };\n// O Debug deriva a saída em tela com `{:?}` \nprintln!(\"{:?}\", config);"
         },
         {
           "title": "Entendendo os Traits Debug e Display",
           "body": "Apesar de a diretiva super conveniente `Debug` autogerar relatórios sistêmicos destinados primordialmente para diagnóstico dos construtores nos laboratórios de programação, o `Display` age inversamente, providenciando especificamente interfaces textuais e orgânicas projetadas voltadas singularmente para formatação e consumo dos próprios usuários finais daquela Aplicação e requer sua declaração minuciosa estrita.",
-          "code": "use std::fmt;\nstruct Ponto {x: u8, y: u8}\nimpl fmt::Display for Ponto {\n    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {\n        write!(f, \"({}, {})\", self.x, self.y)\n    }\n}\nlet p = Ponto{x: 1, y: 3};\nprintln!(\"{}\", p); // Executará perfeitamente e semanticamente",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "code": "use std::fmt;\nstruct Ponto {x: u8, y: u8}\nimpl fmt::Display for Ponto {\n    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {\n        write!(f, \"({}, {})\", self.x, self.y)\n    }\n}\nlet p = Ponto{x: 1, y: 3};\nprintln!(\"{}\", p); // Executará perfeitamente e semanticamente"
         }
       ],
       "questions": [
@@ -2234,15 +2180,13 @@
       "lesson": [
         {
           "title": "Consolidação e Revisões Práticas",
-          "body": "A regra incontornável dita categoricamente: toda alocação instanciada tem exato e solitário senhor que governa seus rumos operacionais. Quando transpassamos referências (Borrowing), estamos na essência promovendo locações temporárias controladas, sob vigília ininterrupta do minucioso verificador vitalício de Borrowing de Rust, coibindo vulnerabilidades brutais do sistema operacional e de Memória.",
-          "code": "fn execucao() {\n    let texto = String::from(\"Livre\");\n    let _emprestado = &texto; // Seguro\n    let _transf = texto; // Transfere tudo e finda 'texto'\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "A regra incontornável dita categoricamente: toda alocação instanciada tem exato e solitário senhor que governa seus rumos operacionais. Quando transpassamos referências (Borrowing), estamos na essência promovendo locações temporárias controladas, sob vigília ininterrupta do minucioso verificador vitalício de Borrowing de Rust, coibindo vulnerabilidades brutais do sistema operacional e de Memória.\n\nCombinar ownership, structs, enums e traits é o que permite escrever código Rust idiomático: dados modelados com precisão, comportamento definido por contratos e memória gerenciada sem coletor de lixo.",
+          "code": "fn execucao() {\n    let texto = String::from(\"Livre\");\n    let _emprestado = &texto; // Seguro\n    let _transf = texto; // Transfere tudo e finda 'texto'\n}"
         },
         {
           "title": "Refinamento das Mutabilidades Regradas",
-          "body": "A permissão seccionada restrita impõe ditames rigorosos contra concorrências espúrias das threads simultâneas desgovernadas: se houver sequer uma única concessão explícita de Escrita (`&mut`), nenhuma outra ramificação contemporânea extra pode desfrutar e invadir a leitura da referida base temporária, até a devolução intacta do fluxo local de encerramento da sub-ramificação e escopo.",
-          "code": "let mut dado = vec![1, 2, 3];\n{\n    let ref_mutavel = &mut dado;\n    ref_mutavel.push(4);\n} // Expira o &mut\nprintln!(\"{:?}\", dado); // Liberação reestabelecida",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "A permissão seccionada restrita impõe ditames rigorosos contra concorrências espúrias das threads simultâneas desgovernadas: se houver sequer uma única concessão explícita de Escrita (`&mut`), nenhuma outra ramificação contemporânea extra pode desfrutar e invadir a leitura da referida base temporária, até a devolução intacta do fluxo local de encerramento da sub-ramificação e escopo.\n\nRevisar onde mut é realmente necessário — em vez de aplicá-lo por padrão — reduz superfícies de erro e deixa mais claro, para quem lê o código, quais partes do estado realmente mudam.",
+          "code": "let mut dado = vec![1, 2, 3];\n{\n    let ref_mutavel = &mut dado;\n    ref_mutavel.push(4);\n} // Expira o &mut\nprintln!(\"{:?}\", dado); // Liberação reestabelecida"
         }
       ],
       "questions": [
@@ -2314,15 +2258,13 @@
       "lesson": [
         {
           "title": "Ampliando Abstrações nas Reestruturações",
-          "body": "A adoção sistêmica indiscriminada dos componentes fundamentais do `enum` consolida os desmembramentos polimórficos de respostas complexas. Modelam-se transações abstratas, mensagens estruturadas da rede e desvios ramificados complexos. Essa arquitetura uníssona extirpa poluições hierárquicas exaustivas inerentes frequentemente em Orientação Clássica Objetificada das rotinas usuais.",
-          "code": "enum EventoJanela {\n    Mover { x: i32, y: i32 },\n    Fechar,\n    Redimensionar(u32, u32),\n}\nlet evt = EventoJanela::Mover { x: 10, y: 20 };",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "A adoção sistêmica indiscriminada dos componentes fundamentais do `enum` consolida os desmembramentos polimórficos de respostas complexas. Modelam-se transações abstratas, mensagens estruturadas da rede e desvios ramificados complexos. Essa arquitetura uníssona extirpa poluições hierárquicas exaustivas inerentes frequentemente em Orientação Clássica Objetificada das rotinas usuais.\n\nRefatorar structs e traits à medida que o domínio cresce, extraindo comportamentos comuns em novas traits, mantém o código extensível sem sacrificar as garantias de segurança do compilador.",
+          "code": "enum EventoJanela {\n    Mover { x: i32, y: i32 },\n    Fechar,\n    Redimensionar(u32, u32),\n}\nlet evt = EventoJanela::Mover { x: 10, y: 20 };"
         },
         {
           "title": "Engenharia Sólida nos Tratamentos Atípicos",
           "body": "A extinção definitiva e irreversível dos ponteiros `null` perigosos e armadilhas sorrateiras consolidam os encadeamentos protetivos garantidos e amarrados no processamento restrito de `Option` combinados intrinsecamente com `Result`. O desenvolvedor não deduz o sucesso, ele obrigatoriamente lida impiedosamente perante a realidade probabilística de erro e interrupção e garante a resiliência contínua.",
-          "code": "fn busca() -> Result<i32, String> {\n    let operacao_duvidosa: Option<i32> = Some(99);\n    match operacao_duvidosa {\n        Some(val) => Ok(val),\n        None => Err(String::from(\"Falha nas vias internas\"))\n    }\n}",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "code": "fn busca() -> Result<i32, String> {\n    let operacao_duvidosa: Option<i32> = Some(99);\n    match operacao_duvidosa {\n        Some(val) => Ok(val),\n        None => Err(String::from(\"Falha nas vias internas\"))\n    }\n}"
         }
       ],
       "questions": [
@@ -2394,15 +2336,13 @@
       "lesson": [
         {
           "title": "Construindo Entidades Imutáveis Estáveis",
-          "body": "Uma pequena modelagem segura pode unificar múltiplos conceitos. No projeto, utilizamos structs com métodos, mantendo campos restritos. Implementações focadas protegem a consistência dos dados, simulando módulos profissionais que controlam perfeitamente o próprio estado por meio das lógicas internas embutidas.\n\nCompreender este fundamento é crucial em Rust. Na prática da engenharia de software, este conceito estabelece as bases de previsibilidade e legibilidade do código, evitando dívida técnica e permitindo que o sistema escale com segurança antes de avançar para as implementações práticas da fase.",
-          "code": "struct Cofre { saldo: i32 }\nimpl Cofre {\n    fn new() -> Self { Cofre { saldo: 0 } }\n    fn depositar(&mut self, q: i32) { self.saldo += q; }\n}\nlet mut conta = Cofre::new();\nconta.depositar(50);",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Uma pequena modelagem segura pode unificar múltiplos conceitos. No projeto, utilizamos structs com métodos, mantendo campos restritos. Implementações focadas protegem a consistência dos dados, simulando módulos profissionais que controlam perfeitamente o próprio estado por meio das lógicas internas embutidas.\n\nModelar entidades do domínio como structs com campos privados e métodos controlados de mutação (em vez de campos públicos livres) preserva invariantes internas e evita estados inconsistentes.",
+          "code": "struct Cofre { saldo: i32 }\nimpl Cofre {\n    fn new() -> Self { Cofre { saldo: 0 } }\n    fn depositar(&mut self, q: i32) { self.saldo += q; }\n}\nlet mut conta = Cofre::new();\nconta.depositar(50);"
         },
         {
           "title": "Desdobramentos Funcionais Interconectados",
-          "body": "Ao arquitetar estruturas combinadas e interoperáveis, mesclar coleções estendidas com enumerações de tipo heterogêneas extrai ao máximo todo poder latente fornecido do Rust. Os encadeamentos e fluxos interagem solidamente com garantias rígidas na alocação performática, garantindo a conclusão da arquitetura base perene.",
-          "code": "#[derive(Debug)]\nenum Log { Erro(String), Info(String) }\nfn registrar(logs: &mut Vec<Log>, msg: Log) {\n    logs.push(msg);\n}\nlet mut registro = Vec::new();\nregistrar(&mut registro, Log::Info(String::from(\"Boot!\")));",
-          "tip": "Dica do instrutor: Revise com atenção a leitura e o exemplo de código antes de iniciar os exercícios da fase. Identificar as palavras-chave da teoria tornará a resolução das questões imediata."
+          "body": "Ao arquitetar estruturas combinadas e interoperáveis, mesclar coleções estendidas com enumerações de tipo heterogêneas extrai ao máximo todo poder latente fornecido do Rust. Os encadeamentos e fluxos interagem solidamente com garantias rígidas na alocação performática, garantindo a conclusão da arquitetura base perene.\n\nEncadear iteradores (.iter().filter().map().collect()) permite expressar pipelines de transformação de dados de forma declarativa, com o compilador otimizando as chamadas em tempo de compilação (zero-cost abstractions).",
+          "code": "#[derive(Debug)]\nenum Log { Erro(String), Info(String) }\nfn registrar(logs: &mut Vec<Log>, msg: Log) {\n    logs.push(msg);\n}\nlet mut registro = Vec::new();\nregistrar(&mut registro, Log::Info(String::from(\"Boot!\")));"
         }
       ],
       "questions": [
