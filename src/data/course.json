@@ -88,6 +88,10 @@
           "title": "Tipos básicos",
           "body": "Os tipos mais comuns no começo são int, float, str, bool e None. A função type() mostra o tipo de um valor.",
           "code": "x = 10\ny = 3.5\nz = 'oi'\nw = True\nn = None\nprint(type(x))"
+        },
+        {
+          "title": "Por dentro das variáveis: nomes, referências e reatribuição",
+          "body": "Em Python, uma variável não é uma 'caixinha' que guarda um valor diretamente: ela é um nome (rótulo) que aponta para um objeto que vive na memória. Quando você escreve idade = 30, o Python cria o objeto inteiro 30 e faz o nome idade apontar para ele. Se depois você escrever idade = 31, o nome não é 'alterado' no lugar: ele passa a apontar para um novo objeto 31, e o objeto 30 fica disponível para ser descartado pelo coletor de lixo. Isso explica por que várias variáveis podem apontar para o mesmo objeto (a = b = 10) sem problema para tipos imutáveis como int, float e str: cada reatribuição cria uma nova ligação, nunca modifica o valor original. Entender essa diferença entre 'nome' e 'objeto' é a base para compreender depois conceitos como mutabilidade de listas, passagem de argumentos em funções e comparação com == versus is."
         }
       ],
       "questions": [
@@ -229,6 +233,10 @@
           "title": "Conversões comuns",
           "body": "str converte para texto, bool para booleano e int pode converter floats truncando a parte decimal.",
           "code": "str(10)\nint(3.9)   # 3\nfloat('2.5')\nbool(1)    # True"
+        },
+        {
+          "title": "input() sempre devolve texto: por que a conversão é obrigatória",
+          "body": "A função input() pausa o programa, espera o usuário digitar algo e pressionar Enter, e retorna SEMPRE uma string, não importa o que a pessoa digite. Se você pedir a idade do usuário com idade = input('Idade: ') e ele digitar 25, a variável idade guarda o texto '25', não o número 25. Isso significa que idade + 1 vai gerar TypeError, porque Python não soma string com inteiro automaticamente. Para trabalhar com o valor como número é preciso converter explicitamente com int(), float() ou outra função de conversão: idade = int(input('Idade: ')). Essa conversão pode falhar se o usuário digitar algo que não seja um número válido (como 'abc'), lançando ValueError — por isso, em programas reais, conversões de input costumam vir acompanhadas de tratamento de erro com try/except, assunto que será aprofundado mais adiante no curso."
         }
       ],
       "questions": [
@@ -370,6 +378,10 @@
           "title": "Lógica",
           "body": "and exige que as duas condições sejam verdadeiras; or exige pelo menos uma; not inverte o resultado.",
           "code": "True and False  # False\nTrue or False   # True\nnot True        # False"
+        },
+        {
+          "title": "Operadores aritméticos, de comparação e lógicos: precedência importa",
+          "body": "Python tem três famílias principais de operadores usados o tempo todo: aritméticos (+, -, *, /, // para divisão inteira, % para resto e ** para potência), de comparação (==, !=, <, >, <=, >=) que sempre retornam um booleano, e lógicos (and, or, not) que combinam condições. Um detalhe que confunde iniciantes é a diferença entre / e //: 7 / 2 resulta em 3.5 (float), enquanto 7 // 2 resulta em 3 (descarta a parte decimal). Outro ponto crítico é a precedência: multiplicação e divisão são calculadas antes de soma e subtração, e comparações são calculadas antes de and/or, então 2 + 3 * 4 == 14 and not False é avaliado como (2 + (3*4)) == 14 and (not False), resultando em True. Quando a ordem não é óbvia, usar parênteses deixa o código mais claro e evita bugs sutis de precedência."
         }
       ],
       "questions": [
@@ -511,6 +523,10 @@
           "title": "f-strings",
           "body": "f-strings inserem valores diretamente em textos e permitem expressões entre chaves.",
           "code": "nome='Igor'\nidade=30\nprint(f'{nome} tem {idade} anos')\nprint(f'{2+3=}')"
+        },
+        {
+          "title": "Strings: imutabilidade, fatiamento e métodos essenciais",
+          "body": "Strings em Python são sequências imutáveis de caracteres: uma vez criada, uma string nunca é alterada no lugar — qualquer operação como .upper() ou substituição de caractere retorna uma NOVA string, deixando a original intacta. Você pode acessar caracteres por índice (texto[0] pega o primeiro caractere, texto[-1] pega o último) e extrair pedaços com fatiamento texto[inicio:fim], onde o índice final nunca é incluído. Métodos como .strip() (remove espaços das pontas), .split() (quebra em lista por um separador), .join() (junta uma lista em string), .replace() (substitui trechos) e .lower()/.upper() são usados o tempo todo em processamento de texto real. F-strings, escritas como f'Olá, {nome}!', permitem inserir valores diretamente dentro do texto de forma legível, substituindo concatenações complicadas com +."
         }
       ],
       "questions": [
@@ -652,6 +668,10 @@
           "title": "Truthy e falsy",
           "body": "Valores como 0, '', [], {} e None são tratados como falsos em condições. Muitos outros valores são tratados como verdadeiros.",
           "code": "if []:\n    print('não entra')\nif 'Python':\n    print('entra')"
+        },
+        {
+          "title": "Condicionais: if, elif, else e a lógica de decisão do programa",
+          "body": "Estruturas condicionais permitem que um programa tome decisões diferentes dependendo de uma condição. O bloco if executa seu código somente quando a condição é verdadeira (True); elif (contração de 'else if') testa condições adicionais em sequência, e else captura tudo que não se encaixou em nenhuma condição anterior. É importante lembrar que o Python avalia as condições em ordem e para na primeira que for verdadeira — as demais nem são testadas. A indentação (geralmente 4 espaços) é o que define o que pertence a cada bloco, diferente de outras linguagens que usam chaves. Condições podem combinar comparações com and, or e not, e qualquer expressão pode ser usada como condição: valores como 0, '', [] e None são considerados 'falsy' (equivalentes a False) enquanto a maioria dos outros valores é 'truthy'."
         }
       ],
       "questions": [
@@ -793,6 +813,10 @@
           "title": "Guardas com if",
           "body": "Uma guarda adiciona uma condição ao caso. O padrão precisa combinar e a guarda precisa ser verdadeira para o bloco executar.",
           "code": "status = ('pedido', 120)\n\nmatch status:\n    case ('pedido', valor) if valor >= 100:\n        print('Frete grátis')\n    case ('pedido', valor):\n        print('Frete normal')"
+        },
+        {
+          "title": "match/case: correspondência de padrões estruturada",
+          "body": "Introduzido no Python 3.10, o match/case oferece uma forma mais expressiva de comparar um valor contra vários padrões possíveis, substituindo cadeias longas de elif em certos casos. A sintaxe básica compara o valor de uma expressão contra padrões literais (match comando: case 'iniciar': ...), mas seu poder real está no 'pattern matching' estrutural: é possível desestruturar listas e tuplas diretamente no case, capturar valores em variáveis, usar o curinga _ para 'qualquer outro caso' e até combinar condições com guard clauses usando if dentro do case (case [x, y] if x > y:). Diferente do switch de outras linguagens, o match não tem fall-through automático entre casos — cada case é independente e só um é executado. É especialmente útil para interpretar comandos de texto, processar estruturas de dados variadas (como respostas de APIs) ou implementar máquinas de estado de forma legível."
         }
       ],
       "questions": [
@@ -934,6 +958,10 @@
           "title": "break e continue",
           "body": "break encerra o loop. continue pula o restante da iteração atual e segue para a próxima.",
           "code": "for i in range(5):\n    if i == 3:\n        break\n    print(i)"
+        },
+        {
+          "title": "Loops: while e for, e como cada um decide quando parar",
+          "body": "Python tem dois tipos de laço de repetição. O while repete um bloco enquanto uma condição continuar verdadeira, sendo ideal quando não se sabe de antemão quantas vezes o laço vai rodar (por exemplo, repetir até o usuário digitar 'sair'). O for percorre os elementos de uma sequência (lista, string, range, etc.) um por um, sendo ideal quando se sabe qual coleção será percorrida. A função range(n) gera uma sequência de números de 0 até n-1, muito usada para repetir algo um número fixo de vezes: for i in range(5): repete 5 vezes. Dentro de qualquer laço, break interrompe o laço imediatamente, e continue pula para a próxima iteração sem executar o restante do bloco atual. Um erro comum de iniciante é criar um while sem nunca alterar a condição de parada, gerando um loop infinito que trava o programa."
         }
       ],
       "questions": [
@@ -1075,6 +1103,10 @@
           "title": "Slicing",
           "body": "O fatiamento lista[inicio:fim:passo] extrai partes da lista sem incluir o índice final.",
           "code": "nums = [0,1,2,3,4,5]\nprint(nums[1:4])\nprint(nums[::2])"
+        },
+        {
+          "title": "Listas: coleções ordenadas e mutáveis",
+          "body": "Uma lista é uma coleção ordenada e mutável de itens, criada com colchetes: numeros = [1, 2, 3]. 'Mutável' significa que você pode alterar a lista depois de criada, adicionando itens com .append() (adiciona no final) ou .insert() (adiciona em uma posição específica), removendo com .remove() (remove pelo valor) ou .pop() (remove pelo índice e retorna o valor removido), e alterando um item diretamente pelo índice: lista[0] = 'novo'. Listas suportam índices negativos (lista[-1] é o último item), fatiamento (lista[1:3]) e são iteráveis em laços for. Funções úteis incluem len() para saber o tamanho, sorted() para ordenar (sem alterar a original) e .sort() para ordenar no lugar. Como listas são mutáveis, cuidado ao copiar: b = a faz b apontar para a MESMA lista que a, então alterar b também altera a; para copiar de verdade use b = a.copy() ou b = a[:]."
         }
       ],
       "questions": [
@@ -1216,6 +1248,10 @@
           "title": "Sets",
           "body": "Sets armazenam valores únicos e são úteis para remover duplicidades e realizar operações de conjunto.",
           "code": "nums = {1,2,2,3}\nprint(nums)\na={1,2,3}\nb={3,4}\nprint(a | b)\nprint(a & b)"
+        },
+        {
+          "title": "Tuplas e sets: quando a ordem ou a mutabilidade não importam",
+          "body": "Tuplas são como listas, mas imutáveis: uma vez criada, tupla = (1, 2, 3) não pode ter itens adicionados, removidos ou alterados. Isso as torna ideais para representar dados que não devem mudar, como coordenadas (x, y) ou registros fixos, e elas também são um pouco mais rápidas e ocupam menos memória que listas. Sets (conjuntos), criados com {1, 2, 3} ou set(), são coleções SEM ordem definida e SEM elementos duplicados — adicionar o mesmo valor duas vezes não tem efeito. Sets são extremamente úteis para remover duplicatas de uma lista (list(set(lista))), verificar pertencimento de forma muito rápida (x in meu_set) e realizar operações matemáticas de conjuntos como união (|), interseção (&) e diferença (-), que resolvem problemas de comparação entre coleções de forma muito mais direta do que laços manuais."
         }
       ],
       "questions": [
@@ -1357,6 +1393,10 @@
           "title": "get, keys e items",
           "body": "get evita KeyError ao buscar uma chave inexistente. keys retorna chaves e items retorna pares.",
           "code": "print(pessoa.get('email'))\nfor chave, valor in pessoa.items():\n    print(chave, valor)"
+        },
+        {
+          "title": "Dicionários: mapeando chaves a valores",
+          "body": "Um dicionário guarda dados como pares chave-valor, criado com chaves: pessoa = {'nome': 'Ana', 'idade': 25}. Diferente de listas, o acesso não é por posição numérica mas pela chave: pessoa['nome'] retorna 'Ana'. Chaves precisam ser de um tipo imutável (string, número, tupla) e são únicas — atribuir um valor a uma chave existente sobrescreve o valor anterior. O método .get('chave', valor_padrao) é mais seguro que colchetes porque retorna um valor padrão em vez de lançar KeyError quando a chave não existe. Para percorrer um dicionário, .keys() retorna as chaves, .values() os valores e .items() os pares chave-valor juntos, muito usado em for chave, valor in dicionario.items():. Desde o Python 3.7, dicionários preservam a ordem de inserção dos itens, o que os torna previsíveis ao iterar."
         }
       ],
       "questions": [
@@ -1498,6 +1538,10 @@
           "title": "Dict e set comprehension",
           "body": "A mesma ideia funciona para dicionários e conjuntos.",
           "code": "mapa = {x: x*x for x in range(4)}\nunicos = {letra.lower() for letra in 'Python'}"
+        },
+        {
+          "title": "Compreensões de lista, dicionário e set: construindo coleções em uma linha",
+          "body": "Compreensões são uma sintaxe concisa para criar uma nova coleção transformando ou filtrando outra, em uma única expressão. Uma compreensão de lista como [x**2 for x in range(10)] cria uma lista com o quadrado de cada número de 0 a 9, equivalente a um laço for com .append() mas mais legível e geralmente mais rápida. É possível adicionar uma condição de filtro: [x for x in numeros if x % 2 == 0] mantém só os pares. A mesma ideia se aplica a dicionários ({k: v*2 for k, v in dados.items()}) e sets ({x for x in lista}). O segredo para ler uma compreensão é reconhecer a ordem: primeiro a expressão do resultado, depois o for que define a origem dos dados, e por último o if opcional de filtro. Compreensões muito aninhadas ou complexas, porém, prejudicam a legibilidade — nesses casos um laço for tradicional costuma ser a escolha melhor."
         }
       ],
       "questions": [
@@ -1639,6 +1683,10 @@
           "title": "Parâmetros padrão",
           "body": "Um parâmetro pode ter um valor padrão, usado quando nenhum argumento é informado.",
           "code": "def soma(a, b=10):\n    return a + b\n\nprint(soma(5))"
+        },
+        {
+          "title": "Funções: reutilização de código com parâmetros e retorno",
+          "body": "Uma função é um bloco de código nomeado que pode receber parâmetros de entrada e devolver um resultado com return, criada com def nome(parametros):. Funções evitam repetição de código e organizam a lógica do programa em partes menores e testáveis. Parâmetros podem ter valores padrão (def saudacao(nome='visitante'):), tornando-os opcionais na chamada. Quando uma função não tem return explícito, ela retorna None automaticamente. É essencial entender o escopo: variáveis criadas dentro de uma função são locais e não existem fora dela, enquanto variáveis do escopo global podem ser lidas (mas não alteradas diretamente) de dentro de uma função, a menos que se use a palavra-chave global. Funções também podem receber argumentos nomeados na chamada (funcao(nome='Ana', idade=20)), o que deixa o código mais legível ao evitar depender apenas da ordem dos argumentos."
         }
       ],
       "questions": [
@@ -1780,6 +1828,10 @@
           "title": "Closures e decoradores",
           "body": "Uma closure mantém acesso ao escopo externo mesmo após a função externa terminar. Decoradores usam essa ideia para envolver funções sem alterar seu corpo.",
           "code": "def multiplicador(fator):\n    def calcular(valor):\n        return valor * fator\n    return calcular\n\ndobro = multiplicador(2)\nprint(dobro(5))"
+        },
+        {
+          "title": "Funções avançadas: *args, **kwargs, funções lambda e closures",
+          "body": "Além dos parâmetros comuns, Python permite funções com número variável de argumentos: *args captura qualquer quantidade de argumentos posicionais extras em uma tupla, e **kwargs captura argumentos nomeados extras em um dicionário, muito usados para criar funções flexíveis ou repassar argumentos para outra função (def wrapper(*args, **kwargs): return original(*args, **kwargs)). Funções lambda são funções anônimas de uma linha, úteis para operações curtas passadas como argumento: sorted(lista, key=lambda x: x[1]) ordena por um critério específico sem precisar definir uma função separada. Outro conceito importante é o closure: uma função interna pode 'lembrar' de variáveis do escopo da função externa mesmo depois que essa função externa terminou de executar, o que é a base para criar fábricas de funções (funções que retornam outras funções já configuradas com determinado comportamento)."
         }
       ],
       "questions": [
@@ -1921,6 +1973,10 @@
           "title": "Combinando coleções",
           "body": "A mesma sintaxe cria novas listas e dicionários. Em dicionários, chaves posteriores substituem valores de chaves repetidas.",
           "code": "base = [1, 2]\nnova = [0, *base, 3]\n\npadrao = {'tema': 'escuro', 'som': True}\nusuario = {'som': False}\nconfig = {**padrao, **usuario}"
+        },
+        {
+          "title": "Desempacotamento: distribuindo valores de coleções em variáveis",
+          "body": "Desempacotamento (unpacking) permite atribuir os elementos de uma lista, tupla ou outra sequência diretamente a múltiplas variáveis em uma linha: x, y = (10, 20) atribui x=10 e y=20. O número de variáveis precisa bater com o número de elementos, a menos que se use o operador * para capturar 'o restante': primeiro, *meio, ultimo = [1,2,3,4,5] resulta em primeiro=1, ultimo=5 e meio=[2,3,4]. Essa técnica é muito usada para trocar valores entre variáveis sem variável auxiliar (a, b = b, a), para percorrer listas de tuplas em um for (for nome, idade in pessoas:) e para 'desempacotar' argumentos de uma função a partir de uma lista ou dicionário usando * e ** na chamada (funcao(*lista_de_argumentos)). Dominar desempacotamento deixa o código Python mais idiomático e evita acessos repetitivos por índice."
         }
       ],
       "questions": [
@@ -2062,6 +2118,10 @@
           "title": "alias e módulos próprios",
           "body": "as cria um apelido. Arquivos .py também podem ser importados como módulos quando estão no caminho do projeto.",
           "code": "import datetime as dt\nhoje = dt.date.today()"
+        },
+        {
+          "title": "Módulos e imports: organizando código em arquivos reutilizáveis",
+          "body": "Um módulo é simplesmente um arquivo .py que contém código Python (funções, classes, variáveis) que pode ser importado e reutilizado em outros arquivos com import nome_do_modulo. É possível importar apenas partes específicas (from math import sqrt, pi), renomear um módulo importado para facilitar o uso (import pandas as pd) ou importar tudo (from modulo import *, geralmente desaconselhado por poluir o namespace). Python já vem com uma biblioteca padrão enorme de módulos prontos (math para matemática, random para aleatoriedade, datetime para datas, os para o sistema operacional), e módulos de terceiros são instalados com pip e importados da mesma forma. Organizar um projeto em vários módulos (e pacotes, que são pastas com um arquivo __init__.py) é o que permite que projetos Python cresçam de um único script para uma aplicação com centenas de arquivos organizados por responsabilidade."
         }
       ],
       "questions": [
@@ -2203,6 +2263,10 @@
           "title": "raise",
           "body": "raise permite disparar uma exceção manualmente quando uma regra do programa é violada.",
           "code": "idade = -1\nif idade < 0:\n    raise ValueError('idade inválida')"
+        },
+        {
+          "title": "Erros e exceções: tratando falhas com try/except",
+          "body": "Quando algo dá errado durante a execução (dividir por zero, acessar uma chave inexistente, converter texto inválido para número), Python lança uma exceção que, se não tratada, interrompe o programa mostrando um traceback. O bloco try/except permite capturar essas falhas e reagir a elas sem derrubar o programa: try: executa o código arriscado, e except TipoDeErro: define o que fazer caso aquele erro específico aconteça. É boa prática capturar exceções específicas (except ValueError:, except ZeroDivisionError:) em vez de um except genérico, que esconde bugs inesperados. O bloco else roda somente se NENHUM erro ocorreu, e finally roda sempre, com ou sem erro, útil para liberar recursos como arquivos. Também é possível lançar exceções propositalmente com raise ValueError('mensagem'), o que é essencial para validar dados de entrada em funções que outras pessoas vão usar."
         }
       ],
       "questions": [
@@ -2344,6 +2408,10 @@
           "title": "Lendo linhas",
           "body": "Você pode iterar diretamente pelo arquivo ou usar readlines para obter uma lista de linhas.",
           "code": "with open('dados.txt',encoding='utf-8') as f:\n    for linha in f:\n        print(linha.strip())"
+        },
+        {
+          "title": "Manipulação de arquivos: abrindo, lendo e escrevendo com open()",
+          "body": "A função open('caminho', modo) abre um arquivo para leitura ou escrita, onde o modo define o comportamento: 'r' para leitura (padrão), 'w' para escrita (APAGA o conteúdo existente antes de escrever), 'a' para adicionar ao final sem apagar, e 'x' para criar um arquivo novo, falhando se já existir. É essencial usar a sintaxe with open(...) as arquivo:, porque ela garante que o arquivo será fechado automaticamente ao final do bloco, mesmo se ocorrer um erro — abrir arquivos sem with e esquecer de fechá-los pode causar vazamento de recursos e dados não gravados. Para ler, .read() retorna todo o conteúdo como uma string, .readline() lê uma linha por vez, e .readlines() retorna uma lista com todas as linhas; para escrever, .write('texto') grava uma string (sem quebra de linha automática). Iterar diretamente sobre o arquivo com for linha in arquivo: é a forma mais eficiente de processar arquivos grandes linha a linha."
         }
       ],
       "questions": [
@@ -2485,6 +2553,10 @@
           "title": "Consultar e percorrer",
           "body": "exists(), is_file() e is_dir() consultam o caminho. iterdir() lista filhos diretos e glob() filtra padrões.",
           "code": "from pathlib import Path\n\npasta = Path('dados')\nif pasta.exists():\n    for arquivo in pasta.glob('*.csv'):\n        print(arquivo.name)"
+        },
+        {
+          "title": "pathlib: manipulando caminhos de arquivo de forma moderna",
+          "body": "O módulo pathlib, disponível desde o Python 3.4, oferece uma forma orientada a objetos e multiplataforma de trabalhar com caminhos de arquivo, substituindo o uso manual de strings concatenadas com os.path. A classe principal é Path: caminho = Path('dados') / 'arquivo.txt' já mostra uma vantagem — o operador / é sobrecarregado para juntar partes do caminho corretamente em qualquer sistema operacional (Windows usa barra invertida, Linux e Mac usam barra normal, e o pathlib cuida disso sozinho). Um objeto Path tem métodos úteis como .exists() (verifica se existe), .is_file() e .is_dir(), .mkdir() (cria diretório), .glob('*.txt') (lista arquivos que casam com um padrão) e propriedades como .name (nome do arquivo), .suffix (extensão) e .parent (pasta pai). Path também tem métodos .read_text() e .write_text() que abrem, leem/escrevem e fecham o arquivo em uma única chamada, tornando operações simples de arquivo muito mais concisas do que usar open() manualmente."
         }
       ],
       "questions": [
@@ -2626,6 +2698,10 @@
           "title": "Escrita segura",
           "body": "csv.writer e DictWriter cuidam de delimitadores e aspas. writerow escreve um registro; writerows escreve vários.",
           "code": "import csv\n\nwith open('saida.csv', 'w', newline='', encoding='utf-8') as arquivo:\n    escritor = csv.writer(arquivo)\n    escritor.writerow(['nome', 'pontos'])\n    escritor.writerow(['Ana', 90])"
+        },
+        {
+          "title": "Arquivos CSV: lendo e escrevendo dados tabulares",
+          "body": "CSV (Comma-Separated Values) é um formato de texto simples para representar dados em tabela, onde cada linha é um registro e os valores são separados por vírgula (ou outro delimitador). Embora seja tentador processar um CSV manualmente com .split(','), isso quebra facilmente quando um valor contém vírgulas, aspas ou quebras de linha dentro de si — por isso o módulo csv da biblioteca padrão deve sempre ser preferido. csv.reader(arquivo) lê cada linha como uma lista de strings, enquanto csv.DictReader(arquivo) lê cada linha como um dicionário, usando a primeira linha do arquivo como nomes das chaves, o que é muito mais legível ao acessar colunas por nome (linha['nome']) em vez de posição (linha[0]). Para escrever, csv.writer(arquivo).writerow(lista) grava uma linha, e csv.DictWriter precisa receber fieldnames explicitamente e chamar .writeheader() antes de escrever os dados, garantindo que a ordem e os nomes das colunas fiquem corretos no arquivo final."
         }
       ],
       "questions": [
@@ -2767,6 +2843,10 @@
           "title": "Tipos compatíveis",
           "body": "dict vira objeto JSON, list vira array, str vira string, números permanecem números, True/False viram true/false e None vira null.",
           "code": "dados={'ativo':True,'itens':[1,2],'obs':None}\nprint(json.dumps(dados))"
+        },
+        {
+          "title": "JSON: o formato universal de troca de dados",
+          "body": "JSON (JavaScript Object Notation) é um formato de texto leve para representar dados estruturados, e virou o padrão para APIs web, arquivos de configuração e troca de dados entre sistemas por ser legível por humanos e fácil de processar por máquinas. O módulo json da biblioteca padrão converte entre JSON e estruturas Python: json.loads(texto) transforma uma string JSON em objetos Python (dicionários, listas, strings, números, booleanos e None), e json.dumps(objeto) faz o caminho inverso, transformando um objeto Python em texto JSON. Para trabalhar direto com arquivos, json.load(arquivo) lê e converte de uma vez, e json.dump(objeto, arquivo) escreve direto no arquivo. É importante notar as correspondências de tipos: dict vira objeto JSON, list vira array, None vira null, True/False viram true/false em minúsculo. Parâmetros como indent=2 em json.dumps deixam a saída formatada e legível, muito útil ao salvar configurações que humanos também vão ler."
         }
       ],
       "questions": [
@@ -2908,6 +2988,10 @@
           "title": "pathlib",
           "body": "pathlib representa caminhos de arquivos como objetos e simplifica operações no sistema de arquivos.",
           "code": "from pathlib import Path\np = Path('dados') / 'arquivo.txt'\nprint(p.exists())"
+        },
+        {
+          "title": "Datas e a biblioteca padrão: trabalhando com o módulo datetime",
+          "body": "O módulo datetime é a ferramenta padrão do Python para representar e manipular datas e horários. datetime.now() retorna o momento atual (data e hora), enquanto date.today() retorna apenas a data. Um objeto datetime tem atributos como .year, .month, .day, .hour que podem ser acessados diretamente, e o método .strftime('%d/%m/%Y') converte a data para uma string formatada segundo um padrão de códigos (%d dia, %m mês, %Y ano com 4 dígitos, %H:%M hora e minuto). O caminho inverso, transformar uma string em data, é feito com datetime.strptime(texto, formato). Para calcular diferenças entre datas ou somar/subtrair um período, usa-se timedelta: amanha = hoje + timedelta(days=1). A biblioteca padrão do Python é vasta e cobre praticamente qualquer necessidade comum de programação — vale sempre verificar se já existe um módulo pronto (como random, os, math, collections) antes de reinventar uma solução do zero."
         }
       ],
       "questions": [
@@ -3049,6 +3133,10 @@
           "title": "Grupos e substituição",
           "body": "Parênteses criam grupos capturáveis. sub substitui ocorrências do padrão e pode usar uma função para calcular cada substituição.",
           "code": "import re\n\ntexto = '2026-08-12'\ndata = re.sub(r'(\\d{4})-(\\d{2})-(\\d{2})', r'\\3/\\2/\\1', texto)\nprint(data)"
+        },
+        {
+          "title": "Expressões regulares: buscando padrões complexos em texto",
+          "body": "Expressões regulares (regex) são um mini-linguagem para descrever padrões de texto, usadas via o módulo re quando métodos simples de string (.find(), .replace()) não são suficientes — por exemplo, validar um e-mail, extrair todos os números de um texto ou verificar um formato de telefone. re.search(padrao, texto) procura a primeira ocorrência do padrão em qualquer posição, re.match() verifica apenas o início da string, re.findall() retorna todas as ocorrências como lista, e re.sub(padrao, substituto, texto) substitui todas as ocorrências. Símbolos essenciais incluem \\d (dígito), \\w (letra/número/underline), \\s (espaço), . (qualquer caractere), * (zero ou mais), + (um ou mais), ? (opcional) e grupos entre parênteses () para capturar partes específicas do padrão encontrado. Regex é poderosa mas pode ficar ilegível rapidamente, então padrões complexos devem vir acompanhados de comentários explicando o que cada parte captura, e testados com casos reais antes de usar em produção."
         }
       ],
       "questions": [
@@ -3190,6 +3278,10 @@
           "title": "Erros precisam ser explícitos",
           "body": "Decodificar com o encoding errado pode falhar ou produzir texto incorreto. Prefira descobrir a origem dos dados a ignorar erros silenciosamente.",
           "code": "try:\n    texto = caminho.read_text(encoding='utf-8')\nexcept UnicodeDecodeError:\n    print('Encoding incompatível')"
+        },
+        {
+          "title": "Encoding e texto: como o Python lida com caracteres e bytes",
+          "body": "Internamente, o Python representa strings como sequências de caracteres Unicode, um padrão que cobre praticamente todos os alfabetos e símbolos do mundo. O problema aparece na hora de salvar ou ler texto de um arquivo: nesse momento, os caracteres precisam ser convertidos para bytes usando um encoding específico, sendo UTF-8 o padrão universal recomendado hoje, capaz de representar qualquer caractere Unicode. Erros de encoding (caracteres acentuados virando símbolos estranhos, o famoso 'mojibake') geralmente acontecem quando um arquivo é lido com um encoding diferente do que foi usado para escrevê-lo — por isso é boa prática sempre especificar explicitamente open(arquivo, encoding='utf-8') em vez de depender do padrão do sistema operacional, que varia entre Windows, Linux e Mac. Os métodos .encode('utf-8') e .decode('utf-8') convertem manualmente entre string e bytes quando necessário, por exemplo ao trabalhar com dados binários recebidos de uma rede."
         }
       ],
       "questions": [
@@ -3331,6 +3423,10 @@
           "title": "Backup precisa ser verificável",
           "body": "Depois de copiar ou compactar, confirme que o destino existe e possui tamanho plausível antes de considerar a operação concluída.",
           "code": "if arquivo_backup.exists() and arquivo_backup.stat().st_size > 0:\n    print('Backup criado')"
+        },
+        {
+          "title": "Operações seguras com arquivos e criação de backups",
+          "body": "Ao escrever em arquivos que já existem ou que são importantes, abrir diretamente com modo 'w' é arriscado, pois qualquer erro no meio da escrita pode deixar o arquivo corrompido ou incompleto, e o conteúdo anterior já terá sido apagado. Uma prática comum e segura é escrever primeiro em um arquivo temporário e só depois, se tudo correu bem, renomeá-lo para substituir o arquivo original (usando os.replace(), que é atômico na maioria dos sistemas). Antes de sobrescrever dados importantes, também é comum criar uma cópia de backup com shutil.copy(origem, destino), preservando a versão anterior caso algo dê errado. Outro cuidado essencial é sempre verificar se um arquivo existe antes de tentar abri-lo para leitura (usando pathlib .exists() ou tratando FileNotFoundError), e usar blocos try/except/finally para garantir que arquivos sejam fechados e recursos liberados mesmo quando uma operação falha no meio do caminho."
         }
       ],
       "questions": [
@@ -3472,6 +3568,10 @@
           "title": "Converta com contexto",
           "body": "Valores de CSV chegam como texto. Ao converter, informe a linha e o campo que falhou para facilitar a correção.",
           "code": "for numero, linha in enumerate(leitor, start=2):\n    valor = float(linha['valor'])"
+        },
+        {
+          "title": "CSV confiável: tratando dados do mundo real",
+          "body": "Arquivos CSV do mundo real raramente são perfeitos: podem ter delimitadores diferentes (ponto e vírgula em vez de vírgula, comum em arquivos gerados no Brasil), encodings inconsistentes, linhas com número errado de colunas, campos vazios ou valores que deveriam ser números mas vêm como texto. Um processamento confiável de CSV precisa validar cada linha antes de usar os dados: verificar se colunas obrigatórias existem e não estão vazias, tentar converter valores numéricos com try/except capturando ValueError, e decidir explicitamente o que fazer com linhas inválidas — pular com um aviso, usar um valor padrão ou interromper o processamento, dependendo da criticidade dos dados. csv.Sniffer().sniff() pode detectar automaticamente qual delimitador um arquivo usa quando não se sabe de antemão. Registrar (logar) quantas linhas foram processadas com sucesso e quantas falharam, e por quê, é uma prática essencial em pipelines de dados reais, permitindo auditar a qualidade da importação depois."
         }
       ],
       "questions": [
@@ -3613,6 +3713,10 @@
           "title": "Separe entrada e domínio",
           "body": "Converta o JSON externo para uma estrutura interna validada. O restante do programa não deve depender de dados brutos.",
           "code": "def carregar_cliente(dados):\n    return {'nome': str(dados['nome']).strip()}"
+        },
+        {
+          "title": "JSON validado: garantindo que os dados têm o formato esperado",
+          "body": "Receber um JSON de uma API externa ou arquivo não garante que ele tenha a estrutura que seu programa espera — campos podem estar ausentes, ter tipo errado ou valores fora do esperado, e acessar dados['campo'] diretamente sem verificar pode lançar KeyError ou produzir bugs silenciosos mais adiante. Validação básica pode ser feita manualmente: verificar com 'campo' in dados antes de acessar, usar dados.get('campo') com valor padrão, e checar isinstance(valor, tipo_esperado) para confirmar o tipo antes de usar. Para validações mais robustas, bibliotecas como pydantic definem um 'esquema' esperado (uma classe descrevendo os campos e tipos) e validam automaticamente um JSON contra esse esquema, gerando erros claros e específicos quando algo não bate. Também é comum capturar json.JSONDecodeError ao usar json.loads(), pois um texto malformado (JSON quebrado) lança essa exceção específica, que precisa ser tratada separadamente de outros tipos de erro de validação de dados."
         }
       ],
       "questions": [
@@ -3754,6 +3858,10 @@
           "title": "Durações usam timedelta",
           "body": "Some ou subtraia timedelta para calcular prazos. Evite alterar manualmente dia ou mês, pois calendários têm limites diferentes.",
           "code": "from datetime import timedelta\nvencimento = hoje + timedelta(days=10)"
+        },
+        {
+          "title": "Datas e fusos horários: lidando com o tempo corretamente",
+          "body": "Um datetime 'ingênuo' (naive), criado com datetime.now(), não carrega informação de fuso horário — ele representa apenas um horário local sem contexto, o que causa bugs sérios em sistemas que lidam com usuários de fusos diferentes ou que precisam comparar horários de servidores em regiões distintas. Um datetime 'consciente' (aware) carrega essa informação, associada via o módulo timezone (from datetime import timezone) ou, de forma mais completa, com a biblioteca zoneinfo (nativa desde o Python 3.9), que conhece as regras de fusos horários reais do mundo, incluindo horário de verão. A prática recomendada em sistemas reais é sempre armazenar e processar datas em UTC internamente, convertendo para o fuso horário local do usuário apenas na hora de exibir a informação na tela. Comparar ou subtrair um datetime naive com um aware lança TypeError, então misturar os dois tipos sem conversão explícita é uma fonte comum de erros difíceis de depurar."
         }
       ],
       "questions": [
@@ -3895,6 +4003,10 @@
           "title": "Parâmetros evitam SQL inseguro",
           "body": "Nunca monte SQL com entrada do usuário por concatenação. Use placeholders ? e passe valores separadamente.",
           "code": "conexao.execute('INSERT INTO tarefas (titulo) VALUES (?)', (titulo,))\nconexao.commit()"
+        },
+        {
+          "title": "SQLite fundamentos: um banco de dados relacional embutido",
+          "body": "SQLite é um banco de dados relacional completo que roda embutido dentro da própria aplicação, sem precisar de um servidor separado — o banco inteiro é um único arquivo .db no disco, o que o torna ideal para aplicações pequenas e médias, protótipos e armazenamento local. O módulo sqlite3, já incluído na biblioteca padrão do Python, permite conectar com sqlite3.connect('banco.db'), criar um cursor com conexao.cursor() e executar comandos SQL com cursor.execute('SQL AQUI'). Comandos de criação e modificação de estrutura usam CREATE TABLE, e dados são inseridos com INSERT INTO, sempre usando placeholders (?) em vez de concatenar valores diretamente na string SQL, para evitar SQL injection: cursor.execute('INSERT INTO tabela VALUES (?, ?)', (valor1, valor2)). É fundamental chamar conexao.commit() para salvar as alterações permanentemente no arquivo, e conexao.close() ao final para liberar a conexão — por isso usar with sqlite3.connect(...) as conexao: é a forma mais segura de trabalhar."
         }
       ],
       "questions": [
@@ -4036,6 +4148,10 @@
           "title": "Transações protegem conjuntos",
           "body": "Use with conexao para confirmar o bloco quando tudo funciona e desfazer quando ocorre uma exceção.",
           "code": "with conexao:\n    conexao.execute('UPDATE tarefas SET titulo = ? WHERE id = ?', (titulo, codigo))"
+        },
+        {
+          "title": "CRUD com SQLite: criar, ler, atualizar e apagar registros",
+          "body": "CRUD é o acrônimo para as quatro operações fundamentais de qualquer sistema que armazena dados: Create (criar), Read (ler), Update (atualizar) e Delete (apagar). Em SQL, essas operações correspondem respectivamente a INSERT INTO tabela (colunas) VALUES (?, ?), SELECT * FROM tabela WHERE condicao, UPDATE tabela SET coluna = ? WHERE condicao e DELETE FROM tabela WHERE condicao. Um detalhe crítico é que UPDATE e DELETE sem uma cláusula WHERE afetam TODAS as linhas da tabela — um erro comum e perigoso é esquecer o WHERE em um comando de exclusão. Depois de um SELECT, cursor.fetchone() retorna uma linha (ou None se não houver mais resultados), cursor.fetchall() retorna todas as linhas como uma lista de tuplas, e é possível iterar diretamente sobre o cursor em um for. Sempre usar placeholders (?) com os valores passados como tupla separada, nunca formatação de string (f-string ou %) para montar comandos SQL com dados do usuário, é a defesa fundamental contra ataques de SQL injection."
         }
       ],
       "questions": [
@@ -4177,6 +4293,10 @@
           "title": "Execução precisa ser auditável",
           "body": "Conte entradas, aceitos, rejeitados e saídas. Esses totais permitem conferir se dados desapareceram no caminho.",
           "code": "assert total_entrada == total_aceito + total_rejeitado"
+        },
+        {
+          "title": "Pipeline de dados: conectando leitura, processamento e persistência",
+          "body": "Um pipeline de dados é uma sequência organizada de etapas que leva dados de uma fonte bruta até um destino final útil: normalmente extrair (ler de um arquivo CSV, JSON ou API), transformar (limpar, validar, converter tipos, calcular novos valores) e carregar (salvar em um banco de dados, outro arquivo ou enviar para outro sistema) — o padrão conhecido como ETL. Construir um pipeline robusto significa separar cada etapa em funções independentes e testáveis, em vez de misturar leitura, lógica de negócio e escrita em um único bloco de código gigante, o que facilita tanto testar cada parte isoladamente quanto trocar uma fonte de dados sem reescrever tudo. Tratamento de erro é essencial em cada etapa: decidir o que acontece se um arquivo de entrada não existe, se uma linha tem dados inválidos, ou se a escrita no destino falha no meio do processo. Logs detalhados de quantos registros entraram, quantos foram transformados com sucesso e quantos falharam tornam um pipeline auditável e confiável em produção."
         }
       ],
       "questions": [
@@ -4318,6 +4438,10 @@
           "title": "Métodos",
           "body": "Métodos são funções definidas dentro da classe e normalmente recebem self como primeiro parâmetro.",
           "code": "class Robo:\n    def __init__(self,nome):\n        self.nome=nome\n    def falar(self):\n        return f'Eu sou {self.nome}'"
+        },
+        {
+          "title": "Classes e objetos: modelando o mundo com programação orientada a objetos",
+          "body": "Uma classe é um molde (blueprint) para criar objetos que combinam dados (atributos) e comportamento (métodos) relacionados. Ela é definida com class NomeDaClasse:, e o método especial __init__(self, ...) é o construtor, chamado automaticamente ao criar um novo objeto com NomeDaClasse(argumentos), responsável por inicializar os atributos daquele objeto específico. O parâmetro self, presente em todo método de instância, referencia o próprio objeto sendo manipulado, permitindo acessar e modificar seus atributos (self.nome = nome). Cada objeto criado a partir da classe (chamado de 'instância') tem sua própria cópia independente dos atributos definidos no __init__, mesmo que compartilhem os mesmos métodos definidos na classe. Programação orientada a objetos ajuda a organizar sistemas complexos agrupando dados e o código que opera sobre eles em uma única unidade coerente, em vez de espalhar funções soltas que recebem e retornam dicionários ou listas soltas representando a mesma entidade."
         }
       ],
       "questions": [
@@ -4459,6 +4583,10 @@
           "title": "super()",
           "body": "super permite chamar implementação da classe pai, muito usado dentro de __init__.",
           "code": "class Pessoa:\n    def __init__(self,nome): self.nome=nome\n\nclass Aluno(Pessoa):\n    def __init__(self,nome,curso):\n        super().__init__(nome)\n        self.curso=curso"
+        },
+        {
+          "title": "Herança e polimorfismo: reaproveitando e especializando classes",
+          "body": "Herança permite que uma classe (a 'filha' ou subclasse) herde atributos e métodos de outra classe (a 'mãe' ou superclasse), reaproveitando código comum e adicionando ou sobrescrevendo apenas o que é específico: class Cachorro(Animal): declara que Cachorro herda de Animal. Dentro da subclasse, super().__init__(...) chama o construtor da classe mãe, garantindo que a inicialização comum também aconteça. Polimorfismo é a capacidade de objetos de classes diferentes responderem de forma diferente ao mesmo método chamado da mesma forma: se tanto Cachorro quanto Gato têm um método fazer_som(), cada um pode implementar esse método de um jeito próprio, e código que chama animal.fazer_som() funciona corretamente independente de qual subclasse o objeto realmente é, sem precisar de ifs verificando o tipo. Esse comportamento é o que permite escrever código genérico que funciona com qualquer subclasse futura, sem precisar ser alterado quando novas subclasses forem criadas."
         }
       ],
       "questions": [
@@ -4600,6 +4728,10 @@
           "title": "Propriedades",
           "body": "@property oferece leitura controlada mantendo a sintaxe simples de atributo.",
           "code": "@property\ndef saldo(self):\n    return self._saldo"
+        },
+        {
+          "title": "Encapsulamento: protegendo o estado interno de um objeto",
+          "body": "Encapsulamento é o princípio de esconder os detalhes internos de implementação de um objeto, expondo apenas uma interface controlada para interagir com ele, evitando que código externo altere seu estado de formas inválidas ou inesperadas. Em Python, essa proteção é uma convenção, não uma restrição imposta pela linguagem: um atributo com um underline no início (self._saldo) sinaliza 'uso interno, não mexa de fora', e dois underlines (self.__saldo) ativa 'name mangling', dificultando (mas não impedindo) o acesso direto de fora da classe. A forma idiomática de controlar acesso é usar properties: o decorador @property transforma um método em um atributo de leitura (objeto.saldo em vez de objeto.saldo()), e @saldo.setter permite definir uma lógica de validação que roda toda vez que alguém tenta alterar o valor (objeto.saldo = novo_valor), por exemplo impedindo que o saldo se torne negativo. Isso permite validar e controlar mudanças de estado sem forçar quem usa a classe a chamar métodos especiais."
         }
       ],
       "questions": [
@@ -4741,6 +4873,10 @@
           "title": "Métodos estáticos",
           "body": "@staticmethod agrupa uma função relacionada à classe sem usar self ou cls.",
           "code": "@staticmethod\ndef preco_valido(valor):\n    return valor >= 0"
+        },
+        {
+          "title": "Métodos de classe e métodos estáticos",
+          "body": "Além dos métodos de instância comuns (que recebem self e operam sobre um objeto específico), Python tem dois outros tipos especiais de método. Um método de classe, marcado com o decorador @classmethod, recebe cls (a própria classe) em vez de self, e é usado tipicamente para criar 'construtores alternativos' — formas diferentes de criar uma instância, como Pessoa.de_string('Ana,25') que faz o parsing de uma string e retorna cls(nome, idade). Um método estático, marcado com @staticmethod, não recebe nem self nem cls: é essencially uma função comum que só está agrupada dentro da classe por estar tematicamente relacionada a ela, sem precisar acessar nada específico de uma instância ou da classe. Saber escolher entre método de instância, de classe e estático comunica claramente a intenção do código: métodos de instância operam sobre 'este objeto', métodos de classe operam sobre 'a classe como um todo' (incluindo subclasses), e métodos estáticos são utilitários relacionados por conveniência."
         }
       ],
       "questions": [
@@ -4882,6 +5018,10 @@
           "title": "Dependências explícitas",
           "body": "Receber colaboradores no construtor facilita testes e substituições.",
           "code": "class Servico:\n    def __init__(self, repositorio):\n        self.repositorio = repositorio"
+        },
+        {
+          "title": "Composição: construindo objetos a partir de outros objetos",
+          "body": "Composição é uma alternativa à herança para reaproveitar comportamento: em vez de uma classe 'ser um tipo de' outra (herança, como Cachorro(Animal)), uma classe simplesmente 'tem' outra classe como atributo, delegando parte do trabalho para ela. Por exemplo, uma classe Carro pode ter um atributo self.motor = Motor(), em vez de Carro herdar de Motor — um carro TEM um motor, não É um motor. Essa distinção ('is-a' vs 'has-a') é o critério clássico para decidir entre herança e composição: herança faz sentido quando existe uma relação de especialização genuína, composição quando um objeto é formado por outros objetos colaborando. Composição costuma resultar em designs mais flexíveis e menos acoplados, porque trocar o comportamento de uma parte (trocar o Motor por outro tipo de Motor) não exige alterar a hierarquia de classes inteira, apenas trocar qual objeto é atribuído ao atributo — por isso o princípio 'prefira composição a herança' é comum em boas práticas de design orientado a objetos."
         }
       ],
       "questions": [
@@ -5023,6 +5163,10 @@
           "title": "Validação posterior",
           "body": "__post_init__ executa após o inicializador gerado e pode validar regras.",
           "code": "def __post_init__(self):\n    if self.preco < 0:\n        raise ValueError('Preço inválido')"
+        },
+        {
+          "title": "Dataclasses: reduzindo código repetitivo em classes de dados",
+          "body": "Muitas classes existem apenas para agrupar dados relacionados, com pouco ou nenhum comportamento além de guardar e comparar atributos — e escrever manualmente o __init__, __repr__ (representação em texto) e __eq__ (comparação de igualdade) para essas classes é repetitivo e propenso a erro. O decorador @dataclass, do módulo dataclasses, gera automaticamente esses métodos a partir apenas da declaração dos atributos com suas anotações de tipo: @dataclass class Ponto: x: int; y: int já cria um __init__ que recebe x e y, um __repr__ legível (Ponto(x=1, y=2)) e um __eq__ que compara os valores dos atributos, não a identidade do objeto. É possível definir valores padrão diretamente (y: int = 0) e usar field(default_factory=list) para valores padrão mutáveis como listas, evitando o problema clássico de compartilhar a mesma lista mutável entre todas as instâncias. Dataclasses tornam classes simples de dados muito mais concisas, sem abrir mão de type hints e legibilidade."
         }
       ],
       "questions": [
@@ -5164,6 +5308,10 @@
           "title": "Igualdade",
           "body": "__eq__ define quando dois objetos representam o mesmo valor ou identidade.",
           "code": "def __eq__(self, outro):\n    if not isinstance(outro, Produto):\n        return NotImplemented\n    return self.codigo == outro.codigo"
+        },
+        {
+          "title": "Métodos especiais (dunder): integrando objetos aos operadores da linguagem",
+          "body": "Métodos especiais, também chamados de 'métodos mágicos' ou 'dunder' (double underscore, por começarem e terminarem com __), permitem que objetos de classes customizadas se comportem como tipos nativos do Python ao usar operadores e funções embutidas. __str__ define como o objeto aparece ao ser impresso com print() ou convertido com str(); __repr__ define uma representação mais técnica, usada no console interativo e em debugging. __eq__ define o que == significa para aquele objeto (por padrão, sem defini-lo, == compara identidade, não valores); __lt__, __gt__ e semelhantes definem comparações de ordem (<, >), permitindo usar sorted() em objetos customizados. __len__ permite usar len(objeto), __getitem__ permite acessar objeto[indice] como se fosse uma lista, e __add__ define o que + significa entre dois objetos daquela classe. Implementar esses métodos torna classes customizadas mais naturais de usar, integrando-as à sintaxe padrão da linguagem em vez de exigir métodos com nomes próprios para cada operação."
         }
       ],
       "questions": [
@@ -5305,6 +5453,10 @@
           "title": "Polimorfismo",
           "body": "O código cliente usa o contrato sem verificar o tipo concreto.",
           "code": "def gerar(exportador, dados):\n    return exportador.exportar(dados)"
+        },
+        {
+          "title": "Classes abstratas: definindo contratos que subclasses devem cumprir",
+          "body": "Uma classe abstrata define um 'contrato' — um conjunto de métodos que toda subclasse é obrigada a implementar — sem fornecer, ela mesma, uma implementação completa e utilizável. Em Python, isso é feito com o módulo abc: uma classe herda de ABC e marca métodos com o decorador @abstractmethod, o que impede que a classe abstrata (ou qualquer subclasse que não implemente TODOS os métodos abstratos) seja instanciada diretamente — tentar criar um objeto dela lança TypeError. Isso é útil para garantir que uma família de classes relacionadas (por exemplo, diferentes formas geométricas, todas com um método area()) sempre implemente a interface esperada, capturando o erro de esquecimento em tempo de execução (ou até antes, com ferramentas de análise estática) em vez de descobrir mais tarde que uma subclasse não tem o método necessário. Classes abstratas também podem ter métodos concretos normais, compartilhados por todas as subclasses, junto dos métodos abstratos que cada uma precisa implementar à sua maneira."
         }
       ],
       "questions": [
@@ -5446,6 +5598,10 @@
           "title": "Geradores",
           "body": "Uma função com yield cria um iterador sem controle manual de índice.",
           "code": "def pares(limite):\n    for numero in range(0, limite, 2):\n        yield numero"
+        },
+        {
+          "title": "Iteradores: o mecanismo por trás do for",
+          "body": "Todo laço for em Python, por trás dos panos, funciona através do protocolo de iteração: um objeto iterável (como uma lista) implementa __iter__(), que retorna um iterador; o iterador implementa __next__(), que retorna o próximo elemento a cada chamada, e lança a exceção especial StopIteration quando não há mais elementos, sinalizando ao for que deve parar. Entender esse protocolo explica comportamentos como por que não é possível 'reiniciar' um iterador já consumido, e por que percorrer o mesmo iterator duas vezes em laços aninhados pode dar resultado inesperado (a segunda vez ele já está 'vazio'). É possível criar classes iteráveis customizadas implementando __iter__ e __next__ manualmente, o que permite que objetos próprios sejam percorridos com for objeto in minha_classe:. A função embutida iter() obtém o iterador de um iterável manualmente, e next() avança o iterador um passo — o mesmo mecanismo que o for usa internamente a cada repetição."
         }
       ],
       "questions": [
@@ -5587,6 +5743,10 @@
           "title": "Testes",
           "body": "Teste resultados e mudanças de estado observáveis.",
           "code": "tarefa.concluir()\nassert tarefa.concluida is True"
+        },
+        {
+          "title": "Projeto orientado a objetos: juntando classes em um sistema coeso",
+          "body": "Um projeto orientado a objetos real vai além de definir uma classe isolada: envolve decidir como várias classes colaboram entre si para resolver um problema completo, aplicando os princípios já aprendidos — herança onde há especialização genuína, composição onde um objeto é formado por outros, encapsulamento para proteger o estado interno, e polimorfismo para permitir que código cliente trabalhe com diferentes tipos de forma uniforme. Um bom design orientado a objetos busca dar a cada classe uma única responsabilidade clara (o princípio da responsabilidade única): uma classe que gerencia estoque não deveria também cuidar de enviar e-mails de notificação, por exemplo. Modelar um domínio real — como um sistema de biblioteca, um carrinho de compras ou um jogo — exige identificar quais são as 'entidades' principais (livro, usuário, empréstimo), quais atributos e comportamentos cada uma tem, e como elas se relacionam (um Empréstimo relaciona um Usuário a um Livro). Esse exercício de modelagem é o que diferencia programar orientado a objetos de apenas usar a sintaxe de classes."
         }
       ],
       "questions": [
@@ -5728,6 +5888,10 @@
           "title": "Expressões geradoras",
           "body": "A sintaxe entre parênteses cria uma expressão geradora. Ela evita montar toda a coleção na memória antes do consumo.",
           "code": "quadrados = (n ** 2 for n in range(1, 5))\nprint(sum(quadrados))\n\n# O gerador é consumido durante a soma."
+        },
+        {
+          "title": "Geradores: produzindo valores sob demanda com yield",
+          "body": "Um gerador é uma função especial que, em vez de retornar todos os valores de uma vez com return, produz valores um de cada vez usando a palavra-chave yield, pausando sua execução entre cada valor e retomando de onde parou na próxima chamada. Isso é extremamente eficiente em memória: uma função geradora que processa um arquivo de milhões de linhas pode produzir uma linha processada por vez, sem nunca carregar o arquivo inteiro na memória, diferente de uma função que constrói e retorna uma lista completa. Chamar uma função geradora não executa seu código imediatamente — retorna um objeto gerador, que só avança quando iterado (em um for, ou chamando next() manualmente), lançando StopIteration quando os valores se esgotam. Expressões geradoras, escritas como (x**2 for x in range(1000000)) com parênteses em vez de colchetes, criam a versão 'geradora' de uma compreensão de lista, com a mesma vantagem de economia de memória. Geradores são a base de pipelines de processamento de dados eficientes em Python."
         }
       ],
       "questions": [
@@ -5869,6 +6033,10 @@
           "title": "Contexto e exceções",
           "body": "Use placeholders do logging para adiar a formatação. Dentro de except, logging.exception inclui automaticamente o traceback.",
           "code": "try:\n    total = 10 / 0\nexcept ZeroDivisionError:\n    logging.exception('Falha no cálculo do pedido %s', 42)"
+        },
+        {
+          "title": "Logs: registrando o que acontece dentro de um programa",
+          "body": "Usar print() para depurar funciona em scripts pequenos, mas não escala: não dá para desligar seletivamente, não tem níveis de importância, e some quando o programa termina. O módulo logging da biblioteca padrão resolve isso com um sistema estruturado de registro de eventos, com níveis de severidade crescente: DEBUG (detalhes técnicos para depuração), INFO (eventos normais do funcionamento), WARNING (algo inesperado mas não crítico), ERROR (uma operação falhou) e CRITICAL (o programa pode não conseguir continuar). Configurar um logger com logging.basicConfig(level=logging.INFO) define o nível mínimo que será exibido — mensagens abaixo desse nível são ignoradas, o que permite deixar logs DEBUG no código sem poluir a saída em produção, apenas mudando a configuração. Logs também podem ser direcionados para um arquivo em vez do console (útil para auditoria posterior) e incluir automaticamente timestamp, nome do módulo e nível, dando muito mais contexto do que um print() solto quando algo dá errado meses depois em produção."
         }
       ],
       "questions": [
@@ -6010,6 +6178,10 @@
           "title": "Testar exceções",
           "body": "assertRaises confirma que uma operação inválida levanta a exceção esperada. O teste documenta também o contrato de erro.",
           "code": "def dividir(a, b):\n    if b == 0:\n        raise ValueError('divisor zero')\n    return a / b\n\nwith self.assertRaises(ValueError):\n    dividir(10, 0)"
+        },
+        {
+          "title": "Testes automatizados: garantindo que o código continua funcionando",
+          "body": "Um teste automatizado é um pequeno programa que executa parte do seu código e verifica automaticamente se o resultado é o esperado, sem precisar de um humano testando manualmente toda vez. Isso é essencial porque, à medida que um projeto cresce, é impossível lembrar de testar manualmente todas as funcionalidades toda vez que algo muda — um teste automatizado detecta imediatamente se uma alteração quebrou um comportamento que funcionava antes (uma 'regressão'). O módulo unittest, da biblioteca padrão, organiza testes em classes que herdam de TestCase, com métodos que começam com test_ (executados automaticamente pelo runner de testes) e usam asserções como self.assertEqual(resultado, esperado) para verificar o resultado. Um bom teste segue o padrão Arrange-Act-Assert: primeiro prepara os dados de entrada, depois executa a função sendo testada, e por fim verifica se o resultado bate com o esperado. Escrever testes desde o início de um projeto, e não só no final, é o que permite refatorar código com confiança, sabendo que qualquer quebra será detectada."
         }
       ],
       "questions": [
@@ -6151,6 +6323,10 @@
           "title": "Aliases e dados estruturados",
           "body": "Aliases dão nome a tipos complexos. TypedDict descreve chaves esperadas em dicionários usados como registros.",
           "code": "from typing import TypedDict\n\nclass Usuario(TypedDict):\n    nome: str\n    ativo: bool\n\ndef exibir(usuario: Usuario) -> str:\n    return usuario['nome']"
+        },
+        {
+          "title": "Type hints: anotando tipos para clareza e verificação estática",
+          "body": "Type hints (dicas de tipo) permitem declarar explicitamente o tipo esperado de parâmetros, retornos e variáveis, mesmo o Python continuando dinamicamente tipado por baixo: def somar(a: int, b: int) -> int: indica que a e b devem ser inteiros e a função retorna um inteiro. É importante entender que o Python NÃO impõe esses tipos em tempo de execução por padrão — nada impede de chamar somar('a', 'b') e receber um erro só quando o código tentar somar as strings. O valor real dos type hints vem de ferramentas externas de verificação estática, como mypy, que analisam o código ANTES de executá-lo e apontam incompatibilidades de tipo, pegando bugs antes mesmo de rodar o programa. Tipos compostos usam o módulo typing: list[int] para lista de inteiros, dict[str, int] para dicionário, Optional[str] (ou str | None) para um valor que pode ser string ou None. Type hints também servem como documentação viva, tornando muito mais rápido entender o que uma função espera sem precisar ler toda sua implementação."
         }
       ],
       "questions": [
@@ -6292,6 +6468,10 @@
           "title": "Corrija a causa",
           "body": "Uma boa correção explica por que o erro ocorreu e inclui um teste que impediria seu retorno.",
           "code": "def test_divisao_por_zero():\n    with pytest.raises(ValueError):\n        dividir(10, 0)"
+        },
+        {
+          "title": "Depuração: encontrando e corrigindo bugs de forma sistemática",
+          "body": "Depurar não é adivinhar aleatoriamente onde está o problema — é um processo sistemático de reduzir o espaço de busca até isolar a causa exata de um comportamento errado. Ler o traceback completo com atenção é o primeiro passo: ele mostra a cadeia exata de chamadas até o erro e a linha específica onde ocorreu, além do tipo de exceção, que já indica a natureza do problema (TypeError, KeyError, IndexError revelam categorias diferentes de bug). O debugger embutido do Python, pdb, permite pausar a execução em um ponto específico com breakpoint(), inspecionar o valor de qualquer variável naquele momento exato, executar código linha a linha com next() e continuar a execução normal com continue — muito mais eficiente que adicionar e remover prints manualmente. Uma técnica fundamental é a bisseção: quando não se sabe onde está o bug, adicionar verificações no meio do código para descobrir se o problema está na primeira ou na segunda metade, repetindo o processo até isolar a linha exata — o mesmo princípio de busca binária aplicado à investigação de bugs."
         }
       ],
       "questions": [
@@ -6433,6 +6613,10 @@
           "title": "Exceções esperadas",
           "body": "pytest.raises confirma que uma entrada inválida produz a falha planejada.",
           "code": "with pytest.raises(ValueError):\n    criar_produto('', -1)"
+        },
+        {
+          "title": "Pytest na prática: testes mais simples e poderosos",
+          "body": "pytest é a biblioteca de testes mais usada no ecossistema Python, e substitui grande parte da verbosidade do unittest por uma sintaxe muito mais direta: em vez de classes obrigatórias e self.assertEqual(), um teste pytest é simplesmente uma função começando com test_ que usa o comando assert nativo do Python: def test_soma(): assert somar(2, 3) == 5. Quando um assert falha, o pytest mostra automaticamente os valores envolvidos na comparação, sem precisar escrever mensagens de erro manualmente. Testes são organizados em arquivos que começam com test_ ou terminam com _test.py, e o comando pytest no terminal descobre e executa todos automaticamente, sem precisar registrar cada teste manualmente. pytest também facilita testar que uma exceção é lançada corretamente com pytest.raises(ValueError): dentro de um bloco with, verificando não só que o código falha, mas que falha do jeito esperado. Essa combinação de simplicidade sintática e recursos poderosos é o motivo do pytest ter se tornado o padrão de fato para testes em projetos Python profissionais."
         }
       ],
       "questions": [
@@ -6574,6 +6758,10 @@
           "title": "Escopo controla duração",
           "body": "Fixtures de função isolam testes; escopos maiores servem apenas quando o recurso é caro e seguro para compartilhar.",
           "code": "@pytest.fixture(scope='function')\ndef repositorio():\n    return RepositorioMemoria()"
+        },
+        {
+          "title": "Fixtures e parametrização: testes reutilizáveis e abrangentes",
+          "body": "Fixtures do pytest resolvem o problema de preparar dados ou recursos repetidos entre vários testes: uma função marcada com @pytest.fixture prepara algo (uma conexão de banco de teste, um objeto de exemplo, um arquivo temporário) e qualquer teste que declare essa fixture como parâmetro recebe automaticamente o valor preparado, sem repetir a lógica de setup em cada teste. Fixtures também podem fazer limpeza automática depois do teste usando yield em vez de return: tudo antes do yield roda antes do teste, e tudo depois roda depois, mesmo se o teste falhar. Parametrização, com o decorador @pytest.mark.parametrize, permite rodar o MESMO teste várias vezes com conjuntos diferentes de entrada e saída esperada, evitando copiar e colar o mesmo teste várias vezes só mudando os valores: @pytest.mark.parametrize('entrada,esperado', [(2,4), (3,9), (4,16)]) roda o teste três vezes automaticamente. Essa combinação permite cobrir muito mais casos (incluindo casos extremos como valores negativos, zero ou strings vazias) com pouco código repetido, aumentando significativamente a qualidade da cobertura de testes."
         }
       ],
       "questions": [
@@ -6715,6 +6903,10 @@
           "title": "Patch deve atingir o nome usado",
           "body": "Substitua a referência no módulo que executa a chamada, não apenas onde a função foi originalmente definida.",
           "code": "@patch('app.servico.buscar_api')\ndef test_servico(mock_buscar):\n    mock_buscar.return_value = {'ok': True}"
+        },
+        {
+          "title": "Dublês e mocks: testando código que depende de coisas externas",
+          "body": "Testar uma função que faz uma chamada de rede real, acessa um banco de dados de verdade ou lê um arquivo do disco é lento, instável (depende de internet, do serviço externo estar no ar) e difícil de reproduzir em casos de erro específicos. Dublês de teste (test doubles) resolvem isso substituindo essas dependências externas por versões falsas e controladas durante o teste. Um mock (do módulo unittest.mock) é um objeto que simula o comportamento de outro objeto: você pode configurar exatamente o que ele deve retornar quando chamado, e depois verificar se ele foi chamado, quantas vezes e com quais argumentos, usando patch() para substituir temporariamente a dependência real (como uma chamada requests.get) por um mock durante a execução do teste. Isso permite testar como sua função reage a diferentes cenários da dependência externa — sucesso, erro de rede, resposta inesperada — sem depender que esses cenários realmente aconteçam no mundo real, tornando os testes rápidos, determinísticos e capazes de cobrir casos raros difíceis de reproduzir de outra forma."
         }
       ],
       "questions": [
@@ -6856,6 +7048,10 @@
           "title": "Linters encontram problemas",
           "body": "Ruff e outras ferramentas detectam imports não usados, nomes problemáticos e erros comuns.",
           "code": "ruff check src tests\nruff format --check src tests"
+        },
+        {
+          "title": "Estilo e formatação: escrevendo código consistente e legível",
+          "body": "Código é lido muito mais vezes do que é escrito, e seguir um estilo consistente reduz drasticamente o esforço mental de quem precisa entendê-lo depois (incluindo você mesmo, meses depois). A PEP 8 é o guia de estilo oficial da comunidade Python, definindo convenções como: nomes de variáveis e funções em snake_case (minúsculas com underline), nomes de classes em PascalCase, constantes em MAIUSCULAS_COM_UNDERLINE, linhas com no máximo cerca de 79-99 caracteres, e dois espaços em branco entre definições de função no nível do módulo. Em vez de memorizar e aplicar essas regras manualmente, ferramentas automáticas fazem esse trabalho: formatadores como black reescrevem o código automaticamente seguindo um estilo consistente, e linters como flake8 ou ruff apontam violações de estilo e problemas potenciais (variáveis não usadas, imports desnecessários) sem alterar o código sozinhos. Integrar essas ferramentas ao fluxo de trabalho (rodando antes de cada commit, por exemplo) garante que todo o time mantenha um padrão consistente sem depender de revisão manual repetitiva de estilo."
         }
       ],
       "questions": [
@@ -6997,6 +7193,10 @@
           "title": "Exemplo documenta nomes",
           "body": "Um .env.example lista variáveis necessárias usando valores fictícios.",
           "code": "API_TOKEN=coloque_seu_token_aqui\nAPP_MODE=development"
+        },
+        {
+          "title": "Configuração e segredos: separando dados sensíveis do código",
+          "body": "Senhas de banco de dados, chaves de API e outros dados sensíveis nunca devem ser escritos diretamente no código-fonte, especialmente se esse código for versionado em um repositório Git — uma vez commitado, um segredo fica no histórico permanentemente, mesmo que seja removido depois. A prática padrão é armazenar esses valores em variáveis de ambiente do sistema operacional, lidas em Python com os.environ.get('NOME_DA_VARIAVEL') ou, de forma mais conveniente durante o desenvolvimento, em um arquivo .env (usando a biblioteca python-dotenv), que carrega essas variáveis automaticamente no ambiente do programa. Esse arquivo .env NUNCA deve ser commitado no controle de versão — ele é listado explicitamente no .gitignore, enquanto um arquivo .env.example (sem os valores reais, só os nomes das variáveis esperadas) é commitado para documentar quais configurações o projeto precisa. Separar configuração (que muda entre ambientes: desenvolvimento, teste, produção) do código (que deveria ser idêntico em qualquer ambiente) é um princípio fundamental de aplicações profissionais bem estruturadas."
         }
       ],
       "questions": [
@@ -7138,6 +7338,10 @@
           "title": "Entrada explícita",
           "body": "Um módulo __main__ ou script configurado deixa claro como iniciar a aplicação.",
           "code": "def main():\n    print('Aplicação iniciada')\n\nif __name__ == '__main__':\n    main()"
+        },
+        {
+          "title": "Estrutura de projeto: organizando arquivos à medida que o código cresce",
+          "body": "Um script único de algumas dezenas de linhas pode viver em um único arquivo .py, mas à medida que um projeto cresce, organizar o código em uma estrutura de pastas clara se torna essencial para manter a sanidade. Um padrão comum em projetos Python é ter uma pasta com o nome do pacote contendo o código-fonte real (separada de testes, documentação e arquivos de configuração), uma pasta tests/ espelhando a estrutura do código-fonte com os testes correspondentes, um arquivo README explicando o projeto, e arquivos de configuração como pyproject.toml na raiz definindo dependências e metadados. Dentro do código-fonte, separar responsabilidades em módulos diferentes (um módulo para modelos de dados, outro para lógica de negócio, outro para acesso a dados externos) evita arquivos gigantes fazendo tudo. Um arquivo __init__.py em uma pasta a transforma em um pacote importável, e pode ser usado para expor de forma organizada quais partes do pacote são a 'interface pública' pretendida, escondendo detalhes de implementação interna dos módulos individuais."
         }
       ],
       "questions": [
@@ -7279,6 +7483,10 @@
           "title": "Falha deve bloquear entrega",
           "body": "Se um teste essencial falha, corrija a causa antes do merge e preserve o log para diagnóstico.",
           "code": "pytest -q\n# saída diferente de zero bloqueia a etapa"
+        },
+        {
+          "title": "Qualidade contínua: automatizando verificações a cada mudança",
+          "body": "Integração contínua (CI) é a prática de automatizar a execução de testes, linters e outras verificações de qualidade toda vez que código novo é enviado a um repositório compartilhado, detectando problemas imediatamente em vez de descobri-los muito depois, já em produção. Ferramentas como GitHub Actions permitem definir um 'workflow' (um arquivo de configuração) que roda automaticamente em cada push ou pull request: instala as dependências do projeto, roda a suíte de testes com pytest, verifica formatação e estilo com linters, e opcionalmente mede cobertura de testes (qual porcentagem do código é efetivamente exercitada pelos testes existentes). Se qualquer uma dessas etapas falhar, o pull request é marcado como 'falho', sinalizando à equipe que aquela mudança não deve ser integrada até o problema ser corrigido, funcionando como uma rede de segurança automática antes que código quebrado chegue à branch principal. Qualidade contínua transforma verificações que dependeriam de disciplina manual individual em um processo automático e obrigatório para todo o time."
         }
       ],
       "questions": [
@@ -7420,6 +7628,10 @@
           "title": "Dependências reproduzíveis",
           "body": "Um arquivo de requisitos registra pacotes necessários. Fixar versões aumenta a previsibilidade, mas atualizações devem ser revisadas regularmente.",
           "code": "python -m pip freeze > requirements.txt\npython -m pip install -r requirements.txt\n\n# exemplo\npacote-exemplo==1.4.0"
+        },
+        {
+          "title": "Ambientes e pacotes: isolando dependências entre projetos",
+          "body": "Cada projeto Python normalmente depende de bibliotecas externas específicas, e instalá-las globalmente no sistema causa um problema sério: dois projetos diferentes podem precisar de versões incompatíveis da mesma biblioteca, e uma atualização em um projeto pode quebrar silenciosamente outro que compartilha o mesmo ambiente Python global. Ambientes virtuais resolvem isso criando uma instalação isolada de Python e suas bibliotecas para cada projeto: python -m venv .venv cria um ambiente virtual em uma pasta local, e ativá-lo (source .venv/bin/activate no Linux/Mac, ou .venv\\Scripts\\activate no Windows) faz com que instalações via pip afetem apenas aquele ambiente, sem interferir no sistema ou em outros projetos. O comando pip install biblioteca instala uma dependência dentro do ambiente ativo, e pip freeze > requirements.txt gera um arquivo listando exatamente as versões instaladas, permitindo que qualquer outra pessoa recrie o mesmo ambiente exato com pip install -r requirements.txt, garantindo reprodutibilidade entre máquinas diferentes."
         }
       ],
       "questions": [
@@ -7561,6 +7773,10 @@
           "title": "Falhas e limites",
           "body": "Rede pode falhar ou demorar. Defina timeout, trate erros HTTP e valide campos antes de usá-los. Não exponha chaves de API no código público.",
           "code": "from urllib.error import HTTPError, URLError\n\ntry:\n    with urlopen(url, timeout=5) as resposta:\n        dados = json.load(resposta)\nexcept HTTPError as erro:\n    print('HTTP', erro.code)\nexcept URLError:\n    print('Falha de rede')"
+        },
+        {
+          "title": "APIs HTTP: consumindo serviços web com a biblioteca requests",
+          "body": "Uma API HTTP permite que programas se comuniquem pela internet trocando requisições e respostas, geralmente no formato JSON. A biblioteca requests (instalada via pip, não faz parte da biblioteca padrão) é a ferramenta mais usada em Python para fazer essas chamadas: requests.get('https://api.exemplo.com/dados') envia uma requisição GET (para buscar dados) e retorna um objeto de resposta com atributos úteis como .status_code (200 significa sucesso, 404 significa não encontrado, 500 indica erro no servidor) e .json() que converte automaticamente o corpo da resposta de JSON para um dicionário Python. Requisições POST, usadas para enviar dados (criar um recurso novo), são feitas com requests.post(url, json=dados), passando o corpo da requisição diretamente como dicionário. É essencial verificar o status_code (ou usar response.raise_for_status(), que lança uma exceção automaticamente se a resposta indicar erro) antes de assumir que a chamada teve sucesso, e envolver chamadas de rede em try/except para tratar falhas de conexão, timeout ou indisponibilidade do serviço remoto."
         }
       ],
       "questions": [
@@ -7702,6 +7918,10 @@
           "title": "Logs e segurança",
           "body": "Automação profissional precisa registrar o que aconteceu e evitar sobrescrever dados sem controle.",
           "code": "import logging\nlogging.basicConfig(level=logging.INFO)\nlogging.info('Processo iniciado')"
+        },
+        {
+          "title": "Automação com Python: substituindo tarefas manuais repetitivas",
+          "body": "Uma das aplicações mais práticas de Python é automatizar tarefas repetitivas que, feitas manualmente, consomem tempo e são propensas a erro humano: renomear centenas de arquivos seguindo um padrão, organizar arquivos em pastas por tipo ou data, extrair informações específicas de vários documentos, ou combinar dados de múltiplas planilhas em um relatório único. O módulo os e pathlib permitem navegar e manipular o sistema de arquivos programaticamente (listar arquivos de uma pasta, criar diretórios, mover e renomear arquivos), enquanto módulos específicos lidam com formatos de arquivo particulares (csv para planilhas simples, openpyxl para Excel real). Um script de automação bem construído deve ser cuidadoso antes de fazer alterações destrutivas (apagar ou sobrescrever arquivos): é boa prática primeiro simular a operação imprimindo o que SERIA feito (um 'dry run'), revisar a saída, e só então executar de verdade, além de sempre trabalhar em cópias de segurança dos dados originais até confirmar que a automação funciona corretamente."
         }
       ],
       "questions": [
@@ -7843,6 +8063,10 @@
           "title": "Códigos de saída",
           "body": "Uma CLI comunica sucesso com zero e falhas com código diferente de zero.",
           "code": "def main():\n    return 0\n\nraise SystemExit(main())"
+        },
+        {
+          "title": "CLI com argparse: criando programas com linha de comando profissional",
+          "body": "Programas de linha de comando (CLI) reais raramente recebem entrada só via input() interativo — eles aceitam argumentos passados diretamente na chamada, como script.py --arquivo dados.csv --verbose. O módulo argparse, da biblioteca padrão, constrói essa interface de forma estruturada: um ArgumentParser é criado, e add_argument() define cada argumento esperado, podendo ser posicional (obrigatório, sem prefixo) ou opcional (com -- na frente, podendo ter um valor padrão com default= e um tipo esperado com type=int, por exemplo). parser.parse_args() processa os argumentos realmente passados na linha de comando e retorna um objeto com cada argumento acessível como atributo. Uma vantagem enorme do argparse é gerar automaticamente uma mensagem de ajuda completa e formatada quando o usuário passa --help, listando todos os argumentos disponíveis, seus tipos e descrições (definidas com help='texto explicativo' em cada add_argument), sem que o desenvolvedor precise escrever essa documentação manualmente — ela fica sempre sincronizada com o código real."
         }
       ],
       "questions": [
@@ -7984,6 +8208,10 @@
           "title": "Cabeçalhos carregam metadados",
           "body": "Content-Type informa formato e Authorization costuma transportar credenciais.",
           "code": "Content-Type: application/json\nAuthorization: Bearer TOKEN"
+        },
+        {
+          "title": "HTTP na prática: métodos, cabeçalhos e códigos de status",
+          "body": "Entender o protocolo HTTP em profundidade é essencial para trabalhar bem com APIs. Os principais métodos (verbos) HTTP têm significados convencionais: GET busca dados sem alterá-los, POST cria um novo recurso, PUT substitui um recurso inteiro existente, PATCH atualiza parcialmente um recurso, e DELETE remove um recurso. Os códigos de status HTTP são agrupados por faixa: 2xx indica sucesso (200 OK, 201 Created), 3xx indica redirecionamento, 4xx indica erro do cliente (400 requisição malformada, 401 não autenticado, 403 sem permissão, 404 não encontrado), e 5xx indica erro no servidor (500 erro interno). Cabeçalhos (headers) carregam metadados da requisição e resposta: Content-Type indica o formato do corpo (application/json, por exemplo), e Authorization carrega credenciais como um token de API, geralmente passado como headers={'Authorization': f'Bearer {token}'} na chamada com requests. Entender essa estrutura padronizada permite trabalhar com qualquer API HTTP do mundo, não apenas decorar chamadas específicas de uma biblioteca."
         }
       ],
       "questions": [
@@ -8125,6 +8353,10 @@
           "title": "Retry precisa de limite",
           "body": "Repita apenas falhas temporárias, com atraso crescente e número máximo de tentativas.",
           "code": "for tentativa in range(3):\n    try:\n        return buscar()\n    except ErroTemporario:\n        time.sleep(2 ** tentativa)"
+        },
+        {
+          "title": "Cliente de API resiliente: lidando com falhas de rede",
+          "body": "Chamadas de rede falham por muitos motivos fora do controle do seu código: o servidor pode estar temporariamente sobrecarregado, a conexão pode cair, ou pode haver um limite de requisições (rate limit) sendo excedido. Um cliente de API resiliente não assume que toda chamada terá sucesso na primeira tentativa: implementa retry (nova tentativa) automático para falhas transitórias, geralmente com backoff exponencial — esperando um tempo crescente entre tentativas (1s, depois 2s, depois 4s) em vez de tentar novamente imediatamente e sobrecarregar ainda mais um servidor já com problemas. É importante distinguir erros que valem a pena tentar de novo (timeout, erro 503 de serviço indisponível) de erros que não vão se resolver tentando de novo (400 de requisição malformada, 401 de autenticação inválida) — insistir nesses últimos é desperdício e pode até ser interpretado como abuso pela API. Definir um timeout explícito em toda chamada (requests.get(url, timeout=10)) evita que o programa fique travado indefinidamente esperando uma resposta que nunca chega."
         }
       ],
       "questions": [
@@ -8266,6 +8498,10 @@
           "title": "Use para operações de espera",
           "body": "Asyncio é útil em rede e I/O. Cálculo pesado pode bloquear o loop de eventos.",
           "code": "async def main():\n    resultados = await coletar()\n\nasyncio.run(main())"
+        },
+        {
+          "title": "Asyncio e concorrência: fazendo várias coisas 'ao mesmo tempo'",
+          "body": "Quando um programa passa a maior parte do tempo esperando por operações de entrada/saída (rede, disco, banco de dados) em vez de processar ativamente, executar essas operações uma após a outra desperdiça tempo esperando. Asyncio permite escrever código concorrente: enquanto uma operação está esperando (por exemplo, aguardando a resposta de uma chamada de rede), o programa pode começar outra operação em vez de ficar parado. Funções assíncronas são declaradas com async def, e dentro delas, await pausa a execução daquela função especificamente (sem bloquear o programa inteiro) até uma operação assíncrona terminar. Múltiplas tarefas assíncronas podem ser executadas concorrentemente com asyncio.gather(tarefa1, tarefa2, tarefa3), o que pode reduzir drasticamente o tempo total quando, por exemplo, buscando dados de dez APIs diferentes: em vez de esperar cada uma terminar antes de começar a próxima (dez vezes o tempo de uma chamada), todas são iniciadas quase simultaneamente. É importante notar que asyncio ajuda com espera de I/O, não com processamento pesado de CPU, que precisa de multiprocessing."
         }
       ],
       "questions": [
@@ -8407,6 +8643,10 @@
           "title": "Salve em novo arquivo",
           "body": "Automação segura preserva a origem e valida totais antes de entregar a saída.",
           "code": "wb.save('saida_validada.xlsx')\nassert total_lido == total_gravado"
+        },
+        {
+          "title": "Automação de planilhas: manipulando Excel programaticamente",
+          "body": "Planilhas Excel (.xlsx) são um formato onipresente no mundo corporativo, e a biblioteca openpyxl permite ler, criar e modificar esses arquivos programaticamente sem precisar do Excel instalado. openpyxl.load_workbook('arquivo.xlsx') abre uma planilha existente, e wb.active (ou wb['NomeDaAba']) acessa uma aba específica, permitindo ler valores de células individuais (planilha['A1'].value) ou percorrer linhas inteiras com planilha.iter_rows(values_only=True). Para criar uma planilha nova, Workbook() cria um arquivo vazio, ws.append([valor1, valor2, valor3]) adiciona uma linha inteira de uma vez, e wb.save('novo_arquivo.xlsx') salva o resultado no disco. Automatizar planilhas é especialmente valioso para consolidar relatórios recorrentes (juntar dados de vários arquivos mensais em um só), aplicar formatação consistente automaticamente, ou extrair dados de planilhas complexas para processar em outro formato — tarefas que, feitas manualmente toda semana ou mês, consomem tempo considerável e são fonte comum de erros de copiar e colar."
         }
       ],
       "questions": [
@@ -8548,6 +8788,10 @@
           "title": "Regra fica fora da tela",
           "body": "A interface coleta dados e chama serviços. Validações e persistência não devem depender dos widgets.",
           "code": "def ao_salvar():\n    try:\n        servico.salvar(entrada.get())\n    except ValueError as erro:\n        mensagem.config(text=str(erro))"
+        },
+        {
+          "title": "Interface com Tkinter: criando janelas e telas gráficas",
+          "body": "Tkinter é a biblioteca gráfica (GUI) incluída na instalação padrão do Python, permitindo criar aplicações com janelas, botões, campos de texto e outros elementos visuais sem instalar nada extra. Toda aplicação Tkinter começa criando uma janela principal com tk.Tk(), sobre a qual elementos (widgets) são adicionados: um Label exibe texto, um Button executa uma função quando clicado (passada via command=minha_funcao), um Entry permite ao usuário digitar texto, e um Frame agrupa outros widgets para organizar o layout. Os widgets precisam ser posicionados na janela com um gerenciador de layout: .pack() empilha widgets de forma simples, .grid() organiza em linhas e colunas como uma tabela, oferecendo mais controle. O aplicativo só realmente aparece e responde a cliques depois de chamar janela.mainloop(), que inicia o 'loop de eventos' — um laço interno que fica esperando e respondendo a interações do usuário (cliques, digitação) até a janela ser fechada. Esse modelo de programação orientada a eventos é diferente de scripts que rodam do início ao fim de forma linear."
         }
       ],
       "questions": [
@@ -8689,6 +8933,10 @@
           "title": "Build precisa ser testado",
           "body": "Teste o artefato fora do ambiente de desenvolvimento e registre versão e sistema alvo.",
           "code": "dist/\n  MeuApp.exe\n# testar abertura, entrada, saída e erros"
+        },
+        {
+          "title": "Executável com PyInstaller: distribuindo programas Python sem Python",
+          "body": "Um script Python normalmente só roda em uma máquina que já tem Python instalado, o que é uma barreira para distribuir um programa para usuários finais comuns, que não têm (nem deveriam precisar ter) Python configurado. O PyInstaller resolve isso empacotando o script, o interpretador Python necessário e todas as bibliotecas usadas em um único arquivo executável (.exe no Windows), que roda de forma independente em qualquer máquina do mesmo sistema operacional, sem instalação prévia de nada. O comando básico pyinstaller --onefile script.py gera esse executável dentro de uma pasta dist/, empacotando tudo em um arquivo só (a flag --onefile), embora isso deixe o arquivo maior e um pouco mais lento para iniciar, já que precisa descompactar a si mesmo temporariamente a cada execução. É importante notar que o executável gerado só funciona no mesmo sistema operacional em que foi criado — para distribuir para Windows, Mac e Linux, é preciso gerar (ou usar serviços de build) um executável separado em cada sistema."
         }
       ],
       "questions": [
@@ -8830,6 +9078,10 @@
           "title": "Entrega precisa de retorno",
           "body": "Mantenha o artefato anterior e saiba restaurá-lo se a nova versão falhar.",
           "code": "releases/\n  v0.9.0/\n  v1.0.0/\n# validar antes de substituir"
+        },
+        {
+          "title": "Entrega de uma aplicação: do código ao usuário final",
+          "body": "Entregar uma aplicação real envolve muito mais do que o código funcionar na máquina de quem desenvolveu: é preciso pensar em como o usuário final vai instalar, configurar e executar o programa sem precisar entender detalhes técnicos internos. Isso inclui documentar claramente os requisitos (que versão do Python é necessária, quais dependências externas precisam de instalação), fornecer instruções de instalação passo a passo (ou, melhor ainda, um executável pronto via PyInstaller ou similar), tratar erros de forma amigável (uma mensagem clara em vez de um traceback técnico assustador quando algo dá errado em uma máquina do usuário), e considerar como o programa vai lidar com configurações específicas daquele ambiente (caminhos de arquivo diferentes, permissões, ausência de internet). Versionamento também importa: numerar releases (v1.0, v1.1) permite comunicar claramente o que mudou entre versões, e manter um changelog (registro de mudanças) ajuda tanto usuários quanto a própria equipe de desenvolvimento a acompanhar a evolução do projeto ao longo do tempo."
         }
       ],
       "questions": [
@@ -8971,6 +9223,10 @@
           "title": "Módulo ou programa",
           "body": "O bloco __main__ permite executar uma entrada apenas quando o arquivo é iniciado diretamente.",
           "code": "def main():\n    print('Executando')\n\nif __name__ == '__main__':\n    main()"
+        },
+        {
+          "title": "Terminal e scripts: automatizando o próprio ambiente de trabalho",
+          "body": "Scripts Python podem interagir diretamente com o terminal e o sistema operacional para automatizar tarefas do dia a dia de desenvolvimento: o módulo sys dá acesso a argumentos de linha de comando (sys.argv), à entrada e saída padrão, e permite encerrar o programa com um código de saída específico (sys.exit(1) sinaliza erro para outros programas que chamarem o script). O módulo os fornece variáveis de ambiente (os.environ), permite executar comandos do sistema e navegar o sistema de arquivos. Tornar um script executável diretamente do terminal (sem digitar 'python' na frente) envolve adicionar uma linha shebang (#!/usr/bin/env python3) no topo do arquivo em sistemas Unix, e ajustar permissões de execução. Scripts de automação do próprio fluxo de trabalho — como um script que roda os testes, formata o código e faz commit em sequência — são chamados de scripts de build ou tooling, e são comuns em projetos profissionais para padronizar tarefas repetitivas que toda a equipe precisa executar da mesma forma."
         }
       ],
       "questions": [
@@ -9112,6 +9368,10 @@
           "title": "Cópia profunda",
           "body": "copy.deepcopy percorre estruturas aninhadas e cria cópias independentes quando necessário.",
           "code": "from copy import deepcopy\nb = deepcopy(a)"
+        },
+        {
+          "title": "Mutabilidade e cópias: entendendo referências compartilhadas",
+          "body": "Um dos bugs mais comuns e confusos para quem está aprendendo Python vem de não entender a diferença entre copiar uma referência e copiar um objeto de verdade. Ao escrever lista_b = lista_a, você NÃO cria uma nova lista — ambos os nomes passam a apontar para o MESMO objeto lista na memória, então alterar lista_b (com .append(), por exemplo) também altera o que lista_a mostra, porque são a mesma coisa vista por dois nomes diferentes. Para criar uma cópia independente de verdade, é preciso usar .copy() ou a fatia completa [:] (lista_b = lista_a.copy()), o que cria um novo objeto com os mesmos elementos. Esse cuidado é ainda mais crítico com listas ANINHADAS (listas dentro de listas): uma cópia 'rasa' (shallow copy, o comportamento padrão de .copy()) copia a lista externa mas mantém as listas internas compartilhadas — para uma cópia totalmente independente em todos os níveis, é preciso usar copy.deepcopy() do módulo copy. Esse mesmo comportamento de compartilhamento de referência também explica por que argumentos mutáveis padrão em funções (def f(lista=[]):) são uma armadilha clássica: a mesma lista é reutilizada entre chamadas diferentes."
         }
       ],
       "questions": [
@@ -9253,6 +9513,10 @@
           "title": "Nem todo loop precisa de recursão",
           "body": "Python possui limite de recursão. Iteração costuma ser melhor para repetições lineares grandes.",
           "code": "def contagem(n):\n    while n:\n        n -= 1"
+        },
+        {
+          "title": "Recursão: funções que chamam a si mesmas",
+          "body": "Uma função recursiva é uma função que chama a si mesma para resolver um problema, quebrando-o em versões menores do mesmo problema até chegar a um caso tão simples que pode ser resolvido diretamente — o chamado caso base. Por exemplo, calcular o fatorial de n pode ser definido recursivamente: fatorial(n) = n * fatorial(n-1), com o caso base fatorial(0) = 1 interrompendo a cadeia de chamadas. Toda função recursiva PRECISA de um caso base bem definido; sem ele, a função chamaria a si mesma indefinidamente até estourar a pilha de chamadas do Python (RecursionError), que tem um limite máximo de profundidade (geralmente 1000, ajustável mas não recomendado aumentar sem cuidado). Recursão é especialmente natural para problemas que já têm uma estrutura recursiva embutida, como percorrer árvores (uma pasta que contém subpastas que contêm subpastas), ou algoritmos como busca binária e quicksort. Embora elegante, recursão pode ser menos eficiente em memória que uma solução iterativa equivalente (com while ou for), porque cada chamada empilha um novo quadro de execução na memória até o caso base ser alcançado."
         }
       ],
       "questions": [
@@ -9394,6 +9658,10 @@
           "title": "Medição confirma hipóteses",
           "body": "Complexidade orienta a escolha e timeit compara implementações em cenários controlados.",
           "code": "from timeit import timeit\nprint(timeit('sum(range(100))', number=1000))"
+        },
+        {
+          "title": "Algoritmos e complexidade: medindo a eficiência do código",
+          "body": "Complexidade algorítmica, expressa na notação Big O, descreve como o tempo de execução (ou uso de memória) de um algoritmo cresce à medida que o tamanho da entrada aumenta, independente de detalhes específicos de hardware. O(1) significa tempo constante, independente do tamanho da entrada (acessar um item de dicionário pela chave); O(n) significa que o tempo cresce proporcionalmente ao tamanho da entrada (percorrer uma lista uma vez); O(n²) significa que o tempo cresce com o quadrado do tamanho (laços aninhados percorrendo a mesma coleção, comum em comparações ingênuas entre todos os pares de elementos); O(log n) cresce muito mais devagar, típico de algoritmos que dividem o problema pela metade a cada passo, como busca binária. Entender essas classes explica na prática por que verificar 'x in lista' é O(n) (precisa checar item por item no pior caso) enquanto 'x in um_set' ou 'x in um_dict' é O(1) em média (usa uma estrutura de hash), o que faz diferença real de performance ao escolher qual estrutura de dados usar em código que processa grandes volumes de dados."
         }
       ],
       "questions": [
@@ -9535,6 +9803,10 @@
           "title": "deque trabalha nas pontas",
           "body": "deque possui appendleft e popleft eficientes, sendo adequada para filas.",
           "code": "from collections import deque\nfila = deque(['Ana'])\nfila.append('Bia')\nprimeira = fila.popleft()"
+        },
+        {
+          "title": "Collections: estruturas de dados especializadas da biblioteca padrão",
+          "body": "O módulo collections estende as estruturas de dados básicas do Python com versões especializadas para necessidades comuns. Counter conta ocorrências de elementos automaticamente: Counter(['a','b','a','c','a']) retorna algo como {'a': 3, 'b': 1, 'c': 1}, e tem métodos úteis como .most_common(3) para os elementos mais frequentes, eliminando laços manuais de contagem. defaultdict cria um dicionário que gera automaticamente um valor padrão (via uma função fornecida, como list ou int) quando uma chave inexistente é acessada, evitando checagens repetitivas de 'if chave not in dicionario' antes de adicionar a um valor. deque (double-ended queue) é uma lista otimizada para inserções e remoções rápidas em AMBAS as pontas (O(1) em vez de O(n) como acontece ao inserir no início de uma lista normal), ideal para implementar filas e pilhas eficientes. namedtuple cria classes leves e imutáveis parecidas com tuplas, mas com campos acessíveis por nome (ponto.x em vez de ponto[0]), dando mais legibilidade sem o overhead de uma classe completa."
         }
       ],
       "questions": [
@@ -9676,6 +9948,10 @@
           "title": "groupby agrupa consecutivos",
           "body": "groupby depende da ordem. Para agrupar valores iguais espalhados, ordene pela mesma chave antes.",
           "code": "from itertools import groupby\ndados = sorted(dados, key=lambda x: x['tipo'])\nfor tipo, grupo in groupby(dados, key=lambda x: x['tipo']):\n    print(tipo, list(grupo))"
+        },
+        {
+          "title": "Itertools: ferramentas eficientes para trabalhar com iteráveis",
+          "body": "O módulo itertools oferece funções construídas sobre o conceito de iteradores, permitindo combinar, transformar e gerar sequências de forma eficiente em memória (produzindo valores sob demanda, sem criar listas intermediárias completas). itertools.chain(lista1, lista2) percorre múltiplas sequências como se fossem uma só, sem precisar concatená-las de verdade primeiro. itertools.combinations(itens, 2) gera todas as combinações possíveis de 2 elementos de uma coleção, e itertools.permutations gera todos os arranjos possíveis — muito usados em problemas que envolvem testar todas as possibilidades. itertools.groupby agrupa elementos consecutivos que compartilham uma característica (exige que a sequência já esteja ordenada pelo critério de agrupamento para funcionar corretamente). itertools.count(start=1) gera uma sequência infinita de números, útil combinada com outras funções que sabem quando parar. Por serem 'preguiçosas' (lazy, produzindo valores um a um sob demanda em vez de calcular tudo de uma vez), essas ferramentas são muito mais eficientes em memória do que suas equivalentes manuais com listas completas ao processar grandes volumes de dados."
         }
       ],
       "questions": [
@@ -9817,6 +10093,10 @@
           "title": "reduce acumula valores",
           "body": "reduce combina itens sucessivamente, embora sum, min e outras funções específicas sejam preferíveis quando existem.",
           "code": "from functools import reduce\nproduto = reduce(lambda a, b: a * b, [2, 3, 4], 1)"
+        },
+        {
+          "title": "Functools e cache: otimizando e compondo funções",
+          "body": "O módulo functools reúne ferramentas para trabalhar com funções como valores de primeira classe. O decorador @functools.lru_cache armazena automaticamente em cache o resultado de chamadas anteriores de uma função, retornando o valor guardado imediatamente quando a função é chamada de novo com os MESMOS argumentos, em vez de recalcular — uma otimização poderosa para funções custosas (como cálculos recursivos repetidos) ou puras (que sempre retornam o mesmo resultado para a mesma entrada), podendo transformar um algoritmo exponencial em um eficiente sem reescrever a lógica interna. functools.reduce(funcao, sequencia) aplica uma função acumuladora a todos os elementos de uma sequência, reduzindo-a a um único valor (por exemplo, reduce(lambda a,b: a*b, [1,2,3,4]) calcula o produto de todos os números). functools.partial cria uma nova função 'pré-configurada' fixando alguns argumentos de uma função existente, útil para adaptar uma função genérica a um contexto específico sem escrever uma função wrapper manual. @functools.wraps é usado dentro de decoradores customizados para preservar o nome e a documentação da função original, que seriam perdidos sem esse cuidado."
         }
       ],
       "questions": [
@@ -9958,6 +10238,10 @@
           "title": "finally protege a limpeza",
           "body": "A liberação deve ocorrer no finally para funcionar em sucesso e falha.",
           "code": "with conexao() as banco:\n    banco.executar()"
+        },
+        {
+          "title": "Context managers: gerenciando recursos com with",
+          "body": "Um context manager é um objeto que define comportamento de 'entrada' e 'saída' ao redor de um bloco de código, usado com a sintaxe with objeto as variavel:, garantindo que recursos sejam liberados corretamente mesmo se ocorrer um erro no meio do bloco — o exemplo mais comum já visto é with open('arquivo.txt') as f:, que garante o fechamento do arquivo automaticamente ao sair do bloco. É possível criar context managers customizados de duas formas: implementando os métodos especiais __enter__ (executado ao entrar no with, retornando o valor associado a as variavel) e __exit__ (executado ao sair, recebendo informações sobre uma exceção se ela ocorreu, e podendo decidir se a suprime ou deixa propagar) em uma classe; ou, de forma mais simples, usando o decorador @contextmanager do módulo contextlib sobre uma função geradora, onde tudo antes do yield roda na entrada e tudo depois roda na saída. Context managers são ideais para qualquer recurso que precisa de setup e limpeza garantidos: conexões de banco de dados, locks de concorrência, medição de tempo de execução de um bloco, ou troca temporária de configuração."
         }
       ],
       "questions": [
@@ -10099,6 +10383,10 @@
           "title": "Estado compartilhado exige cuidado",
           "body": "Operações compostas em dados compartilhados podem sofrer condições de corrida. Prefira evitar compartilhamento ou proteja a seção crítica com Lock.",
           "code": "from threading import Lock\nlock = Lock()\nwith lock:\n    contador += 1"
+        },
+        {
+          "title": "Threads e futures: concorrência para operações de I/O",
+          "body": "Threading permite executar múltiplas linhas de execução (threads) dentro do mesmo programa, compartilhando memória entre elas, o que é útil especialmente para operações que passam a maior parte do tempo esperando por entrada/saída (download de vários arquivos, múltiplas chamadas de rede simultâneas). Em Python, por causa do GIL (Global Interpreter Lock, um mecanismo interno do interpretador padrão CPython), apenas uma thread executa código Python puro por vez, mesmo em uma máquina com múltiplos núcleos — por isso threading acelera tarefas de I/O (que liberam o GIL enquanto esperam), mas NÃO acelera tarefas intensivas de CPU (cálculos puros), que precisam de multiprocessing para paralelismo real. O módulo concurrent.futures oferece uma interface de alto nível mais simples que threading manual: ThreadPoolExecutor gerencia um conjunto (pool) de threads reutilizáveis, e executor.submit(funcao, argumento) agenda uma tarefa para rodar em uma thread do pool, retornando um objeto Future que representa o resultado ainda pendente, acessível com .result() quando estiver pronto — abstraindo a complexidade de criar, sincronizar e encerrar threads manualmente."
         }
       ],
       "questions": [
@@ -10240,6 +10528,10 @@
           "title": "Dados são serializados",
           "body": "Argumentos e retornos precisam atravessar a fronteira entre processos. Funções no topo do módulo e dados simples facilitam a serialização.",
           "code": "def quadrado(n):\n    return n * n\n\n# Evite depender de estado global mutável."
+        },
+        {
+          "title": "Multiprocessing: paralelismo real usando múltiplos processos",
+          "body": "Diferente de threads, que compartilham memória e são limitadas pelo GIL para código Python puro, o módulo multiprocessing cria processos completamente separados, cada um com sua própria memória e seu próprio interpretador Python, contornando o GIL e permitindo paralelismo verdadeiro em tarefas intensivas de CPU (cálculos matemáticos pesados, processamento de imagem, compressão de dados) em máquinas com múltiplos núcleos. A interface básica é semelhante a threading: Process(target=funcao, args=(argumentos,)) cria um processo, .start() o inicia e .join() espera ele terminar; para casos mais comuns, ProcessPoolExecutor (do mesmo módulo concurrent.futures usado com threads) distribui automaticamente um conjunto de tarefas entre vários processos trabalhadores. O custo desse paralelismo real é que processos não compartilham memória diretamente — passar dados entre eles exige serialização (geralmente via pickle automaticamente), o que tem overhead, e por isso multiprocessing só compensa quando o trabalho de cada tarefa é substancial o suficiente para justificar esse custo extra de comunicação entre processos."
         }
       ],
       "questions": [
@@ -10381,6 +10673,10 @@
           "title": "Evite shell=True com entrada externa",
           "body": "Passar argumentos como lista reduz riscos de injeção. Nunca monte comandos de shell concatenando texto recebido do usuário.",
           "code": "arquivo = 'relatorio.txt'\nsubprocess.run(['wc', '-l', arquivo], check=True)"
+        },
+        {
+          "title": "Subprocess: executando outros programas a partir do Python",
+          "body": "O módulo subprocess permite que um script Python execute outros programas externos (comandos do sistema operacional, outros scripts, ferramentas de linha de comando) e interaja com eles, capturando sua saída ou enviando entrada. subprocess.run(['comando', 'argumento1', 'argumento2'], capture_output=True, text=True) executa um comando e retorna um objeto com .stdout (saída padrão do programa), .stderr (saída de erro) e .returncode (código de saída, onde 0 convencionalmente significa sucesso e qualquer outro valor indica algum tipo de falha). É importante passar o comando como uma LISTA de strings (cada argumento separado) em vez de uma única string concatenada, o que evita vulnerabilidades de injeção de comando quando qualquer parte do comando vem de entrada não confiável do usuário. Parâmetros como timeout=30 evitam que o programa fique esperando indefinidamente por um processo externo travado, e check=True faz com que uma exceção CalledProcessError seja lançada automaticamente se o comando retornar um código de erro, simplificando o tratamento de falhas sem checar returncode manualmente toda vez."
         }
       ],
       "questions": [
@@ -10522,6 +10818,10 @@
           "title": "Complexidade e memória importam",
           "body": "Trocar uma busca repetida em lista por set pode alterar o custo assintótico. A melhor solução preserva clareza e é confirmada por medição.",
           "code": "permitidos = set(ids)\nfiltrados = [x for x in dados if x.id in permitidos]"
+        },
+        {
+          "title": "Profiling e otimização: encontrando os gargalos reais",
+          "body": "Otimizar código sem medir primeiro é um erro clássico: a intuição sobre 'o que está lento' frequentemente está errada, e otimizar a parte errada desperdiça esforço sem melhorar o desempenho real percebido pelo usuário. Profiling é o processo de medir onde o tempo de execução realmente está sendo gasto. O módulo cProfile, da biblioteca padrão, executa um programa e produz um relatório detalhado de quanto tempo foi gasto em cada função e quantas vezes cada uma foi chamada, revelando os verdadeiros gargalos — muitas vezes uma única função chamada milhares de vezes dentro de um laço, não o código que 'parece' complexo à primeira vista. Para medições mais simples e pontuais, o módulo time (com time.perf_counter(), que tem alta precisão) permite cronometrar blocos específicos de código manualmente. A regra prática de otimização é: primeiro fazer o código funcionar corretamente, depois medir com dados representativos do uso real, identificar o gargalo real através dessa medição, e só então otimizar especificamente aquele ponto — otimização prematura, sem medição, frequentemente piora a legibilidade do código sem ganho de performance perceptível."
         }
       ],
       "questions": [
@@ -10663,6 +10963,10 @@
           "title": "Generic cria estruturas reutilizáveis",
           "body": "Classes genéricas mantêm informação de tipo para diferentes conteúdos e ajudam verificadores estáticos.",
           "code": "from typing import Generic, TypeVar\nT = TypeVar('T')\nclass Caixa(Generic[T]):\n    def __init__(self, valor: T):\n        self.valor = valor"
+        },
+        {
+          "title": "Tipagem avançada: Protocol, Generic e tipos mais expressivos",
+          "body": "Além dos type hints básicos, o módulo typing oferece ferramentas para expressar contratos de tipo mais sofisticados. Protocol define 'tipagem estrutural' (também chamada de duck typing formalizado): em vez de exigir que uma classe herde explicitamente de uma interface, um Protocol declara quais métodos e atributos um objeto precisa ter, e QUALQUER objeto que os tenha é considerado compatível com aquele tipo, mesmo sem herança explícita — refletindo o espírito original do Python de 'se anda como pato e grasna como pato, é um pato'. Generics permitem escrever código (funções ou classes) que funciona com qualquer tipo, mas de forma tipada: uma classe Pilha[T] pode ser usada como Pilha[int] ou Pilha[str], e o verificador de tipos garante que uma Pilha[int] só aceite inteiros, sem precisar escrever uma classe separada para cada tipo. Union (ou o operador | desde o Python 3.10) expressa 'um valor que pode ser de um tipo OU outro' (int | str), e TypedDict permite tipar dicionários com um formato fixo esperado de chaves e valores, útil ao trabalhar com dados JSON estruturados vindos de APIs."
         }
       ],
       "questions": [
@@ -10804,6 +11108,10 @@
           "title": "Wheel é uma distribuição construída",
           "body": "python -m build gera sdist e wheel em dist. O artefato pode ser instalado e validado em um ambiente limpo antes da publicação.",
           "code": "python -m build\npython -m pip install dist/meu_app-1.0.0-py3-none-any.whl"
+        },
+        {
+          "title": "Empacotamento moderno: publicando bibliotecas Python reutilizáveis",
+          "body": "Transformar um projeto Python em um pacote distribuível — instalável via pip por outras pessoas ou projetos — envolve organizar metadados em um arquivo pyproject.toml, que substituiu o antigo setup.py como padrão moderno, declarando o nome do pacote, versão, dependências necessárias, e qual ferramenta de build usar (como setuptools, hatchling ou poetry). A estrutura do projeto normalmente segue o layout src/, onde o código real fica dentro de uma pasta src/nome_do_pacote/, separada da raiz do projeto, evitando problemas sutis de importação durante o desenvolvimento. Uma vez configurado, o pacote pode ser instalado localmente em modo editável (pip install -e .), o que permite testar mudanças no código imediatamente sem reinstalar a cada alteração, e depois publicado no PyPI (Python Package Index), o repositório público oficial de pacotes Python, usando ferramentas como twine, tornando-o instalável globalmente por qualquer pessoa com pip install nome_do_pacote. Versionamento semântico (MAJOR.MINOR.PATCH) comunica de forma padronizada o impacto de cada nova versão publicada."
         }
       ],
       "questions": [
@@ -10945,6 +11253,10 @@
           "title": "Segredos não pertencem ao código",
           "body": "Leia chaves do ambiente ou de um gerenciador de segredos, limite permissões e evite registrar valores sensíveis.",
           "code": "import os\ntoken = os.environ['API_TOKEN']\n# Nunca faça print(token)."
+        },
+        {
+          "title": "Segurança e validação: protegendo dados e evitando vulnerabilidades",
+          "body": "Segurança em código Python começa por nunca confiar cegamente em dados vindos de fora do programa (entrada do usuário, arquivos, respostas de API, parâmetros de URL): todo dado externo deve ser validado antes de ser usado para tomar decisões importantes. Injeção de SQL, já mencionada ao trabalhar com bancos de dados, é evitada usando sempre placeholders parametrizados em vez de concatenar valores diretamente em comandos SQL. Ao executar comandos do sistema com subprocess, passar o comando como lista de argumentos (em vez de uma string montada com dados externos) evita injeção de comando. Senhas nunca devem ser armazenadas em texto puro: bibliotecas como bcrypt ou o módulo hashlib (com funções de hash apropriadas para senhas, não hashes rápidos como MD5) transformam a senha em um valor irreversível antes de salvar, permitindo verificar login sem nunca guardar a senha original. Validar tipos, formatos (usando regex ou bibliotecas de validação como pydantic) e limites razoáveis de tamanho em toda entrada externa antes de processá-la é a defesa mais básica e eficaz contra a grande maioria de vulnerabilidades comuns em aplicações reais."
         }
       ],
       "questions": [
@@ -11086,6 +11398,10 @@
           "title": "Automatize o caminho mínimo",
           "body": "Uma esteira útil instala o pacote, verifica estilo e tipos, executa testes e só gera o artefato quando tudo passa.",
           "code": "python -m pip install -e .[dev]\npython -m ruff check .\npython -m mypy src\npython -m pytest\npython -m build"
+        },
+        {
+          "title": "Arquitetura e entrega: pensando no projeto como um sistema completo",
+          "body": "Arquitetura de software é o conjunto de decisões estruturais de alto nível sobre como um sistema é organizado: como suas partes se comunicam, onde as responsabilidades são separadas, e como ele vai crescer e ser mantido ao longo do tempo. Separar claramente camadas de responsabilidade — por exemplo, lógica de negócio (regras do domínio), acesso a dados (banco de dados, arquivos) e interface (linha de comando, API web, interface gráfica) — permite trocar uma camada sem reescrever as outras, como trocar de SQLite para outro banco de dados sem alterar a lógica de negócio que depende apenas de uma interface abstrata de acesso a dados. Entrega contínua estende a integração contínua (testes e verificações automáticas a cada mudança) até o processo de disponibilizar a nova versão para uso real, de forma automatizada e confiável, reduzindo o risco humano de processos manuais de deploy. Documentar decisões arquiteturais importantes (por que certa abordagem foi escolhida em vez de outra) ajuda a equipe futura — inclusive você mesmo depois de meses — a entender o raciocínio por trás da estrutura, não apenas o código resultante."
         }
       ],
       "questions": [
@@ -11227,6 +11543,10 @@
           "title": "Empacote, meça e apresente",
           "body": "Gere um wheel, instale em ambiente limpo, execute os testes e documente limitações, desempenho e próximos passos.",
           "code": "python -m build\npython -m pip install dist/*.whl\npython -m pytest\npython -m meu_app"
+        },
+        {
+          "title": "Projeto final profissional: integrando tudo o que foi aprendido",
+          "body": "Um projeto final profissional é a oportunidade de aplicar, em conjunto e em um contexto realista, tudo que foi construído ao longo da trilha: modelagem orientada a objetos para representar o domínio do problema, funções bem organizadas e testadas, tratamento robusto de erros e validação de entradas externas, persistência de dados (arquivo ou banco de dados), logs para observabilidade do que o sistema está fazendo, testes automatizados cobrindo os casos principais e casos extremos, configuração separada do código para segredos e variáveis de ambiente, e uma estrutura de projeto organizada e documentada que permitiria a outra pessoa entender e contribuir com o código. Mais importante que qualquer técnica isolada é a capacidade de tomar decisões de design coerentes: escolher a estrutura de dados certa para cada problema, decidir onde cada responsabilidade deve viver, e equilibrar simplicidade com robustez sem exagerar em complexidade desnecessária para o tamanho real do problema. Esse tipo de julgamento — não apenas conhecer sintaxe, mas saber quando e por que aplicar cada conceito — é o que diferencia um programador iniciante de alguém preparado para atuar profissionalmente com Python."
         }
       ],
       "questions": [
