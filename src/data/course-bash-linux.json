@@ -73,14 +73,14 @@
       "summary": "Resumo detalhado para a fase 1.",
       "lesson": [
         {
-          "title": "Lição 1",
-          "body": "Conteúdo da lição 1 da fase 1.",
-          "code": "echo \"Fase 1\""
+          "title": "Navegando pelo sistema",
+          "body": "O terminal Linux funciona a partir de um diretório atual. O comando 'pwd' (Print Working Directory) mostra onde você está, e 'cd' (Change Directory) permite navegar para outras pastas.",
+          "code": "pwd\ncd /home/usuario/Documentos\npwd"
         },
         {
-          "title": "Lição 2",
-          "body": "Conteúdo da lição 2 da fase 1.",
-          "code": "ls -la"
+          "title": "Listando arquivos e diretórios",
+          "body": "Para ver o conteúdo de uma pasta, usamos o comando 'ls'. Adicionando a flag '-l', obtemos uma lista detalhada com permissões, e '-a' mostra arquivos ocultos que começam com ponto.",
+          "code": "ls -la /var/log"
         }
       ],
       "questions": [
@@ -151,14 +151,14 @@
       "summary": "Resumo detalhado para a fase 2.",
       "lesson": [
         {
-          "title": "Lição 1",
-          "body": "Conteúdo da lição 1 da fase 2.",
-          "code": "echo \"Fase 2\""
+          "title": "Criando pastas e arquivos",
+          "body": "O comando 'mkdir' (Make Directory) cria novas pastas no sistema. Já o comando 'touch' cria arquivos vazios ou atualiza a data de modificação de um arquivo existente, sendo muito útil para iniciar projetos.",
+          "code": "mkdir meu_projeto\ncd meu_projeto\ntouch index.html script.sh"
         },
         {
-          "title": "Lição 2",
-          "body": "Conteúdo da lição 2 da fase 2.",
-          "code": "ls -la"
+          "title": "Lendo o conteúdo de arquivos",
+          "body": "Para ler pequenos arquivos de texto diretamente no terminal, utilizamos o comando 'cat' (Concatenate). Ele imprime todo o conteúdo na tela de uma vez só.",
+          "code": "cat /etc/os-release"
         }
       ],
       "questions": [
@@ -229,14 +229,14 @@
       "summary": "Resumo detalhado para a fase 3.",
       "lesson": [
         {
-          "title": "Lição 1",
-          "body": "Conteúdo da lição 1 da fase 3.",
-          "code": "echo \"Fase 3\""
+          "title": "O manual do sistema",
+          "body": "A ferramenta mais importante do Linux é o 'man' (Manual). Ele exibe a documentação completa de qualquer comando, explicando suas opções, sintaxe e exemplos de uso. Pressione 'q' para sair.",
+          "code": "man ls"
         },
         {
-          "title": "Lição 2",
-          "body": "Conteúdo da lição 2 da fase 3.",
-          "code": "ls -la"
+          "title": "Caminhos absolutos vs relativos",
+          "body": "Caminhos absolutos começam na raiz '/' (ex: /etc/passwd). Caminhos relativos partem de onde você está ('./arquivo' ou '../pasta'). O '~' (til) sempre representa seu diretório home.",
+          "code": "cd ~/Downloads\ncd ../Documentos"
         }
       ],
       "questions": [
@@ -307,14 +307,14 @@
       "summary": "Resumo detalhado para a fase 4.",
       "lesson": [
         {
-          "title": "Lição 1",
-          "body": "Conteúdo da lição 1 da fase 4.",
-          "code": "echo \"Fase 4\""
+          "title": "Copiando e movendo arquivos",
+          "body": "Use 'cp' para copiar arquivos e 'cp -r' para diretórios inteiros. O 'mv' tem duas funções: mover arquivos de um lugar para outro ou simplesmente renomear um arquivo no mesmo diretório.",
+          "code": "cp config.txt config.bkp\nmv antigo.txt novo_nome.txt"
         },
         {
-          "title": "Lição 2",
-          "body": "Conteúdo da lição 2 da fase 4.",
-          "code": "ls -la"
+          "title": "Removendo arquivos de forma segura",
+          "body": "O comando 'rm' apaga arquivos permanentemente. Para remover pastas e seu conteúdo, use 'rm -r'. Cuidado com 'rm -f' que força a exclusão sem perguntar, especialmente como root.",
+          "code": "rm lixo.txt\nrm -rf /tmp/cache_velho"
         }
       ],
       "questions": [
@@ -385,14 +385,14 @@
       "summary": "Resumo detalhado para a fase 5.",
       "lesson": [
         {
-          "title": "Lição 1",
-          "body": "Conteúdo da lição 1 da fase 5.",
-          "code": "echo \"Fase 5\""
+          "title": "Encontrando arquivos perdidos",
+          "body": "O 'find' é uma ferramenta poderosa para buscar arquivos baseada em nome, tamanho ou data. O argumento '.' indica para buscar a partir do diretório atual, percorrendo todas as subpastas.",
+          "code": "find . -name \"*.log\"\nfind /var -size +100M"
         },
         {
-          "title": "Lição 2",
-          "body": "Conteúdo da lição 2 da fase 5.",
-          "code": "ls -la"
+          "title": "Buscando texto com grep",
+          "body": "Enquanto o find busca arquivos, o 'grep' busca dentro deles. Ele filtra linhas que contêm um padrão específico. A opção '-i' ignora maiúsculas/minúsculas e '-r' busca recursivamente.",
+          "code": "grep -i \"error\" /var/log/syslog"
         }
       ],
       "questions": [
@@ -463,14 +463,14 @@
       "summary": "Resumo detalhado para a fase 6.",
       "lesson": [
         {
-          "title": "Lição 1",
-          "body": "Conteúdo da lição 1 da fase 6.",
-          "code": "echo \"Fase 6\""
+          "title": "Contando palavras e linhas",
+          "body": "O comando 'wc' (Word Count) conta linhas, palavras e caracteres de um arquivo. Com a opção '-l', ele retorna apenas o número de linhas, sendo excelente para contar resultados de outros comandos.",
+          "code": "wc -l lista_nomes.txt"
         },
         {
-          "title": "Lição 2",
-          "body": "Conteúdo da lição 2 da fase 6.",
-          "code": "ls -la"
+          "title": "Ordenando e filtrando únicos",
+          "body": "O comando 'sort' ordena linhas de texto em ordem alfabética ou numérica (com '-n'). Quando combinado com 'uniq', podemos remover linhas duplicadas consecutivas de uma lista.",
+          "code": "sort cpfs.txt | uniq"
         }
       ],
       "questions": [
@@ -541,14 +541,14 @@
       "summary": "Resumo detalhado para a fase 7.",
       "lesson": [
         {
-          "title": "Lição 1",
-          "body": "Conteúdo da lição 1 da fase 7.",
-          "code": "echo \"Fase 7\""
+          "title": "Entendendo permissões",
+          "body": "No Linux, arquivos têm permissões de Leitura (r=4), Escrita (w=2) e Execução (x=1) para três grupos: Dono, Grupo e Outros. O comando 'chmod' altera essas permissões usando números ou letras.",
+          "code": "chmod 755 script.sh\n# 7(dono=rwx), 5(grupo=r-x), 5(outros=r-x)"
         },
         {
-          "title": "Lição 2",
-          "body": "Conteúdo da lição 2 da fase 7.",
-          "code": "ls -la"
+          "title": "Tornando scripts executáveis",
+          "body": "Um caso comum de uso do chmod é dar permissão de execução a um script que você acabou de criar. A notação 'u+x' significa adicionar (x) para o usuário dono (u).",
+          "code": "chmod u+x meu_script.bash\n./meu_script.bash"
         }
       ],
       "questions": [
@@ -619,14 +619,14 @@
       "summary": "Resumo detalhado para a fase 8.",
       "lesson": [
         {
-          "title": "Lição 1",
-          "body": "Conteúdo da lição 1 da fase 8.",
-          "code": "echo \"Fase 8\""
+          "title": "Alterando o dono do arquivo",
+          "body": "O comando 'chown' (Change Owner) altera o usuário e/ou grupo dono de um arquivo ou diretório. Frequentemente é necessário usar 'sudo' para executar essa mudança de propriedade.",
+          "code": "sudo chown root:root configuracao.conf"
         },
         {
-          "title": "Lição 2",
-          "body": "Conteúdo da lição 2 da fase 8.",
-          "code": "ls -la"
+          "title": "Poderes de Superusuário (Root)",
+          "body": "O 'sudo' (SuperUser DO) executa comandos com privilégios de administrador de forma temporária. Já o 'su' troca completamente a sua sessão para outro usuário, como o próprio root.",
+          "code": "sudo apt update\nsu - root"
         }
       ],
       "questions": [
@@ -697,14 +697,14 @@
       "summary": "Resumo detalhado para a fase 9.",
       "lesson": [
         {
-          "title": "Lição 1",
-          "body": "Conteúdo da lição 1 da fase 9.",
-          "code": "echo \"Fase 9\""
+          "title": "Gerenciamento de senhas",
+          "body": "O comando 'passwd' permite alterar sua própria senha de usuário de forma interativa e segura. Executado com sudo, o administrador pode alterar a senha de qualquer outro usuário do sistema.",
+          "code": "passwd\nsudo passwd joao"
         },
         {
-          "title": "Lição 2",
-          "body": "Conteúdo da lição 2 da fase 9.",
-          "code": "ls -la"
+          "title": "Trabalhando com grupos",
+          "body": "Grupos facilitam o gerenciamento de permissões para várias pessoas. O arquivo /etc/group lista os grupos, e comandos como usermod permitem adicionar usuários a grupos específicos (como o grupo sudo ou docker).",
+          "code": "sudo usermod -aG docker maria\ngroups maria"
         }
       ],
       "questions": [
@@ -775,14 +775,14 @@
       "summary": "Resumo detalhado para a fase 10.",
       "lesson": [
         {
-          "title": "Lição 1",
-          "body": "Conteúdo da lição 1 da fase 10.",
-          "code": "echo \"Fase 10\""
+          "title": "O poder do Pipe (|)",
+          "body": "O pipe (|) conecta comandos, pegando a saída padrão (stdout) de um e enviando como entrada padrão (stdin) para o próximo. Isso permite criar sequências poderosas de processamento de texto.",
+          "code": "ls /etc | grep \"network\" | sort"
         },
         {
-          "title": "Lição 2",
-          "body": "Conteúdo da lição 2 da fase 10.",
-          "code": "ls -la"
+          "title": "Redirecionamento de saída (>)",
+          "body": "Usamos '>' para salvar a saída de um comando em um novo arquivo, sobrescrevendo se já existir. Para adicionar o conteúdo ao final de um arquivo existente, usamos o operador de append '>>'.",
+          "code": "echo \"Iniciando log\" > log.txt\ndate >> log.txt"
         }
       ],
       "questions": [
@@ -853,14 +853,14 @@
       "summary": "Resumo detalhado para a fase 11.",
       "lesson": [
         {
-          "title": "Lição 1",
-          "body": "Conteúdo da lição 1 da fase 11.",
-          "code": "echo \"Fase 11\""
+          "title": "Redirecionando a entrada (<)",
+          "body": "Assim como podemos redirecionar a saída, o operador '<' passa o conteúdo de um arquivo como entrada para um comando, no lugar de você ter que digitar ou usar o cat antes.",
+          "code": "sort < lista_desordenada.txt > lista_ordenada.txt"
         },
         {
-          "title": "Lição 2",
-          "body": "Conteúdo da lição 2 da fase 11.",
-          "code": "ls -la"
+          "title": "Redirecionando erros (2>&1)",
+          "body": "O Linux separa a saída normal (stdout=1) dos erros (stderr=2). Para redirecionar erros para um arquivo, usamos '2>'. Para juntar ambos no mesmo fluxo, usamos a sintaxe mágica '2>&1'.",
+          "code": "find /etc -name \"*.conf\" > resultados.txt 2> erros.log"
         }
       ],
       "questions": [
@@ -931,14 +931,14 @@
       "summary": "Resumo detalhado para a fase 12.",
       "lesson": [
         {
-          "title": "Lição 1",
-          "body": "Conteúdo da lição 1 da fase 12.",
-          "code": "echo \"Fase 12\""
+          "title": "O buraco negro do Linux",
+          "body": "O arquivo especial /dev/null descarta tudo que é enviado para ele. É extremamente útil quando você quer rodar um comando silenciosamente, jogando toda a sua saída fora, incluindo erros.",
+          "code": "ping -c 4 google.com > /dev/null 2>&1"
         },
         {
-          "title": "Lição 2",
-          "body": "Conteúdo da lição 2 da fase 12.",
-          "code": "ls -la"
+          "title": "O comando tee: tela e arquivo",
+          "body": "O 'tee' pega o que recebe da entrada e escreve tanto na tela quanto em um arquivo simultaneamente, dividindo o fluxo de dados em formato de 'T'. Útil com permissões usando sudo.",
+          "code": "echo \"127.0.0.1 meusite.local\" | sudo tee -a /etc/hosts"
         }
       ],
       "questions": [
@@ -1009,14 +1009,14 @@
       "summary": "Resumo detalhado para a fase 13.",
       "lesson": [
         {
-          "title": "Lição 1",
-          "body": "Conteúdo da lição 1 da fase 13.",
-          "code": "echo \"Fase 13\""
+          "title": "O que são Variáveis",
+          "body": "Variáveis armazenam dados na memória para serem reutilizados. No Bash, criamos com 'NOME=valor' (sem espaços no igual!) e acessamos o valor colocando um cifrão '$' na frente do nome.",
+          "code": "CIDADE=\"São Paulo\"\necho \"Eu moro em $CIDADE\""
         },
         {
-          "title": "Lição 2",
-          "body": "Conteúdo da lição 2 da fase 13.",
-          "code": "ls -la"
+          "title": "Variáveis de Ambiente (export)",
+          "body": "Ao criar uma variável, ela existe apenas naquele terminal. O comando 'export' a transforma em uma variável de ambiente, permitindo que outros programas e sub-scripts também tenham acesso a ela.",
+          "code": "export API_KEY=\"xyz123\"\nnode meu_app.js"
         }
       ],
       "questions": [
@@ -1087,14 +1087,14 @@
       "summary": "Resumo detalhado para a fase 14.",
       "lesson": [
         {
-          "title": "Lição 1",
-          "body": "Conteúdo da lição 1 da fase 14.",
-          "code": "echo \"Fase 14\""
+          "title": "Personalizando com .bashrc",
+          "body": "O arquivo ~/.bashrc é um script executado sempre que você abre um novo terminal. É o lugar perfeito para configurar variáveis exportadas, definir aliases e personalizar o prompt.",
+          "code": "echo 'alias ll=\"ls -la\"' >> ~/.bashrc\nsource ~/.bashrc"
         },
         {
-          "title": "Lição 2",
-          "body": "Conteúdo da lição 2 da fase 14.",
-          "code": "ls -la"
+          "title": "A mágica do source",
+          "body": "O comando 'source' (ou apenas '.') executa um script no shell atual, em vez de criar um sub-shell. Isso significa que variáveis exportadas ou aliases definidos no script continuarão ativos após a execução.",
+          "code": "source ~/.profile"
         }
       ],
       "questions": [
@@ -1165,14 +1165,14 @@
       "summary": "Resumo detalhado para a fase 15.",
       "lesson": [
         {
-          "title": "Lição 1",
-          "body": "Conteúdo da lição 1 da fase 15.",
-          "code": "echo \"Fase 15\""
+          "title": "Entendendo a variável PATH",
+          "body": "O $PATH é a variável de ambiente mais importante. É uma lista de pastas (separadas por ':') onde o Linux procura pelos executáveis quando você digita um comando como 'ls' ou 'node'.",
+          "code": "echo $PATH\nexport PATH=\"$PATH:/home/user/meus_scripts\""
         },
         {
-          "title": "Lição 2",
-          "body": "Conteúdo da lição 2 da fase 15.",
-          "code": "ls -la"
+          "title": "Inspecionando o ambiente com env",
+          "body": "O comando 'env' ou 'printenv' lista todas as variáveis de ambiente ativas na sua sessão no momento. Útil para debugar configurações de servidores e containers.",
+          "code": "env | grep USER"
         }
       ],
       "questions": [
@@ -1243,14 +1243,14 @@
       "summary": "Resumo detalhado para a fase 16.",
       "lesson": [
         {
-          "title": "Lição 1",
-          "body": "Conteúdo da lição 1 da fase 16.",
-          "code": "echo \"Fase 16\""
+          "title": "O Shebang (#!/bin/bash)",
+          "body": "A primeira linha de um script Bash deve ser o 'shebang'. Ele diz ao sistema operacional qual interpretador deve ser usado para executar o restante do arquivo, garantindo o funcionamento correto.",
+          "code": "#!/bin/bash\necho \"Este é um script válido!\""
         },
         {
-          "title": "Lição 2",
-          "body": "Conteúdo da lição 2 da fase 16.",
-          "code": "ls -la"
+          "title": "Lendo a entrada do usuário",
+          "body": "O comando 'read' pausa a execução do script e espera que o usuário digite algo, armazenando o valor em uma variável. Pode usar a flag '-p' para exibir um prompt (mensagem) ao mesmo tempo.",
+          "code": "read -p \"Qual o seu nome? \" NOME\necho \"Bem-vindo, $NOME!\""
         }
       ],
       "questions": [
@@ -1321,14 +1321,14 @@
       "summary": "Resumo detalhado para a fase 17.",
       "lesson": [
         {
-          "title": "Lição 1",
-          "body": "Conteúdo da lição 1 da fase 17.",
-          "code": "echo \"Fase 17\""
+          "title": "Matemática básica no Bash",
+          "body": "Para fazer cálculos matemáticos, você precisa usar a sintaxe `$(( expressao ))`. Isso instrui o Bash a avaliar a matemática, suportando soma, subtração, multiplicação e divisão inteira.",
+          "code": "A=10\nB=5\nRESULTADO=$(( A + B * 2 ))\necho \"O resultado é $RESULTADO\""
         },
         {
-          "title": "Lição 2",
-          "body": "Conteúdo da lição 2 da fase 17.",
-          "code": "ls -la"
+          "title": "Aspas simples vs duplas",
+          "body": "Aspas duplas (\") permitem a expansão de variáveis, ou seja, o Bash substitui $VAR pelo seu valor. Já aspas simples (') tratam tudo literalmente, ignorando o cifrão e outros caracteres especiais.",
+          "code": "VAR=\"Mundo\"\necho \"Olá $VAR\"  # Olá Mundo\necho 'Olá $VAR'  # Olá $VAR"
         }
       ],
       "questions": [
@@ -1399,14 +1399,14 @@
       "summary": "Resumo detalhado para a fase 18.",
       "lesson": [
         {
-          "title": "Lição 1",
-          "body": "Conteúdo da lição 1 da fase 18.",
-          "code": "echo \"Fase 18\""
+          "title": "O valor de Exit Codes",
+          "body": "Todo comando Linux retorna um código numérico invisível ao terminar. O código 0 significa sucesso; qualquer outro número indica erro. Esse valor fica armazenado na variável especial '$?'.",
+          "code": "ls /pasta_que_nao_existe\necho \"O erro anterior foi: $?\""
         },
         {
-          "title": "Lição 2",
-          "body": "Conteúdo da lição 2 da fase 18.",
-          "code": "ls -la"
+          "title": "Finalizando scripts com exit",
+          "body": "O comando 'exit' encerra o seu script imediatamente. Você pode passar um número (ex: exit 1) para informar ao sistema ou ao script pai se houve um erro durante a execução.",
+          "code": "#!/bin/bash\necho \"Ocorreu um erro fatal!\"\nexit 1"
         }
       ],
       "questions": [
@@ -1477,14 +1477,14 @@
       "summary": "Resumo detalhado para a fase 19.",
       "lesson": [
         {
-          "title": "Lição 1",
-          "body": "Conteúdo da lição 1 da fase 19.",
-          "code": "echo \"Fase 19\""
+          "title": "Tomando decisões com if",
+          "body": "A estrutura if avalia se um comando ou condição retorna sucesso (exit 0). Usamos colchetes `[ ]` para avaliar expressões condicionais como igualdade de strings ou comparações numéricas com -eq, -gt, etc.",
+          "code": "if [ \"$USER\" = \"root\" ]; then\n  echo \"Você é admin!\"\nfi"
         },
         {
-          "title": "Lição 2",
-          "body": "Conteúdo da lição 2 da fase 19.",
-          "code": "ls -la"
+          "title": "Alternativas com if/elif/else",
+          "body": "Para múltiplas checagens, o if pode ser expandido com 'elif' (else if) e 'else' (caso contrário). É fundamental lembrar de fechar o bloco sempre usando 'fi' (if ao contrário).",
+          "code": "if [ $IDADE -ge 18 ]; then\n  echo \"Maior\"\nelse\n  echo \"Menor\"\nfi"
         }
       ],
       "questions": [
@@ -1555,14 +1555,14 @@
       "summary": "Resumo detalhado para a fase 20.",
       "lesson": [
         {
-          "title": "Lição 1",
-          "body": "Conteúdo da lição 1 da fase 20.",
-          "code": "echo \"Fase 20\""
+          "title": "Repetição com for loop",
+          "body": "O loop 'for' repete comandos para uma lista de itens. É extremamente útil para processar vários arquivos ou percorrer listas de palavras separadas por espaço.",
+          "code": "for ARQUIVO in *.txt; do\n  echo \"Processando $ARQUIVO\"\n  cat $ARQUIVO\ndone"
         },
         {
-          "title": "Lição 2",
-          "body": "Conteúdo da lição 2 da fase 20.",
-          "code": "ls -la"
+          "title": "Repetição condicional com while",
+          "body": "O loop 'while' continua executando um bloco de código repetidamente enquanto a condição testada for verdadeira (sucesso). Muito usado para ler arquivos linha por linha ou contadores.",
+          "code": "CONT=1\nwhile [ $CONT -le 5 ]; do\n  echo \"Número: $CONT\"\n  CONT=$((CONT+1))\ndone"
         }
       ],
       "questions": [
@@ -1633,14 +1633,14 @@
       "summary": "Resumo detalhado para a fase 21.",
       "lesson": [
         {
-          "title": "Lição 1",
-          "body": "Conteúdo da lição 1 da fase 21.",
-          "code": "echo \"Fase 21\""
+          "title": "Múltiplas opções com case",
+          "body": "O 'case' é uma alternativa elegante a vários 'elif' encadeados, comparando o valor de uma variável contra padrões. É frequentemente usado para menus iterativos ou processar argumentos.",
+          "code": "case $OPCAO in\n  start) echo \"Iniciando\" ;;\n  stop)  echo \"Parando\" ;;\n  *)     echo \"Uso: start|stop\" ;;\nesac"
         },
         {
-          "title": "Lição 2",
-          "body": "Conteúdo da lição 2 da fase 21.",
-          "code": "ls -la"
+          "title": "Interrompendo loops com break",
+          "body": "Você pode sair prematuramente de um loop for ou while utilizando o comando 'break'. Isso é útil quando a condição desejada já foi encontrada e não há necessidade de continuar.",
+          "code": "for i in {1..10}; do\n  if [ $i -eq 5 ]; then\n    break\n  fi\n  echo $i\ndone"
         }
       ],
       "questions": [
@@ -1711,14 +1711,14 @@
       "summary": "Resumo detalhado para a fase 22.",
       "lesson": [
         {
-          "title": "Lição 1",
-          "body": "Conteúdo da lição 1 da fase 22.",
-          "code": "echo \"Fase 22\""
+          "title": "Criando Funções no Bash",
+          "body": "Funções agrupam blocos de código sob um nome para serem reutilizados no script. Elas tornam o código mais organizado. Para chamar a função, basta digitar seu nome sem parênteses.",
+          "code": "function saudacao() {\n  echo \"Olá, tudo bem?\"\n}\n\nsaudacao"
         },
         {
-          "title": "Lição 2",
-          "body": "Conteúdo da lição 2 da fase 22.",
-          "code": "ls -la"
+          "title": "Parâmetros Posicionais",
+          "body": "Scripts e funções recebem argumentos pela linha de comando. Esses argumentos são armazenados nas variáveis posicionais $1, $2, $3, etc. A variável especial $0 guarda o nome do próprio script.",
+          "code": "function soma() {\n  RESULTADO=$(( $1 + $2 ))\n  echo \"Soma: $RESULTADO\"\n}\nsoma 10 20"
         }
       ],
       "questions": [
@@ -1789,14 +1789,14 @@
       "summary": "Resumo detalhado para a fase 23.",
       "lesson": [
         {
-          "title": "Lição 1",
-          "body": "Conteúdo da lição 1 da fase 23.",
-          "code": "echo \"Fase 23\""
+          "title": "Acessando todos os argumentos",
+          "body": "A variável especial '$@' contém todos os argumentos passados, separados por espaço, ideal para um loop for. Já '$#' guarda a contagem (número) de argumentos fornecidos.",
+          "code": "echo \"Você passou $# argumentos\"\nfor arg in \"$@\"; do\n  echo \"Recebido: $arg\"\ndone"
         },
         {
-          "title": "Lição 2",
-          "body": "Conteúdo da lição 2 da fase 23.",
-          "code": "ls -la"
+          "title": "Escopo de variáveis (local)",
+          "body": "Por padrão, toda variável declarada no bash é global, mesmo dentro de funções. Para proteger valores e evitar bugs difíceis de rastrear, use a palavra 'local' ao criar variáveis dentro de funções.",
+          "code": "function log() {\n  local MSG=$1\n  echo \"[LOG] $MSG\"\n}"
         }
       ],
       "questions": [
@@ -1867,14 +1867,14 @@
       "summary": "Resumo detalhado para a fase 24.",
       "lesson": [
         {
-          "title": "Lição 1",
-          "body": "Conteúdo da lição 1 da fase 24.",
-          "code": "echo \"Fase 24\""
+          "title": "Processando flags com getopts",
+          "body": "Para scripts profissionais, 'getopts' facilita o parsing de opções curtas (como -a, -b, -f valor). Ele gerencia opções válidas e os argumentos associados a elas de forma segura em um loop.",
+          "code": "while getopts \"u:p:\" opt; do\n  case $opt in\n    u) USER=$OPTARG ;;\n    p) PASS=$OPTARG ;;\n  esac\ndone"
         },
         {
-          "title": "Lição 2",
-          "body": "Conteúdo da lição 2 da fase 24.",
-          "code": "ls -la"
+          "title": "Validação de parâmetros",
+          "body": "Bons scripts validam a entrada antes de rodar. Podemos usar if combinado com '$#' para verificar se o usuário passou a quantidade esperada de argumentos, saindo com erro caso contrário.",
+          "code": "if [ $# -lt 2 ]; then\n  echo \"Erro: Informe usuário e senha\"\n  exit 1\nfi"
         }
       ],
       "questions": [
@@ -1945,14 +1945,14 @@
       "summary": "Resumo detalhado para a fase 25.",
       "lesson": [
         {
-          "title": "Lição 1",
-          "body": "Conteúdo da lição 1 da fase 25.",
-          "code": "echo \"Fase 25\""
+          "title": "Monitorando processos com ps",
+          "body": "O comando 'ps' exibe os processos em execução no momento. Uma das combinações mais úteis é 'ps aux', que lista detalhadamente todos os processos de todos os usuários do sistema.",
+          "code": "ps aux | grep \"node\"\nps -ef"
         },
         {
-          "title": "Lição 2",
-          "body": "Conteúdo da lição 2 da fase 25.",
-          "code": "ls -la"
+          "title": "Encerrando processos com kill",
+          "body": "Todo processo possui um PID (Process ID). Usamos o comando 'kill' enviando sinais para esse PID para encerrá-lo. O 'kill -9' envia o sinal SIGKILL, forçando o fechamento imediato do processo.",
+          "code": "kill 1234\nkill -9 9876\nkillall nginx"
         }
       ],
       "questions": [
@@ -2023,14 +2023,14 @@
       "summary": "Resumo detalhado para a fase 26.",
       "lesson": [
         {
-          "title": "Lição 1",
-          "body": "Conteúdo da lição 1 da fase 26.",
-          "code": "echo \"Fase 26\""
+          "title": "Monitoramento em tempo real",
+          "body": "O 'top' e sua versão melhorada 'htop' exibem um painel interativo em tempo real do consumo de CPU, memória RAM e processos rodando, permitindo analisar gargalos de performance.",
+          "code": "htop\n# No htop, pressione F9 para matar um processo"
         },
         {
-          "title": "Lição 2",
-          "body": "Conteúdo da lição 2 da fase 26.",
-          "code": "ls -la"
+          "title": "Executando em background (&)",
+          "body": "Colocar o caractere '&' no final de um comando faz com que ele execute em segundo plano (background), liberando seu terminal para continuar trabalhando sem travar.",
+          "code": "tar -czf backup.tar.gz /var/www &\njobs"
         }
       ],
       "questions": [
@@ -2101,14 +2101,14 @@
       "summary": "Resumo detalhado para a fase 27.",
       "lesson": [
         {
-          "title": "Lição 1",
-          "body": "Conteúdo da lição 1 da fase 27.",
-          "code": "echo \"Fase 27\""
+          "title": "Automação com cron",
+          "body": "O 'cron' é o agendador de tarefas do Linux. Ele lê o arquivo 'crontab' para executar comandos ou scripts automaticamente em horários, dias ou meses específicos (ex: backups noturnos).",
+          "code": "crontab -e\n# Executar as 2h00 todo dia:\n# 0 2 * * * /backup.sh"
         },
         {
-          "title": "Lição 2",
-          "body": "Conteúdo da lição 2 da fase 27.",
-          "code": "ls -la"
+          "title": "Gerenciando serviços (systemctl)",
+          "body": "Em distribuições modernas (systemd), usamos 'systemctl' para iniciar, parar e verificar o status de serviços executando no background, como servidores web ou bancos de dados.",
+          "code": "sudo systemctl status nginx\nsudo systemctl restart docker"
         }
       ],
       "questions": [
@@ -2179,14 +2179,14 @@
       "summary": "Resumo detalhado para a fase 28.",
       "lesson": [
         {
-          "title": "Lição 1",
-          "body": "Conteúdo da lição 1 da fase 28.",
-          "code": "echo \"Fase 28\""
+          "title": "Planejamento e Estrutura",
+          "body": "Um script de automação profissional começa definindo o interpretador e variáveis globais, seguido de funções modulares e termina com a lógica principal, tratando possíveis falhas com exits adequados.",
+          "code": "#!/bin/bash\nset -e # Falha o script se houver erro\nBACKUP_DIR=\"/bkp\""
         },
         {
-          "title": "Lição 2",
-          "body": "Conteúdo da lição 2 da fase 28.",
-          "code": "ls -la"
+          "title": "Lidando com arquivos temporários",
+          "body": "Ao baixar ou processar dados, é recomendável criar arquivos temporários com 'mktemp' para evitar conflitos de nomes, e limpar tudo usando um 'trap' que reage ao fim do script ou Ctrl+C.",
+          "code": "TEMP_FILE=$(mktemp)\ntrap \"rm -f $TEMP_FILE\" EXIT"
         }
       ],
       "questions": [
@@ -2257,14 +2257,14 @@
       "summary": "Resumo detalhado para a fase 29.",
       "lesson": [
         {
-          "title": "Lição 1",
-          "body": "Conteúdo da lição 1 da fase 29.",
-          "code": "echo \"Fase 29\""
+          "title": "Logs e Feedback ao usuário",
+          "body": "Scripts que rodam por muito tempo ou no cron precisam gerar logs e silenciar comandos muito verborrágicos (com > /dev/null), permitindo auditoria caso algo dê errado no servidor.",
+          "code": "echo \"$(date +'%Y-%m-%d %H:%M:%S') - Iniciou\" >> app.log\napt-get update -y > /dev/null"
         },
         {
-          "title": "Lição 2",
-          "body": "Conteúdo da lição 2 da fase 29.",
-          "code": "ls -la"
+          "title": "Execução Condicional Avançada",
+          "body": "Os operadores lógicos AND (&&) e OR (||) encadeiam comandos baseados no sucesso do anterior. O && executa o próximo apenas se deu certo, o || executa caso o anterior tenha falhado.",
+          "code": "mkdir /dados && echo \"Pasta criada\"\nping -c 1 google.com || echo \"Sem internet\""
         }
       ],
       "questions": [
@@ -2335,14 +2335,14 @@
       "summary": "Resumo detalhado para a fase 30.",
       "lesson": [
         {
-          "title": "Lição 1",
-          "body": "Conteúdo da lição 1 da fase 30.",
-          "code": "echo \"Fase 30\""
+          "title": "Compactação e Backup",
+          "body": "A combinação de find e tar permite automatizar backups de aplicações perfeitamente, compactando diretórios cruciais em um arquivo zip ou tar.gz para exportar para outro servidor.",
+          "code": "tar -czf site_backup.tar.gz /var/www/html\necho \"Backup de $(du -sh site_backup.tar.gz)\""
         },
         {
-          "title": "Lição 2",
-          "body": "Conteúdo da lição 2 da fase 30.",
-          "code": "ls -la"
+          "title": "O Projeto Completo em Ação",
+          "body": "Seu script final une variáveis, checagem de root, laços em diretórios, logs redirecionados e saídas formatadas, sendo um artefato profissional pronto para automação no Linux real.",
+          "code": "#!/bin/bash\n# Script de Backup Automatizado\nif [ \"$EUID\" -ne 0 ]; then\n  echo \"Por favor rode como root\"\n  exit 1\nfi"
         }
       ],
       "questions": [

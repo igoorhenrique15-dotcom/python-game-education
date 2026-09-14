@@ -73,14 +73,14 @@
       "summary": "Resumo da fase 1.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 1",
-          "body": "Explicação detalhada...",
-          "code": "exemplo de código"
+          "title": "O que é um Container?",
+          "body": "Um container é uma unidade de software padronizada que empacota o código e todas as suas dependências para que o aplicativo seja executado de forma rápida e confiável. Diferente de VMs, containers compartilham o kernel do SO host, sendo mais leves e rápidos.",
+          "code": "docker run hello-world"
         },
         {
-          "title": "Lição 2 da Fase 1",
-          "body": "Explicação detalhada...",
-          "code": "outro exemplo"
+          "title": "Containers vs Máquinas Virtuais",
+          "body": "Enquanto VMs virtualizam todo o hardware e rodam seu próprio SO (pesado), containers virtualizam apenas no nível do sistema operacional (leve). Isso significa que você pode rodar muitos containers em uma única máquina sem sobrecarga.",
+          "code": "# VMs usam Hypervisor\n# Containers usam Docker Engine"
         }
       ],
       "questions": [
@@ -151,14 +151,14 @@
       "summary": "Resumo da fase 2.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 2",
-          "body": "Explicação detalhada...",
-          "code": "exemplo de código"
+          "title": "O que são Imagens Docker?",
+          "body": "Uma imagem é um pacote executável leve, autônomo e baseado em camadas que inclui tudo o que é necessário para rodar uma aplicação: código, runtime, ferramentas de sistema e bibliotecas. É o \"molde\" de onde os containers nascem.",
+          "code": "docker pull ubuntu:22.04"
         },
         {
-          "title": "Lição 2 da Fase 2",
-          "body": "Explicação detalhada...",
-          "code": "outro exemplo"
+          "title": "O Sistema de Camadas",
+          "body": "As imagens Docker são construídas em camadas empilhadas. Cada instrução no seu Dockerfile cria uma nova camada. Isso permite o reuso de camadas entre diferentes imagens, economizando muito espaço em disco e acelerando downloads.",
+          "code": "docker image history ubuntu:22.04"
         }
       ],
       "questions": [
@@ -229,14 +229,14 @@
       "summary": "Resumo da fase 3.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 3",
-          "body": "Explicação detalhada...",
-          "code": "exemplo de código"
+          "title": "O Daemon do Docker",
+          "body": "O Docker Daemon (dockerd) é o serviço em segundo plano que gerencia containers, imagens, redes e volumes no sistema host. Ele escuta as requisições da API do Docker e faz o trabalho pesado de criar e rodar tudo.",
+          "code": "systemctl status docker"
         },
         {
-          "title": "Lição 2 da Fase 3",
-          "body": "Explicação detalhada...",
-          "code": "outro exemplo"
+          "title": "O Cliente Docker",
+          "body": "O cliente Docker (comando docker) é a forma principal de interagirmos com o Docker. Ele envia os comandos para o daemon. Cliente e daemon podem rodar no mesmo sistema ou podemos conectar o cliente a um daemon remoto.",
+          "code": "docker version"
         }
       ],
       "questions": [
@@ -307,14 +307,14 @@
       "summary": "Resumo da fase 4.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 4",
-          "body": "Explicação detalhada...",
-          "code": "exemplo de código"
+          "title": "A base de tudo: FROM",
+          "body": "O Dockerfile sempre começa com a instrução FROM (com raras exceções). Ela define a imagem base sobre a qual você construirá a sua. É recomendável usar imagens oficiais e especificar a tag exata da versão.",
+          "code": "FROM node:18-alpine\n# Inicia nossa imagem baseada no Node 18"
         },
         {
-          "title": "Lição 2 da Fase 4",
-          "body": "Explicação detalhada...",
-          "code": "outro exemplo"
+          "title": "Definindo o local: WORKDIR",
+          "body": "A instrução WORKDIR define o diretório de trabalho padrão para as próximas instruções (como RUN, COPY, CMD). Se o diretório não existir, ele será criado. Isso evita que você tenha que usar caminhos absolutos o tempo todo.",
+          "code": "WORKDIR /app\n# Agora estamos dentro da pasta /app no container"
         }
       ],
       "questions": [
@@ -385,14 +385,14 @@
       "summary": "Resumo da fase 5.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 5",
-          "body": "Explicação detalhada...",
-          "code": "exemplo de código"
+          "title": "Copiando arquivos: COPY",
+          "body": "Use COPY para enviar arquivos do seu computador (host) para dentro da imagem. Geralmente copiamos o código-fonte ou arquivos de dependência primeiro. É uma boa prática copiar apenas o estritamente necessário.",
+          "code": "COPY package.json ./\nCOPY src/ ./src/"
         },
         {
-          "title": "Lição 2 da Fase 5",
-          "body": "Explicação detalhada...",
-          "code": "outro exemplo"
+          "title": "Executando comandos: RUN",
+          "body": "A instrução RUN executa comandos durante a construção da imagem (build). Normalmente usamos para instalar dependências do sistema ou bibliotecas da aplicação. Cada RUN cria uma nova camada na imagem.",
+          "code": "RUN npm install --production\nRUN apt-get update && apt-get install -y curl"
         }
       ],
       "questions": [
@@ -463,14 +463,14 @@
       "summary": "Resumo da fase 6.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 6",
-          "body": "Explicação detalhada...",
-          "code": "exemplo de código"
+          "title": "Expondo portas: EXPOSE",
+          "body": "EXPOSE serve apenas como documentação. Ele informa ao Docker e a outros usuários que o container escutará naquela porta, mas não publica a porta no host automaticamente. Para mapear, usamos -p no docker run.",
+          "code": "EXPOSE 8080\n# Indica que a aplicação roda na porta 8080"
         },
         {
-          "title": "Lição 2 da Fase 6",
-          "body": "Explicação detalhada...",
-          "code": "outro exemplo"
+          "title": "O comando principal: CMD vs ENTRYPOINT",
+          "body": "CMD fornece o comando padrão executado quando o container inicia. ENTRYPOINT também define o executável, mas trata os argumentos passados de forma diferente. Geralmente usamos CMD para aplicações web.",
+          "code": "CMD [\"node\", \"server.js\"]\n# Executa o servidor quando o container ligar"
         }
       ],
       "questions": [
@@ -541,14 +541,14 @@
       "summary": "Resumo da fase 7.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 7",
-          "body": "Explicação detalhada...",
-          "code": "exemplo de código"
+          "title": "Introdução ao Docker Compose",
+          "body": "O Docker Compose é uma ferramenta para definir e rodar aplicações multi-container. Em vez de digitar comandos longos no terminal, declaramos a infraestrutura em um arquivo YAML simples, facilitando muito a subida do ambiente.",
+          "code": "version: \"3.8\"\nservices:\n  web:\n    image: nginx"
         },
         {
-          "title": "Lição 2 da Fase 7",
-          "body": "Explicação detalhada...",
-          "code": "outro exemplo"
+          "title": "Declarando Serviços (Services)",
+          "body": "No Compose, cada container é chamado de \"service\". Para cada serviço, definimos qual imagem usar, portas expostas, volumes e variáveis de ambiente. Tudo de forma descritiva.",
+          "code": "services:\n  api:\n    build: .\n    ports:\n      - \"3000:3000\""
         }
       ],
       "questions": [
@@ -619,14 +619,14 @@
       "summary": "Resumo da fase 8.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 8",
-          "body": "Explicação detalhada...",
-          "code": "exemplo de código"
+          "title": "Mapeando Portas",
+          "body": "Assim como o argumento -p do docker run, o bloco \"ports\" no compose.yaml mapeia uma porta do host para uma porta do container. O formato é sempre \"HOST:CONTAINER\".",
+          "code": "services:\n  db:\n    image: postgres:15\n    ports:\n      - \"5432:5432\""
         },
         {
-          "title": "Lição 2 da Fase 8",
-          "body": "Explicação detalhada...",
-          "code": "outro exemplo"
+          "title": "Redes no Compose",
+          "body": "Por padrão, o Compose cria uma única rede bridge isolada para sua aplicação. Todos os serviços definidos no YAML entram nessa rede e podem se comunicar usando os nomes dos próprios serviços como hostname.",
+          "code": "# O serviço web acessa o bd apenas usando:\n# postgres://usuario:senha@db:5432/banco"
         }
       ],
       "questions": [
@@ -697,14 +697,14 @@
       "summary": "Resumo da fase 9.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 9",
-          "body": "Explicação detalhada...",
-          "code": "exemplo de código"
+          "title": "Ordem de Inicialização: depends_on",
+          "body": "Quando um serviço precisa que outro esteja rodando antes dele iniciar, usamos depends_on. Por exemplo, sua API (node) precisa que o banco de dados (postgres) já tenha iniciado.",
+          "code": "services:\n  api:\n    depends_on:\n      - db"
         },
         {
-          "title": "Lição 2 da Fase 9",
-          "body": "Explicação detalhada...",
-          "code": "outro exemplo"
+          "title": "Variáveis de Ambiente",
+          "body": "É possível passar variáveis de ambiente diretamente no YAML ou importar de um arquivo .env. Isso é essencial para não colocar senhas ou configurações sensíveis dentro do código ou imagem.",
+          "code": "services:\n  api:\n    env_file:\n      - .env"
         }
       ],
       "questions": [
@@ -775,14 +775,14 @@
       "summary": "Resumo da fase 10.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 10",
-          "body": "Explicação detalhada...",
-          "code": "exemplo de código"
+          "title": "Entendendo a Rede Bridge",
+          "body": "A bridge é a rede padrão do Docker. Funciona como um switch virtual, permitindo que containers na mesma bridge se comuniquem e acessem a internet através do host. É ideal para aplicações isoladas.",
+          "code": "docker network create minha-rede\ndocker run --network minha-rede nginx"
         },
         {
-          "title": "Lição 2 da Fase 10",
-          "body": "Explicação detalhada...",
-          "code": "outro exemplo"
+          "title": "Rede Host",
+          "body": "No modo \"host\", o container remove o isolamento de rede e usa diretamente a interface de rede da máquina real. Ele não recebe um IP próprio. Se a aplicação expõe a porta 80, ela usará a porta 80 do host.",
+          "code": "docker run --network host meu-app\n# Acesso direto na porta exposta do app"
         }
       ],
       "questions": [
@@ -853,14 +853,14 @@
       "summary": "Resumo da fase 11.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 11",
-          "body": "Explicação detalhada...",
-          "code": "exemplo de código"
+          "title": "O problema da Persistência",
+          "body": "Por padrão, os dados dentro de um container são efêmeros. Quando o container é destruído, os dados também vão embora. Para resolver isso e salvar dados permanentemente (como em bancos de dados), usamos Volumes.",
+          "code": "# Se o banco cair, os dados sumirão.\n# Solução: montar um volume."
         },
         {
-          "title": "Lição 2 da Fase 11",
-          "body": "Explicação detalhada...",
-          "code": "outro exemplo"
+          "title": "Volumes Nomeados",
+          "body": "Criados e gerenciados pelo próprio Docker, ficam armazenados em uma área restrita do host. São a melhor escolha para dados que o usuário não precisa acessar diretamente os arquivos.",
+          "code": "docker volume create dados_db\ndocker run -v dados_db:/var/lib/postgresql/data postgres"
         }
       ],
       "questions": [
@@ -931,14 +931,14 @@
       "summary": "Resumo da fase 12.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 12",
-          "body": "Explicação detalhada...",
-          "code": "exemplo de código"
+          "title": "Bind Mounts",
+          "body": "Com bind mounts, você mapeia uma pasta ou arquivo específico do seu sistema operacional diretamente para o container. Muito útil no desenvolvimento para ver alterações de código refletidas imediatamente no container.",
+          "code": "docker run -v $(pwd)/src:/app/src node-app\n# Código da sua pasta atual mapeado no app"
         },
         {
-          "title": "Lição 2 da Fase 12",
-          "body": "Explicação detalhada...",
-          "code": "outro exemplo"
+          "title": "Limpando Volumes e Redes",
+          "body": "Com o tempo, volumes e redes não utilizados acumulam sujeira e ocupam espaço. O Docker possui comandos \"prune\" que removem todos os recursos que não estão atrelados a nenhum container ativo.",
+          "code": "docker volume prune\ndocker network prune"
         }
       ],
       "questions": [
@@ -1009,14 +1009,14 @@
       "summary": "Resumo da fase 13.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 13",
-          "body": "Explicação detalhada...",
-          "code": "exemplo de código"
+          "title": "O Comando Build",
+          "body": "Para criar uma imagem a partir do seu Dockerfile, usamos o comando build. O \".\" no final indica o \"build context\", que é o diretório atual onde o Docker procurará os arquivos a serem copiados.",
+          "code": "docker build -t meu-app:1.0 .\n# Cria a imagem meu-app com a tag 1.0"
         },
         {
-          "title": "Lição 2 da Fase 13",
-          "body": "Explicação detalhada...",
-          "code": "outro exemplo"
+          "title": "Tagging de Imagens",
+          "body": "Tags são como versões para suas imagens (ex: 1.0, latest). A sintaxe padrão é NOME:TAG. Se não for especificada, o Docker usa \"latest\". Você pode adicionar múltiplas tags à mesma imagem.",
+          "code": "docker tag meu-app:1.0 meu-usuario/meu-app:latest"
         }
       ],
       "questions": [
@@ -1087,14 +1087,14 @@
       "summary": "Resumo da fase 14.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 14",
-          "body": "Explicação detalhada...",
-          "code": "exemplo de código"
+          "title": "Docker Registries",
+          "body": "Um Registry é um repositório remoto para armazenar e distribuir imagens Docker. O mais famoso é o Docker Hub, mas empresas usam repositórios privados como AWS ECR, Google GCR ou Harbor.",
+          "code": "docker login\n# Autentica-se no registry padrão (Docker Hub)"
         },
         {
-          "title": "Lição 2 da Fase 14",
-          "body": "Explicação detalhada...",
-          "code": "outro exemplo"
+          "title": "Enviando Imagens (Push)",
+          "body": "Após construir sua imagem e colocar a tag correta (incluindo o seu nome de usuário), o comando push envia as camadas da sua imagem para o registry. Assim, qualquer pessoa autorizada pode usá-la.",
+          "code": "docker push meu-usuario/meu-app:latest"
         }
       ],
       "questions": [
@@ -1165,14 +1165,14 @@
       "summary": "Resumo da fase 15.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 15",
-          "body": "Explicação detalhada...",
-          "code": "exemplo de código"
+          "title": "Baixando Imagens (Pull)",
+          "body": "O comando pull baixa imagens de um registry para a sua máquina local. Na prática, o comando \"run\" executa um \"pull\" automaticamente se não encontrar a imagem localmente.",
+          "code": "docker pull redis:7.0-alpine"
         },
         {
-          "title": "Lição 2 da Fase 15",
-          "body": "Explicação detalhada...",
-          "code": "outro exemplo"
+          "title": "O Ciclo de Vida da Imagem",
+          "body": "O fluxo de trabalho normal de um desenvolvedor envolve: 1. Escrever o Dockerfile; 2. Fazer o Build; 3. Testar localmente com Run; 4. Taggear; 5. Fazer o Push para o registry. Outros baixam com Pull.",
+          "code": "build -> tag -> push -> pull -> run"
         }
       ],
       "questions": [
@@ -1243,14 +1243,14 @@
       "summary": "Resumo da fase 16.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 16",
-          "body": "Explicação detalhada...",
-          "code": "exemplo de código"
+          "title": "O que é o Kubernetes?",
+          "body": "Kubernetes (K8s) é um sistema open-source para automação de implantação, escalonamento e gerenciamento de aplicações em containers. Ele orquestra um \"mar\" de containers distribuídos em diversas máquinas virtuais.",
+          "code": "# O Docker roda containers em 1 máquina.\n# O K8s orquestra containers em N máquinas."
         },
         {
-          "title": "Lição 2 da Fase 16",
-          "body": "Explicação detalhada...",
-          "code": "outro exemplo"
+          "title": "A Arquitetura: Control Plane e Nodes",
+          "body": "Um cluster K8s consiste no Control Plane, que gerencia o estado e as decisões, e os Nodes (trabalhadores), onde seus containers realmente rodam. Cada node roda componentes essenciais como o Kubelet.",
+          "code": "kubectl get nodes\n# Lista os servidores do cluster"
         }
       ],
       "questions": [
@@ -1321,14 +1321,14 @@
       "summary": "Resumo da fase 17.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 17",
-          "body": "Explicação detalhada...",
-          "code": "exemplo de código"
+          "title": "O que é um Pod?",
+          "body": "O Pod é a menor unidade implantável no K8s. Ele não roda containers diretamente; o Pod \"abraça\" um ou mais containers que precisam compartilhar a mesma rede, disco e ciclo de vida. Geralmente, usamos um container por Pod.",
+          "code": "apiVersion: v1\nkind: Pod\nmetadata:\n  name: meu-pod"
         },
         {
-          "title": "Lição 2 da Fase 17",
-          "body": "Explicação detalhada...",
-          "code": "outro exemplo"
+          "title": "A Ferramenta kubectl",
+          "body": "O kubectl é a linha de comando para falar com a API do cluster Kubernetes. Com ele, você aplica configurações, lê status, inspeciona logs e executa comandos nos Pods.",
+          "code": "kubectl get pods\n# Mostra todos os pods rodando no namespace"
         }
       ],
       "questions": [
@@ -1399,14 +1399,14 @@
       "summary": "Resumo da fase 18.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 18",
-          "body": "Explicação detalhada...",
-          "code": "exemplo de código"
+          "title": "O Arquivo kubeconfig",
+          "body": "Como o kubectl sabe com qual cluster falar e com quais credenciais? Ele lê essas configurações de um arquivo local, geralmente localizado em ~/.kube/config. Isso permite gerenciar vários clusters na mesma máquina.",
+          "code": "kubectl config get-contexts\n# Lista os clusters configurados"
         },
         {
-          "title": "Lição 2 da Fase 18",
-          "body": "Explicação detalhada...",
-          "code": "outro exemplo"
+          "title": "A Natureza Declarativa",
+          "body": "No K8s, você quase nunca diz \"crie um container agora\". Em vez disso, você envia um manifesto YAML dizendo \"quero 3 pods do nginx ativos\". O K8s fica em loop garantindo que a realidade coincida com o seu desejo.",
+          "code": "kubectl apply -f aplicacao.yaml\n# Aplica o manifesto desejado"
         }
       ],
       "questions": [
@@ -1477,14 +1477,14 @@
       "summary": "Resumo da fase 19.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 19",
-          "body": "Explicação detalhada...",
-          "code": "exemplo de código"
+          "title": "Garantindo Réplicas com ReplicaSet",
+          "body": "Um ReplicaSet garante que um número especificado de cópias do mesmo Pod esteja sempre rodando. Se um Node morrer, o ReplicaSet recria os Pods perdidos em outro Node saudável.",
+          "code": "spec:\n  replicas: 3\n  selector:\n    matchLabels:\n      app: nginx"
         },
         {
-          "title": "Lição 2 da Fase 19",
-          "body": "Explicação detalhada...",
-          "code": "outro exemplo"
+          "title": "A abstração Deployment",
+          "body": "Raramente criamos ReplicaSets diretamente. Nós criamos um Deployment, que é um nível acima e gerencia as ReplicaSets, permitindo atualizações sem downtime (Rolling Updates) e rollbacks fáceis para versões anteriores.",
+          "code": "apiVersion: apps/v1\nkind: Deployment\nmetadata:\n  name: meu-backend"
         }
       ],
       "questions": [
@@ -1555,14 +1555,14 @@
       "summary": "Resumo da fase 20.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 20",
-          "body": "Explicação detalhada...",
-          "code": "exemplo de código"
+          "title": "O que é um Service?",
+          "body": "Pods são mortais e ganham IPs dinâmicos quando recriados. Como os serviços se comunicam sem IPs fixos? O Service atua como um balanceador de carga estático e ponto de entrada fixo para um conjunto de Pods.",
+          "code": "apiVersion: v1\nkind: Service\nmetadata:\n  name: api-service"
         },
         {
-          "title": "Lição 2 da Fase 20",
-          "body": "Explicação detalhada...",
-          "code": "outro exemplo"
+          "title": "Service: ClusterIP",
+          "body": "É o tipo padrão de Service. Ele expõe a aplicação em um IP interno que só é acessível dentro do próprio cluster K8s. Ideal para comunicação entre microsserviços (ex: API falando com o Banco de Dados).",
+          "code": "type: ClusterIP\nports:\n  - port: 80\n    targetPort: 8080"
         }
       ],
       "questions": [
@@ -1633,14 +1633,14 @@
       "summary": "Resumo da fase 21.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 21",
-          "body": "Explicação detalhada...",
-          "code": "exemplo de código"
+          "title": "Service: NodePort",
+          "body": "O NodePort expõe o serviço em uma porta estática fixa (geralmente de 30000 a 32767) em TODOS os Nodes do cluster. É uma forma simples de acessar a aplicação vindo de fora do cluster.",
+          "code": "type: NodePort\nports:\n  - port: 80\n    nodePort: 30080"
         },
         {
-          "title": "Lição 2 da Fase 21",
-          "body": "Explicação detalhada...",
-          "code": "outro exemplo"
+          "title": "Service: LoadBalancer",
+          "body": "Ao usar K8s na nuvem (AWS, GCP, Azure), o LoadBalancer requisita um balanceador de carga real do provedor cloud, dando a você um IP público externo roteando para seus Pods.",
+          "code": "type: LoadBalancer\n# A nuvem provê o IP público!"
         }
       ],
       "questions": [
@@ -1711,14 +1711,14 @@
       "summary": "Resumo da fase 22.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 22",
-          "body": "Explicação detalhada...",
-          "code": "exemplo de código"
+          "title": "Separando Configurações: ConfigMap",
+          "body": "O ConfigMap armazena chaves/valores não sensíveis, como URLs, strings de conexão (sem senhas) e variáveis de ambiente. Isso separa a configuração do código, permitindo alterar variáveis sem recompilar a imagem.",
+          "code": "apiVersion: v1\nkind: ConfigMap\ndata:\n  APP_THEME: \"dark\""
         },
         {
-          "title": "Lição 2 da Fase 22",
-          "body": "Explicação detalhada...",
-          "code": "outro exemplo"
+          "title": "Usando ConfigMaps nos Pods",
+          "body": "Você pode injetar os dados do ConfigMap no seu Pod como variáveis de ambiente individuais, ou montar todos os dados como arquivos de configuração reais dentro de um volume no container.",
+          "code": "envFrom:\n  - configMapRef:\n      name: meu-configmap"
         }
       ],
       "questions": [
@@ -1789,14 +1789,14 @@
       "summary": "Resumo da fase 23.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 23",
-          "body": "Explicação detalhada...",
-          "code": "exemplo de código"
+          "title": "Protegendo Senhas com Secret",
+          "body": "O Secret funciona de forma semelhante ao ConfigMap, mas é projetado para armazenar dados confidenciais, como senhas, tokens OAuth e chaves SSH. No K8s padrão, eles são codificados em Base64.",
+          "code": "apiVersion: v1\nkind: Secret\ntype: Opaque\ndata:\n  db-pass: MWYyZDFlMmU2N2Rm"
         },
         {
-          "title": "Lição 2 da Fase 23",
-          "body": "Explicação detalhada...",
-          "code": "outro exemplo"
+          "title": "Injetando Secrets Seguros",
+          "body": "O Secret pode ser passado para o Pod como variável de ambiente ou via volume montado (tmpfs em memória). É a maneira padrão de manter credenciais de banco de dados fora do código-fonte e repositórios.",
+          "code": "env:\n  - name: DB_PASSWORD\n    valueFrom:\n      secretKeyRef:\n        name: db-secret\n        key: db-pass"
         }
       ],
       "questions": [
@@ -1867,14 +1867,14 @@
       "summary": "Resumo da fase 24.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 24",
-          "body": "Explicação detalhada...",
-          "code": "exemplo de código"
+          "title": "Roteamento Avançado com Ingress",
+          "body": "Enquanto o LoadBalancer dá um IP público por serviço, o Ingress atua como um roteador de camada 7 (HTTP/HTTPS). Com apenas um IP público, ele roteia tráfego para diferentes Services baseado no caminho da URL ou host.",
+          "code": "rules:\n  - host: meudominio.com\n    http:\n      paths:\n        - path: /api\n          backend:\n            service:\n              name: api"
         },
         {
-          "title": "Lição 2 da Fase 24",
-          "body": "Explicação detalhada...",
-          "code": "outro exemplo"
+          "title": "Auto-Scaling (HPA)",
+          "body": "O Horizontal Pod Autoscaler observa métricas de CPU/Memória. Se o uso ficar muito alto (ex: pico na Black Friday), ele aumenta automaticamente a quantidade de Pods no Deployment para suportar a carga.",
+          "code": "kubectl autoscale deployment meu-app --cpu-percent=80 --min=2 --max=10"
         }
       ],
       "questions": [
@@ -1945,14 +1945,14 @@
       "summary": "Resumo da fase 25.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 25",
-          "body": "Explicação detalhada...",
-          "code": "exemplo de código"
+          "title": "Isolando Ambientes com Namespaces",
+          "body": "Namespaces funcionam como \"clusters virtuais\" dentro de um mesmo cluster físico. Você pode usá-los para separar os recursos de Desenvolvimento, Homologação e Produção, ou diferentes times da empresa.",
+          "code": "kubectl create namespace dev\nkubectl get pods -n dev"
         },
         {
-          "title": "Lição 2 da Fase 25",
-          "body": "Explicação detalhada...",
-          "code": "outro exemplo"
+          "title": "Inspecionando Recursos (describe)",
+          "body": "Se o seu Pod não sobe e fica com erro (como CrashLoopBackOff), o comando describe é seu melhor amigo. Ele exibe um histórico de eventos, mostrando exatamente por que o container falhou.",
+          "code": "kubectl describe pod meu-pod\n# Olhe a seção de \"Events\" no final!"
         }
       ],
       "questions": [
@@ -2023,14 +2023,14 @@
       "summary": "Resumo da fase 26.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 26",
-          "body": "Explicação detalhada...",
-          "code": "exemplo de código"
+          "title": "Lendo Logs no K8s",
+          "body": "O kubectl logs coleta a saída padrão (stdout) e os erros (stderr) dos containers dentro de um Pod. Se o Pod tiver vários containers, você deve especificar de qual deseja ler os logs.",
+          "code": "kubectl logs meu-pod\nkubectl logs -f meu-pod # Segue o log ao vivo"
         },
         {
-          "title": "Lição 2 da Fase 26",
-          "body": "Explicação detalhada...",
-          "code": "outro exemplo"
+          "title": "Executando Comandos dentro do Pod",
+          "body": "Assim como no Docker, o comando exec permite abrir um shell iterativo dentro de um container que já está rodando no cluster, ótimo para investigar permissões de pastas ou testar conexões.",
+          "code": "kubectl exec -it meu-pod -- sh\n# Abre o terminal dentro do Pod"
         }
       ],
       "questions": [
@@ -2101,14 +2101,14 @@
       "summary": "Resumo da fase 27.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 27",
-          "body": "Explicação detalhada...",
-          "code": "exemplo de código"
+          "title": "O Modo Declarativo e apply",
+          "body": "Sempre prefira criar ou atualizar seus recursos usando \"kubectl apply\" em arquivos YAML mantidos no versionamento (GitOps), em vez de comandos imperativos como \"kubectl create\" e \"edit\".",
+          "code": "kubectl apply -f manifestos/\n# Aplica todos os arquivos da pasta"
         },
         {
-          "title": "Lição 2 da Fase 27",
-          "body": "Explicação detalhada...",
-          "code": "outro exemplo"
+          "title": "Removendo Recursos",
+          "body": "Para deletar um recurso limpo, você pode passar o nome dele ou, melhor ainda, deletar a partir do próprio arquivo YAML. Isso garante que não ficará lixo órfão no cluster.",
+          "code": "kubectl delete -f aplicacao.yaml"
         }
       ],
       "questions": [
@@ -2179,14 +2179,14 @@
       "summary": "Resumo da fase 28.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 28",
-          "body": "Explicação detalhada...",
-          "code": "exemplo de código"
+          "title": "O Grande Cenário de Deploy",
+          "body": "Para colocar uma aplicação multicamada no ar, começamos escrevendo o Dockerfile do backend e do frontend, realizando o build das imagens e fazendo o push para o registry para o K8s conseguir baixar.",
+          "code": "docker build -t app:v1 .\ndocker push app:v1"
         },
         {
-          "title": "Lição 2 da Fase 28",
-          "body": "Explicação detalhada...",
-          "code": "outro exemplo"
+          "title": "Manifestos de Banco de Dados",
+          "body": "Bancos no K8s exigem cuidado redobrado. Devemos definir o StatefulSet (ou Deployment), o PersistentVolumeClaim para manter os dados, e um Secret para a senha root, unindo tudo de forma segura.",
+          "code": "kind: PersistentVolumeClaim\n# Requisita disco persistente"
         }
       ],
       "questions": [
@@ -2257,14 +2257,14 @@
       "summary": "Resumo da fase 29.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 29",
-          "body": "Explicação detalhada...",
-          "code": "exemplo de código"
+          "title": "O Deployment da Aplicação",
+          "body": "Em seguida, criamos o Deployment do frontend e do backend. Configuramos os Liveness/Readiness probes para o K8s saber quando a aplicação está de fato pronta para receber tráfego sem causar erros.",
+          "code": "readinessProbe:\n  httpGet:\n    path: /health\n    port: 8080"
         },
         {
-          "title": "Lição 2 da Fase 29",
-          "body": "Explicação detalhada...",
-          "code": "outro exemplo"
+          "title": "Integrando os Componentes com Services",
+          "body": "Criamos Services do tipo ClusterIP para a API e pro Banco se falarem internamente, usando os nomes DNS do K8s (ex: nome-do-service). Por fim, preparamos o Service e Ingress para expor o frontend ao mundo.",
+          "code": "# O frontend chama a API via /api no Ingress"
         }
       ],
       "questions": [
@@ -2335,14 +2335,14 @@
       "summary": "Resumo da fase 30.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 30",
-          "body": "Explicação detalhada...",
-          "code": "exemplo de código"
+          "title": "Aplicando no Cluster",
+          "body": "Com todos os YAMLs revisados, aplicamos tudo no cluster com \"kubectl apply\". O Kubernetes começará a baixar as imagens, criar os volumes, ligar a rede e balancear o tráfego.",
+          "code": "kubectl apply -f infra/\nkubectl get all -n prod"
         },
         {
-          "title": "Lição 2 da Fase 30",
-          "body": "Explicação detalhada...",
-          "code": "outro exemplo"
+          "title": "Monitoramento Pós-Deploy",
+          "body": "O deploy não termina com o apply. É fundamental acompanhar os Pods com \"kubectl get pods -w\", monitorar os logs em busca de erros de conexão e validar se a aplicação exposta está funcionando corretamente no navegador.",
+          "code": "# Sucesso! Aplicação escalável, \n# resiliente e rodando com Kubernetes."
         }
       ],
       "questions": [

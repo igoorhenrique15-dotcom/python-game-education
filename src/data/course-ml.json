@@ -73,14 +73,14 @@
       "summary": "Aprenda sobre Fundamentos de ML.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 1",
-          "body": "Explicação detalhada dos conceitos.",
-          "code": "import numpy as np"
+          "title": "Tipos de Aprendizado de Máquina",
+          "body": "Machine Learning se divide em três paradigmas principais: supervisionado (dados com respostas/rótulos), não-supervisionado (descobrir padrões em dados sem rótulo) e por reforço (aprender por tentativa e erro maximizando recompensas).",
+          "code": "import numpy as np\n# Exemplo: dados rotulados (features X e labels y)\nX = np.array([[1, 2], [2, 3], [3, 4]])\ny = np.array([0, 1, 1])"
         },
         {
-          "title": "Lição 2 da Fase 1",
-          "body": "Mais detalhes e exemplos.",
-          "code": "print('ML')"
+          "title": "Features e Labels (Recursos e Rótulos)",
+          "body": "As 'features' são as características ou variáveis independentes usadas para fazer predições. O 'label' é a resposta que o modelo tenta prever (variável dependente). O conjunto de dados une features e labels para treinar o algoritmo.",
+          "code": "import pandas as pd\ndf = pd.DataFrame({'idade': [25, 30], 'salario': [5000, 8000], 'comprou': [0, 1]})\nX = df[['idade', 'salario']] # features\ny = df['comprou'] # label"
         }
       ],
       "questions": [
@@ -151,14 +151,14 @@
       "summary": "Aprenda sobre Fundamentos de ML.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 2",
-          "body": "Explicação detalhada dos conceitos.",
-          "code": "import numpy as np"
+          "title": "O que é um Modelo de Machine Learning?",
+          "body": "Um modelo é uma representação matemática de um processo do mundo real. Treinar um modelo significa encontrar os melhores parâmetros matemáticos (pesos) que mapeiam os dados de entrada para a saída esperada, minimizando erros.",
+          "code": "# Instanciando um modelo simples no scikit-learn\nfrom sklearn.linear_model import LinearRegression\nmodelo = LinearRegression()\n# O modelo inicia com parâmetros aleatórios/vazios"
         },
         {
-          "title": "Lição 2 da Fase 2",
-          "body": "Mais detalhes e exemplos.",
-          "code": "print('ML')"
+          "title": "Conjuntos de Dados: Train e Test",
+          "body": "Para medir a capacidade de generalização de um modelo, não testamos com os mesmos dados do treino. O dataset é dividido em treino (para aprender os padrões) e teste (dados novos para avaliar o desempenho real).",
+          "code": "from sklearn.model_selection import train_test_split\nX_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)"
         }
       ],
       "questions": [
@@ -229,14 +229,14 @@
       "summary": "Aprenda sobre Fundamentos de ML.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 3",
-          "body": "Explicação detalhada dos conceitos.",
-          "code": "import numpy as np"
+          "title": "Overfitting vs Underfitting",
+          "body": "Overfitting ocorre quando o modelo memoriza os dados de treino e erra nos de teste. Underfitting acontece quando é simples demais para captar os padrões. O objetivo de ML é o equilíbrio (bom fit), generalizando bem para dados invisíveis.",
+          "code": "from sklearn.tree import DecisionTreeClassifier\n# Profundidade excessiva pode causar overfitting\nmodelo_ruim = DecisionTreeClassifier(max_depth=100)\nmodelo_bom = DecisionTreeClassifier(max_depth=4)"
         },
         {
-          "title": "Lição 2 da Fase 3",
-          "body": "Mais detalhes e exemplos.",
-          "code": "print('ML')"
+          "title": "A Importância dos Dados",
+          "body": "Garbage In, Garbage Out. A qualidade do seu modelo de Machine Learning é diretamente proporcional à qualidade e quantidade dos dados fornecidos. Dados tendenciosos, incompletos ou ruidosos resultam em predições incorretas e inúteis.",
+          "code": "# Visualizando os dados para checar qualidade inicial\nprint(df.info())\nprint(df.describe())\n# Dados limpos = Modelo melhor"
         }
       ],
       "questions": [
@@ -307,14 +307,14 @@
       "summary": "Aprenda sobre Preparação de Dados.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 4",
-          "body": "Explicação detalhada dos conceitos.",
-          "code": "import numpy as np"
+          "title": "Tratamento de Valores Ausentes",
+          "body": "Na vida real, bases de dados quase sempre possuem lacunas. Valores ausentes (NaN) quebram os algoritmos matemáticos. Podemos remover linhas afetadas ou preenchê-las (imputação) usando média, mediana ou valores mais frequentes.",
+          "code": "from sklearn.impute import SimpleImputer\nimputer = SimpleImputer(strategy='mean')\nX_preenchido = imputer.fit_transform(X_com_nan)"
         },
         {
-          "title": "Lição 2 da Fase 4",
-          "body": "Mais detalhes e exemplos.",
-          "code": "print('ML')"
+          "title": "Normalização e Padronização",
+          "body": "Muitos algoritmos são sensíveis à escala. Se uma feature varia de 0 a 1 e outra de 1.000 a 1.000.000, o modelo dará importância excessiva aos números maiores. Normalizar e padronizar (Z-score) colocam tudo na mesma escala.",
+          "code": "from sklearn.preprocessing import StandardScaler\nscaler = StandardScaler()\n# Subtrai a média e divide pelo desvio padrão\nX_scaled = scaler.fit_transform(X)"
         }
       ],
       "questions": [
@@ -385,14 +385,14 @@
       "summary": "Aprenda sobre Preparação de Dados.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 5",
-          "body": "Explicação detalhada dos conceitos.",
-          "code": "import numpy as np"
+          "title": "Codificação Categórica (One-Hot Encoding)",
+          "body": "A maioria dos algoritmos só entende números. Features categóricas em texto (ex: 'cores') precisam ser transformadas. O One-Hot Encoding cria uma coluna binária para cada categoria, evitando que o modelo assuma ordem matemática entre elas.",
+          "code": "import pandas as pd\ndf_encoded = pd.get_dummies(df, columns=['cor'])\n# 'cor_azul', 'cor_verde' viram 0 ou 1"
         },
         {
-          "title": "Lição 2 da Fase 5",
-          "body": "Mais detalhes e exemplos.",
-          "code": "print('ML')"
+          "title": "Label Encoding: Variáveis Ordinais",
+          "body": "Quando uma categoria textual tem hierarquia ou ordem real (ex: 'pequeno', 'médio', 'grande'), é útil mapear para números crescentes (0, 1, 2) usando Label Encoding. O algoritmo entenderá que 'grande' é maior que 'médio'.",
+          "code": "from sklearn.preprocessing import LabelEncoder\nle = LabelEncoder()\ntamanhos = ['P', 'M', 'G']\ncodificados = le.fit_transform(tamanhos) # Ex: [2, 1, 0]"
         }
       ],
       "questions": [
@@ -463,14 +463,14 @@
       "summary": "Aprenda sobre Preparação de Dados.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 6",
-          "body": "Explicação detalhada dos conceitos.",
-          "code": "import numpy as np"
+          "title": "Data Splitting Estratificado",
+          "body": "Ao separar dados em treino e teste com classes desbalanceadas (ex: 90% classe A e 10% classe B), a amostragem aleatória simples pode deixar o teste apenas com a classe A. A estratificação garante a mesma proporção em ambas partições.",
+          "code": "from sklearn.model_selection import train_test_split\n# stratify=y mantém as proporções da variável alvo\nX_treino, X_teste, y_treino, y_teste = train_test_split(X, y, test_size=0.2, stratify=y)"
         },
         {
-          "title": "Lição 2 da Fase 6",
-          "body": "Mais detalhes e exemplos.",
-          "code": "print('ML')"
+          "title": "Feature Engineering e Seleção",
+          "body": "Criar novas variáveis a partir das existentes (ex: usar 'data de nascimento' para calcular 'idade') pode ajudar o modelo. Além disso, remover variáveis redundantes ou irrelevantes reduz o ruído e acelera o treinamento.",
+          "code": "from sklearn.feature_selection import SelectKBest, f_classif\n# Seleciona as 5 features mais relevantes\nseletor = SelectKBest(score_func=f_classif, k=5)\nX_novo = seletor.fit_transform(X, y)"
         }
       ],
       "questions": [
@@ -541,14 +541,14 @@
       "summary": "Aprenda sobre Regressão.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 7",
-          "body": "Explicação detalhada dos conceitos.",
-          "code": "import numpy as np"
+          "title": "Regressão Linear Simples",
+          "body": "A regressão linear modela a relação entre variáveis desenhando uma linha reta que melhor se ajusta aos dados. A equação fundamental é y = mx + b, onde 'm' é o peso (inclinação) e 'b' é o viés (interseção y).",
+          "code": "from sklearn.linear_model import LinearRegression\nmodelo = LinearRegression()\nmodelo.fit(X_train, y_train)\nprint(f'Coef (m): {modelo.coef_}, Intercept (b): {modelo.intercept_}')"
         },
         {
-          "title": "Lição 2 da Fase 7",
-          "body": "Mais detalhes e exemplos.",
-          "code": "print('ML')"
+          "title": "O Erro Quadrático Médio (MSE)",
+          "body": "Para medir o quão boa é a linha de regressão, calculamos a distância entre as previsões (linha) e os valores reais. O MSE eleva essas diferenças ao quadrado (para punir erros grandes) e tira a média. Treinar significa minimizar o MSE.",
+          "code": "from sklearn.metrics import mean_squared_error\ny_pred = modelo.predict(X_test)\nmse = mean_squared_error(y_test, y_pred)\nprint(f'Erro quadrático médio: {mse}')"
         }
       ],
       "questions": [
@@ -619,14 +619,14 @@
       "summary": "Aprenda sobre Regressão.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 8",
-          "body": "Explicação detalhada dos conceitos.",
-          "code": "import numpy as np"
+          "title": "Gradiente Descendente",
+          "body": "É o algoritmo de otimização que encontra os melhores parâmetros minimizando o erro. Pense nele como uma pessoa vendada descendo uma montanha: ela sente a inclinação do terreno (derivada) e dá passos (learning rate) para o ponto mais baixo.",
+          "code": "from sklearn.linear_model import SGDRegressor\n# Stochastic Gradient Descent para regressão\nmodelo_sgd = SGDRegressor(learning_rate='constant', eta0=0.01)\nmodelo_sgd.fit(X_train, y_train)"
         },
         {
-          "title": "Lição 2 da Fase 8",
-          "body": "Mais detalhes e exemplos.",
-          "code": "print('ML')"
+          "title": "Regressão Múltipla",
+          "body": "Na prática, raramente temos apenas uma variável. A regressão múltipla generaliza o conceito linear para múltiplas dimensões (features), formando um hiperplano matemático. A fórmula vira y = b + m1*x1 + m2*x2 + ... + mn*xn.",
+          "code": "import pandas as pd\n# Usando 3 features ao mesmo tempo\nX = df[['area_m2', 'quartos', 'idade_imovel']]\nmodelo.fit(X, preco_imovel)\npred = modelo.predict([[80, 2, 5]])"
         }
       ],
       "questions": [
@@ -697,14 +697,14 @@
       "summary": "Aprenda sobre Regressão.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 9",
-          "body": "Explicação detalhada dos conceitos.",
-          "code": "import numpy as np"
+          "title": "Regressão Logística para Classificação",
+          "body": "Apesar do nome, a Regressão Logística é usada para classificação binária. Ela aperta a saída da regressão linear numa curva S (função sigmóide), mapeando os resultados para probabilidades entre 0 e 1.",
+          "code": "from sklearn.linear_model import LogisticRegression\nmodelo = LogisticRegression()\nmodelo.fit(X_train, y_train)\nprobabilidades = modelo.predict_proba(X_test) # Retorna probs de ser 0 ou 1"
         },
         {
-          "title": "Lição 2 da Fase 9",
-          "body": "Mais detalhes e exemplos.",
-          "code": "print('ML')"
+          "title": "Regularização (L1 e L2)",
+          "body": "Para evitar overfitting na regressão, adicionamos penalidades para coeficientes grandes demais. L1 (Lasso) zera características inúteis, fazendo seleção de features. L2 (Ridge) encolhe pesos grandes suavemente, distribuindo a importância.",
+          "code": "from sklearn.linear_model import Ridge, Lasso\nmodelo_ridge = Ridge(alpha=1.0) # Penaliza pesos extremos\nmodelo_lasso = Lasso(alpha=0.1) # Pode zerar features desnecessárias"
         }
       ],
       "questions": [
@@ -775,14 +775,14 @@
       "summary": "Aprenda sobre Classificação.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 10",
-          "body": "Explicação detalhada dos conceitos.",
-          "code": "import numpy as np"
+          "title": "O Algoritmo K-Nearest Neighbors (KNN)",
+          "body": "O KNN assume que dados similares estão próximos no espaço métrico. Para classificar um novo dado, ele 'pergunta' aos K vizinhos mais próximos qual é a sua classe e vota. É simples, não requer treino real (lazy learning), mas sofre em alta dimensão.",
+          "code": "from sklearn.neighbors import KNeighborsClassifier\n# Usando 5 vizinhos mais próximos\nknn = KNeighborsClassifier(n_neighbors=5)\nknn.fit(X_train, y_train)\npred = knn.predict(X_novo)"
         },
         {
-          "title": "Lição 2 da Fase 10",
-          "body": "Mais detalhes e exemplos.",
-          "code": "print('ML')"
+          "title": "Árvores de Decisão (Decision Trees)",
+          "body": "As Árvores de Decisão quebram as decisões em várias perguntas baseadas nas features. Elas particionam os dados sucessivamente escolhendo a melhor quebra que maximize a pureza dos grupos resultantes, usando Impureza de Gini ou Entropia.",
+          "code": "from sklearn.tree import DecisionTreeClassifier\n# Criterion pode ser 'gini' ou 'entropy'\narvore = DecisionTreeClassifier(criterion='entropy', max_depth=3)\narvore.fit(X_treino, y_treino)"
         }
       ],
       "questions": [
@@ -853,14 +853,14 @@
       "summary": "Aprenda sobre Classificação.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 11",
-          "body": "Explicação detalhada dos conceitos.",
-          "code": "import numpy as np"
+          "title": "Support Vector Machines (SVM)",
+          "body": "O SVM encontra o 'hiperplano' ótimo que separa as classes com a maior margem possível. Os dados mais próximos da margem, que ajudam a definir a fronteira, são chamados de vetores de suporte. Ele busca robustez máxima na divisão.",
+          "code": "from sklearn.svm import SVC\n# Kernel linear constrói uma reta/plano reto\nsvm = SVC(kernel='linear', C=1.0)\nsvm.fit(X_train, y_train)"
         },
         {
-          "title": "Lição 2 da Fase 11",
-          "body": "Mais detalhes e exemplos.",
-          "code": "print('ML')"
+          "title": "O Truque do Kernel (Kernel Trick) no SVM",
+          "body": "Quando os dados não são linearmente separáveis (não dá para traçar uma reta perfeita), o SVM usa o Kernel Trick para projetar os dados num espaço de dimensão superior onde um hiperplano linear consegue separá-los sem cálculos absurdos.",
+          "code": "from sklearn.svm import SVC\n# Kernel RBF projeta dados para curvas complexas\nsvm_rbf = SVC(kernel='rbf', gamma='scale')\nsvm_rbf.fit(X_train, y_train)"
         }
       ],
       "questions": [
@@ -931,14 +931,14 @@
       "summary": "Aprenda sobre Classificação.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 12",
-          "body": "Explicação detalhada dos conceitos.",
-          "code": "import numpy as np"
+          "title": "Ensemble: Random Forest",
+          "body": "Em vez de usar uma árvore de decisão que sofre overfitting, a Random Forest treina dezenas de árvores sobre subconjuntos diferentes dos dados e junta (ensemble) a decisão de todas. A 'sabedoria da multidão' gera modelos muito robustos e precisos.",
+          "code": "from sklearn.ensemble import RandomForestClassifier\n# 100 árvores florestais\nrf = RandomForestClassifier(n_estimators=100, random_state=42)\nrf.fit(X_train, y_train)"
         },
         {
-          "title": "Lição 2 da Fase 12",
-          "body": "Mais detalhes e exemplos.",
-          "code": "print('ML')"
+          "title": "Gradient Boosting e XGBoost",
+          "body": "Ao invés do Random Forest (treino paralelo independente), o Boosting treina árvores fracas sequencialmente. Cada nova árvore foca em corrigir exatamente os erros que a árvore anterior cometeu, reduzindo incrivelmente o viés do modelo.",
+          "code": "from sklearn.ensemble import GradientBoostingClassifier\ngbm = GradientBoostingClassifier(n_estimators=100, learning_rate=0.1)\ngbm.fit(X_train, y_train)"
         }
       ],
       "questions": [
@@ -1009,14 +1009,14 @@
       "summary": "Aprenda sobre Clustering.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 13",
-          "body": "Explicação detalhada dos conceitos.",
-          "code": "import numpy as np"
+          "title": "O Algoritmo K-Means",
+          "body": "O K-Means agrupa dados em K clusters. Ele distribui K centroides aleatoriamente e, iterativamente, associa cada ponto ao centroide mais próximo, depois recalcula o centroide como a média dos pontos associados até parar de se mover.",
+          "code": "from sklearn.cluster import KMeans\nkmeans = KMeans(n_clusters=3, random_state=0)\n# Não precisamos do 'y' pois é aprendizado não-supervisionado\nlabels_encontradas = kmeans.fit_predict(X)"
         },
         {
-          "title": "Lição 2 da Fase 13",
-          "body": "Mais detalhes e exemplos.",
-          "code": "print('ML')"
+          "title": "Inércia e o Elbow Method",
+          "body": "A inércia mede a soma das distâncias ao quadrado entre os pontos e os centroides do cluster. Para escolher o melhor valor de K, traçamos um gráfico K vs Inércia. O ponto de 'cotovelo' (elbow) onde a queda suaviza drásticamente é o K ideal.",
+          "code": "inercia = []\nfor k in range(1, 10):\n    modelo = KMeans(n_clusters=k)\n    modelo.fit(X)\n    inercia.append(modelo.inertia_)"
         }
       ],
       "questions": [
@@ -1087,14 +1087,14 @@
       "summary": "Aprenda sobre Clustering.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 14",
-          "body": "Explicação detalhada dos conceitos.",
-          "code": "import numpy as np"
+          "title": "Clustering com DBSCAN",
+          "body": "Diferente do K-Means (clusters globulares esféricos), o DBSCAN foca em densidade. Ele une regiões densamente aglomeradas de pontos e trata regiões vazias como ruído. Ele descobre o número de clusters sozinho e lida com geometrias complexas.",
+          "code": "from sklearn.cluster import DBSCAN\n# eps é a distância máxima, min_samples o mínimo para ser denso\ndbscan = DBSCAN(eps=0.5, min_samples=5)\nlabels = dbscan.fit_predict(X) # -1 significa outlier"
         },
         {
-          "title": "Lição 2 da Fase 14",
-          "body": "Mais detalhes e exemplos.",
-          "code": "print('ML')"
+          "title": "Hierarchical Clustering",
+          "body": "O cluster hierárquico constrói uma árvore de grupos. Ele inicia considerando que cada ponto é seu próprio cluster e vai unindo iterativamente os mais próximos (aglomerativo) até todos virarem um único grupo no topo do dendrograma.",
+          "code": "from sklearn.cluster import AgglomerativeClustering\nmodelo_hc = AgglomerativeClustering(n_clusters=3)\nclusters = modelo_hc.fit_predict(X)"
         }
       ],
       "questions": [
@@ -1165,14 +1165,14 @@
       "summary": "Aprenda sobre Clustering.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 15",
-          "body": "Explicação detalhada dos conceitos.",
-          "code": "import numpy as np"
+          "title": "Redução de Dimensionalidade (PCA)",
+          "body": "Dados complexos podem ter milhares de features (dimensões). O Principal Component Analysis (PCA) resume os dados, comprimindo e ejetando eixos correlacionados num novo conjunto de dimensões menores, preservando a variância máxima dos dados.",
+          "code": "from sklearn.decomposition import PCA\n# Reduzindo para 2 dimensões para facilitar plotagem 2D\npca = PCA(n_components=2)\nX_reduzido = pca.fit_transform(X)"
         },
         {
-          "title": "Lição 2 da Fase 15",
-          "body": "Mais detalhes e exemplos.",
-          "code": "print('ML')"
+          "title": "Avaliação em Aprendizado Não-Supervisionado",
+          "body": "Sem rótulos verdadeiros (labels), avaliar clustering é difícil. Métricas matemáticas como o Silhouette Score julgam o quão perto um objeto está do seu próprio cluster, comparado ao quão perto ele está do cluster vizinho (coesão vs separação).",
+          "code": "from sklearn.metrics import silhouette_score\n# Varia de -1 (errado) a 1 (perfeito)\nscore = silhouette_score(X, labels_encontradas)\nprint(f'Silhouette: {score}')"
         }
       ],
       "questions": [
@@ -1243,14 +1243,14 @@
       "summary": "Aprenda sobre Avaliação de Modelos.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 16",
-          "body": "Explicação detalhada dos conceitos.",
-          "code": "import numpy as np"
+          "title": "Matriz de Confusão",
+          "body": "A Matriz de Confusão é o mapa dos erros de classificação. Ela divide os resultados em Verdadeiros Positivos (TP), Verdadeiros Negativos (TN) - acertos; e Falsos Positivos (FP), Falsos Negativos (FN) - erros. Crucial para avaliar diagnósticos.",
+          "code": "from sklearn.metrics import confusion_matrix\nimport seaborn as sns\ncm = confusion_matrix(y_true, y_pred)\nsns.heatmap(cm, annot=True, fmt='d') # visualização"
         },
         {
-          "title": "Lição 2 da Fase 16",
-          "body": "Mais detalhes e exemplos.",
-          "code": "print('ML')"
+          "title": "Accuracy, Precision e Recall",
+          "body": "Acurácia é o total de acertos. Precisão avalia as predições positivas ('Dos que o modelo disse ser positivo, quantos eram?'). Recall (Revocação) avalia sensibilidade ('De todos os positivos reais, quantos o modelo achou?').",
+          "code": "from sklearn.metrics import accuracy_score, precision_score, recall_score\nprint('Acurácia:', accuracy_score(y_test, y_pred))\nprint('Precisão:', precision_score(y_test, y_pred))\nprint('Recall:', recall_score(y_test, y_pred))"
         }
       ],
       "questions": [
@@ -1321,14 +1321,14 @@
       "summary": "Aprenda sobre Avaliação de Modelos.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 17",
-          "body": "Explicação detalhada dos conceitos.",
-          "code": "import numpy as np"
+          "title": "F1-Score e o Balanço das Métricas",
+          "body": "O F1-Score é a média harmônica entre Precision e Recall. É essencial quando classes são desbalanceadas. Se você prevê fraude bancária (raro), alta acurácia (99%) dizendo que 'tudo é normal' é enganosa; o F1-Score penaliza essa falsa percepção.",
+          "code": "from sklearn.metrics import f1_score, classification_report\nf1 = f1_score(y_test, y_pred)\nrelatorio = classification_report(y_test, y_pred)\nprint(relatorio)"
         },
         {
-          "title": "Lição 2 da Fase 17",
-          "body": "Mais detalhes e exemplos.",
-          "code": "print('ML')"
+          "title": "Curva ROC e AUC",
+          "body": "A curva ROC ilustra a troca entre a taxa de verdadeiros positivos e falsos positivos ao mudar o limiar do modelo. A área sob essa curva (AUC) é um score global (0 a 1) medindo a habilidade do modelo em distinguir entre as classes independentemente do limiar.",
+          "code": "from sklearn.metrics import roc_auc_score, roc_curve\nprobs = modelo.predict_proba(X_test)[:, 1]\nauc = roc_auc_score(y_test, probs)\nprint(f'AUC: {auc}')"
         }
       ],
       "questions": [
@@ -1399,14 +1399,14 @@
       "summary": "Aprenda sobre Avaliação de Modelos.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 18",
-          "body": "Explicação detalhada dos conceitos.",
-          "code": "import numpy as np"
+          "title": "Cross-Validation (Validação Cruzada)",
+          "body": "Separar um único dado de teste pode ser 'sortudo'. No K-Fold Cross-Validation, dividimos o treino em K pedaços iguais. Treinamos o modelo K vezes, usando cada vez um pedaço diferente para teste, resultando numa estimativa de erro hiper-robusta.",
+          "code": "from sklearn.model_selection import cross_val_score\n# Validação cruzada com 5 folds\nscores = cross_val_score(modelo, X, y, cv=5, scoring='accuracy')\nprint('Acurácia Média:', scores.mean())"
         },
         {
-          "title": "Lição 2 da Fase 18",
-          "body": "Mais detalhes e exemplos.",
-          "code": "print('ML')"
+          "title": "Grid Search e Ajuste de Hiperparâmetros",
+          "body": "Modelos possuem configurações fixas antes do treino (hiperparâmetros, ex: profundidade da árvore). O Grid Search cria uma grade com diferentes combinações, testa todas usando cross-validation e acha o modelo ideal automaticamente.",
+          "code": "from sklearn.model_selection import GridSearchCV\nparametros = {'max_depth': [3, 5, 10], 'criterion': ['gini', 'entropy']}\ngrid = GridSearchCV(DecisionTreeClassifier(), parametros, cv=5)\ngrid.fit(X_train, y_train)"
         }
       ],
       "questions": [
@@ -1477,14 +1477,14 @@
       "summary": "Aprenda sobre Redes Neurais.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 19",
-          "body": "Explicação detalhada dos conceitos.",
-          "code": "import numpy as np"
+          "title": "O Neurônio Artificial (Perceptron)",
+          "body": "Redes Neurais são inspiradas na biologia. O Perceptron pega várias entradas, multiplica cada por um 'peso' (importância), soma o resultado com um 'viés' e, se o valor for alto o suficiente, ele 'dispara' uma ativação, passando informação para frente.",
+          "code": "import numpy as np\n# Simulação matemática de um perceptron\npesos = np.array([0.5, -0.3, 0.8])\nvies = 0.1\nsoma = np.dot(X_input, pesos) + vies"
         },
         {
-          "title": "Lição 2 da Fase 19",
-          "body": "Mais detalhes e exemplos.",
-          "code": "print('ML')"
+          "title": "Camadas e Perceptron Multicamadas (MLP)",
+          "body": "Um neurônio não resolve problemas complexos (como o operador XOR não-linear). Um MLP enfileira neurônios em camadas: a de entrada, múltiplas camadas ocultas (hidden) que extraem as features internas abstratas, e a camada de saída final.",
+          "code": "from sklearn.neural_network import MLPClassifier\n# Rede neural com duas camadas ocultas, 10 neurônios cada\nmlp = MLPClassifier(hidden_layer_sizes=(10, 10), max_iter=1000)\nmlp.fit(X_train, y_train)"
         }
       ],
       "questions": [
@@ -1555,14 +1555,14 @@
       "summary": "Aprenda sobre Redes Neurais.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 20",
-          "body": "Explicação detalhada dos conceitos.",
-          "code": "import numpy as np"
+          "title": "Funções de Ativação Não-Lineares",
+          "body": "Sem função de ativação, camadas viram gigantes funções matemáticas lineares inúteis para problemas não-lineares. ReLU zera valores negativos deixando positivos intactos (resolve travamento do gradiente). Sigmoid aperta os números entre 0 e 1.",
+          "code": "import numpy as np\ndef relu(x):\n    return np.maximum(0, x)\ndef sigmoid(x):\n    return 1 / (1 + np.exp(-x))"
         },
         {
-          "title": "Lição 2 da Fase 20",
-          "body": "Mais detalhes e exemplos.",
-          "code": "print('ML')"
+          "title": "A Função de Custo (Loss Function)",
+          "body": "Para ensinar uma rede neural, calculamos quão ruim ela foi usando a Loss Function (como MSE para regressão ou Cross-Entropy para classificação). O erro final propagado determina o quanto os pesos internos da rede devem ser ajustados.",
+          "code": "from sklearn.metrics import log_loss\n# Binary Cross-Entropy\nloss = log_loss(y_verdadeiro, probs_previstas)\nprint('Perda Atual do Modelo:', loss)"
         }
       ],
       "questions": [
@@ -1633,14 +1633,14 @@
       "summary": "Aprenda sobre Redes Neurais.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 21",
-          "body": "Explicação detalhada dos conceitos.",
-          "code": "import numpy as np"
+          "title": "O Algoritmo de Backpropagation",
+          "body": "Backpropagation é o coração de redes neurais. Ele calcula o gradiente (inclinação) da função de erro aplicando a regra da cadeia de derivadas desde a saída até a entrada. Com isso, os pesos são sutilmente atualizados em cada neurônio para minimizar o erro final.",
+          "code": "# Backpropagation pseudo-código (via framework)\n# model.forward() -> loss -> loss.backward() -> optim.step()\n# No sklearn isso acontece internamente no MLPClassifier"
         },
         {
-          "title": "Lição 2 da Fase 21",
-          "body": "Mais detalhes e exemplos.",
-          "code": "print('ML')"
+          "title": "Épocas e Tamanho do Batch",
+          "body": "Uma 'Época' passa quando toda a base de dados atravessa a rede neural e volta para ajuste. Como atualizar todos os dados ao mesmo tempo gasta muita memória, usamos 'Batches' (lotes). A rede processa pequenos pacotes e atualiza gradativamente.",
+          "code": "# No sklearn MLP, 'batch_size' controla o lote e 'max_iter' as épocas máximas.\nmlp = MLPClassifier(hidden_layer_sizes=(100,), batch_size=32, max_iter=50)"
         }
       ],
       "questions": [
@@ -1711,14 +1711,14 @@
       "summary": "Aprenda sobre Deep Learning.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 22",
-          "body": "Explicação detalhada dos conceitos.",
-          "code": "import numpy as np"
+          "title": "Introdução a Deep Learning",
+          "body": "Deep Learning (DL) é o campo de Machine Learning com redes neurais 'profundas' (muitas camadas ocultas). Ele automatiza completamente a 'feature engineering', aprendendo hierarquias complexas de representações em imagens, áudio ou texto cru.",
+          "code": "import tensorflow as tf\nfrom tensorflow.keras.models import Sequential\nfrom tensorflow.keras.layers import Dense\nmodelo_dl = Sequential([Dense(64, activation='relu'), Dense(1, activation='sigmoid')])"
         },
         {
-          "title": "Lição 2 da Fase 22",
-          "body": "Mais detalhes e exemplos.",
-          "code": "print('ML')"
+          "title": "Redes Neurais Convolucionais (CNNs)",
+          "body": "CNNs são estrelas da visão computacional. Uma camada de convolução desliza pequenos filtros matemáticos (kernels) sobre a imagem original, detectando primeiro bordas, depois formas, e enfim texturas sem achatar a imagem destruindo relações espaciais.",
+          "code": "from tensorflow.keras.layers import Conv2D, MaxPooling2D\n# Camada CNN processando imagens com 32 filtros 3x3\ncamada_cnn = Conv2D(filters=32, kernel_size=(3, 3), activation='relu')"
         }
       ],
       "questions": [
@@ -1789,14 +1789,14 @@
       "summary": "Aprenda sobre Deep Learning.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 23",
-          "body": "Explicação detalhada dos conceitos.",
-          "code": "import numpy as np"
+          "title": "Pooling e Flattening em CNNs",
+          "body": "A operação de Pooling reduz as dimensões espaciais (resolução), mantendo a informação importante (MaxPooling pega o pixel mais brilhante da região) mitigando overfitting. No final, o Flatten achata os dados para camadas Densas tradicionais votarem.",
+          "code": "from tensorflow.keras.layers import Flatten\n# Reduz uma imagem 2x2 pegando os máximos e depois achata\npool = MaxPooling2D(pool_size=(2,2))\nflatten = Flatten()"
         },
         {
-          "title": "Lição 2 da Fase 23",
-          "body": "Mais detalhes e exemplos.",
-          "code": "print('ML')"
+          "title": "Redes Neurais Recorrentes (RNNs e LSTMs)",
+          "body": "Para sequências temporais (preços diários ou traduções verbais), dados têm ordem no tempo. RNNs possuem um 'estado interno' ou memória conectada de volta a ela mesma. LSTMs (Long Short-Term Memory) evitam esquecimento de dados do longo prazo.",
+          "code": "from tensorflow.keras.layers import LSTM\n# LSTM recebendo sequências dinâmicas temporais\ncamada_lstm = LSTM(units=50, return_sequences=False)"
         }
       ],
       "questions": [
@@ -1867,14 +1867,14 @@
       "summary": "Aprenda sobre Deep Learning.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 24",
-          "body": "Explicação detalhada dos conceitos.",
-          "code": "import numpy as np"
+          "title": "Transfer Learning e Modelos Pré-treinados",
+          "body": "Não precisamos treinar CNNs do zero gastando meses e milhões. O Transfer Learning pega a inteligência 'congelada' de modelos mastodônticos do Google/Meta (treinados em bilhões de fotos) e ajusta só as últimas camadas para sua tarefa pontual (fine-tuning).",
+          "code": "from tensorflow.keras.applications import ResNet50\n# ResNet treinado no enorme banco da ImageNet\nmodelo_base = ResNet50(weights='imagenet', include_top=False)\nmodelo_base.trainable = False # Congelando pesos originais"
         },
         {
-          "title": "Lição 2 da Fase 24",
-          "body": "Mais detalhes e exemplos.",
-          "code": "print('ML')"
+          "title": "TensorFlow vs PyTorch",
+          "body": "Frameworks otimizam tensores (matrizes multi-dimensionais) para rodar rápido na placa de vídeo (GPU). TensorFlow (Google) reina na produção e escalabilidade via Keras. PyTorch (Meta) lidera pesquisas pelo seu jeito super pythonico (eager execution).",
+          "code": "import torch.nn as nn\n# Definindo classe em PyTorch\nclass Modelo(nn.Module):\n    def __init__(self): super().__init__(); self.fc = nn.Linear(10, 2)"
         }
       ],
       "questions": [
@@ -1945,14 +1945,14 @@
       "summary": "Aprenda sobre ML na Prática.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 25",
-          "body": "Explicação detalhada dos conceitos.",
-          "code": "import numpy as np"
+          "title": "Pandas para Análise Exploratória (EDA)",
+          "body": "O Pandas provê 'DataFrames' em Python parecidos com Excel ultra-rápidos. Antes de ML, usamos EDA para visualizar o comportamento real dos dados, agregando (groupby), tirando médias, pivotando tabelas e observando discrepâncias (outliers).",
+          "code": "import pandas as pd\ndf = pd.read_csv('dataset.csv')\n# Sumarizando dados agrupados por cidade\nresumo = df.groupby('cidade')['preco'].mean()"
         },
         {
-          "title": "Lição 2 da Fase 25",
-          "body": "Mais detalhes e exemplos.",
-          "code": "print('ML')"
+          "title": "NumPy: A Base da Álgebra Linear",
+          "body": "Modelos rodam matrizes matemáticas complexas usando CPUs. A biblioteca NumPy é escrita em baixo nível C e opera vetores em velocidade estrondosa via 'vectorization' nativa, suprimindo o uso caótico do 'for loop' lento da linguagem Python nativa.",
+          "code": "import numpy as np\narray = np.array([1, 2, 3, 4])\n# Operação vetorizada instantânea (não requer loop)\nvetor_duplicado = array * 2"
         }
       ],
       "questions": [
@@ -2023,14 +2023,14 @@
       "summary": "Aprenda sobre ML na Prática.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 26",
-          "body": "Explicação detalhada dos conceitos.",
-          "code": "import numpy as np"
+          "title": "Matplotlib e Seaborn para Visualização Gráfica",
+          "body": "Tabelas cruas cansam. Para explicar modelos aos executivos da empresa, visualizações gráficas convertem números em percepções imediatas. Histogramas exibem a densidade das classes. Scatter plots mostram onde dois atributos se interceptam no espaço.",
+          "code": "import seaborn as sns\nimport matplotlib.pyplot as plt\n# Gráfico revelando a dispersão/cluster de pontos\nsns.scatterplot(data=df, x='idade', y='gasto_mensal', hue='cluster')\nplt.show()"
         },
         {
-          "title": "Lição 2 da Fase 26",
-          "body": "Mais detalhes e exemplos.",
-          "code": "print('ML')"
+          "title": "Scikit-Learn Pipelines",
+          "body": "O risco de vazar dados (data leakage) transformando dados de teste inadvertidamente via treino é gigante. Um Pipeline une sequencialmente todas as transformações de dado (Scalers/Imputers) até chegar no Algoritmo preditivo de forma encapsulada.",
+          "code": "from sklearn.pipeline import Pipeline\npipe = Pipeline([\n    ('imputer', SimpleImputer()),\n    ('scaler', StandardScaler()),\n    ('rf', RandomForestClassifier())\n])\npipe.fit(X_train, y_train)"
         }
       ],
       "questions": [
@@ -2101,14 +2101,14 @@
       "summary": "Aprenda sobre ML na Prática.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 27",
-          "body": "Explicação detalhada dos conceitos.",
-          "code": "import numpy as np"
+          "title": "Exportando Modelos Treinados (Joblib/Pickle)",
+          "body": "Um modelo não serve para nada se ele morre na memória da máquina ao finalizar o código do Python. Ferramentas como o Joblib congelam e serializam a inteligência matemática extraída pelo modelo num formato portátil nativo (.pkl) salvando num HD local.",
+          "code": "import joblib\n# Salvando o pipeline na máquina para reuso\njoblib.dump(pipe, 'modelo_produtivo_v1.pkl')\n# Carregamento em outro script: modelo = joblib.load('...')"
         },
         {
-          "title": "Lição 2 da Fase 27",
-          "body": "Mais detalhes e exemplos.",
-          "code": "print('ML')"
+          "title": "Trabalhando com API de Inferência",
+          "body": "Para usar um modelo na Web, envolvemos ele numa API (usando FastAPI ou Flask em Python). A API recebe requisições JSON de aplicações web (dados novos via POST), converte em numpy array, roda predict no modelo carregado na inicialização e retorna o score.",
+          "code": "from fastapi import FastAPI\napp = FastAPI()\n@app.post('/predict')\ndef prever(dados: dict):\n    pred = modelo_carregado.predict([dados['features']])\n    return {'predicao': int(pred[0])}"
         }
       ],
       "questions": [
@@ -2179,14 +2179,14 @@
       "summary": "Aprenda sobre Projeto Final.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 28",
-          "body": "Explicação detalhada dos conceitos.",
-          "code": "import numpy as np"
+          "title": "Definição do Problema de Negócio",
+          "body": "O primeiro pilar de ML não é código. É formular o problema corretamente, definindo métricas de negócios (como KPI monetário em redução de fraudes) versus a métrica matemática (AUC, Precision). ML deve agregar verdadeiro valor financeiro ao produto.",
+          "code": "# Pseudo-anotação de meta\nmeta_kpi = 'Reduzir churn rate de 5% para 2%'\nmetrica_otimizacao = 'F1-Score para reter falsos negativos (cancelamentos)'\nlinha_base_baseline = 'Regressão Logística Simples'"
         },
         {
-          "title": "Lição 2 da Fase 28",
-          "body": "Mais detalhes e exemplos.",
-          "code": "print('ML')"
+          "title": "Pipeline de ETL de Dados",
+          "body": "Extract, Transform, Load (ETL). Em projetos reais não usamos CSV baixados de planilhas locais. Sistemas extraem dados cruzados de Data Lakes em SQL, limpam o lixo computacional da base produtiva via PySpark/Pandas, e injetam na esteira de treino.",
+          "code": "import pandas as pd\nimport sqlite3\nconn = sqlite3.connect('banco.db')\ndf_raw = pd.read_sql('SELECT * FROM vendas_historicas', conn)\ndf_clean = df_raw.dropna(subset=['valor'])"
         }
       ],
       "questions": [
@@ -2257,14 +2257,14 @@
       "summary": "Aprenda sobre Projeto Final.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 29",
-          "body": "Explicação detalhada dos conceitos.",
-          "code": "import numpy as np"
+          "title": "Versionamento de Dados e Modelos (MLOps)",
+          "body": "MLOps é o DevOps focado em Machine Learning. A base original não fica estática; o modelo degrada ao longo do tempo (Data Drift / Concept Drift). Versionar experimentos rigorosamente (com ferramentas como MLflow) garante reprodutibilidade da inteligência artificial.",
+          "code": "import mlflow\nmlflow.start_run()\nmlflow.log_param('algoritmo', 'XGBoost')\nmlflow.log_metric('auc_score', 0.94)\nmlflow.sklearn.log_model(modelo, 'meu_modelo')"
         },
         {
-          "title": "Lição 2 da Fase 29",
-          "body": "Mais detalhes e exemplos.",
-          "code": "print('ML')"
+          "title": "Monitoramento Contínuo e Retreinamento",
+          "body": "O trabalho não para no deploy produtivo. Modelos apodrecem na selva assim que novos padrões de usuários surgem afetando o target da predição. Configurar triggers agendadas para verificar declínio de performance ativa retreinamento automático periódico do modelo.",
+          "code": "# Script contínuo de monitoria de performance\nif acuracia_recente < acuracia_baseline_v1:\n    disparar_alarme_retreinamento()\n    print('Data Drift detectado, ativando pipeline de novos dados...')"
         }
       ],
       "questions": [
@@ -2335,14 +2335,14 @@
       "summary": "Aprenda sobre Projeto Final.",
       "lesson": [
         {
-          "title": "Lição 1 da Fase 30",
-          "body": "Explicação detalhada dos conceitos.",
-          "code": "import numpy as np"
+          "title": "O Ciclo de Vida do Aprendizado de Máquina",
+          "body": "Reunir o ciclo completo: Definição, Coleta, Preparação (EDA), Extração de Features, Treinamento via GridSearch, Cross-Validação, Empacotamento de Artefatos, Implantação em Nuvem REST API e Encerramento com Monitoria. A jornada de Machine Learning num produto moderno.",
+          "code": "def ciclo_completo_ml(data_fonte):\n    dados = coletar_e_limpar(data_fonte)\n    modelo = treinar_automl(dados)\n    artefato = exportar_deploy(modelo)\n    return monitorar_container(artefato)"
         },
         {
-          "title": "Lição 2 da Fase 30",
-          "body": "Mais detalhes e exemplos.",
-          "code": "print('ML')"
+          "title": "Ética em Inteligência Artificial e Viés (Bias)",
+          "body": "Algoritmos não são neutros. Eles copiam preconceitos embutidos no passado social codificados na história do dataset original. Testar os modelos iterativamente com métricas rigorosas de paridade garante soluções inclusivas e não-discriminatórias ao público geral.",
+          "code": "from fairlearn.metrics import demographic_parity_difference\n# Testando métricas de paridade para validar equidade do modelo final\nparidade = demographic_parity_difference(y_true, y_pred, sensitive_features=grupos)\nprint(f'Diferença Demográfica: {paridade}')"
         }
       ],
       "questions": [

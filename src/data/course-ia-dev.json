@@ -73,16 +73,14 @@
       "summary": "Panorama das formas como a IA já participa do dia a dia de quem programa.",
       "lesson": [
         {
-          "title": "Três formas comuns de usar IA ao programar",
-          "body": "Hoje a IA aparece de três jeitos principais no desenvolvimento: autocomplete (sugere a próxima linha enquanto você digita), chat (você conversa para tirar dúvidas ou pedir trechos de código) e agentes (executam tarefas de várias etapas, como editar arquivos e rodar comandos)."
+          "title": "A IA como Assistente Moderno no Desenvolvimento",
+          "body": "A inteligência artificial revolucionou o desenvolvimento ao atuar como um par experiente. Ela automatiza tarefas repetitivas, prevê blocos de código e ajuda a refatorar, permitindo que você foque na arquitetura e na resolução de problemas complexos, acelerando entregas e reduzindo esforço cognitivo diário.",
+          "code": "// Autocomplete em ação: você escreve o nome da função\nfunction validarCPF(cpf) {\n  // A IA preenche a lógica complexa de validação de CPF\n  cpf = cpf.replace(/[^\\d]+/g, '');\n  if (cpf.length !== 11) return false;\n  // ...\n}"
         },
         {
-          "title": "Autocomplete: sugestões em tempo real",
-          "body": "Ferramentas como GitHub Copilot analisam o código ao redor do cursor e sugerem a continuação. Você aceita, ignora ou edita a sugestão. É útil para tarefas repetitivas, mas ainda exige que você leia o que foi sugerido."
-        },
-        {
-          "title": "Agentes: além de sugerir, executam",
-          "body": "Um agente de IA pode ler vários arquivos do projeto, propor mudanças em múltiplos lugares e até rodar testes, tudo com supervisão do desenvolvedor. Isso é diferente de apenas completar uma linha de código."
+          "title": "Três Modalidades Essenciais: Autocomplete, Chat e Agente",
+          "body": "Existem três formas principais de interagir com IA no código. O autocomplete agiliza a digitação local; o chat serve como um consultor para tirar dúvidas estruturais e debater soluções; os agentes podem executar comandos, buscar arquivos e fazer mudanças em massa. O segredo da produtividade é saber escolher qual usar.",
+          "code": "/* Prompt de Chat: \n\"Como posso otimizar esta query no PostgreSQL que está \ndemorando 5 segundos? Aqui está a estrutura da tabela...\" \n\nPrompt de Agente:\n\"Substitua a biblioteca moment.js por date-fns em todo o projeto.\" */"
         }
       ],
       "questions": [
@@ -153,16 +151,14 @@
       "summary": "Compare as três modalidades e saiba escolher a certa para cada situação.",
       "lesson": [
         {
-          "title": "Cada modalidade serve para um momento diferente",
-          "body": "Autocomplete é ótimo para tarefas pequenas e repetitivas enquanto você digita. Chat é melhor para tirar dúvidas, pedir explicações ou gerar um trecho isolado. Agentes são indicados para tarefas maiores, que envolvem várias etapas ou arquivos."
+          "title": "Quando Utilizar o Autocomplete de Código",
+          "body": "O autocomplete funciona melhor para tarefas locais e repetitivas. Como ele lê apenas os arquivos que estão abertos no momento e o trecho de código ao redor do cursor, é a ferramenta ideal para preencher objetos, escrever testes padronizados ou criar funções simples cujas intenções são claras pelos nomes das variáveis.",
+          "code": "const config = {\n  host: 'localhost',\n  port: 8080,\n  // O autocomplete entende o padrão e sugere os próximos campos:\n  user: 'admin',\n  password: process.env.DB_PASSWORD,\n  database: 'producao'\n};"
         },
         {
-          "title": "Exemplo prático",
-          "code": "Tarefa: 'Adicionar validação de e-mail em 5 formulários do projeto'\n\nAutocomplete: sugere linha a linha, mas você repete a ação 5 vezes.\nChat: você pede um trecho de validação e cola manualmente em cada lugar.\nAgente: pode localizar os 5 formulários e aplicar a mudança em todos."
-        },
-        {
-          "title": "Escolher a ferramenta certa economiza tempo",
-          "body": "Usar um agente para uma tarefa de uma linha é exagero. Usar apenas autocomplete para uma refatoração grande em vários arquivos é ineficiente. Avaliar o tamanho da tarefa ajuda a escolher a abordagem."
+          "title": "Agentes Autônomos vs. Consultas no Chat",
+          "body": "Use o chat quando precisar entender um conceito abstrato, gerar um script isolado ou debater arquitetura, pois ele requer que você copie e cole as respostas. Já os agentes são ideais para refatorações amplas, pois eles leem o workspace inteiro e editam múltiplos arquivos automaticamente de forma orquestrada.",
+          "code": "// Exemplo de tarefa perfeita para um Agente:\n> Agente, por favor, atualize todos os nossos componentes React \n> que usam 'class' para usar 'className'. \n> Verifique a pasta /components inteira e rode o linter no final."
         }
       ],
       "questions": [
@@ -233,16 +229,14 @@
       "summary": "Entenda que a IA é uma ferramenta de apoio, não uma substituta do julgamento humano.",
       "lesson": [
         {
-          "title": "A IA acelera, mas não decide por você",
-          "body": "Mesmo os agentes mais avançados precisam de alguém para definir o objetivo, revisar o resultado e aprovar mudanças. A IA é uma ferramenta de produtividade, e a responsabilidade final continua sendo do desenvolvedor."
+          "title": "O Desenvolvedor como Piloto, a IA como Copiloto",
+          "body": "A IA é incrivelmente rápida, mas não possui contexto humano sobre regras de negócio sutis, prioridades da empresa ou segurança a longo prazo. O desenvolvedor deve assumir o papel de revisor sênior: orquestrar as tarefas, analisar criticamente todas as sugestões geradas e aprovar apenas o que faz sentido na arquitetura.",
+          "code": "function calcularDesconto(usuario, valor) {\n  // IA sugeriu: return valor * 0.9; \n  // O desenvolvedor rejeita e escreve a regra de negócio real:\n  if (usuario.isPremium && valor > 100) return valor * 0.8;\n  return valor;\n}"
         },
         {
-          "title": "O ciclo saudável de uso",
-          "code": "1. Você define a tarefa com clareza\n2. A IA propõe uma solução (sugestão, resposta ou ação)\n3. Você revisa o resultado\n4. Você aprova, ajusta ou rejeita"
-        },
-        {
-          "title": "Nem toda sugestão deve ser aceita",
-          "tip": "Se uma sugestão parecer estranha, complexa demais ou usar algo que você não reconhece, vale a pena investigar antes de aceitar. Aceitar sem entender é um risco comum de quem está começando a usar essas ferramentas."
+          "title": "A Importância de Entender o Código Sugerido",
+          "body": "Nunca aceite um trecho de código que você mesmo não seria capaz de explicar ou dar manutenção. Se a IA sugerir uma expressão regular complexa ou um método obscuro de uma biblioteca, peça para ela explicar linha por linha antes de aprovar. A dívida técnica gerada por código 'mágico' e incompreensível cresce muito rápido.",
+          "code": "// A IA sugere um regex misterioso:\nconst regexEmail = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*)/;\n\n// Você pergunta no Chat:\n// \"Explique exatamente o que essa regex valida e falha.\""
         }
       ],
       "questions": [
@@ -313,16 +307,14 @@
       "summary": "Aprenda por que contexto insuficiente gera respostas ruins da IA.",
       "lesson": [
         {
-          "title": "A IA responde com base no que você fornece",
-          "body": "Um modelo de IA não conhece automaticamente as regras do seu projeto, a linguagem usada, nem convenções internas. Quanto mais contexto relevante você fornecer, melhor tende a ser a resposta."
+          "title": "O Princípio do Contexto: Entrando com Dados Ruins",
+          "body": "Um dos maiores erros no uso da IA é fornecer prompts vagos. A IA não adivinha o que está na sua cabeça. Se você pedir apenas 'faça uma tabela', ela criará uma tabela genérica. Para resultados precisos, você precisa fornecer o contexto: linguagens, bibliotecas, regras de negócio e restrições específicas do seu software.",
+          "code": "// Prompt RUIM: \"Faça uma função de data\"\n\n// Prompt BOM:\n\"Crie uma função TypeScript que receba uma data ISO-8601, \nadivicione 7 dias usando a biblioteca date-fns, \ne retorne no formato 'DD/MM/YYYY'. Não use moment.js.\""
         },
         {
-          "title": "Comparando dois pedidos",
-          "code": "Pedido fraco:\n'Escreva uma função de login'\n\nPedido com contexto:\n'Escreva uma função de login em JavaScript, usando o padrão do projeto: recebe email e senha, retorna um objeto { sucesso, mensagem }, e não deve usar bibliotecas externas.'"
-        },
-        {
-          "title": "Informações que costumam ajudar",
-          "tip": "Linguagem/framework usado, formato de entrada e saída esperado, restrições (por exemplo, 'sem bibliotecas externas') e um exemplo de uso real tornam a resposta da IA muito mais próxima do que você precisa."
+          "title": "Incluindo o Ambiente e Limitações no Prompt",
+          "body": "Além do que o código deve fazer, explique o ambiente onde ele vai rodar. Informe a versão do framework, o banco de dados utilizado e limitações de performance. Quanto mais bordas você definir no contexto, menos o modelo de IA precisará alucinar ou assumir suposições incorretas que quebrarão sua aplicação.",
+          "code": "// Adicionando ambiente ao prompt:\n\"Estou usando Node.js v14 e PostgreSQL 12.\nEscreva uma query SQL e o código com pg-promise para buscar \nusuários inativos há mais de 30 dias. \nRetorne no máximo 100 resultados para não travar o banco.\""
         }
       ],
       "questions": [
@@ -393,16 +385,14 @@
       "summary": "Como pedidos específicos reduzem ambiguidade e retrabalho.",
       "lesson": [
         {
-          "title": "Ambiguidade gera resultado errado",
-          "body": "Se um pedido pode ser interpretado de mais de uma forma, a IA pode escolher uma interpretação diferente da que você tinha em mente. Ser específico sobre entradas, saídas e comportamento esperado reduz esse risco."
+          "title": "Especificidade: Definindo Entradas e Saídas Claras",
+          "body": "Para evitar código genérico e necessidade de refazer o trabalho, defina exatamente os tipos de dados que entram e saem da sua função. Descreva a assinatura da função, se ela é síncrona ou assíncrona e quais chaves de objeto devem ser retornadas. Ser específico economiza ciclos de correção demorados com a IA.",
+          "code": "/* Prompt Específico:\nCrie uma função async chamada 'buscarPerfil':\nEntrada: id (string, uuid)\nSaída: Objeto { nome: string, email: string, ativo: boolean }\nTratamento: Lidar com erro caso usuário não exista, retornando null.\n*/"
         },
         {
-          "title": "Especificidade não é sobre tamanho, é sobre precisão",
-          "code": "Vago: 'Valide o campo de idade'\n\nEspecífico: 'Valide se o campo idade é um número inteiro entre 0 e 120. Se não for, retorne a mensagem \"Idade inválida\".'"
-        },
-        {
-          "title": "Perguntas que ajudam a ser específico",
-          "tip": "Antes de pedir algo, pergunte-se: qual é a entrada exata? Qual é a saída exata? O que deve acontecer em casos inválidos? Responder isso mentalmente já melhora o pedido."
+          "title": "Direcionando o Estilo e a Formatação do Código",
+          "body": "A IA pode adotar qualquer estilo de codificação. Se você não especificar, ela usará a média da internet. Seja específico sobre como você prefere o código: paradigmas funcionais ou orientados a objeto, snake_case ou camelCase, uso de classes ou funções puras. Isso mantém o projeto com uma base de código unificada e limpa.",
+          "code": "/* Prompt de Formatação:\nEscreva o componente React 'BotaoPrimario'.\nRegras de estilo:\n- Use Functional Components e Arrow Functions.\n- Estilize com TailwindCSS (nada de arquivos CSS separados).\n- Utilize TypeScript definindo as props (text, onClick).\n*/"
         }
       ],
       "questions": [
@@ -473,16 +463,14 @@
       "summary": "Por que mostrar um exemplo concreto melhora muito a resposta da IA.",
       "lesson": [
         {
-          "title": "Um exemplo vale mais que uma descrição longa",
-          "body": "Mostrar um exemplo de entrada e saída esperada costuma comunicar a intenção de forma mais precisa do que apenas descrever em palavras. Isso é especialmente útil para formatos de dados e estilos de código específicos."
+          "title": "Demonstrando por Exemplos (Few-Shot Prompting)",
+          "body": "A maneira mais eficiente de comunicar um padrão de código para a IA é mostrar um exemplo prático (few-shot prompting). Quando você fornece um bloco de entrada e sua respectiva saída desejada, a IA ajusta rapidamente a formatação, o estilo e as lógicas de formatação que seriam difíceis de descrever apenas com palavras.",
+          "code": "/* Prompt com Exemplo:\nConverta objetos de usuário para o padrão de banco de dados.\n\nExemplo de Entrada:\n{ fullName: \"Ana Silva\", age: 25 }\nExemplo de Saída Esperada:\n{ full_name: \"Ana Silva\", age_years: 25, is_active: true }\n\nAgora converta: { fullName: \"João Pedro\", age: 40 }\n*/"
         },
         {
-          "title": "Exemplo de pedido com exemplo incluído",
-          "code": "'Escreva uma função que converte uma string de data.\n\nExemplo:\nEntrada: \"15/03/2024\"\nSaída: \"2024-03-15\"'"
-        },
-        {
-          "title": "Exemplos também ajudam a manter o padrão do projeto",
-          "tip": "Se você já tem um trecho de código no estilo do projeto, colar esse trecho como exemplo ajuda a IA a seguir o mesmo padrão de nomenclatura e formatação nas próximas sugestões."
+          "title": "Mantendo a Consistência Baseada em Trechos Existentes",
+          "body": "Se você quer que a IA crie um novo endpoint ou componente perfeitamente alinhado com o restante da aplicação, copie e cole um arquivo existente como referência no seu prompt. Isso garante que ela imite os tratamentos de erro locais, a estrutura de pastas e as bibliotecas internas, em vez de inventar padrões novos.",
+          "code": "/* Prompt de Referência:\nVou te enviar o arquivo de rota 'users.js' atual do meu projeto.\nBaseado no estilo dele, nas middlewares de auth e validação,\ncrie um novo arquivo 'products.js' para CRUD de produtos.\n[COLAR CÓDIGO DO USERS.JS AQUI]\n*/"
         }
       ],
       "questions": [
@@ -553,16 +541,14 @@
       "summary": "Como funcionam ferramentas de autocomplete e quais são seus limites.",
       "lesson": [
         {
-          "title": "Autocomplete olha apenas o contexto local",
-          "body": "Ferramentas de autocomplete costumam considerar o arquivo atual e, às vezes, arquivos próximos. Elas sugerem a continuação mais provável com base em padrões, mas não têm uma visão ampla de todo o projeto ou de suas regras de negócio."
+          "title": "A Mecânica por trás do Autocomplete Simples",
+          "body": "As extensões de autocomplete funcionam prevendo estatisticamente os próximos tokens com base na aba ativa do seu editor e nas abas próximas. Elas não compreendem a lógica de todo o seu repositório. O foco delas é completar condicionais óbvios, fechar parênteses, preencher arrays estruturados e acelerar digitação diária.",
+          "code": "const meses = ['Jan', 'Fev', 'Mar', 'Abr', 'Mai'];\n// Você digita:\nconst numMeses = meses.map(mes => {\n  // Autocomplete prevê rapidamente a lógica básica de iteração:\n  return mes.toUpperCase();\n});"
         },
         {
-          "title": "Exemplo típico de sugestão",
-          "code": "// Você digita:\nfunction somar(a, b) {\n\n// Autocomplete sugere:\n  return a + b;\n}"
-        },
-        {
-          "title": "Limite importante",
-          "tip": "Autocomplete não executa código nem roda testes. Ele apenas sugere texto. Cabe ao desenvolvedor aceitar, editar ou rejeitar a sugestão."
+          "title": "Limitações de Contexto e Casos Extremos Ignorados",
+          "body": "Como o autocomplete gera blocos muito rápidos, ele frequentemente ignora casos de borda (edge cases), tratamentos nulos e exceções. Ele foca no 'caminho feliz' do código. Se você precisa de segurança robusta e validação rigorosa, deve adicionar essas proteções manualmente ou instruir uma ferramenta mais avançada.",
+          "code": "function dividir(a, b) {\n  // Autocomplete sugere instantaneamente:\n  return a / b; \n  \n  // Mas ignora o erro gravíssimo de divisão por zero.\n  // O correto seria você intervir:\n  // if (b === 0) throw new Error('Divisão por zero');\n}"
         }
       ],
       "questions": [
@@ -633,16 +619,14 @@
       "summary": "Entenda as capacidades e etapas típicas de um agente de codificação.",
       "lesson": [
         {
-          "title": "Um agente planeja e age",
-          "body": "Um agente de IA pode receber um objetivo maior (por exemplo, 'adicione um filtro de busca nesta tela'), planejar as etapas necessárias, editar múltiplos arquivos, rodar comandos como testes, e reportar o resultado, tudo isso com pontos de aprovação humana ao longo do caminho."
+          "title": "A Anatomia de um Agente de IA para Desenvolvedores",
+          "body": "Agentes não apenas geram texto; eles planejam ações, leem arquivos de log, pesquisam na internet e executam scripts de terminal. Um agente moderno avalia um problema, propõe uma lista de passos, busca nos arquivos onde aplicar a mudança e roda os comandos (como npm test) para validar se a modificação teve sucesso.",
+          "code": "// Interação no terminal com um Agente:\n// Você: \"Encontre onde a cor primária é definida e mude para vermelho\"\n// Agente: \n// 1. Buscando arquivos por 'primary-color'...\n// 2. Modificando src/styles/theme.css\n// 3. Rodando build para garantir que compilou com sucesso."
         },
         {
-          "title": "Etapas comuns de um agente",
-          "code": "1. Ler os arquivos relevantes do projeto\n2. Propor um plano de mudanças\n3. Aplicar as edições nos arquivos\n4. Rodar testes ou verificações\n5. Relatar o resultado ao desenvolvedor"
-        },
-        {
-          "title": "Supervisão continua essencial",
-          "tip": "Mesmo um agente autônomo deve ter pontos em que o desenvolvedor revisa o que foi feito, principalmente antes de aplicar mudanças em produção."
+          "title": "Autorizando Execuções e Mantendo o Controle",
+          "body": "Apesar da autonomia, os agentes exigem aprovação e revisão (human-in-the-loop). Nunca deixe um agente rodar comandos destrutivos (como DROP DATABASE) ou fazer commit e push diretamente na branch principal sem sua revisão minuciosa. Você deve revisar as mudanças propostas no diff do arquivo antes de aplicar a alteração.",
+          "code": "/* \nAgente propôs apagar o arquivo utils.js inteiro. \nSempre analise o Diff visual (git diff) sugerido pela IA. \nSe ela estiver removendo lógica vital não coberta por testes, \nrejeite a ação e explique no chat o que ela fez de errado. \n*/"
         }
       ],
       "questions": [
@@ -713,16 +697,14 @@
       "summary": "Combine o que você aprendeu para escolher entre autocomplete, chat e agente em cenários reais.",
       "lesson": [
         {
-          "title": "Recapitulando as três modalidades",
-          "body": "Autocomplete: sugestões locais durante a digitação. Chat: perguntas, explicações e trechos pontuais. Agente: tarefas de múltiplas etapas, com edição de vários arquivos e execução de comandos, sempre com supervisão."
+          "title": "O Fluxograma da Decisão da Ferramenta",
+          "body": "Para não perder tempo, adote um critério rápido: se for continuar a linha atual, use autocomplete. Se for um bloco novo, função ou dúvida conceitual, use o chat ou o gerador de blocos. Se for atualizar dependências, refatorar rotas ou alterar arquivos múltiplos simultaneamente, convoque um agente com contexto total.",
+          "code": "// Cenário: Alterar o banco de MySQL para PostgreSQL\n// Autocomplete: Inútil (mudança vasta).\n// Chat: Bom para gerar o guia passo a passo da migração.\n// Agente: Perfeito para localizar as strings de conexão \n// e alterar a sintaxe dos SQLs em todo o repositório."
         },
         {
-          "title": "Perguntas para decidir",
-          "tip": "A tarefa envolve mais de um arquivo? Considere um agente. É uma dúvida ou um trecho pontual? Considere o chat. É uma continuação natural do que você está digitando agora? Considere o autocomplete."
-        },
-        {
-          "title": "Erro comum: usar sempre a mesma ferramenta",
-          "body": "Alguns desenvolvedores usam sempre chat, mesmo para tarefas grandes que um agente resolveria com mais eficiência, ou usam sempre agente, mesmo para ajustes triviais. Avaliar o contexto de cada tarefa evita desperdício de tempo."
+          "title": "A Sinergia: Usando Múltiplas Modalidades Juntas",
+          "body": "Na prática, você mescla ferramentas. Primeiro, você pede ao chat para arquitetar a solução ideal. Depois, usa um agente para implementar o grosso das mudanças nos vários arquivos. Por fim, utiliza o autocomplete e sua própria revisão manual para refinar pequenos detalhes e fechar pontos soltos, ganhando o máximo de velocidade.",
+          "code": "/* Fluxo Ideal na Prática:\n1. Chat: \"Qual a melhor lib de formulários para React hoje?\"\n2. Agente: \"Instale o react-hook-form e crie o arquivo Form.jsx\"\n3. Autocomplete: Ajuda a preencher os campos locais \ndentro do Form.jsx enquanto você finaliza o layout. \n*/"
         }
       ],
       "questions": [
@@ -793,16 +775,14 @@
       "summary": "Aprenda a estruturar pedidos de revisão de código para a IA.",
       "lesson": [
         {
-          "title": "Revisão de código não é só 'está certo?'",
-          "body": "Uma boa revisão pedida à IA pode focar em pontos específicos: legibilidade, possíveis bugs, performance, ou aderência a boas práticas. Pedir 'revise meu código' de forma genérica tende a gerar uma resposta superficial."
+          "title": "Pedindo Revisão de Código Estruturada à IA",
+          "body": "Se você colar um código e perguntar 'O que acha?', a IA vai fazer elogios genéricos. Para extrair valor real, instrua a IA a assumir um papel rigoroso de revisor sênior focando em critérios exatos, como: vulnerabilidades de segurança, complexidade ciclomática, problemas de concorrência ou aderência aos padrões SOLID.",
+          "code": "// Prompt Estruturado de Revisão:\n\"Atue como um Engenheiro Sênior rigoroso. \nRevise a função abaixo focando EXCLUSIVAMENTE em:\n1. Falhas de segurança (XSS, SQL Injection)\n2. Vazamento de memória\nNão critique a formatação, foque apenas em falhas críticas.\""
         },
         {
-          "title": "Exemplo de pedido de revisão bem estruturado",
-          "code": "'Revise esta função focando em:\n1. Possíveis bugs em casos de borda\n2. Legibilidade dos nomes de variáveis\n3. Se há alguma repetição que poderia ser evitada\n\n[colar o código aqui]'"
-        },
-        {
-          "title": "Trate a resposta como uma sugestão, não uma verdade absoluta",
-          "tip": "A IA pode apontar um 'problema' que na verdade é intencional no seu projeto, ou sugerir uma mudança que não se aplica ao seu contexto. Avalie cada ponto antes de aplicar."
+          "title": "Fornecendo o Contexto Necessário para a Revisão",
+          "body": "A IA pode apontar erros falsos se não conhecer as bibliotecas do projeto. Ao pedir um code review, sempre envie junto o contexto: de onde vêm as variáveis, como o erro é tratado globalmente e o que se espera que essa função realize. Sem isso, a revisão se baseará em suposições que muitas vezes são inúteis e enviesadas.",
+          "code": "/* \nAntes de colar a função, descreva o ecossistema:\n\"Este código roda em uma AWS Lambda de alta concorrência. \nA variável 'db' vem de um pool global do TypeORM e não deve \nser fechada ao final da requisição. \nPor favor, aponte gargalos de I/O bloqueante neste script:\"\n*/"
         }
       ],
       "questions": [
@@ -873,16 +853,14 @@
       "summary": "Use a IA como uma segunda opinião para localizar bugs sutis.",
       "lesson": [
         {
-          "title": "A IA pode notar padrões que passam despercebidos",
-          "body": "Depois de muito tempo olhando para o mesmo código, é fácil deixar passar um erro sutil. A IA pode servir como uma 'segunda opinião', apontando possíveis inconsistências entre o que o código faz e o que parece ser a intenção."
+          "title": "A IA como Detetive de Bugs Sutis",
+          "body": "Muitas vezes você fica cego para o próprio código após horas programando. A IA não sofre de fadiga visual e é excelente em localizar erros de digitação, escopos de variáveis mal definidos, ou condições lógicas invertidas. Ela atua como um 'Rubber Duck' interativo, questionando lógicas que você assumiu estarem certas.",
+          "code": "// O código falhava aleatoriamente:\nfor (let i = 0; i < itens.length; i++) {\n  setTimeout(() => console.log(itens[i]), 1000);\n}\n// A IA aponta rapidamente o erro clássico de closure com 'var' \n// vs 'let' ou questões de assincronismo dentro de laços."
         },
         {
-          "title": "Exemplo: comparação de igualdade",
-          "code": "function ehMaiorDeIdade(idade) {\n  if (idade = 18) {\n    return true;\n  }\n  return false;\n}\n\n// Bug: usa atribuição (=) em vez de comparação (===)"
-        },
-        {
-          "title": "Peça para a IA explicar o motivo do bug",
-          "tip": "Além de apontar 'isso está errado', peça para a IA explicar por que é um bug e em quais situações ele causaria problema. Isso ajuda a aprender, e não só corrigir."
+          "title": "Análise de Complexidade e Refatoração Limpa",
+          "body": "Além de encontrar erros óbvios, a IA identifica funções que estão fazendo coisas demais (violando o Princípio de Responsabilidade Única). Peça para a IA dividir uma função monolítica imensa em pequenas funções puras e testáveis. Ela é fantástica em analisar a árvore de dependências do arquivo e extrair a lógica central.",
+          "code": "// Prompt para Refatoração Limpa:\n\"A função 'processarPedido' tem 150 linhas e muitos \nif/elses aninhados. Extraia a lógica de cálculo de \nimpostos e validação de estoque para funções separadas, \nmantendo o comportamento exatamente igual e mais legível.\""
         }
       ],
       "questions": [
@@ -953,16 +931,14 @@
       "summary": "Use a IA para entender trechos de código antigos ou de terceiros.",
       "lesson": [
         {
-          "title": "Código legado costuma faltar documentação",
-          "body": "Um código antigo, sem comentários e escrito por outra pessoa, pode ser difícil de entender rapidamente. Pedir para a IA explicar o que um trecho faz, passo a passo, pode acelerar esse entendimento inicial."
+          "title": "Decifrando Códigos Legados e Obscuros",
+          "body": "Todo dev encontra funções antigas sem comentários, escritas há anos e com nomes confusos. A IA brilha nisso: ela pode analisar variáveis não descritivas e lógicas estranhas, e traduzi-las para português claro, explicando exatamente qual o objetivo e os fluxos possíveis dentro daquele código espaguete indecifrável.",
+          "code": "// Prompt de Tradução de Legado:\n\"O que esta função obscura em C++ está fazendo? \nExplique passo a passo o que a manipulação de ponteiros \nna linha 12 causa no buffer, e como isso afeta a \nvariável de retorno final da estrutura.\""
         },
         {
-          "title": "Exemplo de pedido",
-          "code": "'Explique o que esta função faz, passo a passo, e destaque se você identifica algum comportamento não óbvio:\n\n[colar a função legada aqui]'"
-        },
-        {
-          "title": "Cuidado ao confiar cegamente na explicação",
-          "tip": "A explicação da IA é uma interpretação do código, não uma garantia de que reflete a intenção original de quem escreveu. Sempre que possível, valide com testes ou com quem conhece o histórico do sistema."
+          "title": "Adicionando Comentários e Documentação Automaticamente",
+          "body": "Após usar a IA para entender um código denso de terceiros, o próximo passo lógico é documentá-lo. Peça para a IA pegar a explicação que ela acabou de gerar e transformar em JSDoc, Docstrings ou comentários inline detalhados. Assim, o próximo desenvolvedor (ou você no futuro) não precisará perder tempo decifrando o script.",
+          "code": "// Prompt de Documentação:\n\"Adicione comentários JSDoc completos a essa função legada. \nDescreva os tipos implícitos de entrada, o que ela altera \nno estado global e o formato exato da Promise retornada. \nAdicione também um aviso sobre a mutação do array original.\""
         }
       ],
       "questions": [
@@ -1033,16 +1009,14 @@
       "summary": "Peça testes que cubram o comportamento esperado, não só o caminho feliz.",
       "lesson": [
         {
-          "title": "O que é 'caminho feliz'?",
-          "body": "O 'caminho feliz' é o cenário em que tudo funciona como esperado, com entradas válidas e sem erros. É importante, mas testar apenas isso deixa muitos problemas sem cobertura."
+          "title": "Gerando a Estrutura Base para Testes Unitários",
+          "body": "Criar a configuração inicial (setup e teardown) de testes é entediante. A IA pode ler seu arquivo de código principal e instantaneamente gerar a suíte de testes com mocks, importações e o cenário de caminho feliz. Isso remove a fricção inicial e encoraja a adoção de testes unitários robustos desde o começo do projeto.",
+          "code": "// Prompt para gerar Testes Unitários:\n\"Escreva testes usando Jest para a classe UserManager.\nCrie mocks para a dependência DatabaseRepository.\nImplemente primeiro os testes de sucesso (caminho feliz) \npara os métodos createUser e deleteUser.\""
         },
         {
-          "title": "Exemplo de pedido só de caminho feliz",
-          "code": "'Escreva um teste para a função dividir(a, b)'\n\nResultado provável: só testa dividir(10, 2) === 5\n(não cobre divisão por zero, números negativos, etc.)"
-        },
-        {
-          "title": "Como pedir cobertura mais ampla",
-          "tip": "Peça explicitamente por 'casos de borda' e 'entradas inválidas', como valores nulos, negativos, vazios ou no limite (zero, muito grandes). Isso força a IA a considerar mais cenários."
+          "title": "Foco no Comportamento e Não na Implementação",
+          "body": "Alerte a IA para testar o 'comportamento' público da função e não como as variáveis internas são tratadas. Testes que espelham a implementação interna quebram facilmente a cada refatoração. O foco deve ser: dado este input, qual o estado final? Exigir testes orientados a comportamento (BDD) eleva a qualidade da suíte.",
+          "code": "/* \nRegra de Ouro no Prompt de Testes:\n\"Escreva testes que validem apenas as saídas da função \ncom base nas entradas. NÃO faça assert sobre como as \nvariáveis internas ou loops são executados. Foque em regras \nde negócio, ignorando a estrutura privada da classe.\"\n*/"
         }
       ],
       "questions": [
@@ -1113,16 +1087,14 @@
       "summary": "Pratique reconhecer quais entradas costumam gerar comportamento inesperado.",
       "lesson": [
         {
-          "title": "Categorias comuns de casos de borda",
-          "body": "Valores nulos ou ausentes, listas ou strings vazias, números negativos ou zero, valores muito grandes, e entradas com tipo inesperado (por exemplo, texto onde se espera número) são categorias frequentes de casos de borda a testar."
+          "title": "Descobrindo Casos de Borda Inesperados com IA",
+          "body": "Nossa mente foca no fluxo normal das coisas, mas a IA processou milhões de repositórios e conhece onde os bugs se escondem. Ao gerar testes, peça explicitamente para a IA estressar o código com casos de borda: entradas vazias, nulos, strings massivas, datas inválidas, números negativos e problemas de concorrência.",
+          "code": "// Prompt de Casos de Borda:\n\"Analise minha função de divisão de pagamentos. \nGere testes usando Mocha focados APENAS em casos extremos:\n- Arrays vazios, nulos ou indefinidos\n- Valores negativos, zero ou strings no lugar de números\n- Falhas de precisão de ponto flutuante (ex: 0.1 + 0.2)\""
         },
         {
-          "title": "Exemplo aplicado",
-          "code": "function calcularDesconto(preco, percentual) {\n  return preco - (preco * percentual / 100);\n}\n\nCasos de borda a considerar:\n- percentual = 0\n- percentual = 100\n- percentual negativo\n- preco negativo"
-        },
-        {
-          "title": "Peça à IA uma lista de casos antes dos testes",
-          "tip": "Uma técnica útil é primeiro pedir: 'liste os casos de borda relevantes para esta função', revisar a lista, e só depois pedir os testes propriamente ditos."
+          "title": "Mutação e Falhas Intencionais",
+          "body": "Um teste só é confiável se sabemos que ele falha quando o código está errado. Use a IA para gerar entradas propositalmente corrompidas ou simular quedas de banco de dados e exceções de rede. Validar como sua aplicação responde a cenários caóticos evita que ela trave silenciosamente em ambiente de produção sem emitir logs.",
+          "code": "// Prompt de Resiliência:\n\"Crie testes para validar a recuperação de erro deste endpoint.\nSimule (usando jest.spyOn) que a API externa de pagamentos \nretornou HTTP 503 (Timeout) e garanta que nosso código \nretorna um erro elegante ao cliente em vez de crashear o Node.\""
         }
       ],
       "questions": [
@@ -1193,16 +1165,14 @@
       "summary": "Como revisar criticamente os testes que a IA sugere, antes de aceitá-los.",
       "lesson": [
         {
-          "title": "Nem todo teste gerado é um bom teste",
-          "body": "A IA pode gerar testes redundantes (que testam a mesma coisa de formas diferentes), testes que não verificam de fato o comportamento importante, ou até testes com a asserção errada. Revisar cada teste evita uma falsa sensação de segurança."
+          "title": "A Armadilha do Teste Falso Positivo",
+          "body": "A IA pode gerar testes que sempre passam, não importa se o código está certo ou errado (falsos positivos). Ela pode errar asserções assíncronas, ignorar Promises soltas ou fazer mocks absolutos que mascaram o erro real. Nunca confie cegamente em um teste gerado. Mude o código intencionalmente para ver se o teste falha.",
+          "code": "// Exemplo Clássico de Falso Positivo gerado por IA:\ntest('testa requisição assíncrona', () => {\n  // A IA esqueceu de retornar a Promise ou usar async/await\n  api.getUser().then(user => {\n    expect(user.age).toBe(999); // Vai passar silenciosamente!\n  });\n});"
         },
         {
-          "title": "Exemplo de teste com problema",
-          "code": "test('soma dois números', () => {\n  expect(somar(2, 2)).toBe(5); // Bug: deveria ser toBe(4)\n});\n\n// Um teste com asserção errada pode 'passar' mesmo com um bug na função real, dependendo do caso"
-        },
-        {
-          "title": "Perguntas para avaliar um teste gerado",
-          "tip": "Esse teste realmente verifica o comportamento que importa? A asserção está correta? Esse teste falharia se a função tivesse um bug real? Se a resposta a alguma dessas for 'não', o teste precisa de ajuste."
+          "title": "Avaliando a Qualidade e Legibilidade do Teste",
+          "body": "Um bom teste serve como documentação viva. Testes gerados por IA costumam ter descrições genéricas (ex: 'deve retornar verdadeiro'). Edite ou exija que a IA reescreva as descrições utilizando a linguagem do domínio do negócio, para que analistas e outros devs entendam qual regra exata está sendo validada sem ler código.",
+          "code": "/* O Teste da IA era: it('deve retornar erro 400', ...) \n\nO desenvolvedor refina o prompt para:\n\"Renomeie todos os testes usando o formato:\n'Dado [condição] quando [ação] então [resultado]'.\nEx: Dado usuário inativo, quando logar, então retorna 403.\"\n*/"
         }
       ],
       "questions": [
@@ -1273,16 +1243,14 @@
       "summary": "Aprenda a fornecer contexto suficiente para que a IA ajude a depurar um erro.",
       "lesson": [
         {
-          "title": "Um erro precisa de contexto para ser depurado",
-          "body": "Dizer apenas 'deu erro' não ajuda. É importante incluir a mensagem de erro completa, o trecho de código relevante, o que você esperava que acontecesse e o que de fato aconteceu."
+          "title": "A Arte de Descrever Erros Complexos para a IA",
+          "body": "A resposta da IA para um erro será tão boa quanto os sintomas que você reportar. Não envie apenas 'Meu código não funciona'. Compartilhe o stack trace inteiro do terminal, a linha exata onde o sistema acusa a quebra, o ambiente do servidor e, principalmente, quais passos lógicos causam o erro consistentemente.",
+          "code": "// Descrevendo Erro com Perfeição:\n\"Estou recebendo o erro 'Cannot read property map of undefined'\nna linha 45 do arquivo tabela.jsx.\nIsso só acontece quando o banco de dados retorna uma lista vazia.\nAqui está o snippet da linha 40 até 50 e o retorno da API:\""
         },
         {
-          "title": "Estrutura útil para descrever um erro",
-          "code": "1. O que eu esperava: 'a função deveria retornar a lista ordenada'\n2. O que aconteceu: 'retornou undefined'\n3. Mensagem de erro (se houver): 'TypeError: Cannot read property...'\n4. O código relevante"
-        },
-        {
-          "title": "Menos é mais, mas nem tão pouco",
-          "tip": "Não é preciso colar o projeto inteiro, mas cole o suficiente: a função com problema e, se relevante, onde ela é chamada. Contexto demais também pode distrair a IA do ponto central."
+          "title": "O Poder de Compartilhar Logs Intermediários",
+          "body": "Às vezes o erro silencioso (lógico) é mais difícil de achar que um crash. Nesses casos, espalhe console.logs ou debug points no seu código e passe essas saídas intermediárias para a IA. Mostre qual variável começou com valor X, mas no meio do caminho mudou inesperadamente para Y. Isso restringe o espaço de busca da IA.",
+          "code": "/* \n\"A função finaliza sem erros, mas o cálculo está incorreto.\nAdicionei logs: na entrada o valor é 100, após o \n'while(loop)' o valor vira NaN, e a saída é zero.\nAqui está o trecho completo do 'while'. Onde está vazando?\"\n*/"
         }
       ],
       "questions": [
@@ -1353,16 +1321,14 @@
       "summary": "Antes de aplicar uma correção sugerida, entenda o porquê dela.",
       "lesson": [
         {
-          "title": "Aceitar sem entender pode criar novos problemas",
-          "body": "Quando a IA sugere uma correção, é importante entender por que ela resolve o problema, e não apenas copiar e colar. Isso evita introduzir uma correção que 'esconde' o sintoma sem resolver a causa real."
+          "title": "O Perigo de Copiar e Colar Correções sem Entender",
+          "body": "A IA frequentemente resolve bugs adicionando camadas extras de checagem (if nulo, if undefined) que apenas ocultam o erro base (masking). Antes de aprovar a correção, avalie a raiz do problema. Se o objeto veio nulo da API, a solução certa não é colocar um 'if' no frontend, mas sim consertar a API que devolveu nulo.",
+          "code": "// Bug: usuário sem foto quebrava o app.\n// IA sugeriu remendo sujo no frontend:\nif (user && user.perfil && user.perfil.foto) render(foto);\n\n// Ação Correta: Você entende que a falha está no backend\n// e adiciona a correção na raiz do contrato de dados."
         },
         {
-          "title": "Exemplo: corrigir o sintoma vs a causa",
-          "code": "// Erro: 'Cannot read properties of undefined'\n// Correção 'rápida' que só esconde o problema:\nfunction mostrarNome(usuario) {\n  return usuario?.nome || 'Nome desconhecido';\n}\n// Isso evita o erro, mas não investiga POR QUE usuario está undefined"
-        },
-        {
-          "title": "Pergunte 'por quê' antes de aplicar",
-          "tip": "Peça para a IA explicar a causa raiz do erro, não só a correção. Às vezes o problema real está em outro lugar do código, e tratar apenas o sintoma pode mascarar um bug maior."
+          "title": "Testando a Hipótese Sugerida pela IA",
+          "body": "Trate a solução da IA apenas como uma 'hipótese científica' a ser comprovada. Questione-se: se eu aplicar essa mudança, quais outras partes do sistema vão sofrer impacto? Antes de comitar a correção que a IA forneceu, rode os testes unitários afetados e tente quebrar intencionalmente a nova lógica para provar sua validade.",
+          "code": "/* \nIA sugeriu mudar um loop 'forEach' para 'for...of' para \nsuportar await assíncrono. A solução resolve o bug de \nconcorrência, mas prejudica a performance massivamente.\nVocê testa e descobre, optando por 'Promise.all()' no final.\n*/"
         }
       ],
       "questions": [
@@ -1433,16 +1399,14 @@
       "summary": "Entenda o que é 'alucinação' de IA aplicada a código e como reconhecê-la.",
       "lesson": [
         {
-          "title": "O que é alucinação de IA",
-          "body": "Alucinação é quando um modelo de IA gera uma informação que parece plausível, mas é falsa ou não existe de fato. No contexto de código, isso pode significar inventar uma função, um método ou até uma biblioteca que não existe."
+          "title": "O Fenômeno da Alucinação de Código",
+          "body": "As IAs são modelos probabilísticos de linguagem, não compiladores. Elas não 'sabem' a verdade absoluta; elas geram textos estatisticamente prováveis. A 'alucinação' ocorre quando a IA sugere propriedades inexistentes, inventa flags de linha de comando ou cria componentes que soam perfeitos, mas não existem na realidade.",
+          "code": "// Exemplo de Alucinação Clássica:\n// Você pede: \"Gere um gráfico radial com Chart.js\"\n// A IA inventa parâmetros totalmente fictícios:\nnew Chart(ctx, {\n  type: 'radar',\n  options: { superRadialCurve: true } // Não existe!\n});"
         },
         {
-          "title": "Exemplo de alucinação de código",
-          "code": "// A IA sugere:\nimport { formatarMoedaBR } from 'js-utils-brasil';\n\n// Mas essa biblioteca específica pode simplesmente não existir\n// com esse nome, mesmo parecendo plausível"
-        },
-        {
-          "title": "Por que isso acontece",
-          "tip": "A IA gera texto com base em padrões estatísticos de linguagem, e nomes de bibliotecas 'parecidos' com outras reais podem ser produzidos mesmo sem existirem de verdade. Por isso, sempre vale checar se algo sugerido realmente existe."
+          "title": "Detectando Códigos Inventados Antes de Executar",
+          "body": "Para combater a alucinação, a melhor arma é sua própria documentação oficial e o linter. Sempre mantenha o TypeScript e ferramentas de análise estática ativadas. Se a IA usar uma função inventada, o IDE gritará o erro antes mesmo de você rodar. Se o método sugerido pela IA for muito complexo, verifique no Google ou Docs.",
+          "code": "/*\nEstratégia Anti-Alucinação:\n1. Cole a documentação oficial recente no prompt.\n2. Exija: \"Use APENAS os métodos mostrados neste trecho\".\n3. Verifique se o Typescript aprova a sintaxe sugerida.\nNunca confie em memória isolada da IA para APIs obscuras.\n*/"
         }
       ],
       "questions": [
@@ -1513,16 +1477,14 @@
       "summary": "Por que respostas de IA seguras em tom nem sempre são corretas.",
       "lesson": [
         {
-          "title": "Confiança no tom não é garantia de correção",
-          "body": "Uma IA pode apresentar uma resposta errada com o mesmo tom seguro de uma resposta correta. Não existe, no texto gerado, um sinal confiável de 'isso pode estar errado' — cabe ao desenvolvedor avaliar o conteúdo."
+          "title": "O Viés da Confiança e Respostas Convincentes",
+          "body": "As ferramentas de IA são treinadas para soarem sempre solicitas, certas e assertivas, mesmo quando estão redondamente enganadas. Elas não têm senso de dúvida natural. O desenvolvedor deve ignorar o tom de autoridade com que a resposta é dada e analisar exclusivamente a frieza dos bits e da lógica escrita.",
+          "code": "// IA diz com 100% de certeza:\n\"A melhor forma de criptografar essa senha no Node é usando \no módulo nativo crypto com o algoritmo obsoleto MD5. \nBasta usar o código abaixo:\"\n// FALSO E PERIGOSO! Mas falado com enorme confiança."
         },
         {
-          "title": "Exemplo de afirmação incorreta com tom seguro",
-          "code": "'A função Array.prototype.sortBy() ordena arrays automaticamente por qualquer propriedade.'\n\n// Isso pode soar convincente, mas 'sortBy' não é um método nativo\n// de arrays em JavaScript"
-        },
-        {
-          "title": "Estratégias contra o excesso de confiança",
-          "tip": "Verifique informações importantes em documentação oficial, teste o código antes de assumir que funciona, e desconfie de afirmações muito categóricas sobre comportamento de linguagens ou bibliotecas que você não consegue confirmar."
+          "title": "Averiguando Soluções Suspeitas com Desconfiança",
+          "body": "Se a resposta sugerida parece desnecessariamente longa, obscura ou introduz bibliotecas que você nunca ouviu falar, pause imediatamente. Questione a IA: 'Você tem certeza que esse método ainda é suportado na versão 18?' Surpreendentemente, se questionada rigorosamente, a IA muitas vezes pede desculpas e arruma o próprio erro.",
+          "code": "/*\nVocê: \"Esse pacote 'react-magic-router' que você sugeriu \nrealmente existe? Não achei no NPM.\"\n\nIA: \"Peço desculpas pelo erro. Eu inventei esse pacote. \nA forma correta de fazer isso usando react-router-dom é...\"\n*/"
         }
       ],
       "questions": [
@@ -1593,16 +1555,14 @@
       "summary": "Pratique identificar quando uma sugestão de biblioteca ou API pode ser inventada.",
       "lesson": [
         {
-          "title": "Sinais de alerta comuns",
-          "body": "Nomes de bibliotecas muito 'perfeitos' para a necessidade exata, métodos que você nunca viu mencionados em nenhuma documentação, ou combinações estranhas de nomes conhecidos (como misturar duas bibliotecas famosas em uma só) são sinais para investigar antes de usar."
+          "title": "APIs Inexistentes e Bibliotecas Fantasmas",
+          "body": "A IA é propensa a inventar (alucinar) bibliotecas porque tenta combinar palavras-chave lógicas. Se você pedir 'manipulador de PDF em Rust super rápido', ela pode combinar essas palavras e recomendar uma biblioteca 'fast-rust-pdf-maker' que não existe. Sempre valide a existência e popularidade das libs em repositórios reais.",
+          "code": "// A IA instrui você a rodar no terminal:\n// npm install express-automatic-secure-cors-auth\n\n// Ao rodar, você não acha o pacote, ou pior:\n// Instala um pacote malicioso criado por hackers \n// que previram essa mesma alucinação na IA (Typosquatting)."
         },
         {
-          "title": "Exemplo de combinação suspeita",
-          "code": "// Sugestão da IA:\nimport { validate } from 'lodash-validator-pro';\n\n// 'lodash' é real, mas 'lodash-validator-pro' pode ser\n// uma combinação inventada que nunca existiu de fato"
-        },
-        {
-          "title": "Checklist rápido antes de instalar algo sugerido",
-          "tip": "1) Busque o nome exato em um repositório oficial (npm, PyPI, etc). 2) Veja se tem uma quantidade razoável de downloads/uso. 3) Confira se a documentação realmente descreve o que a IA disse que a biblioteca faz."
+          "title": "Verificando Depreciações e Versões Erradas",
+          "body": "Mesmo quando a API existe, o conhecimento da IA tem uma data de corte. Ela frequentemente gera códigos utilizando sintaxes do React 16 em vez do 18, ou padrões de 2021 de ferramentas em rápida evolução (como Next.js ou SvelteKit). Instrua explicitamente a versão do framework no prompt para filtrar o lixo obsoleto.",
+          "code": "/* \nPrompt Falho: \"Crie uma rota no Next.js\"\nResultado: Código usando 'getStaticProps' (Padrão antigo Pages Router).\n\nPrompt Seguro: \"Crie uma rota no Next.js 14 usando o \nApp Router (app/page.tsx) e os Server Components mais recentes.\"\n*/"
         }
       ],
       "questions": [
@@ -1673,16 +1633,14 @@
       "summary": "Entenda por que chaves, senhas e tokens nunca devem ser enviados em um prompt.",
       "lesson": [
         {
-          "title": "O que conta como 'segredo'",
-          "body": "Chaves de API, senhas, tokens de acesso, strings de conexão com bancos de dados e certificados são exemplos de segredos. Colá-los em uma conversa com uma IA (especialmente serviços de terceiros) expõe essas credenciais fora do seu controle direto."
+          "title": "A Regra de Ouro: Dados Sensiveis em Prompts",
+          "body": "As interações do chat e o código enviado como contexto via IA vão para os servidores da empresa provedora e podem ser usados para re-treinar futuros modelos. Nunca, sob nenhuma circunstância, copie e cole tokens de acesso, chaves da AWS, senhas de banco ou segredos de API na sua ferramenta de IA. Limpe tudo primeiro.",
+          "code": "const config = {\n  // NUNCA COLE ISSO NA IA:\n  // apiKey: 'sk-live-1234abcd5678efgh',\n  \n  // LIMPE O CÓDIGO ASSIM ANTES DE PEDIR AJUDA:\n  apiKey: 'YOUR_API_KEY_HERE',\n  dbPassword: process.env.DB_PASS\n};"
         },
         {
-          "title": "Exemplo do que NÃO fazer",
-          "code": "// NÃO faça isso em um prompt:\n'Aqui está minha configuração, me ajude a debugar:\nAPI_KEY=sk_live_51H8xJ2KZ...\nDB_PASSWORD=SenhaSuperSecreta123'"
-        },
-        {
-          "title": "Alternativa segura",
-          "tip": "Substitua valores sensíveis por marcadores genéricos antes de colar código em um prompt, como API_KEY=\"SUA_CHAVE_AQUI\". O comportamento do código para fins de depuração geralmente não depende do valor real do segredo."
+          "title": "Táticas de Anonimização de Código",
+          "body": "Ao debugar problemas de conexão ou acesso, isole a lógica. Substitua domínios privados por 'exemplo.com', remova IPs internos, renomeie variáveis sensíveis corporativas para termos genéricos e troque e-mails reais de clientes por 'teste@teste.com'. Adquira o hábito de 'esfregar' o código antes do crtl+C crtl+V.",
+          "code": "/* Código Limpo e Anonimizado para IA:\n\"Minha função fetch não consegue atingir minha API. \nO erro é de CORS. Segue o código:\n\nfetch('https://api.empresa-anonima.com/v1/auth', { \n  headers: { 'Authorization': 'Bearer TOKEN_FAKE' } \n});\"\n*/"
         }
       ],
       "questions": [
@@ -1753,16 +1711,14 @@
       "summary": "Por que nunca se deve rodar código sugerido por IA sem entender o que ele faz.",
       "lesson": [
         {
-          "title": "Rodar sem entender é um risco real",
-          "body": "Um comando ou trecho de código sugerido por uma IA pode, por engano ou má interpretação do pedido, apagar arquivos, alterar dados de forma destrutiva ou executar ações não intencionadas. Entender o que um comando faz antes de rodá-lo é uma prática essencial de segurança."
+          "title": "Nunca Execute o Desconhecido no Terminal",
+          "body": "Agentes e chats frequentemente sugerem comandos complexos de bash, curl, docker, ou git. Jamais copie e cole comandos de terminal que você não compreende integralmente as flags usadas. Um simples comando pode apagar pastas inteiras, sobrescrever commits históricos ou abrir portas de rede não seguras na sua máquina local.",
+          "code": "// IA sugere: \n// git reset --hard HEAD~5 && git clean -fd\n\n// Isso apaga arquivos não rastreados irreversivelmente.\n// Se você não souber o que '-fd' faz, peça para a IA \n// explicar o comando primeiro, antes de dar ENTER."
         },
         {
-          "title": "Exemplo de comando arriscado",
-          "code": "# Comando sugerido para 'limpar arquivos temporários':\nrm -rf /*\n\n# Esse comando, se mal compreendido ou mal copiado,\n# pode apagar arquivos essenciais do sistema"
-        },
-        {
-          "title": "Boas práticas antes de executar algo sugerido",
-          "tip": "Leia o comando/código linha por linha. Se envolver exclusão, sobrescrita ou alteração de dados, teste primeiro em um ambiente seguro (não em produção). Pergunte à própria IA o que cada parte do comando faz, se não tiver certeza."
+          "title": "O Sandboxing e Ambientes Seguros de Teste",
+          "body": "Quando for testar soluções arquiteturais vastas ou scripts shell sugeridos pela IA, crie o hábito de executar em um ambiente controlado, como um contêiner Docker isolado, um repositório git clonado em pasta temporária, ou uma branch de descarte. Assim, se o código for destrutivo, você deleta a pasta e não perde absolutamente nada.",
+          "code": "/* \nA IA gerou um script Python de 200 linhas que \nmodifica e renomeia todos os arquivos do projeto.\nNão rode na sua pasta principal! \nCrie uma branch 'teste-script-ia', rode, verifique com \n'git status' o estrago, e desfaça rapidamente se falhar.\n*/"
         }
       ],
       "questions": [
@@ -1833,16 +1789,14 @@
       "summary": "Além de segredos técnicos, cuidado com dados pessoais e informações confidenciais.",
       "lesson": [
         {
-          "title": "Segredos técnicos não são a única preocupação",
-          "body": "Dados pessoais de usuários reais (CPF, e-mail, endereço), informações confidenciais de negócio (contratos, dados financeiros não públicos) e dados de clientes também não devem ser colados em prompts de ferramentas de IA de terceiros sem uma política clara da empresa que permita isso."
+          "title": "Privacidade e a LGPD ao Usar IA",
+          "body": "Além de proteger segredos de infraestrutura (chaves, senhas), você deve proteger dados de usuários finais (PII - Personally Identifiable Information). Nunca cole no chat arquivos JSON de log ou dumps de banco de dados que contenham CPFs, cartões de crédito, históricos médicos ou endereços de e-mail reais de clientes.",
+          "code": "// Erro Crítico de Privacidade (Vazamento de LGPD):\n// \"A IA me ajuda a formatar esse JSON de usuários?\"\n// [ \n//   { nome: \"Maria Silva\", cpf: \"123.456.789-00\" } \n// ]\n\n// SOLUÇÃO: Use mock data gerado pelo faker.js ou mude os dados."
         },
         {
-          "title": "Exemplo de uso inadequado",
-          "code": "'Aqui está uma lista real de clientes para você me ajudar a filtrar:\nMaria Silva, CPF 123.456.789-00, maria@email.com\nJoão Souza, CPF 987.654.321-00, joao@email.com'\n\n// Esses dados reais de pessoas não deveriam ser colados assim"
-        },
-        {
-          "title": "Como resolver sem expor dados reais",
-          "tip": "Use dados fictícios ou anonimizados que representem a mesma estrutura (por exemplo, 'Nome, CPF, Email' com valores inventados) para pedir ajuda sobre lógica de código, sem expor informações reais de pessoas."
+          "title": "Configurando Ignorância de Arquivos e Permissões",
+          "body": "Ao usar Agentes ou IDEs com IA nativa (como Cursor ou Copilot Chat), configure corretamente os arquivos de exclusão (como .cursorignore ou .copilotignore). Isso impede que a IA indexe, leia e processe automaticamente arquivos confidenciais do projeto, como o .env, certificados .pem e bancos sqlite locais durante o contexto.",
+          "code": "/* Crie um arquivo .cursorignore no repositório:\n.env*\n*.pem\n*.key\ndatabase.sqlite\n/secrets\n/certificados\n\nIsso blinda a IA de bisbilhotar variáveis críticas.\n*/"
         }
       ],
       "questions": [
@@ -1913,16 +1867,14 @@
       "summary": "Mesmo usando IA, quem assina e mantém o código é o desenvolvedor.",
       "lesson": [
         {
-          "title": "A IA não assume responsabilidade",
-          "body": "Independentemente de quanto código foi gerado com ajuda de IA, é o desenvolvedor (ou a equipe) que assina o commit, faz o code review e é responsável pelas consequências do código em produção, incluindo bugs e falhas de segurança."
+          "title": "O Princípio da Assinatura: O Código é Seu",
+          "body": "Quando um bug for para produção e derrubar o serviço, a desculpa 'Foi a IA que gerou' não será aceita em nenhuma empresa séria. O autor legal e moral do código é o desenvolvedor que apertou o botão de commit. A IA é equivalente a uma pesquisa no StackOverflow: a fonte da ideia é externa, mas a responsabilidade de aplicação é inteiramente sua.",
+          "code": "// Commit Message Errada:\n// \"Add rotas geradas pelo Copilot, espero que funcione\"\n\n// Commit Message Correta:\n// \"feat: adiciona validação de rota e autenticação JWT\"\n// (Você assina, você confia, você mantém o código)."
         },
         {
-          "title": "Um paralelo útil",
-          "body": "Pense em uma calculadora: ela ajuda a calcular, mas quem assina um relatório financeiro é o contador, não a calculadora. Da mesma forma, uma IA ajuda a escrever código, mas quem é responsável pelo sistema continua sendo a pessoa (ou equipe) que o publica."
-        },
-        {
-          "title": "Isso muda a forma de trabalhar?",
-          "tip": "Sim: significa que 'a IA gerou assim' nunca é uma justificativa suficiente para um bug em produção. A expectativa continua sendo a mesma de sempre: entender, revisar e validar o que se está entregando."
+          "title": "Construindo Maturidade com Ferramentas Automatizadas",
+          "body": "A IA é um amplificador das suas habilidades. Um dev ruim usará a IA para gerar lixo em uma velocidade absurda. Um dev bom usará a IA para estruturar boas arquiteturas, escrever testes imbatíveis e resolver domínios complexos. O julgamento e a experiência do engenheiro de software nunca foram tão valiosos quanto agora.",
+          "code": "/* \nMudança de Mentalidade:\nAntes: \"Como eu digito o código para fazer um loop?\"\nAgora com IA: \"Qual a arquitetura de eventos ideal \npara este loop escalar com 10 mil conexões simultâneas?\"\nA ferramenta muda, a engenharia permanece.\n*/"
         }
       ],
       "questions": [
@@ -1993,16 +1945,14 @@
       "summary": "Questões éticas sobre transparência ao usar código gerado por IA.",
       "lesson": [
         {
-          "title": "Transparência sobre o uso de IA",
-          "body": "Algumas equipes e projetos têm políticas específicas sobre declarar quando um trecho de código foi gerado com apoio de IA, especialmente em contextos como contribuições open source ou entregas contratuais. Conhecer e seguir a política do seu contexto de trabalho é parte de um uso ético."
+          "title": "Transparência e Autoria no Ambiente de Trabalho",
+          "body": "Esconder da sua equipe que você utiliza IA não traz nenhum benefício. Pelo contrário, compartilhar os bons prompts e práticas de IA com seus colegas eleva a barra técnica geral. Seja honesto no Code Review se um algoritmo muito engenhoso não saiu da sua cabeça: 'A IA ajudou a estruturar essa árvore, revisei e vi que é seguro'.",
+          "code": "// Comentário honesto no Pull Request:\n/* \nNota para os revisores: A estrutura deste regex \ncomplexo foi gerada via IA e validada via testes \nunitários na linha 45. Verifiquei os edge cases, \nmas peço um duplo check de segurança.\n*/"
         },
         {
-          "title": "Exemplo de situação",
-          "body": "Um projeto open source pode exigir que contribuições geradas com apoio significativo de IA sejam declaradas na descrição do pull request, para que os mantenedores revisem com atenção redobrada a possíveis problemas de licenciamento ou qualidade."
-        },
-        {
-          "title": "Não existe uma regra universal única",
-          "tip": "Diferentes empresas, projetos e países podem ter regras distintas sobre esse tema, que também está evoluindo. O importante é buscar e seguir a política do contexto específico em que você está trabalhando."
+          "title": "Riscos de Propriedade Intelectual",
+          "body": "Dependendo da ferramenta usada e dos termos de serviço aceitos pela sua empresa, código gerado pode trazer preocupações de direitos autorais. Modelos públicos podem, acidentalmente, reproduzir código patenteado. Use as versões Enterprise das ferramentas de IA nas empresas, que geralmente protegem contra problemas de cópia e privacidade.",
+          "code": "/* \nPrática Segura em Ambientes Corporativos:\n1. Use apenas contas de IA fornecidas pela empresa (Enterprise).\n2. Evite pedir à IA para \"recriar o algoritmo de recomendação \nda Empresa X\", pois isso pode gerar lógicas patenteadas.\n3. Entenda as políticas de compliance da sua organização.\n*/"
         }
       ],
       "questions": [
@@ -2073,16 +2023,14 @@
       "summary": "Considerações sobre origem, licença e verificação de código sugerido por IA.",
       "lesson": [
         {
-          "title": "Código gerado pode se assemelhar a código existente",
-          "body": "Modelos de IA são treinados com grandes quantidades de código público, e ocasionalmente uma sugestão pode se assemelhar bastante a um trecho específico já existente em algum lugar, o que levanta questões sobre licenciamento em alguns cenários, especialmente para trechos maiores e distintivos."
+          "title": "Análise de Licenças de Código Aberto",
+          "body": "Ao gerar blocos substanciais de código estrutural, a IA pode replicar trechos quase exatos de projetos com licenças restritivas (como GPL), que obrigam a abertura de código do software que as utiliza. Muitas ferramentas modernas têm filtros que impedem respostas cópias, mas o desenvolvedor deve ficar alerta para códigos de origem duvidosa.",
+          "code": "/* Se a IA sugerir uma classe gigantesca, pergunte a ela:\n\"Esse algoritmo complexo pertence a alguma biblioteca \nopen-source conhecida ou foi puramente gerado?\" \nSe pertencer a uma biblioteca, é melhor você instalar a \nbiblioteca oficialmente via NPM/Pip e gerenciar as licenças.\n*/"
         },
         {
-          "title": "Isso não significa evitar totalmente o uso de IA",
-          "body": "Para a grande maioria dos casos, principalmente trechos pequenos e genéricos (como um loop comum ou uma validação simples), essa preocupação é mínima. A atenção deve crescer para trechos grandes, muito específicos ou centrais ao valor do produto."
-        },
-        {
-          "title": "Boas práticas gerais",
-          "tip": "Em projetos comerciais sensíveis, verifique se a empresa possui uma política sobre uso de IA para geração de código, e siga as diretrizes de revisão estabelecidas. Em caso de dúvida sobre um trecho muito específico e extenso, vale considerar uma revisão adicional."
+          "title": "A Importância de Renomear e Refatorar à sua Realidade",
+          "body": "Uma boa prática ética e técnica ao receber um grande trecho da IA é refatorá-lo inteiramente. Mude os nomes das variáveis para o contexto de negócio específico do seu domínio, ajuste a estrutura e aplique o linter padrão do time. Isso converte um código 'alienígena' em algo que reflete organicamente a propriedade do seu projeto.",
+          "code": "// IA: function processData(dataArray) { ... }\n\n// Você refatora para o domínio do projeto:\n// function calcularConsolidadoFinanceiro(faturasAbertas) {\n//   // ... adapta a lógica gerada ao modelo de dados real\n// }"
         }
       ],
       "questions": [
@@ -2153,16 +2101,14 @@
       "summary": "Combine tudo que aprendeu em um fluxo de trabalho pessoal com IA.",
       "lesson": [
         {
-          "title": "Um fluxo de trabalho não é uma regra rígida",
-          "body": "É um conjunto de hábitos que ajudam a usar IA de forma produtiva e responsável: quando usar cada modalidade, como escrever bons pedidos, e em que pontos parar para revisar antes de seguir em frente."
+          "title": "Conectando Ferramentas: Seu Fluxo de Trabalho Integrado",
+          "body": "O fluxo perfeito não é usar uma única ferramenta de IA para tudo. É criar um ecossistema. Use o ChatGPT/Claude em um monitor para debater arquitetura e montar a base. No editor, use extensões como Copilot para completar funções rapidamente, e no terminal, chame agentes para refatorações ou buscas avançadas e testes de ponta a ponta.",
+          "code": "/* Arquitetando seu fluxo diário:\n1. Planejamento (Chat): Discute banco de dados e rotas.\n2. Esqueleto (Agente): Gera os arquivos boilerplate e DTOs.\n3. Lógica local (Dev + Autocomplete): O dev programa \n   o coração da regra, a IA apenas acompanha e completa.\n4. Revisão e Testes (Chat/Agente): Exige testes de borda.\n*/"
         },
         {
-          "title": "Exemplo de fluxo pessoal",
-          "code": "1. Definir a tarefa com clareza (contexto + exemplo, se possível)\n2. Escolher a ferramenta certa (autocomplete, chat ou agente)\n3. Revisar toda sugestão antes de aceitar\n4. Testar o resultado, incluindo casos de borda\n5. Nunca expor segredos ou dados sensíveis no processo"
-        },
-        {
-          "title": "Adapte ao seu contexto",
-          "tip": "Times diferentes podem ter políticas diferentes sobre uso de IA. Seu fluxo pessoal deve respeitar as regras da equipe ou empresa em que você está, além dos princípios gerais de boas práticas."
+          "title": "Criando Bibliotecas de Prompts Pessoais",
+          "body": "Não perca tempo digitando o contexto do seu projeto repetidas vezes. Mantenha um arquivo de texto, Gist ou recurso interno com seus melhores prompts predefinidos. Tenha templates prontos para 'Gerar testes para React', 'Fazer Code Review de Python', ou 'Descrever Pull Request'. A repetição sistemática gera produtividade imensa.",
+          "code": "// Exemplo de arquivo prompt-refatoracao.md guardado:\n\"Você é um Sênior. Refatore o código enviado seguindo:\n- Princípios Clean Code e SOLID.\n- Nomes expressivos em Português-BR.\n- Remoção completa de aninhamentos profundos (Early Return).\n- Adição de tratamento de erro com try/catch.\""
         }
       ],
       "questions": [
@@ -2233,16 +2179,14 @@
       "summary": "Aplique pontos de checagem humana em um cenário realista de ponta a ponta.",
       "lesson": [
         {
-          "title": "Cenário integrador",
-          "body": "Imagine que você pediu a um agente de IA para implementar uma funcionalidade de 'recuperação de senha' em um sistema. Essa tarefa envolve segurança, dados sensíveis (e-mails de usuários) e lógica importante, então múltiplos pontos de checagem humana são recomendados ao longo do processo."
+          "title": "Pontos de Checagem: O Funil de Segurança e Qualidade",
+          "body": "Ao criar o fluxo com IA, defina os momentos exatos de checagem obrigatória: revisar visualmente a intenção no prompt, auditar minuciosamente o diff da IA no editor de código, validar os testes passando no terminal verde, e finalizar com a validação humana de pares (o Pull Request final da equipe real).",
+          "code": "/* \nChecklist do Desenvolvedor Aumentado:\n[ ] Entendi o que foi gerado e por que?\n[ ] Os edge cases de entradas ruins estão cobertos?\n[ ] Há dados sensíveis ou hardcoded em aberto?\n[ ] Os testes unitários aprovam apenas o caminho feliz?\nSe houver um 'Não', refaça o prompt e ajuste manualmente.\n*/"
         },
         {
-          "title": "Pontos de checagem sugeridos",
-          "code": "1. Revisar o plano do agente antes de aplicar mudanças\n2. Verificar se nenhum dado sensível foi exposto na conversa com a IA\n3. Revisar o código gerado quanto a bugs e casos de borda (ex: e-mail inexistente)\n4. Rodar testes cobrindo cenários de erro (token inválido, expirado, etc.)\n5. Só então aprovar a mudança para produção"
-        },
-        {
-          "title": "Isso é mais lento, mas mais seguro",
-          "tip": "Adicionar pontos de checagem consome tempo, mas para funcionalidades sensíveis (segurança, dados pessoais, dinheiro), esse tempo extra é um investimento que reduz o risco de problemas graves depois."
+          "title": "A Prática de Documentar as Decisões (ADRs)",
+          "body": "Quando a IA o ajudar a tomar uma decisão de arquitetura complexa, documente o 'porquê'. Crie Architecture Decision Records (ADRs) na sua base. Isso registra não apenas o código final que a IA auxiliou a escrever, mas o raciocínio por trás de por que um padrão de design foi escolhido em detrimento de outro, salvando o histórico da decisão.",
+          "code": "/* Exemplo de ADR simplificado no repositório:\nContexto: IA recomendou mudar de Polling para WebSockets \ndevido à latência das mensagens.\nDecisão: Adotaremos Socket.io, pois a base já está em Node.\nConsequências: Necessidade de reestruturar balanceamento de carga.\n*/"
         }
       ],
       "questions": [
@@ -2313,16 +2257,14 @@
       "summary": "Revise, em cenários mistos, os principais erros de uso de IA vistos na trilha.",
       "lesson": [
         {
-          "title": "Recapitulando riscos e erros comuns",
-          "body": "Ao longo da trilha, vimos: pedidos vagos gerando respostas ruins, confiar cegamente em sugestões sem revisar, alucinação de bibliotecas e métodos, colar segredos e dados sensíveis em prompts, executar comandos sem entender, e tratar 'a IA gerou' como desculpa para bugs."
+          "title": "Revisão dos Erros Comuns: Automação Cega",
+          "body": "O erro de principiante mais grave é a automação cega: pedir à IA para resolver um ticket complexo do Jira, colar a resposta direto no arquivo, e mandar para o repositório sem nem mesmo rodar a aplicação localmente. Isso destrói bases de código. A velocidade não importa se a direção estiver apontada para o abismo técnico.",
+          "code": "// Fluxo da automação cega (A EVITAR):\n// 1. Ticket -> 2. Prompt -> 3. Ctrl+V -> 4. Commit e Push\n\n// Fluxo do Engenheiro (A ADOTAR):\n// 1. Ticket -> 2. Planejamento Mental -> 3. Prompt de Base \n// -> 4. Crítica/Ajustes Manuais -> 5. Testes Unitários \n// -> 6. Execução Local -> 7. Commit e Push."
         },
         {
-          "title": "Objetivo desta fase",
-          "body": "Você verá cenários mistos e precisará identificar qual princípio da trilha está sendo violado ou seguido corretamente em cada um. Isso ajuda a consolidar o aprendizado antes do projeto final."
-        },
-        {
-          "title": "Dica para os próximos exercícios",
-          "tip": "Para cada cenário, pergunte-se: isso envolve contexto insuficiente, confiança excessiva, um risco de segurança, ou uma questão de responsabilidade?"
+          "title": "Evitando o Viés da Âncora no Diagnóstico de Bugs",
+          "body": "Quando fornecemos uma hipótese falsa para a IA ('Acho que o erro é o banco de dados'), ela tende a focar totalmente e validar essa teoria (viés de confirmação). No diagnóstico de bugs, forneça os fatos puros (logs e código) sem opiniões prematuras, permitindo que a IA deduza livremente onde o erro sistêmico verdadeiro está alocado.",
+          "code": "/* \nPrompt Viesado: \"Conserte a conexão de rede que está travando.\"\n(A IA vai focar na rede e gerar dezenas de timeouts complexos)\n\nPrompt Puro: \"Ao clicar no botão, o app trava após 10 seg. \nO log da linha 20 mostra um erro de memória. Analise o que \npode estar vazando os recursos de loop antes da rede.\"\n*/"
         }
       ],
       "questions": [
@@ -2393,16 +2335,14 @@
       "summary": "Fase final: consolide toda a trilha em um cenário completo de ponta a ponta.",
       "lesson": [
         {
-          "title": "Cenário final integrador",
-          "body": "Você vai analisar um cenário completo, do pedido inicial de uma tarefa até a entrega em produção, passando por prompt, revisão, testes, segurança e responsabilidade — todos os temas vistos na trilha 'IA para Desenvolvedores'."
+          "title": "A Consolidação: Projetando Seu Perfil Profissional",
+          "body": "A IA é o maior salto de produtividade desde o surgimento do Stack Overflow e das IDEs modernas. Profissionais que abraçarem a IA como par colaborativo, com ceticismo técnico, foco em segurança e habilidades de prompt engineering, produzirão sistemas melhores, mais rápidos e com coberturas de testes exaustivas, destacando-se na carreira.",
+          "code": "/* \nProjeto Final Mental:\nDe hoje em diante, antes de travar 4 horas em um bug, \nisole o caso e discuta com a IA.\nAntes de começar um CRUD massante de zero, peça o boilerplate.\nApós horas codando sozinho, peça à IA para apontar defeitos.\nTorne a Inteligência Artificial o seu revisor constante.\n*/"
         },
         {
-          "title": "O que se espera de um fluxo maduro",
-          "body": "Um bom fluxo de uso de IA não elimina a necessidade de conhecimento técnico do desenvolvedor: ele soma a velocidade da IA à responsabilidade e ao julgamento humano em cada etapa importante do processo."
-        },
-        {
-          "title": "Parabéns por chegar até aqui",
-          "tip": "Essa trilha não termina o aprendizado sobre IA no desenvolvimento — as ferramentas evoluem rapidamente. Os princípios de contexto claro, revisão cuidadosa e responsabilidade continuam válidos, seja qual for a ferramenta específica do momento."
+          "title": "A Manutenção da Evolução Pessoal",
+          "body": "A tecnologia e as ferramentas mudam rapidamente. O que hoje é feito por chat pode ser superado por agentes autônomos amanhã. Mantenha sua curiosidade ativada e teste novos modelos. Mais importante: continue evoluindo nas bases e paradigmas de engenharia de software tradicionais; a IA é apenas o atalho para implementá-los mais rápido.",
+          "code": "/* Parabéns por completar a Trilha!\n\nPróximos Passos recomendados:\n- Configure o Copilot/Cursor e explore atalhos.\n- Crie sua biblioteca de Prompts (Gists).\n- Use IA no próximo PR da equipe para documentar \ne encontrar bugs ocultos.\n*/"
         }
       ],
       "questions": [

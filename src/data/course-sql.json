@@ -73,14 +73,14 @@
       "summary": "Veja por que guardar dados em arquivos soltos causa problemas e o que muda com um banco de dados.",
       "lesson": [
         {
-          "title": "O problema dos arquivos soltos",
-          "body": "Imagine uma loja guardando pedidos em arquivos de texto ou planilhas separadas. Achar um cliente específico, evitar informações repetidas ou garantir que dois vendedores não sobrescrevam o mesmo arquivo ao mesmo tempo vira um pesadelo conforme a quantidade de dados cresce.",
-          "tip": "Planilhas funcionam bem para poucas dezenas de linhas, mas não escalam para sistemas com muitos usuários acessando ao mesmo tempo."
+          "title": "O Problema dos Dados Desorganizados",
+          "body": "Quando armazenamos dados em planilhas ou arquivos de texto sem uma estrutura definida, enfrentamos problemas como duplicação, inconsistência e dificuldade de busca. O SQL resolve isso ao exigir que os dados sigam regras rígidas de organização, garantindo que a informação seja sempre confiável e fácil de encontrar em qualquer cenário.",
+          "code": "-- Em vez de textos soltos, usamos tabelas estruturadas\nSELECT * FROM clientes WHERE cidade = 'São Paulo';"
         },
         {
-          "title": "O que é um banco de dados",
-          "body": "Um banco de dados é um sistema organizado para guardar, buscar e atualizar dados de forma confiável e rápida, mesmo com muitos acessos simultâneos. Ele resolve problemas de duplicação, inconsistência e falta de controle que arquivos soltos têm.",
-          "tip": "Pense no banco de dados como um arquivo físico bem organizado, com gavetas e etiquetas, em vez de uma pilha de papéis soltos."
+          "title": "O Modelo Relacional",
+          "body": "O modelo relacional organiza os dados em tabelas (ou relações) que se conectam através de chaves. Essa abordagem elimina redundâncias, pois cada informação é armazenada em um único lugar. Com o SQL (Structured Query Language), podemos consultar e cruzar esses dados de forma padronizada, rápida e extremamente eficiente para aplicações reais.",
+          "code": "SELECT pedidos.id, clientes.nome \nFROM pedidos \nJOIN clientes ON pedidos.cliente_id = clientes.id;"
         }
       ],
       "questions": [
@@ -151,14 +151,14 @@
       "summary": "Conheça a estrutura básica de um banco relacional: tabelas organizadas em linhas e colunas.",
       "lesson": [
         {
-          "title": "Tudo vira tabela",
-          "body": "Em um banco de dados relacional, os dados ficam organizados em tabelas, parecidas com planilhas. Cada tabela representa um tipo de coisa, como 'clientes' ou 'produtos'.",
-          "tip": "Pense em cada tabela como uma planilha com um nome específico, dedicada a um único assunto."
+          "title": "Tabelas e a Estrutura de Dados",
+          "body": "No banco de dados relacional, uma tabela funciona como uma planilha altamente estruturada que representa uma entidade específica, como 'Clientes' ou 'Produtos'. Cada tabela possui um nome único e regras próprias que ditam que tipo de informação pode ser armazenada ali, formando a base fundamental de onde os dados residem.",
+          "code": "SELECT nome, email FROM usuarios;"
         },
         {
-          "title": "Linhas e colunas",
-          "body": "Cada coluna representa um tipo de informação (como nome, e-mail ou preço) e é a mesma para todos os registros da tabela. Cada linha representa um registro individual, como um cliente específico ou um produto específico.",
-          "code": "Tabela: clientes\n---------------------------\nid | nome    | email\n1  | Ana     | ana@mail.com\n2  | Bruno   | bruno@mail.com"
+          "title": "Colunas e Linhas (Registros)",
+          "body": "As colunas (ou campos) definem os atributos dos dados, como nome, idade ou data de nascimento, e o tipo de dado de cada um. Já as linhas (ou registros) representam cada item individual contendo os valores reais para aquelas colunas. Entender essa grade é crucial para projetar bancos de dados robustos e fazer consultas eficientes com SQL.",
+          "code": "INSERT INTO usuarios (nome, email) \nVALUES ('Maria', 'maria@email.com');"
         }
       ],
       "questions": [
@@ -229,14 +229,14 @@
       "summary": "Entenda o papel do Sistema Gerenciador de Banco de Dados (SGBD) e o que é SQL.",
       "lesson": [
         {
-          "title": "O que é um SGBD",
-          "body": "Um SGBD (Sistema Gerenciador de Banco de Dados) é o software que organiza, guarda e controla o acesso aos dados — exemplos incluem PostgreSQL, MySQL e SQLite. Ele cuida de tarefas como controle de acesso simultâneo, integridade dos dados e busca eficiente.",
-          "tip": "O SGBD é o 'motor' por trás do banco: você não mexe direto nos arquivos, e sim pede as coisas a ele."
+          "title": "O Papel do SGBD",
+          "body": "Um Sistema de Gerenciamento de Banco de Dados (SGBD), como MySQL, PostgreSQL ou SQL Server, é o software responsável por gerenciar como os dados são armazenados e acessados. Ele garante segurança, controle de concorrência (múltiplas pessoas acessando ao mesmo tempo) e recuperação de falhas, coisas que arquivos comuns não oferecem.",
+          "code": "-- O SGBD gerencia transações seguras\nBEGIN;\nUPDATE contas SET saldo = saldo - 100 WHERE id = 1;\nCOMMIT;"
         },
         {
-          "title": "SQL é a linguagem",
-          "body": "SQL (Structured Query Language) é a linguagem usada para conversar com o SGBD: criar tabelas, inserir dados, consultar e atualizar informações. A maioria dos bancos relacionais usa SQL, com pequenas variações entre eles.",
-          "code": "SELECT nome FROM clientes;"
+          "title": "Vantagens na Prática",
+          "body": "Usar um SGBD significa que o desenvolvedor não precisa se preocupar com os detalhes físicos de onde o dado está salvo no disco. Você apenas escreve comandos SQL e o SGBD otimiza a busca, cuida da integridade dos dados e gerencia os backups, permitindo que os sistemas escalem e lidem com milhões de acessos sem corromper informações vitais.",
+          "code": "SELECT count(*) FROM acessos \nWHERE data >= '2023-01-01';"
         }
       ],
       "questions": [
@@ -307,14 +307,14 @@
       "summary": "Aprenda a identificar entidades (coisas do mundo real) e seus atributos ao modelar um banco.",
       "lesson": [
         {
-          "title": "O que é uma entidade",
-          "body": "Uma entidade representa algo do mundo real que queremos guardar informações, como 'Cliente', 'Produto' ou 'Pedido'. No banco de dados, cada entidade normalmente vira uma tabela.",
-          "tip": "Pergunte-se: 'sobre quais coisas eu preciso guardar dados?' — cada resposta tende a virar uma entidade."
+          "title": "Mapeando Entidades",
+          "body": "Ao modelar um banco de dados, o primeiro passo é identificar as Entidades, que são objetos ou conceitos do mundo real sobre os quais queremos guardar dados. Uma entidade pode ser algo físico (como um 'Produto') ou conceitual (como uma 'Venda'). Cada entidade geralmente se torna uma tabela distinta no seu banco de dados relacional.",
+          "code": "CREATE TABLE produtos (\n  -- Estrutura para a entidade 'produtos'\n);"
         },
         {
-          "title": "O que é um atributo",
-          "body": "Um atributo é uma característica de uma entidade, como o 'nome' e o 'email' de um Cliente, ou o 'preço' de um Produto. Cada atributo vira uma coluna dentro da tabela que representa a entidade.",
-          "code": "Entidade: Produto\nAtributos: nome, preco, quantidade_estoque"
+          "title": "Definindo Atributos",
+          "body": "Atributos são as características que descrevem uma Entidade. Para a entidade 'Produto', atributos seriam o nome, o preço e a quantidade em estoque. Na tabela, esses atributos se tornam as colunas. A escolha correta dos atributos determina o quão bem o seu banco de dados reflete as necessidades reais do negócio e facilita as consultas.",
+          "code": "CREATE TABLE produtos (\n  nome VARCHAR(100),\n  preco DECIMAL(10, 2),\n  estoque INT\n);"
         }
       ],
       "questions": [
@@ -385,14 +385,14 @@
       "summary": "Entenda o conceito de chave primária: o identificador único de cada linha em uma tabela.",
       "lesson": [
         {
-          "title": "Identificando cada linha",
-          "body": "Uma chave primária (primary key) é uma coluna (ou conjunto de colunas) cujo valor identifica de forma única cada linha da tabela. Não pode haver dois registros com o mesmo valor de chave primária, e ela não pode ser vazia (nula).",
-          "code": "Tabela: clientes\nid (chave primária) | nome\n1                    | Ana\n2                    | Bruno"
+          "title": "Identificação Única com Primary Key",
+          "body": "A Chave Primária (Primary Key) é uma coluna (ou conjunto de colunas) que identifica de forma única cada registro em uma tabela. Sem ela, o banco não conseguiria diferenciar dois clientes com o mesmo nome e idade. Ela garante que não haverá linhas duplicadas e é essencial para relacionar informações entre diferentes tabelas do sistema.",
+          "code": "CREATE TABLE clientes (\n  id INT PRIMARY KEY,\n  nome VARCHAR(100)\n);"
         },
         {
-          "title": "Por que não usar o nome como chave",
-          "body": "Usar 'nome' como identificador é arriscado, pois duas pessoas podem se chamar 'Ana Silva'. Por isso costuma-se usar um número (como 'id') gerado automaticamente pelo banco, garantindo que cada valor seja único.",
-          "tip": "Um id numérico autoincrementado é a escolha mais comum de chave primária em tabelas simples."
+          "title": "Boas Práticas de Chaves Primárias",
+          "body": "Geralmente usamos números inteiros com auto-incremento ou UUIDs (identificadores universais) como chaves primárias. Elas devem ser imutáveis (nunca mudam de valor), únicas e nunca nulas. Depender de atributos naturais, como CPF, pode ser arriscado se a regra de negócio mudar, então chaves artificiais (como um 'id' numérico) são recomendadas.",
+          "code": "CREATE TABLE clientes (\n  id SERIAL PRIMARY KEY, -- Auto-incremento\n  cpf VARCHAR(14) UNIQUE\n);"
         }
       ],
       "questions": [
@@ -463,14 +463,14 @@
       "summary": "Conheça os tipos de dados básicos usados para descrever colunas: INTEGER, TEXT e DATE.",
       "lesson": [
         {
-          "title": "Por que definir tipos",
-          "body": "Cada coluna de uma tabela tem um tipo de dado, que define que tipo de valor ela pode guardar. Isso evita erros, como guardar texto onde deveria haver um número, e ajuda o banco a organizar e comparar os dados corretamente.",
-          "code": "Coluna       | Tipo\nid           | INTEGER\nnome         | TEXT\ndata_cadastro| DATE"
+          "title": "Textos e Números no SQL",
+          "body": "Ao criar tabelas, devemos definir o tipo de dado de cada coluna. Para textos, usamos VARCHAR (tamanho variável) ou TEXT. Para números, temos INT (inteiros) e DECIMAL/NUMERIC (valores monetários exatos). Escolher o tipo correto economiza espaço de armazenamento e permite que o SGBD aplique funções matemáticas e de texto adequadamente.",
+          "code": "CREATE TABLE itens (\n  nome VARCHAR(50),\n  quantidade INT,\n  preco DECIMAL(8,2)\n);"
         },
         {
-          "title": "Tipos comuns",
-          "body": "INTEGER guarda números inteiros, como idade ou quantidade. TEXT guarda cadeias de caracteres, como nomes e descrições. DATE guarda datas, como '2024-05-10', permitindo comparações como 'antes de' ou 'depois de'.",
-          "tip": "Existem outros tipos, como valores decimais (para preços) e booleanos (verdadeiro/falso), mas INTEGER, TEXT e DATE cobrem os casos mais comuns iniciais."
+          "title": "Datas e Booleanos",
+          "body": "Lidar com o tempo é vital. O SQL oferece tipos como DATE (apenas data), TIME (apenas hora) e TIMESTAMP/DATETIME (data e hora). Para valores lógicos (Verdadeiro ou Falso), usa-se o BOOLEAN. Usar tipos nativos para datas permite realizar consultas poderosas, como calcular a diferença de dias entre duas datas ou agrupar por meses e anos.",
+          "code": "CREATE TABLE eventos (\n  titulo VARCHAR(100),\n  ativo BOOLEAN,\n  data_inicio TIMESTAMP\n);"
         }
       ],
       "questions": [
@@ -541,14 +541,14 @@
       "summary": "Descubra como conectar tabelas usando chave estrangeira (foreign key).",
       "lesson": [
         {
-          "title": "Conectando tabelas",
-          "body": "Uma chave estrangeira (foreign key) é uma coluna em uma tabela que referencia a chave primária de outra tabela, criando uma ligação entre elas. Por exemplo, um pedido pode ter uma coluna 'cliente_id' que aponta para o id de um cliente.",
-          "code": "Tabela: pedidos\nid | cliente_id (chave estrangeira) | total\n1  | 2                              | 150.00"
+          "title": "Conectando Tabelas com Foreign Key",
+          "body": "A Chave Estrangeira (Foreign Key) é o elo que liga duas tabelas. Ela é uma coluna em uma tabela que faz referência à Chave Primária de outra tabela. É assim que o SQL cria relacionamentos: por exemplo, colocando o 'cliente_id' dentro da tabela de 'pedidos' para saber exatamente quem fez qual compra, unindo os dados logicamente.",
+          "code": "CREATE TABLE pedidos (\n  id INT PRIMARY KEY,\n  cliente_id INT,\n  FOREIGN KEY (cliente_id) REFERENCES clientes(id)\n);"
         },
         {
-          "title": "Garantindo integridade",
-          "body": "A chave estrangeira garante que o valor referenciado realmente exista na outra tabela — não é possível criar um pedido apontando para um cliente_id que não existe na tabela de clientes.",
-          "tip": "Pense na chave estrangeira como uma 'ponte' que conecta um registro de uma tabela a um registro específico de outra."
+          "title": "Integridade Referencial",
+          "body": "As chaves estrangeiras garantem a integridade referencial, ou seja, evitam que você crie um pedido para um cliente que não existe, ou que delete um cliente que ainda possui pedidos registrados. O SGBD bloqueia essas ações automaticamente, mantendo o banco de dados livre de registros 'órfãos' e inconsistências graves na sua aplicação.",
+          "code": "-- Tentar apagar falha se houver pedidos para o ID 5\nDELETE FROM clientes WHERE id = 5;"
         }
       ],
       "questions": [
@@ -619,14 +619,14 @@
       "summary": "Compreenda o relacionamento mais comum entre tabelas: um-para-muitos.",
       "lesson": [
         {
-          "title": "O que é um-para-muitos",
-          "body": "Na relação um-para-muitos, um registro de uma tabela pode se relacionar com vários registros de outra tabela, mas cada registro da segunda tabela se relaciona com apenas um da primeira. Exemplo: um cliente pode ter vários pedidos, mas cada pedido pertence a um único cliente.",
-          "code": "clientes (1) ----< pedidos (muitos)\n\nid | nome     pedido_id | cliente_id\n1  | Ana      101        | 1\n           102        | 1"
+          "title": "O Relacionamento Mais Comum",
+          "body": "A relação Um-Para-Muitos (1:N) acontece quando um registro da Tabela A pode se relacionar com vários registros da Tabela B, mas o registro da Tabela B pertence apenas a um da Tabela A. O clássico exemplo: Um cliente pode fazer muitos pedidos, mas cada pedido pertence a apenas um cliente. Isso molda 80% das estruturas de banco de dados.",
+          "code": "-- Tabela de Pedidos tem o lado 'Muitos'\nSELECT * FROM pedidos WHERE cliente_id = 10;"
         },
         {
-          "title": "Onde fica a chave estrangeira",
-          "body": "Nesse tipo de relação, a chave estrangeira sempre fica do lado 'muitos'. Aqui, é a tabela 'pedidos' que guarda o cliente_id, e não o contrário, pois um cliente pode ter vários pedidos, mas não faria sentido um pedido ter vários clientes_id.",
-          "tip": "Pergunte: 'de qual lado pode haver várias ocorrências?' — a chave estrangeira vai nesse lado."
+          "title": "Implementação na Prática",
+          "body": "Para implementar um 1:N no SQL, basta adicionar uma chave estrangeira na tabela que representa o lado 'Muitos' apontando para a tabela 'Um'. Assim, evitamos duplicar os dados do cliente (como nome e endereço) em cada linha de pedido, consultando as informações através da operação de JOIN apenas quando for necessário exibi-las juntas.",
+          "code": "SELECT p.id, c.nome \nFROM pedidos p\nJOIN clientes c ON p.cliente_id = c.id;"
         }
       ],
       "questions": [
@@ -697,14 +697,14 @@
       "summary": "Entenda como representar relações muitos-para-muitos usando uma tabela associativa.",
       "lesson": [
         {
-          "title": "Quando um-para-muitos não basta",
-          "body": "Às vezes, um registro de uma tabela pode se relacionar com vários registros de outra, e vice-versa. Exemplo: um aluno pode se matricular em vários cursos, e um curso pode ter vários alunos. Isso é chamado de relação muitos-para-muitos.",
-          "tip": "Se você pensar 'dos dois lados pode haver vários', provavelmente é muitos-para-muitos."
+          "title": "Quando Tudo se Conecta (N:N)",
+          "body": "A relação Muitos-Para-Muitos (N:N) ocorre quando vários registros de uma tabela se relacionam com vários de outra. Exemplo: um aluno pode se matricular em várias disciplinas, e uma disciplina pode ter vários alunos. Bancos relacionais não suportam N:N diretamente, exigindo uma técnica especial de modelagem para que isso funcione de verdade.",
+          "code": "-- Não podemos colocar a chave direto em alunos ou disciplinas\n-- Precisamos de uma tabela intermediária."
         },
         {
-          "title": "A tabela associativa",
-          "body": "Para representar muitos-para-muitos, criamos uma terceira tabela (tabela associativa ou tabela de junção) que guarda pares de chaves estrangeiras, uma para cada lado da relação.",
-          "code": "alunos: id, nome\ncursos: id, titulo\nmatriculas: aluno_id, curso_id  (tabela associativa)"
+          "title": "A Tabela Associativa (Pivot)",
+          "body": "Para resolver um N:N, criamos uma terceira tabela, chamada de associativa ou pivot. Ela contém duas chaves estrangeiras, apontando para as tabelas principais. No exemplo de alunos e disciplinas, criamos a tabela 'matriculas'. Essa tabela intermediária quebra a relação N:N em duas relações de Um-Para-Muitos, resolvendo a questão elegantemente.",
+          "code": "CREATE TABLE matriculas (\n  aluno_id INT,\n  disciplina_id INT,\n  FOREIGN KEY (aluno_id) REFERENCES alunos(id),\n  FOREIGN KEY (disciplina_id) REFERENCES disciplinas(id)\n);"
         }
       ],
       "questions": [
@@ -775,14 +775,14 @@
       "summary": "Aprenda a estrutura do comando CREATE TABLE para criar tabelas em SQL.",
       "lesson": [
         {
-          "title": "Criando uma tabela",
-          "body": "O comando CREATE TABLE define uma nova tabela, especificando seu nome e as colunas, cada uma com seu tipo de dado. A sintaxe básica lista o nome de cada coluna seguido do seu tipo, separados por vírgula.",
-          "code": "CREATE TABLE clientes (\n  id INTEGER,\n  nome TEXT,\n  email TEXT\n);"
+          "title": "Nasce uma Tabela",
+          "body": "O comando CREATE TABLE é a instrução de DDL (Data Definition Language) usada para criar uma nova estrutura no banco. Nele, você define o nome da tabela, quais colunas ela terá e o tipo de dados de cada uma. É como construir a planta de uma casa antes de colocar os móveis; a definição precisa ser bem pensada antes de inserir os dados.",
+          "code": "CREATE TABLE categorias (\n  id INT PRIMARY KEY,\n  nome VARCHAR(50) NOT NULL\n);"
         },
         {
-          "title": "Lendo o comando",
-          "body": "No exemplo, 'clientes' é o nome da tabela criada. 'id' é uma coluna do tipo INTEGER, 'nome' e 'email' são colunas do tipo TEXT. Os parênteses envolvem a lista de colunas, e o ponto e vírgula encerra o comando.",
-          "tip": "Cada linha dentro dos parênteses geralmente representa uma coluna diferente."
+          "title": "O Cuidado com a Estrutura",
+          "body": "Ao usar CREATE TABLE, é fundamental prever como os dados irão crescer. Alterar tipos de coluna depois que a tabela tem milhões de linhas pode ser muito custoso. Portanto, definir corretamente se uma coluna permite nulos, valores padrões e restrições desde o começo garante a saúde a longo prazo da sua aplicação baseada em banco de dados.",
+          "code": "CREATE TABLE produtos (\n  id SERIAL PRIMARY KEY,\n  preco DECIMAL(10,2) DEFAULT 0.00\n);"
         }
       ],
       "questions": [
@@ -853,14 +853,14 @@
       "summary": "Pratique a escolha de tipos de coluna adequados ao criar tabelas.",
       "lesson": [
         {
-          "title": "Revisando tipos ao criar tabelas",
-          "body": "Ao usar CREATE TABLE, cada coluna precisa de um tipo compatível com o dado que ela vai guardar. Escolher o tipo errado pode causar erros ou comportamento inesperado nas consultas futuras.",
-          "code": "CREATE TABLE produtos (\n  id INTEGER,\n  nome TEXT,\n  preco INTEGER,\n  data_cadastro DATE\n);"
+          "title": "Tipos Otimizados",
+          "body": "Cada SGBD tem variações nos tipos de dados, mas todos oferecem formas de otimizar espaço. Usar VARCHAR(50) em vez de TEXT para nomes curtos poupa memória ram nas buscas. Usar SMALLINT para valores até 32 mil em vez de INT normal economiza disco. A escolha precisa e inteligente do tipo da coluna reflete em performance muito superior.",
+          "code": "CREATE TABLE configuracoes (\n  codigo CHAR(3), -- Tamanho fixo exato\n  ativo BOOLEAN\n);"
         },
         {
-          "title": "Pensando no uso futuro",
-          "body": "Antes de escolher o tipo, pense em como a coluna será usada: um preço será somado e comparado numericamente, uma data será comparada cronologicamente, e um nome nunca precisa de operações matemáticas.",
-          "tip": "Se você for somar, multiplicar ou comparar como número, use um tipo numérico; se for comparar como texto, use TEXT."
+          "title": "Lidando com Dinheiro e Precisão",
+          "body": "Para representar valores monetários ou dados financeiros no SQL, nunca use tipos de ponto flutuante como FLOAT ou REAL, pois eles podem perder precisão matemática causando problemas de arredondamento. Sempre use DECIMAL ou NUMERIC, especificando o número total de dígitos e as casas decimais (ex: DECIMAL(10,2)) para cálculos financeiros perfeitos.",
+          "code": "CREATE TABLE pagamentos (\n  valor DECIMAL(10, 2) NOT NULL,\n  data_pagamento DATE\n);"
         }
       ],
       "questions": [
@@ -931,14 +931,14 @@
       "summary": "Conheça as restrições NOT NULL, UNIQUE e PRIMARY KEY ao criar tabelas.",
       "lesson": [
         {
-          "title": "Restringindo valores",
-          "body": "Restrições (constraints) são regras aplicadas às colunas para garantir a qualidade dos dados. NOT NULL impede que a coluna fique vazia. UNIQUE impede valores repetidos naquela coluna. PRIMARY KEY marca a coluna como identificador único da linha (implica única e não nula).",
-          "code": "CREATE TABLE clientes (\n  id INTEGER PRIMARY KEY,\n  email TEXT UNIQUE NOT NULL,\n  nome TEXT NOT NULL\n);"
+          "title": "Mantendo a Qualidade com Constraints",
+          "body": "Restrições (Constraints) são regras que aplicamos nas colunas para garantir a consistência e qualidade dos dados. O banco rejeita qualquer inserção que viole a regra. O NOT NULL obriga o preenchimento, e o UNIQUE garante que não haja valores repetidos (ideal para emails ou CPFs). Elas agem como os guardiões da integridade do seu banco.",
+          "code": "CREATE TABLE usuarios (\n  email VARCHAR(100) UNIQUE NOT NULL,\n  senha VARCHAR(255) NOT NULL\n);"
         },
         {
-          "title": "Diferença entre UNIQUE e PRIMARY KEY",
-          "body": "Uma tabela pode ter várias colunas com UNIQUE (por exemplo, email e CPF), mas só pode ter uma PRIMARY KEY (às vezes composta por mais de uma coluna). PRIMARY KEY é o identificador oficial da tabela; UNIQUE apenas evita duplicidade naquela coluna.",
-          "tip": "PRIMARY KEY sempre implica NOT NULL e UNIQUE ao mesmo tempo."
+          "title": "A Regra CHECK e Valores Default",
+          "body": "A constraint CHECK permite validar regras de negócio simples, como proibir idades negativas. Já o DEFAULT preenche automaticamente a coluna caso você não envie um valor. Usar restrições nativas do SGBD é mais seguro que validar apenas no código backend, pois o banco de dados é a última e verdadeira linha de defesa da sua informação.",
+          "code": "CREATE TABLE produtos (\n  estoque INT DEFAULT 0 CHECK (estoque >= 0),\n  status VARCHAR(20) DEFAULT 'ativo'\n);"
         }
       ],
       "questions": [
@@ -1009,14 +1009,14 @@
       "summary": "Aprenda a estrutura do comando INSERT INTO para adicionar dados a uma tabela.",
       "lesson": [
         {
-          "title": "Inserindo dados",
-          "body": "O comando INSERT INTO adiciona uma nova linha a uma tabela existente. É preciso informar o nome da tabela, as colunas que serão preenchidas e os valores correspondentes, na mesma ordem.",
-          "code": "INSERT INTO clientes (id, nome, email)\nVALUES (1, 'Ana', 'ana@mail.com');"
+          "title": "Inserindo Registros",
+          "body": "O INSERT INTO é o comando DML (Data Manipulation Language) que permite adicionar novas linhas (registros) a uma tabela. Você informa a tabela, a lista de colunas que quer preencher e os VALUES correspondentes. A ordem dos valores deve casar perfeitamente com a ordem das colunas declaradas para que a inserção funcione de maneira correta.",
+          "code": "INSERT INTO clientes (nome, email)\nVALUES ('João', 'joao@email.com');"
         },
         {
-          "title": "A ordem dos valores importa",
-          "body": "Os valores em VALUES devem seguir exatamente a mesma ordem das colunas listadas antes. Se a ordem das colunas for (id, nome, email), o primeiro valor corresponde a id, o segundo a nome, e o terceiro a email.",
-          "tip": "Textos e datas em SQL geralmente ficam entre aspas simples, como 'Ana'; números não precisam de aspas."
+          "title": "Inserções Múltiplas",
+          "body": "Para inserir vários registros de uma só vez, você pode separar os conjuntos de valores por vírgulas. Isso é muito mais performático do que rodar dezenas de comandos INSERT separados, pois o SGBD processa tudo em uma única transação, economizando tempo de rede e processamento interno durante a alimentação de dados no seu sistema.",
+          "code": "INSERT INTO categorias (nome)\nVALUES ('Eletrônicos'), ('Roupas'), ('Livros');"
         }
       ],
       "questions": [
@@ -1087,14 +1087,14 @@
       "summary": "Aprenda a consultar dados de uma tabela com o comando SELECT.",
       "lesson": [
         {
-          "title": "Buscando dados",
-          "body": "O comando SELECT é usado para consultar dados de uma tabela. Depois de SELECT, listamos as colunas desejadas (ou * para todas), e depois de FROM indicamos a tabela de onde os dados virão.",
-          "code": "SELECT nome, email FROM clientes;"
+          "title": "O Poder da Consulta",
+          "body": "O comando SELECT é a ferramenta mais usada em SQL. Ele serve para ler e extrair informações do banco de dados. Você escolhe as colunas que deseja ler (ou * para todas) e especifica a tabela usando a palavra FROM. Ele não modifica os dados, apenas retorna um conjunto de resultados (result set) para a sua aplicação usar e exibir.",
+          "code": "SELECT nome, preco FROM produtos;"
         },
         {
-          "title": "Selecionando todas as colunas",
-          "body": "O asterisco (*) é um atalho para 'todas as colunas'. SELECT * FROM clientes; retorna todas as colunas de todos os registros da tabela clientes.",
-          "tip": "Usar * é prático para explorar dados rapidamente, mas em sistemas reais é comum listar apenas as colunas necessárias."
+          "title": "Criando Apelidos com ALIAS",
+          "body": "As vezes os nomes reais das colunas não são amigáveis ou você precisa formatar dados juntos. O SQL permite usar 'AS' para dar apelidos (aliases) temporários às colunas ou tabelas no resultado da consulta. Isso deixa a resposta mais legível para a aplicação que vai consumir os dados, sem precisar alterar de fato a tabela original.",
+          "code": "SELECT nome_completo AS nome, data_nasc AS nascimento \nFROM funcionarios;"
         }
       ],
       "questions": [
@@ -1165,14 +1165,14 @@
       "summary": "Filtre resultados de uma consulta usando a cláusula WHERE.",
       "lesson": [
         {
-          "title": "Filtrando linhas",
-          "body": "A cláusula WHERE filtra quais linhas serão retornadas por um SELECT, com base em uma condição. Apenas as linhas que satisfazem a condição aparecem no resultado.",
-          "code": "SELECT nome FROM clientes\nWHERE id = 2;"
+          "title": "Filtrando os Resultados",
+          "body": "A cláusula WHERE transforma um SELECT geral em uma busca cirúrgica, limitando as linhas retornadas apenas àquelas que satisfazem uma condição. Sem o WHERE, seu sistema puxaria milhões de registros do banco à toa. Podemos usar operadores matemáticos de comparação (=, >, <, !=) para criar regras que selecionam só aquilo que precisamos.",
+          "code": "SELECT * FROM pedidos WHERE status = 'pendente';"
         },
         {
-          "title": "Operadores de comparação",
-          "body": "WHERE aceita operadores como = (igual), > (maior que), < (menor que), >= , <= e <> ou != (diferente). Textos comparados em WHERE geralmente ficam entre aspas simples, como WHERE nome = 'Ana'.",
-          "tip": "Sem WHERE, o SELECT retorna todas as linhas da tabela; com WHERE, apenas as que combinam com a condição."
+          "title": "Buscas Textuais com LIKE",
+          "body": "Para buscar pedaços de textos, usamos o operador LIKE junto com o caractere curinga '%', que substitui qualquer sequência de caracteres. Por exemplo, buscar por nomes que começam ou terminam com certa letra. É extremamente útil para barras de pesquisa na aplicação, embora requeira cuidados de performance em bases de dados muito grandes.",
+          "code": "SELECT nome FROM clientes WHERE email LIKE '%@gmail.com';"
         }
       ],
       "questions": [
@@ -1243,14 +1243,14 @@
       "summary": "Aprenda a ordenar os resultados de uma consulta com ORDER BY.",
       "lesson": [
         {
-          "title": "Ordenando resultados",
-          "body": "ORDER BY organiza as linhas retornadas por uma consulta, com base em uma ou mais colunas. Por padrão, a ordenação é crescente (ASC); para decrescente, usa-se DESC.",
-          "code": "SELECT nome, preco FROM produtos\nORDER BY preco DESC;"
+          "title": "Organizando a Saída",
+          "body": "Por padrão, o banco de dados não garante a ordem em que os registros são retornados em um SELECT. Para garantir que os dados cheguem organizados, devemos usar a cláusula ORDER BY. Podemos ordenar os resultados baseados em uma ou mais colunas, como organizar produtos por preço ou nome, tornando a experiência de exibição mais útil.",
+          "code": "SELECT nome, preco FROM produtos ORDER BY preco;"
         },
         {
-          "title": "ASC e DESC",
-          "body": "ASC (ascending) ordena do menor para o maior (ou de A a Z), e é o padrão quando nada é especificado. DESC (descending) ordena do maior para o menor (ou de Z a A).",
-          "tip": "Se você não escrever ASC nem DESC, o banco assume ASC automaticamente."
+          "title": "Ascendente e Descendente",
+          "body": "Você pode controlar a direção da ordenação com ASC (ascendente, o padrão) e DESC (descendente). Quer ver os itens mais caros primeiro? Use DESC. Quer ver os registros mais recentes de um blog? Ordene pela data de publicação de forma descendente. O banco cuida de toda a mágica da ordenação de forma altamente otimizada internamente.",
+          "code": "SELECT titulo, data_criacao FROM artigos \nORDER BY data_criacao DESC;"
         }
       ],
       "questions": [
@@ -1321,14 +1321,14 @@
       "summary": "Restrinja a quantidade de linhas retornadas por uma consulta usando LIMIT.",
       "lesson": [
         {
-          "title": "Limitando resultados",
-          "body": "LIMIT restringe o número máximo de linhas retornadas por uma consulta. É útil, por exemplo, para pegar apenas os 5 produtos mais caros, combinando com ORDER BY.",
-          "code": "SELECT nome, preco FROM produtos\nORDER BY preco DESC\nLIMIT 3;"
+          "title": "Restringindo a Quantidade",
+          "body": "A cláusula LIMIT (ou TOP, dependendo do SGBD) restringe o número máximo de registros que a sua consulta pode retornar. Isso é essencial em sistemas reais, pois evita travar a aplicação quando uma tabela gigante tem buscas muito abrangentes. Combinado com ORDER BY, ele permite pegar, por exemplo, 'os 5 produtos mais vendidos da loja'.",
+          "code": "SELECT nome, preco FROM produtos \nORDER BY preco DESC LIMIT 5;"
         },
         {
-          "title": "Combinando com ORDER BY",
-          "body": "LIMIT costuma ser usado junto com ORDER BY, pois sem ordenação não há garantia de quais linhas específicas serão retornadas primeiro — apenas a quantidade é limitada.",
-          "tip": "LIMIT geralmente vem depois de ORDER BY no comando, no final da consulta."
+          "title": "O Segredo da Paginação com OFFSET",
+          "body": "O maior uso do LIMIT é junto com o OFFSET, criando a paginação que vemos em sites e aplicativos. O LIMIT define o tamanho da página, e o OFFSET pula os primeiros registros. Por exemplo, LIMIT 10 OFFSET 20 significa 'pule os primeiros 20 resultados e traga os 10 seguintes', implementando facilmente a famosa página 3 da sua aplicação.",
+          "code": "SELECT * FROM clientes ORDER BY nome LIMIT 10 OFFSET 20;"
         }
       ],
       "questions": [
@@ -1399,14 +1399,14 @@
       "summary": "Combine condições em uma consulta usando os operadores lógicos AND, OR e IN.",
       "lesson": [
         {
-          "title": "Combinando condições",
-          "body": "AND exige que todas as condições sejam verdadeiras para a linha ser retornada. OR exige que ao menos uma das condições seja verdadeira. É possível combinar várias condições dentro de um mesmo WHERE.",
-          "code": "SELECT * FROM produtos\nWHERE preco > 10 AND preco < 100;"
+          "title": "Condições Múltiplas",
+          "body": "Muitas vezes, uma única regra no WHERE não é suficiente. Usamos operadores lógicos como AND (E) e OR (OU) para combinar várias condições. O AND exige que todas as regras sejam verdadeiras simultaneamente, enquanto o OR pede que apenas uma seja verdadeira. O uso de parênteses é crucial para garantir a prioridade da avaliação lógica.",
+          "code": "SELECT * FROM produtos WHERE preco < 50 AND estoque > 0;"
         },
         {
-          "title": "O operador IN",
-          "body": "IN permite verificar se um valor está dentro de uma lista de opções, evitando escrever vários OR seguidos. WHERE categoria IN ('Eletrônicos', 'Livros') equivale a categoria = 'Eletrônicos' OR categoria = 'Livros'.",
-          "code": "SELECT * FROM produtos\nWHERE categoria IN ('Eletrônicos', 'Livros');"
+          "title": "Listas de Valores com IN",
+          "body": "Quando você precisa verificar se um valor é igual a várias opções, ficar escrevendo vários OR fica cansativo e ruim de ler. O operador IN simplifica a verificação de valores contra uma lista, deixando a query elegante. É como perguntar 'A categoria é uma destas: eletrônicos, roupas ou sapatos?'. O ganho de leitura no código é tremendo.",
+          "code": "SELECT * FROM clientes WHERE estado IN ('SP', 'RJ', 'MG');"
         }
       ],
       "questions": [
@@ -1477,14 +1477,14 @@
       "summary": "Combine dados de duas tabelas relacionadas usando INNER JOIN.",
       "lesson": [
         {
-          "title": "Juntando tabelas",
-          "body": "JOIN combina linhas de duas tabelas com base em uma condição de relacionamento, geralmente comparando uma chave estrangeira com a chave primária correspondente. INNER JOIN retorna apenas as linhas que têm correspondência em ambas as tabelas.",
-          "code": "SELECT clientes.nome, pedidos.total\nFROM clientes\nINNER JOIN pedidos ON clientes.id = pedidos.cliente_id;"
+          "title": "Juntando Tudo com INNER JOIN",
+          "body": "Como o modelo relacional divide as informações em várias tabelas para evitar repetições, precisamos reuni-las para o usuário final. O INNER JOIN funde linhas de duas tabelas baseando-se em uma condição de igualdade entre elas (geralmente chave primária e estrangeira), retornando APENAS as linhas que possuem correspondência em AMBAS as tabelas.",
+          "code": "SELECT pedidos.id, clientes.nome \nFROM pedidos\nINNER JOIN clientes ON pedidos.cliente_id = clientes.id;"
         },
         {
-          "title": "Só aparece quem casa dos dois lados",
-          "body": "Se um cliente não tem nenhum pedido, ele não aparecerá no resultado de um INNER JOIN entre clientes e pedidos, pois não há linha correspondente na tabela pedidos para ele.",
-          "tip": "Pense em INNER JOIN como a interseção: só o que existe nos dois lados aparece."
+          "title": "Múltiplos JOINs na mesma Query",
+          "body": "Você não está limitado a unir apenas duas tabelas. É possível encadear vários INNER JOINs para reconstruir informações espalhadas. Por exemplo, juntar cliente, pedido, os itens do pedido e, finalmente, os produtos para gerar uma fatura completa. Desde que as relações existam e as chaves batam, o SQL processa a união de forma formidável.",
+          "code": "SELECT c.nome, p.id, i.quantidade, prod.nome \nFROM pedidos p\nJOIN clientes c ON p.cliente_id = c.id\nJOIN itens i ON p.id = i.pedido_id\nJOIN produtos prod ON i.produto_id = prod.id;"
         }
       ],
       "questions": [
@@ -1555,14 +1555,14 @@
       "summary": "Entenda quando usar LEFT JOIN para manter registros mesmo sem correspondência.",
       "lesson": [
         {
-          "title": "Mantendo tudo do lado esquerdo",
-          "body": "LEFT JOIN retorna todas as linhas da tabela à esquerda (a primeira mencionada), mesmo que não haja correspondência na tabela à direita. Quando não há correspondência, as colunas da tabela direita aparecem como nulas (vazias).",
-          "code": "SELECT clientes.nome, pedidos.total\nFROM clientes\nLEFT JOIN pedidos ON clientes.id = pedidos.cliente_id;"
+          "title": "Mantendo os Dados do Lado Esquerdo",
+          "body": "O LEFT JOIN (ou LEFT OUTER JOIN) funciona como o Inner Join, mas garante que TODOS os registros da primeira tabela (a da esquerda do join) apareçam no resultado, mesmo que não encontrem nenhum registro correspondente na tabela da direita. Nessas situações onde falta correspondência, as colunas da tabela da direita virão preenchidas com valor nulo.",
+          "code": "SELECT c.nome, p.data \nFROM clientes c\nLEFT JOIN pedidos p ON c.id = p.cliente_id;"
         },
         {
-          "title": "Quando usar LEFT JOIN em vez de INNER JOIN",
-          "body": "Use LEFT JOIN quando você precisa ver todos os registros de uma tabela principal, mesmo os que não têm relação na outra tabela — por exemplo, listar todos os clientes, incluindo os que nunca fizeram pedido.",
-          "tip": "Se a pergunta for 'quero ver todos de A, tendo ou não relação com B', a resposta é LEFT JOIN."
+          "title": "Descobrindo quem NÃO fez algo",
+          "body": "Uma técnica poderosa usando o LEFT JOIN é encontrar registros órfãos ou inativos. Ao trazer todos da esquerda, podemos usar o WHERE para procurar onde o valor da direita é NULL. Assim, conseguimos, por exemplo, listar facilmente todos os clientes cadastrados que nunca fizeram sequer uma compra, ótimo para campanhas de marketing.",
+          "code": "SELECT c.nome \nFROM clientes c\nLEFT JOIN pedidos p ON c.id = p.cliente_id\nWHERE p.id IS NULL;"
         }
       ],
       "questions": [
@@ -1633,14 +1633,14 @@
       "summary": "Comece a modelar o banco de dados de uma loja simples: produtos, clientes e pedidos.",
       "lesson": [
         {
-          "title": "Definindo as entidades da loja",
-          "body": "Para modelar uma loja simples, identificamos as entidades principais: Cliente (quem compra), Produto (o que é vendido) e Pedido (a compra realizada). Cada uma vira uma tabela.",
-          "code": "clientes: id, nome, email\nprodutos: id, nome, preco\npedidos: id, cliente_id, data_pedido"
+          "title": "Consolidando a Modelagem",
+          "body": "Neste ponto do projeto de loja, reunimos os conceitos: identificar as entidades (Cliente, Produto, Pedido), desenhar os relacionamentos (1:N, N:N com tabela associativa de Itens), definir chaves e criar as estruturas com tipos corretos. Esse planejamento cuidadoso previne dores de cabeça futuras e garante a escalabilidade dos dados.",
+          "code": "-- Criação da base do projeto\nCREATE TABLE clientes (\n  id SERIAL PRIMARY KEY,\n  nome VARCHAR(100)\n);"
         },
         {
-          "title": "Relacionando pedido e cliente",
-          "body": "Um pedido pertence a um único cliente, mas um cliente pode ter vários pedidos — uma relação um-para-muitos. Por isso, a tabela pedidos tem uma chave estrangeira cliente_id apontando para clientes.id.",
-          "tip": "Esse é o mesmo padrão de relacionamento um-para-muitos que você já viu entre clientes e pedidos anteriormente."
+          "title": "Iniciando as Transações Práticas",
+          "body": "Com a estrutura de loja montada, praticar inserts interligados consolida o aprendizado. Ao registrar uma venda real, precisamos inserir o pedido, depois usar o ID gerado para inserir os múltiplos itens da compra, mantendo a integridade referencial através das chaves estrangeiras. É a ponte entre a teoria SQL e o desenvolvimento web real.",
+          "code": "INSERT INTO pedidos (cliente_id, data) VALUES (1, CURRENT_DATE);\nINSERT INTO itens_pedido (pedido_id, produto_id, qtd) VALUES (1, 5, 2);"
         }
       ],
       "questions": [
@@ -1711,14 +1711,14 @@
       "summary": "Use funções de agregação para calcular contagens, somas e médias.",
       "lesson": [
         {
-          "title": "Resumindo dados com funções de agregação",
-          "body": "Funções de agregação calculam um único valor resumido a partir de várias linhas. COUNT conta quantas linhas existem, SUM soma os valores de uma coluna numérica, e AVG calcula a média dos valores.",
-          "code": "SELECT COUNT(*) FROM pedidos;\nSELECT SUM(total) FROM pedidos;\nSELECT AVG(total) FROM pedidos;"
+          "title": "O Poder da Agregação Numérica",
+          "body": "As funções de agregação, como SUM (soma) e AVG (média), permitem calcular informações matemáticas a partir de um conjunto de linhas, transformando dados brutos em indicadores úteis (KPIs). Em vez de baixar milhares de registros para somar o faturamento no código da aplicação, você deixa o poderoso motor do banco de dados fazer a matemática rapidamente.",
+          "code": "SELECT SUM(valor_total) AS faturamento, AVG(valor_total) AS ticket_medio \nFROM pedidos;"
         },
         {
-          "title": "COUNT(*) vs COUNT(coluna)",
-          "body": "COUNT(*) conta todas as linhas, independentemente de valores nulos. COUNT(coluna) conta apenas as linhas em que aquela coluna específica não é nula.",
-          "tip": "Para simplesmente saber 'quantos registros existem', COUNT(*) é a forma mais comum."
+          "title": "Contando Linhas com COUNT",
+          "body": "O COUNT é usado para descobrir quantos registros existem que atendem a um critério. Você pode contar o total da tabela (COUNT(*)) ou contar apenas onde uma coluna específica não é nula (COUNT(coluna)). É indispensável para fazer métricas em dashboards de sistemas, como contar quantos novos clientes se cadastraram no mês atual.",
+          "code": "SELECT COUNT(*) AS total_pedidos_hoje \nFROM pedidos WHERE data_pedido = CURRENT_DATE;"
         }
       ],
       "questions": [
@@ -1789,14 +1789,14 @@
       "summary": "Agrupe linhas com valores em comum usando GROUP BY, combinando com funções de agregação.",
       "lesson": [
         {
-          "title": "Agrupando linhas",
-          "body": "GROUP BY agrupa linhas que têm o mesmo valor em uma ou mais colunas, permitindo aplicar funções de agregação a cada grupo separadamente. Por exemplo, somar o total de pedidos por cliente.",
-          "code": "SELECT cliente_id, SUM(total) AS total_gasto\nFROM pedidos\nGROUP BY cliente_id;"
+          "title": "Agrupando Informações",
+          "body": "Enquanto as funções de agregação (SUM, COUNT) sozinhas resumem a tabela inteira numa só linha, a cláusula GROUP BY permite criar subgrupos. Você pode agrupar vendas por cidade, quantidade por categoria de produto, e calcular o total para CADA um desses grupos. É a ferramenta base para criação de relatórios analíticos em qualquer sistema.",
+          "code": "SELECT status, COUNT(*) as qtd \nFROM pedidos GROUP BY status;"
         },
         {
-          "title": "Uma linha por grupo",
-          "body": "O resultado de uma consulta com GROUP BY tem uma linha para cada valor distinto da coluna agrupada. Se há 3 clientes diferentes com pedidos, o resultado terá 3 linhas, uma para cada cliente.",
-          "tip": "Colunas no SELECT que não estão no GROUP BY geralmente precisam estar dentro de uma função de agregação."
+          "title": "A Regra de Ouro do Agrupamento",
+          "body": "Ao utilizar o GROUP BY, há uma regra essencial no SQL: no SELECT, você só pode exibir as colunas que estão na cláusula GROUP BY ou colunas processadas por funções de agregação. Qualquer outra coluna solta gerará um erro, pois o banco não saberia qual valor individual mostrar para um grupo onde várias linhas foram unificadas em uma.",
+          "code": "SELECT cliente_id, SUM(valor) \nFROM pedidos GROUP BY cliente_id;"
         }
       ],
       "questions": [
@@ -1867,14 +1867,14 @@
       "summary": "Filtre grupos já agregados usando a cláusula HAVING.",
       "lesson": [
         {
-          "title": "Filtrando depois de agrupar",
-          "body": "HAVING filtra os grupos formados por GROUP BY, com base em uma condição sobre valores agregados, como SUM ou COUNT. É diferente do WHERE, que filtra linhas individuais antes do agrupamento.",
-          "code": "SELECT cliente_id, SUM(total) AS total_gasto\nFROM pedidos\nGROUP BY cliente_id\nHAVING SUM(total) > 100;"
+          "title": "Filtrando Depois do Agrupamento",
+          "body": "Onde o WHERE filtra linhas ANTES de agrupar, o HAVING filtra os resultados DEPOIS de agrupados. Se você precisa saber quais clientes compraram mais de 5 vezes, você não pode usar WHERE COUNT > 5, pois a contagem ainda não foi feita. A cláusula HAVING entra em cena permitindo impor condições baseadas nas funções de agregação.",
+          "code": "SELECT cliente_id, COUNT(*) as total_compras \nFROM pedidos \nGROUP BY cliente_id HAVING COUNT(*) > 5;"
         },
         {
-          "title": "WHERE vs HAVING",
-          "body": "WHERE age antes do agrupamento, filtrando linhas individuais. HAVING age depois do agrupamento, filtrando grupos já calculados. Por isso, WHERE não pode usar diretamente funções de agregação como SUM ou COUNT, mas HAVING pode.",
-          "tip": "Pense assim: primeiro filtra linhas com WHERE, depois agrupa com GROUP BY, e por fim filtra os grupos com HAVING."
+          "title": "Combinando WHERE e HAVING",
+          "body": "Você pode e deve usar WHERE e HAVING na mesma consulta. O fluxo correto é: usar WHERE para descartar dados indesejados antes (como vendas canceladas), usar GROUP BY para unificar o que sobrou (por vendedor), e usar HAVING para filtrar os grupos gerados (vendedores que bateram meta acima de R$ 10.000).",
+          "code": "SELECT vendedor_id, SUM(valor) FROM vendas \nWHERE status = 'concluido' \nGROUP BY vendedor_id HAVING SUM(valor) > 10000;"
         }
       ],
       "questions": [
@@ -1945,14 +1945,14 @@
       "summary": "Aprenda a modificar e remover dados existentes com UPDATE e DELETE, sempre usando WHERE.",
       "lesson": [
         {
-          "title": "Atualizando dados",
-          "body": "UPDATE modifica valores de colunas em linhas já existentes. É essencial usar WHERE para especificar quais linhas devem ser alteradas — sem WHERE, todas as linhas da tabela seriam atualizadas.",
-          "code": "UPDATE produtos\nSET preco = 12\nWHERE id = 3;"
+          "title": "Modificando Dados Existentes",
+          "body": "O comando UPDATE é utilizado para alterar registros que já existem na tabela. Você define a tabela, usa a palavra SET para apontar qual coluna receberá o novo valor. A parte crucial é nunca esquecer da cláusula WHERE; caso contrário, você atualizará todas as linhas da tabela de uma só vez, um erro clássico que já derrubou muitos sistemas.",
+          "code": "UPDATE produtos SET preco = 59.90, estoque = 15 \nWHERE id = 42;"
         },
         {
-          "title": "Removendo dados",
-          "body": "DELETE remove linhas inteiras de uma tabela. Assim como no UPDATE, o WHERE é fundamental: sem ele, DELETE FROM tabela; apaga todas as linhas da tabela.",
-          "code": "DELETE FROM pedidos\nWHERE id = 10;"
+          "title": "Excluindo Registros com Cuidado",
+          "body": "O DELETE é usado para apagar linhas inteiras do banco. Semelhante ao UPDATE, esquecer o WHERE significa esvaziar a tabela completa e perder dados preciosos. Por segurança, muitos sistemas modernos nunca usam DELETE de verdade (Hard Delete), optando por um UPDATE de uma coluna booleana 'ativo = falso' para esconder os dados (Soft Delete).",
+          "code": "DELETE FROM clientes WHERE id = 105;"
         }
       ],
       "questions": [
@@ -2023,14 +2023,14 @@
       "summary": "Entenda por que normalizar dados evita duplicação e inconsistências.",
       "lesson": [
         {
-          "title": "O problema da duplicação",
-          "body": "Imagine uma tabela de pedidos que guarda, em cada linha, o nome e o email do cliente repetidos. Se o cliente mudar de email, seria preciso atualizar várias linhas, e um esquecimento gera dados inconsistentes.",
-          "code": "-- Tabela não normalizada (ruim):\npedidos: id, cliente_nome, cliente_email, produto, total"
+          "title": "Ocultando Redundâncias",
+          "body": "A Normalização é o processo matemático de organizar o banco para evitar anomalias e repetição inútil de dados. Dividimos o processo em Formas Normais. A 1ª Forma Normal dita que toda coluna deve ser atômica: não devemos guardar múltiplos valores numa mesma célula. O telefone deve estar em linhas separadas e não em uma string com vírgulas.",
+          "code": "-- Errado: telefones = '119999, 118888'\n-- Certo: Tabela separada 'telefones_cliente'"
         },
         {
-          "title": "Normalizando com relacionamentos",
-          "body": "Normalizar significa separar os dados em tabelas distintas, ligadas por chaves estrangeiras, para que cada informação exista em um único lugar. Assim, o email do cliente fica só na tabela clientes, e pedidos apenas referencia cliente_id.",
-          "code": "-- Normalizado (melhor):\nclientes: id, nome, email\npedidos: id, cliente_id, total"
+          "title": "Avançando para a 2FN e 3FN",
+          "body": "As Formas Normais seguintes exigem que os dados não apenas dependam das chaves, mas somente delas. Por exemplo, guardar o 'Nome da Categoria' dentro da tabela de 'Produtos' repete o nome para cada item. Criar uma tabela separada de Categorias resolve isso, permitindo atualizar o nome num lugar só. Isso previne falhas de atualização gigantescas.",
+          "code": "CREATE TABLE categorias (id INT, nome VARCHAR(50));\n-- Produtos agora aponta apenas para o id da categoria."
         }
       ],
       "questions": [
@@ -2101,14 +2101,14 @@
       "summary": "Modele a relação muitos-para-muitos entre pedidos e produtos na loja simples.",
       "lesson": [
         {
-          "title": "Um pedido pode ter vários produtos",
-          "body": "Na prática, um pedido de loja geralmente inclui vários produtos, e um mesmo produto pode aparecer em vários pedidos diferentes. Essa é uma relação muitos-para-muitos entre pedidos e produtos.",
-          "tip": "Lembre-se: sempre que 'dos dois lados pode haver vários', é hora de pensar em uma tabela associativa."
+          "title": "O Ponto Crítico da Modelagem de Pedidos",
+          "body": "Ao modelar o projeto final, um grande desafio é preservar os valores históricos. Se o preço do produto aumentar na tabela principal, o valor dos pedidos feitos no mês passado não pode mudar. Por isso, a tabela de 'itens_pedido' precisa registrar uma cópia do valor cobrado no exato momento da venda, além da chave para o produto original.",
+          "code": "CREATE TABLE itens_pedido (\n  pedido_id INT, produto_id INT,\n  qtd INT, preco_unitario DECIMAL(10,2)\n);"
         },
         {
-          "title": "Criando a tabela associativa",
-          "body": "Para resolver isso, criamos uma tabela associativa, como itens_pedido, com pedido_id, produto_id e a quantidade daquele produto naquele pedido.",
-          "code": "pedidos: id, cliente_id, data_pedido\nprodutos: id, nome, preco\nitens_pedido: pedido_id, produto_id, quantidade"
+          "title": "Calculando Subtotais por Linha",
+          "body": "Neste projeto também aplicamos cálculos em tempo de execução das consultas. Para saber o custo de uma linha de pedido, multiplicamos a quantidade pelo preço unitário registrado. A flexibilidade do SQL permite que esses cálculos matemáticos simples sejam resolvidos pela própria engine no momento do retorno, direto no lado do banco de dados.",
+          "code": "SELECT p.nome, i.qtd, i.preco_unitario, (i.qtd * i.preco_unitario) AS subtotal \nFROM itens_pedido i \nJOIN produtos p ON i.produto_id = p.id;"
         }
       ],
       "questions": [
@@ -2179,14 +2179,14 @@
       "summary": "Combine JOIN, GROUP BY e HAVING para responder perguntas de negócio sobre a loja.",
       "lesson": [
         {
-          "title": "Perguntas de negócio viram consultas",
-          "body": "Um dono de loja pode querer saber, por exemplo, 'qual cliente mais gastou' ou 'quantos pedidos cada cliente fez'. Essas perguntas são respondidas combinando JOIN (para juntar tabelas), GROUP BY (para agrupar por cliente) e funções de agregação.",
-          "code": "SELECT clientes.nome, SUM(pedidos.total) AS total_gasto\nFROM clientes\nINNER JOIN pedidos ON clientes.id = pedidos.cliente_id\nGROUP BY clientes.nome;"
+          "title": "Respondendo Perguntas de Negócio",
+          "body": "Com os dados estruturados e inseridos no projeto prático, testamos as habilidades de extração. Usamos JOINs, GROUP BY e SUM em conjunto para responder as perguntas mais vitais dos gerentes de uma loja real, como o balanço financeiro por período, ticket médio e o ranking de produtos mais lucrativos, provando o imenso valor do SQL.",
+          "code": "SELECT prod.nome, SUM(i.qtd * i.preco_unitario) AS receita \nFROM itens_pedido i\nJOIN produtos prod ON i.produto_id = prod.id \nGROUP BY prod.nome ORDER BY receita DESC;"
         },
         {
-          "title": "Refinando com HAVING",
-          "body": "Se quisermos apenas os clientes que gastaram mais de determinado valor, adicionamos HAVING depois do GROUP BY, aplicando a condição sobre o valor já agregado (SUM).",
-          "code": "...\nGROUP BY clientes.nome\nHAVING SUM(pedidos.total) > 200;"
+          "title": "Agrupamento por Datas Múltiplas",
+          "body": "Uma necessidade corriqueira das lojas é consolidar as vendas por mês ou ano. Para isso, aplicamos funções nativas de extração de data e agrupamos o conjunto. Extraímos a parte do mês da data da venda e somamos o total, permitindo a fácil geração de gráficos de performance financeira para a diretoria, tudo resolvido com uma rápida consulta SQL.",
+          "code": "SELECT EXTRACT(MONTH FROM data_venda) AS mes, SUM(total) AS vendas\nFROM pedidos GROUP BY mes;"
         }
       ],
       "questions": [
@@ -2257,14 +2257,14 @@
       "summary": "Revise o modelo completo da loja e identifique melhorias e possíveis erros de modelagem.",
       "lesson": [
         {
-          "title": "O modelo completo da loja",
-          "body": "Reunindo tudo, o modelo da loja tem: clientes, produtos, pedidos e itens_pedido (a tabela associativa entre pedidos e produtos). Cada tabela tem sua chave primária, e as relações são feitas por chaves estrangeiras.",
-          "code": "clientes: id (PK), nome, email\nprodutos: id (PK), nome, preco\npedidos: id (PK), cliente_id (FK), data_pedido\nitens_pedido: pedido_id (FK), produto_id (FK), quantidade"
+          "title": "Analisando Possíveis Gargalos",
+          "body": "Antes de fechar o projeto, é a hora de revisar a normalização e aplicar índices. Se uma loja tem milhões de clientes, pesquisar pelo email via string será dolorosamente lento se não criarmos um INDEX (Índice) nessa coluna. Índices aceleram as leituras drasticamente (buscas WHERE e JOINs), trocando um pouco de espaço em disco por enorme velocidade.",
+          "code": "CREATE INDEX idx_cliente_email ON clientes (email);"
         },
         {
-          "title": "Revisando decisões",
-          "body": "Antes de finalizar um modelo, vale revisar: toda entidade tem uma chave primária? As relações um-para-muitos e muitos-para-muitos estão corretas? Há dados duplicados que poderiam ser normalizados?",
-          "tip": "Revisar o modelo antes de implementar evita retrabalho e problemas de integridade no futuro."
+          "title": "Refatorações Inteligentes",
+          "body": "Na fase final de modelagem, podemos perceber que tabelas ficaram inchadas ou campos nulos sobraram. Mover lógicas secundárias (como múltiplos endereços de entrega) para novas tabelas garante um sistema robusto e preparado para o crescimento do mundo corporativo moderno, solidificando as raízes do banco de dados relacional e escalável.",
+          "code": "CREATE TABLE enderecos (id SERIAL, cliente_id INT, logradouro VARCHAR(100));"
         }
       ],
       "questions": [
@@ -2335,14 +2335,14 @@
       "summary": "Feche o projeto da loja simples aplicando tudo o que foi aprendido sobre modelagem e SQL.",
       "lesson": [
         {
-          "title": "Do problema ao modelo",
-          "body": "Você percorreu todo o caminho: identificar entidades e atributos, definir chaves primárias e estrangeiras, criar tabelas com CREATE TABLE, inserir e consultar dados, filtrar e ordenar resultados, combinar tabelas com JOIN, agregar com GROUP BY e HAVING, e manter tudo consistente evitando duplicação.",
-          "code": "clientes: id (PK), nome, email\nprodutos: id (PK), nome, preco\npedidos: id (PK), cliente_id (FK), data_pedido\nitens_pedido: pedido_id (FK), produto_id (FK), quantidade"
+          "title": "A Jornada Relacional Concluída",
+          "body": "Dominar SQL é entender que os dados são o coração imortal de qualquer aplicação de software. Código backend muda, frameworks de front-end vêm e vão, mas o banco de dados permanece por décadas guardando as riquezas de uma empresa. Saber extrair, inserir e modelar eficientemente essas tabelas com SQL é o diferencial dos grandes engenheiros.",
+          "code": "-- Verificando o estado geral e total de cadastros do projeto:\nSELECT COUNT(*) FROM clientes;"
         },
         {
-          "title": "Pensando como um profissional",
-          "body": "Diante de um novo sistema, um profissional de banco de dados sempre parte das perguntas de negócio ('o que precisamos guardar? quem se relaciona com quem?') antes de escrever qualquer comando SQL. O modelo bem pensado facilita todas as consultas futuras.",
-          "tip": "Modelar bem antes de programar economiza muito retrabalho depois."
+          "title": "Próximos Passos de Aperfeiçoamento",
+          "body": "Agora que a base fundamental e analítica está formada, o aprofundamento pode envolver a criação de Views (consultas salvas), Triggers (gatilhos de automação) e Procedures (programação avançada interna). Além disso, aprender como as transações (ACID) funcionam sob o capô garantirá que seus sistemas bancários ou e-commerces nunca percam informações.",
+          "code": "CREATE VIEW clientes_ativos AS \nSELECT nome, email FROM clientes WHERE ativo = true;"
         }
       ],
       "questions": [

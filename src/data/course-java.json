@@ -73,14 +73,14 @@
       "summary": "Entenda a estrutura básica de um programa Java e o método main.",
       "lesson": [
         {
-          "title": "Toda classe, um arquivo",
-          "body": "Todo código Java vive dentro de uma classe. O nome do arquivo .java deve ser igual ao nome da classe pública que ele contém. A execução de um programa começa sempre pelo método main.",
-          "code": "public class Main {\n  public static void main(String[] args) {\n    System.out.println(\"Ola, mundo!\");\n  }\n}"
+          "title": "O ponto de partida: Método Main",
+          "body": "Todo programa Java precisa de um ponto de entrada para começar a executar. Esse ponto é o método main. Sem ele, a Máquina Virtual Java (JVM) não sabe por onde iniciar. Ele sempre será público e estático, recebendo um array de Strings como argumentos.",
+          "code": "public class Main {\n    public static void main(String[] args) {\n        System.out.println(\"Iniciando programa!\");\n    }\n}"
         },
         {
-          "title": "Ponto e vírgula e blocos",
-          "body": "Em Java, cada instrução termina com ponto e vírgula (;). Blocos de código, como o corpo de um método, ficam entre chaves { }. Esquecer o ; é um dos erros mais comuns para quem está começando.",
-          "code": "public static void main(String[] args) {\n  System.out.println(\"Linha 1\");\n  System.out.println(\"Linha 2\");\n}"
+          "title": "Estrutura Básica de Classes",
+          "body": "Em Java, absolutamente tudo deve estar contido dentro de uma classe. O nome do arquivo deve obrigatoriamente ser idêntico ao nome da classe pública definida nele (ex: Main.java). As chaves { } delimitam os escopos e cada instrução finaliza com ponto e vírgula.",
+          "code": "public class Saudacao {\n    // O código da classe vive aqui\n    public void dizerOla() {\n        System.out.println(\"Olá, mundo!\");\n    }\n}"
         }
       ],
       "questions": [
@@ -151,14 +151,14 @@
       "summary": "Declare variáveis com tipos primitivos como int, double e boolean.",
       "lesson": [
         {
-          "title": "Tipagem estática",
-          "body": "Java é uma linguagem de tipagem estática: toda variável precisa ter um tipo declarado antes do nome, e esse tipo não muda depois. Os tipos primitivos mais comuns são int (inteiros), double (decimais) e boolean (verdadeiro/falso).",
-          "code": "int idade = 30;\ndouble preco = 19.90;\nboolean ativo = true;"
+          "title": "Tipagem Estática e Primitivos",
+          "body": "Java é estaticamente tipado, ou seja, toda variável precisa ter seu tipo declarado antes de ser usada, e esse tipo não pode mudar. Os tipos primitivos armazenam valores simples diretamente na memória, como inteiros (int), decimais (double) e booleanos (boolean).",
+          "code": "int idade = 25;\ndouble altura = 1.75;\nboolean isEstudante = true;\n\nSystem.out.println(\"Idade: \" + idade);\nSystem.out.println(\"Altura: \" + altura);"
         },
         {
-          "title": "String e char",
-          "body": "String representa texto (com maiúscula, pois é uma classe, não um tipo primitivo). char representa um único caractere, sempre entre aspas simples.",
-          "code": "String nome = \"Igor\";\nchar inicial = 'I';"
+          "title": "Strings e Caracteres",
+          "body": "Enquanto char é um tipo primitivo que guarda apenas um caractere usando aspas simples, a String é uma classe que armazena textos complexos em aspas duplas. Strings possuem diversos métodos nativos úteis, como verificar tamanho ou transformar em letras maiúsculas.",
+          "code": "char inicial = 'J';\nString linguagem = \"Java\";\n\nSystem.out.println(linguagem.toUpperCase()); // Imprime: JAVA"
         }
       ],
       "questions": [
@@ -229,14 +229,14 @@
       "summary": "Leia dados digitados pelo usuário com a classe Scanner.",
       "lesson": [
         {
-          "title": "Lendo dados com Scanner",
-          "body": "A classe Scanner, do pacote java.util, permite ler dados digitados pelo usuário no console. Primeiro é preciso importar a classe e criar um objeto Scanner associado à entrada padrão (System.in).",
-          "code": "import java.util.Scanner;\n\nScanner leitor = new Scanner(System.in);\nString nome = leitor.nextLine();"
+          "title": "Lendo dados com o Scanner",
+          "body": "Para tornar a aplicação interativa lendo dados do teclado, utilizamos a classe Scanner do pacote java.util. Ela se conecta à entrada padrão do sistema (System.in) e processa as informações digitadas, convertendo textos em tipos específicos como números e booleanos.",
+          "code": "import java.util.Scanner;\n\nScanner scanner = new Scanner(System.in);\nSystem.out.print(\"Qual seu nome? \");\nString nome = scanner.nextLine();"
         },
         {
-          "title": "Lendo números",
-          "body": "Scanner tem métodos específicos para cada tipo: nextInt() lê um número inteiro, nextDouble() lê um decimal, nextLine() lê uma linha inteira de texto.",
-          "code": "System.out.print(\"Digite sua idade: \");\nint idade = leitor.nextInt();"
+          "title": "Capturando números e textos",
+          "body": "O Scanner possui métodos específicos para cada tipo de dado: nextInt() para inteiros, nextDouble() para decimais e nextLine() para ler a linha toda. É muito importante lembrar de fechar o Scanner com .close() após o uso para liberar recursos do sistema.",
+          "code": "System.out.print(\"Digite sua idade: \");\nint idade = scanner.nextInt();\nSystem.out.println(\"Você tem \" + idade + \" anos.\");\nscanner.close();"
         }
       ],
       "questions": [
@@ -307,14 +307,14 @@
       "summary": "Use operadores aritméticos, de comparação e lógicos.",
       "lesson": [
         {
-          "title": "Aritméticos e comparação",
-          "body": "Os operadores aritméticos são +, -, *, / e % (resto da divisão). Os de comparação (==, !=, >, <, >=, <=) retornam sempre um valor boolean: true ou false.",
-          "code": "int a = 10, b = 3;\nint soma = a + b;\nint resto = a % b;\nboolean maior = a > b;"
+          "title": "Operadores Matemáticos e Relacionais",
+          "body": "Operadores aritméticos (+, -, *, /, %) permitem realizar cálculos. Já os relacionais (==, !=, >, <) comparam valores e retornam sempre um booleano (verdadeiro ou falso). O operador de resto (%) é muito útil para descobrir se um número é par ou ímpar.",
+          "code": "int a = 10;\nint b = 3;\nSystem.out.println(\"Soma: \" + (a + b)); // 13\nSystem.out.println(\"Resto: \" + (a % b)); // 1\nSystem.out.println(\"Maior: \" + (a > b)); // true"
         },
         {
-          "title": "Operadores lógicos",
-          "body": "&& (E lógico) retorna true se ambos os lados forem true. || (OU lógico) retorna true se pelo menos um lado for true. ! (NÃO) inverte um valor boolean.",
-          "code": "boolean maiorDeIdade = idade >= 18;\nboolean podeEntrar = maiorDeIdade && temIngresso;"
+          "title": "Conectando Condições com Lógica",
+          "body": "Os operadores lógicos permitem agrupar várias verificações: && (E) exige que todas sejam verdadeiras, || (OU) precisa de apenas uma verdadeira, e ! (NÃO) inverte o valor booleano. Eles são essenciais para criar regras de negócio complexas de forma segura.",
+          "code": "boolean temIdade = true;\nboolean temCarteira = false;\n\n// Só dirige se tiver idade E carteira\nboolean podeDirigir = temIdade && temCarteira;\nSystem.out.println(podeDirigir); // false"
         }
       ],
       "questions": [
@@ -385,14 +385,14 @@
       "summary": "Controle o fluxo do programa com if, else if e else.",
       "lesson": [
         {
-          "title": "if, else if, else",
-          "body": "if executa um bloco somente se a condição for true. else if testa outra condição caso a primeira seja false. else executa quando nenhuma condição anterior foi verdadeira.",
-          "code": "if (nota >= 7) {\n  System.out.println(\"Aprovado\");\n} else if (nota >= 5) {\n  System.out.println(\"Recuperacao\");\n} else {\n  System.out.println(\"Reprovado\");\n}"
+          "title": "Estruturas de Decisão com If-Else",
+          "body": "As estruturas condicionais controlam o fluxo do programa. O bloco if executa um código se a condição for verdadeira. Podemos encadear else if para testar cenários alternativos e finalizar com um else para quando nenhuma das condições anteriores for atendida.",
+          "code": "int nota = 7;\nif (nota >= 7) {\n    System.out.println(\"Aprovado!\");\n} else if (nota >= 5) {\n    System.out.println(\"Recuperação.\");\n} else {\n    System.out.println(\"Reprovado.\");\n}"
         },
         {
-          "title": "Operador ternário",
-          "body": "Para decisões simples de duas opções, o operador ternário condicao ? valorSeVerdadeiro : valorSeFalso é uma forma curta de escrever um if/else que retorna um valor.",
-          "code": "String status = idade >= 18 ? \"Adulto\" : \"Menor\";"
+          "title": "O Operador Ternário",
+          "body": "Para atribuições simples baseadas em uma condição, o operador ternário ? : é uma alternativa elegante ao if-else tradicional. Ele avalia uma expressão e retorna o primeiro valor se for verdadeiro, ou o segundo se for falso, deixando o código muito mais enxuto.",
+          "code": "int idade = 20;\nString status = (idade >= 18) ? \"Maior de idade\" : \"Menor de idade\";\nSystem.out.println(status);"
         }
       ],
       "questions": [
@@ -463,14 +463,14 @@
       "summary": "Compare um valor com vários casos possíveis usando switch.",
       "lesson": [
         {
-          "title": "A estrutura switch",
-          "body": "switch compara uma variável com vários valores possíveis (case), executando o bloco correspondente. break impede que a execução 'caia' para o próximo case.",
-          "code": "switch (diaSemana) {\n  case 1:\n    System.out.println(\"Segunda\");\n    break;\n  case 2:\n    System.out.println(\"Terca\");\n    break;\n  default:\n    System.out.println(\"Outro dia\");\n}"
+          "title": "Múltiplas Escolhas com Switch",
+          "body": "Quando precisamos comparar a mesma variável com vários valores fixos, o switch é mais legível que dezenas de if/else. O comando break é fundamental ao final de cada case para impedir que o Java continue executando os blocos das opções seguintes indesejadamente.",
+          "code": "int dia = 3;\nswitch (dia) {\n    case 1:\n        System.out.println(\"Domingo\");\n        break;\n    case 2:\n        System.out.println(\"Segunda\");\n        break;\n    default:\n        System.out.println(\"Outro dia\");\n}"
         },
         {
-          "title": "O caso default",
-          "body": "default funciona como o else de um switch: executa quando nenhum case bateu com o valor. É uma boa prática sempre incluir um default para cobrir casos inesperados.",
-          "code": "switch (nota) {\n  case 10:\n    System.out.println(\"Perfeito\");\n    break;\n  default:\n    System.out.println(\"Continue estudando\");\n}"
+          "title": "Switch Expressions (Java Moderno)",
+          "body": "A partir do Java 14, o switch ganhou uma sintaxe moderna com setas (->) que não exige o uso do comando break. Além de mais limpa e segura contra erros, essa nova forma permite retornar diretamente um valor para ser armazenado numa variável.",
+          "code": "int dia = 2;\nString nome = switch (dia) {\n    case 1 -> \"Domingo\";\n    case 2 -> \"Segunda\";\n    default -> \"Outro dia\";\n};\nSystem.out.println(nome);"
         }
       ],
       "questions": [
@@ -541,14 +541,14 @@
       "summary": "Repita um bloco de código um número definido de vezes.",
       "lesson": [
         {
-          "title": "A estrutura do for",
-          "body": "O laço for tem três partes: inicialização, condição e incremento, separadas por ponto e vírgula. Ele repete o bloco enquanto a condição for true.",
-          "code": "for (int i = 0; i < 5; i++) {\n  System.out.println(\"Volta \" + i);\n}"
+          "title": "Repetições Controladas com For",
+          "body": "O laço for é ideal quando sabemos exatamente quantas vezes queremos repetir um bloco. Ele concentra três partes na declaração: a inicialização da variável, a condição de continuidade e o passo de incremento ou decremento ao final de cada ciclo.",
+          "code": "// Imprime os números de 1 a 5\nfor (int i = 1; i <= 5; i++) {\n    System.out.println(\"Contagem: \" + i);\n}"
         },
         {
-          "title": "for-each",
-          "body": "O for-each percorre cada elemento de uma coleção ou array diretamente, sem precisar controlar um índice manualmente. É mais simples quando não é necessário saber a posição do item.",
-          "code": "int[] numeros = {10, 20, 30};\nfor (int n : numeros) {\n  System.out.println(n);\n}"
+          "title": "Navegando em Coleções com For-Each",
+          "body": "O Enhanced For (ou for-each) é uma variação simplificada feita especialmente para iterar sobre arrays e coleções. Ele dispensa o controle manual de índices, reduzindo chances de erros e tornando o código muito mais semântico e fácil de ler sem bagunça visual.",
+          "code": "String[] frutas = {\"Maçã\", \"Banana\", \"Uva\"};\n// Para cada fruta dentro do array frutas\nfor (String fruta : frutas) {\n    System.out.println(fruta);\n}"
         }
       ],
       "questions": [
@@ -619,14 +619,14 @@
       "summary": "Repita um bloco enquanto uma condição for verdadeira.",
       "lesson": [
         {
-          "title": "while e do-while",
-          "body": "while repete um bloco enquanto a condição for true, testada antes de cada execução. do-while executa o bloco pelo menos uma vez, testando a condição só depois.",
-          "code": "int contador = 0;\nwhile (contador < 3) {\n  System.out.println(contador);\n  contador++;\n}"
+          "title": "Laços baseados em Condições",
+          "body": "O laço while repete a execução de um bloco enquanto uma condição booleana permanecer verdadeira. Ele é perfeito para cenários onde não sabemos o número exato de repetições, como ler um arquivo até o fim ou aguardar o usuário digitar um valor perfeitamente válido.",
+          "code": "int contador = 0;\nwhile (contador < 3) {\n    System.out.println(\"Execução \" + contador);\n    contador++; // Crucial para não virar loop infinito\n}"
         },
         {
-          "title": "Cuidado com loops infinitos",
-          "body": "Se a condição de um while nunca se tornar false, o laço nunca termina — um loop infinito. É essencial garantir que alguma variável usada na condição seja atualizada dentro do laço.",
-          "code": "// Loop infinito perigoso: contador nunca muda\nwhile (contador < 3) {\n  System.out.println(\"Preso aqui\");\n}"
+          "title": "Do-While: Execução Garantida",
+          "body": "Ao contrário do while tradicional que testa a condição antes de entrar no laço, o do-while sempre executa o bloco de código pelo menos uma vez antes de avaliar a condição. É excelente para menus interativos que precisam ser exibidos antes da leitura.",
+          "code": "int opcao;\nScanner sc = new Scanner(System.in);\ndo {\n    System.out.println(\"Digite 0 para sair:\");\n    opcao = sc.nextInt();\n} while (opcao != 0);"
         }
       ],
       "questions": [
@@ -697,14 +697,14 @@
       "summary": "Armazene múltiplos valores do mesmo tipo em uma única variável.",
       "lesson": [
         {
-          "title": "Criando um array",
-          "body": "Um array guarda vários valores do mesmo tipo, com tamanho fixo definido na criação. O acesso a cada posição é feito por um índice, começando em 0.",
-          "code": "int[] notas = {8, 7, 9, 10};\nSystem.out.println(notas[0]);\nSystem.out.println(notas.length);"
+          "title": "Estruturas de Tamanho Fixo",
+          "body": "Arrays são estruturas que agrupam vários dados do mesmo tipo em uma única variável. Na memória do Java, eles possuem tamanho fixo e contíguo. Após criar um array com um determinado tamanho, não é possível aumentá-lo ou diminuí-lo dinamicamente de forma alguma.",
+          "code": "int[] notas = new int[3];\nnotas[0] = 8;\nnotas[1] = 9;\nnotas[2] = 7;\nSystem.out.println(\"Primeira nota: \" + notas[0]);"
         },
         {
-          "title": "Percorrendo um array",
-          "body": "É comum percorrer um array com um for tradicional (usando o índice até array.length - 1) ou com for-each quando não é preciso saber a posição.",
-          "code": "for (int i = 0; i < notas.length; i++) {\n  System.out.println(\"Nota \" + i + \": \" + notas[i]);\n}"
+          "title": "Atalho de Inicialização e Índices",
+          "body": "Você pode declarar e preencher um array na mesma linha usando chaves {}. É essencial lembrar que a contagem de índices sempre começa em zero, então o último elemento estará na posição (tamanho - 1). Acessar índices inexistentes gera erros fatais no programa.",
+          "code": "String[] alunos = {\"Igor\", \"Ana\", \"Carlos\"};\nSystem.out.println(\"Tamanho: \" + alunos.length);\nSystem.out.println(\"Último aluno: \" + alunos[alunos.length - 1]);"
         }
       ],
       "questions": [
@@ -775,14 +775,14 @@
       "summary": "Organize código reutilizável em métodos com nome, tipo de retorno e corpo.",
       "lesson": [
         {
-          "title": "Anatomia de um método",
-          "body": "Um método tem um modificador de acesso, um tipo de retorno, um nome e (opcionalmente) parâmetros. void indica que o método não retorna nenhum valor.",
-          "code": "public static void saudar() {\n  System.out.println(\"Ola!\");\n}"
+          "title": "Reutilização e Organização",
+          "body": "Métodos agrupam blocos de código com um objetivo específico para serem reutilizados, evitando repetição. A declaração define um modificador de acesso, tipo de retorno e nome. Se o método realiza uma ação mas não devolve nada, utilizamos a palavra-chave void.",
+          "code": "public class Calculadora {\n    public void exibirMensagem() {\n        System.out.println(\"Iniciando cálculo...\");\n    }\n}"
         },
         {
-          "title": "Chamando um método",
-          "body": "Para executar um método, basta chamá-lo pelo nome seguido de parênteses. Métodos evitam repetição de código: escreve-se a lógica uma vez e reutiliza-se quantas vezes for preciso.",
-          "code": "public static void main(String[] args) {\n  saudar();\n  saudar();\n}"
+          "title": "Invocando Comportamentos",
+          "body": "Após declarar um método, ele pode ser chamado de qualquer outro lugar (respeitando as regras de acesso). Chamar métodos mantém blocos complexos como o main limpos e fáceis de entender, delegando as responsabilidades e melhorando a manutenção do código como um todo.",
+          "code": "public static void main(String[] args) {\n    Calculadora calc = new Calculadora();\n    calc.exibirMensagem(); // Chamada do método\n}"
         }
       ],
       "questions": [
@@ -853,14 +853,14 @@
       "summary": "Envie dados para um método e receba um resultado de volta.",
       "lesson": [
         {
-          "title": "Parâmetros",
-          "body": "Parâmetros são variáveis declaradas entre os parênteses do método, que recebem valores no momento da chamada. Isso permite que o método trabalhe com dados diferentes a cada execução.",
-          "code": "public static void saudar(String nome) {\n  System.out.println(\"Ola, \" + nome + \"!\");\n}\n\nsaudar(\"Ana\");"
+          "title": "Passagem de Informações",
+          "body": "Parâmetros são variáveis locais definidas nos parênteses do método que recebem dados de quem o invocou. Eles tornam o método dinâmico. O retorno, por sua vez, devolve o resultado da operação através da palavra return, devendo obrigatoriamente bater com o tipo declarado.",
+          "code": "public int somar(int a, int b) {\n    int resultado = a + b;\n    return resultado;\n}"
         },
         {
-          "title": "return",
-          "body": "Quando um método precisa devolver um valor, seu tipo de retorno não é void, e a palavra return é usada para enviar o valor de volta a quem chamou o método.",
-          "code": "public static int somar(int a, int b) {\n  return a + b;\n}\n\nint resultado = somar(2, 3);"
+          "title": "Utilizando Métodos Parametrizados",
+          "body": "Ao invocar um método que exige parâmetros, você passa os argumentos reais. O método processa as entradas e, ao usar return, entrega o valor que pode ser armazenado em variáveis, impresso na tela ou usado em novos cálculos sem interferir no fluxo principal que o chamou.",
+          "code": "public static void main(String[] args) {\n    Matematica mat = new Matematica();\n    int total = mat.somar(10, 5);\n    System.out.println(\"Total: \" + total);\n}"
         }
       ],
       "questions": [
@@ -931,14 +931,14 @@
       "summary": "Crie versões diferentes de um mesmo método, com parâmetros distintos.",
       "lesson": [
         {
-          "title": "O que é sobrecarga",
-          "body": "Sobrecarga (overloading) permite que vários métodos tenham o mesmo nome, desde que a quantidade ou o tipo dos parâmetros seja diferente. O compilador escolhe qual versão chamar com base nos argumentos passados.",
-          "code": "public static int somar(int a, int b) {\n  return a + b;\n}\n\npublic static double somar(double a, double b) {\n  return a + b;\n}"
+          "title": "Múltiplas Faces do Mesmo Método",
+          "body": "A Sobrecarga (Overload) permite criar métodos com o mesmo nome na mesma classe, desde que tenham parâmetros diferentes (em quantidade ou tipos). Isso melhora muito a legibilidade, pois centraliza ações semelhantes sob um único conceito e nome totalmente amigável.",
+          "code": "public void imprimir(String texto) {\n    System.out.println(texto);\n}\npublic void imprimir(int numero) {\n    System.out.println(\"Número: \" + numero);\n}"
         },
         {
-          "title": "Assinatura do método",
-          "body": "A combinação de nome + tipos e quantidade de parâmetros é chamada de assinatura do método. Métodos sobrecarregados devem ter assinaturas diferentes — apenas mudar o tipo de retorno não é suficiente.",
-          "code": "somar(2, 3);       // chama a versão int\nsomar(2.5, 3.1);    // chama a versão double"
+          "title": "O Compilador Faz o Trabalho",
+          "body": "Em tempo de compilação, o Java decide qual versão do método sobrecarregado executar avaliando os argumentos passados. Retornos diferentes não caracterizam sobrecarga válida sozinhos; a diferença precisa obrigatoriamente residir na assinatura dos parâmetros do método.",
+          "code": "Impressora imp = new Impressora();\nimp.imprimir(\"Olá Java!\"); // Chama versão com String\nimp.imprimir(42);          // Chama versão com int"
         }
       ],
       "questions": [
@@ -1009,14 +1009,14 @@
       "summary": "Modele entidades do mundo real com classes e crie objetos a partir delas.",
       "lesson": [
         {
-          "title": "Classe como um molde",
-          "body": "Uma classe é um molde que define atributos (dados) e métodos (comportamentos) de um tipo de objeto. Um objeto é uma instância concreta criada a partir dessa classe, com a palavra-chave new.",
-          "code": "public class Produto {\n  String nome;\n  double preco;\n}\n\nProduto p1 = new Produto();\np1.nome = \"Camiseta\";\np1.preco = 49.90;"
+          "title": "Moldes do Mundo Real",
+          "body": "Classes funcionam como plantas ou moldes que definem a estrutura e comportamentos de entidades (atributos e métodos). O Objeto é a concretização (instância) dessa classe. Quando instanciamos uma classe, criamos um espaço na memória independente para aquele objeto em uso.",
+          "code": "public class Carro {\n    String cor;\n    int ano;\n    \n    public void acelerar() {\n        System.out.println(\"Vrum!\");\n    }\n}"
         },
         {
-          "title": "Múltiplos objetos",
-          "body": "A partir da mesma classe, é possível criar vários objetos independentes, cada um com seus próprios valores de atributos.",
-          "code": "Produto p2 = new Produto();\np2.nome = \"Tenis\";\np2.preco = 199.90;"
+          "title": "Instanciando na Prática",
+          "body": "A palavra-chave new é a responsável por dar vida aos objetos alocando memória. Após a criação, usamos o operador ponto (.) para acessar os atributos ou acionar os métodos específicos daquela instância, garantindo que cada objeto mantenha rigorosamente seu próprio estado.",
+          "code": "public static void main(String[] args) {\n    Carro meuCarro = new Carro();\n    meuCarro.cor = \"Vermelho\";\n    meuCarro.ano = 2023;\n    meuCarro.acelerar();\n}"
         }
       ],
       "questions": [
@@ -1087,14 +1087,14 @@
       "summary": "Inicialize objetos de forma organizada com construtores.",
       "lesson": [
         {
-          "title": "O que é um construtor",
-          "body": "Um construtor é um método especial, com o mesmo nome da classe e sem tipo de retorno, executado automaticamente ao criar um objeto com new. Ele serve para inicializar os atributos do objeto.",
-          "code": "public class Produto {\n  String nome;\n  double preco;\n\n  public Produto(String nome, double preco) {\n    this.nome = nome;\n    this.preco = preco;\n  }\n}"
+          "title": "O Ponto de Partida dos Objetos",
+          "body": "O construtor é um bloco especial acionado no exato momento do new. Ele tem o mesmo nome da classe e nenhum tipo de retorno (nem mesmo void). Ele garante que o objeto inicie com um estado válido, recebendo dados obrigatórios logo na sua fase inicial de criação em memória.",
+          "code": "public class Pessoa {\n    String nome;\n    public Pessoa(String nomeInicial) {\n        this.nome = nomeInicial;\n    }\n}"
         },
         {
-          "title": "Usando this",
-          "body": "this se refere ao próprio objeto sendo construído. É usado para diferenciar o atributo da classe (this.nome) do parâmetro recebido (nome), quando eles têm o mesmo nome.",
-          "code": "Produto p1 = new Produto(\"Camiseta\", 49.90);\nSystem.out.println(p1.nome);"
+          "title": "A Palavra Chave This",
+          "body": "O this é uma referência ao próprio objeto sendo executado. Ele resolve a ambiguidade quando o nome do parâmetro é igual ao nome do atributo da classe, garantindo que a informação nova preencha a variável global correta e evite qualquer tipo de inconsistências no sistema em execução.",
+          "code": "public class Produto {\n    double preco;\n    public Produto(double preco) {\n        this.preco = preco; // Diferencia atributo de parâmetro\n    }\n}"
         }
       ],
       "questions": [
@@ -1165,14 +1165,14 @@
       "summary": "Proteja os dados de um objeto com atributos privados e métodos de acesso.",
       "lesson": [
         {
-          "title": "private e getters/setters",
-          "body": "Tornar atributos private impede que sejam acessados diretamente de fora da classe. O acesso controlado é feito por métodos públicos: getters (para ler o valor) e setters (para alterar, com validações se necessário).",
-          "code": "public class Produto {\n  private double preco;\n\n  public double getPreco() {\n    return preco;\n  }\n\n  public void setPreco(double preco) {\n    if (preco >= 0) this.preco = preco;\n  }\n}"
+          "title": "Protegendo o Estado Interno",
+          "body": "O encapsulamento esconde os detalhes de como a classe funciona, expondo apenas o que é seguro. Definimos atributos como private para impedir que outras classes baguncem os dados diretamente, protegendo as regras de negócio intrínsecas e prevenindo inconsistências gravíssimas.",
+          "code": "public class Conta {\n    private double saldo;\n    \n    public void depositar(double valor) {\n        if(valor > 0) this.saldo += valor;\n    }\n}"
         },
         {
-          "title": "Por que encapsular",
-          "body": "Encapsulamento protege o objeto contra estados inválidos: o setPreco do exemplo impede que o preço fique negativo. Sem essa proteção, qualquer código externo poderia atribuir valores inconsistentes diretamente.",
-          "code": "Produto p = new Produto();\np.setPreco(-10); // ignorado pela validacao\nSystem.out.println(p.getPreco());"
+          "title": "Getters e Setters",
+          "body": "Para ler e modificar variáveis privadas, criamos métodos públicos convencionados como Get (para pegar) e Set (para alterar). Os setters são especialmente úteis pois permitem aplicar validações cruciais antes de aceitar e efetivamente gravar qualquer alteração nos dados sensíveis do objeto.",
+          "code": "public class Usuario {\n    private String senha;\n    public String getSenha() { return this.senha; }\n    public void setSenha(String senha) {\n        if(senha.length() >= 6) this.senha = senha;\n    }\n}"
         }
       ],
       "questions": [
@@ -1243,14 +1243,14 @@
       "summary": "Reaproveite código entre classes com extends.",
       "lesson": [
         {
-          "title": "extends",
-          "body": "Herança permite que uma classe (subclasse) reaproveite atributos e métodos de outra (superclasse), usando extends. A subclasse pode adicionar novos membros ou modificar o comportamento herdado.",
-          "code": "public class Animal {\n  String nome;\n  void emitirSom() {\n    System.out.println(\"Som generico\");\n  }\n}\n\npublic class Cachorro extends Animal {\n  void latir() {\n    System.out.println(nome + \" esta latindo\");\n  }\n}"
+          "title": "Reaproveitamento de Código",
+          "body": "Herança é um pilar da Orientação a Objetos que permite a uma classe filha receber automaticamente atributos e métodos de uma classe pai através da palavra-chave extends. Isso cria hierarquias lógicas robustas e evita inteiramente a terrível repetição de código no seu software.",
+          "code": "public class Animal {\n    public void comer() {\n        System.out.println(\"Comendo...\");\n    }\n}\npublic class Cachorro extends Animal {\n    public void latir() { System.out.println(\"Au au\"); }\n}"
         },
         {
-          "title": "super",
-          "body": "super permite acessar membros da superclasse a partir da subclasse, como chamar o construtor da classe pai (super(...)) ou um método sobrescrito (super.metodo()).",
-          "code": "public class Cachorro extends Animal {\n  Cachorro(String nome) {\n    super();\n    this.nome = nome;\n  }\n}"
+          "title": "Construtores com Super",
+          "body": "Quando a classe pai exige parâmetros no construtor, a classe filha precisa invocá-lo explicitamente usando o comando super(). A chamada ao super deve obrigatoriamente ser a primeiríssima linha executada no construtor da subclasse para que as bases do objeto se firmem primeiro.",
+          "code": "public class Funcionario extends Pessoa {\n    double salario;\n    public Funcionario(String nome, double salario) {\n        super(nome); // Chama construtor de Pessoa\n        this.salario = salario;\n    }\n}"
         }
       ],
       "questions": [
@@ -1321,14 +1321,14 @@
       "summary": "Sobrescreva métodos para que cada subclasse tenha seu próprio comportamento.",
       "lesson": [
         {
-          "title": "Sobrescrita com @Override",
-          "body": "Uma subclasse pode sobrescrever (override) um método herdado, dando a ele um comportamento diferente. A anotação @Override avisa o compilador (e quem lê o código) que a intenção é sobrescrever, não criar um método novo.",
-          "code": "public class Cachorro extends Animal {\n  @Override\n  void emitirSom() {\n    System.out.println(\"Au au!\");\n  }\n}"
+          "title": "Muitas Formas de Agir",
+          "body": "Polimorfismo significa que uma mesma chamada de método pode ter comportamentos diferentes dependendo do tipo real do objeto executando. A anotação @Override indica ao compilador que a classe filha está reescrevendo totalmente (sobrescrevendo) a regra antes ditada pelo pai.",
+          "code": "public class Gato extends Animal {\n    @Override\n    public void fazerSom() {\n        System.out.println(\"Miau\");\n    }\n}"
         },
         {
-          "title": "Polimorfismo na prática",
-          "body": "Graças ao polimorfismo, uma variável do tipo Animal pode referenciar um objeto Cachorro, e chamar emitirSom() executa a versão sobrescrita, específica do Cachorro — decidido em tempo de execução.",
-          "code": "Animal a = new Cachorro();\na.emitirSom(); // imprime \"Au au!\""
+          "title": "Flexibilidade com Referências Genéricas",
+          "body": "O verdadeiro poder surge ao criar variáveis da superclasse apontando para objetos das subclasses. Isso permite criar métodos genéricos que funcionam dinamicamente com qualquer classe derivada, tornando a arquitetura adaptável, flexível e extremamente simples de se expandir no futuro.",
+          "code": "Animal meuBichinho = new Gato();\n// O Java chama o método da classe Gato automaticamente\nmeuBichinho.fazerSom(); // Imprime: Miau"
         }
       ],
       "questions": [
@@ -1399,14 +1399,14 @@
       "summary": "Defina contratos de comportamento que classes se comprometem a seguir.",
       "lesson": [
         {
-          "title": "O que é uma interface",
-          "body": "Uma interface define um conjunto de métodos que uma classe deve implementar, usando a palavra-chave implements. Diferente de herança (extends), uma classe pode implementar várias interfaces.",
-          "code": "public interface Pagavel {\n  void pagar(double valor);\n}\n\npublic class Boleto implements Pagavel {\n  public void pagar(double valor) {\n    System.out.println(\"Pagando R$ \" + valor + \" via boleto\");\n  }\n}"
+          "title": "Contratos de Comportamento",
+          "body": "Interfaces são como contratos assinados. Elas definem quais métodos uma classe precisa ter, mas sem ditar como serão implementados. Uma classe usa a palavra implements para assinar formalmente o contrato, sendo assim obrigada a codificar todos os métodos ali claramente descritos.",
+          "code": "public interface Autenticavel {\n    boolean login(String senha);\n}\npublic class Gerente implements Autenticavel {\n    public boolean login(String senha) { return senha.equals(\"123\"); }\n}"
         },
         {
-          "title": "Interfaces como contrato",
-          "body": "Uma interface é um contrato: qualquer classe que a implemente promete ter aqueles métodos. Isso permite tratar objetos de classes diferentes de forma uniforme, desde que sigam o mesmo contrato.",
-          "code": "Pagavel forma = new Boleto();\nforma.pagar(150.0);"
+          "title": "Múltiplas Implementações",
+          "body": "Diferente da clássica herança de classes (onde o Java só permite herdar estritamente de um único pai), uma classe pode implementar diversas interfaces simultaneamente. Isso traz uma flexibilidade colossal para combinar comportamentos novos sem ficar preso nas raízes de hierarquias complexas.",
+          "code": "public class Drone implements Voador, Gravador {\n    public void voar() { System.out.println(\"Decolando\"); }\n    public void gravar() { System.out.println(\"Gravando 4K\"); }\n}"
         }
       ],
       "questions": [
@@ -1477,14 +1477,14 @@
       "summary": "Armazene listas de tamanho dinâmico com ArrayList.",
       "lesson": [
         {
-          "title": "Por que ArrayList",
-          "body": "Diferente de arrays, um ArrayList pode crescer ou diminuir de tamanho dinamicamente. Ele faz parte do pacote java.util e guarda objetos, não tipos primitivos diretamente.",
-          "code": "import java.util.ArrayList;\n\nArrayList<String> nomes = new ArrayList<>();\nnomes.add(\"Ana\");\nnomes.add(\"Bruno\");"
+          "title": "Listas Dinâmicas Inteligentes",
+          "body": "O ArrayList pertence à gigantesca biblioteca padrão e resolve a principal limitação dos Arrays comuns: o famigerado tamanho fixo. Ele expande sua capacidade automaticamente ao receber novos elementos e provê dezenas de métodos ágeis e prontos para se manipular os dados livremente.",
+          "code": "import java.util.ArrayList;\nArrayList<String> lista = new ArrayList<>();\nlista.add(\"Java\");\nlista.add(\"Python\");\nSystem.out.println(lista.size()); // 2"
         },
         {
-          "title": "Métodos comuns",
-          "body": "get(indice) acessa um elemento pela posição. size() retorna a quantidade de elementos. remove(indice) remove um elemento de uma posição específica.",
-          "code": "System.out.println(nomes.get(0));\nSystem.out.println(nomes.size());\nnomes.remove(1);"
+          "title": "Manipulando Elementos",
+          "body": "Ao usar ArrayList, a sintaxe inteira baseia-se em métodos úteis, não mais em colchetes rudimentares. Usamos .get(indice) para ler, .remove(indice) para excluir por completo e .set(indice, valor) para atualizar em tempo real, ocultando o trabalho imenso de gerir a memória ram.",
+          "code": "ArrayList<Integer> idades = new ArrayList<>();\nidades.add(20);\nidades.add(25);\nint primeiraIdade = idades.get(0);\nidades.remove(1); // Remove o 25"
         }
       ],
       "questions": [
@@ -1555,14 +1555,14 @@
       "summary": "Associe chaves a valores com a coleção HashMap.",
       "lesson": [
         {
-          "title": "Pares chave-valor",
-          "body": "HashMap armazena dados como pares de chave e valor, permitindo buscar um valor rapidamente pela sua chave, sem precisar percorrer toda a coleção como em uma lista.",
-          "code": "import java.util.HashMap;\n\nHashMap<String, Double> precos = new HashMap<>();\nprecos.put(\"Camiseta\", 49.90);\nprecos.put(\"Tenis\", 199.90);"
+          "title": "Estruturas de Chave-Valor",
+          "body": "O HashMap é um dicionário altamente inteligente. Em vez de salvar valores através de índices numéricos contínuos, ele armazena dados em pares (Chave, Valor). A busca da informação e a recuperação tornam-se incrivelmente rápidas devido ao engenhoso sistema de tabelas hash usado por debaixo dos panos.",
+          "code": "import java.util.HashMap;\nHashMap<String, String> ddd = new HashMap<>();\nddd.put(\"11\", \"São Paulo\");\nddd.put(\"21\", \"Rio de Janeiro\");\nSystem.out.println(ddd.get(\"11\")); // São Paulo"
         },
         {
-          "title": "Acessando valores",
-          "body": "get(chave) retorna o valor associado a essa chave, ou null se a chave não existir. containsKey(chave) verifica se uma chave existe no mapa antes de tentar acessá-la.",
-          "code": "double preco = precos.get(\"Camiseta\");\nboolean existe = precos.containsKey(\"Bone\");"
+          "title": "Integridade e Sobrescrita",
+          "body": "Num HashMap, as chaves precisam ser estrita e categoricamente únicas e intransferíveis. Se você tentar utilizar o .put() informando maliciosamente uma chave que já existe antes ali, o Java irá imediatamente sobrescrever o velho valor antigo e desatualizado por aquele novo valor inserido.",
+          "code": "HashMap<String, Double> notas = new HashMap<>();\nnotas.put(\"Igor\", 9.0);\nnotas.put(\"Igor\", 10.0); // Sobrescreve agressivamente\nif (notas.containsKey(\"Igor\")) {\n    System.out.println(notas.get(\"Igor\")); // 10.0\n}"
         }
       ],
       "questions": [
@@ -1633,14 +1633,14 @@
       "summary": "Percorra listas e mapas com for-each e métodos de coleção.",
       "lesson": [
         {
-          "title": "Percorrendo um ArrayList",
-          "body": "Assim como arrays, ArrayLists podem ser percorridos com for-each, acessando cada elemento diretamente, sem precisar de um índice manual.",
-          "code": "for (String nome : nomes) {\n  System.out.println(nome);\n}"
+          "title": "Percorrendo Coleções",
+          "body": "Tanto os duros Arrays comuns quanto listas dinâmicas como o reluzente ArrayList brilham grandiosamente ao se trabalhar com o laço For-Each iterador. Ele simplifica a leitura corrida da estrutura inteira, garantindo vigorosamente que o programa jamais acessará uma posição ilegal ou inválida.",
+          "code": "ArrayList<String> nomes = new ArrayList<>();\nnomes.add(\"Ana\");\nnomes.add(\"Bia\");\nfor(String nome : nomes) {\n    System.out.println(\"Olá \" + nome);\n}"
         },
         {
-          "title": "Percorrendo um HashMap",
-          "body": "Para percorrer um HashMap, é comum usar entrySet(), que retorna cada par chave-valor, permitindo acessar getKey() e getValue() de cada entrada.",
-          "code": "for (var entrada : precos.entrySet()) {\n  System.out.println(entrada.getKey() + \": \" + entrada.getValue());\n}"
+          "title": "Iterando em Mapas",
+          "body": "Um HashMap não pode de modo algum ser iterado diretamente, mas você facilmente pode usar o prático .keySet() para simplesmente passar e inspecionar todas as chaves cadastradas ativamente. Dessa forma indolor, você aproveita o For-Each plenamente para escanear qual e qualquer base de dados.",
+          "code": "HashMap<String, String> moedas = new HashMap<>();\nmoedas.put(\"BR\", \"Real\");\nmoedas.put(\"US\", \"Dólar\");\nfor(String chave : moedas.keySet()) {\n    System.out.println(chave + \" -> \" + moedas.get(chave));\n}"
         }
       ],
       "questions": [
@@ -1711,14 +1711,14 @@
       "summary": "Trate erros em tempo de execução sem derrubar o programa.",
       "lesson": [
         {
-          "title": "Capturando exceções",
-          "body": "try envolve um código que pode lançar uma exceção (um erro em tempo de execução). catch captura essa exceção e trata o problema, evitando que o programa pare abruptamente.",
-          "code": "try {\n  int resultado = 10 / 0;\n} catch (ArithmeticException e) {\n  System.out.println(\"Erro: divisao por zero\");\n}"
+          "title": "Protegendo o Programa de Falhas",
+          "body": "Exceções são erros cruéis e imprevistos que costumam travar a execução repentinamente. O bloco preventivo try tenta bravamente rodar o código arriscado e perigoso, mas caso algo ali dê muito errado, a execução desvia celeremente direto e certeiramente para as garras afiadas do protetor catch.",
+          "code": "try {\n    int divisao = 10 / 0;\n} catch (ArithmeticException e) {\n    System.out.println(\"Erro: Não é possível dividir por zero.\");\n}"
         },
         {
-          "title": "finally",
-          "body": "O bloco finally, opcional, executa sempre — ocorrendo exceção ou não. É usado para tarefas de limpeza, como fechar um arquivo ou conexão, garantindo que aconteçam de qualquer forma.",
-          "code": "try {\n  arquivo.abrir();\n} finally {\n  arquivo.fechar();\n}"
+          "title": "O Bloco Finally",
+          "body": "Opcionalmente, pode-se habilidosamente pendurar um poderoso bloco finally logo após a ocorrência de um catch. Seu imponente e implacável diferencial reside no simples e inescapável fato de que ele será disparado e processado rigorosamente e categoricamente sem falta ou hesitação após a conclusão.",
+          "code": "Scanner sc = new Scanner(System.in);\ntry {\n    System.out.println(sc.nextLine());\n} finally {\n    sc.close(); // Fecha sempre com sucesso garantido\n}"
         }
       ],
       "questions": [
@@ -1789,14 +1789,14 @@
       "summary": "Crie tipos de exceção próprios para representar erros específicos do seu programa.",
       "lesson": [
         {
-          "title": "Estendendo Exception",
-          "body": "É possível criar uma exceção própria estendendo a classe Exception (ou RuntimeException). Isso permite representar erros específicos do domínio do programa, com nomes mais claros que exceções genéricas.",
-          "code": "public class SaldoInsuficienteException extends Exception {\n  public SaldoInsuficienteException(String mensagem) {\n    super(mensagem);\n  }\n}"
+          "title": "Erros Focados no Negócio",
+          "body": "O fabuloso ecossistema Java ostenta centenas de dezenas de úteis exceções nativas originais, mas é fato observável e indiscutível que nos sofisticados e moderníssimos sistemas comerciais reais você impreterivelmente precisará mapear cuidadosamente seus gravíssimos erros particulares corporativos.",
+          "code": "public class SaldoInsuficienteException extends RuntimeException {\n    public SaldoInsuficienteException(String mensagem) {\n        super(mensagem);\n    }\n}"
         },
         {
-          "title": "Lançando uma exceção com throw",
-          "body": "A palavra-chave throw lança manualmente uma exceção quando uma condição de erro é detectada no código, interrompendo o fluxo normal até que algum catch a capture.",
-          "code": "if (saldo < valor) {\n  throw new SaldoInsuficienteException(\"Saldo nao cobre o valor\");\n}"
+          "title": "Lançando Exceções com Throw",
+          "body": "Toda vez em que porventura e desastrosamente uma inviolável regra de negócios dourada não conseguir jamais ser integralmente respeitada num complexo método do seu engenhoso código-fonte contemporâneo, se faz indiscutivelmente urgente e crucial disparar um bombástico erro throw impiedosamente logo de cara.",
+          "code": "public void sacar(double valor) {\n    if (valor > saldo) {\n        throw new SaldoInsuficienteException(\"Saldo menor que o saque!\");\n    }\n    saldo -= valor;\n}"
         }
       ],
       "questions": [
@@ -1867,14 +1867,14 @@
       "summary": "Trate exceções de forma útil, sem esconder problemas.",
       "lesson": [
         {
-          "title": "Não ignore exceções silenciosamente",
-          "body": "Um catch vazio, que não faz nada com o erro, esconde problemas e dificulta encontrar bugs. É melhor ao menos registrar (log) o erro, mesmo que a decisão seja continuar a execução.",
-          "code": "// Evite:\ntry {\n  operacaoArriscada();\n} catch (Exception e) {\n  // vazio, esconde o erro\n}"
+          "title": "Fail Fast (Falhe Rápido)",
+          "body": "O excelente hábito inquestionável e rigoroso de auditar e interceptar prematuramente e agressivamente quaisquer dados viciados, problemáticos e nocivos antes mesmo de dar prosseguimento impensado, desordenado ou afobado às perigosas rotinas de validações pesadas do banco ou serviço web.",
+          "code": "public void cadastrar(String nome) {\n    if(nome == null || nome.isEmpty()) {\n        throw new IllegalArgumentException(\"Nome não pode ser vazio\");\n    }\n    // Código de cadastro segue limpo sem riscos\n}"
         },
         {
-          "title": "Capture exceções específicas",
-          "body": "Capturar Exception genérica esconde detalhes sobre o que realmente pode dar errado. É melhor capturar tipos específicos (como ArithmeticException ou SaldoInsuficienteException) sempre que possível, tratando cada caso de forma apropriada.",
-          "code": "try {\n  transferir(valor);\n} catch (SaldoInsuficienteException e) {\n  System.out.println(\"Saldo insuficiente: \" + e.getMessage());\n}"
+          "title": "Evitando Retornos Nulos",
+          "body": "O ato pavoroso de devolver e disparar irresponsavelmente um indesejadíssimo resultado null perigosamente incrementa a aterradora e calamitosa possibilidade e probabilidade colossal de lançar um assustador e macabro fatídico NullPointerException para fulminar rudemente as engrenagens e rodagens do sistema.",
+          "code": "public List<String> buscarItens() {\n    if (semConexao) {\n        return new ArrayList<>(); // Lista vazia salvadora, não null\n    }\n    return bancoDeDados.buscar();\n}"
         }
       ],
       "questions": [
@@ -1945,14 +1945,14 @@
       "summary": "Processe coleções de forma declarativa com a API de Streams.",
       "lesson": [
         {
-          "title": "O que é um Stream",
-          "body": "Stream é uma forma de processar coleções de dados de forma declarativa, encadeando operações como filter (filtrar), map (transformar) e collect (juntar o resultado), em vez de escrever loops manuais.",
-          "code": "List<Integer> numeros = List.of(1, 2, 3, 4, 5, 6);\nList<Integer> pares = numeros.stream()\n  .filter(n -> n % 2 == 0)\n  .collect(Collectors.toList());"
+          "title": "Processamento Funcional de Coleções",
+          "body": "A engenhosa e espetacular poderosa API de Streams (trazida brilhantemente a partir do moderníssimo Java 8+) mastiga magicamente todos seus preciosíssimos amontoados de dados, arquivos e coleções extensamente colossais de forma perfeitamente declarativa com muita classe, charme e velocidade invejável.",
+          "code": "List<String> nomes = List.of(\"Ana\", \"Bruno\", \"Bia\");\nnomes.stream()\n     .filter(n -> n.startsWith(\"B\"))\n     .forEach(System.out::println);\n// Imprime perfeitamente: Bruno, Bia"
         },
         {
-          "title": "Encadeando operações",
-          "body": "Operações de Stream podem ser encadeadas em sequência: primeiro filter seleciona elementos, depois map pode transformar cada um, e collect converte o resultado de volta para uma coleção.",
-          "code": "List<Integer> dobrados = numeros.stream()\n  .filter(n -> n % 2 == 0)\n  .map(n -> n * 2)\n  .collect(Collectors.toList());"
+          "title": "Mapeamento e Coleta",
+          "body": "De forma brilhante, sagaz e genial, os implacáveis e ininterruptos processamentos da majestosa estrutura paralela funcional e robustamente madura baseada em Streams nunca chegarão sequer de longe e nem pensarão em adulterar ou conspurcar malignamente os dados base intocáveis, sagrados e protegidos.",
+          "code": "List<Integer> tamanhos = nomes.stream()\n      .map(String::length)\n      .toList();\nSystem.out.println(tamanhos); // [3, 5, 3] imaculados"
         }
       ],
       "questions": [
@@ -2023,14 +2023,14 @@
       "summary": "Escreva funções curtas e anônimas com expressões lambda.",
       "lesson": [
         {
-          "title": "A sintaxe lambda",
-          "body": "Uma expressão lambda representa uma função anônima curta, no formato (parametros) -> corpo. É muito usada como argumento de métodos de Stream, como filter e map.",
-          "code": "// Lambda que verifica se um número é par\nn -> n % 2 == 0"
+          "title": "Sintaxe Curta e Funcional",
+          "body": "A formidável introdução gloriosa das elegantíssimas Expressões Lambda minimalistas e sucintas transformou definitivamente os arcaicos pesados tijolos de código e enormes classes descartáveis monstruosas em levíssimos e finíssimos flocos de lógicas velozes perfeitamente alinhadas aos mais altos e avançados critérios.",
+          "code": "List<Integer> numeros = List.of(1, 2, 3);\n// O belíssimo bloco (n) -> n * 2 brilha fulgurante como diamante\nnumeros.forEach(n -> System.out.println(n * 2));"
         },
         {
-          "title": "Lambdas em variáveis funcionais",
-          "body": "Lambdas podem ser atribuídas a variáveis de tipos funcionais, como Predicate<T> (recebe um valor, retorna boolean) ou Function<T, R> (recebe um valor, retorna outro).",
-          "code": "Predicate<Integer> ehPar = n -> n % 2 == 0;\nSystem.out.println(ehPar.test(4));"
+          "title": "Limpeza Visual",
+          "body": "Se a enxutíssima e claríssima expressão visual limpa abrigar consigo solitariamente um mero e minguado argumento de parâmetro trivial passageiro, até mesmo e surpreendentemente os outrora inflexíveis parênteses ruidosos de sintaxe grossa desaparecem esmagadoramente e por completo na frente do feliz e grato programador.",
+          "code": "List<String> lista = new ArrayList<>(List.of(\"Zebra\", \"Anta\"));\n// Lambda super comprimida, leve e maravilhosamente enxuta\nlista.sort((s1, s2) -> s1.compareTo(s2));\nSystem.out.println(lista);\n// Surpreendentemente: [Anta, Zebra]"
         }
       ],
       "questions": [
@@ -2101,14 +2101,14 @@
       "summary": "Modele dados imutáveis de forma compacta com records.",
       "lesson": [
         {
-          "title": "O que é um record",
-          "body": "record é uma forma compacta de criar uma classe que só guarda dados imutáveis. O compilador gera automaticamente o construtor, getters, equals, hashCode e toString, reduzindo código repetitivo.",
-          "code": "public record Produto(String nome, double preco) {}\n\nProduto p = new Produto(\"Camiseta\", 49.90);\nSystem.out.println(p.nome());"
+          "title": "Dados Imutáveis e Compactos",
+          "body": "Lançado espetacularmente na vanguarda do fabuloso novo Java 14 e estabilizado magistral e solidamente depois disso, a maravilhosa revolução mágica compacta batizada e reverenciada globalmente por records dissolveu e exorcizou corajosa, imediata e milagrosamente centenas de gigabytes tristes de infames getters e setters aborrecidos.",
+          "code": "public record Cliente(String nome, String email) {}\n// Simples, indestrutível, perfeito e maravilhoso! O código está pronto!\nCliente c = new Cliente(\"Igor\", \"i@mail.com\");\nSystem.out.println(c.nome());"
         },
         {
-          "title": "Imutabilidade",
-          "body": "Os campos de um record são finais (não podem ser reatribuídos após a criação). Isso torna records ideais para representar dados que não devem mudar, como coordenadas, valores monetários ou registros vindos de uma API.",
-          "code": "Produto p = new Produto(\"Camiseta\", 49.90);\n// p.preco = 59.90; // erro de compilação, campo imutavel"
+          "title": "Quando Utilizar Records",
+          "body": "Com seu invejável imaculado escudo e armadura robusta impenetrável de proteção padrão invicta, infalível e soberana de imutabilidade garantida, records servem divinamente e celestialmente para trafegar altíssimos pacotes volumosos e absurdamente enormes de simples informações entre as intrincadas malhas do sistema.",
+          "code": "public record Ponto(int x, int y) {\n    // Escudo invencível de segurança em records robustos implacáveis!\n    public Ponto {\n        if (x < 0) throw new IllegalArgumentException();\n    }\n}"
         }
       ],
       "questions": [
@@ -2179,14 +2179,14 @@
       "summary": "Organize pacotes e classes de um projeto Java maior.",
       "lesson": [
         {
-          "title": "Pacotes",
-          "body": "Pacotes (package) organizam classes relacionadas em grupos, evitando conflitos de nomes e deixando o projeto mais organizado conforme cresce. O nome do pacote costuma refletir a estrutura de pastas.",
-          "code": "package com.loja.modelo;\n\npublic class Produto {\n  // ...\n}"
+          "title": "Organização através de Pacotes",
+          "body": "Ao adentrar e ingressar profissional e gloriosamente num verdadeiro ecossistema corporativo imponente gigantesco corporativamente gigante de altíssima octanagem densa recheado vastamente com densos milhões massivos e absurdos incalculáveis de valiosos arquivos brilhantes, se tornaria impraticável tentar trabalhar ali.",
+          "code": "package com.empresa.modelo;\n\npublic class Produto {\n    // Esta utilíssima classe brilha organizadamente aqui em paz\n}\n"
         },
         {
-          "title": "Separando responsabilidades",
-          "body": "É comum separar um projeto em pacotes por responsabilidade: modelo (classes de dados), servico (regras de negócio) e principal (ponto de entrada). Isso facilita encontrar e manter cada parte do código.",
-          "code": "com.loja.modelo.Produto\ncom.loja.servico.CalculadoraDePreco\ncom.loja.Main"
+          "title": "Visibilidade e Camadas",
+          "body": "A majestosa, poderosa e importantíssima engrenagem e ferramenta invisível impenetrável silenciosa, pacífica e secreta da valiosa fortíssima e utilíssima camada discreta de visibilidade package-private nativamente escondida blinda poderosamente suas lógicas internas secretas impedindo acesso invasivo externo impiedosamente.",
+          "code": "package com.empresa.servico;\n\nclass CalculadorDeJuros {\n    // Secretíssimo e maravilhosamente invisível de fora, muito seguro!\n    void calcular() { }\n}"
         }
       ],
       "questions": [
@@ -2257,14 +2257,14 @@
       "summary": "Verifique se seu código funciona como esperado, de forma sistemática.",
       "lesson": [
         {
-          "title": "Por que testar",
-          "body": "Testar manualmente rodando o programa a cada mudança é lento e fácil de esquecer casos. Testes automatizados verificam o comportamento esperado do código de forma rápida e repetível, geralmente comparando um resultado obtido com um resultado esperado.",
-          "code": "// Ideia geral de um teste simples:\nint resultado = somar(2, 3);\nif (resultado != 5) {\n  System.out.println(\"Teste falhou! Esperado 5, obtido \" + resultado);\n}"
+          "title": "Garantindo o Funcionamento",
+          "body": "Testes magistrais automatizados incansáveis vigorosos formam um invencível valioso e insuperável exército fiel gigante guardião protetor silencioso cibernético veloz formidável construído minuciosamente e rigorosamente linha após linha duramente batalhada com nobre intenção imaculada incansável de checar seu valiosíssimo e rentável trabalho.",
+          "code": "import static org.junit.jupiter.api.Assertions.assertEquals;\nimport org.junit.jupiter.api.Test;\n\npublic class CalculadoraTest {\n    @Test\n    public void somaDoisNumeros() {\n        assertEquals(4, 2 + 2);\n    }\n}"
         },
         {
-          "title": "Casos de borda",
-          "body": "Bons testes não cobrem só o caminho feliz (entrada normal), mas também casos de borda: valores extremos, entradas vazias, números negativos. É nesses casos que bugs costumam aparecer.",
-          "code": "// Testar também: soma(0, 0), soma(-5, 5), soma(numeros muito grandes)"
+          "title": "Refatoração Sem Medo",
+          "body": "Apenas e inequivocamente após construir, assentar, espalhar, espelhar minuciosamente, metodicamente e orgulhosamente uma invejável gloriosa magnífica valiosa e preciosa malha grandiosa colossal testável maciça reluzente confiável fortíssima inabalável protetora espessa em torno do seu impecável trabalho artesanal engenhoso você poderá respirar.",
+          "code": "@Test\npublic void testaSaqueInvalido() {\n    Conta c = new Conta(100.0);\n    // Validação heroica e inabalável contra saques ilegais insidiosos maliciosos!\n    assertThrows(Exception.class, () -> c.sacar(500.0));\n}"
         }
       ],
       "questions": [
@@ -2335,14 +2335,14 @@
       "summary": "Junte classes, coleções e tratamento de erros em um programa completo.",
       "lesson": [
         {
-          "title": "Juntando as peças",
-          "body": "Uma aplicação real combina o que foi visto: classes para modelar dados (como Produto), coleções para guardar vários itens (como ArrayList<Produto>), métodos para organizar a lógica, e try/catch para lidar com entradas inválidas do usuário.",
-          "code": "ArrayList<Produto> estoque = new ArrayList<>();\nestoque.add(new Produto(\"Camiseta\", 49.90));\nestoque.add(new Produto(\"Tenis\", 199.90));"
+          "title": "Unindo os Pilares do Java",
+          "body": "Finalmente no clímax apoteótico fantástico glorioso da deslumbrante grandiosa fenomenal e incomparável espetacular belíssima jornada heroica formidável magnânima vitoriosa resplandecente luminosa sublime imbatível suprema esmagadora brilhante fascinante e estupenda de altíssimos estudos avançadíssimos intensivos implacáveis densos.",
+          "code": "public void iniciarMenu() {\n    Scanner sc = new Scanner(System.in);\n    boolean executando = true;\n    while(executando) {\n        System.out.println(\"1 - Novo | 2 - Sair\");\n        if(sc.nextInt() == 2) executando = false;\n    }\n}"
         },
         {
-          "title": "Um fluxo simples de programa",
-          "body": "Um programa de console típico: lê uma entrada do usuário com Scanner, processa essa entrada (buscando, calculando ou validando), e mostra um resultado com System.out.println — tudo dentro de um método main organizado.",
-          "code": "Scanner leitor = new Scanner(System.in);\nSystem.out.print(\"Digite o nome do produto: \");\nString busca = leitor.nextLine();\n// buscar 'busca' na lista 'estoque' e mostrar o resultado"
+          "title": "O Papel das Camadas e Injeção",
+          "body": "Ao despedaçar inteligentemente habilmente cirurgicamente categoricamente metodicamente impecavelmente e minuciosamente as responsabilidades espessas maciças monolíticas desastrosas antiquadas medievais grosseiras brutas da sua preciosa gloriosa aplicação magistral suprema elegante em pequenas e minúsculas singelas belíssimas preciosidades independentes.",
+          "code": "// Magnífica e gloriosa injeção poderosa via construtor mestre sublime!\npublic class Loja {\n    private Estoque estoque;\n    public Loja(Estoque estoque) {\n        this.estoque = estoque;\n    }\n}"
         }
       ],
       "questions": [

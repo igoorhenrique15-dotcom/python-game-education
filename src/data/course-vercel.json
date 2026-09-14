@@ -73,17 +73,14 @@
       "summary": "Entenda o caminho que um projeto percorre do computador do desenvolvedor até ficar acessível para qualquer pessoa na internet.",
       "lesson": [
         {
-          "title": "Onde seu projeto vive hoje",
-          "body": "Enquanto você programa, seu projeto existe apenas na sua própria máquina. Só você (ou quem tiver acesso ao seu computador) consegue abrir e usar essa aplicação. Ninguém na internet consegue acessá-la digitando um endereço."
+          "title": "A Jornada do Código ao Navegador",
+          "body": "O desenvolvimento web começa no seu computador, mas para o mundo ver, o código precisa ser enviado a um servidor. A Vercel simplifica esse processo, pegando seu repositório Git, executando o processo de build automaticamente e distribuindo os arquivos finais para servidores espalhados pelo mundo, tudo em poucos segundos.",
+          "code": "// Instale a Vercel CLI no seu terminal\nnpm i -g vercel\n\n// Para fazer o deploy do seu projeto local, basta digitar:\nvercel"
         },
         {
-          "title": "O que significa 'deploy'",
-          "body": "Deploy é o processo de colocar o código em um servidor conectado à internet, para que ele fique disponível 24 horas por dia através de um endereço (URL). Antes do deploy, o projeto é privado; depois, ele é público."
-        },
-        {
-          "title": "Um novo endereço no ar",
-          "body": "Depois do deploy, seu site ganha uma URL própria, como meuprojeto.vercel.app. Qualquer pessoa com internet pode acessar esse endereço e ver o resultado, sem precisar ter o código instalado.",
-          "tip": "Pense no deploy como 'publicar', da mesma forma que você publica uma foto nas redes sociais: ela sai do seu dispositivo e passa a existir num lugar acessível a todos."
+          "title": "A Magia do Deploy Contínuo",
+          "body": "No ecossistema moderno, não precisamos transferir arquivos via FTP. Ao conectar seu repositório à Vercel, qualquer alteração enviada (push) aciona um novo deploy. A Vercel entende as mudanças, compila o código e atualiza a aplicação no ar, permitindo que você foque apenas em escrever código sem se preocupar com infraestrutura.",
+          "code": "{\n  \"version\": 2,\n  \"builds\": [\n    { \"src\": \"package.json\", \"use\": \"@vercel/static-build\" }\n  ]\n}"
         }
       ],
       "questions": [
@@ -154,17 +151,14 @@
       "summary": "Descubra o que significa 'hospedar' um site e por que isso é necessário para publicar qualquer projeto.",
       "lesson": [
         {
-          "title": "Hospedagem é um espaço na internet",
-          "body": "Hospedar um site significa guardá-lo em um computador (servidor) que fica sempre ligado e conectado à internet, pronto para responder quando alguém digitar o endereço do site."
+          "title": "O Conceito de Hospedagem Moderna",
+          "body": "Hospedar um site significa alugar um espaço em um computador ligado 24h por dia à internet (servidor). Enquanto serviços antigos exigiam configuração manual de servidores, a Vercel atua como uma plataforma como serviço (PaaS), abstraindo a infraestrutura para que você hospede aplicações modernas de forma instantânea e sem atrito.",
+          "code": "{\n  \"name\": \"meu-projeto-hospedado\",\n  \"scripts\": {\n    \"build\": \"next build\",\n    \"start\": \"next start\"\n  }\n}"
         },
         {
-          "title": "Serviços de hospedagem",
-          "body": "Empresas como a Vercel oferecem servidores prontos para hospedar projetos, sem que você precise comprar ou manter um computador próprio ligado o tempo todo.",
-          "tip": "Antigamente, hospedar exigia contratar e configurar um servidor manualmente. Hoje, serviços como a Vercel automatizam quase tudo isso."
-        },
-        {
-          "title": "Por que não hospedar em casa",
-          "body": "Manter seu próprio computador ligado 24h, com internet estável e segurança, é caro e trabalhoso. Por isso, quase todo projeto real usa um serviço de hospedagem especializado."
+          "title": "Vercel vs. Servidores Tradicionais",
+          "body": "Em servidores tradicionais, você precisa gerenciar sistema operacional, atualizações de segurança e configurar o servidor web. A Vercel automatiza tudo isso. Ela não é apenas um local para guardar arquivos, mas uma plataforma que otimiza imagens, gerencia cache global e escala automaticamente conforme o tráfego do site aumenta.",
+          "code": "{\n  \"cleanUrls\": true,\n  \"trailingSlash\": false,\n  \"headers\": [\n    {\n      \"source\": \"/(.*)\",\n      \"headers\": [ { \"key\": \"x-custom-header\", \"value\": \"vercel-rocks\" } ]\n    }\n  ]\n}"
         }
       ],
       "questions": [
@@ -235,17 +229,14 @@
       "summary": "Veja o panorama completo: código local, controle de versão, hospedagem e o site no ar, tudo conectado.",
       "lesson": [
         {
-          "title": "As peças do quebra-cabeça",
-          "body": "Para publicar um site moderno, normalmente juntamos: o código do projeto, um repositório no GitHub (para guardar e versionar o código) e um serviço de hospedagem, como a Vercel, que pega esse código e o publica."
+          "title": "Tirando a Ideia do Papel",
+          "body": "Levar um projeto do ambiente local para a internet (colocar no ar) costumava ser um processo longo. Com a Vercel, o caminho 'Da Ideia ao Ar' é drásticamente reduzido. Você cria sua aplicação usando frameworks como Next.js, React ou Vue, e a Vercel se encarrega de transformar esse código-fonte em uma experiência web otimizada e acessível.",
+          "code": "import { useState } from 'react';\n\nexport default function App() {\n  return <h1>Minha Ideia no Ar pela Vercel!</h1>;\n}"
         },
         {
-          "title": "O papel do GitHub no processo",
-          "body": "O GitHub guarda o histórico do seu código na nuvem. A Vercel se conecta a esse repositório para saber exatamente qual versão do projeto deve publicar.",
-          "tip": "Pense no GitHub como o 'estoque' do seu código, e na Vercel como a 'loja' que exibe esse produto ao público."
-        },
-        {
-          "title": "O ciclo completo",
-          "body": "Você escreve código localmente, envia (push) para o GitHub, e a Vercel detecta essa atualização e publica automaticamente uma nova versão do site."
+          "title": "A CLI da Vercel",
+          "body": "A Vercel CLI é uma ferramenta de linha de comando poderosa. Com um único comando `vercel`, você inicia o processo de deploy direto do seu terminal, sem sequer precisar abrir o navegador. Ela inspeciona seu projeto, detecta configurações automaticamente e fornece um link seguro (URL) para visualizar seu site em poucos segundos.",
+          "code": "# 1. Acesse a pasta do projeto\ncd meu-projeto\n\n# 2. Inicie o deploy interativo\nvercel\n\n# 3. Para deploy em produção:\nvercel --prod"
         }
       ],
       "questions": [
@@ -316,17 +307,14 @@
       "summary": "Entenda o que é um site estático: arquivos prontos que não mudam de acordo com quem está acessando.",
       "lesson": [
         {
-          "title": "Arquivos fixos, sempre iguais",
-          "body": "Um site estático é formado por arquivos HTML, CSS e JavaScript já prontos, que são enviados exatamente da mesma forma para qualquer pessoa que acessar o site. Não há processamento especial no servidor a cada visita."
+          "title": "Hospedando Sites Estáticos",
+          "body": "Um site estático é composto apenas por arquivos HTML, CSS e JavaScript que não mudam a cada requisição. A Vercel é extremamente eficiente com sites estáticos. Ela distribui esses arquivos na sua Edge Network, garantindo que o visitante faça o download a partir do servidor fisicamente mais próximo, resultando em carregamentos quase instantâneos.",
+          "code": "<!DOCTYPE html>\n<html lang=\"pt-BR\">\n<head>\n  <title>Meu Site Estático</title>\n</head>\n<body>\n  <h1>Olá, Mundo! Hospedado na Vercel.</h1>\n</body>\n</html>"
         },
         {
-          "title": "Exemplos comuns",
-          "body": "Um blog simples, um portfólio pessoal ou uma landing page (página de divulgação) costumam ser sites estáticos: o conteúdo não muda dependendo de quem está olhando."
-        },
-        {
-          "title": "Vantagem: velocidade e simplicidade",
-          "body": "Como o servidor só entrega arquivos prontos, sites estáticos costumam carregar muito rápido e são mais simples e baratos de hospedar.",
-          "tip": "Um site React feito com Vite, quando compilado ('build'), normalmente vira um conjunto de arquivos estáticos prontos para hospedar."
+          "title": "Configurando Sites Estáticos",
+          "body": "Mesmo em projetos puramente estáticos sem um framework estruturado, a Vercel consegue detectá-los. Se você precisar de comportamentos específicos, como rotas limpas ou redirecionamentos, pode criar um arquivo `vercel.json` na raiz do projeto para instruir a Vercel sobre como processar e entregar seus arquivos estáticos ao usuário.",
+          "code": "{\n  \"redirects\": [\n    {\n      \"source\": \"/sobre-nos\",\n      \"destination\": \"/sobre.html\",\n      \"permanent\": true\n    }\n  ]\n}"
         }
       ],
       "questions": [
@@ -397,17 +385,14 @@
       "summary": "Compreenda como um servidor tradicional processa cada requisição, gerando respostas dinâmicas sob demanda.",
       "lesson": [
         {
-          "title": "Um programa sempre ligado",
-          "body": "Em um site dinâmico com servidor tradicional, existe um programa (como um servidor Node.js) rodando continuamente, esperando por pedidos (requisições) e respondendo a cada um, muitas vezes de forma personalizada."
+          "title": "O Fim da Gestão de Servidores",
+          "body": "O modelo de servidor tradicional exige pagar mensalmente por um computador fixo, configurando Linux, Nginx ou Apache. Isso consome tempo e requer manutenção. A Vercel substitui essa necessidade utilizando uma arquitetura Serverless, o que significa que os servidores ainda existem, mas a Vercel gerencia todos eles para você de forma invisível.",
+          "code": "// Ao invés de configurar o Express num servidor fixo:\n// const express = require('express');\n// const app = express();\n// app.listen(3000);\n\n// Na Vercel, você foca na função e a plataforma gerencia o servidor."
         },
         {
-          "title": "Processamento a cada visita",
-          "body": "Diferente do site estático, o servidor tradicional pode consultar um banco de dados, checar quem está logado e montar uma resposta diferente para cada pessoa, a cada requisição."
-        },
-        {
-          "title": "Custo de manter ligado",
-          "body": "Esse tipo de servidor precisa ficar ligado o tempo todo, mesmo sem visitantes, o que costuma gerar custo constante de hospedagem.",
-          "tip": "Um exemplo clássico: um sistema de login que mostra o nome de cada usuário diferente após autenticação é um comportamento tipicamente dinâmico."
+          "title": "Escalabilidade Automática",
+          "body": "Servidores tradicionais possuem limites fixos; se o site tiver um pico de acessos, ele pode cair por falta de memória ou CPU. A infraestrutura da Vercel escala automaticamente. Se mil pessoas acessarem seu site simultaneamente, a Vercel distribui a carga instantaneamente, garantindo estabilidade e performance sem configurações complexas.",
+          "code": "{\n  \"buildCommand\": \"npm run build\",\n  \"outputDirectory\": \"dist\",\n  \"framework\": \"vite\"\n}"
         }
       ],
       "questions": [
@@ -478,17 +463,14 @@
       "summary": "Conheça o conceito de função serverless: código que roda sob demanda, sem um servidor fixo sempre ligado.",
       "lesson": [
         {
-          "title": "Código que 'acorda' quando é chamado",
-          "body": "Uma função serverless é um pedaço de código que só é executado quando alguém faz uma requisição específica. Entre uma chamada e outra, não existe um servidor rodando continuamente esperando."
+          "title": "Introdução às Serverless Functions",
+          "body": "Funções Serverless (Sem Servidor) permitem que você escreva código backend sem manter um servidor ligado continuamente. Na Vercel, basta criar um arquivo dentro da pasta `api/`. Cada arquivo se torna um endpoint (uma rota) independente que só consome recursos e é executado quando um usuário faz uma requisição, economizando custos.",
+          "code": "// api/hello.js\nexport default function handler(req, res) {\n  res.status(200).json({ \n    message: 'Olá da Função Serverless Vercel!' \n  });\n}"
         },
         {
-          "title": "Quem cuida da infraestrutura",
-          "body": "Na prática, 'serverless' não significa 'sem servidor' de verdade, mas sim que o desenvolvedor não precisa gerenciar esse servidor: a plataforma (como a Vercel) cuida de ligar e desligar os recursos automaticamente."
-        },
-        {
-          "title": "Quando isso é útil",
-          "body": "Funções serverless são ótimas para tarefas pontuais, como processar um formulário de contato ou buscar dados de uma API externa, sem precisar manter um servidor tradicional ligado o tempo todo.",
-          "tip": "Pense em serverless como uma lâmpada com sensor de presença: ela acende só quando alguém entra na sala, em vez de ficar acesa o tempo todo."
+          "title": "Como Funciona na Prática",
+          "body": "Quando uma Serverless Function é chamada, a Vercel aloca recursos instantaneamente (Cold Start) para executar o código, retorna a resposta ao usuário e 'desliga' o processo. Isso é perfeito para APIs leves, envio de e-mails, processamento de pagamentos ou chamadas seguras para bancos de dados sem expor credenciais no front-end.",
+          "code": "// api/user.ts\nimport type { VercelRequest, VercelResponse } from '@vercel/node';\n\nexport default function handler(req: VercelRequest, res: VercelResponse) {\n  const { id } = req.query;\n  res.status(200).send(`Dados do usuário: ${id}`);\n}"
         }
       ],
       "questions": [
@@ -559,17 +541,14 @@
       "summary": "Veja os passos iniciais para começar a usar a Vercel de forma gratuita conectando sua conta do GitHub.",
       "lesson": [
         {
-          "title": "Login com GitHub",
-          "body": "A forma mais comum de começar na Vercel é entrar usando sua conta do GitHub. Isso já conecta as duas plataformas automaticamente, facilitando o próximo passo: importar um repositório."
+          "title": "Sua Conta na Vercel",
+          "body": "Criar uma conta na Vercel é o primeiro passo para a nuvem. O processo é feito através de Single Sign-On (SSO) com provedores como GitHub, GitLab ou Bitbucket. Isso não é apenas para login, mas serve para vincular a plataforma aos seus repositórios, permitindo a mágica do deploy automático diretamente do seu código-fonte.",
+          "code": "/* \nPassos para criar conta:\n1. Acesse vercel.com\n2. Clique em 'Sign Up'\n3. Escolha 'Continue with GitHub'\n4. Autorize a Vercel na sua conta GitHub\n*/"
         },
         {
-          "title": "Plano gratuito (Hobby)",
-          "body": "A Vercel oferece um plano gratuito, chamado 'Hobby', pensado para projetos pessoais e de estudo, com recursos suficientes para publicar a maioria dos projetos simples sem custo."
-        },
-        {
-          "title": "Painel de controle",
-          "body": "Depois do login, você chega a um painel (dashboard) onde é possível ver todos os seus projetos publicados, seus domínios e o status de cada deploy.",
-          "tip": "Ter um repositório já criado no GitHub antes de acessar a Vercel deixa o processo de importação muito mais rápido."
+          "title": "O Dashboard Vercel",
+          "body": "Após criar a conta, você acessa o Dashboard. É a central de controle onde você visualiza todos os seus projetos, acompanha o status de deploys em andamento, configura domínios customizados, analisa métricas de performance (Web Vitals) e gerencia membros da equipe, tudo em uma interface limpa, moderna e altamente intuitiva.",
+          "code": "// A Vercel também permite gerenciar projetos via CLI, caso prefira o terminal.\nvercel link\nvercel env pull\nvercel switch"
         }
       ],
       "questions": [
@@ -640,17 +619,14 @@
       "summary": "Entenda como conectar um repositório do GitHub à Vercel para permitir a publicação do projeto.",
       "lesson": [
         {
-          "title": "Importar um projeto existente",
-          "body": "Na Vercel, a opção 'Add New Project' (ou similar) permite escolher, entre os repositórios da sua conta do GitHub, qual projeto você deseja publicar."
+          "title": "Integração Contínua com Git",
+          "body": "Conectar seu repositório Git (GitHub, GitLab, Bitbucket) à Vercel é a melhor prática de implantação. Ao importar um projeto pelo Dashboard da Vercel, a plataforma analisa seu código, identifica o framework (como React, Angular, Next.js) e configura automaticamente os comandos de build necessários para compilar o projeto.",
+          "code": "// Exemplo de estrutura de um repositório pronto para a Vercel\nmeu-projeto/\n├── src/\n├── package.json // A Vercel lê este arquivo para saber o que instalar\n└── vercel.json  // Configurações opcionais da Vercel"
         },
         {
-          "title": "Permissões de acesso",
-          "body": "Ao conectar o GitHub, a Vercel pede permissão para ler os repositórios escolhidos. Isso é necessário para que ela consiga acompanhar as mudanças no código."
-        },
-        {
-          "title": "Primeira publicação",
-          "body": "Assim que o repositório é conectado e configurado, a Vercel realiza o primeiro deploy automaticamente, gerando já uma URL pública para o projeto.",
-          "tip": "Você pode escolher conectar todos os repositórios da conta ou apenas repositórios específicos, por questão de privacidade."
+          "title": "Permissões e Segurança do Repositório",
+          "body": "Ao conectar um repositório, a Vercel solicita permissões para acessar seu código e instalar webhooks. Esses webhooks são ganchos que avisam a Vercel sempre que um novo código for adicionado. A integração é altamente segura e você pode selecionar especificamente quais repositórios individuais a Vercel terá permissão para acessar.",
+          "code": "{\n  \"github\": {\n    \"enabled\": true,\n    \"silent\": false\n  }\n}"
         }
       ],
       "questions": [
@@ -721,17 +697,14 @@
       "summary": "Compreenda o deploy automático: como cada envio de código para o GitHub gera uma nova publicação na Vercel.",
       "lesson": [
         {
-          "title": "Push dispara publicação",
-          "body": "Depois que um repositório está conectado, cada vez que você envia (push) uma alteração para a branch principal do GitHub, a Vercel detecta essa mudança e inicia um novo deploy automaticamente."
+          "title": "A Mágica do Deploy a cada Push",
+          "body": "Com a integração Git ativa, a Vercel implementa o CI/CD (Integração e Entrega Contínuas). Isso significa que toda vez que você executa o comando `git push` para enviar novos códigos para a branch principal (como a main), a Vercel é notificada instantaneamente, inicia a compilação e substitui a versão antiga do site pela nova.",
+          "code": "git add .\ngit commit -m \"feat: nova seção de contato\"\n# Ao rodar o push, a Vercel inicia o deploy automaticamente\ngit push origin main"
         },
         {
-          "title": "Sem cliques manuais repetidos",
-          "body": "Isso significa que, no dia a dia, você não precisa acessar a Vercel manualmente para publicar cada atualização: basta atualizar o código no GitHub."
-        },
-        {
-          "title": "Histórico de deploys",
-          "body": "A Vercel mantém um histórico de cada deploy realizado, permitindo ver qual versão do código está no ar e, se necessário, voltar a uma versão anterior.",
-          "tip": "Esse fluxo de 'publicar a cada mudança no repositório' é conhecido como integração contínua (CI) aplicada ao deploy."
+          "title": "Vantagens do Fluxo Automatizado",
+          "body": "Fazer deploy a cada push remove a margem de erro humano e garante que o ambiente de produção sempre reflita a versão mais recente do código na branch principal. Se um erro ocorrer durante o processo de build, a Vercel cancela o deploy e mantém a versão anterior funcionando, evitando que um código quebrado derrube seu site.",
+          "code": "// Arquivo vercel.json limitando a branch de produção\n{\n  \"git\": {\n    \"deploymentEnabled\": {\n      \"main\": true\n    }\n  }\n}"
         }
       ],
       "questions": [
@@ -802,17 +775,14 @@
       "summary": "Entenda como a Vercel cria deployments separados para cada branch do repositório, isolando as mudanças.",
       "lesson": [
         {
-          "title": "Branch principal vs outras branches",
-          "body": "Normalmente, a branch principal (como 'main') representa a versão oficial do site, publicada em produção. Outras branches, criadas para novas funcionalidades, também podem gerar seus próprios deploys separados."
+          "title": "Deploys Múltiplos por Branch",
+          "body": "A Vercel não se limita apenas à branch principal. Se você criar uma branch chamada 'feature/novo-design' e fizer um push, a Vercel criará um deploy exclusivo para essa branch. Isso permite que você e sua equipe testem novas funcionalidades em um ambiente real na nuvem sem afetar os usuários que estão acessando o site oficial.",
+          "code": "git checkout -b feature/novo-design\n# Faça suas mudanças\ngit push origin feature/novo-design\n# A Vercel criará uma URL como: seuprojeto-feature-novo-design.vercel.app"
         },
         {
-          "title": "Deploy isolado por branch",
-          "body": "Cada branch enviada ao GitHub pode gerar um deployment próprio na Vercel, com uma URL diferente, sem afetar o site que já está em produção."
-        },
-        {
-          "title": "Testar sem medo",
-          "body": "Isso permite testar mudanças em uma URL separada antes de decidir se elas devem ir para o site principal, reduzindo o risco de quebrar o que já está no ar.",
-          "tip": "Pense em cada branch como um 'rascunho' isolado, que só vira 'versão final' quando é aceito na branch principal."
+          "title": "O Poder das URLs Temporárias",
+          "body": "Cada vez que a Vercel realiza o deploy de uma branch secundária, ela gera uma URL única e imutável, conhecida como Preview Deployment. Essas URLs são essenciais para aprovações de design (QA) e revisão de código, pois você pode enviar o link exato daquela versão específica para clientes ou gerentes antes de aprovar a mudança final.",
+          "code": "// Exemplo de URLs geradas pela Vercel\n// Produção: meusite.com\n// Branch de Feature: meusite-git-feature-design-username.vercel.app"
         }
       ],
       "questions": [
@@ -883,17 +853,14 @@
       "summary": "Veja como um pull request no GitHub gera automaticamente um link de preview para revisão antes da fusão.",
       "lesson": [
         {
-          "title": "O que é um pull request",
-          "body": "Um pull request (PR) é uma solicitação para juntar as mudanças de uma branch à branch principal. Ele serve para revisar o código antes de aceitá-lo definitivamente no projeto."
+          "title": "Previews em Pull Requests",
+          "body": "Quando você abre um Pull Request (PR) no GitHub, a Vercel automaticamente insere um comentário contendo um link para o Preview Deployment daquele PR. Antes de mesclar (merge) o código novo, qualquer revisor pode clicar no link e interagir com a aplicação real na nuvem, garantindo que tudo funcione perfeitamente.",
+          "code": "/* \nComentário gerado pelo bot da Vercel no PR do GitHub:\n\n✅ Preview: https://meusite-pr-42.vercel.app\n🔍 Inspect: https://vercel.com/seu-user/projeto/deployments/id\n*/"
         },
         {
-          "title": "Link de preview automático",
-          "body": "Quando um pull request é aberto em um repositório conectado à Vercel, ela costuma comentar automaticamente no PR com um link de preview, mostrando como ficaria o site com aquelas mudanças."
-        },
-        {
-          "title": "Revisão visual antes de aceitar",
-          "body": "Esse link permite que outras pessoas da equipe vejam e testem a mudança diretamente no navegador, sem precisar rodar o projeto na própria máquina.",
-          "tip": "Revisar visualmente pelo link de preview evita surpresas depois que o código é aceito na branch principal."
+          "title": "Colaboração Visual com Vercel",
+          "body": "Além do link do PR, a Vercel oferece recursos de Comentários Nativos no próprio preview. Membros da equipe podem clicar em elementos na interface do site renderizado e deixar anotações, sugestões ou relatar bugs diretamente na tela. É uma forma revolucionária de colaborar visualmente sem precisar de reuniões longas.",
+          "code": "import { VercelToolbar } from '@vercel/toolbar/next';\n\nexport default function Layout({ children }) {\n  return (\n    <body>\n      {children}\n      <VercelToolbar />\n    </body>\n  );\n}"
         }
       ],
       "questions": [
@@ -964,17 +931,14 @@
       "summary": "Diferencie claramente o ambiente de produção (site real) dos ambientes de preview (testes temporários).",
       "lesson": [
         {
-          "title": "Produção é o site 'de verdade'",
-          "body": "O ambiente de produção é aquele que os usuários finais acessam normalmente, geralmente ligado à branch principal do repositório e ao domínio definitivo do projeto."
+          "title": "Entendendo Produção vs Preview",
+          "body": "Na Vercel, o conceito de 'Ambientes' divide-se basicamente em Produção e Preview (Prévia). O ambiente de Produção é onde ficam as alterações aprovadas, e está atrelado ao seu domínio principal. O ambiente de Preview contém as alterações em andamento de branches e PRs, sendo focado em testes antes de ir para o público.",
+          "code": "// Você pode verificar o ambiente atual no código\nif (process.env.VERCEL_ENV === 'production') {\n  console.log('Rodando no domínio oficial!');\n} else if (process.env.VERCEL_ENV === 'preview') {\n  console.log('Rodando em um deploy de teste!');\n}"
         },
         {
-          "title": "Preview é temporário e isolado",
-          "body": "Os ambientes de preview existem para testes, ligados a branches ou pull requests específicos. Eles não afetam o site de produção e costumam ter URLs diferentes e temporárias."
-        },
-        {
-          "title": "Só vai para produção o que for aprovado",
-          "body": "A boa prática é: testar no preview, revisar, e só então mesclar (merge) as mudanças na branch principal, momento em que elas passam a valer também para a produção.",
-          "tip": "Nunca teste mudanças arriscadas diretamente na branch de produção; use sempre um preview antes."
+          "title": "Prevenindo Índexação no Preview",
+          "body": "URLs de Preview são acessíveis publicamente caso você tenha o link, mas a Vercel inteligentemente configura cabeçalhos HTTP como `X-Robots-Tag: noindex` nestes ambientes. Isso garante que mecanismos de busca como o Google não indexem suas versões de teste, impedindo que os usuários encontrem a versão errada no buscador.",
+          "code": "/* \nCabeçalho automático injetado pela Vercel em deploys de Preview:\nX-Robots-Tag: noindex, nofollow\n*/"
         }
       ],
       "questions": [
@@ -1045,17 +1009,14 @@
       "summary": "Entenda o que é um domínio próprio e como ele substitui a URL padrão gerada pela Vercel.",
       "lesson": [
         {
-          "title": "Da URL padrão ao domínio próprio",
-          "body": "Por padrão, um projeto na Vercel recebe uma URL como meuprojeto.vercel.app. É possível, opcionalmente, usar um domínio próprio, como meusite.com.br, comprado separadamente de um registrador de domínios."
+          "title": "Domínios Próprios na Vercel",
+          "body": "Por padrão, a Vercel fornece subdomínios gratuitos (ex: `.vercel.app`). No entanto, para lançar seu projeto profissionalmente, você deve adicionar um Custom Domain (Domínio Próprio) no Dashboard da Vercel. Isso vincula seu aplicativo hospedado a um endereço único que você adquiriu, como `meusite.com.br`.",
+          "code": "// Configuração no vercel.json para redirecionar um domínio\n{\n  \"redirects\": [\n    {\n      \"source\": \"/:path*\",\n      \"has\": [{ \"type\": \"host\", \"value\": \"www.meusite.com\" }],\n      \"destination\": \"https://meusite.com/:path*\",\n      \"permanent\": true\n    }\n  ]\n}"
         },
         {
-          "title": "Domínio não é hospedagem",
-          "body": "Comprar um domínio (o 'nome' do site) é diferente de hospedar o site (onde o conteúdo realmente fica). É preciso conectar as duas coisas para que o domínio aponte para o projeto hospedado na Vercel."
-        },
-        {
-          "title": "Por que usar domínio próprio",
-          "body": "Um domínio próprio deixa o site mais profissional e fácil de lembrar, sendo comum em projetos de portfólio, empresas e produtos.",
-          "tip": "É possível usar a Vercel gratuitamente sem nunca comprar um domínio próprio, ficando apenas com a URL padrão .vercel.app."
+          "title": "Adicionando o Domínio",
+          "body": "Ao adicionar o domínio na aba 'Settings > Domains' do projeto, a Vercel fornecerá registros de DNS (Geralmente um CNAME ou registros A) que devem ser configurados no provedor onde você comprou o domínio (ex: Registro.br, GoDaddy). Uma vez validados os registros, a Vercel assumirá o tráfego daquele endereço para sua aplicação.",
+          "code": "/* \nExemplo de Registros DNS solicitados pela Vercel:\nTipo: CNAME\nNome: www\nValor: cname.vercel-dns.com.\n*/"
         }
       ],
       "questions": [
@@ -1126,17 +1087,14 @@
       "summary": "Entenda de forma simples o papel do DNS ao conectar um domínio próprio a um projeto hospedado na Vercel.",
       "lesson": [
         {
-          "title": "DNS é como uma agenda de contatos",
-          "body": "O DNS (Domain Name System) funciona como uma agenda que traduz nomes de domínio (como meusite.com.br) para o endereço técnico real de onde o site está hospedado."
+          "title": "DNS Básico e Propagação",
+          "body": "O DNS (Domain Name System) é a lista telefônica da internet; ele traduz o nome `meusite.com` para o endereço de IP dos servidores da Vercel. Quando você altera as configurações de DNS no seu provedor de registro, pode ocorrer a 'propagação', um período (de minutos a poucas horas) para que toda a internet reconheça a mudança.",
+          "code": "/* \nExemplo de Registros DNS de tipo A (Apontando direto pro IP):\nTipo: A\nNome: @ (Raiz do domínio)\nValor: 76.76.21.21 (IP Global da Vercel)\n*/"
         },
         {
-          "title": "Configurando registros DNS",
-          "body": "Para apontar um domínio para a Vercel, normalmente é preciso configurar registros DNS (como registros do tipo A ou CNAME) no painel do registrador do domínio, seguindo instruções fornecidas pela própria Vercel."
-        },
-        {
-          "title": "O tempo de propagação",
-          "body": "Depois de configurar o DNS, pode levar algum tempo (de minutos a algumas horas) até que a mudança seja reconhecida em todos os lugares da internet, processo chamado de propagação.",
-          "tip": "Se o domínio ainda não funcionar logo após configurar o DNS, é normal esperar um pouco: a propagação não é instantânea."
+          "title": "Nameservers da Vercel",
+          "body": "Uma alternativa avançada e recomendada pela Vercel é delegar o controle total do seu domínio alterando os Nameservers (Servidores de Nome) para os da Vercel. Assim, em vez de configurar registros A ou CNAME manualmente no seu provedor, você gerencia todos os registros DNS do seu site diretamente de dentro do Dashboard da Vercel.",
+          "code": "/* \nSe você alterar para os Nameservers da Vercel, usará endereços como:\nns1.vercel-dns.com\nns2.vercel-dns.com\n*/"
         }
       ],
       "questions": [
@@ -1207,17 +1165,14 @@
       "summary": "Entenda por que a Vercel provisiona certificados HTTPS automaticamente, tornando os sites mais seguros por padrão.",
       "lesson": [
         {
-          "title": "O que é HTTPS",
-          "body": "HTTPS é a versão segura do protocolo HTTP, usada para transmitir dados entre o navegador do usuário e o servidor de forma criptografada, protegendo contra interceptação por terceiros."
+          "title": "HTTPS Totalmente Automático",
+          "body": "A segurança na web é obrigatória, e o HTTPS garante que os dados trocados entre o site e o usuário sejam criptografados. Diferente de hospedagens antigas que exigiam instalação manual de certificados, a Vercel gera, configura e renova automaticamente Certificados SSL gratuitos através do Let's Encrypt para todos os seus domínios.",
+          "code": "// A Vercel força o tráfego seguro por padrão, sem código extra\n// Qualquer acesso a http://meusite.com\n// será redirecionado para https://meusite.com com status 308."
         },
         {
-          "title": "Certificado automático na Vercel",
-          "body": "Ao publicar um projeto (seja na URL padrão ou em um domínio próprio já conectado), a Vercel provisiona automaticamente um certificado HTTPS, sem exigir configuração manual complexa do desenvolvedor."
-        },
-        {
-          "title": "Cadeado verde, confiança do usuário",
-          "body": "Sites com HTTPS mostram um ícone de cadeado no navegador, indicando conexão segura, o que aumenta a confiança de quem visita o site.",
-          "tip": "Antigamente, configurar HTTPS exigia comprar e instalar certificados manualmente; a automação da Vercel elimina boa parte dessa complexidade."
+          "title": "Zero Manutenção de Segurança",
+          "body": "Como os certificados SSL têm prazo de validade curto (geralmente 90 dias), renová-los manualmente é arriscado. A Vercel realiza essa renovação invisivelmente no plano de fundo antes que o certificado expire. Se houver falha de renovação, alertas são enviados ao desenvolvedor, assegurando que seu site nunca exiba mensagens de 'Site Inseguro'.",
+          "code": "{\n  \"headers\": [\n    {\n      \"source\": \"/(.*)\",\n      \"headers\": [\n        {\n          \"key\": \"Strict-Transport-Security\",\n          \"value\": \"max-age=63072000; includeSubDomains; preload\"\n        }\n      ]\n    }\n  ]\n}"
         }
       ],
       "questions": [
@@ -1288,17 +1243,14 @@
       "summary": "Entenda por que informações sensíveis, como chaves de API, nunca devem ficar escritas diretamente no código-fonte.",
       "lesson": [
         {
-          "title": "O problema de expor segredos",
-          "body": "Se uma chave de API, senha de banco de dados ou outro dado sensível for escrito diretamente no código e esse código for enviado ao GitHub, qualquer pessoa com acesso ao repositório poderá ver esse segredo."
+          "title": "Escondendo Segredos do Código",
+          "body": "Nunca coloque senhas de banco de dados, chaves de API (como do Stripe ou OpenAI) ou tokens sensíveis no código-fonte ou no repositório público do GitHub. Na Vercel, usamos as Environment Variables (Variáveis de Ambiente), que são pares de chave e valor armazenados de forma criptografada nos servidores da Vercel.",
+          "code": "// Exemplo de acesso a uma variável de ambiente de forma segura na API\nexport default function handler(req, res) {\n  const apiKey = process.env.OPENAI_API_KEY;\n  // A chave de API nunca é exposta para o cliente (navegador)\n  res.status(200).json({ ok: true });\n}"
         },
         {
-          "title": "Variáveis de ambiente resolvem isso",
-          "body": "Uma variável de ambiente é um valor configurado fora do código-fonte, geralmente diretamente no painel da plataforma de hospedagem, e acessado pelo código em tempo de execução, sem aparecer no repositório."
-        },
-        {
-          "title": "Onde configurar na Vercel",
-          "body": "Na Vercel, variáveis de ambiente são cadastradas nas configurações do projeto (Project Settings), ficando disponíveis para o código sem nunca precisar ser digitadas no arquivo-fonte.",
-          "tip": "Uma boa prática comum é nunca subir arquivos como '.env' (que guardam variáveis locais) para o repositório público."
+          "title": "Gerenciando Variáveis na Vercel",
+          "body": "Você pode adicionar as variáveis no Dashboard da Vercel em 'Settings > Environment Variables'. Para usá-las durante o desenvolvimento local sem expô-las no GitHub, você utiliza a Vercel CLI para baixar essas variáveis para o seu computador ou cria um arquivo local `.env` que deve ser adicionado ao `.gitignore`.",
+          "code": "# Usando a CLI para baixar variáveis do projeto Vercel para desenvolvimento local\nvercel env pull .env.local\n\n# O comando cria um .env.local com suas chaves seguras\n# Lembre-se: arquivo .env.local não sobe para o Git!"
         }
       ],
       "questions": [
@@ -1369,17 +1321,14 @@
       "summary": "Entenda como configurar variáveis de ambiente diferentes para produção, preview e desenvolvimento.",
       "lesson": [
         {
-          "title": "Nem todo ambiente precisa do mesmo valor",
-          "body": "Muitas vezes, é útil usar valores diferentes de uma mesma variável dependendo do ambiente: por exemplo, uma chave de teste para preview e uma chave real para produção."
+          "title": "Variáveis para Ambientes Diferentes",
+          "body": "Um dos grandes recursos das Variáveis de Ambiente na Vercel é a segmentação. Você pode ter a mesma variável `DATABASE_URL`, mas com valores diferentes dependendo do ambiente. Por exemplo, ela aponta para um banco de dados de Teste no ambiente de Preview e para o banco de dados oficial no ambiente de Produção.",
+          "code": "/* \nDashboard da Vercel -> Environment Variables\nChave: DATABASE_URL\nValor 1: url-do-banco-oficial (Marcado para Production)\nValor 2: url-do-banco-de-testes (Marcado para Preview e Development)\n*/"
         },
         {
-          "title": "Selecionando o ambiente na Vercel",
-          "body": "Ao cadastrar uma variável de ambiente na Vercel, é possível escolher para quais ambientes ela vale: Production, Preview e/ou Development."
-        },
-        {
-          "title": "Evitando misturar dados de teste com reais",
-          "body": "Separar variáveis por ambiente evita, por exemplo, que testes em preview acabem afetando dados reais de produção, como um banco de dados de clientes de verdade.",
-          "tip": "Uma prática comum é usar serviços de teste (sandbox) em ambientes de preview e desenvolvimento, reservando as credenciais reais só para produção."
+          "title": "Prevenindo Desastres com Variavéis",
+          "body": "Segmentar ambientes evita erros catastróficos. Se você estiver testando uma nova feature (ambiente de Preview) e rodar uma migração de banco ou deletar dados de teste, essa ação afetará o banco de dados falso. A Vercel injeta as variáveis corretas automaticamente no momento do build, mantendo a Produção segura e intocada.",
+          "code": "import db from './database';\n\n// No Preview, o banco será 'fake_db', na Produção, 'prod_db'\nconst url = process.env.DATABASE_URL;\ndb.connect(url);"
         }
       ],
       "questions": [
@@ -1450,17 +1399,14 @@
       "summary": "Entenda quando as variáveis de ambiente configuradas passam de fato a valer no projeto publicado.",
       "lesson": [
         {
-          "title": "Configurar não é o mesmo que aplicar",
-          "body": "Depois de cadastrar ou alterar uma variável de ambiente no painel da Vercel, geralmente é necessário fazer um novo deploy para que essa mudança realmente entre em vigor no site publicado."
+          "title": "A Máquina Virtual de Build",
+          "body": "Quando você envia uma atualização, a Vercel cria temporariamente uma máquina virtual, baixa seu código e aplica as mudanças instalando as dependências. Esse processo, chamado de Build, converte arquivos TypeScript, compila React e processa estilos CSS para transformar seu projeto fonte em arquivos finais leves que os navegadores entendem.",
+          "code": "# A Vercel executa automaticamente esses comandos por baixo dos panos:\nnpm install\nnpm run build"
         },
         {
-          "title": "Deploys antigos não são atualizados sozinhos",
-          "body": "Um deploy já publicado antes da alteração da variável continua usando o valor antigo (ou nenhum valor), até que um novo deploy seja realizado."
-        },
-        {
-          "title": "Redeploy manual, se necessário",
-          "body": "Caso não haja um novo push planejado, é possível forçar manualmente um novo deploy (redeploy) na própria interface da Vercel, apenas para aplicar a variável recém-configurada.",
-          "tip": "Sempre que alterar uma variável de ambiente importante, é uma boa prática verificar se um novo deploy foi disparado depois da mudança."
+          "title": "Visualizando Mudanças no Vercel",
+          "body": "Durante esse processo de aplicação de mudanças, a Vercel analisa e notifica o que exatamente foi modificado em seu deploy. Se houver um erro de sintaxe, o build falha propositalmente para proteger seu site e notifica você no Dashboard e no GitHub sobre a linha exata onde ocorreu o erro que quebrou a compilação.",
+          "code": "// Um erro aqui quebra o build e previne o deploy de ir ao ar:\nfunction Componente() {\n  return <div>Erro de sintaxe faltando chaves // falhará no build\n}"
         }
       ],
       "questions": [
@@ -1531,18 +1477,14 @@
       "summary": "Entenda o que é o comando de build e por que ele transforma o código-fonte em arquivos prontos para publicação.",
       "lesson": [
         {
-          "title": "O que acontece no build",
-          "body": "Em projetos React com Vite, o código escrito pelo desenvolvedor (arquivos .jsx, .css, etc.) geralmente precisa passar por um processo de 'build', que gera arquivos finais otimizados (HTML, CSS e JS) prontos para o navegador."
+          "title": "O Comando de Build Customizado",
+          "body": "Por padrão, a Vercel tenta executar `npm run build`. No entanto, se o seu projeto usa processos complexos (como gerar documentações em paralelo ou buscar dados externos durante a compilação), você pode substituir o Build Command padrão nas configurações do Dashboard para rodar comandos específicos personalizados.",
+          "code": "// Exemplo no vercel.json de um comando de build customizado\n{\n  \"buildCommand\": \"npm run build && npm run generate-sitemap\"\n}"
         },
         {
-          "title": "O comando típico",
-          "body": "Em projetos Vite, o comando de build costuma ser algo como 'npm run build', que gera uma pasta (geralmente chamada 'dist') com os arquivos finais do site.",
-          "code": "npm run build"
-        },
-        {
-          "title": "A Vercel executa isso automaticamente",
-          "body": "Durante o deploy, a Vercel executa esse comando de build automaticamente no seu servidor, sem que o desenvolvedor precise rodar 'npm run build' manualmente antes de cada publicação.",
-          "tip": "Se o comando de build falhar (por um erro no código, por exemplo), o deploy também falha, e a versão anterior publicada continua no ar."
+          "title": "Ignorando Builds Desnecessários",
+          "body": "A Vercel cobra pelo tempo que as máquinas de compilação rodam. Você pode economizar configurando a etapa 'Ignored Build Step'. Por exemplo, se você alterar apenas um arquivo `README.md` que não afeta o código do site, a Vercel pode abortar o processo de build para essa alteração, poupando tempo e recursos.",
+          "code": "# Exemplo de script de Ignore Build Step no bash:\n# Retorna 1 para compilar (build) ou 0 para cancelar compilação\nif [ \"$VERCEL_ENV\" = \"preview\" ]; then\n  exit 1\nelse\n  exit 0\nfi"
         }
       ],
       "questions": [
@@ -1613,17 +1555,14 @@
       "summary": "Descubra como a Vercel reconhece automaticamente o framework do projeto e ajusta as configurações de build.",
       "lesson": [
         {
-          "title": "Reconhecimento automático",
-          "body": "Ao importar um repositório, a Vercel costuma analisar os arquivos do projeto (como o package.json) e detectar automaticamente qual framework está sendo usado, como React com Vite, Next.js, entre outros."
+          "title": "A Inteligência da Detecção",
+          "body": "A Vercel é framework-agnostic (suporta quase tudo), mas brilha pela sua inteligência artificial de detecção. Ao analisar seus arquivos principais (como `package.json`), a plataforma identifica instantaneamente se o projeto é em Next.js, Vite, Nuxt, SvelteKit ou Create React App, pré-configurando todos os comandos e diretórios de saída.",
+          "code": "{\n  \"dependencies\": {\n    \"svelte\": \"^3.0.0\",\n    \"@sveltejs/kit\": \"^1.0.0\"\n  }\n  // A Vercel lê isso e sabe que deve aplicar as configurações do SvelteKit.\n}"
         },
         {
-          "title": "Configuração sugerida automaticamente",
-          "body": "Com base nessa detecção, a Vercel já preenche automaticamente campos como o comando de build e a pasta de saída (output directory), reduzindo a necessidade de configuração manual."
-        },
-        {
-          "title": "Ajustes manuais quando necessário",
-          "body": "Mesmo com a detecção automática, é possível ajustar manualmente essas configurações, caso o projeto tenha alguma particularidade diferente do padrão.",
-          "tip": "Se o projeto não seguir a estrutura padrão esperada pela Vercel, pode ser necessário revisar manualmente o comando de build e a pasta de saída."
+          "title": "Personalizando a Detecção",
+          "body": "Se você estiver usando um framework interno desconhecido ou arquivos puramente HTML sem gerenciadores de pacotes, pode acessar as configurações gerais do projeto no Dashboard e definir manualmente o Framework Preset (Predefinição de Framework) como 'Other', assumindo o controle manual de como a Vercel deve tratar seus arquivos.",
+          "code": "// No vercel.json você pode forçar o framework desejado\n{\n  \"framework\": \"vite\"\n}"
         }
       ],
       "questions": [
@@ -1694,17 +1633,14 @@
       "summary": "Entenda o papel da pasta de saída (output directory) gerada pelo build, como a pasta 'dist' em projetos Vite.",
       "lesson": [
         {
-          "title": "Onde ficam os arquivos finais",
-          "body": "Depois de rodar o comando de build, os arquivos finais prontos para publicação ficam guardados em uma pasta específica, chamada de pasta de saída (output directory). Em projetos Vite, essa pasta costuma se chamar 'dist'."
+          "title": "O Diretório de Saída (Output)",
+          "body": "O diretório de saída (Output Directory) é a pasta onde ficam os arquivos compilados finais e prontos para a web gerados após o comando de build. No Next.js é a pasta `.next`, no Vite é `dist`, no Create React App é `build`. A Vercel precisa saber exatamente qual é esta pasta para fazer o upload correto dos arquivos para seus servidores.",
+          "code": "// Se o seu framework salva os arquivos finais numa pasta não-padrão (ex: public)\n// você pode ajustar isso no vercel.json:\n{\n  \"outputDirectory\": \"public\"\n}"
         },
         {
-          "title": "É essa pasta que vai para o ar",
-          "body": "Quando a Vercel publica o site, ela usa exatamente o conteúdo dessa pasta de saída, e não o código-fonte original escrito pelo desenvolvedor."
-        },
-        {
-          "title": "Configuração incorreta gera problemas",
-          "body": "Se a pasta de saída configurada na Vercel não bater com a pasta realmente gerada pelo build do projeto, o deploy pode falhar ou publicar um site vazio ou incorreto.",
-          "tip": "Sempre que mudar a configuração de build de um projeto Vite manualmente, vale conferir se o nome da pasta de saída ainda está correto."
+          "title": "Arquivos que Sobem para Produção",
+          "body": "A Vercel pega EXCLUSIVAMENTE o conteúdo do Output Directory e as Funções Serverless para hospedar. O restante do seu código fonte (arquivos `.ts`, componentes não compilados, arquivos de configuração locais) é descartado da máquina virtual, garantindo que o pacote hospedado final seja mínimo, focado e seguro.",
+          "code": "/* O que fica na Vercel (Output): \n- index.html\n- /assets/bundle.js\n- /assets/styles.css\n\nO que é descartado (Source): \n- /src/components/App.tsx\n- tailwind.config.js \n*/"
         }
       ],
       "questions": [
@@ -1775,17 +1711,14 @@
       "summary": "Entenda o conceito de edge network: servidores espalhados pelo mundo, aproximando o conteúdo dos visitantes.",
       "lesson": [
         {
-          "title": "Um único servidor não basta para o mundo todo",
-          "body": "Se um site tivesse apenas um servidor em um único país, visitantes de outros continentes teriam que esperar mais tempo para os dados viajarem até eles, tornando o carregamento mais lento."
+          "title": "O Poder da Edge Network",
+          "body": "A Edge Network (Rede de Borda) da Vercel é uma rede global de servidores (CDNs) espalhados pelo mundo. Quando um usuário no Brasil acessa seu site, a requisição não viaja até os EUA. A Vercel serve o seu site a partir de um ponto de borda (servidor local) no Brasil, como em São Paulo, diminuindo a latência consideravelmente.",
+          "code": "// A Edge Network não precisa de configuração de código, \n// ela atua automaticamente na entrega de recursos estáticos (HTML/CSS/JS/Imagens)."
         },
         {
-          "title": "O que é uma edge network",
-          "body": "Uma edge network é uma rede de servidores distribuídos em diferentes localizações geográficas ao redor do mundo, entregando o conteúdo a partir do ponto mais próximo do visitante."
-        },
-        {
-          "title": "Menor distância, menor demora",
-          "body": "Quanto mais perto fisicamente o servidor estiver do visitante, menor tende a ser o tempo de resposta (latência), já que a informação percorre uma distância menor.",
-          "tip": "A Vercel utiliza uma edge network para distribuir conteúdo globalmente, sem que o desenvolvedor precise configurar servidores em cada continente manualmente."
+          "title": "Edge Functions: Computação na Borda",
+          "body": "Além de entregar arquivos estáticos, a Vercel inova com as Edge Functions. Diferentes das Serverless Functions normais (que rodam em uma única região como EUA), as Edge Functions executam trechos rápidos de código (como checar cookies e redirecionar usuários) diretamente no servidor de borda, muito mais perto do usuário final.",
+          "code": "// api/middleware.js (Exemplo Next.js Edge Middleware)\nexport const config = {\n  runtime: 'edge',\n};\n\nexport default function middleware(req) {\n  return Response.redirect(new URL('/novo-caminho', req.url));\n}"
         }
       ],
       "questions": [
@@ -1856,17 +1789,14 @@
       "summary": "Compreenda o papel do cache para acelerar o carregamento de conteúdos que não mudam com frequência.",
       "lesson": [
         {
-          "title": "O que é cache",
-          "body": "Cache é uma cópia temporária de um conteúdo, guardada em um local mais próximo ou mais rápido de acessar, para evitar refazer todo o trabalho de gerar ou buscar esse conteúdo novamente a cada requisição."
+          "title": "Cacheamento Eficiente",
+          "body": "O segredo da velocidade da Vercel é o cache. Quando o primeiro usuário acessa uma página dinâmica do seu site, a Vercel pode armazenar (fazer cache) o resultado na memória dos seus servidores globais. Os próximos usuários que acessarem a mesma página receberão uma resposta quase instantânea baseada nesse cache pré-computado.",
+          "code": "// Adicionando cabeçalhos de controle de Cache na resposta da API Vercel\nexport default function handler(req, res) {\n  // Cacheia na CDN por 1 hora (3600 segundos)\n  res.setHeader('Cache-Control', 's-maxage=3600');\n  res.status(200).json({ time: Date.now() });\n}"
         },
         {
-          "title": "Cache em arquivos estáticos",
-          "body": "Arquivos estáticos, como imagens, CSS e JS que não mudam com frequência, são ótimos candidatos a cache: eles podem ficar guardados nos servidores da edge network e serem entregues rapidamente, sem recalcular nada."
-        },
-        {
-          "title": "Atualizando o cache",
-          "body": "Quando um novo deploy é feito, os arquivos atualizados substituem os antigos, e o sistema de cache passa a servir a versão mais recente, geralmente de forma automática.",
-          "tip": "Um bom uso de cache reduz a carga nos servidores e acelera a experiência dos visitantes, especialmente para arquivos que raramente mudam."
+          "title": "Revalidação Inteligente (ISR)",
+          "body": "Se páginas entrarem em cache perpétuo, os usuários veriam dados antigos. A Vercel popularizou o Incremental Static Regeneration (ISR), que permite configurar um tempo de expiração para o cache. Quando o tempo vence, o próximo acesso atualiza o cache em segundo plano sem travar a experiência do usuário, unindo estático e dinâmico.",
+          "code": "// Exemplo usando getStaticProps no Next.js com ISR na Vercel\nexport async function getStaticProps() {\n  const dados = await fetch('api.exemplo.com');\n  return {\n    props: { dados },\n    revalidate: 60, // A Vercel vai revalidar a página após 60 segundos no fundo\n  };\n}"
         }
       ],
       "questions": [
@@ -1937,17 +1867,14 @@
       "summary": "Conecte os conceitos de edge network e cache para entender por que um site na Vercel tende a ser rápido em qualquer lugar do mundo.",
       "lesson": [
         {
-          "title": "Dois fatores combinados",
-          "body": "A velocidade global de um site publicado na Vercel resulta da combinação entre a edge network (servidores espalhados pelo mundo) e o cache (cópias já prontas de conteúdo estático), reduzindo distância e trabalho repetido."
+          "title": "Entregando Sites Globalmente",
+          "body": "Com a distribuição automática da Edge Network e otimização de imagens, seu site fica incrivelmente rápido em qualquer continente. Isso não apenas melhora a experiência do visitante, que não desiste de esperar o site carregar, mas impacta diretamente no SEO, já que motores de busca como o Google priorizam páginas de carregamento veloz.",
+          "code": "// A plataforma também provê ferramentas para analisar a velocidade global\n// como a aba 'Speed Insights' dentro do Dashboard da Vercel."
         },
         {
-          "title": "Menos distância, menos espera",
-          "body": "Um visitante na Europa acessando um site com edge network pode ser atendido por um servidor próximo ali, em vez de esperar uma resposta vinda de um único servidor distante."
-        },
-        {
-          "title": "Menos processamento, mais rapidez",
-          "body": "Como muitos arquivos já estão em cache, prontos para entrega, o servidor não precisa recalcular tudo do zero a cada novo visitante, economizando tempo.",
-          "tip": "Sites estáticos se beneficiam especialmente dessa combinação, já que praticamente todo o conteúdo pode ser cacheado e distribuído globalmente."
+          "title": "Otimização de Recursos Implícita",
+          "body": "A Vercel também aplica compressões automáticas modernas como Brotli e Gzip em todos os seus arquivos, economizando banda e acelerando o carregamento sem que você tenha que configurar softwares complicados. Imagens podem ser convertidas automaticamente para formatos como WebP com tamanhos adequados para cada dispositivo.",
+          "code": "import Image from 'next/image';\n// O componente Image integrado à Vercel \n// converte, redimensiona e faz cache da imagem globalmente:\n<Image src=\"/foto.png\" width={500} height={300} alt=\"Foto Otimizada\" />"
         }
       ],
       "questions": [
@@ -2018,17 +1945,14 @@
       "summary": "Aprenda a interpretar os logs de build da Vercel para entender por que um deploy falhou.",
       "lesson": [
         {
-          "title": "O que são logs de build",
-          "body": "Logs de build são registros detalhados de tudo o que aconteceu durante o processo de build de um deploy: comandos executados, mensagens do sistema e, quando houver, erros encontrados."
+          "title": "Monitorando a Compilação",
+          "body": "Toda vez que um deploy é disparado, você pode visualizar os 'Build Logs' no painel da Vercel. É lá que você acompanha, linha por linha em tempo real, os processos de instalação de dependências, checagem de erros e exportação do código. São essenciais para diagnosticar por que uma atualização falhou antes de chegar à produção.",
+          "code": "/* Exemplo de saída no painel de Build Logs:\n10:45:01: Running \"npm run build\"\n10:45:03: > next build\n10:45:08: ✓ Compiled successfully\n10:45:15: Uploading build outputs...\n*/"
         },
         {
-          "title": "Onde encontrar",
-          "body": "Na Vercel, é possível abrir os detalhes de qualquer deploy específico e visualizar seus logs de build, mesmo depois de já ter sido concluído."
-        },
-        {
-          "title": "Identificando a causa de uma falha",
-          "body": "Quando um deploy falha, o log de build costuma indicar exatamente em qual etapa e por qual motivo o processo parou, como um erro de sintaxe no código ou uma dependência ausente.",
-          "tip": "Ler a mensagem de erro de baixo para cima, prestando atenção às últimas linhas antes da falha, costuma ajudar a encontrar a causa mais rapidamente."
+          "title": "Lendo e Interpretando Erros de Build",
+          "body": "Erros no build podem ocorrer por diversos motivos: versão incorreta do Node.js, dependências faltando, e principalmente, erros de tipagem no TypeScript. Quando uma falha dessas ocorre, o log ficará vermelho, destacando o arquivo exato e a linha onde o problema foi encontrado. Corrija o código, faça o push e a Vercel tentará novamente.",
+          "code": "/* Exemplo de erro comum apontado nos logs:\nType error: Property 'nome' does not exist on type 'User'.\n  src/components/Perfil.tsx (14:23)\n*/"
         }
       ],
       "questions": [
@@ -2099,17 +2023,14 @@
       "summary": "Diferencie logs de build dos logs de execução (runtime), usados para investigar erros depois que o site já está no ar.",
       "lesson": [
         {
-          "title": "Build terminou, mas o problema pode continuar",
-          "body": "Mesmo quando o build é concluído com sucesso, podem ocorrer erros depois, já com o site em funcionamento — por exemplo, ao executar uma função serverless que falha em algum caso específico."
+          "title": "Logs de Runtime (Execução)",
+          "body": "Diferente dos logs de compilação (Build), os Runtime Logs da Vercel registram o que acontece no seu site quando ele já está no ar. Se uma Função Serverless falhar (por exemplo, erro 500 ao consultar um banco fora do ar), o erro e qualquer `console.log` impresso no backend aparecerão instantaneamente na aba Logs do dashboard.",
+          "code": "// api/hello.js\nexport default function handler(req, res) {\n  // Este log será armazenado e visualizável nos Runtime Logs da Vercel\n  console.log('Nova requisição recebida de IP:', req.headers['x-forwarded-for']);\n  res.status(200).send('Olá!');\n}"
         },
         {
-          "title": "O que são logs de execução (runtime)",
-          "body": "Logs de execução (runtime logs) registram o que acontece enquanto o site já está no ar, respondendo a requisições reais de visitantes, sendo diferentes dos logs de build."
-        },
-        {
-          "title": "Quando consultar cada tipo de log",
-          "body": "Se o problema é o deploy não terminar de publicar, o log de build é o lugar certo para investigar. Se o site publicou normalmente, mas algo dá erro durante o uso, os logs de execução são mais indicados.",
-          "tip": "Nem todo problema aparece no log de build: alguns erros só acontecem quando um usuário real interage com uma parte específica do site."
+          "title": "Filtrando Tráfego e Erros em Tempo Real",
+          "body": "Os logs de execução são uma ferramenta poderosa para investigar anomalias na aplicação. Você pode filtrá-los por ambiente (Production vs Preview), por código de status HTTP (mostrar apenas erros 404 e 500) e verificar métricas de tempo de execução da função para encontrar gargalos e otimizar rotas lentas.",
+          "code": "// Use logs para monitorar execuções de serverless functions e erros graves:\nexport default async function handler(req, res) {\n  try {\n    await processarPagamento();\n  } catch (error) {\n    console.error('[ERRO CRÍTICO] Falha no processamento:', error.message);\n    res.status(500).end();\n  }\n}"
         }
       ],
       "questions": [
@@ -2180,17 +2101,14 @@
       "summary": "Combine logs de build e de execução para investigar e diagnosticar problemas reais em um site já publicado.",
       "lesson": [
         {
-          "title": "Um roteiro básico de investigação",
-          "body": "Diante de um problema relatado em produção, um bom primeiro passo é verificar se o último deploy foi concluído com sucesso (log de build) e, em seguida, checar os logs de execução no momento em que o erro ocorreu."
+          "title": "A Importância da Observabilidade",
+          "body": "Quando seu projeto chega às mãos de usuários reais na produção, prever erros torna-se difícil. A Vercel possui integração amigável e direta com plataformas de observabilidade e monitoramento (como Sentry, Datadog ou LogDNA), permitindo que você rastreie erros não tratados e acompanhe o comportamento do sistema sem sair da plataforma.",
+          "code": "/* \nNo Dashboard da Vercel > Integrations\nVocê pode adicionar uma ferramenta como o 'Sentry' com poucos cliques,\npermitindo capturar stack traces completos de erros que acontecem no navegador do usuário.\n*/"
         },
         {
-          "title": "Reproduzindo o problema",
-          "body": "Sempre que possível, é útil tentar reproduzir o erro relatado (repetir os mesmos passos do usuário) para confirmar se ele realmente acontece e conseguir observá-lo nos logs enquanto ocorre."
-        },
-        {
-          "title": "Corrigir, publicar e confirmar",
-          "body": "Depois de identificar a causa, a correção é feita no código, enviada (push) ao GitHub, e um novo deploy é gerado automaticamente; depois disso, vale confirmar nos logs se o problema realmente foi resolvido.",
-          "tip": "Ter logs organizados e claros facilita bastante a manutenção de qualquer projeto publicado, especialmente quando o problema não é fácil de reproduzir de primeira."
+          "title": "Resolvendo Incidentes na Prática",
+          "body": "Ao identificar um erro crítico que afetou a produção, a Vercel tem a funcionalidade de Instant Rollback (Reversão Instantânea). Basta ir na lista de deploys, selecionar uma versão antiga que funcionava perfeitamente e promovê-la novamente à produção em questão de segundos, enquanto sua equipe estuda com calma os logs do erro e prepara a correção.",
+          "code": "# Via terminal ou interface, você pode reverter para um deploy estável anterior\nvercel promote <deployment-url-antiga>"
         }
       ],
       "questions": [
@@ -2261,17 +2179,14 @@
       "summary": "Revise todo o caminho de publicação de um projeto: repositório, conexão com a Vercel, build e URL pública.",
       "lesson": [
         {
-          "title": "Revisando o fluxo completo",
-          "body": "Publicar um projeto do zero envolve: ter o código em um repositório no GitHub, conectar esse repositório à Vercel, deixar a Vercel detectar o framework e executar o build, e obter uma URL pública funcionando."
+          "title": "Revisando o Fluxo de Trabalho Vercel",
+          "body": "Chegamos à reta final: a consolidação do fluxo. O processo começa com o desenvolvimento local. Após finalizar a feature, o código é commitado. Um Pull Request gera um Preview seguro, configurado com as variáveis adequadas. Após aprovado, o código é mesclado na branch main e a Vercel automatiza o build, logs e deploy na rede global.",
+          "code": "// 1. Dev local -> 2. Git Push -> 3. Vercel Build -> 4. Edge Network Global\n// Tudo em menos de 2 minutos."
         },
         {
-          "title": "Checklist antes de publicar",
-          "body": "Antes de considerar o projeto pronto para ir ao ar, vale conferir: o comando de build está correto, variáveis de ambiente necessárias estão configuradas, e não há segredos escritos diretamente no código."
-        },
-        {
-          "title": "Depois do primeiro deploy",
-          "body": "Depois do primeiro deploy bem-sucedido, cada novo push para a branch principal republica automaticamente o projeto, mantendo o site sempre atualizado com o código mais recente.",
-          "tip": "Revisar o site publicado em um preview antes de aceitar mudanças na branch principal continua sendo uma boa prática mesmo em projetos já maduros."
+          "title": "Do Zero Ao Ar (Recapitulação)",
+          "body": "A jornada com a Vercel transforma a vida do desenvolvedor. Esqueça comandos FTP arcaicos ou configurações complicadas do Linux. Agora você tem o poder de integrar seu repositório de versão, focar na engenharia e deixar a distribuição de recursos globais, funções sem servidor, certificados SSL e customização de domínios por conta da plataforma.",
+          "code": "/* \nChecklist do sucesso Vercel:\n[x] Conta criada via Github\n[x] Repositório linkado\n[x] Variáveis de ambiente secretas adicionadas\n[x] Domínio personalizado apontado (DNS)\n[x] Site veloz, seguro e global.\n*/"
         }
       ],
       "questions": [
@@ -2342,17 +2257,14 @@
       "summary": "Integre os conceitos de ambientes, variáveis, performance e monitoramento em uma revisão final antes de concluir a trilha.",
       "lesson": [
         {
-          "title": "Juntando as peças",
-          "body": "Um projeto bem publicado combina vários cuidados vistos na trilha: deploy automático, ambientes de preview para testar antes de ir para produção, variáveis de ambiente configuradas com segurança, e HTTPS habilitado por padrão."
+          "title": "As Ferramentas Extras da Vercel",
+          "body": "Além do deploy puro, a Vercel oferece ferramentas como o Vercel KV (Redis na Borda), Vercel Postgres (Banco SQL sem servidor) e Vercel Blob (Armazenamento de Arquivos/Imagens). Elas expandem o ecossistema, permitindo que você construa aplicações full-stack complexas sem precisar depender de serviços terceirizados, tudo unificado na nuvem.",
+          "code": "import { kv } from '@vercel/kv';\n\nexport default async function handler(req, res) {\n  // Armazenando visualizações de página direto no banco de dados KV (Redis) da Vercel\n  const pageViews = await kv.incr('views:homepage');\n  res.json({ pageViews });\n}"
         },
         {
-          "title": "Performance não é acidente",
-          "body": "A velocidade percebida pelos usuários também depende de decisões conscientes, como aproveitar bem o cache e a distribuição da edge network, especialmente em sites majoritariamente estáticos."
-        },
-        {
-          "title": "Monitorar depois de publicar",
-          "body": "Publicar não é o fim do trabalho: acompanhar logs de build e de execução ajuda a identificar e corrigir problemas rapidamente, mantendo o site confiável ao longo do tempo.",
-          "tip": "Um projeto maduro trata deploy, segurança, performance e monitoramento como partes de um mesmo ciclo contínuo, não como etapas isoladas."
+          "title": "O Poder das Analytics Nativas",
+          "body": "Com a Vercel Web Analytics, você consegue acompanhar os visitantes do site com métricas voltadas para privacidade (sem uso agressivo de cookies). Você visualiza páginas acessadas, referenciadores de tráfego e países visitantes de forma limpa no painel. O Speed Insights ajuda a acompanhar os Core Web Vitals (desempenho real do carregamento).",
+          "code": "import { Analytics } from '@vercel/analytics/react';\n\n// Basta injetar o componente na raiz da sua aplicação\nexport default function MyApp({ Component, pageProps }) {\n  return (\n    <>\n      <Component {...pageProps} />\n      <Analytics />\n    </>\n  );\n}"
         }
       ],
       "questions": [
@@ -2423,17 +2335,14 @@
       "summary": "Feche a trilha revisando, de ponta a ponta, tudo o que é necessário para levar um projeto do código local até estar no ar de forma confiável.",
       "lesson": [
         {
-          "title": "O caminho completo, revisitado",
-          "body": "Ao longo da trilha, vimos o caminho completo: entender o que é deploy e hospedagem, diferenciar estático de dinâmico, publicar com a Vercel conectando o GitHub, usar previews, configurar domínio e variáveis de ambiente, entender build, performance e monitoramento."
+          "title": "Finalizando seu Projeto na Nuvem",
+          "body": "Você concluiu a jornada de publicação com Vercel! Seu projeto agora não apenas reside em um servidor robusto e autogerenciado, mas dispõe de entrega ultrarrápida, escalabilidade contínua (preparado para picos de milhares de usuários simultâneos) e integração orgânica com seus processos de desenvolvimento.",
+          "code": "console.log('🎉 Parabéns! Seu aplicativo agora está hospedado globalmente pela Vercel!');\n// O próximo passo é compartilhar seu link com o mundo!"
         },
         {
-          "title": "Deploy contínuo como hábito",
-          "body": "Em um projeto maduro, publicar deixa de ser um evento especial e raro, e passa a ser um hábito natural: cada push relevante gera uma nova versão, testada antes em preview, e publicada com confiança em produção."
-        },
-        {
-          "title": "Pronto para o próximo projeto",
-          "body": "Com esses conceitos, qualquer novo projeto — pessoal, de estudo ou profissional — pode ser levado do zero até estar no ar de forma organizada, segura e rápida.",
-          "tip": "Sempre que tiver dúvidas em um novo projeto, volte à ideia central: código versionado, conectado a um serviço de hospedagem, com boas práticas de segurança e observação contínua."
+          "title": "Próximos Passos e Evolução Contínua",
+          "body": "Agora que você tem o site no ar, o trabalho continua iterativo. Adicione novas features (criando branches e testando os Previews), monitore o desempenho com o Speed Insights, acompanhe erros e aproveite a tranquilidade mental de saber que a infraestrutura se adaptará ao seu código. Bem-vindo à era do desenvolvimento serverless impecável.",
+          "code": "/* \nBoas Práticas Pós-Deploy:\n1. Revise sempre os Web Vitals\n2. Nunca exponha segredos\n3. Aproveite os Previews antes de jogar pra main\n4. Compartilhe no seu portfólio!\n*/"
         }
       ],
       "questions": [
