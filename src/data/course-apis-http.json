@@ -1,0 +1,2408 @@
+{
+  "meta": {
+    "id": "apis-http",
+    "title": "APIs e HTTP",
+    "subtitle": "REST, HTTP e integração entre sistemas.",
+    "icon": "◆",
+    "color": "#FF6B35",
+    "fileExt": "json",
+    "stagesPerUnit": 3,
+    "order": 25,
+    "units": [
+      {
+        "title": "Fundamentos HTTP",
+        "goal": "Protocolo, métodos e status codes",
+        "color": "#FF6B35"
+      },
+      {
+        "title": "REST e Recursos",
+        "goal": "Princípios REST e design de URLs",
+        "color": "#FF6B35"
+      },
+      {
+        "title": "JSON e Formatos",
+        "goal": "Estrutura de dados em APIs",
+        "color": "#FF6B35"
+      },
+      {
+        "title": "Autenticação em APIs",
+        "goal": "API Keys, Bearer Token, OAuth",
+        "color": "#FF6B35"
+      },
+      {
+        "title": "Ferramentas e Clientes",
+        "goal": "curl, Postman e fetch",
+        "color": "#FF6B35"
+      },
+      {
+        "title": "Criando APIs",
+        "goal": "Rotas, controllers e respostas",
+        "color": "#FF6B35"
+      },
+      {
+        "title": "Middlewares e Validação",
+        "goal": "Middleware, CORS e validação",
+        "color": "#FF6B35"
+      },
+      {
+        "title": "Documentação",
+        "goal": "OpenAPI/Swagger e boas práticas",
+        "color": "#FF6B35"
+      },
+      {
+        "title": "APIs Avançadas",
+        "goal": "Paginação, versioning e rate limiting",
+        "color": "#FF6B35"
+      },
+      {
+        "title": "Projeto Final",
+        "goal": "API REST completa com autenticação",
+        "color": "#FF6B35"
+      }
+    ]
+  },
+  "title": "APIs e HTTP",
+  "version": 1,
+  "stages": [
+    {
+      "id": "apis-http-1",
+      "name": "O QUE É HTTP",
+      "difficulty": "INICIANTE",
+      "color": "#FF6B35",
+      "icon": "◆",
+      "summary": "Aprenda sobre O que é HTTP.",
+      "lesson": [
+        {
+          "title": "Introdução: O que é HTTP",
+          "body": "Exploração dos conceitos fundamentais de O que é HTTP no contexto de APIs HTTP.",
+          "code": "// Exemplo de código para O que é HTTP"
+        },
+        {
+          "title": "Aprofundando em O que é HTTP",
+          "body": "Mais detalhes e aplicações práticas de O que é HTTP.",
+          "code": "// Outro exemplo"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em O que é HTTP? (Questão 1)",
+          "opts": [
+            "Conceito correto sobre O que é HTTP",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de O que é HTTP.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de O que é HTTP.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em O que é HTTP? (Questão 2)",
+          "opts": [
+            "Conceito correto sobre O que é HTTP",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de O que é HTTP.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de O que é HTTP.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em O que é HTTP? (Questão 3)",
+          "opts": [
+            "Conceito correto sobre O que é HTTP",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de O que é HTTP.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de O que é HTTP.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em O que é HTTP? (Questão 4)",
+          "opts": [
+            "Conceito correto sobre O que é HTTP",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de O que é HTTP.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de O que é HTTP.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "apis-http-2",
+      "name": "MÉTODOS HTTP",
+      "difficulty": "INICIANTE",
+      "color": "#FF6B35",
+      "icon": "◆",
+      "summary": "Aprenda sobre Métodos HTTP.",
+      "lesson": [
+        {
+          "title": "Introdução: Métodos HTTP",
+          "body": "Exploração dos conceitos fundamentais de Métodos HTTP no contexto de APIs HTTP.",
+          "code": "// Exemplo de código para Métodos HTTP"
+        },
+        {
+          "title": "Aprofundando em Métodos HTTP",
+          "body": "Mais detalhes e aplicações práticas de Métodos HTTP.",
+          "code": "// Outro exemplo"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Métodos HTTP? (Questão 1)",
+          "opts": [
+            "Conceito correto sobre Métodos HTTP",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Métodos HTTP.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Métodos HTTP.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Métodos HTTP? (Questão 2)",
+          "opts": [
+            "Conceito correto sobre Métodos HTTP",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Métodos HTTP.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Métodos HTTP.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Métodos HTTP? (Questão 3)",
+          "opts": [
+            "Conceito correto sobre Métodos HTTP",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Métodos HTTP.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Métodos HTTP.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Métodos HTTP? (Questão 4)",
+          "opts": [
+            "Conceito correto sobre Métodos HTTP",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Métodos HTTP.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Métodos HTTP.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "apis-http-3",
+      "name": "STATUS CODES",
+      "difficulty": "INICIANTE",
+      "color": "#FF6B35",
+      "icon": "◆",
+      "summary": "Aprenda sobre Status Codes.",
+      "lesson": [
+        {
+          "title": "Introdução: Status Codes",
+          "body": "Exploração dos conceitos fundamentais de Status Codes no contexto de APIs HTTP.",
+          "code": "// Exemplo de código para Status Codes"
+        },
+        {
+          "title": "Aprofundando em Status Codes",
+          "body": "Mais detalhes e aplicações práticas de Status Codes.",
+          "code": "// Outro exemplo"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Status Codes? (Questão 1)",
+          "opts": [
+            "Conceito correto sobre Status Codes",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Status Codes.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Status Codes.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Status Codes? (Questão 2)",
+          "opts": [
+            "Conceito correto sobre Status Codes",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Status Codes.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Status Codes.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Status Codes? (Questão 3)",
+          "opts": [
+            "Conceito correto sobre Status Codes",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Status Codes.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Status Codes.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Status Codes? (Questão 4)",
+          "opts": [
+            "Conceito correto sobre Status Codes",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Status Codes.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Status Codes.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "apis-http-4",
+      "name": "INTRODUÇÃO AO REST",
+      "difficulty": "INICIANTE",
+      "color": "#FF6B35",
+      "icon": "◆",
+      "summary": "Aprenda sobre Introdução ao REST.",
+      "lesson": [
+        {
+          "title": "Introdução: Introdução ao REST",
+          "body": "Exploração dos conceitos fundamentais de Introdução ao REST no contexto de APIs HTTP.",
+          "code": "// Exemplo de código para Introdução ao REST"
+        },
+        {
+          "title": "Aprofundando em Introdução ao REST",
+          "body": "Mais detalhes e aplicações práticas de Introdução ao REST.",
+          "code": "// Outro exemplo"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Introdução ao REST? (Questão 1)",
+          "opts": [
+            "Conceito correto sobre Introdução ao REST",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Introdução ao REST.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Introdução ao REST.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Introdução ao REST? (Questão 2)",
+          "opts": [
+            "Conceito correto sobre Introdução ao REST",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Introdução ao REST.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Introdução ao REST.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Introdução ao REST? (Questão 3)",
+          "opts": [
+            "Conceito correto sobre Introdução ao REST",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Introdução ao REST.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Introdução ao REST.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Introdução ao REST? (Questão 4)",
+          "opts": [
+            "Conceito correto sobre Introdução ao REST",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Introdução ao REST.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Introdução ao REST.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "apis-http-5",
+      "name": "DESIGN DE URLS",
+      "difficulty": "INICIANTE",
+      "color": "#FF6B35",
+      "icon": "◆",
+      "summary": "Aprenda sobre Design de URLs.",
+      "lesson": [
+        {
+          "title": "Introdução: Design de URLs",
+          "body": "Exploração dos conceitos fundamentais de Design de URLs no contexto de APIs HTTP.",
+          "code": "// Exemplo de código para Design de URLs"
+        },
+        {
+          "title": "Aprofundando em Design de URLs",
+          "body": "Mais detalhes e aplicações práticas de Design de URLs.",
+          "code": "// Outro exemplo"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Design de URLs? (Questão 1)",
+          "opts": [
+            "Conceito correto sobre Design de URLs",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Design de URLs.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Design de URLs.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Design de URLs? (Questão 2)",
+          "opts": [
+            "Conceito correto sobre Design de URLs",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Design de URLs.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Design de URLs.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Design de URLs? (Questão 3)",
+          "opts": [
+            "Conceito correto sobre Design de URLs",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Design de URLs.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Design de URLs.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Design de URLs? (Questão 4)",
+          "opts": [
+            "Conceito correto sobre Design de URLs",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Design de URLs.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Design de URLs.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "apis-http-6",
+      "name": "STATELESSNESS",
+      "difficulty": "INICIANTE",
+      "color": "#FF6B35",
+      "icon": "◆",
+      "summary": "Aprenda sobre Statelessness.",
+      "lesson": [
+        {
+          "title": "Introdução: Statelessness",
+          "body": "Exploração dos conceitos fundamentais de Statelessness no contexto de APIs HTTP.",
+          "code": "// Exemplo de código para Statelessness"
+        },
+        {
+          "title": "Aprofundando em Statelessness",
+          "body": "Mais detalhes e aplicações práticas de Statelessness.",
+          "code": "// Outro exemplo"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Statelessness? (Questão 1)",
+          "opts": [
+            "Conceito correto sobre Statelessness",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Statelessness.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Statelessness.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Statelessness? (Questão 2)",
+          "opts": [
+            "Conceito correto sobre Statelessness",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Statelessness.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Statelessness.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Statelessness? (Questão 3)",
+          "opts": [
+            "Conceito correto sobre Statelessness",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Statelessness.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Statelessness.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Statelessness? (Questão 4)",
+          "opts": [
+            "Conceito correto sobre Statelessness",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Statelessness.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Statelessness.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "apis-http-7",
+      "name": "INTRODUÇÃO AO JSON",
+      "difficulty": "BÁSICO",
+      "color": "#FF6B35",
+      "icon": "◆",
+      "summary": "Aprenda sobre Introdução ao JSON.",
+      "lesson": [
+        {
+          "title": "Introdução: Introdução ao JSON",
+          "body": "Exploração dos conceitos fundamentais de Introdução ao JSON no contexto de APIs HTTP.",
+          "code": "// Exemplo de código para Introdução ao JSON"
+        },
+        {
+          "title": "Aprofundando em Introdução ao JSON",
+          "body": "Mais detalhes e aplicações práticas de Introdução ao JSON.",
+          "code": "// Outro exemplo"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Introdução ao JSON? (Questão 1)",
+          "opts": [
+            "Conceito correto sobre Introdução ao JSON",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Introdução ao JSON.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Introdução ao JSON.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Introdução ao JSON? (Questão 2)",
+          "opts": [
+            "Conceito correto sobre Introdução ao JSON",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Introdução ao JSON.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Introdução ao JSON.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Introdução ao JSON? (Questão 3)",
+          "opts": [
+            "Conceito correto sobre Introdução ao JSON",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Introdução ao JSON.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Introdução ao JSON.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Introdução ao JSON? (Questão 4)",
+          "opts": [
+            "Conceito correto sobre Introdução ao JSON",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Introdução ao JSON.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Introdução ao JSON.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "apis-http-8",
+      "name": "PARSE E STRINGIFY",
+      "difficulty": "BÁSICO",
+      "color": "#FF6B35",
+      "icon": "◆",
+      "summary": "Aprenda sobre Parse e Stringify.",
+      "lesson": [
+        {
+          "title": "Introdução: Parse e Stringify",
+          "body": "Exploração dos conceitos fundamentais de Parse e Stringify no contexto de APIs HTTP.",
+          "code": "// Exemplo de código para Parse e Stringify"
+        },
+        {
+          "title": "Aprofundando em Parse e Stringify",
+          "body": "Mais detalhes e aplicações práticas de Parse e Stringify.",
+          "code": "// Outro exemplo"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Parse e Stringify? (Questão 1)",
+          "opts": [
+            "Conceito correto sobre Parse e Stringify",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Parse e Stringify.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Parse e Stringify.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Parse e Stringify? (Questão 2)",
+          "opts": [
+            "Conceito correto sobre Parse e Stringify",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Parse e Stringify.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Parse e Stringify.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Parse e Stringify? (Questão 3)",
+          "opts": [
+            "Conceito correto sobre Parse e Stringify",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Parse e Stringify.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Parse e Stringify.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Parse e Stringify? (Questão 4)",
+          "opts": [
+            "Conceito correto sobre Parse e Stringify",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Parse e Stringify.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Parse e Stringify.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "apis-http-9",
+      "name": "ESTRUTURAS COMPLEXAS",
+      "difficulty": "BÁSICO",
+      "color": "#FF6B35",
+      "icon": "◆",
+      "summary": "Aprenda sobre Estruturas Complexas.",
+      "lesson": [
+        {
+          "title": "Introdução: Estruturas Complexas",
+          "body": "Exploração dos conceitos fundamentais de Estruturas Complexas no contexto de APIs HTTP.",
+          "code": "// Exemplo de código para Estruturas Complexas"
+        },
+        {
+          "title": "Aprofundando em Estruturas Complexas",
+          "body": "Mais detalhes e aplicações práticas de Estruturas Complexas.",
+          "code": "// Outro exemplo"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Estruturas Complexas? (Questão 1)",
+          "opts": [
+            "Conceito correto sobre Estruturas Complexas",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Estruturas Complexas.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Estruturas Complexas.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Estruturas Complexas? (Questão 2)",
+          "opts": [
+            "Conceito correto sobre Estruturas Complexas",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Estruturas Complexas.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Estruturas Complexas.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Estruturas Complexas? (Questão 3)",
+          "opts": [
+            "Conceito correto sobre Estruturas Complexas",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Estruturas Complexas.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Estruturas Complexas.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Estruturas Complexas? (Questão 4)",
+          "opts": [
+            "Conceito correto sobre Estruturas Complexas",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Estruturas Complexas.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Estruturas Complexas.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "apis-http-10",
+      "name": "BASIC AUTH E API KEYS",
+      "difficulty": "BÁSICO",
+      "color": "#FF6B35",
+      "icon": "◆",
+      "summary": "Aprenda sobre Basic Auth e API Keys.",
+      "lesson": [
+        {
+          "title": "Introdução: Basic Auth e API Keys",
+          "body": "Exploração dos conceitos fundamentais de Basic Auth e API Keys no contexto de APIs HTTP.",
+          "code": "// Exemplo de código para Basic Auth e API Keys"
+        },
+        {
+          "title": "Aprofundando em Basic Auth e API Keys",
+          "body": "Mais detalhes e aplicações práticas de Basic Auth e API Keys.",
+          "code": "// Outro exemplo"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Basic Auth e API Keys? (Questão 1)",
+          "opts": [
+            "Conceito correto sobre Basic Auth e API Keys",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Basic Auth e API Keys.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Basic Auth e API Keys.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Basic Auth e API Keys? (Questão 2)",
+          "opts": [
+            "Conceito correto sobre Basic Auth e API Keys",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Basic Auth e API Keys.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Basic Auth e API Keys.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Basic Auth e API Keys? (Questão 3)",
+          "opts": [
+            "Conceito correto sobre Basic Auth e API Keys",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Basic Auth e API Keys.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Basic Auth e API Keys.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Basic Auth e API Keys? (Questão 4)",
+          "opts": [
+            "Conceito correto sobre Basic Auth e API Keys",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Basic Auth e API Keys.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Basic Auth e API Keys.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "apis-http-11",
+      "name": "TOKENS JWT",
+      "difficulty": "BÁSICO",
+      "color": "#FF6B35",
+      "icon": "◆",
+      "summary": "Aprenda sobre Tokens JWT.",
+      "lesson": [
+        {
+          "title": "Introdução: Tokens JWT",
+          "body": "Exploração dos conceitos fundamentais de Tokens JWT no contexto de APIs HTTP.",
+          "code": "// Exemplo de código para Tokens JWT"
+        },
+        {
+          "title": "Aprofundando em Tokens JWT",
+          "body": "Mais detalhes e aplicações práticas de Tokens JWT.",
+          "code": "// Outro exemplo"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Tokens JWT? (Questão 1)",
+          "opts": [
+            "Conceito correto sobre Tokens JWT",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Tokens JWT.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Tokens JWT.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Tokens JWT? (Questão 2)",
+          "opts": [
+            "Conceito correto sobre Tokens JWT",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Tokens JWT.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Tokens JWT.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Tokens JWT? (Questão 3)",
+          "opts": [
+            "Conceito correto sobre Tokens JWT",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Tokens JWT.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Tokens JWT.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Tokens JWT? (Questão 4)",
+          "opts": [
+            "Conceito correto sobre Tokens JWT",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Tokens JWT.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Tokens JWT.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "apis-http-12",
+      "name": "OAUTH BÁSICO",
+      "difficulty": "BÁSICO",
+      "color": "#FF6B35",
+      "icon": "◆",
+      "summary": "Aprenda sobre OAuth Básico.",
+      "lesson": [
+        {
+          "title": "Introdução: OAuth Básico",
+          "body": "Exploração dos conceitos fundamentais de OAuth Básico no contexto de APIs HTTP.",
+          "code": "// Exemplo de código para OAuth Básico"
+        },
+        {
+          "title": "Aprofundando em OAuth Básico",
+          "body": "Mais detalhes e aplicações práticas de OAuth Básico.",
+          "code": "// Outro exemplo"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em OAuth Básico? (Questão 1)",
+          "opts": [
+            "Conceito correto sobre OAuth Básico",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de OAuth Básico.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de OAuth Básico.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em OAuth Básico? (Questão 2)",
+          "opts": [
+            "Conceito correto sobre OAuth Básico",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de OAuth Básico.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de OAuth Básico.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em OAuth Básico? (Questão 3)",
+          "opts": [
+            "Conceito correto sobre OAuth Básico",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de OAuth Básico.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de OAuth Básico.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em OAuth Básico? (Questão 4)",
+          "opts": [
+            "Conceito correto sobre OAuth Básico",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de OAuth Básico.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de OAuth Básico.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "apis-http-13",
+      "name": "TESTANDO COM CURL",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#FF6B35",
+      "icon": "◆",
+      "summary": "Aprenda sobre Testando com curl.",
+      "lesson": [
+        {
+          "title": "Introdução: Testando com curl",
+          "body": "Exploração dos conceitos fundamentais de Testando com curl no contexto de APIs HTTP.",
+          "code": "// Exemplo de código para Testando com curl"
+        },
+        {
+          "title": "Aprofundando em Testando com curl",
+          "body": "Mais detalhes e aplicações práticas de Testando com curl.",
+          "code": "// Outro exemplo"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Testando com curl? (Questão 1)",
+          "opts": [
+            "Conceito correto sobre Testando com curl",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Testando com curl.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Testando com curl.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Testando com curl? (Questão 2)",
+          "opts": [
+            "Conceito correto sobre Testando com curl",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Testando com curl.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Testando com curl.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Testando com curl? (Questão 3)",
+          "opts": [
+            "Conceito correto sobre Testando com curl",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Testando com curl.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Testando com curl.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Testando com curl? (Questão 4)",
+          "opts": [
+            "Conceito correto sobre Testando com curl",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Testando com curl.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Testando com curl.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "apis-http-14",
+      "name": "TESTANDO COM POSTMAN",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#FF6B35",
+      "icon": "◆",
+      "summary": "Aprenda sobre Testando com Postman.",
+      "lesson": [
+        {
+          "title": "Introdução: Testando com Postman",
+          "body": "Exploração dos conceitos fundamentais de Testando com Postman no contexto de APIs HTTP.",
+          "code": "// Exemplo de código para Testando com Postman"
+        },
+        {
+          "title": "Aprofundando em Testando com Postman",
+          "body": "Mais detalhes e aplicações práticas de Testando com Postman.",
+          "code": "// Outro exemplo"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Testando com Postman? (Questão 1)",
+          "opts": [
+            "Conceito correto sobre Testando com Postman",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Testando com Postman.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Testando com Postman.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Testando com Postman? (Questão 2)",
+          "opts": [
+            "Conceito correto sobre Testando com Postman",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Testando com Postman.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Testando com Postman.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Testando com Postman? (Questão 3)",
+          "opts": [
+            "Conceito correto sobre Testando com Postman",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Testando com Postman.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Testando com Postman.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Testando com Postman? (Questão 4)",
+          "opts": [
+            "Conceito correto sobre Testando com Postman",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Testando com Postman.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Testando com Postman.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "apis-http-15",
+      "name": "CONSUMINDO COM FETCH",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#FF6B35",
+      "icon": "◆",
+      "summary": "Aprenda sobre Consumindo com fetch.",
+      "lesson": [
+        {
+          "title": "Introdução: Consumindo com fetch",
+          "body": "Exploração dos conceitos fundamentais de Consumindo com fetch no contexto de APIs HTTP.",
+          "code": "// Exemplo de código para Consumindo com fetch"
+        },
+        {
+          "title": "Aprofundando em Consumindo com fetch",
+          "body": "Mais detalhes e aplicações práticas de Consumindo com fetch.",
+          "code": "// Outro exemplo"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Consumindo com fetch? (Questão 1)",
+          "opts": [
+            "Conceito correto sobre Consumindo com fetch",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Consumindo com fetch.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Consumindo com fetch.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Consumindo com fetch? (Questão 2)",
+          "opts": [
+            "Conceito correto sobre Consumindo com fetch",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Consumindo com fetch.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Consumindo com fetch.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Consumindo com fetch? (Questão 3)",
+          "opts": [
+            "Conceito correto sobre Consumindo com fetch",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Consumindo com fetch.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Consumindo com fetch.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Consumindo com fetch? (Questão 4)",
+          "opts": [
+            "Conceito correto sobre Consumindo com fetch",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Consumindo com fetch.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Consumindo com fetch.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "apis-http-16",
+      "name": "CRIANDO ROTAS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#FF6B35",
+      "icon": "◆",
+      "summary": "Aprenda sobre Criando Rotas.",
+      "lesson": [
+        {
+          "title": "Introdução: Criando Rotas",
+          "body": "Exploração dos conceitos fundamentais de Criando Rotas no contexto de APIs HTTP.",
+          "code": "// Exemplo de código para Criando Rotas"
+        },
+        {
+          "title": "Aprofundando em Criando Rotas",
+          "body": "Mais detalhes e aplicações práticas de Criando Rotas.",
+          "code": "// Outro exemplo"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Criando Rotas? (Questão 1)",
+          "opts": [
+            "Conceito correto sobre Criando Rotas",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Criando Rotas.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Criando Rotas.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Criando Rotas? (Questão 2)",
+          "opts": [
+            "Conceito correto sobre Criando Rotas",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Criando Rotas.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Criando Rotas.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Criando Rotas? (Questão 3)",
+          "opts": [
+            "Conceito correto sobre Criando Rotas",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Criando Rotas.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Criando Rotas.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Criando Rotas? (Questão 4)",
+          "opts": [
+            "Conceito correto sobre Criando Rotas",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Criando Rotas.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Criando Rotas.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "apis-http-17",
+      "name": "CONTROLLERS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#FF6B35",
+      "icon": "◆",
+      "summary": "Aprenda sobre Controllers.",
+      "lesson": [
+        {
+          "title": "Introdução: Controllers",
+          "body": "Exploração dos conceitos fundamentais de Controllers no contexto de APIs HTTP.",
+          "code": "// Exemplo de código para Controllers"
+        },
+        {
+          "title": "Aprofundando em Controllers",
+          "body": "Mais detalhes e aplicações práticas de Controllers.",
+          "code": "// Outro exemplo"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Controllers? (Questão 1)",
+          "opts": [
+            "Conceito correto sobre Controllers",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Controllers.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Controllers.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Controllers? (Questão 2)",
+          "opts": [
+            "Conceito correto sobre Controllers",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Controllers.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Controllers.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Controllers? (Questão 3)",
+          "opts": [
+            "Conceito correto sobre Controllers",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Controllers.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Controllers.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Controllers? (Questão 4)",
+          "opts": [
+            "Conceito correto sobre Controllers",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Controllers.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Controllers.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "apis-http-18",
+      "name": "RESPOSTAS JSON",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#FF6B35",
+      "icon": "◆",
+      "summary": "Aprenda sobre Respostas JSON.",
+      "lesson": [
+        {
+          "title": "Introdução: Respostas JSON",
+          "body": "Exploração dos conceitos fundamentais de Respostas JSON no contexto de APIs HTTP.",
+          "code": "// Exemplo de código para Respostas JSON"
+        },
+        {
+          "title": "Aprofundando em Respostas JSON",
+          "body": "Mais detalhes e aplicações práticas de Respostas JSON.",
+          "code": "// Outro exemplo"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Respostas JSON? (Questão 1)",
+          "opts": [
+            "Conceito correto sobre Respostas JSON",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Respostas JSON.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Respostas JSON.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Respostas JSON? (Questão 2)",
+          "opts": [
+            "Conceito correto sobre Respostas JSON",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Respostas JSON.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Respostas JSON.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Respostas JSON? (Questão 3)",
+          "opts": [
+            "Conceito correto sobre Respostas JSON",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Respostas JSON.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Respostas JSON.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Respostas JSON? (Questão 4)",
+          "opts": [
+            "Conceito correto sobre Respostas JSON",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Respostas JSON.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Respostas JSON.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "apis-http-19",
+      "name": "O QUE SÃO MIDDLEWARES",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#FF6B35",
+      "icon": "◆",
+      "summary": "Aprenda sobre O que são Middlewares.",
+      "lesson": [
+        {
+          "title": "Introdução: O que são Middlewares",
+          "body": "Exploração dos conceitos fundamentais de O que são Middlewares no contexto de APIs HTTP.",
+          "code": "// Exemplo de código para O que são Middlewares"
+        },
+        {
+          "title": "Aprofundando em O que são Middlewares",
+          "body": "Mais detalhes e aplicações práticas de O que são Middlewares.",
+          "code": "// Outro exemplo"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em O que são Middlewares? (Questão 1)",
+          "opts": [
+            "Conceito correto sobre O que são Middlewares",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de O que são Middlewares.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de O que são Middlewares.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em O que são Middlewares? (Questão 2)",
+          "opts": [
+            "Conceito correto sobre O que são Middlewares",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de O que são Middlewares.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de O que são Middlewares.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em O que são Middlewares? (Questão 3)",
+          "opts": [
+            "Conceito correto sobre O que são Middlewares",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de O que são Middlewares.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de O que são Middlewares.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em O que são Middlewares? (Questão 4)",
+          "opts": [
+            "Conceito correto sobre O que são Middlewares",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de O que são Middlewares.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de O que são Middlewares.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "apis-http-20",
+      "name": "CORS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#FF6B35",
+      "icon": "◆",
+      "summary": "Aprenda sobre CORS.",
+      "lesson": [
+        {
+          "title": "Introdução: CORS",
+          "body": "Exploração dos conceitos fundamentais de CORS no contexto de APIs HTTP.",
+          "code": "// Exemplo de código para CORS"
+        },
+        {
+          "title": "Aprofundando em CORS",
+          "body": "Mais detalhes e aplicações práticas de CORS.",
+          "code": "// Outro exemplo"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em CORS? (Questão 1)",
+          "opts": [
+            "Conceito correto sobre CORS",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de CORS.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de CORS.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em CORS? (Questão 2)",
+          "opts": [
+            "Conceito correto sobre CORS",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de CORS.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de CORS.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em CORS? (Questão 3)",
+          "opts": [
+            "Conceito correto sobre CORS",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de CORS.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de CORS.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em CORS? (Questão 4)",
+          "opts": [
+            "Conceito correto sobre CORS",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de CORS.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de CORS.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "apis-http-21",
+      "name": "VALIDAÇÃO DE DADOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#FF6B35",
+      "icon": "◆",
+      "summary": "Aprenda sobre Validação de Dados.",
+      "lesson": [
+        {
+          "title": "Introdução: Validação de Dados",
+          "body": "Exploração dos conceitos fundamentais de Validação de Dados no contexto de APIs HTTP.",
+          "code": "// Exemplo de código para Validação de Dados"
+        },
+        {
+          "title": "Aprofundando em Validação de Dados",
+          "body": "Mais detalhes e aplicações práticas de Validação de Dados.",
+          "code": "// Outro exemplo"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Validação de Dados? (Questão 1)",
+          "opts": [
+            "Conceito correto sobre Validação de Dados",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Validação de Dados.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Validação de Dados.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Validação de Dados? (Questão 2)",
+          "opts": [
+            "Conceito correto sobre Validação de Dados",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Validação de Dados.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Validação de Dados.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Validação de Dados? (Questão 3)",
+          "opts": [
+            "Conceito correto sobre Validação de Dados",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Validação de Dados.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Validação de Dados.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Validação de Dados? (Questão 4)",
+          "opts": [
+            "Conceito correto sobre Validação de Dados",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Validação de Dados.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Validação de Dados.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "apis-http-22",
+      "name": "POR QUE DOCUMENTAR",
+      "difficulty": "AVANÇADO",
+      "color": "#FF6B35",
+      "icon": "◆",
+      "summary": "Aprenda sobre Por que Documentar.",
+      "lesson": [
+        {
+          "title": "Introdução: Por que Documentar",
+          "body": "Exploração dos conceitos fundamentais de Por que Documentar no contexto de APIs HTTP.",
+          "code": "// Exemplo de código para Por que Documentar"
+        },
+        {
+          "title": "Aprofundando em Por que Documentar",
+          "body": "Mais detalhes e aplicações práticas de Por que Documentar.",
+          "code": "// Outro exemplo"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Por que Documentar? (Questão 1)",
+          "opts": [
+            "Conceito correto sobre Por que Documentar",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Por que Documentar.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Por que Documentar.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Por que Documentar? (Questão 2)",
+          "opts": [
+            "Conceito correto sobre Por que Documentar",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Por que Documentar.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Por que Documentar.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Por que Documentar? (Questão 3)",
+          "opts": [
+            "Conceito correto sobre Por que Documentar",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Por que Documentar.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Por que Documentar.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Por que Documentar? (Questão 4)",
+          "opts": [
+            "Conceito correto sobre Por que Documentar",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Por que Documentar.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Por que Documentar.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "apis-http-23",
+      "name": "INTRODUÇÃO AO SWAGGER",
+      "difficulty": "AVANÇADO",
+      "color": "#FF6B35",
+      "icon": "◆",
+      "summary": "Aprenda sobre Introdução ao Swagger.",
+      "lesson": [
+        {
+          "title": "Introdução: Introdução ao Swagger",
+          "body": "Exploração dos conceitos fundamentais de Introdução ao Swagger no contexto de APIs HTTP.",
+          "code": "// Exemplo de código para Introdução ao Swagger"
+        },
+        {
+          "title": "Aprofundando em Introdução ao Swagger",
+          "body": "Mais detalhes e aplicações práticas de Introdução ao Swagger.",
+          "code": "// Outro exemplo"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Introdução ao Swagger? (Questão 1)",
+          "opts": [
+            "Conceito correto sobre Introdução ao Swagger",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Introdução ao Swagger.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Introdução ao Swagger.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Introdução ao Swagger? (Questão 2)",
+          "opts": [
+            "Conceito correto sobre Introdução ao Swagger",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Introdução ao Swagger.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Introdução ao Swagger.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Introdução ao Swagger? (Questão 3)",
+          "opts": [
+            "Conceito correto sobre Introdução ao Swagger",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Introdução ao Swagger.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Introdução ao Swagger.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Introdução ao Swagger? (Questão 4)",
+          "opts": [
+            "Conceito correto sobre Introdução ao Swagger",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Introdução ao Swagger.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Introdução ao Swagger.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "apis-http-24",
+      "name": "BOAS PRÁTICAS API",
+      "difficulty": "AVANÇADO",
+      "color": "#FF6B35",
+      "icon": "◆",
+      "summary": "Aprenda sobre Boas Práticas API.",
+      "lesson": [
+        {
+          "title": "Introdução: Boas Práticas API",
+          "body": "Exploração dos conceitos fundamentais de Boas Práticas API no contexto de APIs HTTP.",
+          "code": "// Exemplo de código para Boas Práticas API"
+        },
+        {
+          "title": "Aprofundando em Boas Práticas API",
+          "body": "Mais detalhes e aplicações práticas de Boas Práticas API.",
+          "code": "// Outro exemplo"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Boas Práticas API? (Questão 1)",
+          "opts": [
+            "Conceito correto sobre Boas Práticas API",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Boas Práticas API.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Boas Práticas API.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Boas Práticas API? (Questão 2)",
+          "opts": [
+            "Conceito correto sobre Boas Práticas API",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Boas Práticas API.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Boas Práticas API.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Boas Práticas API? (Questão 3)",
+          "opts": [
+            "Conceito correto sobre Boas Práticas API",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Boas Práticas API.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Boas Práticas API.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Boas Práticas API? (Questão 4)",
+          "opts": [
+            "Conceito correto sobre Boas Práticas API",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Boas Práticas API.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Boas Práticas API.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "apis-http-25",
+      "name": "PAGINAÇÃO",
+      "difficulty": "AVANÇADO",
+      "color": "#FF6B35",
+      "icon": "◆",
+      "summary": "Aprenda sobre Paginação.",
+      "lesson": [
+        {
+          "title": "Introdução: Paginação",
+          "body": "Exploração dos conceitos fundamentais de Paginação no contexto de APIs HTTP.",
+          "code": "// Exemplo de código para Paginação"
+        },
+        {
+          "title": "Aprofundando em Paginação",
+          "body": "Mais detalhes e aplicações práticas de Paginação.",
+          "code": "// Outro exemplo"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Paginação? (Questão 1)",
+          "opts": [
+            "Conceito correto sobre Paginação",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Paginação.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Paginação.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Paginação? (Questão 2)",
+          "opts": [
+            "Conceito correto sobre Paginação",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Paginação.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Paginação.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Paginação? (Questão 3)",
+          "opts": [
+            "Conceito correto sobre Paginação",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Paginação.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Paginação.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Paginação? (Questão 4)",
+          "opts": [
+            "Conceito correto sobre Paginação",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Paginação.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Paginação.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "apis-http-26",
+      "name": "RATE LIMITING E CACHE",
+      "difficulty": "AVANÇADO",
+      "color": "#FF6B35",
+      "icon": "◆",
+      "summary": "Aprenda sobre Rate Limiting e Cache.",
+      "lesson": [
+        {
+          "title": "Introdução: Rate Limiting e Cache",
+          "body": "Exploração dos conceitos fundamentais de Rate Limiting e Cache no contexto de APIs HTTP.",
+          "code": "// Exemplo de código para Rate Limiting e Cache"
+        },
+        {
+          "title": "Aprofundando em Rate Limiting e Cache",
+          "body": "Mais detalhes e aplicações práticas de Rate Limiting e Cache.",
+          "code": "// Outro exemplo"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Rate Limiting e Cache? (Questão 1)",
+          "opts": [
+            "Conceito correto sobre Rate Limiting e Cache",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Rate Limiting e Cache.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Rate Limiting e Cache.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Rate Limiting e Cache? (Questão 2)",
+          "opts": [
+            "Conceito correto sobre Rate Limiting e Cache",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Rate Limiting e Cache.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Rate Limiting e Cache.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Rate Limiting e Cache? (Questão 3)",
+          "opts": [
+            "Conceito correto sobre Rate Limiting e Cache",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Rate Limiting e Cache.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Rate Limiting e Cache.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Rate Limiting e Cache? (Questão 4)",
+          "opts": [
+            "Conceito correto sobre Rate Limiting e Cache",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Rate Limiting e Cache.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Rate Limiting e Cache.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "apis-http-27",
+      "name": "VERSIONAMENTO",
+      "difficulty": "AVANÇADO",
+      "color": "#FF6B35",
+      "icon": "◆",
+      "summary": "Aprenda sobre Versionamento.",
+      "lesson": [
+        {
+          "title": "Introdução: Versionamento",
+          "body": "Exploração dos conceitos fundamentais de Versionamento no contexto de APIs HTTP.",
+          "code": "// Exemplo de código para Versionamento"
+        },
+        {
+          "title": "Aprofundando em Versionamento",
+          "body": "Mais detalhes e aplicações práticas de Versionamento.",
+          "code": "// Outro exemplo"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Versionamento? (Questão 1)",
+          "opts": [
+            "Conceito correto sobre Versionamento",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Versionamento.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Versionamento.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Versionamento? (Questão 2)",
+          "opts": [
+            "Conceito correto sobre Versionamento",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Versionamento.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Versionamento.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Versionamento? (Questão 3)",
+          "opts": [
+            "Conceito correto sobre Versionamento",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Versionamento.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Versionamento.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Versionamento? (Questão 4)",
+          "opts": [
+            "Conceito correto sobre Versionamento",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Versionamento.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Versionamento.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "apis-http-28",
+      "name": "PLANEJANDO A API",
+      "difficulty": "AVANÇADO",
+      "color": "#FF6B35",
+      "icon": "◆",
+      "summary": "Aprenda sobre Planejando a API.",
+      "lesson": [
+        {
+          "title": "Introdução: Planejando a API",
+          "body": "Exploração dos conceitos fundamentais de Planejando a API no contexto de APIs HTTP.",
+          "code": "// Exemplo de código para Planejando a API"
+        },
+        {
+          "title": "Aprofundando em Planejando a API",
+          "body": "Mais detalhes e aplicações práticas de Planejando a API.",
+          "code": "// Outro exemplo"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Planejando a API? (Questão 1)",
+          "opts": [
+            "Conceito correto sobre Planejando a API",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Planejando a API.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Planejando a API.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Planejando a API? (Questão 2)",
+          "opts": [
+            "Conceito correto sobre Planejando a API",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Planejando a API.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Planejando a API.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Planejando a API? (Questão 3)",
+          "opts": [
+            "Conceito correto sobre Planejando a API",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Planejando a API.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Planejando a API.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Planejando a API? (Questão 4)",
+          "opts": [
+            "Conceito correto sobre Planejando a API",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Planejando a API.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Planejando a API.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "apis-http-29",
+      "name": "IMPLEMENTANDO FUNCIONALIDADES",
+      "difficulty": "AVANÇADO",
+      "color": "#FF6B35",
+      "icon": "◆",
+      "summary": "Aprenda sobre Implementando Funcionalidades.",
+      "lesson": [
+        {
+          "title": "Introdução: Implementando Funcionalidades",
+          "body": "Exploração dos conceitos fundamentais de Implementando Funcionalidades no contexto de APIs HTTP.",
+          "code": "// Exemplo de código para Implementando Funcionalidades"
+        },
+        {
+          "title": "Aprofundando em Implementando Funcionalidades",
+          "body": "Mais detalhes e aplicações práticas de Implementando Funcionalidades.",
+          "code": "// Outro exemplo"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Implementando Funcionalidades? (Questão 1)",
+          "opts": [
+            "Conceito correto sobre Implementando Funcionalidades",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Implementando Funcionalidades.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Implementando Funcionalidades.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Implementando Funcionalidades? (Questão 2)",
+          "opts": [
+            "Conceito correto sobre Implementando Funcionalidades",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Implementando Funcionalidades.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Implementando Funcionalidades.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Implementando Funcionalidades? (Questão 3)",
+          "opts": [
+            "Conceito correto sobre Implementando Funcionalidades",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Implementando Funcionalidades.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Implementando Funcionalidades.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Implementando Funcionalidades? (Questão 4)",
+          "opts": [
+            "Conceito correto sobre Implementando Funcionalidades",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Implementando Funcionalidades.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Implementando Funcionalidades.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    },
+    {
+      "id": "apis-http-30",
+      "name": "AUTENTICAÇÃO E DEPLOY",
+      "difficulty": "AVANÇADO",
+      "color": "#FF6B35",
+      "icon": "◆",
+      "summary": "Aprenda sobre Autenticação e Deploy.",
+      "lesson": [
+        {
+          "title": "Introdução: Autenticação e Deploy",
+          "body": "Exploração dos conceitos fundamentais de Autenticação e Deploy no contexto de APIs HTTP.",
+          "code": "// Exemplo de código para Autenticação e Deploy"
+        },
+        {
+          "title": "Aprofundando em Autenticação e Deploy",
+          "body": "Mais detalhes e aplicações práticas de Autenticação e Deploy.",
+          "code": "// Outro exemplo"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Autenticação e Deploy? (Questão 1)",
+          "opts": [
+            "Conceito correto sobre Autenticação e Deploy",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Autenticação e Deploy.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Autenticação e Deploy.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Autenticação e Deploy? (Questão 2)",
+          "opts": [
+            "Conceito correto sobre Autenticação e Deploy",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Autenticação e Deploy.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Autenticação e Deploy.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Autenticação e Deploy? (Questão 3)",
+          "opts": [
+            "Conceito correto sobre Autenticação e Deploy",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Autenticação e Deploy.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Autenticação e Deploy.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual é um conceito central em Autenticação e Deploy? (Questão 4)",
+          "opts": [
+            "Conceito correto sobre Autenticação e Deploy",
+            "Conceito incorreto A",
+            "Conceito incorreto B",
+            "Conceito incorreto C"
+          ],
+          "a": 0,
+          "hint": "Lembre-se da definição de Autenticação e Deploy.",
+          "ex": "A resposta correta é baseada nos princípios fundamentais de Autenticação e Deploy.",
+          "format": "APLICAÇÃO PRÁTICA"
+        }
+      ]
+    }
+  ]
+}

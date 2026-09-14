@@ -1,0 +1,2408 @@
+{
+  "meta": {
+    "id": "devops-cicd",
+    "title": "DevOps e CI/CD",
+    "subtitle": "Integração contínua, entrega contínua e cultura DevOps.",
+    "icon": "◆",
+    "color": "#EC4899",
+    "fileExt": "yml",
+    "stagesPerUnit": 3,
+    "order": 29,
+    "units": [
+      {
+        "title": "Cultura DevOps",
+        "goal": "O que é DevOps e seus pilares.",
+        "color": "#EC4899"
+      },
+      {
+        "title": "Controle de Versão",
+        "goal": "Git workflows e branching strategies.",
+        "color": "#EC4899"
+      },
+      {
+        "title": "CI com GitHub Actions",
+        "goal": "Workflows, jobs e steps.",
+        "color": "#EC4899"
+      },
+      {
+        "title": "Testes no Pipeline",
+        "goal": "Automatizando testes no CI.",
+        "color": "#EC4899"
+      },
+      {
+        "title": "Build e Artefatos",
+        "goal": "Compilação e geração de artefatos.",
+        "color": "#EC4899"
+      },
+      {
+        "title": "Docker no CI/CD",
+        "goal": "Containers no pipeline.",
+        "color": "#EC4899"
+      },
+      {
+        "title": "Deploy Automatizado",
+        "goal": "CD para staging e produção.",
+        "color": "#EC4899"
+      },
+      {
+        "title": "Monitoramento",
+        "goal": "Logs, alertas e observabilidade.",
+        "color": "#EC4899"
+      },
+      {
+        "title": "Infrastructure as Code",
+        "goal": "Terraform e Ansible básico.",
+        "color": "#EC4899"
+      },
+      {
+        "title": "Projeto Final",
+        "goal": "Pipeline completo de uma aplicação.",
+        "color": "#EC4899"
+      }
+    ]
+  },
+  "title": "DevOps e CI/CD",
+  "version": 1,
+  "stages": [
+    {
+      "id": "devops-cicd-1",
+      "name": "STAGE 1 - CULTURA DEVOPS",
+      "difficulty": "INICIANTE",
+      "color": "#EC4899",
+      "icon": "◆",
+      "summary": "Resumo prático da stage 1.",
+      "lesson": [
+        {
+          "title": "Lição 1",
+          "body": "Explicação do conteúdo de DevOps.",
+          "code": "echo 'DevOps'"
+        },
+        {
+          "title": "Lição 2",
+          "body": "Mais detalhes.",
+          "code": "echo 'Pipeline'"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é o objetivo principal do Cultura DevOps?",
+          "opts": [
+            "Automação",
+            "Manual",
+            "Lentidão",
+            "Atraso"
+          ],
+          "a": 0,
+          "hint": "É algo rápido e automático.",
+          "ex": "DevOps busca a automação dos processos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual ferramenta é comum nesta etapa?",
+          "opts": [
+            "Notepad",
+            "Jenkins",
+            "Paint",
+            "Calculadora"
+          ],
+          "a": 1,
+          "hint": "Nome de um mordomo.",
+          "ex": "Jenkins é uma ferramenta muito usada.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual comando iniciar um pipeline básico?",
+          "opts": [
+            "git init",
+            "npm run",
+            "docker run",
+            "depende"
+          ],
+          "a": 3,
+          "hint": "Varia muito.",
+          "ex": "Depende da ferramenta usada.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que é CD?",
+          "opts": [
+            "Compact Disc",
+            "Continuous Delivery",
+            "Control Data",
+            "Core Dump"
+          ],
+          "a": 1,
+          "hint": "Entrega contínua.",
+          "ex": "CD significa Continuous Delivery (ou Deployment).",
+          "format": "SINTAXE"
+        }
+      ]
+    },
+    {
+      "id": "devops-cicd-2",
+      "name": "STAGE 2 - CULTURA DEVOPS",
+      "difficulty": "INICIANTE",
+      "color": "#EC4899",
+      "icon": "◆",
+      "summary": "Resumo prático da stage 2.",
+      "lesson": [
+        {
+          "title": "Lição 1",
+          "body": "Explicação do conteúdo de DevOps.",
+          "code": "echo 'DevOps'"
+        },
+        {
+          "title": "Lição 2",
+          "body": "Mais detalhes.",
+          "code": "echo 'Pipeline'"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é o objetivo principal do Cultura DevOps?",
+          "opts": [
+            "Automação",
+            "Manual",
+            "Lentidão",
+            "Atraso"
+          ],
+          "a": 0,
+          "hint": "É algo rápido e automático.",
+          "ex": "DevOps busca a automação dos processos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual ferramenta é comum nesta etapa?",
+          "opts": [
+            "Notepad",
+            "Jenkins",
+            "Paint",
+            "Calculadora"
+          ],
+          "a": 1,
+          "hint": "Nome de um mordomo.",
+          "ex": "Jenkins é uma ferramenta muito usada.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual comando iniciar um pipeline básico?",
+          "opts": [
+            "git init",
+            "npm run",
+            "docker run",
+            "depende"
+          ],
+          "a": 3,
+          "hint": "Varia muito.",
+          "ex": "Depende da ferramenta usada.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que é CD?",
+          "opts": [
+            "Compact Disc",
+            "Continuous Delivery",
+            "Control Data",
+            "Core Dump"
+          ],
+          "a": 1,
+          "hint": "Entrega contínua.",
+          "ex": "CD significa Continuous Delivery (ou Deployment).",
+          "format": "SINTAXE"
+        }
+      ]
+    },
+    {
+      "id": "devops-cicd-3",
+      "name": "STAGE 3 - CULTURA DEVOPS",
+      "difficulty": "INICIANTE",
+      "color": "#EC4899",
+      "icon": "◆",
+      "summary": "Resumo prático da stage 3.",
+      "lesson": [
+        {
+          "title": "Lição 1",
+          "body": "Explicação do conteúdo de DevOps.",
+          "code": "echo 'DevOps'"
+        },
+        {
+          "title": "Lição 2",
+          "body": "Mais detalhes.",
+          "code": "echo 'Pipeline'"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é o objetivo principal do Cultura DevOps?",
+          "opts": [
+            "Automação",
+            "Manual",
+            "Lentidão",
+            "Atraso"
+          ],
+          "a": 0,
+          "hint": "É algo rápido e automático.",
+          "ex": "DevOps busca a automação dos processos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual ferramenta é comum nesta etapa?",
+          "opts": [
+            "Notepad",
+            "Jenkins",
+            "Paint",
+            "Calculadora"
+          ],
+          "a": 1,
+          "hint": "Nome de um mordomo.",
+          "ex": "Jenkins é uma ferramenta muito usada.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual comando iniciar um pipeline básico?",
+          "opts": [
+            "git init",
+            "npm run",
+            "docker run",
+            "depende"
+          ],
+          "a": 3,
+          "hint": "Varia muito.",
+          "ex": "Depende da ferramenta usada.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que é CD?",
+          "opts": [
+            "Compact Disc",
+            "Continuous Delivery",
+            "Control Data",
+            "Core Dump"
+          ],
+          "a": 1,
+          "hint": "Entrega contínua.",
+          "ex": "CD significa Continuous Delivery (ou Deployment).",
+          "format": "SINTAXE"
+        }
+      ]
+    },
+    {
+      "id": "devops-cicd-4",
+      "name": "STAGE 4 - CONTROLE DE VERSÃO",
+      "difficulty": "BÁSICO",
+      "color": "#EC4899",
+      "icon": "◆",
+      "summary": "Resumo prático da stage 4.",
+      "lesson": [
+        {
+          "title": "Lição 1",
+          "body": "Explicação do conteúdo de DevOps.",
+          "code": "echo 'DevOps'"
+        },
+        {
+          "title": "Lição 2",
+          "body": "Mais detalhes.",
+          "code": "echo 'Pipeline'"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é o objetivo principal do Controle de Versão?",
+          "opts": [
+            "Automação",
+            "Manual",
+            "Lentidão",
+            "Atraso"
+          ],
+          "a": 0,
+          "hint": "É algo rápido e automático.",
+          "ex": "DevOps busca a automação dos processos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual ferramenta é comum nesta etapa?",
+          "opts": [
+            "Notepad",
+            "Jenkins",
+            "Paint",
+            "Calculadora"
+          ],
+          "a": 1,
+          "hint": "Nome de um mordomo.",
+          "ex": "Jenkins é uma ferramenta muito usada.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual comando iniciar um pipeline básico?",
+          "opts": [
+            "git init",
+            "npm run",
+            "docker run",
+            "depende"
+          ],
+          "a": 3,
+          "hint": "Varia muito.",
+          "ex": "Depende da ferramenta usada.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que é CD?",
+          "opts": [
+            "Compact Disc",
+            "Continuous Delivery",
+            "Control Data",
+            "Core Dump"
+          ],
+          "a": 1,
+          "hint": "Entrega contínua.",
+          "ex": "CD significa Continuous Delivery (ou Deployment).",
+          "format": "SINTAXE"
+        }
+      ]
+    },
+    {
+      "id": "devops-cicd-5",
+      "name": "STAGE 5 - CONTROLE DE VERSÃO",
+      "difficulty": "BÁSICO",
+      "color": "#EC4899",
+      "icon": "◆",
+      "summary": "Resumo prático da stage 5.",
+      "lesson": [
+        {
+          "title": "Lição 1",
+          "body": "Explicação do conteúdo de DevOps.",
+          "code": "echo 'DevOps'"
+        },
+        {
+          "title": "Lição 2",
+          "body": "Mais detalhes.",
+          "code": "echo 'Pipeline'"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é o objetivo principal do Controle de Versão?",
+          "opts": [
+            "Automação",
+            "Manual",
+            "Lentidão",
+            "Atraso"
+          ],
+          "a": 0,
+          "hint": "É algo rápido e automático.",
+          "ex": "DevOps busca a automação dos processos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual ferramenta é comum nesta etapa?",
+          "opts": [
+            "Notepad",
+            "Jenkins",
+            "Paint",
+            "Calculadora"
+          ],
+          "a": 1,
+          "hint": "Nome de um mordomo.",
+          "ex": "Jenkins é uma ferramenta muito usada.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual comando iniciar um pipeline básico?",
+          "opts": [
+            "git init",
+            "npm run",
+            "docker run",
+            "depende"
+          ],
+          "a": 3,
+          "hint": "Varia muito.",
+          "ex": "Depende da ferramenta usada.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que é CD?",
+          "opts": [
+            "Compact Disc",
+            "Continuous Delivery",
+            "Control Data",
+            "Core Dump"
+          ],
+          "a": 1,
+          "hint": "Entrega contínua.",
+          "ex": "CD significa Continuous Delivery (ou Deployment).",
+          "format": "SINTAXE"
+        }
+      ]
+    },
+    {
+      "id": "devops-cicd-6",
+      "name": "STAGE 6 - CONTROLE DE VERSÃO",
+      "difficulty": "BÁSICO",
+      "color": "#EC4899",
+      "icon": "◆",
+      "summary": "Resumo prático da stage 6.",
+      "lesson": [
+        {
+          "title": "Lição 1",
+          "body": "Explicação do conteúdo de DevOps.",
+          "code": "echo 'DevOps'"
+        },
+        {
+          "title": "Lição 2",
+          "body": "Mais detalhes.",
+          "code": "echo 'Pipeline'"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é o objetivo principal do Controle de Versão?",
+          "opts": [
+            "Automação",
+            "Manual",
+            "Lentidão",
+            "Atraso"
+          ],
+          "a": 0,
+          "hint": "É algo rápido e automático.",
+          "ex": "DevOps busca a automação dos processos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual ferramenta é comum nesta etapa?",
+          "opts": [
+            "Notepad",
+            "Jenkins",
+            "Paint",
+            "Calculadora"
+          ],
+          "a": 1,
+          "hint": "Nome de um mordomo.",
+          "ex": "Jenkins é uma ferramenta muito usada.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual comando iniciar um pipeline básico?",
+          "opts": [
+            "git init",
+            "npm run",
+            "docker run",
+            "depende"
+          ],
+          "a": 3,
+          "hint": "Varia muito.",
+          "ex": "Depende da ferramenta usada.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que é CD?",
+          "opts": [
+            "Compact Disc",
+            "Continuous Delivery",
+            "Control Data",
+            "Core Dump"
+          ],
+          "a": 1,
+          "hint": "Entrega contínua.",
+          "ex": "CD significa Continuous Delivery (ou Deployment).",
+          "format": "SINTAXE"
+        }
+      ]
+    },
+    {
+      "id": "devops-cicd-7",
+      "name": "STAGE 7 - CI COM GITHUB ACTIONS",
+      "difficulty": "BÁSICO",
+      "color": "#EC4899",
+      "icon": "◆",
+      "summary": "Resumo prático da stage 7.",
+      "lesson": [
+        {
+          "title": "Lição 1",
+          "body": "Explicação do conteúdo de DevOps.",
+          "code": "echo 'DevOps'"
+        },
+        {
+          "title": "Lição 2",
+          "body": "Mais detalhes.",
+          "code": "echo 'Pipeline'"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é o objetivo principal do CI com GitHub Actions?",
+          "opts": [
+            "Automação",
+            "Manual",
+            "Lentidão",
+            "Atraso"
+          ],
+          "a": 0,
+          "hint": "É algo rápido e automático.",
+          "ex": "DevOps busca a automação dos processos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual ferramenta é comum nesta etapa?",
+          "opts": [
+            "Notepad",
+            "Jenkins",
+            "Paint",
+            "Calculadora"
+          ],
+          "a": 1,
+          "hint": "Nome de um mordomo.",
+          "ex": "Jenkins é uma ferramenta muito usada.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual comando iniciar um pipeline básico?",
+          "opts": [
+            "git init",
+            "npm run",
+            "docker run",
+            "depende"
+          ],
+          "a": 3,
+          "hint": "Varia muito.",
+          "ex": "Depende da ferramenta usada.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que é CD?",
+          "opts": [
+            "Compact Disc",
+            "Continuous Delivery",
+            "Control Data",
+            "Core Dump"
+          ],
+          "a": 1,
+          "hint": "Entrega contínua.",
+          "ex": "CD significa Continuous Delivery (ou Deployment).",
+          "format": "SINTAXE"
+        }
+      ]
+    },
+    {
+      "id": "devops-cicd-8",
+      "name": "STAGE 8 - CI COM GITHUB ACTIONS",
+      "difficulty": "BÁSICO",
+      "color": "#EC4899",
+      "icon": "◆",
+      "summary": "Resumo prático da stage 8.",
+      "lesson": [
+        {
+          "title": "Lição 1",
+          "body": "Explicação do conteúdo de DevOps.",
+          "code": "echo 'DevOps'"
+        },
+        {
+          "title": "Lição 2",
+          "body": "Mais detalhes.",
+          "code": "echo 'Pipeline'"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é o objetivo principal do CI com GitHub Actions?",
+          "opts": [
+            "Automação",
+            "Manual",
+            "Lentidão",
+            "Atraso"
+          ],
+          "a": 0,
+          "hint": "É algo rápido e automático.",
+          "ex": "DevOps busca a automação dos processos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual ferramenta é comum nesta etapa?",
+          "opts": [
+            "Notepad",
+            "Jenkins",
+            "Paint",
+            "Calculadora"
+          ],
+          "a": 1,
+          "hint": "Nome de um mordomo.",
+          "ex": "Jenkins é uma ferramenta muito usada.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual comando iniciar um pipeline básico?",
+          "opts": [
+            "git init",
+            "npm run",
+            "docker run",
+            "depende"
+          ],
+          "a": 3,
+          "hint": "Varia muito.",
+          "ex": "Depende da ferramenta usada.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que é CD?",
+          "opts": [
+            "Compact Disc",
+            "Continuous Delivery",
+            "Control Data",
+            "Core Dump"
+          ],
+          "a": 1,
+          "hint": "Entrega contínua.",
+          "ex": "CD significa Continuous Delivery (ou Deployment).",
+          "format": "SINTAXE"
+        }
+      ]
+    },
+    {
+      "id": "devops-cicd-9",
+      "name": "STAGE 9 - CI COM GITHUB ACTIONS",
+      "difficulty": "BÁSICO",
+      "color": "#EC4899",
+      "icon": "◆",
+      "summary": "Resumo prático da stage 9.",
+      "lesson": [
+        {
+          "title": "Lição 1",
+          "body": "Explicação do conteúdo de DevOps.",
+          "code": "echo 'DevOps'"
+        },
+        {
+          "title": "Lição 2",
+          "body": "Mais detalhes.",
+          "code": "echo 'Pipeline'"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é o objetivo principal do CI com GitHub Actions?",
+          "opts": [
+            "Automação",
+            "Manual",
+            "Lentidão",
+            "Atraso"
+          ],
+          "a": 0,
+          "hint": "É algo rápido e automático.",
+          "ex": "DevOps busca a automação dos processos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual ferramenta é comum nesta etapa?",
+          "opts": [
+            "Notepad",
+            "Jenkins",
+            "Paint",
+            "Calculadora"
+          ],
+          "a": 1,
+          "hint": "Nome de um mordomo.",
+          "ex": "Jenkins é uma ferramenta muito usada.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual comando iniciar um pipeline básico?",
+          "opts": [
+            "git init",
+            "npm run",
+            "docker run",
+            "depende"
+          ],
+          "a": 3,
+          "hint": "Varia muito.",
+          "ex": "Depende da ferramenta usada.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que é CD?",
+          "opts": [
+            "Compact Disc",
+            "Continuous Delivery",
+            "Control Data",
+            "Core Dump"
+          ],
+          "a": 1,
+          "hint": "Entrega contínua.",
+          "ex": "CD significa Continuous Delivery (ou Deployment).",
+          "format": "SINTAXE"
+        }
+      ]
+    },
+    {
+      "id": "devops-cicd-10",
+      "name": "STAGE 10 - TESTES NO PIPELINE",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#EC4899",
+      "icon": "◆",
+      "summary": "Resumo prático da stage 10.",
+      "lesson": [
+        {
+          "title": "Lição 1",
+          "body": "Explicação do conteúdo de DevOps.",
+          "code": "echo 'DevOps'"
+        },
+        {
+          "title": "Lição 2",
+          "body": "Mais detalhes.",
+          "code": "echo 'Pipeline'"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é o objetivo principal do Testes no Pipeline?",
+          "opts": [
+            "Automação",
+            "Manual",
+            "Lentidão",
+            "Atraso"
+          ],
+          "a": 0,
+          "hint": "É algo rápido e automático.",
+          "ex": "DevOps busca a automação dos processos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual ferramenta é comum nesta etapa?",
+          "opts": [
+            "Notepad",
+            "Jenkins",
+            "Paint",
+            "Calculadora"
+          ],
+          "a": 1,
+          "hint": "Nome de um mordomo.",
+          "ex": "Jenkins é uma ferramenta muito usada.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual comando iniciar um pipeline básico?",
+          "opts": [
+            "git init",
+            "npm run",
+            "docker run",
+            "depende"
+          ],
+          "a": 3,
+          "hint": "Varia muito.",
+          "ex": "Depende da ferramenta usada.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que é CD?",
+          "opts": [
+            "Compact Disc",
+            "Continuous Delivery",
+            "Control Data",
+            "Core Dump"
+          ],
+          "a": 1,
+          "hint": "Entrega contínua.",
+          "ex": "CD significa Continuous Delivery (ou Deployment).",
+          "format": "SINTAXE"
+        }
+      ]
+    },
+    {
+      "id": "devops-cicd-11",
+      "name": "STAGE 11 - TESTES NO PIPELINE",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#EC4899",
+      "icon": "◆",
+      "summary": "Resumo prático da stage 11.",
+      "lesson": [
+        {
+          "title": "Lição 1",
+          "body": "Explicação do conteúdo de DevOps.",
+          "code": "echo 'DevOps'"
+        },
+        {
+          "title": "Lição 2",
+          "body": "Mais detalhes.",
+          "code": "echo 'Pipeline'"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é o objetivo principal do Testes no Pipeline?",
+          "opts": [
+            "Automação",
+            "Manual",
+            "Lentidão",
+            "Atraso"
+          ],
+          "a": 0,
+          "hint": "É algo rápido e automático.",
+          "ex": "DevOps busca a automação dos processos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual ferramenta é comum nesta etapa?",
+          "opts": [
+            "Notepad",
+            "Jenkins",
+            "Paint",
+            "Calculadora"
+          ],
+          "a": 1,
+          "hint": "Nome de um mordomo.",
+          "ex": "Jenkins é uma ferramenta muito usada.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual comando iniciar um pipeline básico?",
+          "opts": [
+            "git init",
+            "npm run",
+            "docker run",
+            "depende"
+          ],
+          "a": 3,
+          "hint": "Varia muito.",
+          "ex": "Depende da ferramenta usada.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que é CD?",
+          "opts": [
+            "Compact Disc",
+            "Continuous Delivery",
+            "Control Data",
+            "Core Dump"
+          ],
+          "a": 1,
+          "hint": "Entrega contínua.",
+          "ex": "CD significa Continuous Delivery (ou Deployment).",
+          "format": "SINTAXE"
+        }
+      ]
+    },
+    {
+      "id": "devops-cicd-12",
+      "name": "STAGE 12 - TESTES NO PIPELINE",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#EC4899",
+      "icon": "◆",
+      "summary": "Resumo prático da stage 12.",
+      "lesson": [
+        {
+          "title": "Lição 1",
+          "body": "Explicação do conteúdo de DevOps.",
+          "code": "echo 'DevOps'"
+        },
+        {
+          "title": "Lição 2",
+          "body": "Mais detalhes.",
+          "code": "echo 'Pipeline'"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é o objetivo principal do Testes no Pipeline?",
+          "opts": [
+            "Automação",
+            "Manual",
+            "Lentidão",
+            "Atraso"
+          ],
+          "a": 0,
+          "hint": "É algo rápido e automático.",
+          "ex": "DevOps busca a automação dos processos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual ferramenta é comum nesta etapa?",
+          "opts": [
+            "Notepad",
+            "Jenkins",
+            "Paint",
+            "Calculadora"
+          ],
+          "a": 1,
+          "hint": "Nome de um mordomo.",
+          "ex": "Jenkins é uma ferramenta muito usada.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual comando iniciar um pipeline básico?",
+          "opts": [
+            "git init",
+            "npm run",
+            "docker run",
+            "depende"
+          ],
+          "a": 3,
+          "hint": "Varia muito.",
+          "ex": "Depende da ferramenta usada.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que é CD?",
+          "opts": [
+            "Compact Disc",
+            "Continuous Delivery",
+            "Control Data",
+            "Core Dump"
+          ],
+          "a": 1,
+          "hint": "Entrega contínua.",
+          "ex": "CD significa Continuous Delivery (ou Deployment).",
+          "format": "SINTAXE"
+        }
+      ]
+    },
+    {
+      "id": "devops-cicd-13",
+      "name": "STAGE 13 - BUILD E ARTEFATOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#EC4899",
+      "icon": "◆",
+      "summary": "Resumo prático da stage 13.",
+      "lesson": [
+        {
+          "title": "Lição 1",
+          "body": "Explicação do conteúdo de DevOps.",
+          "code": "echo 'DevOps'"
+        },
+        {
+          "title": "Lição 2",
+          "body": "Mais detalhes.",
+          "code": "echo 'Pipeline'"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é o objetivo principal do Build e Artefatos?",
+          "opts": [
+            "Automação",
+            "Manual",
+            "Lentidão",
+            "Atraso"
+          ],
+          "a": 0,
+          "hint": "É algo rápido e automático.",
+          "ex": "DevOps busca a automação dos processos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual ferramenta é comum nesta etapa?",
+          "opts": [
+            "Notepad",
+            "Jenkins",
+            "Paint",
+            "Calculadora"
+          ],
+          "a": 1,
+          "hint": "Nome de um mordomo.",
+          "ex": "Jenkins é uma ferramenta muito usada.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual comando iniciar um pipeline básico?",
+          "opts": [
+            "git init",
+            "npm run",
+            "docker run",
+            "depende"
+          ],
+          "a": 3,
+          "hint": "Varia muito.",
+          "ex": "Depende da ferramenta usada.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que é CD?",
+          "opts": [
+            "Compact Disc",
+            "Continuous Delivery",
+            "Control Data",
+            "Core Dump"
+          ],
+          "a": 1,
+          "hint": "Entrega contínua.",
+          "ex": "CD significa Continuous Delivery (ou Deployment).",
+          "format": "SINTAXE"
+        }
+      ]
+    },
+    {
+      "id": "devops-cicd-14",
+      "name": "STAGE 14 - BUILD E ARTEFATOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#EC4899",
+      "icon": "◆",
+      "summary": "Resumo prático da stage 14.",
+      "lesson": [
+        {
+          "title": "Lição 1",
+          "body": "Explicação do conteúdo de DevOps.",
+          "code": "echo 'DevOps'"
+        },
+        {
+          "title": "Lição 2",
+          "body": "Mais detalhes.",
+          "code": "echo 'Pipeline'"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é o objetivo principal do Build e Artefatos?",
+          "opts": [
+            "Automação",
+            "Manual",
+            "Lentidão",
+            "Atraso"
+          ],
+          "a": 0,
+          "hint": "É algo rápido e automático.",
+          "ex": "DevOps busca a automação dos processos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual ferramenta é comum nesta etapa?",
+          "opts": [
+            "Notepad",
+            "Jenkins",
+            "Paint",
+            "Calculadora"
+          ],
+          "a": 1,
+          "hint": "Nome de um mordomo.",
+          "ex": "Jenkins é uma ferramenta muito usada.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual comando iniciar um pipeline básico?",
+          "opts": [
+            "git init",
+            "npm run",
+            "docker run",
+            "depende"
+          ],
+          "a": 3,
+          "hint": "Varia muito.",
+          "ex": "Depende da ferramenta usada.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que é CD?",
+          "opts": [
+            "Compact Disc",
+            "Continuous Delivery",
+            "Control Data",
+            "Core Dump"
+          ],
+          "a": 1,
+          "hint": "Entrega contínua.",
+          "ex": "CD significa Continuous Delivery (ou Deployment).",
+          "format": "SINTAXE"
+        }
+      ]
+    },
+    {
+      "id": "devops-cicd-15",
+      "name": "STAGE 15 - BUILD E ARTEFATOS",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#EC4899",
+      "icon": "◆",
+      "summary": "Resumo prático da stage 15.",
+      "lesson": [
+        {
+          "title": "Lição 1",
+          "body": "Explicação do conteúdo de DevOps.",
+          "code": "echo 'DevOps'"
+        },
+        {
+          "title": "Lição 2",
+          "body": "Mais detalhes.",
+          "code": "echo 'Pipeline'"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é o objetivo principal do Build e Artefatos?",
+          "opts": [
+            "Automação",
+            "Manual",
+            "Lentidão",
+            "Atraso"
+          ],
+          "a": 0,
+          "hint": "É algo rápido e automático.",
+          "ex": "DevOps busca a automação dos processos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual ferramenta é comum nesta etapa?",
+          "opts": [
+            "Notepad",
+            "Jenkins",
+            "Paint",
+            "Calculadora"
+          ],
+          "a": 1,
+          "hint": "Nome de um mordomo.",
+          "ex": "Jenkins é uma ferramenta muito usada.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual comando iniciar um pipeline básico?",
+          "opts": [
+            "git init",
+            "npm run",
+            "docker run",
+            "depende"
+          ],
+          "a": 3,
+          "hint": "Varia muito.",
+          "ex": "Depende da ferramenta usada.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que é CD?",
+          "opts": [
+            "Compact Disc",
+            "Continuous Delivery",
+            "Control Data",
+            "Core Dump"
+          ],
+          "a": 1,
+          "hint": "Entrega contínua.",
+          "ex": "CD significa Continuous Delivery (ou Deployment).",
+          "format": "SINTAXE"
+        }
+      ]
+    },
+    {
+      "id": "devops-cicd-16",
+      "name": "STAGE 16 - DOCKER NO CI/CD",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#EC4899",
+      "icon": "◆",
+      "summary": "Resumo prático da stage 16.",
+      "lesson": [
+        {
+          "title": "Lição 1",
+          "body": "Explicação do conteúdo de DevOps.",
+          "code": "echo 'DevOps'"
+        },
+        {
+          "title": "Lição 2",
+          "body": "Mais detalhes.",
+          "code": "echo 'Pipeline'"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é o objetivo principal do Docker no CI/CD?",
+          "opts": [
+            "Automação",
+            "Manual",
+            "Lentidão",
+            "Atraso"
+          ],
+          "a": 0,
+          "hint": "É algo rápido e automático.",
+          "ex": "DevOps busca a automação dos processos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual ferramenta é comum nesta etapa?",
+          "opts": [
+            "Notepad",
+            "Jenkins",
+            "Paint",
+            "Calculadora"
+          ],
+          "a": 1,
+          "hint": "Nome de um mordomo.",
+          "ex": "Jenkins é uma ferramenta muito usada.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual comando iniciar um pipeline básico?",
+          "opts": [
+            "git init",
+            "npm run",
+            "docker run",
+            "depende"
+          ],
+          "a": 3,
+          "hint": "Varia muito.",
+          "ex": "Depende da ferramenta usada.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que é CD?",
+          "opts": [
+            "Compact Disc",
+            "Continuous Delivery",
+            "Control Data",
+            "Core Dump"
+          ],
+          "a": 1,
+          "hint": "Entrega contínua.",
+          "ex": "CD significa Continuous Delivery (ou Deployment).",
+          "format": "SINTAXE"
+        }
+      ]
+    },
+    {
+      "id": "devops-cicd-17",
+      "name": "STAGE 17 - DOCKER NO CI/CD",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#EC4899",
+      "icon": "◆",
+      "summary": "Resumo prático da stage 17.",
+      "lesson": [
+        {
+          "title": "Lição 1",
+          "body": "Explicação do conteúdo de DevOps.",
+          "code": "echo 'DevOps'"
+        },
+        {
+          "title": "Lição 2",
+          "body": "Mais detalhes.",
+          "code": "echo 'Pipeline'"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é o objetivo principal do Docker no CI/CD?",
+          "opts": [
+            "Automação",
+            "Manual",
+            "Lentidão",
+            "Atraso"
+          ],
+          "a": 0,
+          "hint": "É algo rápido e automático.",
+          "ex": "DevOps busca a automação dos processos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual ferramenta é comum nesta etapa?",
+          "opts": [
+            "Notepad",
+            "Jenkins",
+            "Paint",
+            "Calculadora"
+          ],
+          "a": 1,
+          "hint": "Nome de um mordomo.",
+          "ex": "Jenkins é uma ferramenta muito usada.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual comando iniciar um pipeline básico?",
+          "opts": [
+            "git init",
+            "npm run",
+            "docker run",
+            "depende"
+          ],
+          "a": 3,
+          "hint": "Varia muito.",
+          "ex": "Depende da ferramenta usada.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que é CD?",
+          "opts": [
+            "Compact Disc",
+            "Continuous Delivery",
+            "Control Data",
+            "Core Dump"
+          ],
+          "a": 1,
+          "hint": "Entrega contínua.",
+          "ex": "CD significa Continuous Delivery (ou Deployment).",
+          "format": "SINTAXE"
+        }
+      ]
+    },
+    {
+      "id": "devops-cicd-18",
+      "name": "STAGE 18 - DOCKER NO CI/CD",
+      "difficulty": "INTERMEDIÁRIO",
+      "color": "#EC4899",
+      "icon": "◆",
+      "summary": "Resumo prático da stage 18.",
+      "lesson": [
+        {
+          "title": "Lição 1",
+          "body": "Explicação do conteúdo de DevOps.",
+          "code": "echo 'DevOps'"
+        },
+        {
+          "title": "Lição 2",
+          "body": "Mais detalhes.",
+          "code": "echo 'Pipeline'"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é o objetivo principal do Docker no CI/CD?",
+          "opts": [
+            "Automação",
+            "Manual",
+            "Lentidão",
+            "Atraso"
+          ],
+          "a": 0,
+          "hint": "É algo rápido e automático.",
+          "ex": "DevOps busca a automação dos processos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual ferramenta é comum nesta etapa?",
+          "opts": [
+            "Notepad",
+            "Jenkins",
+            "Paint",
+            "Calculadora"
+          ],
+          "a": 1,
+          "hint": "Nome de um mordomo.",
+          "ex": "Jenkins é uma ferramenta muito usada.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual comando iniciar um pipeline básico?",
+          "opts": [
+            "git init",
+            "npm run",
+            "docker run",
+            "depende"
+          ],
+          "a": 3,
+          "hint": "Varia muito.",
+          "ex": "Depende da ferramenta usada.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que é CD?",
+          "opts": [
+            "Compact Disc",
+            "Continuous Delivery",
+            "Control Data",
+            "Core Dump"
+          ],
+          "a": 1,
+          "hint": "Entrega contínua.",
+          "ex": "CD significa Continuous Delivery (ou Deployment).",
+          "format": "SINTAXE"
+        }
+      ]
+    },
+    {
+      "id": "devops-cicd-19",
+      "name": "STAGE 19 - DEPLOY AUTOMATIZADO",
+      "difficulty": "AVANÇADO",
+      "color": "#EC4899",
+      "icon": "◆",
+      "summary": "Resumo prático da stage 19.",
+      "lesson": [
+        {
+          "title": "Lição 1",
+          "body": "Explicação do conteúdo de DevOps.",
+          "code": "echo 'DevOps'"
+        },
+        {
+          "title": "Lição 2",
+          "body": "Mais detalhes.",
+          "code": "echo 'Pipeline'"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é o objetivo principal do Deploy Automatizado?",
+          "opts": [
+            "Automação",
+            "Manual",
+            "Lentidão",
+            "Atraso"
+          ],
+          "a": 0,
+          "hint": "É algo rápido e automático.",
+          "ex": "DevOps busca a automação dos processos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual ferramenta é comum nesta etapa?",
+          "opts": [
+            "Notepad",
+            "Jenkins",
+            "Paint",
+            "Calculadora"
+          ],
+          "a": 1,
+          "hint": "Nome de um mordomo.",
+          "ex": "Jenkins é uma ferramenta muito usada.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual comando iniciar um pipeline básico?",
+          "opts": [
+            "git init",
+            "npm run",
+            "docker run",
+            "depende"
+          ],
+          "a": 3,
+          "hint": "Varia muito.",
+          "ex": "Depende da ferramenta usada.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que é CD?",
+          "opts": [
+            "Compact Disc",
+            "Continuous Delivery",
+            "Control Data",
+            "Core Dump"
+          ],
+          "a": 1,
+          "hint": "Entrega contínua.",
+          "ex": "CD significa Continuous Delivery (ou Deployment).",
+          "format": "SINTAXE"
+        }
+      ]
+    },
+    {
+      "id": "devops-cicd-20",
+      "name": "STAGE 20 - DEPLOY AUTOMATIZADO",
+      "difficulty": "AVANÇADO",
+      "color": "#EC4899",
+      "icon": "◆",
+      "summary": "Resumo prático da stage 20.",
+      "lesson": [
+        {
+          "title": "Lição 1",
+          "body": "Explicação do conteúdo de DevOps.",
+          "code": "echo 'DevOps'"
+        },
+        {
+          "title": "Lição 2",
+          "body": "Mais detalhes.",
+          "code": "echo 'Pipeline'"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é o objetivo principal do Deploy Automatizado?",
+          "opts": [
+            "Automação",
+            "Manual",
+            "Lentidão",
+            "Atraso"
+          ],
+          "a": 0,
+          "hint": "É algo rápido e automático.",
+          "ex": "DevOps busca a automação dos processos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual ferramenta é comum nesta etapa?",
+          "opts": [
+            "Notepad",
+            "Jenkins",
+            "Paint",
+            "Calculadora"
+          ],
+          "a": 1,
+          "hint": "Nome de um mordomo.",
+          "ex": "Jenkins é uma ferramenta muito usada.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual comando iniciar um pipeline básico?",
+          "opts": [
+            "git init",
+            "npm run",
+            "docker run",
+            "depende"
+          ],
+          "a": 3,
+          "hint": "Varia muito.",
+          "ex": "Depende da ferramenta usada.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que é CD?",
+          "opts": [
+            "Compact Disc",
+            "Continuous Delivery",
+            "Control Data",
+            "Core Dump"
+          ],
+          "a": 1,
+          "hint": "Entrega contínua.",
+          "ex": "CD significa Continuous Delivery (ou Deployment).",
+          "format": "SINTAXE"
+        }
+      ]
+    },
+    {
+      "id": "devops-cicd-21",
+      "name": "STAGE 21 - DEPLOY AUTOMATIZADO",
+      "difficulty": "AVANÇADO",
+      "color": "#EC4899",
+      "icon": "◆",
+      "summary": "Resumo prático da stage 21.",
+      "lesson": [
+        {
+          "title": "Lição 1",
+          "body": "Explicação do conteúdo de DevOps.",
+          "code": "echo 'DevOps'"
+        },
+        {
+          "title": "Lição 2",
+          "body": "Mais detalhes.",
+          "code": "echo 'Pipeline'"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é o objetivo principal do Deploy Automatizado?",
+          "opts": [
+            "Automação",
+            "Manual",
+            "Lentidão",
+            "Atraso"
+          ],
+          "a": 0,
+          "hint": "É algo rápido e automático.",
+          "ex": "DevOps busca a automação dos processos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual ferramenta é comum nesta etapa?",
+          "opts": [
+            "Notepad",
+            "Jenkins",
+            "Paint",
+            "Calculadora"
+          ],
+          "a": 1,
+          "hint": "Nome de um mordomo.",
+          "ex": "Jenkins é uma ferramenta muito usada.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual comando iniciar um pipeline básico?",
+          "opts": [
+            "git init",
+            "npm run",
+            "docker run",
+            "depende"
+          ],
+          "a": 3,
+          "hint": "Varia muito.",
+          "ex": "Depende da ferramenta usada.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que é CD?",
+          "opts": [
+            "Compact Disc",
+            "Continuous Delivery",
+            "Control Data",
+            "Core Dump"
+          ],
+          "a": 1,
+          "hint": "Entrega contínua.",
+          "ex": "CD significa Continuous Delivery (ou Deployment).",
+          "format": "SINTAXE"
+        }
+      ]
+    },
+    {
+      "id": "devops-cicd-22",
+      "name": "STAGE 22 - MONITORAMENTO",
+      "difficulty": "AVANÇADO",
+      "color": "#EC4899",
+      "icon": "◆",
+      "summary": "Resumo prático da stage 22.",
+      "lesson": [
+        {
+          "title": "Lição 1",
+          "body": "Explicação do conteúdo de DevOps.",
+          "code": "echo 'DevOps'"
+        },
+        {
+          "title": "Lição 2",
+          "body": "Mais detalhes.",
+          "code": "echo 'Pipeline'"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é o objetivo principal do Monitoramento?",
+          "opts": [
+            "Automação",
+            "Manual",
+            "Lentidão",
+            "Atraso"
+          ],
+          "a": 0,
+          "hint": "É algo rápido e automático.",
+          "ex": "DevOps busca a automação dos processos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual ferramenta é comum nesta etapa?",
+          "opts": [
+            "Notepad",
+            "Jenkins",
+            "Paint",
+            "Calculadora"
+          ],
+          "a": 1,
+          "hint": "Nome de um mordomo.",
+          "ex": "Jenkins é uma ferramenta muito usada.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual comando iniciar um pipeline básico?",
+          "opts": [
+            "git init",
+            "npm run",
+            "docker run",
+            "depende"
+          ],
+          "a": 3,
+          "hint": "Varia muito.",
+          "ex": "Depende da ferramenta usada.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que é CD?",
+          "opts": [
+            "Compact Disc",
+            "Continuous Delivery",
+            "Control Data",
+            "Core Dump"
+          ],
+          "a": 1,
+          "hint": "Entrega contínua.",
+          "ex": "CD significa Continuous Delivery (ou Deployment).",
+          "format": "SINTAXE"
+        }
+      ]
+    },
+    {
+      "id": "devops-cicd-23",
+      "name": "STAGE 23 - MONITORAMENTO",
+      "difficulty": "AVANÇADO",
+      "color": "#EC4899",
+      "icon": "◆",
+      "summary": "Resumo prático da stage 23.",
+      "lesson": [
+        {
+          "title": "Lição 1",
+          "body": "Explicação do conteúdo de DevOps.",
+          "code": "echo 'DevOps'"
+        },
+        {
+          "title": "Lição 2",
+          "body": "Mais detalhes.",
+          "code": "echo 'Pipeline'"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é o objetivo principal do Monitoramento?",
+          "opts": [
+            "Automação",
+            "Manual",
+            "Lentidão",
+            "Atraso"
+          ],
+          "a": 0,
+          "hint": "É algo rápido e automático.",
+          "ex": "DevOps busca a automação dos processos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual ferramenta é comum nesta etapa?",
+          "opts": [
+            "Notepad",
+            "Jenkins",
+            "Paint",
+            "Calculadora"
+          ],
+          "a": 1,
+          "hint": "Nome de um mordomo.",
+          "ex": "Jenkins é uma ferramenta muito usada.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual comando iniciar um pipeline básico?",
+          "opts": [
+            "git init",
+            "npm run",
+            "docker run",
+            "depende"
+          ],
+          "a": 3,
+          "hint": "Varia muito.",
+          "ex": "Depende da ferramenta usada.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que é CD?",
+          "opts": [
+            "Compact Disc",
+            "Continuous Delivery",
+            "Control Data",
+            "Core Dump"
+          ],
+          "a": 1,
+          "hint": "Entrega contínua.",
+          "ex": "CD significa Continuous Delivery (ou Deployment).",
+          "format": "SINTAXE"
+        }
+      ]
+    },
+    {
+      "id": "devops-cicd-24",
+      "name": "STAGE 24 - MONITORAMENTO",
+      "difficulty": "AVANÇADO",
+      "color": "#EC4899",
+      "icon": "◆",
+      "summary": "Resumo prático da stage 24.",
+      "lesson": [
+        {
+          "title": "Lição 1",
+          "body": "Explicação do conteúdo de DevOps.",
+          "code": "echo 'DevOps'"
+        },
+        {
+          "title": "Lição 2",
+          "body": "Mais detalhes.",
+          "code": "echo 'Pipeline'"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é o objetivo principal do Monitoramento?",
+          "opts": [
+            "Automação",
+            "Manual",
+            "Lentidão",
+            "Atraso"
+          ],
+          "a": 0,
+          "hint": "É algo rápido e automático.",
+          "ex": "DevOps busca a automação dos processos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual ferramenta é comum nesta etapa?",
+          "opts": [
+            "Notepad",
+            "Jenkins",
+            "Paint",
+            "Calculadora"
+          ],
+          "a": 1,
+          "hint": "Nome de um mordomo.",
+          "ex": "Jenkins é uma ferramenta muito usada.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual comando iniciar um pipeline básico?",
+          "opts": [
+            "git init",
+            "npm run",
+            "docker run",
+            "depende"
+          ],
+          "a": 3,
+          "hint": "Varia muito.",
+          "ex": "Depende da ferramenta usada.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que é CD?",
+          "opts": [
+            "Compact Disc",
+            "Continuous Delivery",
+            "Control Data",
+            "Core Dump"
+          ],
+          "a": 1,
+          "hint": "Entrega contínua.",
+          "ex": "CD significa Continuous Delivery (ou Deployment).",
+          "format": "SINTAXE"
+        }
+      ]
+    },
+    {
+      "id": "devops-cicd-25",
+      "name": "STAGE 25 - INFRASTRUCTURE AS CODE",
+      "difficulty": "AVANÇADO",
+      "color": "#EC4899",
+      "icon": "◆",
+      "summary": "Resumo prático da stage 25.",
+      "lesson": [
+        {
+          "title": "Lição 1",
+          "body": "Explicação do conteúdo de DevOps.",
+          "code": "echo 'DevOps'"
+        },
+        {
+          "title": "Lição 2",
+          "body": "Mais detalhes.",
+          "code": "echo 'Pipeline'"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é o objetivo principal do Infrastructure as Code?",
+          "opts": [
+            "Automação",
+            "Manual",
+            "Lentidão",
+            "Atraso"
+          ],
+          "a": 0,
+          "hint": "É algo rápido e automático.",
+          "ex": "DevOps busca a automação dos processos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual ferramenta é comum nesta etapa?",
+          "opts": [
+            "Notepad",
+            "Jenkins",
+            "Paint",
+            "Calculadora"
+          ],
+          "a": 1,
+          "hint": "Nome de um mordomo.",
+          "ex": "Jenkins é uma ferramenta muito usada.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual comando iniciar um pipeline básico?",
+          "opts": [
+            "git init",
+            "npm run",
+            "docker run",
+            "depende"
+          ],
+          "a": 3,
+          "hint": "Varia muito.",
+          "ex": "Depende da ferramenta usada.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que é CD?",
+          "opts": [
+            "Compact Disc",
+            "Continuous Delivery",
+            "Control Data",
+            "Core Dump"
+          ],
+          "a": 1,
+          "hint": "Entrega contínua.",
+          "ex": "CD significa Continuous Delivery (ou Deployment).",
+          "format": "SINTAXE"
+        }
+      ]
+    },
+    {
+      "id": "devops-cicd-26",
+      "name": "STAGE 26 - INFRASTRUCTURE AS CODE",
+      "difficulty": "AVANÇADO",
+      "color": "#EC4899",
+      "icon": "◆",
+      "summary": "Resumo prático da stage 26.",
+      "lesson": [
+        {
+          "title": "Lição 1",
+          "body": "Explicação do conteúdo de DevOps.",
+          "code": "echo 'DevOps'"
+        },
+        {
+          "title": "Lição 2",
+          "body": "Mais detalhes.",
+          "code": "echo 'Pipeline'"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é o objetivo principal do Infrastructure as Code?",
+          "opts": [
+            "Automação",
+            "Manual",
+            "Lentidão",
+            "Atraso"
+          ],
+          "a": 0,
+          "hint": "É algo rápido e automático.",
+          "ex": "DevOps busca a automação dos processos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual ferramenta é comum nesta etapa?",
+          "opts": [
+            "Notepad",
+            "Jenkins",
+            "Paint",
+            "Calculadora"
+          ],
+          "a": 1,
+          "hint": "Nome de um mordomo.",
+          "ex": "Jenkins é uma ferramenta muito usada.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual comando iniciar um pipeline básico?",
+          "opts": [
+            "git init",
+            "npm run",
+            "docker run",
+            "depende"
+          ],
+          "a": 3,
+          "hint": "Varia muito.",
+          "ex": "Depende da ferramenta usada.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que é CD?",
+          "opts": [
+            "Compact Disc",
+            "Continuous Delivery",
+            "Control Data",
+            "Core Dump"
+          ],
+          "a": 1,
+          "hint": "Entrega contínua.",
+          "ex": "CD significa Continuous Delivery (ou Deployment).",
+          "format": "SINTAXE"
+        }
+      ]
+    },
+    {
+      "id": "devops-cicd-27",
+      "name": "STAGE 27 - INFRASTRUCTURE AS CODE",
+      "difficulty": "AVANÇADO",
+      "color": "#EC4899",
+      "icon": "◆",
+      "summary": "Resumo prático da stage 27.",
+      "lesson": [
+        {
+          "title": "Lição 1",
+          "body": "Explicação do conteúdo de DevOps.",
+          "code": "echo 'DevOps'"
+        },
+        {
+          "title": "Lição 2",
+          "body": "Mais detalhes.",
+          "code": "echo 'Pipeline'"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é o objetivo principal do Infrastructure as Code?",
+          "opts": [
+            "Automação",
+            "Manual",
+            "Lentidão",
+            "Atraso"
+          ],
+          "a": 0,
+          "hint": "É algo rápido e automático.",
+          "ex": "DevOps busca a automação dos processos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual ferramenta é comum nesta etapa?",
+          "opts": [
+            "Notepad",
+            "Jenkins",
+            "Paint",
+            "Calculadora"
+          ],
+          "a": 1,
+          "hint": "Nome de um mordomo.",
+          "ex": "Jenkins é uma ferramenta muito usada.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual comando iniciar um pipeline básico?",
+          "opts": [
+            "git init",
+            "npm run",
+            "docker run",
+            "depende"
+          ],
+          "a": 3,
+          "hint": "Varia muito.",
+          "ex": "Depende da ferramenta usada.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que é CD?",
+          "opts": [
+            "Compact Disc",
+            "Continuous Delivery",
+            "Control Data",
+            "Core Dump"
+          ],
+          "a": 1,
+          "hint": "Entrega contínua.",
+          "ex": "CD significa Continuous Delivery (ou Deployment).",
+          "format": "SINTAXE"
+        }
+      ]
+    },
+    {
+      "id": "devops-cicd-28",
+      "name": "STAGE 28 - PROJETO FINAL",
+      "difficulty": "AVANÇADO",
+      "color": "#EC4899",
+      "icon": "◆",
+      "summary": "Resumo prático da stage 28.",
+      "lesson": [
+        {
+          "title": "Lição 1",
+          "body": "Explicação do conteúdo de DevOps.",
+          "code": "echo 'DevOps'"
+        },
+        {
+          "title": "Lição 2",
+          "body": "Mais detalhes.",
+          "code": "echo 'Pipeline'"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é o objetivo principal do Projeto Final?",
+          "opts": [
+            "Automação",
+            "Manual",
+            "Lentidão",
+            "Atraso"
+          ],
+          "a": 0,
+          "hint": "É algo rápido e automático.",
+          "ex": "DevOps busca a automação dos processos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual ferramenta é comum nesta etapa?",
+          "opts": [
+            "Notepad",
+            "Jenkins",
+            "Paint",
+            "Calculadora"
+          ],
+          "a": 1,
+          "hint": "Nome de um mordomo.",
+          "ex": "Jenkins é uma ferramenta muito usada.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual comando iniciar um pipeline básico?",
+          "opts": [
+            "git init",
+            "npm run",
+            "docker run",
+            "depende"
+          ],
+          "a": 3,
+          "hint": "Varia muito.",
+          "ex": "Depende da ferramenta usada.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que é CD?",
+          "opts": [
+            "Compact Disc",
+            "Continuous Delivery",
+            "Control Data",
+            "Core Dump"
+          ],
+          "a": 1,
+          "hint": "Entrega contínua.",
+          "ex": "CD significa Continuous Delivery (ou Deployment).",
+          "format": "SINTAXE"
+        }
+      ]
+    },
+    {
+      "id": "devops-cicd-29",
+      "name": "STAGE 29 - PROJETO FINAL",
+      "difficulty": "AVANÇADO",
+      "color": "#EC4899",
+      "icon": "◆",
+      "summary": "Resumo prático da stage 29.",
+      "lesson": [
+        {
+          "title": "Lição 1",
+          "body": "Explicação do conteúdo de DevOps.",
+          "code": "echo 'DevOps'"
+        },
+        {
+          "title": "Lição 2",
+          "body": "Mais detalhes.",
+          "code": "echo 'Pipeline'"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é o objetivo principal do Projeto Final?",
+          "opts": [
+            "Automação",
+            "Manual",
+            "Lentidão",
+            "Atraso"
+          ],
+          "a": 0,
+          "hint": "É algo rápido e automático.",
+          "ex": "DevOps busca a automação dos processos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual ferramenta é comum nesta etapa?",
+          "opts": [
+            "Notepad",
+            "Jenkins",
+            "Paint",
+            "Calculadora"
+          ],
+          "a": 1,
+          "hint": "Nome de um mordomo.",
+          "ex": "Jenkins é uma ferramenta muito usada.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual comando iniciar um pipeline básico?",
+          "opts": [
+            "git init",
+            "npm run",
+            "docker run",
+            "depende"
+          ],
+          "a": 3,
+          "hint": "Varia muito.",
+          "ex": "Depende da ferramenta usada.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que é CD?",
+          "opts": [
+            "Compact Disc",
+            "Continuous Delivery",
+            "Control Data",
+            "Core Dump"
+          ],
+          "a": 1,
+          "hint": "Entrega contínua.",
+          "ex": "CD significa Continuous Delivery (ou Deployment).",
+          "format": "SINTAXE"
+        }
+      ]
+    },
+    {
+      "id": "devops-cicd-30",
+      "name": "STAGE 30 - PROJETO FINAL",
+      "difficulty": "AVANÇADO",
+      "color": "#EC4899",
+      "icon": "◆",
+      "summary": "Resumo prático da stage 30.",
+      "lesson": [
+        {
+          "title": "Lição 1",
+          "body": "Explicação do conteúdo de DevOps.",
+          "code": "echo 'DevOps'"
+        },
+        {
+          "title": "Lição 2",
+          "body": "Mais detalhes.",
+          "code": "echo 'Pipeline'"
+        }
+      ],
+      "questions": [
+        {
+          "type": "mcq",
+          "q": "Qual é o objetivo principal do Projeto Final?",
+          "opts": [
+            "Automação",
+            "Manual",
+            "Lentidão",
+            "Atraso"
+          ],
+          "a": 0,
+          "hint": "É algo rápido e automático.",
+          "ex": "DevOps busca a automação dos processos.",
+          "format": "CONCEITO"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual ferramenta é comum nesta etapa?",
+          "opts": [
+            "Notepad",
+            "Jenkins",
+            "Paint",
+            "Calculadora"
+          ],
+          "a": 1,
+          "hint": "Nome de um mordomo.",
+          "ex": "Jenkins é uma ferramenta muito usada.",
+          "format": "APLICAÇÃO PRÁTICA"
+        },
+        {
+          "type": "mcq",
+          "q": "Qual comando iniciar um pipeline básico?",
+          "opts": [
+            "git init",
+            "npm run",
+            "docker run",
+            "depende"
+          ],
+          "a": 3,
+          "hint": "Varia muito.",
+          "ex": "Depende da ferramenta usada.",
+          "format": "LEITURA DE CÓDIGO"
+        },
+        {
+          "type": "mcq",
+          "q": "O que é CD?",
+          "opts": [
+            "Compact Disc",
+            "Continuous Delivery",
+            "Control Data",
+            "Core Dump"
+          ],
+          "a": 1,
+          "hint": "Entrega contínua.",
+          "ex": "CD significa Continuous Delivery (ou Deployment).",
+          "format": "SINTAXE"
+        }
+      ]
+    }
+  ]
+}
